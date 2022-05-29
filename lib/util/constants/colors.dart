@@ -11,6 +11,7 @@ class MyColors {
   static const Color error_red = Color.fromRGBO(241, 82, 116, 1);
   static const Color grey130 = Color.fromRGBO(130, 139, 163, 1);
   static const Color grey188 = Color.fromRGBO(188, 192, 208, 1);
+  static const Color grey288 = Color.fromRGBO(228, 232, 238, 1);
   static const Color field_grey = Color.fromRGBO(248, 249, 253, 1);
   static const Color transparent = Colors.transparent;
   static const Color white = Colors.white;

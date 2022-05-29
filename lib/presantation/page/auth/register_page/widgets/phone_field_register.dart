@@ -15,6 +15,7 @@ class PhoneFieldRegister extends StatefulWidget {
 
 class _PhoneFieldRegisterState extends State<PhoneFieldRegister> {
   late TextEditingController? controller;
+
   @override
   void initState() {
     super.initState();
@@ -28,8 +29,8 @@ class _PhoneFieldRegisterState extends State<PhoneFieldRegister> {
       builder: (context, snapshot) {
         return DoctoroField(
           maxLines: 1,
-          label: "Mobil nömrə",
-          hint: "+994 (__) ___-__-__",
+          label: MyText.phone,
+          hint: MyText.phone_hint,
           upperCase: true,
           textInputType: TextInputType.phone,
           //formatters: [PhoneNumberFormatter()],

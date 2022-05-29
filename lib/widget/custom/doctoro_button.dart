@@ -55,7 +55,7 @@ class DoctoroButton extends StatelessWidget {
               color: active
                   ? (borderColor ?? (color ?? MyColors.btn_passive))
                   : (passiveButtonColor ?? MyColors.btn_passive)),
-          borderRadius: BorderRadius.circular(borderRadius ?? 12)),
+          borderRadius: BorderRadius.circular(borderRadius ?? 4)),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
