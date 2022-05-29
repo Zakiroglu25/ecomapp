@@ -12,37 +12,43 @@ class MateApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //bbbb('runnnnning');
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: "SF Pro Display",
-        // scaffoldBackgroundColor: MyColors.white,
+    return ScreenUtilInit(
+      designSize:const Size(375, 812),
+      builder: (BuildContext context, Widget? child) {
+        return child!;
+      },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          fontFamily: "SF Pro Display",
+          // scaffoldBackgroundColor: MyColors.white,
+        ),
+        // title: Configs.appName,
+        // navigatorKey: NavigationService.instance.navigationKey,
+        //1. call BotToastInit
+        // navigatorObservers: [BotToastNavigatorObserver()],
+        // navigatorObservers: [ if (Configs.enableSentry) SentryNavigatorObserver(),],
+        // theme: ThemeData(
+        //     pageTransitionsTheme: PageTransitionsTheme(
+        //       builders: <TargetPlatform, PageTransitionsBuilder>{
+        //         TargetPlatform.android: SharedAxisPageTransitionsBuilder(
+        //           transitionType: SharedAxisTransitionType.scaled,
+        //         ),
+        //         TargetPlatform.iOS: CupertinoPageTransitionsBuilder(
+        //             //transitionType: SharedAxisTransitionType.,
+        //             ) // TargetPlatform.iOS: CupertinoPageTransitionsBuilder(
+        //         //  // transitionType: SharedAxisTransitionType.scaled,
+        //         // ),
+        //       },
+        //     ),
+        //     fontFamily: 'CoHeadline',
+        //     scaffoldBackgroundColor: MyColors.white),
+        home: OnboardPage(),
+        //Pager.newOrder
+        // Pager.shops,
+        // Pager.report
+        // Pager.payment_balance
       ),
-      // title: Configs.appName,
-      // navigatorKey: NavigationService.instance.navigationKey,
-      //1. call BotToastInit
-      // navigatorObservers: [BotToastNavigatorObserver()],
-      // navigatorObservers: [ if (Configs.enableSentry) SentryNavigatorObserver(),],
-      // theme: ThemeData(
-      //     pageTransitionsTheme: PageTransitionsTheme(
-      //       builders: <TargetPlatform, PageTransitionsBuilder>{
-      //         TargetPlatform.android: SharedAxisPageTransitionsBuilder(
-      //           transitionType: SharedAxisTransitionType.scaled,
-      //         ),
-      //         TargetPlatform.iOS: CupertinoPageTransitionsBuilder(
-      //             //transitionType: SharedAxisTransitionType.,
-      //             ) // TargetPlatform.iOS: CupertinoPageTransitionsBuilder(
-      //         //  // transitionType: SharedAxisTransitionType.scaled,
-      //         // ),
-      //       },
-      //     ),
-      //     fontFamily: 'CoHeadline',
-      //     scaffoldBackgroundColor: MyColors.white),
-      home: OnboardPage(),
-      //Pager.newOrder
-      // Pager.shops,
-      // Pager.report
-      // Pager.payment_balance
     );
   }
 }

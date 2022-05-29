@@ -24,6 +24,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg:
   animate_do: ^2.1.0
+  modal_bottom_sheet: ^2.0.1
+  focus_detector: ^2.0.1
+
 
 dev_dependencies:
   flutter_test:

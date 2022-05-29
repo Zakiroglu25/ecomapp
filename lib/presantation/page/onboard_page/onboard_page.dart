@@ -10,6 +10,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../util/constants/size_config.dart';
 import '../../../widget/custom/doctoro_button.dart';
+import '../auth/login_page/login_page.dart';
 import 'widgets/indicator_widget.dart';
 import 'widgets/page_one.dart';
 import 'widgets/page_three.dart';
@@ -89,6 +90,9 @@ class _OnboardPageState extends State<OnboardPage>
                     color: MyColors.btn_passive,
                     text: MyText.login,
                     textColor: MyColors.black0,
+                    onTap: (){
+                      Go.to(context, LoginPage());
+                    },
                   ),
                   MySizedBox.h8,
                 ],
