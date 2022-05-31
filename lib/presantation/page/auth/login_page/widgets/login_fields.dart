@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../../util/constants/sized_box.dart';
 import '../../../../../util/constants/text.dart';
+import 'pass_field.dart';
 import 'phone_field_login.dart';
-
-
 
 class LoginFields extends StatelessWidget {
   // static ConfigService get _configs => locator<ConfigService>();
@@ -16,11 +15,6 @@ class LoginFields extends StatelessWidget {
       children: [
         PhoneFieldLogin(),
         PassField(),
-        MySizedBox.h16,
-        // DoctoroButton(
-        //   text: MyText.forgot_pass,
-        //   onTap: () => Go.to(context, Pager.forgotPass),
-        // ),
       ],
     );
   }

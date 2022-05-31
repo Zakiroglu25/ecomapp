@@ -22,6 +22,7 @@ class _PassFieldState extends State<PassField> {
       // stream: BlocProvider.of<LoginCubit>(context).passStream,
       builder: (context, snapshot) {
         return DoctoroField(
+          label: MyText.password,
           // title: MyText.password,
           maxLines: 1,
           hint: MyText.password,

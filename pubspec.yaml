@@ -26,6 +26,7 @@ dependencies:
   animate_do: ^2.1.0
   modal_bottom_sheet: ^2.0.1
   focus_detector: ^2.0.1
+  pin_code_fields: ^7.4.0
 
 
 dev_dependencies:

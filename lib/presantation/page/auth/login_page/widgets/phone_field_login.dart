@@ -13,9 +13,9 @@ class PhoneFieldLogin extends StatelessWidget {
       // stream: BlocProvider.of<LoginCubit>(context).emailStream,
       builder: (context, snapshot) {
         return DoctoroField(
-          title: MyText.email,
+          label: MyText.phone,
           maxLines: 1,
-          hint: MyText.email,
+          hint: MyText.phone_hint,
           upperCase: false,
           textInputType: TextInputType.emailAddress,
           textCapitalization: TextCapitalization.none,

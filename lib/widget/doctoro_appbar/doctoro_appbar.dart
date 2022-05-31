@@ -28,7 +28,7 @@
 //   final bool? deleteButton;
 //   final bool? submitButton;
 //
-//   DoctoroAppBar(§
+//   DoctoroAppBar(
 //       {required this.title,
 //       // @required this.user,
 //       this.notification,

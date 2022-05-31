@@ -12,7 +12,7 @@ class DoctoroField extends StatelessWidget {
   final TextEditingController? controller;
   final String? label;
   final String? hint;
-  final String? title;
+  // final String? title;
   final String? errorMessage;
   final String? infoMessage;
   final String? initialValue;
@@ -43,7 +43,7 @@ class DoctoroField extends StatelessWidget {
       this.upperCase,
       this.formatters,
       this.suffixIcon,
-      this.title,
+      // this.title,
       this.infoMessage,
       this.errorMessage,
       this.initialValue,
