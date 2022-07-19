@@ -1,3 +1,4 @@
+import 'package:doctoro/presantation/page/auth/login_page/login_page.dart';
 import 'package:doctoro/presantation/page/onboard_page/onboard_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -43,7 +44,7 @@ class MateApp extends StatelessWidget {
         //     ),
         //     fontFamily: 'CoHeadline',
         //     scaffoldBackgroundColor: MyColors.white),
-        home: OnboardPage(),
+        home: LoginPage(),
         //Pager.newOrder
         // Pager.shops,
         // Pager.report

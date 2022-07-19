@@ -1,18 +1,21 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../util/constants/app_text_styles.dart';
+import '../../util/constants/assets.dart';
 import '../../util/constants/colors.dart';
 import '../../util/constants/sized_box.dart';
 import '../../util/formatter/lower_case_formatter.dart';
 import '../../util/formatter/upper_case_formatter.dart';
+import '../../util/screen/widget_or_empty.dart';
 
 class DoctoroField extends StatelessWidget {
   final TextEditingController? controller;
   final String? label;
   final String? hint;
-  // final String? title;
+  final String? title;
   final String? errorMessage;
   final String? infoMessage;
   final String? initialValue;
@@ -33,56 +36,65 @@ class DoctoroField extends StatelessWidget {
 
   DoctoroField(
       {this.controller,
-      this.label,
-      this.hint,
-      this.maxLenght,
-      this.topMargin,
-      this.maxLines,
-      this.obscure,
-      this.readOnly,
-      this.upperCase,
-      this.formatters,
-      this.suffixIcon,
-      // this.title,
-      this.infoMessage,
-      this.errorMessage,
-      this.initialValue,
-      this.textCapitalization,
-      this.onChanged,
-      this.onTap,
-      this.prefixIcon,
-      this.suffixText,
-      this.textInputType})
+        this.label,
+        this.hint,
+        this.maxLenght,
+        this.topMargin,
+        this.maxLines,
+        this.obscure,
+        this.readOnly,
+        this.upperCase,
+        this.formatters,
+        this.suffixIcon,
+        this.title,
+        this.infoMessage,
+        this.errorMessage,
+        this.initialValue,
+        this.textCapitalization,
+        this.onChanged,
+        this.onTap,
+        this.prefixIcon,
+        this.suffixText,
+        this.textInputType})
       : assert(controller == null || initialValue == null,
-            "her ikisi teyin ola bilmez");
+  "her ikisi teyin ola bilmez");
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 200),
-      height: (errorMessage == null ? 60 : 80) +
+      height: (errorMessage == null ? 90 : 110) +
           (infoMessage != null ? 18.0 : 0.0),
       // color: MyColors.mainRED,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // SizedBox(height:topMargin?? 6,),
+          Text(
+            title ?? "",
+            style: TextStyle(
+                fontSize: 14,
+                color: MyColors.grey153,
+                fontFamily: "San Francisco"),
+          ),
+          MySizedBox.h3,
           Stack(
             alignment: Alignment.center,
             children: [
               AnimatedContainer(
-                height: 56,
+                height: 50,
                 duration: Duration(milliseconds: 200),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
+                    borderRadius: BorderRadius.circular(12),
                     border: Border.all(
                         color: errorMessage == null
                             ? MyColors.transparent
-                            : MyColors.error_red)),
+                            : MyColors.errorRED)),
                 child: TextFormField(
                   autocorrect: false,
                   controller: controller,
                   textInputAction: TextInputAction.done,
+
                   obscureText: obscure ?? false,
                   maxLength: maxLenght,
                   maxLines: maxLines ?? null,
@@ -95,19 +107,24 @@ class DoctoroField extends StatelessWidget {
 
                   keyboardType: textInputType ?? TextInputType.text,
                   textCapitalization:
-                      textCapitalization ?? TextCapitalization.sentences,
+                  textCapitalization ?? TextCapitalization.sentences,
                   inputFormatters: [...?customInputFormat(), ...?formatters],
                   decoration: InputDecoration(
-                    label: Text(label!,style: TextStyle(color: MyColors.grey130),),
                     counterText: '',
-                    border: InputBorder.none,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(
+                        width: 0,
+                        style: BorderStyle.none,
+                      ),
+                    ),
                     hintText: hint ?? "",
-                    hintStyle: AppTextStyles.sfPro400
-                        .copyWith(fontSize: 15, color: MyColors.grey130),
+                    hintStyle: AppTextStyles.sanF400
+                        .copyWith(fontSize: 15, color: MyColors.grey153),
                     suffixText: suffixText ?? "",
                     filled: true,
                     prefixIcon: prefixIcon,
-                    fillColor: MyColors.field_grey,
+                    fillColor: MyColors.mainGrey,
                     contentPadding: EdgeInsets.only(
                         left: 14.0,
                         bottom: 6.0,
@@ -119,7 +136,7 @@ class DoctoroField extends StatelessWidget {
               Positioned(
                 right: 0,
                 child: Container(
-                  color: MyColors.transparent,
+                  color: MyColors.mainGrey,
                   padding: const EdgeInsets.only(right: 8),
                   margin: const EdgeInsets.only(right: 2),
                   child: Tooltip(
@@ -127,9 +144,15 @@ class DoctoroField extends StatelessWidget {
                     child: Center(
                       child: Container(
                         padding: EdgeInsets.symmetric(
-                            //  vertical: errorMessage == null ? 18 : 17,
+                          //  vertical: errorMessage == null ? 18 : 17,
                             horizontal: 2),
-                        child: suffixIcon,
+                        child: suffixIcon ??
+                            (errorMessage != null
+                                ? Container(
+                                height: 20,
+                                //   color:MyColors.grey153,
+                                child: SvgPicture.asset(Assets.svgLock))
+                                : Container()),
                       ),
                     ),
                   ),
@@ -137,23 +160,24 @@ class DoctoroField extends StatelessWidget {
               )
             ],
           ),
-          // WidgetOrEmpty(
-          //   value: errorMessage != null,
-          //   child: FadeIn(
-          //     key: Key("b"),
-          //     child: Text(
-          //       errorMessage ?? "",
-          //       style: AppTextStyles.sanF400.copyWith(color: MyColors.errorRED),
-          //     ),
-          //   ),
-          //   elseChild: FadeIn(
-          //     key: Key("a"),
-          //     child: Text(
-          //       (infoMessage ?? ""),
-          //       style: AppTextStyles.sfPro400.copyWith(color: MyColors.orange),
-          //     ),
-          //   ),
-          // ),
+          MySizedBox.h3,
+          WidgetOrEmpty(
+            value: errorMessage != null,
+            child: FadeIn(
+              key: Key("b"),
+              child: Text(
+                errorMessage ?? "",
+                style: AppTextStyles.sanF400.copyWith(color: MyColors.errorRED),
+              ),
+            ),
+            elseChild: FadeIn(
+              key: Key("a"),
+              child: Text(
+                (infoMessage ?? ""),
+                style: AppTextStyles.sanF400.copyWith(color: MyColors.error_red),
+              ),
+            ),
+          ),
         ],
       ),
     );

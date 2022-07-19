@@ -13,6 +13,7 @@ class PhoneFieldLogin extends StatelessWidget {
       // stream: BlocProvider.of<LoginCubit>(context).emailStream,
       builder: (context, snapshot) {
         return DoctoroField(
+          title: MyText.phone,
           label: MyText.phone,
           maxLines: 1,
           hint: MyText.phone_hint,

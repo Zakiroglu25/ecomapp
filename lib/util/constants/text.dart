@@ -15,7 +15,7 @@ class MyText {
       "Clinical excellence must be the priority for any health care service provider";
 
   //login btn text
-  static const String register = "Hesab yarat";
+  static const String register = "Qeydiyyatdan keç";
   static const String login = "Hesaba daxil ol";
 
   //register
@@ -41,4 +41,14 @@ App terms and conditions are different from disclaimers and privacy policies bec
 
 Prohibited Rights and Responsibilities of Uses 
 In addition to laying out rules for proper use of your app, you should also clearly outline what users can not do on your app. For example, users may be prohibited from spamming, copyright infringement, or collecting data without authorization.''';
+
+
+  ///new design text
+  //login
+  static const String enter = "Daxil olun";
+  static const String enterText = "Daxil olmaq üçün aşağıda qeyd olunan bəndləri doldurun.";
+  static const String forgot = "Şifrəni unutmusuz ?";
+
+
+
 }

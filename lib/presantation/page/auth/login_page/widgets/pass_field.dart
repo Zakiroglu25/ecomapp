@@ -23,7 +23,7 @@ class _PassFieldState extends State<PassField> {
       builder: (context, snapshot) {
         return DoctoroField(
           label: MyText.password,
-          // title: MyText.password,
+          title: MyText.password,
           maxLines: 1,
           hint: MyText.password,
           obscure: obscure,

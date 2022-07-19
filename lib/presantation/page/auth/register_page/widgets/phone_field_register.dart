@@ -29,6 +29,7 @@ class _PhoneFieldRegisterState extends State<PhoneFieldRegister> {
       builder: (context, snapshot) {
         return DoctoroField(
           maxLines: 1,
+          title: MyText.phone,
           label: MyText.phone,
           hint: MyText.phone_hint,
           upperCase: true,
