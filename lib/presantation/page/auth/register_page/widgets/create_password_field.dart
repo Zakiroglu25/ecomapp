@@ -25,6 +25,7 @@ class _MainPassFieldRegisterState extends State<MainPassFieldRegister> {
       // stream: BlocProvider.of<RegisterCubit>(context).passMainStream,
       builder: (context, snapshot) {
         return DoctoroField(
+          title: MyText.password,
           label: MyText.password,
           maxLines: 1,
           hint: MyText.password,

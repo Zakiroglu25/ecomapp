@@ -1,3 +1,5 @@
+import 'package:animations/animations.dart';
+import 'package:doctoro/presantation/page/auth/login_page/login_page.dart';
 import 'package:doctoro/presantation/page/onboard_page/onboard_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,30 +22,25 @@ class MateApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          fontFamily: "SF Pro Display",
-          // scaffoldBackgroundColor: MyColors.white,
+          pageTransitionsTheme:  PageTransitionsTheme(
+            builders: <TargetPlatform, PageTransitionsBuilder>{
+              TargetPlatform.android:
+              SharedAxisPageTransitionsBuilder(
+                transitionType: SharedAxisTransitionType.scaled,
+              ),
+              TargetPlatform.iOS: CupertinoPageTransitionsBuilder(
+                //transitionType: SharedAxisTransitionType.,
+              )
+              // TargetPlatform.iOS: CupertinoPageTransitionsBuilder(
+              //  // transitionType: SharedAxisTransitionType.scaled,
+              // ),
+            },
+          ),
+          fontFamily: "San Francisco",
+          scaffoldBackgroundColor: MyColors.white,
         ),
-        // title: Configs.appName,
-        // navigatorKey: NavigationService.instance.navigationKey,
-        //1. call BotToastInit
-        // navigatorObservers: [BotToastNavigatorObserver()],
-        // navigatorObservers: [ if (Configs.enableSentry) SentryNavigatorObserver(),],
-        // theme: ThemeData(
-        //     pageTransitionsTheme: PageTransitionsTheme(
-        //       builders: <TargetPlatform, PageTransitionsBuilder>{
-        //         TargetPlatform.android: SharedAxisPageTransitionsBuilder(
-        //           transitionType: SharedAxisTransitionType.scaled,
-        //         ),
-        //         TargetPlatform.iOS: CupertinoPageTransitionsBuilder(
-        //             //transitionType: SharedAxisTransitionType.,
-        //             ) // TargetPlatform.iOS: CupertinoPageTransitionsBuilder(
-        //         //  // transitionType: SharedAxisTransitionType.scaled,
-        //         // ),
-        //       },
-        //     ),
-        //     fontFamily: 'CoHeadline',
-        //     scaffoldBackgroundColor: MyColors.white),
-        home: OnboardPage(),
+
+        home: LoginPage(),
         //Pager.newOrder
         // Pager.shops,
         // Pager.report

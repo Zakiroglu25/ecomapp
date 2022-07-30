@@ -5,7 +5,6 @@ import 'package:doctoro/widget/custom/doctoro_button.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../../../../../util/constants/app_text_styles.dart';
 import '../../../../../../util/constants/colors.dart';
