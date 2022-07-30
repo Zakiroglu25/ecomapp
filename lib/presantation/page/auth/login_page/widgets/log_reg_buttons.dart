@@ -28,8 +28,9 @@ class LogRegButtons extends StatelessWidget {
     return DoctoroButton(
       onTap: () {
         // context.read<LoginCubit>().login(context);
+        Go.andRemove(context, Pager.landing);
       },
-      text: MyText.password,
+      text: MyText.enter,
       // loading:
       //     (context.watch<LoginCubit>().state is LoginInProgress) ? true : false,
     );

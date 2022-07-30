@@ -29,6 +29,7 @@ dependencies:
   pin_code_fields: ^7.4.0
   sensors_plus: ^1.3.2
   keyboard_attachable: ^2.1.0
+  animations:
 
 
 dev_dependencies:
@@ -48,10 +49,6 @@ flutter:
     - assets/png/
 
   fonts:
-    - family: SF Pro Display
-      fonts:
-        - asset: assets/fonts/sfpromedium.otf
-          style: normal
     - family: San Francisco
       fonts:
         - asset: assets/fonts/SFNSText-Regular.otf

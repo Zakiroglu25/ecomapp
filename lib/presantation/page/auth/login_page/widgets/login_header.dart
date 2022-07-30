@@ -5,6 +5,7 @@ import '../../../../../util/constants/app_text_styles.dart';
 import '../../../../../util/constants/colors.dart';
 import '../../../../../util/constants/sized_box.dart';
 import '../../../../../util/constants/text.dart';
+import '../../../../../widget/custom/text_title_big.dart';
 import '../../../../../widget/general/doctoro_logo.dart';
 
 class LoginHeaders extends StatelessWidget {
@@ -15,7 +16,9 @@ class LoginHeaders extends StatelessWidget {
       children: [
         DoctoroLogo(),
         MySizedBox.h14,
-        buildEnterText(),
+        BigSection(
+          title: MyText.enter,
+        ),
         MySizedBox.h20,
         buildLittleText(),
       ],
@@ -32,8 +35,8 @@ class LoginHeaders extends StatelessWidget {
   Text buildLittleText() {
     return Text(
       MyText.enterText,
-      style: AppTextStyles.sanF400
-          .copyWith(fontSize: 14, color: MyColors.grey153),
+      style:
+          AppTextStyles.sfPro400.copyWith(fontSize: 14, color: MyColors.grey153),
       textAlign: TextAlign.left,
     );
   }
