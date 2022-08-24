@@ -4,7 +4,7 @@ import 'dart:io';
 class ApiKeys {
   ApiKeys._();
 
-  static const baseUrl = 'https://caspa.az/api';
+  static const baseUrl = 'https://doctoro-dev.ml';
 
   ///delete
   static const headers = {
@@ -13,9 +13,10 @@ class ApiKeys {
   };
 
   //reg and login
-  static const login = "$baseUrl/user/login";
-  static const registerPersonal = "$baseUrl/user/register";
-  static const registerCompany = "$baseUrl/user/company/register";
+  static const login = "$baseUrl/public/auth/login";
+
+
+  static const registerPersonal = "$baseUrl/public/onboarding/sign-up";
 
   //report
   static const report = "$baseUrl/user/report";
@@ -122,20 +123,20 @@ class ApiKeys {
   static loginBody({
     required String? email,
     required String? password,
-    required String? device_name,
-    required String? language,
-    required int? deviceTypeId,
-    required String? deviceCode,
+    // required String? device_name,
+    // required String? language,
+    // required int? deviceTypeId,
+    // required String? deviceCode,
   }) {
     //
     final map = {
-      "email": email,
+      "username": email,
       "password": password,
-      "device_name": device_name,
-      "deviceName": device_name,
-      "deviceTypeId": deviceTypeId,
-      "deviceCode": deviceCode,
-      "language": language,
+      // "device_name": device_name,
+      // "deviceName": device_name,
+      // "deviceTypeId": deviceTypeId,
+      // "deviceCode": deviceCode,
+      // "language": language,
     };
 
     map.removeWhere(
@@ -230,40 +231,15 @@ class ApiKeys {
   }
 
   static registrationPersonalBody({
-    required String? name,
-    required String? surname,
-    required String? address,
-    required String? language,
-    required String? deviceCode,
-    required int? deviceTypeId,
     required String? email,
     required String? password,
-    required String? password_confirmation,
     required String? phone,
-    required int? accept,
-    required String? id_number,
-    required String? fin,
-    required String? birthday,
-    required String? gender,
-    required int? ware_house,
   }) {
     final map = {
-      "name": name,
-      "surname": surname,
-      "address": address,
       "email": email,
       "password": password,
-      "password_confirmation": password_confirmation,
       "phone": phone,
       "accept": 1,
-      "id_number": id_number,
-      "fin": fin,
-      "birthday": birthday,
-      "gender": gender,
-      "ware_house": 1,
-      "deviceCode": deviceCode,
-      "deviceTypeId": deviceTypeId,
-      "language": language
     };
 
     map.removeWhere(

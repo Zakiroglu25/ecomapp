@@ -1,6 +1,10 @@
 import 'package:doctoro/widget/custom/doctoro_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../infrastructure/cubit/login/login_cubit.dart';
+import '../../../../../infrastructure/cubit/login/login_state.dart';
+import '../../../../../infrastructure/cubit/register/register_cubit.dart';
 import '../../../../../util/constants/colors.dart';
 import '../../../../../util/constants/sized_box.dart';
 import '../../../../../util/constants/text.dart';
@@ -12,7 +16,6 @@ class LogRegButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 140,
-      // color: MyColors.green,
       child: Column(
         children: [
           loginButton(context),
@@ -27,12 +30,11 @@ class LogRegButtons extends StatelessWidget {
   Widget loginButton(BuildContext context) {
     return DoctoroButton(
       onTap: () {
-        // context.read<LoginCubit>().login(context);
-        Go.andRemove(context, Pager.landing);
+        context.read<LoginCubit>().login(context);
       },
       text: MyText.enter,
-      // loading:
-      //     (context.watch<LoginCubit>().state is LoginInProgress) ? true : false,
+      loading:
+          (context.watch<LoginCubit>().state is LoginInProgress) ? true : false,
     );
   }
 
@@ -42,7 +44,7 @@ class LogRegButtons extends StatelessWidget {
       textColor: MyColors.black0,
       // borderColor: MyColors.mainColor,
       onTap: () {
-        //context.read<RegisterCubit>().register(context);
+        // context.read<RegisterCubit>().register(context);
         Go.to(context, Pager.register);
       },
       text: MyText.register,

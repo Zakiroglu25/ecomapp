@@ -2,6 +2,7 @@ import 'package:doctoro/widget/general/doctoro_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../infrastructure/cubit/login/login_cubit.dart';
 import '../../../../../util/constants/text.dart';
 
 class PhoneFieldLogin extends StatelessWidget {
@@ -10,7 +11,7 @@ class PhoneFieldLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<String>(
-      // stream: BlocProvider.of<LoginCubit>(context).emailStream,
+      stream: BlocProvider.of<LoginCubit>(context).emailStream,
       builder: (context, snapshot) {
         return DoctoroField(
           title: MyText.phone,
@@ -27,8 +28,8 @@ class PhoneFieldLogin extends StatelessWidget {
           // ),
           errorMessage: snapshot.error == null ? null : '${snapshot.error}',
           // controller: emailController,
-          // onChanged: (value) =>
-              // BlocProvider.of<LoginCubit>(context).updateEmail(value),
+          onChanged: (value) =>
+              BlocProvider.of<LoginCubit>(context).updateEmail(value),
         );
       },
     );
