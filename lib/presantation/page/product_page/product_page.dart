@@ -47,6 +47,20 @@ class ProductPage extends StatelessWidget {
                   "Reseptli və reseptsiz satışda olan dərmanları buradan əldə edib qiymətlərini müqaisə edə bilərsiniz.",
             ),
             MySizedBox.h10,
+            Container(
+              height: 84,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: MyColors.blue0
+              ),
+              child: Row(
+                children: [
+                  Text("Paşa Sığorta məhsulları burada!"),
+                  Image.asset(Assets.pasha)
+                ],
+              ),
+            ),
+            MySizedBox.h10,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

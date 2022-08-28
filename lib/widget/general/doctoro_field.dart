@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:doctoro/util/validators/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -55,7 +56,7 @@ class DoctoroField extends StatelessWidget {
         this.onTap,
         this.prefixIcon,
         this.suffixText,
-        this.textInputType})
+        this.textInputType,})
       : assert(controller == null || initialValue == null,
   "her ikisi teyin ola bilmez");
 
@@ -94,7 +95,6 @@ class DoctoroField extends StatelessWidget {
                   autocorrect: false,
                   controller: controller,
                   textInputAction: TextInputAction.done,
-
                   obscureText: obscure ?? false,
                   maxLength: maxLenght,
                   maxLines: maxLines ?? null,

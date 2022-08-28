@@ -49,7 +49,7 @@ class DoctoroButton extends StatelessWidget {
       width: w ?? double.infinity,
       decoration: BoxDecoration(
           color: (active)
-              ? (color ?? MyColors.mainRed)
+              ? (color ?? MyColors.btnGreen)
               : (passiveButtonColor ?? MyColors.btn_passive),
           border: Border.all(
               color: active

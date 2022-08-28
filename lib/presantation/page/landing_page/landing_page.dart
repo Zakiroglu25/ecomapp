@@ -22,11 +22,11 @@ class _LandingPageState extends State<LandingPage> {
   int index = 0;
 
   final pages = <Widget>[
-    Pager.home,
     Pager.productPage,
     Pager.home,
     Pager.home,
     Pager.home,
+    Pager.otherPage,
   ];
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
@@ -52,9 +52,9 @@ class _LandingPageState extends State<LandingPage> {
           selectedItemColor: MyColors.black34,
           items: [
             buildBottomNavigationBarItem(
-                icon: Assets.svgLogo, label: MyText.home),
+                icon: Assets.svgLogo, label: MyText.product),
             buildBottomNavigationBarItem(
-                icon: Assets.svgProduct, label: MyText.product),
+                icon: Assets.svgProduct, label: MyText.favorite),
             buildBottomNavigationBarItem(
                 icon: Assets.svgAptek, label: MyText.aptek),
             buildBottomNavigationBarItem(

@@ -4,8 +4,10 @@ import 'package:doctoro/util/constants/colors.dart';
 import 'package:doctoro/util/constants/sized_box.dart';
 import 'package:doctoro/widget/custom/doctoro_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../infrastructure/cubit/register/register_cubit.dart';
 import '../../../../util/formatter/masked_text_controller_phone.dart';
 import 'widgets/checkbox_ads.dart';
 import 'widgets/email_field_register.dart';
@@ -36,9 +38,7 @@ class Register extends StatelessWidget {
           child: Column(
             children: [
               MySizedBox.h16,
-              PhoneFieldRegister(
-                controller: MaskedTextController.app(),
-              ),
+              PhoneFieldRegister(),
               EmailFieldRegister(),
               MainPassFieldRegister(),
               MySizedBox.h26,
@@ -46,14 +46,21 @@ class Register extends StatelessWidget {
               MySizedBox.h20,
               AdsCheckbox(),
               MySizedBox.h50,
-              DoctoroButton(
-                child: Text(
-                  "Davam et",
-                  style: AppTextStyles.sfPro500
-                      .copyWith(color: MyColors.white, fontSize: 15.sp),
-                ),
-                color: MyColors.grey288,
-              )
+              StreamBuilder<bool>(
+                  // stream: BlocProvider.of<RegisterCubit>(context).registerActiveeStream,
+                  builder: (context, snapshot) {
+                return DoctoroButton(
+                  loading:
+                      (context.watch<RegisterCubit>().state is RegisterLoading),
+                  onTap: () => context.read<RegisterCubit>().register(context),
+                  child: Text(
+                    "Davam et",
+                    style: AppTextStyles.sfPro500
+                        .copyWith(color: MyColors.white, fontSize: 15.sp),
+                  ),
+                  color: MyColors.grey288,
+                );
+              })
             ],
           ),
         ),

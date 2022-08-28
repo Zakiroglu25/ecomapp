@@ -17,18 +17,22 @@ class MyColors {
   static const Color field_grey = Color.fromRGBO(248, 249, 253, 1);
   static const Color transparent = Colors.transparent;
   static const Color white = Colors.white;
-  static const Color purple =Color.fromRGBO(119, 130, 205, 0.15);
+  static const Color purple = Color.fromRGBO(119, 130, 205, 0.15);
+
   ///NEW DESIGN
   static const Color grey153 = Color.fromRGBO(153, 153, 153, 1);
   static const Color errorRED = Color.fromRGBO(238, 0, 4, 1);
   static const Color mainGrey = Color(0xFFF5F5F5);
   static const Color grey226 = Color.fromRGBO(226, 226, 226, 1);
   static const Color green = Color.fromRGBO(85, 169, 50, 1);
+  static const Color newGREEN = Colors.lightGreen;
   static const Color green235 = Color.fromRGBO(235, 250, 227, 1);
   static const Color orange253 = Color.fromRGBO(253, 245, 224, 1);
   static const Color red250 = Color.fromRGBO(250, 233, 232, 1);
-
-
-
-
+  static const Color btnGreen = Color(0xFF55A158);
+  static const Color purple240 = Color.fromRGBO(240, 240, 248, 1);
+  static const Color orange225 = Color.fromRGBO(225, 142, 50, 0.1);
+  static const Color blue157 = Color.fromRGBO(57, 149, 210, 0.15);
+  static const Color green77 = Color.fromRGBO(77, 200, 187, 0.15);
+  static const Color blue0 = Color.fromRGBO(0, 147, 201, 0.1);
 }

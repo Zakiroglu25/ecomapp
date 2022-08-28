@@ -31,5 +31,8 @@ class Assets {
   static const String keyChild = "assets/png/keychild.png";
   static const String medicine = "assets/png/medicine.png";
   static const String pngBad = "assets/png/bad.png";
+  //other
+  static const String pasha = "assets/png/pasha.png";
+
 
 }

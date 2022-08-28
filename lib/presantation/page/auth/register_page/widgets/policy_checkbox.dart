@@ -4,11 +4,13 @@ import 'package:doctoro/util/screen/sheet.dart';
 import 'package:doctoro/widget/custom/doctoro_button.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../util/constants/app_text_styles.dart';
 import '../../../../../../util/constants/colors.dart';
 import '../../../../../../util/constants/text.dart';
+import '../../../../../infrastructure/cubit/register/register_cubit.dart';
 import '../../../../../util/constants/paddings.dart';
 import '../../../../../util/screen/ink_wrapper.dart';
 import 'policy_bottom_sheet.dart';
@@ -19,7 +21,7 @@ class PolicyCheckbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<bool>(
-      // stream: BlocProvider.of<RegisterCubit>(context).checkBoxStream,
+      stream: BlocProvider.of<RegisterCubit>(context).checkBoxStream,
       builder: (context, snapshot) {
         return Row(
           children: [
@@ -36,7 +38,7 @@ class PolicyCheckbox extends StatelessWidget {
                   // color of tick Mark
                   activeColor: MyColors.mainRed,
                   onChanged: (v) {
-                    // BlocProvider.of<RegisterCubit>(context).updateCheckBox(v!);
+                    BlocProvider.of<RegisterCubit>(context).updateCheckBox(v!);
                   }),
             ),
             MySizedBox.w8,

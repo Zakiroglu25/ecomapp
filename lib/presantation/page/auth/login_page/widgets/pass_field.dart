@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../infrastructure/cubit/login/login_cubit.dart';
 import '../../../../../util/constants/text.dart';
 import '../../../../../widget/general/doctoro_field.dart';
 import '../../../../../widget/icons/invisible_icon.dart';
@@ -19,7 +20,7 @@ class _PassFieldState extends State<PassField> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<String>(
-      // stream: BlocProvider.of<LoginCubit>(context).passStream,
+      stream: BlocProvider.of<LoginCubit>(context).passStream,
       builder: (context, snapshot) {
         return DoctoroField(
           label: MyText.password,
@@ -43,8 +44,8 @@ class _PassFieldState extends State<PassField> {
           textCapitalization: TextCapitalization.none,
           errorMessage: snapshot.error == null ? null : '${snapshot.error}',
           // controller: passController,
-          // onChanged: (value) =>
-          //     BlocProvider.of<LoginCubit>(context).updatePass(value),
+          onChanged: (value) =>
+              BlocProvider.of<LoginCubit>(context).updatePass(value),
         );
       },
     );

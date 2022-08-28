@@ -4,7 +4,7 @@ import 'dart:io';
 class ApiKeys {
   ApiKeys._();
 
-  static const baseUrl = 'https://caspa.az/api';
+  static const baseUrl = 'https://doctoro-dev.ml';
 
   ///delete
   static const headers = {
@@ -13,61 +13,14 @@ class ApiKeys {
   };
 
   //reg and login
-  static const login = "$baseUrl/user/login";
-  static const registerPersonal = "$baseUrl/user/register";
-  static const registerCompany = "$baseUrl/user/company/register";
+  static const login = "$baseUrl/public/auth/login";
 
-  //report
-  static const report = "$baseUrl/user/report";
-  static const editReport = "$baseUrl/user/report/edit";
-  static const deleteReport = "$baseUrl/user/report/delete";
-  static const orderViaLink = "$baseUrl/user/orders";
-  static const orderViaLinkEdit = "$baseUrl/user/orders/edit";
-  static const orderViaLinkDelete = "$baseUrl/user/orders/delete";
+  // register
+  static const registerPersonal = "$baseUrl/public/onboarding/sign-up";
 
   //user
-  static const user = "$baseUrl/user/user";
-  static const updateAccount = "$baseUrl/user/account";
-  static const updateAvatar = "$baseUrl/user/avatar";
+  static const user = "$baseUrl/protected/customer/account";
 
-  //general
-  static const shop = '$baseUrl/public/stores';
-  static const commission = '$baseUrl/public/order/commission';
-  static const regions = '$baseUrl/public/regions';
-  static const smsCodes = '$baseUrl/public/sms';
-
-  //packages
-  static const allPackages = '$baseUrl/user/packages';
-  static const packagesForCourier = '$baseUrl/user/couriers/packages';
-  static const addCourier = '$baseUrl/user/couriers';
-  static const editCourier = '$baseUrl/user/couriers/edit';
-  static const packagesStatuses = '$baseUrl/user/statuses';
-  static const packagesArchive = '$baseUrl/user/package/archive';
-  static const packagesActives = '$baseUrl/user/package/actives';
-
-  //------------------local-------------------------
-  static const youtubeIMG = "https://img.youtube.com/";
-  static const youtube = "https://youtube.com/";
-  static const vi = "vi/";
-  static const defaultJPG = "/hqdefault.jpg";
-  static const watch = "/watch?v=";
-
-  //get tarif
-  static const tariff = "$baseUrl/public/prices";
-
-  //get ads
-  static const ads = "$baseUrl/public/ads";
-
-  //get category
-  static const categories = "$baseUrl/public/categories";
-
-  //get address
-  static const getAddress = "$baseUrl/public/countries";
-
-  //add Etibarname
-  static const addAttorneys = "$baseUrl/user/attorneys";
-  static const deleteAttorneys = "$baseUrl/user/attorneys/delete";
-  static const editAttorneys = "$baseUrl/user/attorneys/edit";
 
   //forgot
   static const forgotOtp = "$baseUrl/user/otp";
@@ -76,66 +29,26 @@ class ApiKeys {
   //contact
   static const contact = "$baseUrl/public/contacts";
 
-  //promoCode
-  static const promoCodes = "$baseUrl/user/promos";
-  static const addPromoCode = "$baseUrl/user/promo";
-  static const checkPromoCode = "$baseUrl/user/promo/check";
 
-//courier
-  static const courierList = "$baseUrl/user/couriers";
-  static const deleteCourier = "$baseUrl/user/couriers/delete";
-
-  //gift
-  static const giftList = "$baseUrl/user/gifts";
-  static const addGiftCode = "$baseUrl/user/gift";
-
-  //payment_balance
-  static const paymentOrder = "$baseUrl/user/order/balance";
-  static const paymentCargo = "$baseUrl/user/cargo/balance";
-
-  //calculate kg
-  static const calculateKg = "$baseUrl/public/calculator";
-
-  //pay package
-  static const payForPackageBalalnce = "$baseUrl/user/package/payment";
-  static const payForPackageCard = "$baseUrl/user/package/payment/card";
-  static const payForPackageCashback = "$baseUrl/user/package/payment/cashback";
-  static const payForPackagePromo = "$baseUrl/user/package/payment/promo";
-
-  //check for promo
-  static const payForPackagePromoCheck =
-      "$baseUrl/user/package/payment/promo/check";
-
-  //pay order
-  static const payForOrderBalance = "$baseUrl/user/orders/balance";
-  static const payForOrderCard = "$baseUrl/user/orders/card";
-  static const payForOrderCashback = "$baseUrl/user/orders/cashback";
-
-  //pay courier
-  static const payForCourierBalance = "$baseUrl/user/courier/balance";
-  static const payForCourierCard = "$baseUrl/user/courier/card";
-  static const payForCourierCashback = "$baseUrl/user/courier/cashback";
-  //notification
-  static const deleteNotification = "$baseUrl/user/delete/notification";
 
 
   static loginBody({
     required String? email,
     required String? password,
-    required String? device_name,
-    required String? language,
-    required int? deviceTypeId,
-    required String? deviceCode,
+    // required String? device_name,
+    // required String? language,
+    // required int? deviceTypeId,
+    // required String? deviceCode,
   }) {
     //
     final map = {
-      "email": email,
+      "username": email,
       "password": password,
-      "device_name": device_name,
-      "deviceName": device_name,
-      "deviceTypeId": deviceTypeId,
-      "deviceCode": deviceCode,
-      "language": language,
+      // "device_name": device_name,
+      // "deviceName": device_name,
+      // "deviceTypeId": deviceTypeId,
+      // "deviceCode": deviceCode,
+      // "language": language,
     };
 
     map.removeWhere(
@@ -230,40 +143,16 @@ class ApiKeys {
   }
 
   static registrationPersonalBody({
-    required String? name,
-    required String? surname,
-    required String? address,
-    required String? language,
-    required String? deviceCode,
-    required int? deviceTypeId,
     required String? email,
     required String? password,
-    required String? password_confirmation,
     required String? phone,
-    required int? accept,
-    required String? id_number,
-    required String? fin,
-    required String? birthday,
-    required String? gender,
-    required int? ware_house,
+    required bool? ads,
   }) {
     final map = {
-      "name": name,
-      "surname": surname,
-      "address": address,
       "email": email,
       "password": password,
-      "password_confirmation": password_confirmation,
       "phone": phone,
-      "accept": 1,
-      "id_number": id_number,
-      "fin": fin,
-      "birthday": birthday,
-      "gender": gender,
-      "ware_house": 1,
-      "deviceCode": deviceCode,
-      "deviceTypeId": deviceTypeId,
-      "language": language
+      "newsletterSubscription": false,
     };
 
     map.removeWhere(
