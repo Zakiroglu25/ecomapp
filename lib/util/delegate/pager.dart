@@ -12,6 +12,7 @@ import '../../infrastructure/cubit/register/register_cubit.dart';
 import '../../presantation/page/auth/login_page/login_page.dart';
 import '../../presantation/page/auth/register_page/register_page.dart';
 import '../../presantation/page/home_page/home_page.dart';
+import '../../presantation/page/other_page/other_page.dart';
 
 class Pager {
   static app({bool? showSplash}) => BlocProvider(
@@ -29,7 +30,6 @@ class Pager {
         BlocProvider(create: (context) => LoginCubit()),
       ], child: const LoginPage());
 
-
   static get forgot => ForgetPasswordPage();
 
   static get home => HomePage();
@@ -37,4 +37,6 @@ class Pager {
   static get landing => LandingPage();
 
   static get productPage => ProductPage();
+
+  static get otherPage => OtherPage();
 }

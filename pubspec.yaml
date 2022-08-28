@@ -54,9 +54,9 @@ flutter:
     - assets/png/
 
   fonts:
-    - family: San Francisco
+    - family: SF Pro
       fonts:
-        - asset: assets/fonts/SFNSText-Regular.otf
+        - asset: assets/fonts/sfpromedium.otf
           style: normal
           weight: 700
 

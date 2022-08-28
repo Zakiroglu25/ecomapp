@@ -40,9 +40,8 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       // final String? fcm = await _fcm.getToken();
       final bool isLoggedIn = await _prefs.isLoggedIn;
       final String? accessToken = await _prefs.accessToken;
-
-      // await remoteConfig.fetchAndActivate();
-      // await remoteConfig.fetch();
+      print(isLoggedIn);
+      print(accessToken);
 
       // bbbb("fcm: $fcm");
       // bbbb("islog: $deleteAccount");
