@@ -6,8 +6,8 @@ import '../../../util/constants/text.dart';
 import '../../../util/delegate/my_printer.dart';
 import '../../../util/delegate/navigate_utils.dart';
 import '../../../util/delegate/pager.dart';
-import '../../../util/delegate/request_control.dart';
 import '../../../util/delegate/user_operations.dart';
+import '../../../util/screen/snack.dart';
 import '../../../util/validators/validator.dart';
 import '../../data/auth_provider.dart';
 import '../../services/hive_service.dart';
@@ -17,8 +17,6 @@ part 'register_state.dart';
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());
 
-  HiveService get _prefs => locator<HiveService>();
-
   void register(BuildContext context) {
     registerPersonal(context);
     iiii("register cuit 1");
@@ -26,25 +24,31 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   void registerPersonal(BuildContext context) async {
     emit(RegisterLoading());
-    iiii("register cuit 2");
     try {
+      iiii("register cuit 2");
       // final deviceCode = await _firebaseMessaging.getToken();
+      final response = await AuthProvider.registration(
+        email: uEmail.valueOrNull,
+        phone: phone.valueOrNull,
+        password: uPassMain.value,
+        ads: checkbox.valueOrNull,
+      );
       iiii("register cuit 3");
-      final response = await AuthProvider.registrationPersonal(
-          email: uEmail.valueOrNull,
-          phone: phone.valueOrNull,
-          password: uPassMain.value);
-      iiii(uEmail.toString()+phone.toString()+uPassMain.toString());
 
-      iiii("register cubit bloc result: " + response.toString());
+      if (response! == 200) {
+        iiii("register cuit 4");
 
-      if (isSuccess(response?.statusCode)) {
         await UserOperations.configureUserDataWhenLogin(
-            accessToken: response?.data, path: uPassMain.valueOrNull);
-        Go.andRemove(context, Pager.app(showSplash: true));
-        emit(RegisterSuccess(''));
+            accessToken: response.toString(), path: uPassMain.valueOrNull);
+        emit(RegisterSuccess(""));
+        iiii("register cuit 5");
+        Snack.display(context: context, message: "Qeydiyyat Uğurla tamamlandı");
+        Go.to(context, Pager.login);
       } else {
-        emit(RegisterFailed(message: "Qeydiyyat Zamani xeta yarandi"));
+        iiii("register cuit 6");
+
+        emit(RegisterFailed(message: response.message));
+        wwwww(response.toString());
       }
     } catch (e, s) {
       print("register cubit -> registrationPersonal ->catch : $e=> $s");
@@ -52,7 +56,6 @@ class RegisterCubit extends Cubit<RegisterState> {
     }
   }
 
-  //////VALUES///////////VALUES//////////VALUES/////////////VALUES///////////////////
 
   //email
   bool emailValid = false;
@@ -92,7 +95,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   bool get isPhoneIncorrect =>
       (!phone.hasValue || phone.value == null || phone.value.isEmpty);
 
-  ///////uMainPass
+  //Pass
   final BehaviorSubject<String> uPassMain = BehaviorSubject<String>();
 
   Stream<String> get passMainStream => uPassMain.stream;
@@ -116,16 +119,13 @@ class RegisterCubit extends Cubit<RegisterState> {
   Stream<bool> get checkBoxStream => checkbox.stream;
 
   updateCheckBox(bool value) {
-    // if (value) {
-    //   checkbox.value = false;
-    //   checkbox.sink.addError(MyText.field_is_not_correct);
-    // } else {
     checkbox.sink.add(value);
     //}
   }
 
-  bool get isCheckBoxIncorrect =>
-      (!checkboxAds.hasValue || checkboxAds.value == null || checkboxAds.value == false);
+  bool get isCheckBoxIncorrect => (!checkboxAds.hasValue ||
+      checkboxAds.value == null ||
+      checkboxAds.value == false);
 
   //checkbox ads
   final BehaviorSubject<bool> checkboxAds = BehaviorSubject<bool>.seeded(false);
@@ -133,10 +133,6 @@ class RegisterCubit extends Cubit<RegisterState> {
   Stream<bool> get checkBoxAdsStream => checkboxAds.stream;
 
   updateCheckBoxAds(bool value) {
-    // if (value) {
-    //   checkbox.value = false;
-    //   checkbox.sink.addError(MyText.field_is_not_correct);
-    // } else {
     checkboxAds.sink.add(value);
     //}
   }
@@ -154,6 +150,4 @@ class RegisterCubit extends Cubit<RegisterState> {
     phone.close();
     return super.close();
   }
-
-//eslinde asagidaki regidster type funksiyada gondermeye ehtiyac yoxdu
 }

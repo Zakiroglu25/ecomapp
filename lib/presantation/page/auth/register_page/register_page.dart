@@ -38,9 +38,7 @@ class Register extends StatelessWidget {
           child: Column(
             children: [
               MySizedBox.h16,
-              PhoneFieldRegister(
-                controller: MaskedTextController.app(),
-              ),
+              PhoneFieldRegister(),
               EmailFieldRegister(),
               MainPassFieldRegister(),
               MySizedBox.h26,
@@ -50,20 +48,19 @@ class Register extends StatelessWidget {
               MySizedBox.h50,
               StreamBuilder<bool>(
                   // stream: BlocProvider.of<RegisterCubit>(context).registerActiveeStream,
-                builder: (context, snapshot) {
-                  return DoctoroButton(
-                    loading:
-                    (context.watch<RegisterCubit>().state is RegisterLoading),
-                    onTap: () => context.read<RegisterCubit>().register(context),
-                    child: Text(
-                      "Davam et",
-                      style: AppTextStyles.sfPro500
-                          .copyWith(color: MyColors.white, fontSize: 15.sp),
-                    ),
-                    color: MyColors.grey288,
-                  );
-                }
-              )
+                  builder: (context, snapshot) {
+                return DoctoroButton(
+                  loading:
+                      (context.watch<RegisterCubit>().state is RegisterLoading),
+                  onTap: () => context.read<RegisterCubit>().register(context),
+                  child: Text(
+                    "Davam et",
+                    style: AppTextStyles.sfPro500
+                        .copyWith(color: MyColors.white, fontSize: 15.sp),
+                  ),
+                  color: MyColors.grey288,
+                );
+              })
             ],
           ),
         ),

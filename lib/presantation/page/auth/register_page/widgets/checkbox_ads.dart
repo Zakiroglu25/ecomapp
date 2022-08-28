@@ -38,14 +38,16 @@ class AdsCheckbox extends StatelessWidget {
                   // color of tick Mark
                   activeColor: MyColors.mainRed,
                   onChanged: (v) {
-                    BlocProvider.of<RegisterCubit>(context).updateCheckBoxAds(v!);
+                    BlocProvider.of<RegisterCubit>(context)
+                        .updateCheckBoxAds(v!);
                   }),
             ),
             MySizedBox.w8,
             SizedBox(
               width: 258,
               child: RichText(
-                text:   TextSpan(text: MyText.checkPrivacyAds,
+                text: TextSpan(
+                    text: MyText.checkPrivacyAds,
                     style: AppTextStyles.sfPro400
                         .copyWith(color: MyColors.grey130, fontSize: 12.sp)),
               ),

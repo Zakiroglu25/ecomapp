@@ -27,7 +27,7 @@ class ApiKeys {
   static const orderViaLinkDelete = "$baseUrl/user/orders/delete";
 
   //user
-  static const user = "$baseUrl/user/user";
+  static const user = "$baseUrl/protected/customer/account";
   static const updateAccount = "$baseUrl/user/account";
   static const updateAvatar = "$baseUrl/user/avatar";
 
@@ -234,12 +234,13 @@ class ApiKeys {
     required String? email,
     required String? password,
     required String? phone,
+    required bool? ads,
   }) {
     final map = {
       "email": email,
       "password": password,
       "phone": phone,
-      "accept": 1,
+      "newsletterSubscription": false,
     };
 
     map.removeWhere(
