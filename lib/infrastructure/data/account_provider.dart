@@ -1,19 +1,10 @@
 // Dart imports:
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+
 import '../../locator.dart';
-import '../../util/constants/api_keys.dart';
-import '../../util/constants/result_keys.dart';
-import '../../util/constants/text.dart';
-import '../../util/delegate/app_operations.dart';
-
-// Package imports:
-import 'package:http/http.dart' as http;
-
-import '../../util/delegate/my_printer.dart';
+import '../../utils/constants/api_keys.dart';
+import '../../utils/constants/result_keys.dart';
+import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
 import '../model/response/status_dynamic.dart';
 import '../model/response/user_result.dart';
@@ -29,7 +20,7 @@ class AccountProvider {
     final header = ApiKeys.header(token: token);
 
     final response =
-    await dioAuth.dio.get(api, options: Options(headers: header));
+        await dioAuth.dio.get(api, options: Options(headers: header));
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
       final gelenCavabJson = response.data;

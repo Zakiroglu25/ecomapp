@@ -1,16 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:rxdart/rxdart.dart';
-import '../../../locator.dart';
-import '../../../util/constants/text.dart';
-import '../../../util/delegate/my_printer.dart';
-import '../../../util/delegate/navigate_utils.dart';
-import '../../../util/delegate/pager.dart';
-import '../../../util/delegate/user_operations.dart';
-import '../../../util/screen/snack.dart';
-import '../../../util/validators/validator.dart';
+
+import '../../../utils/constants/text.dart';
+import '../../../utils/delegate/my_printer.dart';
+import '../../../utils/delegate/navigate_utils.dart';
+import '../../../utils/delegate/pager.dart';
+import '../../../utils/delegate/user_operations.dart';
+import '../../../utils/screen/snack.dart';
+import '../../../utils/validators/validator.dart';
 import '../../data/auth_provider.dart';
-import '../../services/hive_service.dart';
 
 part 'register_state.dart';
 
@@ -55,7 +54,6 @@ class RegisterCubit extends Cubit<RegisterState> {
       emit(RegisterFailed(message: e.toString()));
     }
   }
-
 
   //email
   bool emailValid = false;
