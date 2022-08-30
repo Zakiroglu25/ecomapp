@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 
-import '../../util/constants/api_keys.dart';
+import '../../utils/constants/api_keys.dart';
 import 'dio_auth.dart';
-
 
 class DioG {
   static DioG? _instance;

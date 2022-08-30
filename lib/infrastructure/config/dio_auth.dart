@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../locator.dart';
-import '../../util/constants/api_keys.dart';
+import '../../utils/constants/api_keys.dart';
 import '../services/hive_service.dart';
 
 class DioAuth {

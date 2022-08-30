@@ -1,7 +1,7 @@
 // Package imports:
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../../util/constants/preferences_keys.dart';
+import '../../utils/constants/preferences_keys.dart';
 
 class ConfigService {
   static ConfigService? _instance;
