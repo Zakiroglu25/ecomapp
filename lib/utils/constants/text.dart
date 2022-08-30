@@ -74,4 +74,15 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String contact = "Əlaqə";
   static const String settings = "Tənzimləmələr";
   static const String demoSubtitle = "Axtardığınız məhsulu tapmaq üçün";
+
+  //pashadetails
+
+  static const String pashaTitle = "Həkim müayinəsinə asan və sürətli şəkildə onlayn yazılın";
+  static const String downApp = "Tətbiqi yüklə";
+  static const String downAppDetails = "Tətbiqi App Store marketindən yükləyə bilərsiniz";
+  static const String personalAccount = "Şəxsi Kabinet";
+  static const String personalAccountDetails = "Kabinet bölməsinə keçid edə bilərsiniz";
+  static const String webSite = "Veb sayta keç";
+  static const String webSiteinfo = "PAŞA Sığorta ilə bağlı məlumatlar saytda";
+
 }

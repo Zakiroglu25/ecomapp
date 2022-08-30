@@ -1,5 +1,6 @@
 // Dart imports:
 import 'package:dio/dio.dart';
+import 'package:doctoro/infrastructure/model/locale/MyUser.dart';
 
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
@@ -7,10 +8,10 @@ import '../../utils/constants/result_keys.dart';
 import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
 import '../model/response/status_dynamic.dart';
-import '../model/response/user_result.dart';
 
 class AccountProvider {
   static DioAuth get dioAuth => locator<DioAuth>();
+
   static Future<StatusDynamic?> fetchUserInfo({
     required String? token,
   }) async {
@@ -21,11 +22,17 @@ class AccountProvider {
 
     final response =
         await dioAuth.dio.get(api, options: Options(headers: header));
+
+    wtf("response      " + response.toString());
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
       final gelenCavabJson = response.data;
-      UserResult userResult = UserResult.fromJson(gelenCavabJson);
-      statusDynamic.data = userResult.data;
+      wtf("gelenCavabJson      " + gelenCavabJson.toString());
+
+      MyUser userResult = MyUser.fromJson(gelenCavabJson);
+      wtf("userResult      " + userResult.toString());
+
+      statusDynamic.data = userResult;
     } else {
       eeee("fetchUserInfo bad url :$url, response: ${response}");
     }

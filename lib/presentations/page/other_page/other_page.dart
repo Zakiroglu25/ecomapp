@@ -1,5 +1,8 @@
+import 'package:doctoro/presentations/page/contact_page/contact_page.dart';
 import 'package:doctoro/utils/constants/paddings.dart';
 import 'package:doctoro/utils/constants/sized_box.dart';
+import 'package:doctoro/utils/delegate/navigate_utils.dart';
+import 'package:doctoro/utils/delegate/pager.dart';
 import 'package:doctoro/widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,15 +38,18 @@ class OtherPage extends StatelessWidget {
                 color: MyColors.blue157,
                 h: 167.h,
                 w: 167.w,
-                imageUrl: Assets.pngBad,
+                imageUrl: Assets.pngMessenger3x,
                 title: MyText.messenger,
                 desc: MyText.demoSubtitle,
               ),
               ProductAndOtherWidget(
+                onTap: () {
+                  Go.to(context, Pager.addressPage);
+                },
                 color: MyColors.orange253,
                 h: 167.h,
                 w: 167.w,
-                imageUrl: Assets.pngBad,
+                imageUrl: Assets.location3x,
                 title: MyText.address,
                 desc: MyText.demoSubtitle,
               ),
@@ -57,7 +63,7 @@ class OtherPage extends StatelessWidget {
                 color: MyColors.green235,
                 h: 167.h,
                 w: 167.w,
-                imageUrl: Assets.pngBad,
+                imageUrl: Assets.pngPaymentMethod3x,
                 title: MyText.paymentMetod,
                 desc: MyText.demoSubtitle,
               ),
@@ -65,7 +71,7 @@ class OtherPage extends StatelessWidget {
                 color: MyColors.purple240,
                 h: 167.h,
                 w: 167.w,
-                imageUrl: Assets.pngBad,
+                imageUrl: Assets.pngInsurance3x,
                 title: MyText.insurance,
                 desc: MyText.demoSubtitle,
               ),
@@ -79,15 +85,18 @@ class OtherPage extends StatelessWidget {
                 color: MyColors.green77,
                 h: 167.h,
                 w: 167.w,
-                imageUrl: Assets.pngBad,
+                imageUrl: Assets.pngLikeMedicine,
                 title: MyText.likeMedicine,
                 desc: MyText.demoSubtitle,
               ),
               ProductAndOtherWidget(
+                onTap: () {
+                  Go.to(context, ContactPage());
+                },
                 color: MyColors.orange225,
                 h: 167.h,
                 w: 167.w,
-                imageUrl: Assets.pngBad,
+                imageUrl: Assets.pngContact3x,
                 title: MyText.contact,
                 desc: MyText.demoSubtitle,
               ),
@@ -101,7 +110,7 @@ class OtherPage extends StatelessWidget {
                 color: MyColors.red250,
                 h: 167.h,
                 w: 167.w,
-                imageUrl: Assets.pngBad,
+                imageUrl: Assets.pngQuestion3x,
                 title: MyText.questionAnswer,
                 desc: MyText.demoSubtitle,
               ),
@@ -109,7 +118,7 @@ class OtherPage extends StatelessWidget {
                 color: MyColors.grey245,
                 h: 167.h,
                 w: 167.w,
-                imageUrl: Assets.pngBad,
+                imageUrl: Assets.pngSeting3x,
                 title: MyText.settings,
                 desc: MyText.demoSubtitle,
               ),

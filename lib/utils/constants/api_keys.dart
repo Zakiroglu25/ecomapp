@@ -21,6 +21,9 @@ class ApiKeys {
   //user
   static const user = "$baseUrl/protected/customer/account";
 
+  //address
+  static const getAddress = "$baseUrl/protected/customer/address-book";
+
 
   //forgot
   static const forgotOtp = "$baseUrl/user/otp";
@@ -28,7 +31,6 @@ class ApiKeys {
 
   //contact
   static const contact = "$baseUrl/public/contacts";
-
 
 
 
@@ -202,9 +204,8 @@ class ApiKeys {
   }) {
     //
     final map = {
-      'Authorization': 'Bearer $token',
+      'x-mask-jwt': '$token',
       "Accept": "application/json",
-      //'Bearer 767|sCxXpk9PKU5QdCKcaLBh2Tj3t5QG0gQYOqLTcY8f',
       "Content-Type": "application/json",
     };
 

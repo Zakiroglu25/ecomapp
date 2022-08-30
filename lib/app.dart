@@ -1,6 +1,8 @@
+import 'package:doctoro/utils/constants/assets.dart';
 import 'package:doctoro/utils/delegate/pager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 import 'infrastructure/cubit/authentication/authentication_cubit.dart';
 import 'infrastructure/cubit/authentication/authentication_state.dart';
@@ -14,10 +16,10 @@ class App extends StatelessWidget {
     return BlocBuilder<AuthenticationCubit, AuthenticationState>(
         builder: (context, state) {
       if (state is AuthenticationSplash) {
-        return CircularProgressIndicator();
+        return Scaffold(body: Center(child: Lottie.asset(Assets.loading)));
       } else if (state is AuthenticationLoading) {
         return Scaffold(
-          body: CircularProgressIndicator(),
+          body: Center(child: Lottie.asset(Assets.loading)),
         );
       } else if (state is AuthenticationServerError) {
         return const SafeArea(
