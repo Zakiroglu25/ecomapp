@@ -1,5 +1,6 @@
 // Flutter imports:
 
+import 'package:doctoro/infrastructure/cubit/address/address_cubit.dart';
 import 'package:doctoro/presantation/page/auth/forgot_password_page/forgot_pass_page.dart';
 import 'package:doctoro/presantation/page/landing_page/landing_page.dart';
 import 'package:doctoro/presantation/page/product_page/product_page.dart';
@@ -13,6 +14,7 @@ import '../../presantation/page/auth/login_page/login_page.dart';
 import '../../presantation/page/auth/register_page/register_page.dart';
 import '../../presantation/page/home_page/home_page.dart';
 import '../../presantation/page/other_page/other_page.dart';
+import '../../presantation/page/other_page/other_pages/address_page/address_page.dart';
 
 class Pager {
   static app({bool? showSplash}) => BlocProvider(
@@ -39,4 +41,9 @@ class Pager {
   static get productPage => ProductPage();
 
   static get otherPage => OtherPage();
+
+  static get addressPage => BlocProvider(
+        create: (context) => AddressCubit()..fetch(),
+        child: AddressPage(),
+      );
 }

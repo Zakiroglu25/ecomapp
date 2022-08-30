@@ -2,11 +2,11 @@ class MyUser {
   String? phone;
   String? email;
   String? firstName;
-  Null? patronymic;
+  num? patronymic;
   String? lastName;
-  Null? birthDate;
-  Null? finCode;
-  Null? insuranceId;
+  num? birthDate;
+  num? finCode;
+  num? insuranceId;
   bool? newsletterSubscription;
 
   MyUser(

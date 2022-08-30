@@ -1,3 +1,4 @@
+import 'package:doctoro/util/constants/app_text_styles.dart';
 import 'package:doctoro/util/constants/assets.dart';
 import 'package:doctoro/util/constants/colors.dart';
 import 'package:doctoro/util/constants/paddings.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../util/delegate/navigate_utils.dart';
 import '../../../widget/custom/product_and_other_widget.dart';
 import '../medicine_details_page/medicine_details_page.dart';
+import '../pasha_insurance_page/pasha_details_page.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({Key? key}) : super(key: key);
@@ -47,17 +49,26 @@ class ProductPage extends StatelessWidget {
                   "Reseptli və reseptsiz satışda olan dərmanları buradan əldə edib qiymətlərini müqaisə edə bilərsiniz.",
             ),
             MySizedBox.h10,
-            Container(
-              height: 84,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: MyColors.blue0
-              ),
-              child: Row(
-                children: [
-                  Text("Paşa Sığorta məhsulları burada!"),
-                  Image.asset(Assets.pasha)
-                ],
+            InkWell(
+              onTap: (){
+                Go.to(context, PashaInsurancePage());
+              },
+              child: Container(
+                height: 84,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: MyColors.blue0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      "Paşa Sığorta məhsulları burada!",
+                      style: AppTextStyles.sfPro600
+                          .copyWith(color: MyColors.blue01, fontSize: 16.sp),
+                    ),
+                    Image.asset(Assets.pasha)
+                  ],
+                ),
               ),
             ),
             MySizedBox.h10,
@@ -76,7 +87,7 @@ class ProductPage extends StatelessWidget {
                   color: MyColors.orange253,
                   h: 167.h,
                   w: 167.w,
-                  imageUrl: Assets.medicine,
+                  imageUrl: Assets.pngVitamin3x,
                   title: "Vitaminlər",
                   desc: "Bütün qrup vitəminləri əldə edin.",
                 ),
@@ -87,7 +98,7 @@ class ProductPage extends StatelessWidget {
               color: MyColors.red250,
               h: 167.h,
               w: 167.w,
-              imageUrl: Assets.medicine,
+              imageUrl: Assets.pngLab3x,
               title: "Digər",
               desc: "Axtardığınız məhsulu tapmaq üçün",
             ),

@@ -1,4 +1,4 @@
-
+import 'package:doctoro/util/delegate/my_printer.dart';
 import 'package:doctoro/util/delegate/request_control.dart';
 
 import '../../infrastructure/config/dio_auth.dart';
@@ -10,12 +10,13 @@ import '../../locator.dart';
 
 class UserOperations {
   static HiveService get _prefs => locator<HiveService>();
+
   static ConfigService get _configs => locator<ConfigService>();
 
   static Future<void> configureUserDataWhenLogin(
       //MyUser user,
       {
-        // required String fcmToken,
+      // required String fcmToken,
       required String accessToken,
       required String? path}) async {
     //llll("configureUserData result result: " + user.toString());
@@ -29,10 +30,9 @@ class UserOperations {
         locator.unregister(instance: await DioAuth.instance);
       }
       locator.registerSingleton(await DioAuth.instance);
-      ///bunu mutle  suretde ac
       final result = await AccountProvider.fetchUserInfo(token: accessToken);
       MyUser user = (result!.data as MyUser);
-      // await _prefs.persistUser(user: user);
+      await _prefs.persistUser(user: user);
       await _configs.persistEmail(email: user.email);
       // locator.resetLazySingleton(instance: DioAuth.instance);
 
@@ -44,33 +44,34 @@ class UserOperations {
     }
   }
 
-  static Future<bool> configUserDataWhenOpenApp(
-      {required accessToken,}) async {
+  static Future<bool> configUserDataWhenOpenApp({
+    required accessToken,
+  }) async {
+    wtf("1");
     MyUser userData;
+    wtf("2");
     try {
+      wtf("3");
       final result = await AccountProvider.fetchUserInfo(token: accessToken);
+      wtf(result.toString());
 
+      wtf("4");
       if (isSuccess(result!.statusCode)) {
+        wtf("5");
         userData = result.data;
-        //userData.cargoBalance = "0.55";
-        //sorgu gonderilir ,xeta yaranarsa ve ya serverle bagli sehvlik olarsa
-        //server error sehifesini goterir
-        // Recorder.setUser(userData); //crashlyticse user melumatlarini gonderir
-        // Recorder.setId(userData.id); //crashlyticse id setted
-        // Recorder.setUserFCMtoken(fcm); //fcm token setted
+        wtf("6");
         await _prefs.persistUser(user: userData);
+        wtf("7");
+        iiii("configUserDataWhenOpenApp + userData" + userData.toString());
+        iiii("configUserDataWhenOpenApp + prefsuser" + _prefs.user.toString());
         await _prefs.persistIsGuest(false);
         await _prefs.persistIsLoggedIn(true);
         return true;
       } else
         return false;
     } catch (e, s) {
-      print("eeee configUserDataWhenOpenApp $e => $s");
-      // Recorder.recordCatchError(e, s);
+      wtf("eeee configUserDataWhenOpenApp $e => $s");
       return false;
     }
-    // print("token: " + accessToken.toString());
-
-    //FirestoreDBService.saveUser(userData!);
   }
 }
