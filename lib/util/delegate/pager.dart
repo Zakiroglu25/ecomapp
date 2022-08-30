@@ -12,6 +12,7 @@ import '../../infrastructure/cubit/login/login_cubit.dart';
 import '../../infrastructure/cubit/register/register_cubit.dart';
 import '../../presantation/page/auth/login_page/login_page.dart';
 import '../../presantation/page/auth/register_page/register_page.dart';
+import '../../presantation/page/contact_page/contact_page.dart';
 import '../../presantation/page/home_page/home_page.dart';
 import '../../presantation/page/other_page/other_page.dart';
 import '../../presantation/page/other_page/other_pages/address_page/address_page.dart';
@@ -41,6 +42,8 @@ class Pager {
   static get productPage => ProductPage();
 
   static get otherPage => OtherPage();
+
+  static get contactPage => ContactPage();
 
   static get addressPage => BlocProvider(
         create: (context) => AddressCubit()..fetch(),

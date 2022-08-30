@@ -1,3 +1,4 @@
+import 'package:doctoro/presantation/page/contact_page/contact_page.dart';
 import 'package:doctoro/util/constants/paddings.dart';
 import 'package:doctoro/util/constants/sized_box.dart';
 import 'package:doctoro/util/delegate/navigate_utils.dart';
@@ -90,6 +91,9 @@ class OtherPage extends StatelessWidget {
                 desc: MyText.demoSubtitle,
               ),
               ProductAndOtherWidget(
+                onTap: (){
+                  Go.to(context, ContactPage());
+                },
                 color: MyColors.orange225,
                 h: 167.h,
                 w: 167.w,
