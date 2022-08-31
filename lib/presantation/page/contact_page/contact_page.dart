@@ -1,10 +1,12 @@
+import 'package:doctoro/presantation/page/contact_page/widget/sosial_item.dart';
 import 'package:doctoro/util/constants/colors.dart';
+import 'package:doctoro/util/constants/paddings.dart';
+import 'package:doctoro/util/constants/text.dart';
 import 'package:doctoro/widget/custom/text_title_big.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../util/constants/assets.dart';
-import '../../../util/delegate/navigate_utils.dart';
 import '../../../widget/custom/product_and_other_widget.dart';
 
 class ContactPage extends StatelessWidget {
@@ -19,18 +21,43 @@ class ContactPage extends StatelessWidget {
         iconTheme: IconThemeData(color: MyColors.black0),
       ),
       body: ListView(
+        padding: Paddings.paddingH16,
         children: [
           BigSection(
-            title: 'Əlaqə',
+            title: MyText.contact,
           ),
           ProductAndOtherWidget(
-            color: MyColors.purple,
+            color: MyColors.orange225,
             h: 167.h,
             imageUrl: Assets.pngContact3x,
-            title: "Dərmanlar",
-            desc:
-            "Reseptli və reseptsiz satışda olan dərmanları buradan əldə edib qiymətlərini müqaisə edə bilərsiniz.",
+            title: MyText.contact,
+            desc: MyText.contactDesc,
           ),
+          SocialItem(
+            name: "Whatsapp",
+            path: Assets.pngWhatsapp,
+            onTap: () {},
+            isPng: true,
+          ),
+          SocialItem(
+            name: "Telegram",
+            path: Assets.pngTelegram,
+            onTap: () {},
+            isPng: true,
+          ),
+          SocialItem(
+            name: "Facebook",
+            path: Assets.pngFacebook,
+            onTap: () {},
+            isPng: true,
+          ),
+          SocialItem(
+            name: "*8833",
+            path: Assets.pngHotline,
+            onTap: () {},
+            content: "Qaynar xətt",
+            isPng: true,
+          )
         ],
       ),
     );

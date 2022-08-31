@@ -7,6 +7,7 @@ import '../../../util/constants/colors.dart';
 import '../../../util/constants/physics.dart';
 import '../../../util/constants/text.dart';
 import '../../../util/delegate/pager.dart';
+import '../favorite_page/favorite_page.dart';
 
 
 final globalPageController = PageController(initialPage: 1);
@@ -23,7 +24,7 @@ class _LandingPageState extends State<LandingPage> {
 
   final pages = <Widget>[
     Pager.productPage,
-    Pager.home,
+    HomePage(),
     Pager.home,
     Pager.home,
     Pager.otherPage,
@@ -54,7 +55,7 @@ class _LandingPageState extends State<LandingPage> {
             buildBottomNavigationBarItem(
                 icon: Assets.svgLogo, label: MyText.product),
             buildBottomNavigationBarItem(
-                icon: Assets.svgProduct, label: MyText.favorite),
+                icon: Assets.svgFav, label: MyText.favorite),
             buildBottomNavigationBarItem(
                 icon: Assets.svgAptek, label: MyText.aptek),
             buildBottomNavigationBarItem(

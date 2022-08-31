@@ -14,7 +14,7 @@ class Assets {
 
   ///bottomnovigation icon
   static const String svgLogo = "assets/svg/logogrey.svg";
-  static const String svgProduct = "assets/svg/product.svg";
+  static const String svgFav = "assets/svg/iconheart.svg";
   static const String svgAptek = "assets/svg/svgaptek.svg";
   static const String svgCart = "assets/svg/svgcart.svg";
   static const String svgMore = "assets/svg/svgmore.svg";
@@ -41,10 +41,18 @@ class Assets {
   static const String pngVitamin3x = "assets/png/vitamin.png";
   static const String pngLab3x = "assets/png/lab.png";
   static const String pngPashaIn3x = "assets/png/pashadetails.png";
+  static const String docu = "assets/svg/product.svg";
+  static const String dHeart = "assets/png/dheart.png";
   //pashadetails
   static const String pngPhone3x = "assets/png/phone.png";
   static const String pngUser3x = "assets/png/user.png";
   static const String pngAt3x = "assets/png/at.png";
+  ///contact
+  static const String pngWhatsapp = "assets/png/whatsapp.png";
+  static const String pngTelegram = "assets/png/telegram.png";
+  static const String pngFacebook = "assets/png/facebook.png";
+  static const String pngHotline = "assets/png/hotline.png";
+
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -56,6 +64,7 @@ class Assets {
   static const String keyChild = "assets/png/keychild.png";
   static const String medicine = "assets/png/medicine.png";
   static const String pngBad = "assets/png/bad.png";
+  static const String demo = "assets/png/demo.png";
 
   //other
   static const String pasha = "assets/png/pasha.png";

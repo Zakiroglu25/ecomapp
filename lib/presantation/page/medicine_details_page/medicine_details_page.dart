@@ -10,6 +10,7 @@ import 'package:focus_detector/focus_detector.dart';
 import '../../../util/constants/assets.dart';
 import '../../../util/constants/paddings.dart';
 import '../../../widget/general/doctoro_field.dart';
+import '../favorite_page/widget/fovorite_item.dart';
 
 class MedicineDetailsPage extends StatelessWidget {
   const MedicineDetailsPage({Key? key}) : super(key: key);
@@ -48,7 +49,7 @@ class MedicineDetailsPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SvgPicture.asset(Assets.svgProduct),
+                          SvgPicture.asset(Assets.svgFav),
                           MySizedBox.w10,
                           Text("Hamisi")
                         ],
@@ -58,41 +59,7 @@ class MedicineDetailsPage extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: 20,
                 )),
-            Container(
-              height: 116,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: MyColors.grey245,
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  MySizedBox.h12,
-                  Image.asset(Assets.pngBad),
-                  Column(
-                    children: [
-                      SizedBox(
-                        width: 199,
-                        child: Text(
-                            "Swiss Energy Herbs Hot Balm Forte isidici balzam  75 ml Forte"),
-                      ),
-                      Row(
-                        children: [
-                          Text("1 223.20 ₼-dan"),
-                          DoctoroButton(
-                            w: 109,
-                            h: 36,
-                            child: Text("Sebete"),
-                            color: MyColors.green,
-                          )
-
-                        ],
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            )
+            ListItemWidget()
           ],
         ),
       ),
