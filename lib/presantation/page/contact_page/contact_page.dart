@@ -1,6 +1,7 @@
 import 'package:doctoro/presantation/page/contact_page/widget/sosial_item.dart';
 import 'package:doctoro/util/constants/colors.dart';
 import 'package:doctoro/util/constants/paddings.dart';
+import 'package:doctoro/util/constants/sized_box.dart';
 import 'package:doctoro/util/constants/text.dart';
 import 'package:doctoro/widget/custom/text_title_big.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,7 @@ class ContactPage extends StatelessWidget {
           BigSection(
             title: MyText.contact,
           ),
+          MySizedBox.h24,
           ProductAndOtherWidget(
             color: MyColors.orange225,
             h: 167.h,

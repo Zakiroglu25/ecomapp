@@ -1,16 +1,11 @@
-import 'package:doctoro/util/constants/app_text_styles.dart';
 import 'package:doctoro/util/constants/assets.dart';
 import 'package:doctoro/util/constants/colors.dart';
 import 'package:doctoro/util/constants/sized_box.dart';
 import 'package:doctoro/util/constants/text.dart';
 import 'package:doctoro/widget/doctoro_appbar/doctoro_appbar.dart';
-import 'package:doctoro/widget/general/empty_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../../util/constants/paddings.dart';
-import '../../../widget/custom/doctoro_button.dart';
-import 'widget/fovorite_item.dart';
+import 'widget/tabbar_widget.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -27,6 +22,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     super.initState();
     _controller =
         TabController(vsync: this, length: 2, initialIndex: _selectedIndex);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    _controller!.dispose();
   }
 
   @override
@@ -58,9 +60,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     Theme.of(context).textTheme.headline1!.color,
                 labelColor: MyColors.mainRed,
                 onTap: (index) => setState(() => _selectedIndex = index),
-                tabs: List<Widget>.generate(
-                  _controller!.length,
-                  (index) => Tab(
+                tabs: List<Widget>.generate(_controller!.length, (index) {
+                  print("index" + index.toString());
+                  print("_selectedIndex" + _selectedIndex.toString());
+                  return Tab(
                     child: Container(
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
@@ -94,30 +97,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         ),
                       ),
                     ),
-                  ),
-                ),
+                  );
+                }),
               ),
             ),
-            Container(
-              height: MediaQuery.of(context).size.height,
-              child: TabBarView(controller: _controller, children: [
-                Padding(
-                  padding: Paddings.paddingH16,
-                  child: ListView(
-                    children: [
-                      ListItemWidget(),
-                    ],
-                  ),
-                ),
-                EmptyWidget(
-                  color: MyColors.red249,
-                  imageUrl: Assets.location3x,
-                  description: MyText.demoSubtitle,
-                  text: MyText.demo,
-
-                )
-              ]),
-            ),
+            FavTabbarWidget(controller: _controller),
           ],
         ),
       ),

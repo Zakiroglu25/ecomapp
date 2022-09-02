@@ -65,7 +65,7 @@ class PashaInsurancePage extends StatelessWidget {
                           ),
                           MySizedBox.h4,
                           SizedBox(
-                            width: 170,
+                            width: 170.w,
                             child: Text(
                               MyText.downAppDetails,
                               style: AppTextStyles.sfPro400.copyWith(
@@ -87,7 +87,7 @@ class PashaInsurancePage extends StatelessWidget {
               children: [
                 Container(
                   height: 167,
-                  width: 167,
+                  width: 167.w,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
                       color: MyColors.white255),
@@ -119,7 +119,7 @@ class PashaInsurancePage extends StatelessWidget {
                 ),
                 Container(
                   height: 167,
-                  width: 167,
+                  width: 167.w,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
                       color: MyColors.white255),
@@ -137,7 +137,7 @@ class PashaInsurancePage extends StatelessWidget {
                         ),
                         MySizedBox.h4,
                         SizedBox(
-                          width: 170,
+                          width: 170.w,
                           child: Text(
                             MyText.webSiteinfo,
                             style: AppTextStyles.sfPro400.copyWith(

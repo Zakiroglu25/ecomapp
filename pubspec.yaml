@@ -32,6 +32,9 @@ dependencies:
   keyboard_attachable: ^2.1.0
   animations:
   credit_card_scanner: ^1.0.5
+  carousel_slider: ^4.1.1
+#  map
+  google_maps_flutter: ^2.1.12
 
 
 dev_dependencies:

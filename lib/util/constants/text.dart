@@ -75,7 +75,9 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String address = "Ünvanlarım";
   static const String contact = "Əlaqə";
   static const String settings = "Tənzimləmələr";
-  static const String demoSubtitle = "Axtardığınız məhsulu tapmaq üçün";
+  static const String demoSubtitle = "Axtardığınız məhsulu tapmaq üçün, zəhmət olmasa məhsullar bölməsinə keçin";
+  static const String empty = "Bura doşdur";
+
 
   //pashadetails
 
