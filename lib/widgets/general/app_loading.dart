@@ -6,15 +6,15 @@ import '../../utils/constants/assets.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/screen/widget_or_empty.dart';
 
-class DoctoroLoading extends StatelessWidget {
+class AppLoading extends StatelessWidget {
   Color? color;
   double? s;
 
-  DoctoroLoading({this.color, this.s});
+  AppLoading({this.color, this.s});
 
-  DoctoroLoading.blue({this.color = MyColors.mainGrey});
+  AppLoading.blue({this.color = MyColors.mainGrey});
 
-  DoctoroLoading.white({this.color = MyColors.white});
+  AppLoading.white({this.color = MyColors.white});
 
   @override
   Widget build(BuildContext context) {

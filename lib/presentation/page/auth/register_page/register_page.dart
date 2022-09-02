@@ -1,4 +1,4 @@
-import 'package:doctoro/presentations/page/auth/register_page/widgets/create_password_field.dart';
+import 'package:doctoro/presentation/page/auth/register_page/widgets/create_password_field.dart';
 import 'package:doctoro/utils/constants/app_text_styles.dart';
 import 'package:doctoro/utils/constants/colors.dart';
 import 'package:doctoro/utils/constants/sized_box.dart';

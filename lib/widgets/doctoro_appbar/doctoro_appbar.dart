@@ -23,12 +23,12 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
   final bool? exitButton;
   final bool? user;
   final bool? back;
+  final Function? onBack;
   final BuildContext? contextA;
   final bool? actions;
   final Function? onTapActions;
   final bool? centerTitle;
   final Color? color;
-  final Function? onBack;
 
   DoctorAppbar(
       {required this.title,

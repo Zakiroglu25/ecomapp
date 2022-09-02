@@ -23,6 +23,7 @@ class Assets {
   ///appbar
   static const String svgUser = "assets/svg/user.svg";
   static const String svgBackArrow = "assets/svg/back_arrow.svg";
+  static const String svgLeft = "assets/svg/left.svg";
   static const String svgBell = "assets/svg/bell.svg";
   static const String svgFilter = "assets/svg/filter.svg";
 

@@ -1,4 +1,4 @@
-import 'package:doctoro/presentations/page/contact_page/widget/sosial_item.dart';
+import 'package:doctoro/presentation/page/contact_page/widget/sosial_item.dart';
 import 'package:doctoro/utils/constants/colors.dart';
 import 'package:doctoro/widgets/custom/text_title_big.dart';
 import 'package:flutter/material.dart';

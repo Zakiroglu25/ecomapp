@@ -1,7 +1,7 @@
 import 'package:doctoro/infrastructure/cubit/address/address_cubit.dart';
 import 'package:doctoro/infrastructure/cubit/address/address_state.dart';
 import 'package:doctoro/utils/constants/colors.dart';
-import 'package:doctoro/widgets/general/doctoro_loading.dart';
+import 'package:doctoro/widgets/general/app_loading.dart';
 import 'package:doctoro/widgets/general/empty_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +26,7 @@ class AddressPage extends StatelessWidget {
               child: Text("Address Tapildi"),
             );
           } else if (state is AddressInProgress) {
-            return DoctoroLoading();
+            return AppLoading();
           }
           return EmptyWidget(
             color: MyColors.orange253,

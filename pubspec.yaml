@@ -32,6 +32,7 @@ dependencies:
   keyboard_attachable: ^2.1.0
   animations:
   credit_card_scanner: ^1.0.5
+  cached_network_image: ^3.2.1
 
 
 dev_dependencies:

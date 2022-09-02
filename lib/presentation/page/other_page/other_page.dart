@@ -1,4 +1,4 @@
-import 'package:doctoro/presentations/page/contact_page/contact_page.dart';
+import 'package:doctoro/presentation/page/contact_page/contact_page.dart';
 import 'package:doctoro/utils/constants/paddings.dart';
 import 'package:doctoro/utils/constants/sized_box.dart';
 import 'package:doctoro/utils/delegate/navigate_utils.dart';

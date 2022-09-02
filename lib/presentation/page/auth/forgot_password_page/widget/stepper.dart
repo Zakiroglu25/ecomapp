@@ -1,9 +1,9 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:doctoro/utils/constants/paddings.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../utils/constants/app_text_styles.dart';
 import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/margins.dart';
 import '../../../../../utils/constants/sized_box.dart';
 import '../../../../../utils/screen/widget_or_empty.dart';
 import '../../../../../widgets/icons/check_icon.dart';
@@ -66,7 +66,7 @@ class ForgotPassStepper extends StatelessWidget {
                 child: WidgetOrEmpty(
                   value: current! - 1 < index,
                   child: Container(
-                    margin: Margins.marginH4,
+                    margin: Paddings.paddingH4,
                     width: 24,
                     height: 2,
                     color: MyColors.grey226,
@@ -74,7 +74,7 @@ class ForgotPassStepper extends StatelessWidget {
                   elseChild: Flash(
                     duration: Duration(milliseconds: 800),
                     child: Container(
-                      margin: Margins.marginH4,
+                      margin: Paddings.paddingH4,
                       width: 24,
                       height: 2,
                       color: MyColors.green,
