@@ -43,10 +43,17 @@ class Assets {
   static const String pngPashaIn3x = "assets/png/pashadetails.png";
   static const String docu = "assets/svg/product.svg";
   static const String dHeart = "assets/png/dheart.png";
+
+  //product details
+  static const String demoderman = "assets/png/demoderman.png";
+  static const String zeytun = "assets/png/zeytun.png";
+
+
   //pashadetails
   static const String pngPhone3x = "assets/png/phone.png";
   static const String pngUser3x = "assets/png/user.png";
   static const String pngAt3x = "assets/png/at.png";
+
   ///contact
   static const String pngWhatsapp = "assets/png/whatsapp.png";
   static const String pngTelegram = "assets/png/telegram.png";

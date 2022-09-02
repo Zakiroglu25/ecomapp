@@ -9,6 +9,7 @@ import '../../../../util/constants/text.dart';
 import '../../../../util/delegate/navigate_utils.dart';
 import '../../../../widget/custom/doctoro_button.dart';
 import '../../product_details_page/product_details_page.dart';
+import '../../product_details_page/test.dart';
 
 class ListItemWidget extends StatelessWidget {
   const ListItemWidget({
@@ -19,7 +20,7 @@ class ListItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Go.to(context, ProductDetailsPage());
+        Go.to(context, Example());
       },
       child: Container(
         height: 116,

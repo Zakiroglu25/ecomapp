@@ -94,6 +94,7 @@ In addition to laying out rules for proper use of your app, you should also clea
 
   //demo
   static const String demo = "Swiss Energy Herbs Hot Balm Forte isidici balzam  75 ml Forte";
+  static const String demo1 = "Satış məntəqələri seçilmiş aptekdən asılı olaraq dəyişə bilər.";
 
 
 
