@@ -77,12 +77,23 @@ In addition to laying out rules for proper use of your app, you should also clea
 
   //pashadetails
 
-  static const String pashaTitle = "Həkim müayinəsinə asan və sürətli şəkildə onlayn yazılın";
+  static const String pashaTitle =
+      "Həkim müayinəsinə asan və sürətli şəkildə onlayn yazılın";
   static const String downApp = "Tətbiqi yüklə";
-  static const String downAppDetails = "Tətbiqi App Store marketindən yükləyə bilərsiniz";
+  static const String downAppDetails =
+      "Tətbiqi App Store marketindən yükləyə bilərsiniz";
   static const String personalAccount = "Şəxsi Kabinet";
-  static const String personalAccountDetails = "Kabinet bölməsinə keçid edə bilərsiniz";
+  static const String personalAccountDetails =
+      "Kabinet bölməsinə keçid edə bilərsiniz";
   static const String webSite = "Veb sayta keç";
   static const String webSiteinfo = "PAŞA Sığorta ilə bağlı məlumatlar saytda";
 
+  //demo
+  static const String demo = "Swiss Energy Herbs Hot Balm Forte isidici balzam  75 ml Forte";
+
+
+
+  //contact
+  static const String contactDesc =
+      "Hörmətli müştəri, hər hansı bir problemlə raslaşdıqda qaynar xətt nömrəmiz müraciyyət edə bilərsiniz  *8833";
 }

@@ -1,11 +1,14 @@
 import 'package:doctoro/utils/constants/colors.dart';
 import 'package:doctoro/utils/constants/sized_box.dart';
+import 'package:doctoro/utils/constants/text.dart';
 import 'package:doctoro/widgets/custom/doctoro_button.dart';
 import 'package:doctoro/widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:focus_detector/focus_detector.dart';
 
 import '../../../utils/constants/assets.dart';
+import '../../../utils/constants/paddings.dart';
 import '../../../widgets/general/doctoro_field.dart';
 
 class MedicineDetailsPage extends StatelessWidget {

@@ -43,5 +43,6 @@ class MyColors {
   static const Color userPhoto = Color.fromRGBO(253, 82, 132, 1);
   static const Color pashaBackground = Color.fromRGBO(64, 146, 196, 1);
   static const Color white255 = Color.fromRGBO(255, 255, 255, 0.2);
+  static const Color red249 = Color.fromRGBO(249, 228, 227, 1);
 
 }
