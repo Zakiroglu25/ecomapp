@@ -10,26 +10,31 @@ class ErrorableImage extends StatelessWidget {
   final BoxFit? fit;
   final double? w;
   final double? h;
+  final double? r;
 
   ErrorableImage(
-      {@required this.imageUrl,
+      {required this.imageUrl,
       this.errorIcon,
       this.fit,
       this.placeHolder,
       this.h,
+      this.r,
       this.w});
 
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(
-      imageUrl: imageUrl!,
-      fit: fit ?? BoxFit.contain,
-      width: w,
-      height: h,
-      placeholder: (context, url) => Center(
-          child: SizedBox(
-              height: 10, width: 10, child: placeHolder ?? AppLoading())),
-      errorWidget: (context, url, error) => errorIcon ?? Icon(Icons.error),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(r ?? 0),
+      child: CachedNetworkImage(
+        imageUrl: imageUrl!,
+        fit: fit ?? BoxFit.contain,
+        width: w,
+        height: h,
+        placeholder: (context, url) => Center(
+            child: SizedBox(
+                height: 10, width: 10, child: placeHolder ?? AppLoading())),
+        errorWidget: (context, url, error) => errorIcon ?? Icon(Icons.error),
+      ),
     );
   }
 }

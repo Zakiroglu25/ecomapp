@@ -28,7 +28,7 @@ class PolicyCheckbox extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(5.0))),
                   value: snapshot.data ?? false,
                   // color of tick Mark
-                  activeColor: MyColors.mainRed,
+                  activeColor: MyColors.mainRED,
                   onChanged: (v) {
                     BlocProvider.of<RegisterCubit>(context).updateCheckBox(v!);
                   }),

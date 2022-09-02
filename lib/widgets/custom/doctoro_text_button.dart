@@ -37,7 +37,7 @@ class DoctoroTextButton extends StatelessWidget {
     return DoctoroButton(
       text: text,
       color: Colors.transparent,
-      splashColor: splashColor ?? MyColors.mainRed.withOpacity(0.2),
+      splashColor: splashColor ?? MyColors.mainRED.withOpacity(0.2),
       highlightColor: highlightColor ?? Colors.transparent,
       w: w ?? 150,
       h: h ?? 30,
@@ -45,7 +45,7 @@ class DoctoroTextButton extends StatelessWidget {
       onTap: onTap,
       fontWeight: fontWeight ?? FontWeight.w500,
       borderRadius: borderRadius ?? 4,
-      textColor: textColor ?? MyColors.mainRed,
+      textColor: textColor ?? MyColors.mainRED,
     );
   }
 }

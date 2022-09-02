@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 indicatorWeight: 0.01,
                 unselectedLabelColor:
                     Theme.of(context).textTheme.headline1!.color,
-                labelColor: MyColors.mainRed,
+                labelColor: MyColors.mainRED,
                 onTap: (index) => setState(() => _selectedIndex = index),
                 tabs: List<Widget>.generate(
                   _controller!.length,
@@ -77,13 +77,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 ? SvgPicture.asset(
                                     Assets.svgFav,
                                     color: _selectedIndex == 0
-                                        ? MyColors.mainRed
+                                        ? MyColors.mainRED
                                         : MyColors.grey158,
                                   )
                                 : SvgPicture.asset(
                                     Assets.docu,
                                     color: _selectedIndex == 1
-                                        ? MyColors.mainRed
+                                        ? MyColors.mainRED
                                         : MyColors.grey158,
                                   ),
                             MySizedBox.w10,

@@ -75,6 +75,10 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String settings = "Tənzimləmələr";
   static const String demoSubtitle = "Axtardığınız məhsulu tapmaq üçün";
 
+  //cart page
+  static const String recipe = "Resept";
+  static const String uploadRecipe = "Resepti yüklə";
+
   //pashadetails
 
   static const String pashaTitle =
@@ -89,9 +93,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String webSiteinfo = "PAŞA Sığorta ilə bağlı məlumatlar saytda";
 
   //demo
-  static const String demo = "Swiss Energy Herbs Hot Balm Forte isidici balzam  75 ml Forte";
-
-
+  static const String demo =
+      "Swiss Energy Herbs Hot Balm Forte isidici balzam  75 ml Forte";
 
   //contact
   static const String contactDesc =
