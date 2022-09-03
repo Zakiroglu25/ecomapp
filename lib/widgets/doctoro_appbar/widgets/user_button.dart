@@ -1,4 +1,3 @@
-import 'package:doctoro/utils/constants/colors.dart';
 import 'package:doctoro/utils/constants/paddings.dart';
 import 'package:doctoro/utils/screen/ink_wrapper.dart';
 import 'package:flutter/material.dart';

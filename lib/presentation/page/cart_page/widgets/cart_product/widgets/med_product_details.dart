@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../widgets/custom/column_with_space.dart';
-import '../../../../../widgets/general/manat_price.dart';
+import '../../../../../../widgets/custom/column_with_space.dart';
+import '../../../../../../widgets/general/manat_price.dart';
 import 'cart_counter.dart';
 import 'cart_med_name.dart';
 import 'cart_pharm_name.dart';
@@ -12,6 +12,7 @@ class MedProductDetails extends StatelessWidget {
       : super(key: key);
   final String? url;
   final bool? recipeRequired;
+
   @override
   Widget build(BuildContext context) {
     return Flexible(

@@ -16,19 +16,19 @@ class AddressModel {
 
   AddressModel(
       {this.guid,
-        this.title,
-        this.streetName,
-        this.streetNumber,
-        this.houseNumber,
-        this.postCode,
-        this.phone,
-        this.country,
-        this.city,
-        this.region,
-        this.latitude,
-        this.longitude,
-        this.description,
-        this.isMain});
+      this.title,
+      this.streetName,
+      this.streetNumber,
+      this.houseNumber,
+      this.postCode,
+      this.phone,
+      this.country,
+      this.city,
+      this.region,
+      this.latitude,
+      this.longitude,
+      this.description,
+      this.isMain});
 
   AddressModel.fromJson(Map<String, dynamic> json) {
     guid = json['guid'];

@@ -24,15 +24,12 @@ class ApiKeys {
   //address
   static const getAddress = "$baseUrl/protected/customer/address-book";
 
-
   //forgot
   static const forgotOtp = "$baseUrl/user/otp";
   static const forgotOtpApprove = "$baseUrl/user/otp/approve";
 
   //contact
   static const contact = "$baseUrl/public/contacts";
-
-
 
   static loginBody({
     required String? email,

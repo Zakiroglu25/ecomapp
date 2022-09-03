@@ -1,7 +1,8 @@
 import 'package:doctoro/utils/screen/widget_or_empty.dart';
+import 'package:doctoro/widgets/custom/column_with_space.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:doctoro/widgets/custom/column_with_space.dart';
+
 import 'recipe_file_delete_button.dart';
 import 'recipe_photo.dart';
 import 'recipe_text.dart';
@@ -12,6 +13,7 @@ class RecipeBox extends StatelessWidget {
       : super(key: key);
   final String? url;
   final bool? recipeRequired;
+
   @override
   Widget build(BuildContext context) {
     return WidgetOrEmpty(

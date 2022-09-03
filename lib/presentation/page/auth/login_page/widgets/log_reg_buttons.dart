@@ -27,7 +27,7 @@ class LogRegButtons extends StatelessWidget {
   }
 
   Widget loginButton(BuildContext context) {
-    return DoctoroButton(
+    return AppButton(
       onTap: () {
         context.read<LoginCubit>().login(context);
       },
@@ -37,8 +37,8 @@ class LogRegButtons extends StatelessWidget {
     );
   }
 
-  DoctoroButton registerButton(BuildContext context) {
-    return DoctoroButton(
+  AppButton registerButton(BuildContext context) {
+    return AppButton(
       color: MyColors.grey288,
       textColor: MyColors.black,
       // borderColor: MyColors.mainColor,

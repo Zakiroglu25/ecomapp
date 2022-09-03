@@ -79,9 +79,12 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String recipe = "Resept";
   static const String uploadRecipe = "Resepti yüklə";
   static const String orders = "Sifarişlər";
+  static const String makeOrder = "Sifariş et";
   static const String deliveryPrice = "Çatdırılma haqqı";
+  static const String insuranceInfo =
+      "Əgər sizin sığortanız varsa, o zaman sığorta ilə ödə funksiyasını aktivləşdirin.";
   static const String total = "Toplam";
-  static const String payWithInsurance = "Səğorta ilə ödə";
+  static const String payWithInsurance = "Sığorta ilə ödə";
 
   //pashadetails
 

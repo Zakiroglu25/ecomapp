@@ -15,7 +15,7 @@ class ForgotMainButton extends StatelessWidget {
       child: StreamBuilder(
           // stream: BlocProvider.of<ForgotPassCubit>(context).phoneStream,
           builder: (context, snapshot) {
-        return DoctoroButton(
+        return AppButton(
           text: MyText.login,
           isButtonActive: snapshot.hasData,
           // loading: (forgotCubit.state is ForgotPassInProgress),

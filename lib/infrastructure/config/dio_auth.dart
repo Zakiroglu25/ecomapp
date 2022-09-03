@@ -55,6 +55,7 @@ class JwtInterceptor extends Interceptor {
 
 class CustomInterceptors extends Interceptor {
   HiveService get _prefs => locator<HiveService>();
+
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     print('REQUEST[${options.method}] => PATH: ${options.path}');

@@ -9,6 +9,7 @@ import '../../../utils/constants/assets.dart';
 
 class UserPage extends StatelessWidget {
   HiveService get _prefs => locator<HiveService>();
+
   static ConfigService get _configs => locator<ConfigService>();
 
   @override

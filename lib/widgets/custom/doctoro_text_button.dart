@@ -34,7 +34,7 @@ class DoctoroTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DoctoroButton(
+    return AppButton(
       text: text,
       color: Colors.transparent,
       splashColor: splashColor ?? MyColors.mainRED.withOpacity(0.2),

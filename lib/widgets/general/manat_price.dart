@@ -28,7 +28,8 @@ class ManatPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: r != 0 ? Paddings.paddingH12 : Paddings.zero,
+      padding:
+          r != 0 ? (Paddings.paddingH12 + Paddings.paddingV4) : Paddings.zero,
       decoration: BoxDecoration(
           color: backColor ?? Colors.transparent,
           borderRadius: BorderRadius.circular(r)),

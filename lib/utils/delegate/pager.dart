@@ -36,7 +36,7 @@ class Pager {
 
   static get cart => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => LoginCubit()),
-      ], child: const CartPage());
+      ], child: CartPage());
 
   static get forgot => ForgetPasswordPage();
 

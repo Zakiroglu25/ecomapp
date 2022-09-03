@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:doctoro/utils/constants/colors.dart';
 import 'package:doctoro/utils/screen/ink_wrapper.dart';
 import 'package:flutter/material.dart';
 
@@ -41,6 +40,8 @@ class ErrorableImage extends StatelessWidget {
             fit: fit ?? BoxFit.contain,
             width: w,
             height: h,
+            memCacheHeight: 300,
+            memCacheWidth: 300,
             placeholder: (context, url) => Center(
                 child: SizedBox(
                     height: 10, width: 10, child: placeHolder ?? AppLoading())),

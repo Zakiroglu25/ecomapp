@@ -1,11 +1,11 @@
+import 'package:doctoro/utils/constants/border_radius.dart';
+import 'package:doctoro/utils/constants/mock.dart';
+import 'package:doctoro/utils/constants/paddings.dart';
 import 'package:doctoro/utils/extensions/word.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../utils/constants/border_radius.dart';
-import '../../../../../utils/constants/gradients.dart';
-import '../../../../../utils/constants/mock.dart';
-import '../../../../../utils/constants/paddings.dart';
-import '../../../../../widgets/general/colorfull_bordered.dart';
+import '../../../../../../utils/constants/gradients.dart';
+import '../../../../../../widgets/general/colorfull_bordered.dart';
 
 class RecipeFileDeleteButton extends StatelessWidget {
   const RecipeFileDeleteButton({Key? key}) : super(key: key);

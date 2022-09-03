@@ -7,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/paddings.dart';
 import '../../../utils/constants/text.dart';
-import '../../../utils/delegate/navigate_utils.dart';
 import '../../../widgets/custom/product_and_other_widget.dart';
 
 class ContactPage extends StatelessWidget {

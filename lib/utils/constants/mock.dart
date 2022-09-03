@@ -7,6 +7,7 @@ class MockData {
   static const String medicineImgName =
       'mycomputerfile254.jpgmycomputerfile254.jpgmycomputerfile254.jpg';
   static const String pharmName = 'Zeytun aptek';
+
   //img
   static const String paracetamolImgURL =
       'https://moncoinsante.com/mcs/65625-large_default/claradol-caffeine-50-mg-paracetamol-500mg-pains-fever-16-tablets.jpg';

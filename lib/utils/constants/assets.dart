@@ -46,6 +46,7 @@ class Assets {
   static const String pngPashaIn3x = "assets/png/pashadetails.png";
   static const String docu = "assets/svg/product.svg";
   static const String dHeart = "assets/png/dheart.png";
+
   //pashadetails
   static const String pngPhone3x = "assets/png/phone.png";
   static const String pngUser3x = "assets/png/user.png";

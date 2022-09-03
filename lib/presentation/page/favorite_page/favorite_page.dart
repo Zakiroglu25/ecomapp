@@ -1,4 +1,3 @@
-import 'package:doctoro/utils/constants/app_text_styles.dart';
 import 'package:doctoro/utils/constants/assets.dart';
 import 'package:doctoro/utils/constants/colors.dart';
 import 'package:doctoro/utils/constants/sized_box.dart';
@@ -9,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../utils/constants/paddings.dart';
-import '../../../widgets/custom/doctoro_button.dart';
 import 'widget/fovorite_item.dart';
 
 class HomePage extends StatefulWidget {

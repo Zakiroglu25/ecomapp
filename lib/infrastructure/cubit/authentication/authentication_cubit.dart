@@ -21,7 +21,9 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   AuthenticationCubit() : super(AuthenticationUninitialized());
 
   HiveService get _prefs => locator<HiveService>();
+
   ConfigService get _configs => locator<ConfigService>();
+
   // MyUser? userData = MyUser();
   // FirebaseMessaging _fcm = FirebaseMessaging.instance;
   // final remoteConfig = FirebaseRemoteConfig.instance;

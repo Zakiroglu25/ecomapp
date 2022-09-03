@@ -11,14 +11,14 @@ class MyUser {
 
   MyUser(
       {this.phone,
-        this.email,
-        this.firstName,
-        this.patronymic,
-        this.lastName,
-        this.birthDate,
-        this.finCode,
-        this.insuranceId,
-        this.newsletterSubscription});
+      this.email,
+      this.firstName,
+      this.patronymic,
+      this.lastName,
+      this.birthDate,
+      this.finCode,
+      this.insuranceId,
+      this.newsletterSubscription});
 
   MyUser.fromJson(Map<String, dynamic> json) {
     phone = json['phone'];

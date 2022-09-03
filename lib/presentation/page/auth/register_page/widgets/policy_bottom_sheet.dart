@@ -47,7 +47,7 @@ class PolicyBottomSheet extends StatelessWidget {
                   Text(MyText.rules,
                       style: AppTextStyles.sfPro600.copyWith(fontSize: 14.sp)),
                   Spacer(),
-                  DoctoroButton(
+                  AppButton(
                     color: MyColors.black,
                   ),
                   MySizedBox.h32,

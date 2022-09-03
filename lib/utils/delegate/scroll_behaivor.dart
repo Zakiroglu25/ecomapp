@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class ScrollBehaviorModified extends ScrollBehavior {
   const ScrollBehaviorModified();
+
   @override
   ScrollPhysics getScrollPhysics(BuildContext context) {
     switch (getPlatform(context)) {
@@ -14,6 +15,6 @@ class ScrollBehaviorModified extends ScrollBehavior {
       case TargetPlatform.windows:
         return const ClampingScrollPhysics();
     }
-  //  return null;
+    //  return null;
   }
 }

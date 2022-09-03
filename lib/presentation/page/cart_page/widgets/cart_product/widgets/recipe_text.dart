@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../utils/constants/app_text_styles.dart';
-import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/text.dart';
+import '../../../../../../utils/constants/app_text_styles.dart';
+import '../../../../../../utils/constants/colors.dart';
+import '../../../../../../utils/constants/text.dart';
 
 class RecipeText extends StatelessWidget {
   const RecipeText({Key? key}) : super(key: key);

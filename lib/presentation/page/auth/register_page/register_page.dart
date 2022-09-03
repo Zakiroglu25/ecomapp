@@ -48,7 +48,7 @@ class Register extends StatelessWidget {
               StreamBuilder<bool>(
                   // stream: BlocProvider.of<RegisterCubit>(context).registerActiveeStream,
                   builder: (context, snapshot) {
-                return DoctoroButton(
+                return AppButton(
                   loading:
                       (context.watch<RegisterCubit>().state is RegisterLoading),
                   onTap: () => context.read<RegisterCubit>().register(context),

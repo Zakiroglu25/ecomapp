@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../utils/constants/colors.dart';
-import '../../../../utils/constants/text.dart';
-import '../../../../widgets/general/manat_price.dart';
+import '../../../../../../utils/constants/colors.dart';
+import '../../../../../../widgets/general/manat_price.dart';
 import 'cart_total_property.dart';
 
 class CartTotalPropertyManat extends StatelessWidget {
@@ -19,7 +18,7 @@ class CartTotalPropertyManat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CartTotalProperty(
-      title: "$title:",
+      title: title,
       value: ManatPrice(
           price: value,
           mainColor: withBack ? MyColors.white : MyColors.black,

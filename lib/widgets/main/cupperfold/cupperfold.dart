@@ -1,14 +1,8 @@
-import 'package:doctoro/utils/constants/boxx.dart';
 import 'package:doctoro/utils/constants/colors.dart';
-import 'package:doctoro/utils/constants/paddings.dart';
-import 'package:doctoro/utils/constants/physics.dart';
-import 'package:doctoro/utils/screen/widget_or_empty.dart';
-import 'package:doctoro/widgets/custom/row_with_space.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../doctoro_appbar/widgets/back_i_o_s.dart';
-import '../../doctoro_appbar/widgets/notification_widget.dart';
-import '../../doctoro_appbar/widgets/user_button.dart';
+
+import 'widgets/custom_cupertino_sliver_navigation_bar.dart';
 
 class Cupperfold extends StatelessWidget {
   const Cupperfold({
@@ -43,41 +37,14 @@ class Cupperfold extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             // A list of sliver widgets.
             slivers: <Widget>[
-              CupertinoSliverNavigationBar(
-                backgroundColor: MyColors.white,
-                padding: EdgeInsetsDirectional.zero,
-                border:
-                    const Border(bottom: BorderSide(color: Colors.transparent)),
-                leading: SpacedRow(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    WidgetOrEmpty(
-                      value: user,
-                      child: UserButton(),
-                      elseChild: WidgetOrEmpty(
-                        value: back,
-                        child: BackIOS(
-                          onBack: onBack,
-                        ),
-                      ),
-                    ),
-                    ...leadings ?? [],
-                  ],
-                ),
-                // This title is visible in both collapsed and expanded states.
-                // When the "middle" parameter is omitted, the widget provided
-                // in the "largeTitle" parameter is used instead in the collapsed state.
-                largeTitle: Text(title ?? ''),
-                trailing: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    ...trailings ?? [],
-                    WidgetOrEmpty(
-                        value: notification, child: NotificationWidget()),
-                  ],
-                ),
+              CustomCupertinoSliverNavigationBar(
+                trailings: trailings,
+                leadings: leadings,
+                title: title,
+                user: user,
+                notification: notification,
+                back: back,
+                onBack: onBack,
               ),
               // This widget fills the remaining space in the viewport.
               // Drag the scrollable area to collapse the CupertinoSliverNavigationBar.

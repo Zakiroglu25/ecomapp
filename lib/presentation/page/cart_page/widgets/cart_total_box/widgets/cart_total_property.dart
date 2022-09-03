@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../utils/constants/app_text_styles.dart';
-import '../../../../utils/constants/text.dart';
-import '../../../../widgets/general/manat_price.dart';
+import '../../../../../../utils/constants/app_text_styles.dart';
 
 class CartTotalProperty extends StatelessWidget {
   const CartTotalProperty({
@@ -20,7 +18,7 @@ class CartTotalProperty extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          title,
+          "$title :",
           style: AppTextStyles.sfPro400s16,
         ),
         value

@@ -11,12 +11,14 @@ class PassField extends StatefulWidget {
   // final passController;
 
   PassField();
+
   @override
   State<PassField> createState() => _PassFieldState();
 }
 
 class _PassFieldState extends State<PassField> {
   bool obscure = true;
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<String>(

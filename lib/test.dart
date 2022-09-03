@@ -16,13 +16,14 @@ class TestPage extends StatelessWidget {
 
 class SliverNavBarExample extends StatelessWidget {
   const SliverNavBarExample({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Cupperfold(
         title: 'Contacts',
         trailings: [Boxx()],
         child: Center(
-          child: DoctoroButton(
+          child: AppButton(
             onTap: () {
               Go.to(context, SliverNavBarExample2());
             },
@@ -33,6 +34,7 @@ class SliverNavBarExample extends StatelessWidget {
 
 class SliverNavBarExample2 extends StatelessWidget {
   const SliverNavBarExample2({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Cupperfold(
@@ -40,7 +42,7 @@ class SliverNavBarExample2 extends StatelessWidget {
         user: false,
         //trailings: [Boxx()],
         child: Center(
-          child: DoctoroButton(
+          child: AppButton(
             onTap: () {
               Go.to(context, NextPage());
             },

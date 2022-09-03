@@ -46,7 +46,7 @@ class ListItemWidget extends StatelessWidget {
                   children: [
                     Text("1 223.20 ₼-dan"),
                     MySizedBox.w22,
-                    DoctoroButton(
+                    AppButton(
                       borderRadius: 99,
                       w: 109,
                       h: 36,

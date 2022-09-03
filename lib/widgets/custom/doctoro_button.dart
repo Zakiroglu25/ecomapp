@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../utils/constants/app_text_styles.dart';
 import '../../utils/constants/colors.dart';
 
-class DoctoroButton extends StatelessWidget {
+class AppButton extends StatelessWidget {
   final Color? color;
   final Color? textColor;
   final Color? splashColor;
@@ -11,7 +11,7 @@ class DoctoroButton extends StatelessWidget {
   final Color? borderColor;
   final Color? passiveButtonColor;
   final Color? passiveTextColor;
-  final double? borderRadius;
+  final double borderRadius;
   final double? textSize;
   final Function? onTap;
   final FontWeight? fontWeight;
@@ -22,7 +22,7 @@ class DoctoroButton extends StatelessWidget {
   late final bool? isButtonActive;
   final double? h;
 
-  DoctoroButton(
+  AppButton(
       {this.color,
       this.loading,
       this.child,
@@ -37,7 +37,7 @@ class DoctoroButton extends StatelessWidget {
       this.w,
       this.textColor,
       this.onTap,
-      this.borderRadius,
+      this.borderRadius = 24,
       this.text,
       this.borderColor});
 
@@ -55,7 +55,7 @@ class DoctoroButton extends StatelessWidget {
               color: active
                   ? (borderColor ?? (color ?? MyColors.btn_passive))
                   : (passiveButtonColor ?? MyColors.btn_passive)),
-          borderRadius: BorderRadius.circular(borderRadius ?? 12)),
+          borderRadius: BorderRadius.circular(borderRadius)),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
@@ -66,7 +66,7 @@ class DoctoroButton extends StatelessWidget {
           splashColor: active
               ? (splashColor ?? Colors.transparent)
               : MyColors.transparent,
-          borderRadius: BorderRadius.circular(borderRadius ?? 4),
+          borderRadius: BorderRadius.circular(borderRadius),
           child: Center(
             child: (loading ?? false)
                 ? CircularProgressIndicator()

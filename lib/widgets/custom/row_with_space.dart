@@ -19,6 +19,7 @@ class SpacedRow extends StatelessWidget {
   final bool leftSpace;
   final CrossAxisAlignment crossAxisAlignment;
   final double? space;
+
   // final TextDirection? textDirection;
   // final VerticalDirection? verticalDirection;
   // final TextBaseline? textBaseline;

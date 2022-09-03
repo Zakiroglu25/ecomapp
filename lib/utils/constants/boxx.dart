@@ -1,4 +1,3 @@
-
 import 'package:doctoro/utils/constants/paddings.dart';
 import 'package:flutter/material.dart';
 

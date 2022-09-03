@@ -1,10 +1,9 @@
+import 'package:doctoro/utils/constants/border_radius.dart';
+import 'package:doctoro/utils/constants/colors.dart';
+import 'package:doctoro/utils/constants/paddings.dart';
+import 'package:doctoro/utils/constants/text.dart';
+import 'package:doctoro/utils/screen/ink_wrapper.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../../utils/constants/border_radius.dart';
-import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/paddings.dart';
-import '../../../../../utils/constants/text.dart';
-import '../../../../../utils/screen/ink_wrapper.dart';
 
 class RecipeUploadButton extends StatelessWidget {
   const RecipeUploadButton({Key? key}) : super(key: key);
