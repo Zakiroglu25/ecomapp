@@ -1,4 +1,5 @@
 import 'package:doctoro/presentation/page/contact_page/contact_page.dart';
+import 'package:doctoro/utils/constants/assets.dart';
 import 'package:doctoro/utils/constants/mock.dart';
 import 'package:doctoro/utils/constants/paddings.dart';
 import 'package:doctoro/utils/constants/physics.dart';
@@ -7,6 +8,7 @@ import 'package:doctoro/utils/constants/text.dart';
 import 'package:doctoro/widgets/main/cupperfold/cupperfold.dart';
 import 'package:doctoro/widgets/main/cupperfold/cuppertabs.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../widgets/general/sliver_caspa_bar.dart';
@@ -18,12 +20,28 @@ class CartPage extends StatelessWidget {
 
   final List<Widget> tabs = [
     Tab(
-      text: MyText.orders,
+      // text: "${MyText.orders}",
+      child: Row(
+        children: [
+          SvgPicture.asset(Assets.bag_happy),
+          Icon(Icons.title),
+        ],
+      ),
       height: 55,
     ),
     Tab(
-      text: MyText.recipe,
+      //  text: "${MyText.orders}",
+      child: Row(
+        children: [
+          SvgPicture.asset(Assets.truck_fast),
+          Icon(Icons.title),
+        ],
+      ),
+      height: 55,
     ),
+    // Tab(
+    //   text: MyText.recipe,
+    // ),
   ];
   @override
   Widget build(BuildContext context) {
@@ -32,7 +50,7 @@ class CartPage extends StatelessWidget {
         tabPages: [
           Container(),
           Container(
-            padding: Paddings.paddingA16,
+            padding: Paddings.paddingH16,
             // color: MyColors.green,
             child: Center(
                 child: ListView(

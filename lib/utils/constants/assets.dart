@@ -3,6 +3,9 @@ class Assets {
 
   //svg
   static const String red_logo = "assets/svg/logo_red.svg";
+  static const String bag_happy = "assets/svg/bag-happy.svg";
+  static const String clock = "assets/svg/clock.svg";
+  static const String truck_fast = "assets/svg/truck-fast.svg";
   static const String svgEyeOff = "assets/svg/eye-off.svg";
   static const String svgEyeOn = "assets/svg/eye-on.svg";
   static const String svgLock = "assets/svg/lock.svg";
