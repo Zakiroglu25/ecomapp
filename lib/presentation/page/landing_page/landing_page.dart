@@ -49,7 +49,7 @@ class _LandingPageState extends State<LandingPage> {
               unselectedFontSize: 11,
               selectedFontSize: 11,
               selectedLabelStyle:
-                  AppTextStyles.sfPro500.copyWith(color: MyColors.black0),
+                  AppTextStyles.sfPro500.copyWith(color: MyColors.black),
               type: BottomNavigationBarType.fixed,
               selectedItemColor: MyColors.black34,
               items: [

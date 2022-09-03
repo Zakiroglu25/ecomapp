@@ -74,7 +74,7 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
                 title!,
                 overflow: TextOverflow.ellipsis,
                 style: AppTextStyles.sfPro600
-                    .copyWith(fontSize: 17.sp, color: MyColors.black0),
+                    .copyWith(fontSize: 17.sp, color: MyColors.black),
               ),
             ),
             rightButtonsRow(context),

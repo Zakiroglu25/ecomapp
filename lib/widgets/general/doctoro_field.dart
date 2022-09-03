@@ -118,7 +118,7 @@ class DoctoroField extends StatelessWidget {
                       ),
                     ),
                     hintText: hint ?? "",
-                    hintStyle: AppTextStyles.sfPro400
+                    hintStyle: AppTextStyles.sfPro400s14
                         .copyWith(fontSize: 15, color: MyColors.grey153),
                     suffixText: suffixText ?? "",
                     filled: true,
@@ -166,16 +166,16 @@ class DoctoroField extends StatelessWidget {
               key: Key("b"),
               child: Text(
                 errorMessage ?? "",
-                style:
-                    AppTextStyles.sfPro400.copyWith(color: MyColors.errorRED),
+                style: AppTextStyles.sfPro400s14
+                    .copyWith(color: MyColors.errorRED),
               ),
             ),
             elseChild: FadeIn(
               key: Key("a"),
               child: Text(
                 (infoMessage ?? ""),
-                style:
-                    AppTextStyles.sfPro400.copyWith(color: MyColors.error_red),
+                style: AppTextStyles.sfPro400s14
+                    .copyWith(color: MyColors.error_red),
               ),
             ),
           ),

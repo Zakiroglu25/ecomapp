@@ -40,7 +40,7 @@ class LogRegButtons extends StatelessWidget {
   DoctoroButton registerButton(BuildContext context) {
     return DoctoroButton(
       color: MyColors.grey288,
-      textColor: MyColors.black0,
+      textColor: MyColors.black,
       // borderColor: MyColors.mainColor,
       onTap: () {
         // context.read<RegisterCubit>().register(context);

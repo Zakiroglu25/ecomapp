@@ -17,14 +17,21 @@ abstract class AppTextStyles {
       fontWeight: FontWeight.w500,
       fontStyle: FontStyle.normal,
       letterSpacing: 0.3);
-  static const sfPro400 = TextStyle(
+  static const sfPro400s14 = TextStyle(
       fontFamily: 'sf',
       fontSize: 14,
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.normal,
       letterSpacing: 0.3);
 
-  static const sfPro400H2 = TextStyle(
+  static const sfPro400s16 = TextStyle(
+      fontFamily: 'sf',
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      fontStyle: FontStyle.normal,
+      letterSpacing: 0.3);
+
+  static const sfPro400h2 = TextStyle(
       fontFamily: 'sf',
       fontSize: 14,
       fontWeight: FontWeight.w400,

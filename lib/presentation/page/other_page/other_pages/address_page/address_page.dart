@@ -17,7 +17,7 @@ class AddressPage extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: MyColors.white,
-          iconTheme: IconThemeData(color: MyColors.black0),
+          iconTheme: IconThemeData(color: MyColors.black),
         ),
         body:
             BlocBuilder<AddressCubit, AddressState>(builder: (context, state) {

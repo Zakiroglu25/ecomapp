@@ -44,7 +44,10 @@ class MateApp extends StatelessWidget {
                           // ),
                         },
                       ),
-                      fontFamily: 'CoHeadline',
+                      fontFamily: 'sf',
+                      textTheme: Theme.of(context).textTheme.apply(
+                            fontFamily: 'sf',
+                          ),
                       scaffoldBackgroundColor: MyColors.white),
                   builder: (context, widget) {
                     // ScreenUtil.setContext(context);

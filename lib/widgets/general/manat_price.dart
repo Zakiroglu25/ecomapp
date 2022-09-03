@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:doctoro/utils/constants/paddings.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/constants/colors.dart';
@@ -10,6 +11,7 @@ class ManatPrice extends StatelessWidget {
   final double? manatSize;
   final Color? mainColor;
   final Color? backColor;
+  final double r;
   final FontWeight? fontWeight;
   final bool stroked;
 
@@ -18,6 +20,7 @@ class ManatPrice extends StatelessWidget {
       this.textSize,
       this.manatSize,
       this.mainColor,
+      this.r = 0,
       this.backColor,
       this.stroked = true,
       this.fontWeight});
@@ -25,7 +28,10 @@ class ManatPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: backColor ?? Colors.transparent,
+      padding: r != 0 ? Paddings.paddingH12 : Paddings.zero,
+      decoration: BoxDecoration(
+          color: backColor ?? Colors.transparent,
+          borderRadius: BorderRadius.circular(r)),
       child: Row(
         //crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -34,7 +40,8 @@ class ManatPrice extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
               fontSize: textSize ?? 16,
-              color: mainColor ?? MyColors.black0,
+              fontFamily: 'sf',
+              color: mainColor ?? MyColors.black,
               fontWeight: fontWeight ?? FontWeight.w700,
             ),
           ),
@@ -43,8 +50,9 @@ class ManatPrice extends StatelessWidget {
             '₼',
             style: TextStyle(
                 fontSize: manatSize ?? 16,
-                color: mainColor ?? MyColors.black0,
-                fontWeight: FontWeight.w700),
+                fontFamily: 'sf',
+                color: mainColor ?? MyColors.black,
+                fontWeight: fontWeight ?? FontWeight.w700),
           ),
         ],
       ),

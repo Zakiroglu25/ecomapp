@@ -6,6 +6,7 @@ class SpacedRow extends StatelessWidget {
     required this.children,
     this.space,
     this.mainAxisSize = MainAxisSize.max,
+    this.leftSpace = false,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     // this.verticalDirection,
@@ -15,6 +16,7 @@ class SpacedRow extends StatelessWidget {
   final List<Widget> children;
   final MainAxisSize mainAxisSize;
   final MainAxisAlignment mainAxisAlignment;
+  final bool leftSpace;
   final CrossAxisAlignment crossAxisAlignment;
   final double? space;
   // final TextDirection? textDirection;
@@ -26,7 +28,10 @@ class SpacedRow extends StatelessWidget {
     return Row(
       children: children
           .map<Widget>((e) => Padding(
-                padding: EdgeInsets.only(right: space ?? 0),
+                padding: EdgeInsets.only(
+                  right: !leftSpace ? (space ?? 0) : 0,
+                  left: leftSpace ? (space ?? 0) : 0,
+                ),
                 child: e,
               ))
           .toList(),

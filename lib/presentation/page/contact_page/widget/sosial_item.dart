@@ -38,7 +38,7 @@ class SocialItem extends StatelessWidget {
               children: [
                 Text(
                   name!,
-                  style: AppTextStyles.sfPro400.copyWith(fontSize: 14.sm),
+                  style: AppTextStyles.sfPro400s14.copyWith(fontSize: 14.sm),
                 ),
                 WidgetOrEmpty(
                   value: content != null,
@@ -46,7 +46,8 @@ class SocialItem extends StatelessWidget {
                     margin: Paddings.paddingT4,
                     child: Text(
                       content ?? "",
-                      style: AppTextStyles.sfPro400.copyWith(fontSize: 12.sm),
+                      style:
+                          AppTextStyles.sfPro400s14.copyWith(fontSize: 12.sm),
                     ),
                   ),
                 ),

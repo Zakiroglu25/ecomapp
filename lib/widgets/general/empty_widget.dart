@@ -48,7 +48,7 @@ class EmptyWidget extends StatelessWidget {
           child: Text(
             description!,
             textAlign: TextAlign.center,
-            style: AppTextStyles.sfPro400
+            style: AppTextStyles.sfPro400s14
                 .copyWith(fontSize: 16, color: MyColors.grey158),
           ),
         ),

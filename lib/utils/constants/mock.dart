@@ -10,4 +10,6 @@ class MockData {
   //img
   static const String paracetamolImgURL =
       'https://moncoinsante.com/mcs/65625-large_default/claradol-caffeine-50-mg-paracetamol-500mg-pains-fever-16-tablets.jpg';
+  static const String recipeImgURL =
+      'https://images.theconversation.com/files/165279/original/image-20170413-11758-10u9ffg.jpg';
 }

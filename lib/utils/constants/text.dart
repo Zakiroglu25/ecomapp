@@ -78,6 +78,10 @@ In addition to laying out rules for proper use of your app, you should also clea
   //cart page
   static const String recipe = "Resept";
   static const String uploadRecipe = "Resepti yüklə";
+  static const String orders = "Sifarişlər";
+  static const String deliveryPrice = "Çatdırılma haqqı";
+  static const String total = "Toplam";
+  static const String payWithInsurance = "Səğorta ilə ödə";
 
   //pashadetails
 

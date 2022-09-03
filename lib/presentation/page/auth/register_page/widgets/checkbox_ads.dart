@@ -41,7 +41,7 @@ class AdsCheckbox extends StatelessWidget {
               child: RichText(
                 text: TextSpan(
                     text: MyText.checkPrivacyAds,
-                    style: AppTextStyles.sfPro400
+                    style: AppTextStyles.sfPro400s14
                         .copyWith(color: MyColors.grey130, fontSize: 12.sp)),
               ),
             ),

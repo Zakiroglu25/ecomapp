@@ -1,6 +1,9 @@
+import 'package:doctoro/utils/constants/boxx.dart';
 import 'package:doctoro/utils/constants/colors.dart';
 import 'package:doctoro/utils/constants/paddings.dart';
+import 'package:doctoro/utils/constants/physics.dart';
 import 'package:doctoro/utils/screen/widget_or_empty.dart';
+import 'package:doctoro/widgets/custom/row_with_space.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../doctoro_appbar/widgets/back_i_o_s.dart';
@@ -45,7 +48,7 @@ class Cupperfold extends StatelessWidget {
                 padding: EdgeInsetsDirectional.zero,
                 border:
                     const Border(bottom: BorderSide(color: Colors.transparent)),
-                leading: Row(
+                leading: SpacedRow(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -78,8 +81,11 @@ class Cupperfold extends StatelessWidget {
               ),
               // This widget fills the remaining space in the viewport.
               // Drag the scrollable area to collapse the CupertinoSliverNavigationBar.
-              SliverFillRemaining(
-                child: child,
+
+              SliverList(
+                // shrinkWrap: false,
+                // physics: Physics.alwaysBounce,
+                delegate: SliverChildListDelegate([child]),
               ),
             ],
           ),

@@ -42,13 +42,13 @@ class PolicyBottomSheet extends StatelessWidget {
                   MySizedBox.h16,
                   Text(MyText.ruleText,
                       style: AppTextStyles.sfPro700
-                          .copyWith(fontSize: 32.sp, color: MyColors.black0)),
+                          .copyWith(fontSize: 32.sp, color: MyColors.black)),
                   MySizedBox.h32,
                   Text(MyText.rules,
                       style: AppTextStyles.sfPro600.copyWith(fontSize: 14.sp)),
                   Spacer(),
                   DoctoroButton(
-                    color: MyColors.black0,
+                    color: MyColors.black,
                   ),
                   MySizedBox.h32,
                 ],
@@ -71,7 +71,7 @@ class PolicyBottomSheet extends StatelessWidget {
                 ),
               ),
             ],
-            style: AppTextStyles.sfPro400
+            style: AppTextStyles.sfPro400s14
                 .copyWith(color: MyColors.grey130, fontSize: 12.sp)),
       ),
     );

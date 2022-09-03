@@ -53,7 +53,7 @@ class ProductAndOtherWidget extends StatelessWidget {
             MySizedBox.h4,
             Text(
               desc!,
-              style: AppTextStyles.sfPro400
+              style: AppTextStyles.sfPro400s14
                   .copyWith(color: MyColors.black34, fontSize: 13.sp),
             )
           ],

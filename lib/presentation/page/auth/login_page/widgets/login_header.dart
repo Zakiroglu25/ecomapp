@@ -35,7 +35,7 @@ class LoginHeaders extends StatelessWidget {
   Text buildLittleText() {
     return Text(
       MyText.enterText,
-      style: AppTextStyles.sfPro400
+      style: AppTextStyles.sfPro400s14
           .copyWith(fontSize: 14, color: MyColors.grey153),
       textAlign: TextAlign.left,
     );

@@ -22,7 +22,7 @@ class FilterWidget extends StatelessWidget {
               height: 24,
               child: SvgPicture.asset(
                 Assets.svgFilter,
-                color: MyColors.black0,
+                color: MyColors.black,
               ),
             ),
             //   Ellipse()

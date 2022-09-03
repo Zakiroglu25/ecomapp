@@ -73,7 +73,7 @@ class DoctoroButton extends StatelessWidget {
                 : (child ??
                     Text(
                       text ?? "",
-                      style: AppTextStyles.sfPro400.copyWith(
+                      style: AppTextStyles.sfPro400s14.copyWith(
                           color: active
                               ? (textColor ?? Colors.white)
                               : (passiveButtonColor ?? MyColors.btn_passive),

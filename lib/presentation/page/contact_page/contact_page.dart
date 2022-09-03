@@ -19,7 +19,7 @@ class ContactPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: MyColors.white,
         elevation: 0,
-        iconTheme: IconThemeData(color: MyColors.black0),
+        iconTheme: IconThemeData(color: MyColors.black),
       ),
       body: ListView(
         padding: Paddings.paddingH16,

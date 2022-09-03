@@ -38,7 +38,7 @@ class ManatPriceLined extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  price ?? "00.00",
+                  price,
                   style: TextStyle(
                       decoration: TextDecoration.lineThrough,
                       fontWeight: fontWeight ?? FontWeight.w700,

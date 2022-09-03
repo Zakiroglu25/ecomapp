@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 class MyColors {
   MyColors._();
 
+  //main colors
+  static const Color main = Color.fromRGBO(255, 0, 55, 1);
+
   ///onboardlittletext
   static const Color little_text = Color.fromRGBO(130, 139, 163, 1);
-  static const Color black0 = Color.fromRGBO(0, 0, 0, 1);
+  static const Color black = Color.fromRGBO(0, 0, 0, 1);
   static const Color black34 = Color.fromRGBO(34, 34, 34, 1);
   static const Color mainRED = Color.fromRGBO(255, 0, 55, 1);
   static const Color btn_passive = Color.fromRGBO(218, 219, 227, 1);
@@ -13,6 +16,7 @@ class MyColors {
   static const Color grey130 = Color.fromRGBO(130, 139, 163, 1);
   static const Color grey188 = Color.fromRGBO(188, 192, 208, 1);
   static const Color grey288 = Color.fromRGBO(228, 232, 238, 1);
+  static const Color halfGrey = const Color.fromRGBO(214, 214, 214, 1);
   static const Color grey245 = Color.fromRGBO(245, 246, 248, 1);
   static const Color field_grey = Color.fromRGBO(248, 249, 253, 1);
   static const Color transparent = Colors.transparent;

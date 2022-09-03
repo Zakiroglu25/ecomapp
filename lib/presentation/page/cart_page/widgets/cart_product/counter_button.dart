@@ -1,8 +1,8 @@
 import 'package:doctoro/utils/screen/ink_wrapper.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../utils/constants/border_radius.dart';
-import '../../../../utils/constants/colors.dart';
+import '../../../../../utils/constants/border_radius.dart';
+import '../../../../../utils/constants/colors.dart';
 
 class CounterButton extends StatelessWidget {
   const CounterButton({Key? key, required this.text}) : super(key: key);

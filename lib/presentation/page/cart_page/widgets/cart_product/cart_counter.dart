@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../widgets/custom/row_with_space.dart';
+import '../../../../../widgets/custom/row_with_space.dart';
 import 'count_text.dart';
 import 'counter_button.dart';
 

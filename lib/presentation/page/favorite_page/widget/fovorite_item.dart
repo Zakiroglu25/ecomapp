@@ -59,7 +59,7 @@ class ListItemWidget extends StatelessWidget {
                           ),
                           Text(
                             "Sebete",
-                            style: AppTextStyles.sfPro400
+                            style: AppTextStyles.sfPro400s14
                                 .copyWith(color: MyColors.white),
                           ),
                         ],

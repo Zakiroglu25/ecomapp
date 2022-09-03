@@ -68,7 +68,7 @@ class PashaInsurancePage extends StatelessWidget {
                             width: 170,
                             child: Text(
                               MyText.downAppDetails,
-                              style: AppTextStyles.sfPro400.copyWith(
+                              style: AppTextStyles.sfPro400s14.copyWith(
                                   fontSize: 13.sp, color: MyColors.white),
                               textAlign: TextAlign.start,
                             ),
@@ -108,7 +108,7 @@ class PashaInsurancePage extends StatelessWidget {
                           width: 170,
                           child: Text(
                             MyText.personalAccountDetails,
-                            style: AppTextStyles.sfPro400.copyWith(
+                            style: AppTextStyles.sfPro400s14.copyWith(
                                 fontSize: 13.sp, color: MyColors.white),
                             textAlign: TextAlign.start,
                           ),
@@ -140,7 +140,7 @@ class PashaInsurancePage extends StatelessWidget {
                           width: 170,
                           child: Text(
                             MyText.webSiteinfo,
-                            style: AppTextStyles.sfPro400.copyWith(
+                            style: AppTextStyles.sfPro400s14.copyWith(
                                 fontSize: 13.sp, color: MyColors.white),
                             textAlign: TextAlign.start,
                           ),

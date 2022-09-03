@@ -21,13 +21,13 @@ class Register extends StatelessWidget {
     return Scaffold(
       backgroundColor: MyColors.white,
       appBar: AppBar(
-        iconTheme: IconThemeData(color: MyColors.black0),
+        iconTheme: IconThemeData(color: MyColors.black),
         backgroundColor: MyColors.white,
         elevation: 0,
         title: Text(
           "Hesab yarat",
           style: AppTextStyles.sfPro500
-              .copyWith(color: MyColors.black0, fontSize: 16.sp),
+              .copyWith(color: MyColors.black, fontSize: 16.sp),
         ),
         centerTitle: true,
       ),

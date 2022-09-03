@@ -46,8 +46,8 @@ class ForgotPassStepper extends StatelessWidget {
                             child: Text(
                               titles![index],
                               textAlign: TextAlign.center,
-                              style:
-                                  AppTextStyles.sfPro400.copyWith(fontSize: 12),
+                              style: AppTextStyles.sfPro400s14
+                                  .copyWith(fontSize: 12),
                             ),
                           ),
                         ),
