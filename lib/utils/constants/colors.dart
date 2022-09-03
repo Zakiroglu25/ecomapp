@@ -5,6 +5,7 @@ class MyColors {
 
   //main colors
   static const Color main = Color.fromRGBO(255, 0, 55, 1);
+  static const Color secondary = Color.fromRGBO(241, 82, 116, 0.1);
 
   ///onboardlittletext
   static const Color little_text = Color.fromRGBO(130, 139, 163, 1);

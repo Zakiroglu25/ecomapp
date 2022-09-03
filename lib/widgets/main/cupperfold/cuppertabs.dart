@@ -1,3 +1,4 @@
+import 'package:doctoro/utils/constants/border_radius.dart';
 import 'package:doctoro/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -108,16 +109,19 @@ class _CupperTabsState extends State<CupperTabs>
                               const EdgeInsets.only(
                                   left: 20, right: 20, top: 5, bottom: 10),
                           controller: _tabController,
+                          indicatorColor: MyColors.green235,
+                          overlayColor: MaterialStateProperty.all(Colors.black),
+
                           indicator: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              12.0,
-                            ),
-                            color: widget.selectedTabColor ?? MyColors.mainGrey,
+                            borderRadius: Radiuses.r36,
+                            color:
+                                widget.selectedTabColor ?? MyColors.secondary,
                           ),
+
                           labelColor:
-                              widget.selectedLabelColor ?? MyColors.black,
+                              widget.selectedLabelColor ?? MyColors.main,
                           unselectedLabelColor:
-                              widget.unSelectedLabelColor ?? MyColors.grey153,
+                              widget.unSelectedLabelColor ?? MyColors.grey158,
                           physics: Physics.alwaysBounce,
                           tabs: tabs,
                           //indicatorSize: TabBarIndicatorSize(),
@@ -128,7 +132,7 @@ class _CupperTabsState extends State<CupperTabs>
                 body: TabBarView(
                   physics: Physics.alwaysBounce,
                   controller: _tabController,
-                  children: widget.tabPages!.map((Widget child) {
+                  children: widget.tabPages.map((Widget child) {
                     return RefreshIndicator(
                         color: MyColors.main,
                         onRefresh: () async => widget.onRefresh?.call(),
