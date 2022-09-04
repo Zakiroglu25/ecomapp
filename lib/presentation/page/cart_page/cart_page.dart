@@ -1,54 +1,45 @@
-import 'package:doctoro/presentation/page/contact_page/contact_page.dart';
 import 'package:doctoro/utils/constants/assets.dart';
 import 'package:doctoro/utils/constants/mock.dart';
 import 'package:doctoro/utils/constants/paddings.dart';
 import 'package:doctoro/utils/constants/physics.dart';
 import 'package:doctoro/utils/constants/sized_box.dart';
 import 'package:doctoro/utils/constants/text.dart';
-import 'package:doctoro/widgets/main/cupperfold/cupperfold.dart';
-import 'package:doctoro/widgets/main/cupperfold/cuppertabs.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
-import '../../../utils/constants/colors.dart';
-import '../../../widgets/general/sliver_caspa_bar.dart';
+import '../../../widgets/custom/app_tab.dart';
+import '../../../widgets/main/cuppertabs_wp/cupper_tab_wrapper.dart';
 import 'widgets/cart_product/cart_product.dart';
 import 'widgets/cart_total_box/cart_total_box.dart';
 
 class CartPage extends StatelessWidget {
   CartPage({Key? key}) : super(key: key);
 
-  final List<Widget> tabs = [
-    Tab(
-      // text: "${MyText.orders}",
-      child: Row(
-        children: [
-          SvgPicture.asset(Assets.bag_happy),
-          Icon(Icons.title),
-        ],
-      ),
-      height: 55,
+  final List<AppTab> tabs = [
+    AppTab(
+      text: MyText.orders,
+      svg: Assets.bag_happy,
+      count: 5,
+      index: 0,
     ),
-    Tab(
-      //  text: "${MyText.orders}",
-      child: Row(
-        children: [
-          SvgPicture.asset(Assets.truck_fast),
-          Icon(Icons.title),
-        ],
-      ),
-      height: 55,
+    AppTab(
+      text: MyText.in_waiting,
+      svg: Assets.clock,
+      count: 5,
+      index: 1,
     ),
-    // Tab(
-    //   text: MyText.recipe,
-    // ),
+    AppTab(
+      text: MyText.delivery,
+      svg: Assets.truck_fast,
+      count: 5,
+      index: 2,
+    ),
   ];
+
   @override
   Widget build(BuildContext context) {
-    return CupperTabs(
+    return CupperTabWrapper(
         title: MyText.cart,
+        isScrollable: true,
         tabPages: [
-          Container(),
           Container(
             padding: Paddings.paddingH16,
             // color: MyColors.green,
@@ -58,21 +49,23 @@ class CartPage extends StatelessWidget {
               physics: Physics.never,
               // space: 16,
               children: [
-                CartProduct(),
+                const CartProduct(),
                 MySizedBox.h16,
-                CartProduct(
+                const CartProduct(
                   recipeRequired: true,
                 ),
                 MySizedBox.h16,
-                CartProduct(
+                const CartProduct(
                   recipeRequired: true,
                   url: MockData.recipeImgURL,
                 ),
                 MySizedBox.h16,
-                CartTotalBox(),
+                const CartTotalBox(),
               ],
             )),
-          )
+          ),
+          Container(),
+          Container(),
         ],
         tabs: tabs);
   }

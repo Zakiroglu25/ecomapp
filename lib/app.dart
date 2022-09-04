@@ -35,7 +35,7 @@ class App extends StatelessWidget {
       if (state is AuthenticationUninitialized) {
         return Pager.login;
       } else if (state is AuthenticationAuthenticated) {
-        return Pager.landing;
+        return Pager.app();
       } else {
         return Pager.login;
       }
