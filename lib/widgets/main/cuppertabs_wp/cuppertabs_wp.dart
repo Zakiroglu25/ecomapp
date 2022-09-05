@@ -66,15 +66,13 @@ class _CupperTabsWpState extends State<CupperTabsWp>
     super.initState();
     //  tabs = widget.tabs;
     _tabController = TabController(vsync: this, length: widget.tabs.length);
-    _tabController.addListener(() {
+
+    _tabController.animation?.addListener(() {
       widget.tabController?.call(_tabController.index);
-
-      //widget.tabs[_tabController.index]..color = MyColors.blue0;
-      // Provider.of<CupperProvider>(context, listen: false)
-      //     .incrementCounter(tabo: widget.tabs);
+      int _currentIndex = (_tabController.animation?.value)!
+          .round(); //_tabController.animation.value returns double
       Provider.of<CupperProvider>(context, listen: false)
-          .changeTab(widget.tabs[_tabController.index]);
-
+          .changeTab(widget.tabs[_currentIndex]);
       setState(() {});
     });
 

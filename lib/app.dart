@@ -25,6 +25,7 @@ class App extends StatelessWidget {
         return const SafeArea(
           child: Scaffold(
               body: Center(
+            //
             child: Text("MyText.error"),
             // refreshButton: () =>
             //   context.read<AuthenticationCubit>()
@@ -35,7 +36,7 @@ class App extends StatelessWidget {
       if (state is AuthenticationUninitialized) {
         return Pager.login;
       } else if (state is AuthenticationAuthenticated) {
-        return Pager.app();
+        return Pager.landing;
       } else {
         return Pager.login;
       }
