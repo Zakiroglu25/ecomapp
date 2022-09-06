@@ -17,6 +17,12 @@ abstract class AppTextStyles {
       fontWeight: FontWeight.w500,
       fontStyle: FontStyle.normal,
       letterSpacing: 0.3);
+  static const sfPro500s13 = TextStyle(
+      fontFamily: 'SF Pro Display Semibold',
+      fontWeight: FontWeight.w500,
+      fontSize: 13,
+      fontStyle: FontStyle.normal,
+      letterSpacing: 0.3);
   static const sfPro400s12 = TextStyle(
       fontFamily: 'sf',
       fontSize: 12,

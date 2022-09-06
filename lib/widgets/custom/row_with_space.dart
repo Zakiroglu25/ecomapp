@@ -10,7 +10,7 @@ class SpacedRow extends StatelessWidget {
     this.mainAxisSize = MainAxisSize.max,
     this.leftSpace = false,
     this.mainAxisAlignment = MainAxisAlignment.start,
-    this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.crossAxisAlignment = CrossAxisAlignment.start,
     // this.verticalDirection,
     // this.textDirection,
     // this.textBaseline,

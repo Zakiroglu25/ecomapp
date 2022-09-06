@@ -8,7 +8,7 @@ class Assets {
   static const String red_logo = "assets/svg/logo_red.svg";
   static const String bag_happy = "assets/svg/bag-happy.svg";
   static const String bag_happy_xx = "assets/svg/bag-happy-xx.svg";
-  static const String clock = "assets/svg/clock.svg";
+  static const String svgClock = "assets/svg/clock.svg";
   static const String truck_fast = "assets/svg/truck-fast.svg";
   static const String svgEyeOff = "assets/svg/eye-off.svg";
   static const String svgEyeOn = "assets/svg/eye-on.svg";
@@ -16,6 +16,7 @@ class Assets {
   static const String svgBad = "assets/svg/bad.svg";
   static const String svgProduct = "assets/svg/product.svg";
   static const String svgWhiteLogo = "assets/svg/whitelogo.svg";
+  static const String svgDots = "assets/svg/dots.svg";
 
   static const String svgCheck = "assets/svg/check.svg";
   static const String svgMinus2 = "assets/svg/minus-2.svg";
@@ -25,6 +26,7 @@ class Assets {
   static const String svgFav = "assets/svg/iconheart.svg";
   static const String svgAptek = "assets/svg/svgaptek.svg";
   static const String svgCart = "assets/svg/svgcart.svg";
+  static const String svgShoppingCart = "assets/svg/shopping-cart.svg";
   static const String svgMore = "assets/svg/svgmore.svg";
 
   ///appbar

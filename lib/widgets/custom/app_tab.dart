@@ -34,6 +34,7 @@ class AppTab extends Tab {
     return SpacedRow(
       space: 10,
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         // Icon(iconData),
         svg != null
