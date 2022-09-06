@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:doctoro/utils/constants/durations.dart';
 import 'package:doctoro/utils/screen/widget_or_empty.dart';
 import 'package:doctoro/widgets/custom/row_with_space.dart';
@@ -38,13 +37,19 @@ class AppTab extends Tab {
       children: [
         // Icon(iconData),
         svg != null
-            ? FadeIn(
-                duration: Durations.ms500,
-                key: Key('$selected'),
-                child: SvgPicture.asset(
+            ? AnimatedCrossFade(
+                duration: Durations.ms200,
+                firstChild: SvgPicture.asset(
                   svg!,
-                  color: selected ? MyColors.main : MyColors.black34,
+                  color: MyColors.main,
                 ),
+                secondChild: SvgPicture.asset(
+                  svg!,
+                  color: MyColors.black34,
+                ),
+                crossFadeState: selected
+                    ? CrossFadeState.showFirst
+                    : CrossFadeState.showSecond,
               )
             : Container(),
         Text(text),

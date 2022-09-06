@@ -16,7 +16,7 @@ class CartPage extends StatelessWidget {
   final List<AppTab> tabs = [
     AppTab(
       text: MyText.orders,
-      svg: Assets.bag_happy,
+      svg: Assets.bag_happy_xx,
       count: 5,
       index: 0,
     ),

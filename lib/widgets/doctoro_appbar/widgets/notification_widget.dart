@@ -22,7 +22,7 @@ class NotificationWidget extends StatelessWidget {
         color: Colors.transparent,
         child: Container(
           // color: MyColors.green,
-          height: 24,
+          height: 26,
           width: 45,
           child: Padding(
             padding: Paddings.paddingR16,
