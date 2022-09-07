@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../locator.dart';
-import '../../util/constants/api_keys.dart';
+import '../../utils/constants/api_keys.dart';
 import '../services/hive_service.dart';
 
 class DioAuth {
@@ -55,6 +55,7 @@ class JwtInterceptor extends Interceptor {
 
 class CustomInterceptors extends Interceptor {
   HiveService get _prefs => locator<HiveService>();
+
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     print('REQUEST[${options.method}] => PATH: ${options.path}');

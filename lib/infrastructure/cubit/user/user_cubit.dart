@@ -1,17 +1,8 @@
-import 'dart:convert';
-import 'dart:developer';
-import 'dart:io';
-
 import 'package:bloc/bloc.dart';
-import 'package:doctoro/util/delegate/my_printer.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
-
-import 'package:rxdart/rxdart.dart';
+import 'package:doctoro/utils/delegate/my_printer.dart';
 
 import '../../../locator.dart';
-import '../../../util/delegate/user_operations.dart';
-import '../../../util/screen/alert.dart';
+import '../../../utils/delegate/user_operations.dart';
 import '../../services/hive_service.dart';
 
 part 'user_state.dart';

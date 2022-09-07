@@ -1,15 +1,12 @@
 // Dart imports:
-import 'dart:convert';
-
 // Package imports:
 import 'package:dio/dio.dart';
 import 'package:doctoro/infrastructure/model/response/address_model.dart';
-import 'package:http/http.dart' as http;
 
 import '../../locator.dart';
-import '../../util/constants/api_keys.dart';
-import '../../util/constants/result_keys.dart';
-import '../../util/delegate/my_printer.dart';
+import '../../utils/constants/api_keys.dart';
+import '../../utils/constants/result_keys.dart';
+import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
 import '../model/response/status_dynamic.dart';
 

@@ -14,6 +14,7 @@ class RegisterSuccess extends RegisterState {
   final String message;
 
   RegisterSuccess(this.message);
+
   @override
   List<Object> get props => [message];
 }

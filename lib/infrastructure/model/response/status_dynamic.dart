@@ -1,6 +1,5 @@
-
 class StatusDynamic {
-  dynamic ? data;
+  dynamic? data;
   int? statusCode;
 
   StatusDynamic({this.data, this.statusCode});

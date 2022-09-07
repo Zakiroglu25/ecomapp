@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../locator.dart';
-import '../../../util/delegate/my_printer.dart';
+import '../../../utils/delegate/my_printer.dart';
 import '../../data/address_provider.dart';
 import '../../model/remote/general/MyMessage.dart';
 import '../../services/hive_service.dart';
@@ -22,7 +21,8 @@ class AddressCubit extends Cubit<AddressState> {
     }
     iiii("cubit 1");
     try {
-      final result = await AddressProvider.getAddresses(token: _prefs.accessToken);
+      final result =
+          await AddressProvider.getAddresses(token: _prefs.accessToken);
       iiii("cubit 2");
       wtf(result.toString());
       if (result!.statusCode == 200) {

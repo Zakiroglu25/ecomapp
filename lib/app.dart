@@ -1,11 +1,12 @@
-import 'package:doctoro/util/constants/assets.dart';
+import 'package:doctoro/utils/constants/assets.dart';
+import 'package:doctoro/utils/delegate/pager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
 import 'infrastructure/cubit/authentication/authentication_cubit.dart';
 import 'infrastructure/cubit/authentication/authentication_state.dart';
-import 'util/delegate/pager.dart';
+import 'utils/delegate/pager.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);

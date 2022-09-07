@@ -2,17 +2,16 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../locator.dart';
-import '../../../util/constants/assets.dart';
-import '../../../util/constants/durations.dart';
-import '../../../util/constants/text.dart';
-import '../../../util/delegate/my_printer.dart';
-import '../../../util/delegate/navigate_utils.dart';
-import '../../../util/delegate/pager.dart';
-import '../../../util/delegate/user_operations.dart';
-import '../../../util/screen/alert.dart';
-import '../../data/account_provider.dart';
-import '../../model/locale/MyUser.dart';
+import '../../../utils/constants/assets.dart';
+import '../../../utils/constants/durations.dart';
+import '../../../utils/constants/text.dart';
+import '../../../utils/delegate/my_printer.dart';
+import '../../../utils/delegate/navigate_utils.dart';
+import '../../../utils/delegate/pager.dart';
+import '../../../utils/delegate/user_operations.dart';
+import '../../../utils/screen/alert.dart';
 import '../../model/response/status_dynamic.dart';
 import '../../services/config_service.dart';
 import '../../services/hive_service.dart';
@@ -22,7 +21,9 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   AuthenticationCubit() : super(AuthenticationUninitialized());
 
   HiveService get _prefs => locator<HiveService>();
+
   ConfigService get _configs => locator<ConfigService>();
+
   // MyUser? userData = MyUser();
   // FirebaseMessaging _fcm = FirebaseMessaging.instance;
   // final remoteConfig = FirebaseRemoteConfig.instance;
@@ -50,8 +51,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
           //splah screen ucun min 4 san. gozledilir
           delay(showSplash),
           // eyni zamanda konfiqurasiya edilir
-          UserOperations.configUserDataWhenOpenApp(
-              accessToken: accessToken)
+          UserOperations.configUserDataWhenOpenApp(accessToken: accessToken)
         ]);
         // if (goOn!) {
         emit(AuthenticationAuthenticated());
@@ -82,7 +82,6 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       emit(AuthenticationError());
     }
   }
-
 
   Future<void> serverControl(StatusDynamic? result, Function isSuccess) async {
     if (result != null) {
