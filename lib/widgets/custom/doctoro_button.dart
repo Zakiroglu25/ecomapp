@@ -1,3 +1,4 @@
+import 'package:doctoro/utils/constants/paddings.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/constants/app_text_styles.dart';
@@ -40,6 +41,24 @@ class AppButton extends StatelessWidget {
       this.borderRadius = 24,
       this.text,
       this.borderColor});
+  AppButton.black(
+      {this.color = MyColors.black,
+      this.loading,
+      this.child,
+      this.h = 48,
+      this.textSize,
+      this.fontWeight,
+      this.isButtonActive,
+      this.highlightColor,
+      this.passiveTextColor,
+      this.passiveButtonColor,
+      this.splashColor,
+      this.w,
+      this.textColor = MyColors.white,
+      this.onTap,
+      this.borderRadius = 99,
+      this.text,
+      this.borderColor});
 
   @override
   Widget build(BuildContext context) {
@@ -70,16 +89,23 @@ class AppButton extends StatelessWidget {
           child: Center(
             child: (loading ?? false)
                 ? CircularProgressIndicator()
-                : (child ??
-                    Text(
-                      text ?? "",
-                      style: AppTextStyles.sfPro400s14.copyWith(
-                          color: active
-                              ? (textColor ?? Colors.white)
-                              : (passiveButtonColor ?? MyColors.btn_passive),
-                          fontSize: textSize ?? 16,
-                          fontWeight: fontWeight ?? FontWeight.w500),
-                    )),
+                : Padding(
+                    padding: Paddings.paddingH8,
+                    child: FittedBox(
+                      child: (child ??
+                          Text(
+                            text ?? "",
+                            style: AppTextStyles.sfPro400s14.copyWith(
+                                color: active
+                                    ? (textColor ?? Colors.white)
+                                    : (passiveButtonColor ??
+                                        MyColors.btn_passive),
+                                fontSize: textSize ?? 16,
+                                overflow: TextOverflow.clip,
+                                fontWeight: fontWeight ?? FontWeight.w500),
+                          )),
+                    ),
+                  ),
           ),
         ),
       ),

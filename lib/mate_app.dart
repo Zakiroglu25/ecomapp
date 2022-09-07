@@ -1,4 +1,6 @@
 import 'package:animations/animations.dart';
+import 'package:doctoro/utils/constants/boxx.dart';
+import 'package:doctoro/utils/delegate/my_printer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,7 +60,7 @@ class MateApp extends StatelessWidget {
                   },
                   home: Builder(
                     builder: (ctx) {
-                      return Pager.app();
+                      return Pager.cart;
                     },
                   )),
             ));

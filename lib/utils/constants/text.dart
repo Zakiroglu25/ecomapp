@@ -86,7 +86,15 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String insuranceInfo =
       "Əgər sizin sığortanız varsa, o zaman sığorta ilə ödə funksiyasını aktivləşdirin.";
   static const String total = "Toplam";
+  static const String pay = "Ödə";
+  static const String recipeInReview =
+      "Resept aptek tərəfindən dəyərləndirilir";
+  static const String recipePartialyAccepted = "Resept qismən qarşılanır";
+  static const String recipeConfirmed =
+      "Resept təsdiqləndi, çatdırılma edə bilərsiniz";
   static const String payWithInsurance = "Sığorta ilə ödə";
+  static const String keepInTouchX = "Əlaqə saxla️";
+  static const String orderDeliveryX = "Çatdırılma sifariş et";
 
   //pashadetails
 
@@ -105,8 +113,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String demo =
       "Swiss Energy Herbs Hot Balm Forte isidici balzam  75 ml Forte";
   static const String emptyText = "Bura doşdur";
-  static const String emptyTextDesc = "Axtardığınız məhsulu tapmaq üçün, zəhmət olmasa məhsullar bölməsinə keçin";
-
+  static const String emptyTextDesc =
+      "Axtardığınız məhsulu tapmaq üçün, zəhmət olmasa məhsullar bölməsinə keçin";
 
   //contact
   static const String contactDesc =
