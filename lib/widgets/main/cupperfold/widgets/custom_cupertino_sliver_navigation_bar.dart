@@ -1,3 +1,4 @@
+import 'package:doctoro/utils/constants/paddings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,6 @@ import '../../../doctoro_appbar/widgets/user_button.dart';
 class CustomCupertinoSliverNavigationBar extends StatelessWidget {
   const CustomCupertinoSliverNavigationBar({
     Key? key,
-
     this.title,
     this.leadings,
     this.trailings,
@@ -36,6 +36,7 @@ class CustomCupertinoSliverNavigationBar extends StatelessWidget {
       padding: EdgeInsetsDirectional.zero,
       border: const Border(bottom: BorderSide(color: Colors.transparent)),
       leading: SpacedRow(
+        padding: Paddings.paddingT4,
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -56,7 +57,8 @@ class CustomCupertinoSliverNavigationBar extends StatelessWidget {
       // When the "middle" parameter is omitted, the widget provided
       // in the "largeTitle" parameter is used instead in the collapsed state.
       largeTitle: Text(title ?? ''),
-      trailing: Row(
+      trailing: SpacedRow(
+        padding: Paddings.paddingT4,
         mainAxisAlignment: MainAxisAlignment.end,
         mainAxisSize: MainAxisSize.min,
         children: [

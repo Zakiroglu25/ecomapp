@@ -4,7 +4,10 @@ import 'package:doctoro/infrastructure/cubit/address/address_cubit.dart';
 import 'package:doctoro/presentation/page/auth/forgot_password_page/forgot_pass_page.dart';
 import 'package:doctoro/presentation/page/landing_page/landing_page.dart';
 import 'package:doctoro/presentation/page/product_page/product_page.dart';
+import 'package:doctoro/utils/delegate/my_printer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 import '../../app.dart';
 import '../../infrastructure/cubit/authentication/authentication_cubit.dart';

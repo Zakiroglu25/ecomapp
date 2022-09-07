@@ -25,6 +25,7 @@ class App extends StatelessWidget {
         return const SafeArea(
           child: Scaffold(
               body: Center(
+            //
             child: Text("MyText.error"),
             // refreshButton: () =>
             //   context.read<AuthenticationCubit>()

@@ -6,12 +6,15 @@ import 'package:doctoro/utils/delegate/pager.dart';
 import 'package:doctoro/widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/text.dart';
 import '../../../widgets/custom/product_and_other_widget.dart';
 import '../../../widgets/custom/text_title_big.dart';
+import '../../../widgets/general/cupertino_modal_body.dart';
+import '../payment_method_page/payment_method_page.dart';
 
 class OtherPage extends StatelessWidget {
   const OtherPage({Key? key}) : super(key: key);
@@ -60,6 +63,11 @@ class OtherPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ProductAndOtherWidget(
+                onTap: () {
+                  Go.to(
+                      context,
+                      PaymentMethodPage());
+                },
                 color: MyColors.green235,
                 h: 167.h,
                 w: 167.w,
@@ -128,5 +136,22 @@ class OtherPage extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+void goToAddPage(
+    {required BuildContext context}) async {
+  try {
+    showCupertinoModalBottomSheet(
+      expand: true,
+      //isDismissible: true,
+      context: context,
+
+      backgroundColor: Colors.transparent, builder: (BuildContext context) {
+
+        return Center(child: Text("salam"));},
+
+    );
+  }catch(e){
+
   }
 }

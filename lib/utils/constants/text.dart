@@ -79,8 +79,10 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String recipe = "Resept";
   static const String uploadRecipe = "Resepti yüklə";
   static const String orders = "Sifarişlər";
+  static const String in_waiting = "Gözləmə";
   static const String makeOrder = "Sifariş et";
   static const String deliveryPrice = "Çatdırılma haqqı";
+  static const String delivery = "Çatdırılma";
   static const String insuranceInfo =
       "Əgər sizin sığortanız varsa, o zaman sığorta ilə ödə funksiyasını aktivləşdirin.";
   static const String total = "Toplam";
@@ -102,6 +104,9 @@ In addition to laying out rules for proper use of your app, you should also clea
   //demo
   static const String demo =
       "Swiss Energy Herbs Hot Balm Forte isidici balzam  75 ml Forte";
+  static const String emptyText = "Bura doşdur";
+  static const String emptyTextDesc = "Axtardığınız məhsulu tapmaq üçün, zəhmət olmasa məhsullar bölməsinə keçin";
+
 
   //contact
   static const String contactDesc =

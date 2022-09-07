@@ -3,6 +3,7 @@ import 'package:doctoro/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/physics.dart';
+import '../../custom/app_tab.dart';
 import 'widgets/custom_cupertino_sliver_navigation_bar.dart';
 
 class CupperTabs extends StatefulWidget {
@@ -53,7 +54,7 @@ class CupperTabs extends StatefulWidget {
 
 class _CupperTabsState extends State<CupperTabs>
     with SingleTickerProviderStateMixin {
-  late List<Widget> tabs;
+  // late List<AppTab> tabs;
 
   late TabController _tabController;
 
@@ -61,15 +62,20 @@ class _CupperTabsState extends State<CupperTabs>
   void initState() {
     // TODO: implement initState
     super.initState();
-    tabs = widget.tabs;
+    //  tabs = widget.tabs;
     _tabController = TabController(vsync: this, length: widget.tabs.length);
     _tabController.addListener(() {
       widget.tabController?.call(_tabController.index);
+
+      //widget.tabs[_tabController.index]..color = MyColors.blue0;
+
+      //   _tabController.
     });
 
     if (widget.first != -1) {
       _tabController.animateTo(widget.first);
     }
+    setState(() {});
   }
 
   @override
@@ -86,7 +92,7 @@ class _CupperTabsState extends State<CupperTabs>
         backgroundColor: MyColors.white,
         body: SafeArea(
           child: DefaultTabController(
-            length: tabs.length,
+            length: widget.tabs.length,
             child: NestedScrollView(
                 physics: Physics.never,
                 headerSliverBuilder:
@@ -123,7 +129,7 @@ class _CupperTabsState extends State<CupperTabs>
                           unselectedLabelColor:
                               widget.unSelectedLabelColor ?? MyColors.grey158,
                           physics: Physics.alwaysBounce,
-                          tabs: tabs,
+                          tabs: widget.tabs,
                           //indicatorSize: TabBarIndicatorSize(),
                           isScrollable: widget.isScrollable,
                         )))
@@ -170,6 +176,6 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return false;
+    return true;
   }
 }

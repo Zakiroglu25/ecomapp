@@ -36,7 +36,10 @@ class EmptyWidget extends StatelessWidget {
             color: color,
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Image.asset(imageUrl!),
+          child: SizedBox(
+              width: 127,
+              height: 127,
+              child: Image.asset(imageUrl!)),
         ),
         MySizedBox.h16,
         Text(text!,

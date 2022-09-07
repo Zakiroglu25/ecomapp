@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/constants/paddings.dart';
+
 class SpacedColumn extends StatelessWidget {
   const SpacedColumn({
     Key? key,
     required this.children,
     this.space,
-    this.mainAxisSize = MainAxisSize.max,
+    this.mainAxisSize = MainAxisSize.min,
+    this.padding = Paddings.zero,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     // this.verticalDirection,
@@ -16,6 +19,7 @@ class SpacedColumn extends StatelessWidget {
   final MainAxisSize mainAxisSize;
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
+  final EdgeInsets padding;
   final double? space;
 
   // final TextDirection? textDirection;
@@ -24,19 +28,22 @@ class SpacedColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: children
-          .map<Widget>((e) => Padding(
-                padding: EdgeInsets.only(bottom: space ?? 0),
-                child: e,
-              ))
-          .toList(),
-      mainAxisSize: mainAxisSize,
-      mainAxisAlignment: mainAxisAlignment,
-      crossAxisAlignment: crossAxisAlignment,
-      // textBaseline: textBaseline,
-      // textDirection: textDirection,
-      // verticalDirection: verticalDirection
+    return Padding(
+      padding: padding,
+      child: Column(
+        children: children
+            .map<Widget>((e) => Padding(
+                  padding: EdgeInsets.only(bottom: space ?? 0),
+                  child: e,
+                ))
+            .toList(),
+        mainAxisSize: mainAxisSize,
+        mainAxisAlignment: mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment,
+        // textBaseline: textBaseline,
+        // textDirection: textDirection,
+        // verticalDirection: verticalDirection
+      ),
     );
   }
 }
