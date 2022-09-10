@@ -4,12 +4,16 @@ import 'package:doctoro/utils/constants/colors.dart';
 import 'package:doctoro/utils/constants/sized_box.dart';
 import 'package:doctoro/utils/constants/text.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../../test.dart';
 import '../../../utils/constants/boxx.dart';
 import '../../../utils/delegate/navigate_utils.dart';
+import '../../../utils/delegate/pager.dart';
 import '../../../widgets/custom/doctoro_button.dart';
+import '../../../widgets/general/cupertino_modal_body.dart';
 import '../../../widgets/general/empty_widget.dart';
 import '../../../widgets/main/cupperfold/cupperfold.dart';
 import 'widget/add_bank_kart.dart';
@@ -19,30 +23,24 @@ class PaymentMethodPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Cupperfold(
-      notification: false,
-      user: false,
-      title: 'Ödəniş üsulları',
-      child: Column(
-        children: [
-          MySizedBox.h100,
-          EmptyWidget(
-            color: MyColors.green235,
-            imageUrl: Assets.pngPaymentMethod3x,
-            text: MyText.emptyText,
-            description: MyText.emptyTextDesc,
-          ),
-          MySizedBox.h100,
-          Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16),
-              child: AppButton(
-                onTap: () {
-                  Go.to(context, AddBankCard());
-                },
-                text: "+ Ödəniş üsulu əlavə et",
-              ))
-        ],
-      ),
+    return
+      Cupperfold(
+        onBack: () => Go.pop(context),
+        notification: false,
+        user: false,
+        title: 'Ödəniş üsulları',
+        child: Column(
+          children: [
+
+
+            AppButton(
+              onTap: () {
+                Go.to(context, AddBankCard());
+              },
+              text: "+ Ödəniş üsulu əlavə et",
+            )
+          ],
+        ),
     );
   }
 }

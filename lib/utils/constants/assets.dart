@@ -79,6 +79,7 @@ class Assets {
   static const String medicine = "assets/png/medicine.png";
   static const String pngBad = "assets/png/bad.png";
   static const String demo = "assets/png/demo.png";
+  static const String masterCard = "assets/png/mastercard.png";
 
   //other
   static const String pasha = "assets/png/pasha.png";
