@@ -17,6 +17,7 @@ class CustomCupertinoSliverNavigationBar extends StatelessWidget {
     this.trailings,
     this.back = true,
     this.onBack,
+    this.barColor,
     this.user = true,
     this.notification = true,
   }) : super(key: key);
@@ -27,12 +28,13 @@ class CustomCupertinoSliverNavigationBar extends StatelessWidget {
   final bool? user;
   final bool? notification;
   final bool? back;
+  final Color? barColor;
   final Function? onBack;
 
   @override
   Widget build(BuildContext context) {
     return CupertinoSliverNavigationBar(
-      backgroundColor: MyColors.white,
+      backgroundColor: barColor ?? MyColors.white,
       padding: EdgeInsetsDirectional.zero,
       border: const Border(bottom: BorderSide(color: Colors.transparent)),
       leading: SpacedRow(

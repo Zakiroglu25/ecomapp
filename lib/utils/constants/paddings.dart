@@ -73,6 +73,7 @@ class Paddings {
   static const EdgeInsets paddingB100 = EdgeInsets.only(bottom: 100);
   static const EdgeInsets paddingB110 = EdgeInsets.only(bottom: 110);
   static const EdgeInsets paddingB116 = EdgeInsets.only(bottom: 116);
+  static const EdgeInsets paddingB200 = EdgeInsets.only(bottom: 200);
 
   //only bottom
   static const EdgeInsets paddingT4 = EdgeInsets.only(top: 4);

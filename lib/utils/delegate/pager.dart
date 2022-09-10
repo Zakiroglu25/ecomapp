@@ -15,6 +15,7 @@ import '../../infrastructure/cubit/login/login_cubit.dart';
 import '../../infrastructure/cubit/register/register_cubit.dart';
 import '../../presentation/page/auth/login_page/login_page.dart';
 import '../../presentation/page/auth/register_page/register_page.dart';
+import '../../presentation/page/cart_delivery_page/cart_delivery_page.dart';
 import '../../presentation/page/cart_page/cart_page.dart';
 import '../../presentation/page/contact_page/contact_page.dart';
 import '../../presentation/page/home_page/home_page.dart';
@@ -40,6 +41,10 @@ class Pager {
   static get cart => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => LoginCubit()),
       ], child: CartPage());
+
+  static get cartDelivery => MultiBlocProvider(providers: [
+        BlocProvider(create: (context) => LoginCubit()),
+      ], child: CartDeliveryPage());
 
   static get forgot => ForgetPasswordPage();
 

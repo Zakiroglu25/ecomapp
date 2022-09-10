@@ -15,7 +15,8 @@ class FavoritePage extends StatefulWidget {
   _FavoritePageState createState() => _FavoritePageState();
 }
 
-class _FavoritePageState extends State<FavoritePage> with TickerProviderStateMixin {
+class _FavoritePageState extends State<FavoritePage>
+    with TickerProviderStateMixin {
   TabController? _controller;
 
   int _selectedIndex = 0;
@@ -53,12 +54,12 @@ class _FavoritePageState extends State<FavoritePage> with TickerProviderStateMix
                 isScrollable: true,
                 indicatorWeight: 0.01,
                 unselectedLabelColor:
-                Theme.of(context).textTheme.headline1!.color,
-                labelColor: MyColors.mainRED,
+                    Theme.of(context).textTheme.headline1!.color,
+                labelColor: MyColors.darkRED,
                 onTap: (index) => setState(() => _selectedIndex = index),
                 tabs: List<Widget>.generate(
                   _controller!.length,
-                      (index) => Tab(
+                  (index) => Tab(
                     child: Container(
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
@@ -73,17 +74,17 @@ class _FavoritePageState extends State<FavoritePage> with TickerProviderStateMix
                           children: [
                             index == 0
                                 ? SvgPicture.asset(
-                              Assets.svgFav,
-                              color: _selectedIndex == 0
-                                  ? MyColors.mainRED
-                                  : MyColors.grey158,
-                            )
+                                    Assets.svgFav,
+                                    color: _selectedIndex == 0
+                                        ? MyColors.darkRED
+                                        : MyColors.grey158,
+                                  )
                                 : SvgPicture.asset(
-                              Assets.docu,
-                              color: _selectedIndex == 1
-                                  ? MyColors.mainRED
-                                  : MyColors.grey158,
-                            ),
+                                    Assets.docu,
+                                    color: _selectedIndex == 1
+                                        ? MyColors.darkRED
+                                        : MyColors.grey158,
+                                  ),
                             MySizedBox.w10,
                             index == 0
                                 ? Text(MyText.favorite)

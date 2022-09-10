@@ -34,7 +34,7 @@ class UnicornOutlineButton extends StatelessWidget {
           radius: _radius!,
           onTap: _callback,
           child: Container(
-            constraints: BoxConstraints(minWidth: 88, minHeight: 48),
+            constraints: BoxConstraints(minWidth: 88, minHeight: 34),
             child: Container(padding: _padding, child: _child!),
           ),
         ),

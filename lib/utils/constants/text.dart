@@ -1,3 +1,5 @@
+import 'package:doctoro/utils/extensions/word.dart';
+
 class MyText {
   MyText._();
 
@@ -93,8 +95,14 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String recipeConfirmed =
       "Resept təsdiqləndi, çatdırılma edə bilərsiniz";
   static const String payWithInsurance = "Sığorta ilə ödə";
-  static const String keepInTouchX = "Əlaqə saxla️";
-  static const String orderDeliveryX = "Çatdırılma sifariş et";
+  static const String keepInTouch = "Əlaqə saxla️";
+  static final String keepInTouchX = keepInTouch.withX("☎");
+  static const String orderDelivery = "Çatdırılma sifariş et";
+  static final String orderDeliveryX = orderDelivery.withX("🚚");
+  static final String call = "Zəng et";
+  static final String messennger = "Messenger";
+  static final String insuranceCover = "Sığorta qarşılayır";
+  static final String insuranceDoesNotCover = "Sığorta qarşılamır";
 
   //pashadetails
 

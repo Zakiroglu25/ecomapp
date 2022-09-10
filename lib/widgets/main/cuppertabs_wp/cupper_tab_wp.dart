@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import 'cuppertabs_provider.dart';
 import 'cuppertabs_wp.dart';
 
-class CupperTabWrapper extends StatelessWidget {
-  const CupperTabWrapper({
+class CupperTabWP extends StatelessWidget {
+  const CupperTabWP({
     Key? key,
     this.child,
     this.title,
@@ -53,7 +53,7 @@ class CupperTabWrapper extends StatelessWidget {
       value:
           //(c) =>
           CupperProvider()..configAppTab(initialTabs: tabs, first: first),
-      child: CupperTabsWp(
+      child: CupperTabsWithProvider(
           title: title,
           isScrollable: isScrollable,
           tabPages: tabPages,

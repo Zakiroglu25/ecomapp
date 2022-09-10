@@ -27,95 +27,91 @@ class CartOrderProduct extends StatelessWidget {
   final CartOrderType cartOrderType;
   @override
   Widget build(BuildContext context) {
-    bbbb("Gggggg:  ${cartOrderType == CartOrderType.waitingPayment}");
-    return Padding(
-      padding: Paddings.paddingV4,
-      child: AppElementBox(
-        color: CartOrderType.color(cartOrderType),
-        child: SpacedColumn(
-            space: 6,
-            padding: Paddings.paddingA8,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+    return AppElementBox(
+      color: CartOrderType.color(cartOrderType),
+      child: SpacedColumn(
+          space: 6,
+          padding: Paddings.paddingA8,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SvgPicture.asset(Assets.svgShoppingCart),
+                DotsButton(
+                    controller: CustomPopupMenuController(),
+                    menuBuilder: () {
+                      return nil;
+                    })
+              ],
+            ),
+            Text(
+              "Baglama 001",
+              style: AppTextStyles.sfPro600.copyWith(fontSize: 16),
+            ),
+            MySizedBox.h2,
+            SpacedRow(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SvgPicture.asset(Assets.svgShoppingCart),
-                  DotsButton(
-                      controller: CustomPopupMenuController(),
-                      menuBuilder: () {
-                        return nil;
-                      })
-                ],
-              ),
-              Text(
-                "Baglama 001",
-                style: AppTextStyles.sfPro600.copyWith(fontSize: 16),
-              ),
-              MySizedBox.h2,
-              SpacedRow(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Dərman sayı: 5',
-                      style: AppTextStyles.sfPro500s13,
-                    ),
-                    Text(
-                      'Sifariş tarixi: 27.08.2022',
-                      style: AppTextStyles.sfPro500s13,
-                    ),
-                  ]),
-              SpacedRow(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Qiymət: 64.00 ₼',
-                      style: AppTextStyles.sfPro500s13,
-                    ),
-                  ]),
-              MySizedBox.h14,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Flexible(
-                    flex: 3,
-                    child: Row(
-                        // space: 12,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SvgPicture.asset(Assets.svgClock),
-                          MySizedBox.w8,
-                          Flexible(
-                            child: Text(
-                              CartOrderType.stText(cartOrderType),
-                              style: AppTextStyles.sfPro500,
-                              //  overflow: TextOverflow.ellipsis,
-                            ),
-                          )
-                        ]),
+                  Text(
+                    'Dərman sayı: 5',
+                    style: AppTextStyles.sfPro500s13,
                   ),
-                  WidgetOrEmpty(
-                    value: cartOrderType == CartOrderType.waitingPayment,
-                    child: Expanded(
-                      flex: 2,
-                      child: Padding(
-                        padding: Paddings.paddingL8,
-                        child: AppButton.black(
-                          h: 36,
-                          text: MyText.pay.withPrice(999.999),
-                          // w: 140,
-                        ),
+                  Text(
+                    'Sifariş tarixi: 27.08.2022',
+                    style: AppTextStyles.sfPro500s13,
+                  ),
+                ]),
+            SpacedRow(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Qiymət: 64.00 ₼',
+                    style: AppTextStyles.sfPro500s13,
+                  ),
+                ]),
+            MySizedBox.h14,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Flexible(
+                  flex: 3,
+                  child: Row(
+                      // space: 12,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SvgPicture.asset(Assets.svgClock),
+                        MySizedBox.w8,
+                        Flexible(
+                          child: Text(
+                            CartOrderType.stText(cartOrderType),
+                            style: AppTextStyles.sfPro500,
+                            //  overflow: TextOverflow.ellipsis,
+                          ),
+                        )
+                      ]),
+                ),
+                WidgetOrEmpty(
+                  value: cartOrderType == CartOrderType.waitingPayment,
+                  child: Expanded(
+                    flex: 2,
+                    child: Padding(
+                      padding: Paddings.paddingL8,
+                      child: AppButton.black(
+                        h: 36,
+                        text: MyText.pay.withPrice(999.999),
+                        // w: 140,
                       ),
                     ),
-                  )
-                ],
-              )
-            ]),
-      ),
+                  ),
+                )
+              ],
+            )
+          ]),
     );
   }
 }

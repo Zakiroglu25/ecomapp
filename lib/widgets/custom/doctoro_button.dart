@@ -41,6 +41,7 @@ class AppButton extends StatelessWidget {
       this.borderRadius = 24,
       this.text,
       this.borderColor});
+
   AppButton.black(
       {this.color = MyColors.black,
       this.loading,
@@ -91,9 +92,9 @@ class AppButton extends StatelessWidget {
                 ? CircularProgressIndicator()
                 : Padding(
                     padding: Paddings.paddingH8,
-                    child: FittedBox(
-                      child: (child ??
-                          Text(
+                    child: (child ??
+                        FittedBox(
+                          child: Text(
                             text ?? "",
                             style: AppTextStyles.sfPro400s14.copyWith(
                                 color: active
@@ -103,8 +104,8 @@ class AppButton extends StatelessWidget {
                                 fontSize: textSize ?? 16,
                                 overflow: TextOverflow.clip,
                                 fontWeight: fontWeight ?? FontWeight.w500),
-                          )),
-                    ),
+                          ),
+                        )),
                   ),
           ),
         ),
