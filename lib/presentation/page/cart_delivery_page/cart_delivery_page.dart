@@ -41,7 +41,7 @@ class CartDeliveryPage extends StatelessWidget {
               color: MyColors.orange254,
               // height: 90,
               child: FittedBox(
-                fit: BoxFit.scaleDown,
+                fit: BoxFit.contain,
                 child: SpacedColumn(
                   space: 12,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -115,7 +115,7 @@ class CartDeliveryPage extends StatelessWidget {
           ),
         )
       ],
-      title: "CartDeliveryPage",
+      title: "",
     );
   }
 }
