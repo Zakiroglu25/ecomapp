@@ -23,6 +23,7 @@ import '../../presentation/page/other_page/other_page.dart';
 import '../../presentation/page/other_page/other_pages/address_page/address_page.dart';
 
 class Pager {
+  Pager._();
   static app({bool? showSplash}) => BlocProvider(
       create: (context) => AuthenticationCubit()
         ..startApp(context, showSplash: showSplash ?? true),

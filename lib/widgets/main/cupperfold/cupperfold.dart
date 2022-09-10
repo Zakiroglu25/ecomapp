@@ -1,7 +1,7 @@
 import 'package:doctoro/utils/constants/colors.dart';
+import 'package:doctoro/widgets/main/cupperfold/widgets/app_sliver_persistent_cupertino_appbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'widgets/custom_cupertino_sliver_navigation_bar.dart';
 
 class Cupperfold extends StatelessWidget {
@@ -16,9 +16,11 @@ class Cupperfold extends StatelessWidget {
     this.back = true,
     this.onBack,
     this.slivers,
+    this.showAppbarLargeText = false,
     this.user = true,
     this.notification = true,
-  }) : super(key: key);
+  }) : //assert(child != null || slivers != null),
+        super(key: key);
 
   final Widget? child;
   final String? title;
@@ -29,6 +31,7 @@ class Cupperfold extends StatelessWidget {
   final Color? barColor;
   final Color? backColor;
   final bool? back;
+  final bool showAppbarLargeText;
   final Function? onBack;
   final List<Widget>? slivers;
 
@@ -42,19 +45,28 @@ class Cupperfold extends StatelessWidget {
           clipBehavior: Clip.antiAlias,
           // A list of sliver widgets.
           slivers: <Widget>[
-            CustomCupertinoSliverNavigationBar(
-              trailings: trailings,
-              leadings: leadings,
-              title: title,
-              barColor: barColor,
-              user: user,
-              notification: notification,
-              back: back,
-              onBack: onBack,
-            ),
-            // This widget fills the remaining space in the viewport.
-            // Drag the scrollable area to collapse the CupertinoSliverNavigationBar.
-
+            if (showAppbarLargeText)
+              AppSliverPersistentCupertinoAppbar(
+                trailings: trailings,
+                leadings: leadings,
+                title: title,
+                barColor: barColor,
+                user: user,
+                notification: notification,
+                back: back,
+                onBack: onBack,
+              ),
+            if (!showAppbarLargeText)
+              CustomCupertinoSliverNavigationBar(
+                trailings: trailings,
+                leadings: leadings,
+                title: title,
+                barColor: barColor,
+                user: user,
+                notification: notification,
+                back: back,
+                onBack: onBack,
+              ),
             if (child != null)
               SliverList(
                 // shrinkWrap: false,

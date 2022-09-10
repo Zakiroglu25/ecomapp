@@ -94,16 +94,19 @@ class AppButton extends StatelessWidget {
                     padding: Paddings.paddingH8,
                     child: (child ??
                         FittedBox(
-                          child: Text(
-                            text ?? "",
-                            style: AppTextStyles.sfPro400s14.copyWith(
-                                color: active
-                                    ? (textColor ?? Colors.white)
-                                    : (passiveButtonColor ??
-                                        MyColors.btn_passive),
-                                fontSize: textSize ?? 16,
-                                overflow: TextOverflow.clip,
-                                fontWeight: fontWeight ?? FontWeight.w500),
+                          child: Padding(
+                            padding: Paddings.paddingH8,
+                            child: Text(
+                              text ?? "",
+                              style: AppTextStyles.sfPro400s14.copyWith(
+                                  color: active
+                                      ? (textColor ?? Colors.white)
+                                      : (passiveButtonColor ??
+                                          MyColors.btn_passive),
+                                  fontSize: textSize ?? 14,
+                                  overflow: TextOverflow.clip,
+                                  fontWeight: fontWeight ?? FontWeight.w500),
+                            ),
                           ),
                         )),
                   ),

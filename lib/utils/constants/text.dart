@@ -103,6 +103,9 @@ In addition to laying out rules for proper use of your app, you should also clea
   static final String messennger = "Messenger";
   static final String insuranceCover = "Sığorta qarşılayır";
   static final String insuranceDoesNotCover = "Sığorta qarşılamır";
+  static final String countOfMedicine = "Dərman sayı";
+  static final String totalPrice = "Toplam qiymət:";
+  static final String orderDate = "Sifariş tarixi";
 
   //pashadetails
 

@@ -26,7 +26,7 @@ class UserButton extends StatelessWidget {
           height: 45,
           width: 45,
           child: Padding(
-            padding: Paddings.paddingL16,
+            padding: Paddings.paddingL16 + Paddings.paddingT2,
             child: SvgPicture.asset(Assets.svgUser),
           ),
         ),

@@ -25,7 +25,7 @@ class NotificationWidget extends StatelessWidget {
           height: 25,
           width: 45,
           child: Padding(
-            padding: Paddings.paddingR16,
+            padding: Paddings.paddingR16 + Paddings.paddingT2,
             child: SvgPicture.asset(Assets.svgBell),
           ),
         ),
