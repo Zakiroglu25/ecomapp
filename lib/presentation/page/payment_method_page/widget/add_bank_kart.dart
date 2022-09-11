@@ -2,7 +2,7 @@ import 'package:doctoro/utils/constants/app_text_styles.dart';
 import 'package:doctoro/utils/constants/colors.dart';
 import 'package:doctoro/utils/constants/sized_box.dart';
 import 'package:doctoro/widgets/custom/app_button.dart';
-import 'package:doctoro/widgets/general/doctoro_field.dart';
+import 'package:doctoro/widgets/general/app_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

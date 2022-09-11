@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../utils/constants/assets.dart';
-import '../../../widgets/general/doctoro_field.dart';
+import '../../../widgets/general/app_field.dart';
 
 class MedicineDetailsPage extends StatelessWidget {
   const MedicineDetailsPage({Key? key}) : super(key: key);
