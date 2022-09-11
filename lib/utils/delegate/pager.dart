@@ -2,6 +2,7 @@
 
 import 'package:doctoro/infrastructure/cubit/address/address_cubit.dart';
 import 'package:doctoro/presentation/page/auth/forgot_password_page/forgot_pass_page.dart';
+import 'package:doctoro/presentation/page/delivery_address_page/delivery_address_page.dart';
 import 'package:doctoro/presentation/page/landing_page/landing_page.dart';
 import 'package:doctoro/presentation/page/product_page/product_page.dart';
 import 'package:doctoro/utils/delegate/my_printer.dart';
@@ -46,6 +47,10 @@ class Pager {
   static get cartDelivery => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => LoginCubit()),
       ], child: CartDeliveryPage());
+
+  static get deliveryAddress => MultiBlocProvider(providers: [
+        BlocProvider(create: (context) => LoginCubit()),
+      ], child: DeliveryAddressPage());
 
   static get forgot => ForgetPasswordPage();
 

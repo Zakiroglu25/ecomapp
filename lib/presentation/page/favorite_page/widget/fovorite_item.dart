@@ -6,7 +6,7 @@ import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sized_box.dart';
 import '../../../../utils/constants/text.dart';
-import '../../../../widgets/custom/doctoro_button.dart';
+import '../../../../widgets/custom/app_button.dart';
 
 class ListItemWidget extends StatelessWidget {
   const ListItemWidget({

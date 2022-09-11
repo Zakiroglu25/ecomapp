@@ -9,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../test.dart';
 import '../../../utils/constants/boxx.dart';
 import '../../../utils/delegate/navigate_utils.dart';
-import '../../../widgets/custom/doctoro_button.dart';
+import '../../../widgets/custom/app_button.dart';
 import '../../../widgets/general/empty_widget.dart';
 import '../../../widgets/main/cupperfold/cupperfold.dart';
 import 'widget/add_bank_kart.dart';

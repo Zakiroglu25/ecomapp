@@ -80,6 +80,7 @@ class Assets {
   static const String keyChild = "assets/png/keychild.png";
   static const String medicine = "assets/png/medicine.png";
   static const String pngBad = "assets/png/bad.png";
+  static const String pngCourier = "assets/png/courier.png";
   static const String demo = "assets/png/demo.png";
 
   //other

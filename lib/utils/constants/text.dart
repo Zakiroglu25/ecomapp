@@ -72,7 +72,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String insurance = "Sığorta";
   static const String likeMedicine = "Öxşar dərmanlar";
   static const String questionAnswer = "Sual-cavab";
-  static const String address = "Ünvanlarım";
+  static const String myAddresses = "Ünvanlarım";
+  static const String address = "Ünvan";
   static const String contact = "Əlaqə";
   static const String settings = "Tənzimləmələr";
   static const String demoSubtitle = "Axtardığınız məhsulu tapmaq üçün";
@@ -89,6 +90,7 @@ In addition to laying out rules for proper use of your app, you should also clea
       "Əgər sizin sığortanız varsa, o zaman sığorta ilə ödə funksiyasını aktivləşdirin.";
   static const String total = "Toplam";
   static const String pay = "Ödə";
+  static const String payTotal = "Toplam ödə";
   static const String recipeInReview =
       "Resept aptek tərəfindən dəyərləndirilir";
   static const String recipePartialyAccepted = "Resept qismən qarşılanır";
@@ -106,6 +108,9 @@ In addition to laying out rules for proper use of your app, you should also clea
   static final String countOfMedicine = "Dərman sayı";
   static final String totalPrice = "Toplam qiymət:";
   static final String orderDate = "Sifariş tarixi";
+  static final String chooseDeliveryType = "Çatdırılma üsulunu seçin";
+  static final String contactNumber = "Əlaqə nömrəsi";
+  static final String note = "Qeyd";
 
   //pashadetails
 

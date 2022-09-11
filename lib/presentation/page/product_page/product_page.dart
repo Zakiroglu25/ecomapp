@@ -33,7 +33,7 @@ class ProductPage extends StatelessWidget {
         child: ListView(
           children: [
             BigSection(title: MyText.product),
-            DoctoroField(
+            AppField(
               hint: "Ad və ya istehsal olduğu ölkə",
               suffixIcon: SvgPicture.asset(Assets.svgSearch),
             ),

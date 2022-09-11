@@ -1,7 +1,7 @@
 import 'package:doctoro/utils/constants/app_text_styles.dart';
 import 'package:doctoro/utils/constants/colors.dart';
 import 'package:doctoro/utils/constants/sized_box.dart';
-import 'package:doctoro/widgets/custom/doctoro_button.dart';
+import 'package:doctoro/widgets/custom/app_button.dart';
 import 'package:doctoro/widgets/general/doctoro_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -32,7 +32,7 @@ class AddBankCard extends StatelessWidget {
                 ],
               ),
               MySizedBox.h26,
-              DoctoroField(
+              AppField(
                 title: "Kart nömrəsi *",
                 hint: "Kartın nömrəsini daxil edin",
                 prefixIcon: Padding(
@@ -45,14 +45,14 @@ class AddBankCard extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: DoctoroField(
+                    child: AppField(
                       title: "Bitmə tarixi *",
                       hint: "__/__",
                     ),
                   ),
                   MySizedBox.w8,
                   Expanded(
-                    child: DoctoroField(
+                    child: AppField(
                       title: "CVC  *",
                       hint: "___",
                     ),

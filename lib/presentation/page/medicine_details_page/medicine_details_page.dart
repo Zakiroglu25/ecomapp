@@ -1,6 +1,6 @@
 import 'package:doctoro/utils/constants/colors.dart';
 import 'package:doctoro/utils/constants/sized_box.dart';
-import 'package:doctoro/widgets/custom/doctoro_button.dart';
+import 'package:doctoro/widgets/custom/app_button.dart';
 import 'package:doctoro/widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -26,7 +26,7 @@ class MedicineDetailsPage extends StatelessWidget {
         child: ListView(
           shrinkWrap: true,
           children: [
-            DoctoroField(
+            AppField(
               hint: "Dərman axtar",
               suffixIcon: SvgPicture.asset(Assets.svgSearch),
             ),

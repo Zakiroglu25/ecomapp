@@ -34,8 +34,8 @@ class AppSliverPersistentCupertinoAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
         floating: true,
-        pinned: false,
-        delegate: SliverAppBarDelegate(
+        pinned: true,
+        delegate: SliverAppDelegate(
             maxExtent_: 56,
             minExtent_: 56,
             child: CupertinoNavigationBar(

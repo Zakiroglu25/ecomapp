@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 
 import '../../../utils/constants/physics.dart';
 import '../../custom/app_tab.dart';
+import '../../custom/sliver_app_bar_delegate.dart';
+import '../cupperfold/widgets/app_sliver_persistent_cupertino_appbar.dart';
 import 'cuppertabs_provider.dart';
 
 class CupperTabsWithProvider extends StatefulWidget {
@@ -19,6 +21,7 @@ class CupperTabsWithProvider extends StatefulWidget {
     this.back = true,
     this.onBack,
     this.tabController,
+    this.headers,
     this.isScrollable = false,
     this.first = 0,
     required this.tabs,
@@ -26,8 +29,11 @@ class CupperTabsWithProvider extends StatefulWidget {
     this.tabbarPadding,
     this.selectedLabelColor,
     this.selectedTabColor,
+    this.barColor,
+    this.showAppbarLittleText = false,
     this.unSelectedLabelColor,
     this.onRefresh,
+    this.tabbarTitle,
     this.user = true,
     this.notification = true,
   }) : super(key: key);
@@ -40,14 +46,18 @@ class CupperTabsWithProvider extends StatefulWidget {
   final bool? user;
   final bool? notification;
   final bool? back;
+  final bool showAppbarLittleText;
   final bool isScrollable;
   final Function? onBack;
   final List<AppTab> tabs;
   final List<Widget> tabPages;
+  final SliverPersistentHeader? headers;
   final EdgeInsets? tabbarPadding;
   final Color? selectedTabColor;
   final Color? selectedLabelColor;
   final Color? unSelectedLabelColor;
+  final SliverPersistentHeaderDelegate? tabbarTitle;
+  final Color? barColor;
   final RefreshCallback? onRefresh;
   final Function(int)? tabController;
 
@@ -98,69 +108,84 @@ class _CupperTabsWithProviderState extends State<CupperTabsWithProvider>
         body: SafeArea(
           child: Consumer<CupperProvider>(
             builder: (BuildContext context, value, Widget? child) {
-              return SafeArea(
-                child: DefaultTabController(
-                  length: widget.tabs.length,
-                  child: NestedScrollView(
-                      physics: Physics.never,
-                      headerSliverBuilder:
-                          (BuildContext context, bool innerBoxIsScrolled) {
-                        return <Widget>[
-                          CustomCupertinoSliverNavigationBar(
+              return DefaultTabController(
+                length: widget.tabs.length,
+                child: NestedScrollView(
+                    floatHeaderSlivers: false,
+                    physics: Physics.never,
+                    headerSliverBuilder:
+                        (BuildContext context, bool innerBoxIsScrolled) {
+                      return <Widget>[
+                        if (widget.showAppbarLittleText)
+                          AppSliverPersistentCupertinoAppbar(
                             trailings: widget.trailings,
                             leadings: widget.leadings,
                             title: widget.title,
+                            barColor: widget.barColor,
                             user: widget.user,
                             notification: widget.notification,
                             back: widget.back,
                             onBack: widget.onBack,
                           ),
+                        if (!widget.showAppbarLittleText)
+                          CustomCupertinoSliverNavigationBar(
+                            trailings: widget.trailings,
+                            leadings: widget.leadings,
+                            title: widget.title,
+                            barColor: widget.barColor,
+                            user: widget.user,
+                            notification: widget.notification,
+                            back: widget.back,
+                            onBack: widget.onBack,
+                          ),
+                        if (widget.headers != null) widget.headers!,
+                        if (widget.tabbarTitle != null)
                           SliverPersistentHeader(
                               floating: false,
                               pinned: true,
-                              delegate: _SliverAppBarDelegate(TabBar(
-                                padding: widget.tabbarPadding ??
-                                    const EdgeInsets.only(
-                                        left: 20,
-                                        right: 20,
-                                        top: 5,
-                                        bottom: 10),
-                                controller: _tabController,
-                                indicatorColor: MyColors.green235,
-                                overlayColor:
-                                    MaterialStateProperty.all(Colors.black),
+                              delegate: widget.tabbarTitle!),
+                        SliverPersistentHeader(
+                            floating: false,
+                            pinned: true,
+                            delegate: _SliverAppBarDelegate(TabBar(
+                              padding: widget.tabbarPadding ??
+                                  const EdgeInsets.only(
+                                      left: 20, right: 20, top: 5, bottom: 10),
+                              controller: _tabController,
+                              indicatorColor: MyColors.green235,
+                              overlayColor:
+                                  MaterialStateProperty.all(Colors.black),
 
-                                indicator: BoxDecoration(
-                                  borderRadius: Radiuses.r36,
-                                  color: widget.selectedTabColor ??
-                                      MyColors.secondary,
-                                ),
+                              indicator: BoxDecoration(
+                                borderRadius: Radiuses.r36,
+                                color: widget.selectedTabColor ??
+                                    MyColors.secondary,
+                              ),
 
-                                labelColor:
-                                    widget.selectedLabelColor ?? MyColors.main,
-                                unselectedLabelColor:
-                                    widget.unSelectedLabelColor ??
-                                        MyColors.grey158,
-                                physics: Physics.alwaysBounce,
-                                tabs: Provider.of<CupperProvider>(context,
-                                        listen: true)
-                                    .tabs,
-                                //indicatorSize: TabBarIndicatorSize(),
-                                isScrollable: widget.isScrollable,
-                              )))
-                        ];
-                      },
-                      body: TabBarView(
-                        physics: Physics.alwaysBounce,
-                        controller: _tabController,
-                        children: widget.tabPages.map((Widget child) {
-                          return RefreshIndicator(
-                              color: MyColors.main,
-                              onRefresh: () async => widget.onRefresh?.call(),
-                              child: child);
-                        }).toList(),
-                      )),
-                ),
+                              labelColor:
+                                  widget.selectedLabelColor ?? MyColors.main,
+                              unselectedLabelColor:
+                                  widget.unSelectedLabelColor ??
+                                      MyColors.grey158,
+                              physics: Physics.alwaysBounce,
+                              tabs: Provider.of<CupperProvider>(context,
+                                      listen: true)
+                                  .tabs,
+                              //indicatorSize: TabBarIndicatorSize(),
+                              isScrollable: widget.isScrollable,
+                            )))
+                      ];
+                    },
+                    body: TabBarView(
+                      physics: Physics.alwaysBounce,
+                      controller: _tabController,
+                      children: widget.tabPages.map((Widget child) {
+                        return RefreshIndicator(
+                            color: MyColors.main,
+                            onRefresh: () async => widget.onRefresh?.call(),
+                            child: child);
+                      }).toList(),
+                    )),
               );
             },
           ),

@@ -20,9 +20,12 @@ class CupperTabWP extends StatelessWidget {
     required this.tabs,
     required this.tabPages,
     this.tabbarPadding,
+    this.tabbarTitle,
     this.selectedLabelColor,
     this.selectedTabColor,
+    this.showAppbarLittleText = false,
     this.unSelectedLabelColor,
+    this.headers,
     this.onRefresh,
     this.user = true,
     this.notification = true,
@@ -37,9 +40,12 @@ class CupperTabWP extends StatelessWidget {
   final bool? notification;
   final bool? back;
   final bool isScrollable;
+  final bool showAppbarLittleText;
+  final SliverPersistentHeader? headers;
   final Function? onBack;
   final List<AppTab> tabs;
   final List<Widget> tabPages;
+  final SliverPersistentHeaderDelegate? tabbarTitle;
   final EdgeInsets? tabbarPadding;
   final Color? selectedTabColor;
   final Color? selectedLabelColor;
@@ -60,12 +66,15 @@ class CupperTabWP extends StatelessWidget {
           tabs: tabs,
           child: child,
           first: first,
+          tabbarTitle: tabbarTitle,
           leadings: leadings,
           trailings: trailings,
           user: user,
+          headers: headers,
           notification: notification,
           back: back,
           onBack: onBack,
+          showAppbarLittleText: showAppbarLittleText,
           tabbarPadding: tabbarPadding,
           selectedTabColor: selectedTabColor,
           selectedLabelColor: selectedLabelColor,

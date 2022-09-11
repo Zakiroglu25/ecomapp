@@ -15,8 +15,9 @@ class Cupperfold extends StatelessWidget {
     this.backColor = MyColors.white,
     this.back = true,
     this.onBack,
+    this.floatingActionButton,
     this.slivers,
-    this.showAppbarLargeText = false,
+    this.showAppbarLittleText = false,
     this.user = true,
     this.notification = true,
   }) : //assert(child != null || slivers != null),
@@ -31,7 +32,8 @@ class Cupperfold extends StatelessWidget {
   final Color? barColor;
   final Color? backColor;
   final bool? back;
-  final bool showAppbarLargeText;
+  final bool showAppbarLittleText;
+  final Widget? floatingActionButton;
   final Function? onBack;
   final List<Widget>? slivers;
 
@@ -39,13 +41,14 @@ class Cupperfold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // A ScrollView that creates custom scroll effects using slivers.
+      floatingActionButton: floatingActionButton,
       backgroundColor: backColor,
       body: SafeArea(
         child: CustomScrollView(
           clipBehavior: Clip.antiAlias,
           // A list of sliver widgets.
           slivers: <Widget>[
-            if (showAppbarLargeText)
+            if (showAppbarLittleText)
               AppSliverPersistentCupertinoAppbar(
                 trailings: trailings,
                 leadings: leadings,
@@ -56,7 +59,7 @@ class Cupperfold extends StatelessWidget {
                 back: back,
                 onBack: onBack,
               ),
-            if (!showAppbarLargeText)
+            if (!showAppbarLittleText)
               CustomCupertinoSliverNavigationBar(
                 trailings: trailings,
                 leadings: leadings,

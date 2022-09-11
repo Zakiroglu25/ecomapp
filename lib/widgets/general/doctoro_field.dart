@@ -11,7 +11,7 @@ import '../../utils/formatter/lower_case_formatter.dart';
 import '../../utils/formatter/upper_case_formatter.dart';
 import '../../utils/screen/widget_or_empty.dart';
 
-class DoctoroField extends StatelessWidget {
+class AppField extends StatelessWidget {
   final TextEditingController? controller;
   final String? label;
   final String? hint;
@@ -34,7 +34,7 @@ class DoctoroField extends StatelessWidget {
   final String? suffixText;
   final TextInputType? textInputType;
 
-  DoctoroField({
+  AppField({
     this.controller,
     this.label,
     this.hint,

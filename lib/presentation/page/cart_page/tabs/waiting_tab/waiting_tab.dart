@@ -8,7 +8,7 @@ import 'package:doctoro/utils/delegate/pager.dart';
 import 'package:doctoro/utils/enums/cart_order_type.dart';
 import 'package:doctoro/utils/extensions/context.dart';
 import 'package:doctoro/widgets/custom/column_with_space.dart';
-import 'package:doctoro/widgets/custom/doctoro_button.dart';
+import 'package:doctoro/widgets/custom/app_button.dart';
 import 'package:doctoro/widgets/custom/listview_separated.dart';
 import 'package:flutter/material.dart';
 

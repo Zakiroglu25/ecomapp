@@ -53,7 +53,7 @@ class OtherPage extends StatelessWidget {
                 h: 167.h,
                 w: 167.w,
                 imageUrl: Assets.location3x,
-                title: MyText.address,
+                title: MyText.myAddresses,
                 desc: MyText.demoSubtitle,
               ),
             ],
@@ -64,9 +64,7 @@ class OtherPage extends StatelessWidget {
             children: [
               ProductAndOtherWidget(
                 onTap: () {
-                  Go.to(
-                      context,
-                      PaymentMethodPage());
+                  Go.to(context, PaymentMethodPage());
                 },
                 color: MyColors.green235,
                 h: 167.h,
@@ -138,20 +136,18 @@ class OtherPage extends StatelessWidget {
     );
   }
 }
-void goToAddPage(
-    {required BuildContext context}) async {
+
+void goToAddPage({required BuildContext context}) async {
   try {
     showCupertinoModalBottomSheet(
       expand: true,
       //isDismissible: true,
       context: context,
 
-      backgroundColor: Colors.transparent, builder: (BuildContext context) {
-
-        return Center(child: Text("salam"));},
-
+      backgroundColor: Colors.transparent,
+      builder: (BuildContext context) {
+        return Center(child: Text("salam"));
+      },
     );
-  }catch(e){
-
-  }
+  } catch (e) {}
 }

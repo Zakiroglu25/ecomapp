@@ -7,7 +7,7 @@ import '../../../../../utils/constants/paddings.dart';
 import '../../../../../utils/constants/sized_box.dart';
 import '../../../../../utils/constants/text.dart';
 import '../../../../../utils/screen/ink_wrapper.dart';
-import '../../../../../widgets/custom/doctoro_button.dart';
+import '../../../../../widgets/custom/app_button.dart';
 
 class PolicyBottomSheet extends StatelessWidget {
   const PolicyBottomSheet({

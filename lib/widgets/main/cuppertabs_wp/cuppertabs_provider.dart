@@ -63,7 +63,7 @@ class CupperProvider extends ChangeNotifier {
       //   text: "jhgjhj",
       // ),
       AppTab(
-        text: MyText.address,
+        text: MyText.myAddresses,
         // iconData: Icons.shopping_bag,
         // count: 5,
         // index: 0,

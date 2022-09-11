@@ -21,7 +21,7 @@ class _PhoneFieldRegisterState extends State<PhoneFieldRegister> {
     return StreamBuilder<String>(
       stream: BlocProvider.of<RegisterCubit>(context).phoneStream,
       builder: (context, snapshot) {
-        return DoctoroField(
+        return AppField(
           maxLines: 1,
           title: MyText.phone,
           label: MyText.phone,

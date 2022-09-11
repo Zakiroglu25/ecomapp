@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  SliverAppBarDelegate(
+class SliverAppDelegate extends SliverPersistentHeaderDelegate {
+  SliverAppDelegate(
       {required this.child, required this.maxExtent_, this.minExtent_});
 
   final Widget child;
@@ -27,7 +27,7 @@ class SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   //test
 
   @override
-  bool shouldRebuild(SliverAppBarDelegate oldDelegate) {
+  bool shouldRebuild(SliverAppDelegate oldDelegate) {
     return true;
   }
 }

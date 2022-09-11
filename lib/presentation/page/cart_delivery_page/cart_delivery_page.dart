@@ -1,5 +1,10 @@
+import 'package:doctoro/presentation/page/cart_delivery_page/widgets/delivery_pay_total_button.dart';
 import 'package:doctoro/presentation/page/cart_delivery_page/widgets/delivery_products.dart';
 import 'package:doctoro/utils/constants/colors.dart';
+import 'package:doctoro/utils/constants/text.dart';
+import 'package:doctoro/utils/extensions/context.dart';
+import 'package:doctoro/utils/extensions/word.dart';
+import 'package:doctoro/widgets/custom/app_button.dart';
 import 'package:doctoro/widgets/main/cupperfold/cupperfold.dart';
 import 'package:flutter/material.dart';
 import 'widgets/delivery_headers.dart';
@@ -10,9 +15,10 @@ class CartDeliveryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Cupperfold(
+      floatingActionButton: DeliveryPayTotalButton(),
       barColor: MyColors.orange254,
       backColor: MyColors.orange254,
-      showAppbarLargeText: true,
+      showAppbarLittleText: true,
       user: false,
       title: "Bağlama 002",
       slivers: [DeliveryHeaders(), DeliveryProducts()],

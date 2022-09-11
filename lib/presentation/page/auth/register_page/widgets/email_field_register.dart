@@ -14,7 +14,7 @@ class EmailFieldRegister extends StatelessWidget {
     return StreamBuilder<String>(
       stream: BlocProvider.of<RegisterCubit>(context).emailStream,
       builder: (context, snapshot) {
-        return DoctoroField(
+        return AppField(
           title: MyText.email,
           label: MyText.email,
           maxLines: 1,

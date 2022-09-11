@@ -2,17 +2,11 @@ import 'package:doctoro/presentation/page/cart_page/tabs/delivery_tab/delivery_t
 import 'package:doctoro/presentation/page/cart_page/tabs/orders_tab/orders_tab.dart';
 import 'package:doctoro/presentation/page/cart_page/tabs/waiting_tab/waiting_tab.dart';
 import 'package:doctoro/utils/constants/assets.dart';
-import 'package:doctoro/utils/constants/mock.dart';
-import 'package:doctoro/utils/constants/paddings.dart';
-import 'package:doctoro/utils/constants/physics.dart';
-import 'package:doctoro/utils/constants/sized_box.dart';
 import 'package:doctoro/utils/constants/text.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/custom/app_tab.dart';
 import '../../../widgets/main/cuppertabs_wp/cupper_tab_wp.dart';
-import 'widgets/cart_product/cart_product.dart';
-import 'widgets/cart_total_box/cart_total_box.dart';
 
 class CartPage extends StatelessWidget {
   CartPage({Key? key}) : super(key: key);

@@ -17,7 +17,7 @@ class DeliveryHeaders extends StatelessWidget {
     return SliverPersistentHeader(
         floating: false,
         pinned: false,
-        delegate: SliverAppBarDelegate(
+        delegate: SliverAppDelegate(
             child: Container(
               color: MyColors.orange254,
               // height: 90,
