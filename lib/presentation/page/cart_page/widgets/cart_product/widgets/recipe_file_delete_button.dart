@@ -2,6 +2,7 @@ import 'package:doctoro/utils/constants/border_radius.dart';
 import 'package:doctoro/utils/constants/mock.dart';
 import 'package:doctoro/utils/constants/paddings.dart';
 import 'package:doctoro/utils/extensions/word.dart';
+import 'package:doctoro/widgets/custom/app_unicorn_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../utils/constants/gradients.dart';
@@ -12,12 +13,8 @@ class RecipeFileDeleteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return UnicornOutlineButton(
+    return AppUnicornButton(
       onPressed: () {},
-      gradient: Gradients.gBack,
-      strokeWidth: 1,
-      padding: Paddings.paddingA2,
-      radius: 99,
       child: Container(
         padding: Paddings.paddingH12 + Paddings.paddingV8,
         child: Row(

@@ -19,9 +19,12 @@ class Assets {
   static const String svgDots = "assets/svg/dots.svg";
   static const String svgCard = "assets/svg/card.svg";
   static const String svgScan = "assets/svg/scan.svg";
+  static const String svgCall = "assets/svg/call.svg";
+  static const String svgMessage = "assets/svg/messages.svg";
 
   static const String svgCheck = "assets/svg/check.svg";
   static const String svgMinus2 = "assets/svg/minus-2.svg";
+  static const String svgEdit = "assets/svg/edit.svg";
 
   ///bottomnovigation icon
   static const String svgLogo = "assets/svg/logogrey.svg";
@@ -68,6 +71,9 @@ class Assets {
   static const String pngTelegram = "assets/png/telegram.png";
   static const String pngFacebook = "assets/png/facebook.png";
   static const String pngHotline = "assets/png/hotline.png";
+  //setting
+  static const String svgCallDark = "assets/svg/calldark.svg";
+
 
 ////////////////////////////////////////////////////////////////////////////////
   //png

@@ -78,7 +78,7 @@ class _LandingPageState extends State<LandingPage> {
       backgroundColor: Colors.white,
       activeIcon: SvgPicture.asset(
         icon,
-        color: index == 2 ? MyColors.green : MyColors.mainRED,
+        color: index == 2 ? MyColors.green : MyColors.darkRED,
       ),
       icon: SvgPicture.asset(icon),
       label: label,

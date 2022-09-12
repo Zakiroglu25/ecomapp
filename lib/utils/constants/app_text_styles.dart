@@ -55,6 +55,6 @@ abstract class AppTextStyles {
       fontSize: 14,
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.normal,
-      height: 2,
+      height: 1.8,
       letterSpacing: 0.3);
 }

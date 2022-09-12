@@ -1,19 +1,18 @@
+import 'package:doctoro/utils/constants/paddings.dart';
+import 'package:doctoro/utils/extensions/context.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/constants/colors.dart';
 
 class HandleLine extends StatelessWidget {
-  final double sW;
-
-  HandleLine(this.sW);
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: (sW / 2) - 100),
+      margin: Paddings.paddingV8,
+      padding: EdgeInsets.symmetric(horizontal: (context.sW / 2) - 100),
       width: 33,
       height: 4,
-      color: MyColors.grey130,
+      color: MyColors.grey288,
     );
   }
 }

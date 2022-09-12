@@ -9,8 +9,8 @@ import '../../../utils/constants/physics.dart';
 import '../../custom/app_tab.dart';
 import 'cuppertabs_provider.dart';
 
-class CupperTabsWp extends StatefulWidget {
-  const CupperTabsWp({
+class CupperTabsWithProvider extends StatefulWidget {
+  const CupperTabsWithProvider({
     Key? key,
     this.child,
     this.title,
@@ -52,10 +52,10 @@ class CupperTabsWp extends StatefulWidget {
   final Function(int)? tabController;
 
   @override
-  State<CupperTabsWp> createState() => _CupperTabsWpState();
+  State<CupperTabsWithProvider> createState() => _CupperTabsWithProviderState();
 }
 
-class _CupperTabsWpState extends State<CupperTabsWp>
+class _CupperTabsWithProviderState extends State<CupperTabsWithProvider>
     with SingleTickerProviderStateMixin {
   // late List<AppTab> tabs;
 
@@ -95,70 +95,75 @@ class _CupperTabsWpState extends State<CupperTabsWp>
       child: Scaffold(
         // A ScrollView that creates custom scroll effects using slivers.
         backgroundColor: MyColors.white,
-        body: Consumer<CupperProvider>(
-          builder: (BuildContext context, value, Widget? child) {
-            return SafeArea(
-              child: DefaultTabController(
-                length: widget.tabs.length,
-                child: NestedScrollView(
-                    physics: Physics.never,
-                    headerSliverBuilder:
-                        (BuildContext context, bool innerBoxIsScrolled) {
-                      return <Widget>[
-                        CustomCupertinoSliverNavigationBar(
-                          trailings: widget.trailings,
-                          leadings: widget.leadings,
-                          title: widget.title,
-                          user: widget.user,
-                          notification: widget.notification,
-                          back: widget.back,
-                          onBack: widget.onBack,
-                        ),
-                        SliverPersistentHeader(
-                            floating: false,
-                            pinned: true,
-                            delegate: _SliverAppBarDelegate(TabBar(
-                              padding: widget.tabbarPadding ??
-                                  const EdgeInsets.only(
-                                      left: 20, right: 20, top: 5, bottom: 10),
-                              controller: _tabController,
-                              indicatorColor: MyColors.green235,
-                              overlayColor:
-                                  MaterialStateProperty.all(Colors.black),
+        body: SafeArea(
+          child: Consumer<CupperProvider>(
+            builder: (BuildContext context, value, Widget? child) {
+              return SafeArea(
+                child: DefaultTabController(
+                  length: widget.tabs.length,
+                  child: NestedScrollView(
+                      physics: Physics.never,
+                      headerSliverBuilder:
+                          (BuildContext context, bool innerBoxIsScrolled) {
+                        return <Widget>[
+                          CustomCupertinoSliverNavigationBar(
+                            trailings: widget.trailings,
+                            leadings: widget.leadings,
+                            title: widget.title,
+                            user: widget.user,
+                            notification: widget.notification,
+                            back: widget.back,
+                            onBack: widget.onBack,
+                          ),
+                          SliverPersistentHeader(
+                              floating: false,
+                              pinned: true,
+                              delegate: _SliverAppBarDelegate(TabBar(
+                                padding: widget.tabbarPadding ??
+                                    const EdgeInsets.only(
+                                        left: 20,
+                                        right: 20,
+                                        top: 5,
+                                        bottom: 10),
+                                controller: _tabController,
+                                indicatorColor: MyColors.green235,
+                                overlayColor:
+                                    MaterialStateProperty.all(Colors.black),
 
-                              indicator: BoxDecoration(
-                                borderRadius: Radiuses.r36,
-                                color: widget.selectedTabColor ??
-                                    MyColors.secondary,
-                              ),
+                                indicator: BoxDecoration(
+                                  borderRadius: Radiuses.r36,
+                                  color: widget.selectedTabColor ??
+                                      MyColors.secondary,
+                                ),
 
-                              labelColor:
-                                  widget.selectedLabelColor ?? MyColors.main,
-                              unselectedLabelColor:
-                                  widget.unSelectedLabelColor ??
-                                      MyColors.grey158,
-                              physics: Physics.alwaysBounce,
-                              tabs: Provider.of<CupperProvider>(context,
-                                      listen: true)
-                                  .tabs,
-                              //indicatorSize: TabBarIndicatorSize(),
-                              isScrollable: widget.isScrollable,
-                            )))
-                      ];
-                    },
-                    body: TabBarView(
-                      physics: Physics.alwaysBounce,
-                      controller: _tabController,
-                      children: widget.tabPages.map((Widget child) {
-                        return RefreshIndicator(
-                            color: MyColors.main,
-                            onRefresh: () async => widget.onRefresh?.call(),
-                            child: child);
-                      }).toList(),
-                    )),
-              ),
-            );
-          },
+                                labelColor:
+                                    widget.selectedLabelColor ?? MyColors.main,
+                                unselectedLabelColor:
+                                    widget.unSelectedLabelColor ??
+                                        MyColors.grey158,
+                                physics: Physics.alwaysBounce,
+                                tabs: Provider.of<CupperProvider>(context,
+                                        listen: true)
+                                    .tabs,
+                                //indicatorSize: TabBarIndicatorSize(),
+                                isScrollable: widget.isScrollable,
+                              )))
+                        ];
+                      },
+                      body: TabBarView(
+                        physics: Physics.alwaysBounce,
+                        controller: _tabController,
+                        children: widget.tabPages.map((Widget child) {
+                          return RefreshIndicator(
+                              color: MyColors.main,
+                              onRefresh: () async => widget.onRefresh?.call(),
+                              child: child);
+                        }).toList(),
+                      )),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

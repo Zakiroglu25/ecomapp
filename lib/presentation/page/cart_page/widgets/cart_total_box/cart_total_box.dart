@@ -1,4 +1,5 @@
 import 'package:doctoro/presentation/page/cart_page/widgets/cart_total_box/widgets/cart_total_price.dart';
+import 'package:doctoro/utils/constants/paddings.dart';
 import 'package:doctoro/widgets/custom/column_with_space.dart';
 import 'package:flutter/material.dart';
 import '../../../../../widgets/general/app_element_box.dart';
@@ -14,16 +15,19 @@ class CartTotalBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppElementBox(
-      child: SpacedColumn(space: 20, children: [
-        CartOrdersPrice(),
-        CartDeliveryPrice(),
-        CartTotalPrice(),
-        CartInsuranceInfo(),
-        CartInsuranceSwitch(),
-        CartTotalRecipe(),
-        CartMakeOrderButton()
-      ]),
+    return Padding(
+      padding: Paddings.paddingH16,
+      child: const AppElementBox(
+        child: SpacedColumn(space: 20, children: [
+          CartOrdersPrice(),
+          CartDeliveryPrice(),
+          CartTotalPrice(),
+          CartInsuranceInfo(),
+          CartInsuranceSwitch(),
+          CartTotalRecipe(),
+          CartMakeOrderButton()
+        ]),
+      ),
     );
   }
 }

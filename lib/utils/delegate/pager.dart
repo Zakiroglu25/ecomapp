@@ -15,11 +15,14 @@ import '../../infrastructure/cubit/login/login_cubit.dart';
 import '../../infrastructure/cubit/register/register_cubit.dart';
 import '../../presentation/page/auth/login_page/login_page.dart';
 import '../../presentation/page/auth/register_page/register_page.dart';
+import '../../presentation/page/cart_delivery_page/cart_delivery_page.dart';
 import '../../presentation/page/cart_page/cart_page.dart';
 import '../../presentation/page/contact_page/contact_page.dart';
 import '../../presentation/page/home_page/home_page.dart';
 import '../../presentation/page/other_page/other_page.dart';
 import '../../presentation/page/other_page/other_pages/address_page/address_page.dart';
+import '../../presentation/page/payment_method_page/payment_method_page.dart';
+import '../../presentation/page/settings_page/settings_page.dart';
 
 class Pager {
   static app({bool? showSplash}) => BlocProvider(
@@ -41,7 +44,15 @@ class Pager {
         BlocProvider(create: (context) => LoginCubit()),
       ], child: CartPage());
 
+  static get cartDelivery => MultiBlocProvider(providers: [
+        BlocProvider(create: (context) => LoginCubit()),
+      ], child: CartDeliveryPage());
+
   static get forgot => ForgetPasswordPage();
+
+  static get paymentMethodPage => PaymentMethodPage();
+
+  static get settings => SettingsPage();
 
   static get home => HomePage();
 

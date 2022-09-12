@@ -23,7 +23,7 @@ class UserButton extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: SizedBox(
-          height: 28,
+          height: 45,
           width: 45,
           child: Padding(
             padding: Paddings.paddingL16,

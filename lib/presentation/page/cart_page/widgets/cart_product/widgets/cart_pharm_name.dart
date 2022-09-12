@@ -12,7 +12,7 @@ class CartPharmName extends StatelessWidget {
     return Text(
       MockData.pharmName,
       style: AppTextStyles.sfPro400h2.copyWith(
-        color: MyColors.mainRED,
+        color: MyColors.darkRED,
       ),
     );
   }

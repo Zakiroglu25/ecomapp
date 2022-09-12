@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../locator.dart';
+import '../../utils/constants/colors.dart';
 
 Future<void> init() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,15 +32,13 @@ Future<void> init() async {
   //   dio.interceptors.add(LogInterceptorService());
   // }
 
-//  print("--------------------------------------------------");
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarBrightness: Brightness.dark,
+    systemNavigationBarColor: MyColors.white,
+    statusBarColor: MyColors.main, // status bar color
+  ));
 
-  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-  //   statusBarBrightness: Brightness.dark,
-  //   systemNavigationBarColor: MyColors.white,
-  //   statusBarColor: MyColors.transparent, // status bar color
-  // ));
-
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp],
   );

@@ -11,6 +11,8 @@ class CartMedName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       MockData.medicineName,
+      overflow: TextOverflow.ellipsis,
+      maxLines: 3,
       style: AppTextStyles.sfPro400h2.copyWith(
         color: MyColors.black34,
       ),
