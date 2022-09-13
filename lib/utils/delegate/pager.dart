@@ -22,6 +22,8 @@ import '../../presentation/page/contact_page/contact_page.dart';
 import '../../presentation/page/home_page/home_page.dart';
 import '../../presentation/page/other_page/other_page.dart';
 import '../../presentation/page/other_page/other_pages/address_page/address_page.dart';
+import '../../presentation/page/payment_method_page/payment_method_page.dart';
+import '../../presentation/page/settings_page/settings_page.dart';
 
 class Pager {
   Pager._();
@@ -53,6 +55,10 @@ class Pager {
       ], child: DeliveryAddressPage());
 
   static get forgot => ForgetPasswordPage();
+
+  static get paymentMethodPage => PaymentMethodPage();
+
+  static get settings => SettingsPage();
 
   static get home => HomePage();
 

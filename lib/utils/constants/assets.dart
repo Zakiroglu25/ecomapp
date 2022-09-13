@@ -24,6 +24,7 @@ class Assets {
 
   static const String svgCheck = "assets/svg/check.svg";
   static const String svgMinus2 = "assets/svg/minus-2.svg";
+  static const String svgEdit = "assets/svg/edit.svg";
 
   ///bottomnovigation icon
   static const String svgLogo = "assets/svg/logogrey.svg";
@@ -70,6 +71,9 @@ class Assets {
   static const String pngTelegram = "assets/png/telegram.png";
   static const String pngFacebook = "assets/png/facebook.png";
   static const String pngHotline = "assets/png/hotline.png";
+  //setting
+  static const String svgCallDark = "assets/svg/calldark.svg";
+
 
 ////////////////////////////////////////////////////////////////////////////////
   //png
@@ -82,6 +86,7 @@ class Assets {
   static const String pngBad = "assets/png/bad.png";
   static const String pngCourier = "assets/png/courier.png";
   static const String demo = "assets/png/demo.png";
+  static const String masterCard = "assets/png/mastercard.png";
 
   //other
   static const String pasha = "assets/png/pasha.png";

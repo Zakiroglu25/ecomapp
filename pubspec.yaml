@@ -38,6 +38,10 @@ dependencies:
   photo_view: ^0.14.0
   custom_pop_up_menu: ^1.2.4
 
+  #test:
+  uikit:
+    path: module/uikit
+
 
 
 dev_dependencies:
