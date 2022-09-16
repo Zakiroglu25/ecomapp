@@ -1,6 +1,6 @@
 import 'package:doctoro/utils/constants/boxx.dart';
 import 'package:doctoro/utils/delegate/navigate_utils.dart';
-import 'package:doctoro/widgets/custom/doctoro_button.dart';
+import 'package:doctoro/widgets/custom/app_button.dart';
 import 'package:doctoro/widgets/main/cupperfold/cupperfold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

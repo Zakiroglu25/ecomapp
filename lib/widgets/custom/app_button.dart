@@ -25,41 +25,41 @@ class AppButton extends StatelessWidget {
 
   AppButton(
       {this.color,
-      this.loading,
-      this.child,
-      this.h,
-      this.textSize,
-      this.fontWeight,
-      this.isButtonActive,
-      this.highlightColor,
-      this.passiveTextColor,
-      this.passiveButtonColor,
-      this.splashColor,
-      this.w,
-      this.textColor,
-      this.onTap,
-      this.borderRadius = 24,
-      this.text,
-      this.borderColor});
+        this.loading,
+        this.child,
+        this.h,
+        this.textSize,
+        this.fontWeight,
+        this.isButtonActive,
+        this.highlightColor,
+        this.passiveTextColor,
+        this.passiveButtonColor,
+        this.splashColor,
+        this.w,
+        this.textColor,
+        this.onTap,
+        this.borderRadius = 24,
+        this.text,
+        this.borderColor});
 
   AppButton.black(
       {this.color = MyColors.black,
-      this.loading,
-      this.child,
-      this.h = 48,
-      this.textSize,
-      this.fontWeight,
-      this.isButtonActive,
-      this.highlightColor,
-      this.passiveTextColor,
-      this.passiveButtonColor,
-      this.splashColor,
-      this.w,
-      this.textColor = MyColors.white,
-      this.onTap,
-      this.borderRadius = 99,
-      this.text,
-      this.borderColor});
+        this.loading,
+        this.child,
+        this.h = 48,
+        this.textSize,
+        this.fontWeight,
+        this.isButtonActive,
+        this.highlightColor,
+        this.passiveTextColor,
+        this.passiveButtonColor,
+        this.splashColor,
+        this.w,
+        this.textColor = MyColors.white,
+        this.onTap,
+        this.borderRadius = 99,
+        this.text,
+        this.borderColor});
 
   @override
   Widget build(BuildContext context) {
@@ -91,22 +91,22 @@ class AppButton extends StatelessWidget {
             child: (loading ?? false)
                 ? CircularProgressIndicator()
                 : Padding(
-                    padding: Paddings.paddingH8,
-                    child: (child ??
-                        FittedBox(
-                          child: Text(
-                            text ?? "",
-                            style: AppTextStyles.sfPro400s14.copyWith(
-                                color: active
-                                    ? (textColor ?? Colors.white)
-                                    : (passiveButtonColor ??
-                                        MyColors.btn_passive),
-                                fontSize: textSize ?? 16,
-                                overflow: TextOverflow.clip,
-                                fontWeight: fontWeight ?? FontWeight.w500),
-                          ),
-                        )),
-                  ),
+              padding: Paddings.paddingH8,
+              child: (child ??
+                  FittedBox(
+                    child: Text(
+                      text ?? "",
+                      style: AppTextStyles.sfPro400s14.copyWith(
+                          color: active
+                              ? (textColor ?? Colors.white)
+                              : (passiveButtonColor ??
+                              MyColors.btn_passive),
+                          fontSize: textSize ?? 16,
+                          overflow: TextOverflow.clip,
+                          fontWeight: fontWeight ?? FontWeight.w500),
+                    ),
+                  )),
+            ),
           ),
         ),
       ),

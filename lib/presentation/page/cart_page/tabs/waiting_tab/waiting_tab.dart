@@ -3,10 +3,12 @@ import 'package:doctoro/utils/constants/paddings.dart';
 import 'package:doctoro/utils/constants/physics.dart';
 import 'package:doctoro/utils/constants/sized_box.dart';
 import 'package:doctoro/utils/constants/text.dart';
+import 'package:doctoro/utils/delegate/navigate_utils.dart';
+import 'package:doctoro/utils/delegate/pager.dart';
 import 'package:doctoro/utils/enums/cart_order_type.dart';
 import 'package:doctoro/utils/extensions/context.dart';
 import 'package:doctoro/widgets/custom/column_with_space.dart';
-import 'package:doctoro/widgets/custom/doctoro_button.dart';
+import 'package:doctoro/widgets/custom/app_button.dart';
 import 'package:doctoro/widgets/custom/listview_separated.dart';
 import 'package:flutter/material.dart';
 
@@ -49,6 +51,7 @@ class WaitingTab extends StatelessWidget {
                 AppButton.black(
                   w: context.dynamicW(.5),
                   text: MyText.orderDeliveryX,
+                  onTap: () => Go.to(context, Pager.cartDelivery),
                 ),
               ],
             ))

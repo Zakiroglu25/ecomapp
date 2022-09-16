@@ -11,7 +11,7 @@ import '../../utils/formatter/lower_case_formatter.dart';
 import '../../utils/formatter/upper_case_formatter.dart';
 import '../../utils/screen/widget_or_empty.dart';
 
-class DoctoroField extends StatelessWidget {
+class AppField extends StatelessWidget {
   final TextEditingController? controller;
   final String? label;
   final String? hint;
@@ -34,7 +34,7 @@ class DoctoroField extends StatelessWidget {
   final String? suffixText;
   final TextInputType? textInputType;
 
-  DoctoroField({
+  AppField({
     this.controller,
     this.label,
     this.hint,
@@ -57,7 +57,7 @@ class DoctoroField extends StatelessWidget {
     this.suffixText,
     this.textInputType,
   }) : assert(controller == null || initialValue == null,
-            "her ikisi teyin ola bilmez");
+  "her ikisi teyin ola bilmez");
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +106,7 @@ class DoctoroField extends StatelessWidget {
 
                   keyboardType: textInputType ?? TextInputType.text,
                   textCapitalization:
-                      textCapitalization ?? TextCapitalization.sentences,
+                  textCapitalization ?? TextCapitalization.sentences,
                   inputFormatters: [...?customInputFormat(), ...?formatters],
                   decoration: InputDecoration(
                     counterText: '',
@@ -143,14 +143,14 @@ class DoctoroField extends StatelessWidget {
                     child: Center(
                       child: Container(
                         padding: EdgeInsets.symmetric(
-                            //  vertical: errorMessage == null ? 18 : 17,
+                          //  vertical: errorMessage == null ? 18 : 17,
                             horizontal: 2),
                         child: suffixIcon ??
                             (errorMessage != null
                                 ? Container(
-                                    height: 20,
-                                    //   color:MyColors.grey153,
-                                    child: SvgPicture.asset(Assets.svgLock))
+                                height: 20,
+                                //   color:MyColors.grey153,
+                                child: SvgPicture.asset(Assets.svgLock))
                                 : Container()),
                       ),
                     ),

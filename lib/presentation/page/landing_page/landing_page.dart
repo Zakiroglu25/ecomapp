@@ -1,3 +1,4 @@
+import 'package:doctoro/presentation/page/favorite_page/favorite_page.dart';
 import 'package:doctoro/utils/constants/app_text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class _LandingPageState extends State<LandingPage> {
 
   final pages = <Widget>[
     Pager.productPage,
-    HomePage(),
+    FavoritePage(),
     Pager.home,
     Pager.cart,
     Pager.otherPage,

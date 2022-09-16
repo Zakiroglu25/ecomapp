@@ -7,7 +7,7 @@ import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/delegate/navigate_utils.dart';
-import '../../../../widgets/custom/doctoro_button.dart';
+import '../../../../widgets/custom/app_button.dart';
 import '../../../../widgets/doctoro_appbar/doctoro_appbar.dart';
 import '../payment_method_page.dart';
 import 'add_bank_kart.dart';
@@ -68,7 +68,7 @@ class NamedAndSaveWidget extends StatelessWidget {
               ],
             ),
             MySizedBox.h16,
-            DoctoroField(
+            AppField(
               title: "Karta ad verin *",
               hint: "XXX kartim",
             ),

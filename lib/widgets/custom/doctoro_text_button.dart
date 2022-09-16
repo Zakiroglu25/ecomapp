@@ -1,4 +1,4 @@
-import 'package:doctoro/widgets/custom/doctoro_button.dart';
+import 'package:doctoro/widgets/custom/app_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/constants/colors.dart';

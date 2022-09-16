@@ -1,8 +1,10 @@
 import 'package:doctoro/infrastructure/cubit/address/address_cubit.dart';
 import 'package:doctoro/infrastructure/cubit/address/address_state.dart';
 import 'package:doctoro/utils/constants/colors.dart';
+import 'package:doctoro/widgets/custom/app_button.dart';
 import 'package:doctoro/widgets/general/app_loading.dart';
 import 'package:doctoro/widgets/general/empty_widget.dart';
+import 'package:doctoro/widgets/main/cupperfold/cupperfold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,13 +15,9 @@ class AddressPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: MyColors.white,
-          iconTheme: IconThemeData(color: MyColors.black),
-        ),
-        body:
+    return Cupperfold(
+        title: 'Ünvanlarım',
+        child:
             BlocBuilder<AddressCubit, AddressState>(builder: (context, state) {
           if (state is AddressSuccess) {
             return Center(
@@ -28,12 +26,19 @@ class AddressPage extends StatelessWidget {
           } else if (state is AddressInProgress) {
             return AppLoading();
           }
-          return EmptyWidget(
-            color: MyColors.orange253,
-            imageUrl: Assets.location3x,
-            text: "Bura Bosdur",
-            description:
-                "Axtardığınız məhsulu tapmaq üçün,zəhmət olmasa məhsullar bölməsinə keçin",
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              EmptyWidget(
+                color: MyColors.orange253,
+                imageUrl: Assets.location3x,
+                text: "Bura Bosdur",
+                description:
+                    "Axtardığınız məhsulu tapmaq üçün,zəhmət olmasa məhsullar bölməsinə keçin",
+              ),
+              AppButton(),
+            ],
           );
         }));
   }

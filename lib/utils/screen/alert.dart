@@ -1,5 +1,5 @@
 // Flutter imports:
-import 'package:doctoro/widgets/custom/doctoro_button.dart';
+import 'package:doctoro/widgets/custom/app_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

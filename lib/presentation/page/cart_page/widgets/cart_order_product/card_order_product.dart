@@ -4,7 +4,7 @@ import 'package:doctoro/utils/delegate/my_printer.dart';
 import 'package:doctoro/utils/enums/cart_order_type.dart';
 import 'package:doctoro/utils/extensions/word.dart';
 import 'package:doctoro/utils/screen/widget_or_empty.dart';
-import 'package:doctoro/widgets/custom/doctoro_button.dart';
+import 'package:doctoro/widgets/custom/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:doctoro/utils/constants/app_text_styles.dart';

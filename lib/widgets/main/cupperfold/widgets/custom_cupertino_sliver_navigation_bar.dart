@@ -36,6 +36,7 @@ class CustomCupertinoSliverNavigationBar extends StatelessWidget {
     return CupertinoSliverNavigationBar(
       backgroundColor: barColor ?? MyColors.white,
       padding: EdgeInsetsDirectional.zero,
+
       border: const Border(bottom: BorderSide(color: Colors.transparent)),
       leading: SpacedRow(
         padding: Paddings.paddingT4,

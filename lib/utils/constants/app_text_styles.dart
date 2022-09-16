@@ -6,6 +6,12 @@ abstract class AppTextStyles {
       fontWeight: FontWeight.w600,
       fontStyle: FontStyle.normal,
       letterSpacing: 0.3);
+  static const sfPro600s16 = TextStyle(
+      fontFamily: 'SF Pro Display Semibold',
+      fontWeight: FontWeight.w600,
+      fontStyle: FontStyle.normal,
+      fontSize: 16,
+      letterSpacing: 0.3);
 
   static const sfPro700 = TextStyle(
       fontFamily: 'SF Pro Display Semibold',

@@ -24,7 +24,7 @@ class _PassFieldState extends State<PassField> {
     return StreamBuilder<String>(
       stream: BlocProvider.of<LoginCubit>(context).passStream,
       builder: (context, snapshot) {
-        return DoctoroField(
+        return AppField(
           label: MyText.password,
           title: MyText.password,
           maxLines: 1,

@@ -4,6 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'infrastructure/cubit/authentication/authentication_cubit.dart';
 import 'infrastructure/services/navigation_service.dart';
+import 'presentation/page/add_asan_insurance_info/add_asan_insurance_info_page.dart';
+import 'presentation/page/insurance_page/add_insurance_page.dart';
+import 'presentation/page/question_response_page/question_response_page.dart';
 import 'utils/constants/colors.dart';
 import 'utils/delegate/pager.dart';
 import 'utils/delegate/scroll_behaivor.dart';
@@ -49,7 +52,7 @@ class MainBuild {
           },
           home: Builder(
             builder: (ctx) {
-              return Pager.settings;
+              return Pager.otherPage;
             },
           )),
     );

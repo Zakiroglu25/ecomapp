@@ -72,7 +72,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String insurance = "Sığorta";
   static const String likeMedicine = "Öxşar dərmanlar";
   static const String questionAnswer = "Sual-cavab";
-  static const String address = "Ünvanlarım";
+  static const String myAddresses = "Ünvanlarım";
+  static const String address = "Ünvan";
   static const String contact = "Əlaqə";
   static const String settings = "Tənzimləmələr";
   static const String demoSubtitle = "Axtardığınız məhsulu tapmaq üçün";
@@ -89,6 +90,7 @@ In addition to laying out rules for proper use of your app, you should also clea
       "Əgər sizin sığortanız varsa, o zaman sığorta ilə ödə funksiyasını aktivləşdirin.";
   static const String total = "Toplam";
   static const String pay = "Ödə";
+  static const String payTotal = "Toplam ödə";
   static const String recipeInReview =
       "Resept aptek tərəfindən dəyərləndirilir";
   static const String recipePartialyAccepted = "Resept qismən qarşılanır";
@@ -103,6 +105,12 @@ In addition to laying out rules for proper use of your app, you should also clea
   static final String messennger = "Messenger";
   static final String insuranceCover = "Sığorta qarşılayır";
   static final String insuranceDoesNotCover = "Sığorta qarşılamır";
+  static final String countOfMedicine = "Dərman sayı";
+  static final String totalPrice = "Toplam qiymət:";
+  static final String orderDate = "Sifariş tarixi";
+  static final String chooseDeliveryType = "Çatdırılma üsulunu seçin";
+  static final String contactNumber = "Əlaqə nömrəsi";
+  static final String note = "Qeyd";
 
   //pashadetails
 
@@ -123,6 +131,18 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String emptyText = "Bura doşdur";
   static const String emptyTextDesc =
       "Axtardığınız məhsulu tapmaq üçün, zəhmət olmasa məhsullar bölməsinə keçin";
+
+  //question
+  static const String expan =
+      "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.";
+
+//asan finance
+  static const String save = "Yadda saxla";
+
+  static const String asanCheckbox =
+      "Mən “ASAN Finans”-dan məlumatlarımı yoxlanılmasına icazımi verirəm  ";
+  static const String asanInsuranceNumCheckbox =
+      "Mən “Pİ Bazası”-dan məlumatlarımı yoxlanılmasına icazımi verirəm";
 
   //contact
   static const String contactDesc =

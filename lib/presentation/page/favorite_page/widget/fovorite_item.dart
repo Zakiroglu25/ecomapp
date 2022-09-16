@@ -6,7 +6,11 @@ import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sized_box.dart';
 import '../../../../utils/constants/text.dart';
-import '../../../../widgets/custom/doctoro_button.dart';
+import '../../../../utils/delegate/navigate_utils.dart';
+import '../../../../utils/screen/ink_wrapper.dart';
+import '../../../../widgets/custom/app_button.dart';
+import '../../medicine_details_page/medicine_details_page.dart';
+import '../../product_details_page/test.dart';
 
 class ListItemWidget extends StatelessWidget {
   const ListItemWidget({
@@ -15,62 +19,67 @@ class ListItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 116,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: MyColors.grey245,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.asset(Assets.demo),
-            MySizedBox.w12,
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 199,
-                      child: Text(MyText.demo),
-                    ),
-                    MySizedBox.w8,
-                    SvgPicture.asset(Assets.svgFav),
-                  ],
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("1 223.20 ₼-dan"),
-                    MySizedBox.w22,
-                    AppButton(
-                      borderRadius: 99,
-                      w: 109,
-                      h: 36,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.shopping_cart_rounded,
-                            color: MyColors.white,
-                          ),
-                          Text(
-                            "Sebete",
-                            style: AppTextStyles.sfPro400s14
-                                .copyWith(color: MyColors.white),
-                          ),
-                        ],
+    return InkWrapper(
+      onTap: (){
+        Go.to(context, Example());
+      },
+      child: Container(
+        height: 116,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: MyColors.grey245,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(Assets.demo),
+              MySizedBox.w12,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 199,
+                        child: Text(MyText.demo),
                       ),
-                      color: MyColors.green,
-                    )
-                  ],
-                ),
-              ],
-            )
-          ],
+                      MySizedBox.w8,
+                      SvgPicture.asset(Assets.svgFav),
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text("1 223.20 ₼-dan"),
+                      MySizedBox.w22,
+                      AppButton(
+                        borderRadius: 99,
+                        w: 109,
+                        h: 36,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.shopping_cart_rounded,
+                              color: MyColors.white,
+                            ),
+                            Text(
+                              "Sebete",
+                              style: AppTextStyles.sfPro400s14
+                                  .copyWith(color: MyColors.white),
+                            ),
+                          ],
+                        ),
+                        color: MyColors.green,
+                      )
+                    ],
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
