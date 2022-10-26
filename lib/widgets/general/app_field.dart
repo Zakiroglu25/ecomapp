@@ -57,7 +57,7 @@ class AppField extends StatelessWidget {
     this.suffixText,
     this.textInputType,
   }) : assert(controller == null || initialValue == null,
-            "her ikisi teyin ola bilmez");
+  "her ikisi teyin ola bilmez");
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +106,7 @@ class AppField extends StatelessWidget {
 
                   keyboardType: textInputType ?? TextInputType.text,
                   textCapitalization:
-                      textCapitalization ?? TextCapitalization.sentences,
+                  textCapitalization ?? TextCapitalization.sentences,
                   inputFormatters: [...?customInputFormat(), ...?formatters],
                   decoration: InputDecoration(
                     counterText: '',
@@ -143,14 +143,14 @@ class AppField extends StatelessWidget {
                     child: Center(
                       child: Container(
                         padding: EdgeInsets.symmetric(
-                            //  vertical: errorMessage == null ? 18 : 17,
+                          //  vertical: errorMessage == null ? 18 : 17,
                             horizontal: 2),
                         child: suffixIcon ??
                             (errorMessage != null
                                 ? Container(
-                                    height: 20,
-                                    //   color:MyColors.grey153,
-                                    child: SvgPicture.asset(Assets.svgLock))
+                                height: 20,
+                                //   color:MyColors.grey153,
+                                child: SvgPicture.asset(Assets.svgLock))
                                 : Container()),
                       ),
                     ),

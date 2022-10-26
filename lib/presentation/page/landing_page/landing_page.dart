@@ -1,3 +1,4 @@
+import 'package:doctoro/presentation/page/favorite_page/favorite_page.dart';
 import 'package:doctoro/utils/constants/app_text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/physics.dart';
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/pager.dart';
+import '../map_medicine_page/map_medicine_page.dart';
 
 final globalPageController = PageController(initialPage: 1);
 
@@ -24,17 +26,19 @@ class _LandingPageState extends State<LandingPage> {
 
   final pages = <Widget>[
     Pager.productPage,
-    HomePage(),
-    Pager.home,
+    FavoritePage(),
+    Pager.mapPage,
     Pager.cart,
     Pager.otherPage,
   ];
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
+
+  ///physics deyishdim cunki map hereket elemirdi
   @override
   Widget build(BuildContext context) => PageView(
         controller: globalPageController,
-        physics: Physics.alwaysClamp,
+        physics: NeverScrollableScrollPhysics(),
         children: [
           // Pager.userCabinet(showBack: true), //
           Scaffold(

@@ -3,12 +3,12 @@ import 'package:doctoro/utils/constants/colors.dart';
 import 'package:doctoro/utils/constants/sized_box.dart';
 import 'package:doctoro/utils/delegate/navigate_utils.dart';
 import 'package:doctoro/widgets/doctoro_appbar/doctoro_appbar.dart';
+import 'package:doctoro/widgets/general/doctoro_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../utils/constants/assets.dart';
 import '../../../../widgets/custom/app_button.dart';
-import '../../../../widgets/general/app_field.dart';
 import 'named_card_widget.dart';
 
 class AddBankCard extends StatelessWidget {
@@ -47,6 +47,7 @@ class AddBankCard extends StatelessWidget {
                     hint: "__/__",
                   ),
                 ),
+                MySizedBox.w8,
                 MySizedBox.w8,
                 Expanded(
                   child: AppField(

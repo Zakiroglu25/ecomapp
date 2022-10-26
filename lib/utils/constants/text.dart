@@ -63,6 +63,16 @@ In addition to laying out rules for proper use of your app, you should also clea
   //product page
   static const String derman = "Dərmanlar";
   static const String carts = "Səbətim";
+  static const String nameDoctoro = "Doctoro";
+  static const String searchHint = "Ad və ya istehsal olduğu ölkə";
+  static const String pashaTitleProduct = "Paşa Sığorta məhsulları burada!";
+  static const String medicineSubtitle = "Reseptli və reseptsiz satışda olan dərmanları buradan əldə edib qiymətlərini müqaisə edə bilərsiniz.";
+  static const String bad = "BAD";
+  static const String badSub = "Bioaktiv qidalar üçün əlavələr.";
+  static const String vitamin = "Vitaminlər";
+  static const String vitaminSub = "Bütün qrup vitəminləri əldə edin.";
+  static const String otherSub = "Axtardığınız məhsulu tapmaq üçün";
+
 
   //otherpage
   static const String bigTitle = "Digər";
@@ -132,7 +142,22 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String emptyTextDesc =
       "Axtardığınız məhsulu tapmaq üçün, zəhmət olmasa məhsullar bölməsinə keçin";
 
+  //question
+  static const String expan =
+      "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.";
+
+//asan finance
+  static const String save = "Yadda saxla";
+
+  static const String asanCheckbox =
+      "Mən “ASAN Finans”-dan məlumatlarımı yoxlanılmasına icazımi verirəm  ";
+  static const String asanInsuranceNumCheckbox =
+      "Mən “Pİ Bazası”-dan məlumatlarımı yoxlanılmasına icazımi verirəm";
+
   //contact
   static const String contactDesc =
       "Hörmətli müştəri, hər hansı bir problemlə raslaşdıqda qaynar xətt nömrəmiz müraciyyət edə bilərsiniz  *8833";
+//notification
+  static const String notification = "Bildirişlər";
+
 }

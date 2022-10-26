@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../utils/constants/text.dart';
-import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/delegate/pager.dart';
 import '../../../utils/delegate/user_operations.dart';
@@ -16,15 +15,13 @@ part 'register_state.dart';
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());
 
-  void register(BuildContext context) {
+   void register(BuildContext context) {
     registerPersonal(context);
-    iiii("register cuit 1");
   }
 
   void registerPersonal(BuildContext context) async {
     emit(RegisterLoading());
     try {
-      iiii("register cuit 2");
       // final deviceCode = await _firebaseMessaging.getToken();
       final response = await AuthProvider.registration(
         email: uEmail.valueOrNull,
@@ -32,24 +29,17 @@ class RegisterCubit extends Cubit<RegisterState> {
         password: uPassMain.value,
         ads: checkbox.valueOrNull,
       );
-      iiii("register cuit 3");
 
-      if (response! == 200) {
-        iiii("register cuit 4");
-
+      if (response == 200) {
         await UserOperations.configureUserDataWhenLogin(
             refreshToken: '',
             accessToken: response.toString(),
             path: uPassMain.valueOrNull);
         emit(RegisterSuccess(""));
-        iiii("register cuit 5");
         Snack.display(context: context, message: "Qeydiyyat Uğurla tamamlandı");
         Go.to(context, Pager.login);
       } else {
-        iiii("register cuit 6");
-
-        emit(RegisterFailed(message: response.message));
-        wwwww(response.toString());
+        emit(RegisterFailed(message: response!.message));
       }
     } catch (e, s) {
       print("register cubit -> registrationPersonal ->catch : $e=> $s");
@@ -57,6 +47,20 @@ class RegisterCubit extends Cubit<RegisterState> {
     }
   }
 
+  final BehaviorSubject<bool> registerActive =
+      BehaviorSubject<bool>.seeded(false);
+
+//
+  Stream<bool> get registerActiveeStream => registerActive.stream;
+
+  bool get emailIsCorrect =>
+      (!uEmail.hasValue || uEmail.value == null || uEmail.value.isEmpty);
+
+  updateRegisterActivee(bool value) {
+    registerActive.sink.add(value);
+  }
+
+  //
   //email
   bool emailValid = false;
   final BehaviorSubject<String> uEmail = BehaviorSubject<String>();
@@ -141,6 +145,23 @@ class RegisterCubit extends Cubit<RegisterState> {
       (!checkbox.hasValue || checkbox.value == null || checkbox.value == false);
 
   //gender
+
+  bool isUserInfoValid() {
+    if (!isEmailIncorrect &&
+        !isMainPassInCorrect &&
+        !isCheckBoxIncorrect &&
+        !isEmailIncorrect &&
+        !isPhoneIncorrect) {
+      //  emit(RegisterButtonActive());
+      updateRegisterActivee(true);
+      //   bbbb("---- true 4");
+      return true;
+    } else {
+      updateRegisterActivee(false);
+      //bbbb("---- false 3");
+      return false;
+    }
+  }
 
   @override
   Future<void> close() {

@@ -1,12 +1,18 @@
+import 'package:doctoro/infrastructure/cubit/product_option_cubit/product_option_cubit.dart';
+import 'package:doctoro/presentation/page/favorite_page/widget/product_item.dart';
 import 'package:doctoro/utils/constants/colors.dart';
 import 'package:doctoro/utils/constants/sized_box.dart';
 import 'package:doctoro/widgets/custom/app_button.dart';
 import 'package:doctoro/widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../infrastructure/cubit/product_option_cubit/product_option_state.dart';
+import '../../../infrastructure/model/response/product_option_model.dart';
 import '../../../utils/constants/assets.dart';
-import '../../../widgets/general/app_field.dart';
+import '../../../widgets/general/app_loading.dart';
+import '../../../widgets/general/doctoro_field.dart';
 
 class MedicineDetailsPage extends StatelessWidget {
   const MedicineDetailsPage({Key? key}) : super(key: key);
@@ -21,77 +27,64 @@ class MedicineDetailsPage extends StatelessWidget {
         notification: true,
         filter: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          shrinkWrap: true,
-          children: [
-            AppField(
-              hint: "Dərman axtar",
-              suffixIcon: SvgPicture.asset(Assets.svgSearch),
-            ),
-            SizedBox(
-                height: 48.0,
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return Container(
-                      width: 108.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(36.0),
-                        color: MyColors.grey245,
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(Assets.svgProduct),
-                          MySizedBox.w10,
-                          Text("Hamisi")
-                        ],
-                      ),
-                    );
-                  },
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 20,
-                )),
-            Container(
-              height: 116,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: MyColors.grey245,
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  MySizedBox.h12,
-                  Image.asset(Assets.pngBad),
-                  Column(
-                    children: [
-                      SizedBox(
-                        width: 199,
-                        child: Text(
-                            "Swiss Energy Herbs Hot Balm Forte isidici balzam  75 ml Forte"),
-                      ),
-                      Row(
-                        children: [
-                          Text("1 223.20 ₼-dan"),
-                          AppButton(
-                            w: 109,
-                            h: 36,
-                            child: Text("Sebete"),
-                            color: MyColors.green,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+      body:  BlocBuilder<ProductOptionCubit, ProductOptionState>(
+        builder: (context, state) {
+          if (state is ProductOptionSuccess) {
+            final model = state.product_option_model;
+            print(model);
+            return ListView.builder(
+                itemCount: model.length,
+                itemBuilder: (context, index) {
+                  return ProductItem(
+                    products:model[index]
+                  );
+                });
+          }else if(state is ProductOptionError){
+            return Center(child: Text("Error"));
+          }else if(state is ProductOptionInProgress){
+            return Center(child: AppLoading());
+          }
+          return Center(child: Text("Alinmadi"));
+        },
       ),
+      // body: Padding(
+      //   padding: const EdgeInsets.all(16.0),
+      //   child: ListView(
+      //     shrinkWrap: true,
+      //     children: [
+      //       AppField(
+      //         hint: "Dərman axtar",
+      //         suffixIcon: SvgPicture.asset(Assets.svgSearch),
+      //       ),
+      //       // SizedBox(
+      //       //     height: 48.0,
+      //       //     child: ListView.builder(
+      //       //       itemBuilder: (context, index) {
+      //       //         return Container(
+      //       //           width: 108.0,
+      //       //           decoration: BoxDecoration(
+      //       //             borderRadius: BorderRadius.circular(36.0),
+      //       //             color: MyColors.grey245,
+      //       //             shape: BoxShape.rectangle,
+      //       //           ),
+      //       //           child: Row(
+      //       //             crossAxisAlignment: CrossAxisAlignment.center,
+      //       //             mainAxisAlignment: MainAxisAlignment.center,
+      //       //             children: [
+      //       //               SvgPicture.asset(Assets.svgProduct),
+      //       //               MySizedBox.w10,
+      //       //               Text("Hamisi")
+      //       //             ],
+      //       //           ),
+      //       //         );
+      //       //       },
+      //       //       scrollDirection: Axis.horizontal,
+      //       //       itemCount: 20,
+      //       //     )),
+      //
+      //     ],
+      //   ),
+      // ),
     );
   }
 }
