@@ -21,6 +21,7 @@ class Assets {
   static const String svgScan = "assets/svg/scan.svg";
   static const String svgCall = "assets/svg/call.svg";
   static const String svgMessage = "assets/svg/messages.svg";
+  static const String svgLoaction = "assets/svg/locationsvg.svg";
 
   static const String svgCheck = "assets/svg/check.svg";
   static const String svgMinus2 = "assets/svg/minus-2.svg";

@@ -55,9 +55,15 @@ class AuthProvider {
       phone: phone,
       ads: false,
     );
-    final response =
-        await http.post(url, headers: ApiKeys.headers, body: jsonEncode(body));
 
+     const headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+    };
+
+    final response =
+        await http.post(url,headers: headers, body: json.encode(body));
+    iiii(response.toString());
     if (response.statusCode == ResultKey.successCode) {
       iiii("Qeydiyyat ugurla tamamlandi");
     } else if (response.statusCode > 399) {

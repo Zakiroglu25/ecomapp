@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../infrastructure/cubit/register/register_cubit.dart';
+import '../../../../utils/screen/snack.dart';
 import 'widgets/checkbox_ads.dart';
 import 'widgets/email_field_register.dart';
 import 'widgets/phone_field_register.dart';
@@ -31,36 +32,60 @@ class Register extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 16.0, right: 16),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              MySizedBox.h16,
-              PhoneFieldRegister(),
-              EmailFieldRegister(),
-              MainPassFieldRegister(),
-              MySizedBox.h26,
-              PolicyCheckbox(),
-              MySizedBox.h20,
-              AdsCheckbox(),
-              MySizedBox.h50,
-              StreamBuilder<bool>(
-                  // stream: BlocProvider.of<RegisterCubit>(context).registerActiveeStream,
-                  builder: (context, snapshot) {
-                return AppButton(
-                  loading:
-                      (context.watch<RegisterCubit>().state is RegisterLoading),
-                  onTap: () => context.read<RegisterCubit>().register(context),
-                  child: Text(
-                    "Davam et",
-                    style: AppTextStyles.sfPro500
-                        .copyWith(color: MyColors.white, fontSize: 15.sp),
-                  ),
-                  color: MyColors.grey288,
-                );
-              })
-            ],
+      body: BlocListener<RegisterCubit, RegisterState>(
+        listenWhen: (contet, state) {
+          if (state is RegisterButtonActive)
+            return false;
+          else
+            return true;
+        },
+        listener: (context, state) {
+          if (state is RegisterFailed) {
+            Snack.display(context: context, message: state.message!.toString());
+            // TODO: implement listener
+          }
+          if (state is RegisterSuccess) {
+            Snack.display(
+                context: context,
+                message: "Oldu Reis",
+                positive: true,
+                showSuccessIcon: true);
+          }
+        },
+        child: Padding(
+          padding: const EdgeInsets.only(left: 16.0, right: 16),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                MySizedBox.h16,
+                PhoneFieldRegister(),
+                EmailFieldRegister(),
+                MainPassFieldRegister(),
+                MySizedBox.h26,
+                PolicyCheckbox(),
+                MySizedBox.h20,
+                AdsCheckbox(),
+                MySizedBox.h50,
+                StreamBuilder<bool>(
+                    stream: BlocProvider.of<RegisterCubit>(context)
+                        .registerActiveeStream,
+                    builder: (context, snapshot) {
+                      return AppButton(
+                        // isButtonActive: snapshot.data,
+                        loading: (context.watch<RegisterCubit>().state
+                            is RegisterLoading),
+                        onTap: () =>
+                            context.read<RegisterCubit>().register(context),
+                        child: Text(
+                          "Davam et",
+                          style: AppTextStyles.sfPro500
+                              .copyWith(color: MyColors.white, fontSize: 15.sp),
+                        ),
+                        color: MyColors.grey288,
+                      );
+                    })
+              ],
+            ),
           ),
         ),
       ),

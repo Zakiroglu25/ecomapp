@@ -10,6 +10,8 @@ class ApiKeys {
   static const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
+    "x-mask-jwt":
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkb2N0b3JvIiwiYXVkIjoiZG9jdG9ybyIsInN1YiI6IjJjMDk1ZWU0LWU4ZTAtNDk1ZC1hMDU2LWQ4ZjgyYzdmMWUzNiIsImN1c3RvbWVyR3VpZCI6IjJjMDk1ZWU0LWU4ZTAtNDk1ZC1hMDU2LWQ4ZjgyYzdmMWUzNiIsImlzVGVtcCI6ZmFsc2UsImV4cCI6MTY2NjY4MzM3NX0.TAEHHHU7GfFg5_VHkbmbl6L1Yeo4lwXe_HuWJF85315SV9MhZnWj7ukkc6BVvuVpfGl4IifYR_PgKSzzWwuOSw",
   };
 
   //reg and login
@@ -30,6 +32,14 @@ class ApiKeys {
 
   //contact
   static const contact = "$baseUrl/public/contacts";
+
+  //map
+  static const stores = "$baseUrl/protected/stores";
+
+  //product_options
+  static const productOptions = "$baseUrl/protected/product-options/search";
+  //get product guid
+  static const productOptionsGuid = "$baseUrl/protected/product-options";
 
   static loginBody({
     required String? email,
@@ -55,92 +65,6 @@ class ApiKeys {
     return map;
   }
 
-  static orderViaLinkBody({
-    required String? link,
-    required double? price,
-    required double? cargo_price,
-    required String? detail,
-    required int? qty,
-    int? id,
-  }) {
-    //
-    final map = {
-      "link": link,
-      "id": id,
-      "qty": qty,
-      "price": price,
-      "cargo_price": cargo_price,
-      "detail": detail,
-    };
-
-    map.removeWhere(
-        (key, value) => key == null || value == null || value == 'null');
-    return map;
-  }
-
-  static registrationBusinessBody({
-    required String? name,
-    required String? surname,
-    required String? address,
-    required String? email,
-    required String? language,
-    required String? deviceCode,
-    required int? deviceTypeId,
-    required String? password,
-    required String? password_confirmation,
-    required String? phone,
-    required int? accept,
-    required String? company_name,
-    required String? tax_number,
-  }) {
-    //
-    final map = {
-      "name": name,
-      "surname": surname,
-      "address": address,
-      "email": email,
-      "password": password,
-      "password_confirmation": password_confirmation,
-      "phone": phone,
-      "accept": 1,
-      "company_name": company_name,
-      "tax_number": tax_number,
-      "deviceCode": deviceCode,
-      "deviceTypeId": deviceTypeId,
-      "language": language
-    };
-
-    map.removeWhere(
-        (key, value) => key == null || value == null || value == 'null');
-    return map;
-  }
-
-  static reportBody({
-    required String? store,
-    required int? qty,
-    required int? category,
-    required String? tracking,
-    required double? price,
-    required String? currency,
-    required File? invoice,
-    required String? note,
-  }) {
-    //
-    final Map<String, dynamic> map = {
-      "store": store,
-      "qty": qty,
-      "category": category,
-      "tracking": tracking,
-      "price": price,
-      "currency": currency,
-      "note": note,
-    };
-
-    map.removeWhere(
-        (key, value) => key == null || value == null || value == 'null');
-    return map;
-  }
-
   static registrationPersonalBody({
     required String? email,
     required String? password,
@@ -151,7 +75,7 @@ class ApiKeys {
       "email": email,
       "password": password,
       "phone": phone,
-      "newsletterSubscription": false,
+      "newsletterSubscription": ads,
     };
 
     map.removeWhere(

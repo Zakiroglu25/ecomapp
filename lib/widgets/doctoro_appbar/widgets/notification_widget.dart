@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../presentation/page/landing_page/landing_page.dart';
+import '../../../presentation/page/notification_page/notifications_page.dart';
 import '../../../presentation/page/user_page/user_page.dart';
 import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/durations.dart';
@@ -14,7 +15,7 @@ class NotificationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWrapper(
       onTap: () {
-        Go.to(context, UserPage());
+        Go.to(context, NotificationsPage());
         globalPageController.animateTo(0,
             duration: Durations.ms300, curve: Curves.linear);
       },

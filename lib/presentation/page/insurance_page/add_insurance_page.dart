@@ -15,9 +15,7 @@ class AddInsurancePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Slidable Example',
-      home: Cupperfold(
+    return Cupperfold(
         title: "Sığorta",
         notification: false,
         user: false,
@@ -53,7 +51,7 @@ class AddInsurancePage extends StatelessWidget {
             )
           ],
         ),
-      ),
+
     );
   }
 }
