@@ -33,7 +33,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         ads: checkbox.valueOrNull,
       );
       iiii("register cuit 3");
-
+//
       if (response! == 200) {
         iiii("register cuit 4");
 
