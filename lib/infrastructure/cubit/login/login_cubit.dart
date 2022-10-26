@@ -4,6 +4,8 @@ import 'dart:io';
 
 // Flutter imports:
 
+import 'package:doctoro/infrastructure/config/recorder.dart';
+import 'package:doctoro/utils/extensions/int.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // Package imports:
@@ -85,11 +87,12 @@ class LoginCubit extends Cubit<LoginState> {
         password: uPass.valueOrNull,
       );
 
-      if (isSuccess(response.statusCode)) {
+      if (response.statusCode.isSuccess) {
+        final tokens = response.data;
         await UserOperations.configureUserDataWhenLogin(
-          accessToken: response.data,
+          accessToken: tokens['accessToken'],
+          refreshToken: tokens['refreshToken'],
           path: uPass.valueOrNull,
-          //    fcmToken: '',
         );
         Go.andRemove(context, Pager.app(showSplash: true));
         emit(LoginSuccess(''));
@@ -97,12 +100,11 @@ class LoginCubit extends Cubit<LoginState> {
         Snack.display(
             context: context, message: "e-mail ve ya şifrə yanlışdır");
         emit(LoginError());
-        eeee(
-            "login result bad: ${ResponseMessage.fromJson(jsonDecode(response.data)).message}");
       }
     } on SocketException catch (_) {
       emit(LoginError(error: 'network_error'));
-    } catch (e) {
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
       emit(LoginError(error: e.toString()));
     }
   }

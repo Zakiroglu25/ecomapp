@@ -38,7 +38,9 @@ class RegisterCubit extends Cubit<RegisterState> {
         iiii("register cuit 4");
 
         await UserOperations.configureUserDataWhenLogin(
-            accessToken: response.toString(), path: uPassMain.valueOrNull);
+            refreshToken: '',
+            accessToken: response.toString(),
+            path: uPassMain.valueOrNull);
         emit(RegisterSuccess(""));
         iiii("register cuit 5");
         Snack.display(context: context, message: "Qeydiyyat Uğurla tamamlandı");

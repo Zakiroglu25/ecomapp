@@ -39,8 +39,11 @@ dependencies:
   custom_pop_up_menu: ^1.2.4
 
   #test:
-  uikit:
-    path: module/uikit
+#  uikit:
+#    git:
+#      url: https://github.com/sohrabonline/uikit/module/uikit.git
+#      ref: soh # branch name
+
 
 
 

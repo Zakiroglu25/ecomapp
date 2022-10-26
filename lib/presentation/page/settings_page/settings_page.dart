@@ -65,6 +65,7 @@ class SettingsPage extends StatelessWidget {
                       ],
                     ),
                     MySizedBox.h16,
+                    //SohrabText()
                   ],
                 ),
               ),

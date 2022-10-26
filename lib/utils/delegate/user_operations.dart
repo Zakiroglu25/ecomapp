@@ -18,10 +18,12 @@ class UserOperations {
       {
       // required String fcmToken,
       required String accessToken,
+      required String refreshToken,
       required String? path}) async {
     //llll("configureUserData result result: " + user.toString());
     try {
       await _prefs.persistAccessToken(accessToken: accessToken);
+      await _prefs.persistRefreshToken(refreshToken: refreshToken);
       await _prefs.persistIsGuest(false);
       await _prefs.persistPath(path!);
       await _prefs.persistIsLoggedIn(true);

@@ -22,13 +22,15 @@ class DioAuth {
         // contentType: 'application/json',
         queryParameters: {"Accept": "application/json"},
         followRedirects: true,
-        headers: ApiKeys.header(token: _prefs.accessToken),
+        //headers: ApiKeys.header(token: _prefs.accessToken),
         validateStatus: (status) {
           //  return status! < 500;
           return true;
         },
       ),
-    )..interceptors.add(CustomInterceptors());
+    )
+      ..interceptors.add(CustomInterceptors())
+      ..interceptors.add(JwtInterceptor());
 
     return _instance!;
   }
@@ -37,17 +39,18 @@ class DioAuth {
 }
 
 class JwtInterceptor extends Interceptor {
+  HiveService get _prefs => locator<HiveService>();
   @override
   void onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
     // final sharedPrefs = await SharedPreferences.getInstance();
-    // final accessToken = sharedPrefs.getString('accessToken');
+    final accessToken = _prefs.accessToken;
 
-    // if (accessToken != null) {
-    //   options.headers['Authorization'] = 'Bearer $accessToken';
-    // }
+    if (accessToken != null) {
+      options.headers['Authorization'] = 'Bearer $accessToken';
+    }
 
     handler.next(options);
   }

@@ -2,15 +2,21 @@
 import 'dart:convert';
 
 import 'package:doctoro/infrastructure/model/response/register_response.dart';
+import 'package:doctoro/utils/extensions/index.dart';
+
 // Package imports:
 import 'package:http/http.dart' as http;
 
+import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/constants/result_keys.dart';
 import '../../utils/delegate/my_printer.dart';
+import '../config/dio_general.dart';
 import '../model/response/status_dynamic.dart';
 
 class AuthProvider {
+  static DioG get dioG => locator<DioG>();
+
   static Future<StatusDynamic> login({
     required String? password,
     required String? email,
@@ -32,7 +38,12 @@ class AuthProvider {
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
       String? accessToken = response.headers['x-mask-jwt'];
-      statusDynamic.data = accessToken;
+      String? refreshToken = response.headers['x-mask-refresh-jwt:'];
+      Map<String, String?> tokens = {
+        "accessToken": accessToken,
+        "refreshToken": refreshToken,
+      };
+      statusDynamic.data = tokens;
     } else {
       eeee("Gijdedi");
     }
@@ -47,23 +58,19 @@ class AuthProvider {
   }) async {
     RegisterResponse registerResponse = RegisterResponse();
     var api = ApiKeys.registerPersonal;
-    var url = Uri.parse(api);
-
     var body = ApiKeys.registrationPersonalBody(
       email: email,
       password: password,
       phone: phone,
       ads: false,
     );
-    final response =
-        await http.post(url, headers: ApiKeys.headers, body: jsonEncode(body));
+    final response = await dioG.dio.post(api, data: body);
 
-    if (response.statusCode == ResultKey.successCode) {
+    if (response.statusCode.isSuccess) {
       iiii("Qeydiyyat ugurla tamamlandi");
-    } else if (response.statusCode > 399) {
-      final gelenCavabJson = jsonDecode(response.body);
+    } else if (response.statusCode! > 399) {
       RegisterResponse registerResponse =
-          RegisterResponse.fromJson(gelenCavabJson);
+          RegisterResponse.fromJson(response.data);
       eeee("Qeydiyyat Xetalidir" +
           "\n" +
           "email  " +

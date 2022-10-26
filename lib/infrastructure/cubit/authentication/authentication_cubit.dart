@@ -16,6 +16,7 @@ import '../../model/response/status_dynamic.dart';
 import '../../services/config_service.dart';
 import '../../services/hive_service.dart';
 import 'authentication_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthenticationCubit extends Cubit<AuthenticationState> {
   AuthenticationCubit() : super(AuthenticationUninitialized());
@@ -41,6 +42,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       // final String? fcm = await _fcm.getToken();
       final bool isLoggedIn = await _prefs.isLoggedIn;
       final String? accessToken = await _prefs.accessToken;
+      final String? refreshToken = await _prefs.refreshToken;
       print(isLoggedIn);
       print(accessToken);
 
@@ -104,7 +106,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   }
 
   Future<void> delay(bool showSplash) async {
-    if (showSplash) await Future.delayed(Duration(seconds: 4));
+    if (showSplash) await Future.delayed(Duration(seconds: 2));
   }
 
   void showLogoutDialog(BuildContext context, {bool goWithPager = false}) {
