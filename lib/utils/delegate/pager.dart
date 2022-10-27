@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import '../../app.dart';
 import '../../infrastructure/cubit/authentication/authentication_cubit.dart';
 import '../../infrastructure/cubit/login/login_cubit.dart';
+import '../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
 import '../../infrastructure/cubit/product_option_cubit/product_option_cubit.dart';
 import '../../infrastructure/cubit/register/register_cubit.dart';
 import '../../presentation/page/address_page/address_page.dart';
@@ -81,8 +82,15 @@ class Pager {
 
   static get contactPage => ContactPage();
 
-  static get productDetails => BlocProvider(
-        create: (context) => ProductOptionCubit()..fetchProduct(),
+  static get productDetails => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => ProductOptionCubit()..fetchProduct(),
+          ),
+          BlocProvider(
+            create: (context) => ProductOptionDetailsCubit(),
+          ),
+        ],
         child: MedicineDetailsPage(),
       );
 

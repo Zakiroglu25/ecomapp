@@ -21,7 +21,9 @@ class DioAuth {
         contentType: 'application/json',
         queryParameters: {"Accept": "application/json"},
         followRedirects: true,
-        headers: ApiKeys.header(token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkb2N0b3JvIiwiYXVkIjoiZG9jdG9ybyIsInN1YiI6IjJjMDk1ZWU0LWU4ZTAtNDk1ZC1hMDU2LWQ4ZjgyYzdmMWUzNiIsImN1c3RvbWVyR3VpZCI6IjJjMDk1ZWU0LWU4ZTAtNDk1ZC1hMDU2LWQ4ZjgyYzdmMWUzNiIsImlzVGVtcCI6ZmFsc2UsImV4cCI6MTY2Njc5MjcyOH0.uyrFLRzg2rTqF2KzROptscoVZARdxA5ex3aUQbH8YBACkDCIlilsWK-fpENnoUeAGR6YOTXV1Pys8Oxbn6t4GQ"),
+        headers: ApiKeys.header(
+            token:
+                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkb2N0b3JvIiwiYXVkIjoiZG9jdG9ybyIsInN1YiI6IjJjMDk1ZWU0LWU4ZTAtNDk1ZC1hMDU2LWQ4ZjgyYzdmMWUzNiIsImN1c3RvbWVyR3VpZCI6IjJjMDk1ZWU0LWU4ZTAtNDk1ZC1hMDU2LWQ4ZjgyYzdmMWUzNiIsImlzVGVtcCI6ZmFsc2UsImV4cCI6MTY2Njg1OTI5OH0.D7SNQQemdMJk73TPSB3UozuyQp9hmiRAv_WfKM5oWa8_bIPy3mYr3EXdlGc01R9pfKMxnl9XENBpDtqZW5BtUA"),
         validateStatus: (status) {
           //  return status! < 500;
           return true;

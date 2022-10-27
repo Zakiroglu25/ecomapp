@@ -1,7 +1,10 @@
+import 'package:doctoro/utils/delegate/my_printer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
 import '../../../../infrastructure/model/response/product_option_model.dart';
 import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/assets.dart';
@@ -28,7 +31,11 @@ class ProductItem extends StatelessWidget {
           padding: Paddings.paddingH16 + Paddings.paddingV10,
           child: GestureDetector(
             onTap: () {
-              print("details");
+              context
+                  .read<ProductOptionDetailsCubit>()
+                  .fetchProduct(products!.guid!);
+              iiii(products!.guid!);
+              Go.to(context, Example());
             },
             child: Container(
                 padding: EdgeInsets.all(12),

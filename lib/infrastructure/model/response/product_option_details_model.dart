@@ -4,15 +4,15 @@ class ProductOptionDetailsModel {
   String? title;
   String? slug;
   bool? prescriptionRequired;
-  Null? manufacturedIn;
-  Null? description;
+  String? manufacturedIn;
+  String? description;
   String? substances;
-  Null? excipients;
+  String? excipients;
   String? dosage;
   String? packaging;
   String? packagingAmount;
   String? pharmaceuticalForm;
-  Null? registrationDate;
+  num? registrationDate;
   Manufacturer? manufacturer;
   List<Categories>? categories;
   List<StockItems>? stockItems;
@@ -141,7 +141,7 @@ class Categories {
 class StockItems {
   String? guid;
   double? price;
-  Null? discountedPrice;
+  double? discountedPrice;
   Store? store;
 
   StockItems({this.guid, this.price, this.discountedPrice, this.store});
@@ -169,7 +169,7 @@ class Store {
   String? guid;
   String? name;
   String? slug;
-  Null? website;
+  String? website;
   bool? worksWithInsurance;
   bool? isOpen;
   int? opensAtHour;

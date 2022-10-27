@@ -1,22 +1,24 @@
 import 'package:doctoro/infrastructure/model/response/address_model.dart';
 import 'package:doctoro/infrastructure/model/response/product_option_model.dart';
 
+import '../../model/response/product_option_details_model.dart';
+
 abstract class ProductOptionDetailsState {}
 
-class ProductOptionInitial extends ProductOptionDetailsState {}
+class ProductODetailsInitial extends ProductOptionDetailsState {}
 
-class ProductOptionInProgress extends ProductOptionDetailsState {}
+class ProductODetailsInProgress extends ProductOptionDetailsState {}
 
-class ProductOptionError extends ProductOptionDetailsState {
+class ProductODetailsError extends ProductOptionDetailsState {
   String? error;
 
-  ProductOptionError({this.error});
+  ProductODetailsError({this.error});
 }
 
-class ProductOptionNetworkError extends ProductOptionDetailsState {}
+class ProductODetailsNetworkError extends ProductOptionDetailsState {}
 
-class ProductOptionSuccess extends ProductOptionDetailsState {
-  ProductOptionSuccess(this.product_option_model);
+class ProductODetailsSuccess extends ProductOptionDetailsState {
+  ProductODetailsSuccess(this.product_o_d_model);
 
-  final List<Data> product_option_model;
+  final ProductOptionDetailsModel product_o_d_model;
 }

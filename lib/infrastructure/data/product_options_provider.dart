@@ -21,7 +21,7 @@ class ProductOptionsProvider {
       ProductOptionModel model = ProductOptionModel.fromJson(comeJson);
       statusDynamic.data = model.data;
     } else {
-      eeee("address List:  url: $api , response: ${response.data}");
+      eeee("getProduct List:  url: $api , response: ${response.data}");
     }
 
     return statusDynamic;
@@ -30,12 +30,18 @@ class ProductOptionsProvider {
   static Future<StatusDynamic> getByGuid(String guid) async {
     StatusDynamic statusDynamic = StatusDynamic();
     const api = ApiKeys.productOptionsGuid;
-    final response = await dioAuth.dio.get(api + "/$guid");
+    final response = await dioAuth.dio.get(api + "/" + guid);
+    wtf(api + "provider");
+    wtf("response" + response.data.toString());
     statusDynamic.statusCode = response.statusCode;
+    wtf(statusDynamic.statusCode.toString() + "statusCode");
     if (response.statusCode == ResultKey.successCode) {
+      wtf("response3333" + response.data.toString());
       final comeJson = response.data;
       ProductOptionDetailsModel model =
-          ProductOptionDetailsModel.fromJson(comeJson);
+      ProductOptionDetailsModel.fromJson(comeJson);
+      wtf("comeJson" + comeJson);
+
       statusDynamic.data = model;
     } else {
       eeee("address List:  url: $api , response: ${response.data}");
