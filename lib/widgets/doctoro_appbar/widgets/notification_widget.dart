@@ -1,4 +1,4 @@
-import 'package:doctoro/utils/constants/paddings.dart';
+import 'package:uikit/utils/constants/paddings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

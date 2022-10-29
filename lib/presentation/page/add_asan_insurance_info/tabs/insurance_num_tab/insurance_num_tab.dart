@@ -7,7 +7,7 @@ import '../../../../../utils/constants/paddings.dart';
 import '../../../../../utils/constants/sized_box.dart';
 import '../../../../../utils/constants/text.dart';
 import '../../../../../widgets/custom/app_button.dart';
-import '../../../../../widgets/general/doctoro_field.dart';
+import '../../../../../widgets/general/app_field.dart';
 
 class InsuranceNumTab extends StatelessWidget {
   const InsuranceNumTab({Key? key}) : super(key: key);

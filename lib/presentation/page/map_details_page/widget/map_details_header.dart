@@ -1,14 +1,14 @@
-import 'package:doctoro/presentation/page/cart_delivery_page/widgets/delivery_call_and_messenger_b_uttons.dart';
-import 'package:doctoro/presentation/page/cart_delivery_page/widgets/delivery_med_count.dart';
-import 'package:doctoro/presentation/page/cart_delivery_page/widgets/delivery_order_date.dart';
-import 'package:doctoro/presentation/page/cart_delivery_page/widgets/delivery_recipe.dart';
-import 'package:doctoro/presentation/page/cart_delivery_page/widgets/delivery_total_price.dart';
-import 'package:doctoro/utils/constants/app_text_styles.dart';
-import 'package:doctoro/utils/constants/colors.dart';
-import 'package:doctoro/utils/constants/sized_box.dart';
-import 'package:doctoro/utils/screen/snack.dart';
-import 'package:doctoro/widgets/custom/column_with_space.dart';
-import 'package:doctoro/widgets/custom/sliver_app_bar_delegate.dart';
+import 'package:uikit/presentation/page/cart_delivery_page/widgets/delivery_call_and_messenger_b_uttons.dart';
+import 'package:uikit/presentation/page/cart_delivery_page/widgets/delivery_med_count.dart';
+import 'package:uikit/presentation/page/cart_delivery_page/widgets/delivery_order_date.dart';
+import 'package:uikit/presentation/page/cart_delivery_page/widgets/delivery_recipe.dart';
+import 'package:uikit/presentation/page/cart_delivery_page/widgets/delivery_total_price.dart';
+import 'package:uikit/utils/constants/app_text_styles.dart';
+import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/utils/screen/snack.dart';
+import 'package:uikit/widgets/custom/column_with_space.dart';
+import 'package:uikit/widgets/custom/sliver_app_bar_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -26,8 +26,7 @@ class MapDetailsHeaders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var googleUrl = Uri.parse(
-        'https://www.google.com/maps/search/?api=1&query=${maps.addressLat
-            .toString()},${maps.addressLong.toString()}');
+        'https://www.google.com/maps/search/?api=1&query=${maps.addressLat.toString()},${maps.addressLong.toString()}');
     return SliverPersistentHeader(
         floating: false,
         pinned: false,
@@ -62,8 +61,7 @@ class MapDetailsHeaders extends StatelessWidget {
                         MySizedBox.w10,
                         Text(
                             "${maps.opensAtMinutes}" +
-                                "${maps.opensAtHour}:00-${maps
-                                    .closesAtHour}:00",
+                                "${maps.opensAtHour}:00-${maps.closesAtHour}:00",
                             style: AppTextStyles.sfPro400s14
                                 .copyWith(color: MyColors.green85)),
                       ],
@@ -76,15 +74,15 @@ class MapDetailsHeaders extends StatelessWidget {
                       height: 32.h,
                       decoration: BoxDecoration(
                         color:
-                        maps.isOpen! ? MyColors.green85 : MyColors.mainRED,
+                            maps.isOpen! ? MyColors.green85 : MyColors.mainRED,
                         borderRadius: BorderRadius.circular(24),
                       ),
                       child: Center(
                           child: Text(
-                            maps.isOpen! ? "Açıqdır" : "Bağlıdır",
-                            style: AppTextStyles.sfPro400s16
-                                .copyWith(color: MyColors.white),
-                          )),
+                        maps.isOpen! ? "Açıqdır" : "Bağlıdır",
+                        style: AppTextStyles.sfPro400s16
+                            .copyWith(color: MyColors.white),
+                      )),
                     ),
                     MySizedBox.h8,
                     Row(
@@ -92,9 +90,8 @@ class MapDetailsHeaders extends StatelessWidget {
                         CartCircleButtonWithTitle(
                           svg: Assets.svgLoaction,
                           title: "Unvan",
-                          onTap:(){
+                          onTap: () {
                             launch(googleUrl);
-
                           },
                         ),
                         MySizedBox.w24,

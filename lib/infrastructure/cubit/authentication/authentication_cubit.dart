@@ -16,7 +16,6 @@ import '../../model/response/status_dynamic.dart';
 import '../../services/config_service.dart';
 import '../../services/hive_service.dart';
 import 'authentication_state.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthenticationCubit extends Cubit<AuthenticationState> {
   AuthenticationCubit() : super(AuthenticationUninitialized());

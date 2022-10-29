@@ -1,9 +1,9 @@
-import 'package:doctoro/utils/constants/assets.dart';
-import 'package:doctoro/utils/constants/colors.dart';
-import 'package:doctoro/utils/constants/sized_box.dart';
-import 'package:doctoro/utils/constants/text.dart';
-import 'package:doctoro/widgets/doctoro_appbar/doctoro_appbar.dart';
-import 'package:doctoro/widgets/general/empty_widget.dart';
+import 'package:uikit/utils/constants/assets.dart';
+import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
+import 'package:uikit/widgets/general/empty_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -39,7 +39,7 @@ class _FavoritePageState extends State<FavoritePage>
         filter: false,
       ),
       body: DefaultTabController(
-        length:1,
+        length: 1,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,7 +111,6 @@ class _FavoritePageState extends State<FavoritePage>
                       ],
                     ),
                   ),
-
                 ]),
               ),
             ],

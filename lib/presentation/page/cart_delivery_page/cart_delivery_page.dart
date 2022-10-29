@@ -1,12 +1,13 @@
-import 'package:doctoro/presentation/page/cart_delivery_page/widgets/delivery_pay_total_button.dart';
-import 'package:doctoro/presentation/page/cart_delivery_page/widgets/delivery_products.dart';
-import 'package:doctoro/utils/constants/colors.dart';
-import 'package:doctoro/utils/constants/text.dart';
-import 'package:doctoro/utils/extensions/context.dart';
-import 'package:doctoro/utils/extensions/word.dart';
-import 'package:doctoro/widgets/custom/app_button.dart';
-import 'package:doctoro/widgets/main/cupperfold/cupperfold.dart';
+import 'package:uikit/presentation/page/cart_delivery_page/widgets/delivery_pay_total_button.dart';
+import 'package:uikit/presentation/page/cart_delivery_page/widgets/delivery_products.dart';
+import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/extensions/context.dart';
+import 'package:uikit/utils/extensions/word.dart';
+import 'package:uikit/widgets/custom/app_button.dart';
+import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
 import 'package:flutter/material.dart';
+
 import 'widgets/delivery_headers.dart';
 
 class CartDeliveryPage extends StatelessWidget {

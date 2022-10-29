@@ -1,5 +1,5 @@
-// import 'package:doctoro/utils/constants/colors.dart';
-// import 'package:doctoro/utils/enums/cart_order_type.dart';
+// import 'package:uikit/utils/constants/colors.dart';
+// import 'package:uikit/utils/enums/cart_order_type.dart';
 //
 // class CartOperations {
 //   CartOperations._();

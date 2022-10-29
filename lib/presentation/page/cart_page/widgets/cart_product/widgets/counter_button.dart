@@ -1,4 +1,4 @@
-import 'package:doctoro/utils/screen/ink_wrapper.dart';
+import 'package:uikit/utils/screen/ink_wrapper.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../utils/constants/border_radius.dart';

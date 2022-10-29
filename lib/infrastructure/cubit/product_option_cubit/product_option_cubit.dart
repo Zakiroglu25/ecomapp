@@ -1,12 +1,10 @@
 import 'dart:io';
 
-import 'package:doctoro/utils/delegate/my_printer.dart';
-import 'package:doctoro/utils/delegate/request_control.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../utils/delegate/my_printer.dart';
+import '../../../utils/delegate/request_control.dart';
 import '../../data/product_options_provider.dart';
-import '../../model/response/product_option_model.dart';
 import 'product_option_state.dart';
 
 class ProductOptionCubit extends Cubit<ProductOptionState> {
@@ -39,8 +37,7 @@ class ProductOptionCubit extends Cubit<ProductOptionState> {
       final result = await ProductOptionsProvider.getProduct(3);
       iiii(result.toString());
 
-      if(result.data != null){
-      }
+      if (result.data != null) {}
     } catch (e) {}
   }
 }

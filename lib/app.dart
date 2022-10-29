@@ -1,8 +1,7 @@
-import 'package:doctoro/utils/constants/assets.dart';
-import 'package:doctoro/utils/delegate/pager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
+import 'package:uikit/utils/constants/assets.dart';
 
 import 'infrastructure/cubit/authentication/authentication_cubit.dart';
 import 'infrastructure/cubit/authentication/authentication_state.dart';

@@ -1,5 +1,5 @@
-import 'package:doctoro/utils/constants/paddings.dart';
-import 'package:doctoro/utils/extensions/context.dart';
+import 'package:uikit/utils/constants/paddings.dart';
+import 'package:uikit/utils/extensions/context.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/constants/colors.dart';

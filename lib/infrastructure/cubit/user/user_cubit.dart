@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:doctoro/utils/delegate/my_printer.dart';
 
 import '../../../locator.dart';
+import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/delegate/user_operations.dart';
 import '../../services/hive_service.dart';
 

@@ -2,15 +2,11 @@
 // Package imports:
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/paddings.dart';
 import '../../../../utils/constants/sized_box.dart';
-import '../../../../utils/constants/text.dart';
-import '../../../../utils/screen/alert.dart';
-
 
 class NotificationElement extends StatelessWidget {
   final Function? onXTap;
@@ -45,7 +41,6 @@ class NotificationElement extends StatelessWidget {
         alignment: Alignment.centerRight,
       ),
       direction: DismissDirection.endToStart,
-
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

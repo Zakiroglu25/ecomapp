@@ -1,4 +1,4 @@
-import 'package:doctoro/widgets/doctoro_appbar/doctoro_appbar.dart';
+import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/appbar_address_widget.dart';
@@ -26,5 +26,3 @@ class ProductPage extends StatelessWidget {
     );
   }
 }
-
-

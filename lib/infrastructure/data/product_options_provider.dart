@@ -1,5 +1,6 @@
-import 'package:doctoro/infrastructure/model/response/status_dynamic.dart';
-import 'package:doctoro/utils/constants/result_keys.dart';
+import 'package:uikit/infrastructure/model/response/status_dynamic.dart';
+import 'package:uikit/utils/constants/result_keys.dart';
+
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/delegate/my_printer.dart';

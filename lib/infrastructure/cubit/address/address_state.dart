@@ -1,4 +1,4 @@
-import 'package:doctoro/infrastructure/model/response/address_model.dart';
+import '../../model/response/address_model.dart';
 
 abstract class AddressState {}
 

@@ -1,6 +1,6 @@
 // Flutter imports:
 
-import 'package:doctoro/widgets/doctoro_appbar/widgets/filter.dart';
+import 'package:uikit/widgets/doctoro_appbar/widgets/filter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:focus_detector/focus_detector.dart';

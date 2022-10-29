@@ -1,15 +1,15 @@
-import 'package:doctoro/presentation/page/cart_page/widgets/cart_order_product/card_order_product.dart';
-import 'package:doctoro/utils/constants/paddings.dart';
-import 'package:doctoro/utils/constants/physics.dart';
-import 'package:doctoro/utils/constants/sized_box.dart';
-import 'package:doctoro/utils/constants/text.dart';
-import 'package:doctoro/utils/delegate/navigate_utils.dart';
-import 'package:doctoro/utils/delegate/pager.dart';
-import 'package:doctoro/utils/enums/cart_order_type.dart';
-import 'package:doctoro/utils/extensions/context.dart';
-import 'package:doctoro/widgets/custom/column_with_space.dart';
-import 'package:doctoro/widgets/custom/app_button.dart';
-import 'package:doctoro/widgets/custom/listview_separated.dart';
+import 'package:uikit/presentation/page/cart_page/widgets/cart_order_product/card_order_product.dart';
+import 'package:uikit/utils/constants/paddings.dart';
+import 'package:uikit/utils/constants/physics.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/delegate/navigate_utils.dart';
+import 'package:uikit/utils/delegate/pager.dart';
+import 'package:uikit/utils/enums/cart_order_type.dart';
+import 'package:uikit/utils/extensions/context.dart';
+import 'package:uikit/widgets/custom/app_button.dart';
+import 'package:uikit/widgets/custom/column_with_space.dart';
+import 'package:uikit/widgets/custom/listview_separated.dart';
 import 'package:flutter/material.dart';
 
 class WaitingTab extends StatelessWidget {

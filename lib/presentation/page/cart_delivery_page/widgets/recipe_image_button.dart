@@ -1,5 +1,5 @@
-import 'package:doctoro/utils/extensions/word.dart';
-import 'package:doctoro/widgets/custom/app_unicorn_button.dart';
+import 'package:uikit/utils/extensions/word.dart';
+import 'package:uikit/widgets/custom/app_unicorn_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/constants/mock.dart';

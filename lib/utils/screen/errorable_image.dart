@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:doctoro/utils/screen/ink_wrapper.dart';
+import 'package:uikit/utils/screen/ink_wrapper.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/custom/gallery_photo_view_wrapper.dart';

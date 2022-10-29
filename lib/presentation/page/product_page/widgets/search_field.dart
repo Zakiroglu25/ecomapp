@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/text.dart';
-import '../../../../widgets/general/doctoro_field.dart';
+import '../../../../widgets/general/app_field.dart';
 
 class SearchField extends StatelessWidget {
   const SearchField({

@@ -1,12 +1,11 @@
 // Dart imports:
 // Package imports:
 
-import 'package:dio/dio.dart';
-import 'package:doctoro/infrastructure/model/response/address_model.dart';
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
+import '../model/response/address_model.dart';
 
 class AddressProvider {
   static DioAuth get dioAuth => locator<DioAuth>();

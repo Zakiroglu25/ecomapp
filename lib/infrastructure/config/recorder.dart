@@ -1,8 +1,6 @@
 // import 'package:caspa_v2/infrastructure/models/local/my_user.dart';
 // import 'package:caspa_v2/util/delegate/my_printer.dart';
 import 'package:dio/dio.dart';
-//import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/material.dart';
 
 import '../../utils/delegate/my_printer.dart';
 import '../model/locale/MyUser.dart';

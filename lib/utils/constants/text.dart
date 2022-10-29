@@ -1,4 +1,4 @@
-import 'package:doctoro/utils/extensions/word.dart';
+import 'package:uikit/utils/extensions/word.dart';
 
 class MyText {
   MyText._();
@@ -66,13 +66,13 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String nameDoctoro = "Doctoro";
   static const String searchHint = "Ad və ya istehsal olduğu ölkə";
   static const String pashaTitleProduct = "Paşa Sığorta məhsulları burada!";
-  static const String medicineSubtitle = "Reseptli və reseptsiz satışda olan dərmanları buradan əldə edib qiymətlərini müqaisə edə bilərsiniz.";
+  static const String medicineSubtitle =
+      "Reseptli və reseptsiz satışda olan dərmanları buradan əldə edib qiymətlərini müqaisə edə bilərsiniz.";
   static const String bad = "BAD";
   static const String badSub = "Bioaktiv qidalar üçün əlavələr.";
   static const String vitamin = "Vitaminlər";
   static const String vitaminSub = "Bütün qrup vitəminləri əldə edin.";
   static const String otherSub = "Axtardığınız məhsulu tapmaq üçün";
-
 
   //otherpage
   static const String bigTitle = "Digər";
@@ -159,5 +159,4 @@ In addition to laying out rules for proper use of your app, you should also clea
       "Hörmətli müştəri, hər hansı bir problemlə raslaşdıqda qaynar xətt nömrəmiz müraciyyət edə bilərsiniz  *8833";
 //notification
   static const String notification = "Bildirişlər";
-
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../infrastructure/model/response/product_option_model.dart';
@@ -8,12 +7,7 @@ import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/paddings.dart';
 import '../../../../utils/constants/sized_box.dart';
-import '../../../../utils/constants/text.dart';
-import '../../../../utils/delegate/navigate_utils.dart';
-import '../../../../utils/screen/ink_wrapper.dart';
 import '../../../../widgets/custom/app_button.dart';
-import '../../medicine_details_page/medicine_details_page.dart';
-import '../../product_details_page/test.dart';
 
 class ProductItem extends StatelessWidget {
   final Data? products;

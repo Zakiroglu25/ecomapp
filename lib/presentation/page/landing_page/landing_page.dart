@@ -1,5 +1,5 @@
-import 'package:doctoro/presentation/page/favorite_page/favorite_page.dart';
-import 'package:doctoro/utils/constants/app_text_styles.dart';
+import 'package:uikit/presentation/page/favorite_page/favorite_page.dart';
+import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -32,7 +32,6 @@ class _LandingPageState extends State<LandingPage> {
     Pager.otherPage,
   ];
   final GlobalKey<ScaffoldState> _key = GlobalKey();
-
 
   ///physics deyishdim cunki map hereket elemirdi
   @override

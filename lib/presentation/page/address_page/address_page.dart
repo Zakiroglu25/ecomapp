@@ -1,10 +1,10 @@
 import 'dart:developer';
 
-import 'package:doctoro/infrastructure/cubit/address/address_cubit.dart';
-import 'package:doctoro/infrastructure/cubit/address/address_state.dart';
-import 'package:doctoro/infrastructure/model/response/address_model.dart';
-import 'package:doctoro/widgets/general/app_loading.dart';
-import 'package:doctoro/widgets/main/cupperfold/cupperfold.dart';
+import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
+import 'package:uikit/infrastructure/cubit/address/address_state.dart';
+import 'package:uikit/infrastructure/model/response/address_model.dart';
+import 'package:uikit/widgets/general/app_loading.dart';
+import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';

@@ -1,4 +1,4 @@
-import 'package:doctoro/utils/constants/app_text_styles.dart';
+import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/colors.dart';

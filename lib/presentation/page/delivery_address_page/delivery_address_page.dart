@@ -1,13 +1,13 @@
-import 'package:doctoro/utils/constants/app_text_styles.dart';
-import 'package:doctoro/utils/constants/assets.dart';
-import 'package:doctoro/utils/constants/border_radius.dart';
-import 'package:doctoro/utils/constants/text.dart';
-import 'package:doctoro/utils/delegate/random.dart';
-import 'package:doctoro/widgets/custom/app_tab.dart';
-import 'package:doctoro/widgets/custom/column_with_space.dart';
-import 'package:doctoro/widgets/custom/text_title_big.dart';
-import 'package:doctoro/widgets/general/app_element_box.dart';
-import 'package:doctoro/widgets/general/doctoro_field.dart';
+import 'package:uikit/utils/constants/app_text_styles.dart';
+import 'package:uikit/utils/constants/assets.dart';
+import 'package:uikit/utils/constants/border_radius.dart';
+import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/delegate/random.dart';
+import 'package:uikit/widgets/custom/app_tab.dart';
+import 'package:uikit/widgets/custom/column_with_space.dart';
+import 'package:uikit/widgets/custom/text_title_big.dart';
+import 'package:uikit/widgets/general/app_element_box.dart';
+import 'package:uikit/widgets/general/app_field.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/colors.dart';

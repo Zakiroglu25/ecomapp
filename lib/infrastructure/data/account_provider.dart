@@ -1,12 +1,12 @@
 // Dart imports:
 import 'package:dio/dio.dart';
-import 'package:doctoro/infrastructure/model/locale/MyUser.dart';
 
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/constants/result_keys.dart';
 import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
+import '../model/locale/MyUser.dart';
 import '../model/response/status_dynamic.dart';
 
 class AccountProvider {
@@ -18,7 +18,8 @@ class AccountProvider {
     StatusDynamic statusDynamic = StatusDynamic();
     var api = ApiKeys.user;
     final header = ApiKeys.header(token: token);
-    final response = await dioAuth.dio.get(api, options: Options(headers: header));
+    final response =
+        await dioAuth.dio.get(api, options: Options(headers: header));
 
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
@@ -30,5 +31,4 @@ class AccountProvider {
     }
     return statusDynamic;
   }
-
 }

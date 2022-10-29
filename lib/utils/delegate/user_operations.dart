@@ -1,5 +1,5 @@
-import 'package:doctoro/utils/delegate/my_printer.dart';
-import 'package:doctoro/utils/delegate/request_control.dart';
+import 'package:uikit/utils/delegate/my_printer.dart';
+import 'package:uikit/utils/delegate/request_control.dart';
 
 import '../../infrastructure/config/dio_auth.dart';
 import '../../infrastructure/data/account_provider.dart';

@@ -1,11 +1,12 @@
 // Dart imports:
 import 'dart:convert';
 
-import 'package:doctoro/infrastructure/model/response/register_response.dart';
-import 'package:doctoro/utils/extensions/index.dart';
-
+import 'package:uikit/infrastructure/model/response/register_response.dart';
+import 'package:uikit/utils/extensions/index.dart';
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:uikit/infrastructure/model/response/register_response.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';

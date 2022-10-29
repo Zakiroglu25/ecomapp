@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'test.dart';
-
 class ProductDetailsPage extends StatelessWidget {
   const ProductDetailsPage({Key? key}) : super(key: key);
 
@@ -9,9 +7,7 @@ class ProductDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        children: [
-
-        ],
+        children: [],
       ),
     );
   }

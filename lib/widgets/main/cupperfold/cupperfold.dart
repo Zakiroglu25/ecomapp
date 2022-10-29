@@ -1,7 +1,8 @@
-import 'package:doctoro/utils/constants/colors.dart';
-import 'package:doctoro/widgets/main/cupperfold/widgets/app_sliver_persistent_cupertino_appbar.dart';
+import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/widgets/main/cupperfold/widgets/app_sliver_persistent_cupertino_appbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'widgets/custom_cupertino_sliver_navigation_bar.dart';
 
 class Cupperfold extends StatelessWidget {

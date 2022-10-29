@@ -1,11 +1,11 @@
-import 'package:doctoro/utils/constants/sized_box.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/paddings.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../widgets/doctoro_appbar/doctoro_appbar.dart';
-import '../../../widgets/general/doctoro_field.dart';
+import '../../../widgets/general/app_field.dart';
 import '../../../widgets/main/cupperfold/cupperfold.dart';
 import '../settings_page/widget/edit_field_widget.dart';
 
@@ -42,7 +42,6 @@ class ChangeNumberPage extends StatelessWidget {
           AppField(
             title: 'Şifrə',
             hint: 'Şifrəni daxil edin',
-
           )
         ],
       ),

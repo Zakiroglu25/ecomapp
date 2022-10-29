@@ -1,5 +1,5 @@
-import 'package:doctoro/utils/constants/app_text_styles.dart';
-import 'package:doctoro/utils/constants/colors.dart';
+import 'package:uikit/utils/constants/app_text_styles.dart';
+import 'package:uikit/utils/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

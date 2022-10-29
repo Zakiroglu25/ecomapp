@@ -1,4 +1,4 @@
-import 'package:doctoro/presentation/page/cart_page/widgets/cart_product/widgets/recipe_file_delete_button.dart';
+import 'package:uikit/presentation/page/cart_page/widgets/cart_product/widgets/recipe_file_delete_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../utils/constants/text.dart';

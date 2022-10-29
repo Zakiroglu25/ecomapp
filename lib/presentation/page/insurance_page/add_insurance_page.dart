@@ -1,5 +1,5 @@
-import 'package:doctoro/utils/constants/sized_box.dart';
-import 'package:doctoro/widgets/main/cupperfold/cupperfold.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/assets.dart';
@@ -16,42 +16,41 @@ class AddInsurancePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Cupperfold(
-        title: "Sığorta",
-        notification: false,
-        user: false,
-        child: Column(
-          children: [
-            MySizedBox.h22,
-            SlidableWidget(
-              title: "Pasha Sığorta",
-              subTitle:
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-              insuranceIcon: Assets.pasha,
-              status: 1,
-            ),
-            SlidableWidget(
-              title: "Pasha Sığorta",
-              subTitle:
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-              insuranceIcon: Assets.pasha,
-              status: 2,
-            ),
-            SlidableWidget(
-              title: "Pasha Sığorta",
-              subTitle:
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-              insuranceIcon: Assets.pasha,
-              status: 3,
-            ),
-            AppButton(
-              onTap: () {
-                Go.to(context, AddAsanInsuranceInfo());
-              },
-              child: Text("Test ucun elave et"),
-            )
-          ],
-        ),
-
+      title: "Sığorta",
+      notification: false,
+      user: false,
+      child: Column(
+        children: [
+          MySizedBox.h22,
+          SlidableWidget(
+            title: "Pasha Sığorta",
+            subTitle:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            insuranceIcon: Assets.pasha,
+            status: 1,
+          ),
+          SlidableWidget(
+            title: "Pasha Sığorta",
+            subTitle:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            insuranceIcon: Assets.pasha,
+            status: 2,
+          ),
+          SlidableWidget(
+            title: "Pasha Sığorta",
+            subTitle:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            insuranceIcon: Assets.pasha,
+            status: 3,
+          ),
+          AppButton(
+            onTap: () {
+              Go.to(context, AddAsanInsuranceInfo());
+            },
+            child: Text("Test ucun elave et"),
+          )
+        ],
+      ),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:doctoro/utils/delegate/index.dart';
+import 'package:uikit/utils/delegate/index.dart';
 
 extension IntExtension on int? {
   bool get isSuccess {

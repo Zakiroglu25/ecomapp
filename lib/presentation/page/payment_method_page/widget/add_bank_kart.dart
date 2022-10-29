@@ -1,9 +1,9 @@
-import 'package:doctoro/utils/constants/app_text_styles.dart';
-import 'package:doctoro/utils/constants/colors.dart';
-import 'package:doctoro/utils/constants/sized_box.dart';
-import 'package:doctoro/utils/delegate/navigate_utils.dart';
-import 'package:doctoro/widgets/doctoro_appbar/doctoro_appbar.dart';
-import 'package:doctoro/widgets/general/doctoro_field.dart';
+import 'package:uikit/utils/constants/app_text_styles.dart';
+import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/utils/delegate/navigate_utils.dart';
+import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
+import 'package:uikit/widgets/general/app_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

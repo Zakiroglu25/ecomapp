@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'infrastructure/cubit/authentication/authentication_cubit.dart';

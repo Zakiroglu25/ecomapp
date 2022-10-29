@@ -1,12 +1,10 @@
 import 'dart:io';
 
-import 'package:doctoro/utils/delegate/my_printer.dart';
-import 'package:doctoro/utils/delegate/request_control.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../utils/delegate/my_printer.dart';
+import '../../../utils/delegate/request_control.dart';
 import '../../data/product_options_provider.dart';
-import '../../model/response/product_option_model.dart';
 import 'product_details_state.dart';
 
 class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
