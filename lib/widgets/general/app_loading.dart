@@ -26,12 +26,9 @@ class AppLoading extends StatelessWidget {
         duration: Duration(milliseconds: 800),
         child: WidgetOrEmpty(
           value: color == null,
-          elseChild: Container(
-              width: 20,
-              height: 20,
-              child: CircularProgressIndicator(
-                color: color,
-              )),
+          elseChild: CircularProgressIndicator(
+            color: color,
+          ),
           child: Container(
             height: 25,
             width: 25,

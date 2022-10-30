@@ -76,12 +76,12 @@ class MapDetailsHeaders extends StatelessWidget {
                       height: 32.h,
                       decoration: BoxDecoration(
                         color:
-                        maps.isOpen! ? MyColors.green85 : MyColors.mainRED,
+                        maps.open! ? MyColors.green85 : MyColors.mainRED,
                         borderRadius: BorderRadius.circular(24),
                       ),
                       child: Center(
                           child: Text(
-                            maps.isOpen! ? "Açıqdır" : "Bağlıdır",
+                            maps.open! ? "Açıqdır" : "Bağlıdır",
                             style: AppTextStyles.sfPro400s16
                                 .copyWith(color: MyColors.white),
                           )),

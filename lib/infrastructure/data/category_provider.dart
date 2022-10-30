@@ -10,14 +10,14 @@ import '../model/response/product_option_details_model.dart';
 import '../model/response/product_option_model.dart';
 import 'package:http/http.dart' as http;
 
-class ProductOptionsProvider {
+class CategoryProvider{
   static DioAuth get dioAuth => locator<DioAuth>();
 
-  static Future<StatusDynamic> getProduct(int page) async {
+  static Future<StatusDynamic> getCategoryTree(int page) async {
     StatusDynamic statusDynamic = StatusDynamic();
-    const api = ApiKeys.productOptions;
+    const api = ApiKeys.getCategoryTree;
     final response =
-        await dioAuth.dio.get(api, queryParameters: {"page": page});
+    await dioAuth.dio.get(api);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
       final comeJson = response.data;
@@ -30,22 +30,4 @@ class ProductOptionsProvider {
     return statusDynamic;
   }
 
-  static Future<ProductOptionDetailsModel?> getByGuid(String guid) async {
-    ProductOptionDetailsModel? productOptionDetailsModel;
-    const api = ApiKeys.productOptionsGuid;
-    const headers = ApiKeys.headers;
-    var url = Uri.parse(api + '/$guid');
-    final response = await http.get(url, headers: headers);
-    wtf(response.body);
-    if (response.statusCode == ResultKey.successCode) {
-      final comeJson = jsonDecode(response.body);
-      productOptionDetailsModel = ProductOptionDetailsModel.fromJson(comeJson);
-      wtf(productOptionDetailsModel.guid.toString());
-
-    } else {
-      eeee("address List:  url: $api , response: ${response.body}");
-    }
-
-    return productOptionDetailsModel;
-  }
 }

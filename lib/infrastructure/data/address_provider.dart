@@ -1,6 +1,3 @@
-// Dart imports:
-// Package imports:
-
 import 'package:dio/dio.dart';
 import 'package:doctoro/infrastructure/model/response/address_model.dart';
 import '../../locator.dart';

@@ -12,9 +12,10 @@ class ProductOptionDetailsModel {
   String? packaging;
   String? packagingAmount;
   String? pharmaceuticalForm;
-  num? registrationDate;
+  String? registrationDate;
   Manufacturer? manufacturer;
   List<Categories>? categories;
+  List<Images>? images;
   List<StockItems>? stockItems;
 
   ProductOptionDetailsModel(
@@ -34,6 +35,7 @@ class ProductOptionDetailsModel {
         this.registrationDate,
         this.manufacturer,
         this.categories,
+        this.images,
         this.stockItems});
 
   ProductOptionDetailsModel.fromJson(Map<String, dynamic> json) {
@@ -58,6 +60,12 @@ class ProductOptionDetailsModel {
       categories = <Categories>[];
       json['categories'].forEach((v) {
         categories!.add(new Categories.fromJson(v));
+      });
+    }
+    if (json['images'] != null) {
+      images = <Images>[];
+      json['images'].forEach((v) {
+        images!.add(new Images.fromJson(v));
       });
     }
     if (json['stockItems'] != null) {
@@ -89,6 +97,9 @@ class ProductOptionDetailsModel {
     }
     if (this.categories != null) {
       data['categories'] = this.categories!.map((v) => v.toJson()).toList();
+    }
+    if (this.images != null) {
+      data['images'] = this.images!.map((v) => v.toJson()).toList();
     }
     if (this.stockItems != null) {
       data['stockItems'] = this.stockItems!.map((v) => v.toJson()).toList();
@@ -169,13 +180,13 @@ class Store {
   String? guid;
   String? name;
   String? slug;
-  String? website;
+  Null? website;
   bool? worksWithInsurance;
-  bool? isOpen;
   int? opensAtHour;
   int? closesAtHour;
   int? opensAtMinutes;
   int? closesAtMinutes;
+  bool? open;
 
   Store(
       {this.guid,
@@ -183,11 +194,11 @@ class Store {
         this.slug,
         this.website,
         this.worksWithInsurance,
-        this.isOpen,
         this.opensAtHour,
         this.closesAtHour,
         this.opensAtMinutes,
-        this.closesAtMinutes});
+        this.closesAtMinutes,
+        this.open});
 
   Store.fromJson(Map<String, dynamic> json) {
     guid = json['guid'];
@@ -195,11 +206,11 @@ class Store {
     slug = json['slug'];
     website = json['website'];
     worksWithInsurance = json['worksWithInsurance'];
-    isOpen = json['isOpen'];
     opensAtHour = json['opensAtHour'];
     closesAtHour = json['closesAtHour'];
     opensAtMinutes = json['opensAtMinutes'];
     closesAtMinutes = json['closesAtMinutes'];
+    open = json['open'];
   }
 
   Map<String, dynamic> toJson() {
@@ -209,11 +220,28 @@ class Store {
     data['slug'] = this.slug;
     data['website'] = this.website;
     data['worksWithInsurance'] = this.worksWithInsurance;
-    data['isOpen'] = this.isOpen;
     data['opensAtHour'] = this.opensAtHour;
     data['closesAtHour'] = this.closesAtHour;
     data['opensAtMinutes'] = this.opensAtMinutes;
     data['closesAtMinutes'] = this.closesAtMinutes;
+    data['open'] = this.open;
+    return data;
+  }
+}
+class Images {
+  String? url;
+
+
+  Images({this.url});
+
+  Images.fromJson(Map<String, dynamic> json) {
+    url = json['url'];
+
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['url'] = this.url;
     return data;
   }
 }

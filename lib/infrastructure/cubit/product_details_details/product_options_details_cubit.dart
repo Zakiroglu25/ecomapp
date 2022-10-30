@@ -1,12 +1,11 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:doctoro/utils/delegate/my_printer.dart';
-import 'package:doctoro/utils/delegate/request_control.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/product_options_provider.dart';
-import '../../model/response/product_option_model.dart';
+import '../../model/remote/general/MyMessage.dart';
 import 'product_details_state.dart';
 
 class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
@@ -15,17 +14,20 @@ class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
   int page = 1;
 
   fetchProduct(String guid) async {
-    wtf("cubit");
-
+    emit(ProductODetailsInProgress());
     try {
-      wtf("cubit1");
       final result = await ProductOptionsProvider.getByGuid(guid);
-      wtf("cubit2");
-      wtf("cubit"+result.statusCode.toString());
-      if (isSuccess(result.statusCode)) {
-        emit(ProductODetailsSuccess(result.data));
+      if (result!.guid != null) {
+        emit(ProductODetailsSuccess(result));
       } else {
         emit(ProductODetailsError());
+        eeee(
+          "contact result bad: ${ResponseMessage.fromJson(
+            jsonDecode(
+              result.toString(),
+            ),
+          ).message}",
+        );
       }
     } on SocketException catch (_) {
       emit(ProductODetailsError());

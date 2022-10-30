@@ -1,10 +1,14 @@
 import 'package:doctoro/utils/constants/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
+import '../../../infrastructure/services/hive_service.dart';
+import '../../../locator.dart';
 import '../../../utils/constants/colors.dart';
 
 class PageViewExample extends StatefulWidget {
   const PageViewExample({Key? key}) : super(key: key);
+
+  HiveService get _prefs => locator<HiveService>();
 
   @override
   State<PageViewExample> createState() => _PageViewExampleState();
@@ -57,10 +61,11 @@ class _PageViewExampleState extends State<PageViewExample> {
 }
 
 class Test extends StatelessWidget {
-  const Test({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -87,6 +92,7 @@ class Test extends StatelessWidget {
                       Icon(Icons.edit)
                     ],
                   ),
+                  Text("_prefs.user.phone!")
                 ],
               ),
             )),

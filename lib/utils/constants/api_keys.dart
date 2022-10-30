@@ -11,7 +11,7 @@ class ApiKeys {
     "Content-Type": "application/json",
     "Accept": "application/json",
     "x-mask-jwt":
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkb2N0b3JvIiwiYXVkIjoiZG9jdG9ybyIsInN1YiI6IjJjMDk1ZWU0LWU4ZTAtNDk1ZC1hMDU2LWQ4ZjgyYzdmMWUzNiIsImN1c3RvbWVyR3VpZCI6IjJjMDk1ZWU0LWU4ZTAtNDk1ZC1hMDU2LWQ4ZjgyYzdmMWUzNiIsImlzVGVtcCI6ZmFsc2UsImV4cCI6MTY2NjY4MzM3NX0.TAEHHHU7GfFg5_VHkbmbl6L1Yeo4lwXe_HuWJF85315SV9MhZnWj7ukkc6BVvuVpfGl4IifYR_PgKSzzWwuOSw",
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkb2N0b3JvIiwiYXVkIjoiZG9jdG9ybyIsInN1YiI6IjJjMDk1ZWU0LWU4ZTAtNDk1ZC1hMDU2LWQ4ZjgyYzdmMWUzNiIsImN1c3RvbWVyR3VpZCI6IjJjMDk1ZWU0LWU4ZTAtNDk1ZC1hMDU2LWQ4ZjgyYzdmMWUzNiIsImlzVGVtcCI6ZmFsc2UsImV4cCI6MTY2Njk0NjY0NH0.vYqommPEdJzJw0gNKgegZZto_AyYleJvYkJojdeoMDCGO131A3DCCuzi7--IvVrFLA1ZJ4VM6lJ03u_V6zOaIQ",
   };
 
   //reg and login
@@ -40,6 +40,9 @@ class ApiKeys {
   static const productOptions = "$baseUrl/protected/product-options/search";
   //get product guid
   static const productOptionsGuid = "$baseUrl/protected/product-options";
+  //get category tree
+  static const getCategoryTree = "$baseUrl/protected/content/category-tree";
+  static const getAllManufacturers = "$baseUrl/protected/content/manufacturers";
 
   static loginBody({
     required String? email,

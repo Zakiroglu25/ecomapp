@@ -16,7 +16,7 @@ import '../../../../utils/delegate/navigate_utils.dart';
 import '../../../../utils/screen/ink_wrapper.dart';
 import '../../../../widgets/custom/app_button.dart';
 import '../../medicine_details_page/medicine_details_page.dart';
-import '../../product_details_page/test.dart';
+import '../../product_details_page/product_details_page.dart';
 
 class ProductItem extends StatelessWidget {
   final Data? products;
@@ -31,11 +31,13 @@ class ProductItem extends StatelessWidget {
           padding: Paddings.paddingH16 + Paddings.paddingV10,
           child: GestureDetector(
             onTap: () {
-              context
-                  .read<ProductOptionDetailsCubit>()
-                  .fetchProduct(products!.guid!);
-              iiii(products!.guid!);
-              Go.to(context, Example());
+              // context
+              //     .read<ProductOptionDetailsCubit>()
+              //     .fetchProduct(products!.guid!);
+              Go.to(context, BlocProvider(
+                create: (context) => ProductOptionDetailsCubit()..fetchProduct(products!.guid!),
+                child: ProductOptionDetails(),
+              ));
             },
             child: Container(
                 padding: EdgeInsets.all(12),

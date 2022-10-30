@@ -4,7 +4,7 @@ class MapMedicine {
   String? slug;
   String? website;
   bool? worksWithInsurance;
-  bool? isOpen;
+  bool? open;
   int? opensAtHour;
   int? closesAtHour;
   int? opensAtMinutes;
@@ -23,7 +23,7 @@ class MapMedicine {
         this.slug,
         this.website,
         this.worksWithInsurance,
-        this.isOpen,
+        this.open,
         this.opensAtHour,
         this.closesAtHour,
         this.opensAtMinutes,
@@ -42,7 +42,7 @@ class MapMedicine {
     slug = json['slug'];
     website = json['website'];
     worksWithInsurance = json['worksWithInsurance'];
-    isOpen = json['isOpen'];
+    open = json['open'];
     opensAtHour = json['opensAtHour'];
     closesAtHour = json['closesAtHour'];
     opensAtMinutes = json['opensAtMinutes'];
@@ -63,7 +63,7 @@ class MapMedicine {
     data['slug'] = this.slug;
     data['website'] = this.website;
     data['worksWithInsurance'] = this.worksWithInsurance;
-    data['isOpen'] = this.isOpen;
+    data['open'] = this.open;
     data['opensAtHour'] = this.opensAtHour;
     data['closesAtHour'] = this.closesAtHour;
     data['opensAtMinutes'] = this.opensAtMinutes;
