@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
 import '../../../../infrastructure/model/response/product_option_model.dart';
 import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/paddings.dart';
 import '../../../../utils/constants/sized_box.dart';
+import '../../../../utils/constants/text.dart';
+import '../../../../utils/delegate/my_printer.dart';
+import '../../../../utils/delegate/navigate_utils.dart';
+import '../../../../utils/screen/ink_wrapper.dart';
 import '../../../../widgets/custom/app_button.dart';
+import '../../medicine_details_page/medicine_details_page.dart';
+import '../../product_details_page/test.dart';
 
 class ProductItem extends StatelessWidget {
   final Data? products;
@@ -22,7 +31,11 @@ class ProductItem extends StatelessWidget {
           padding: Paddings.paddingH16 + Paddings.paddingV10,
           child: GestureDetector(
             onTap: () {
-              print("details");
+              context
+                  .read<ProductOptionDetailsCubit>()
+                  .fetchProduct(products!.guid!);
+              iiii(products!.guid!);
+              Go.to(context, Example());
             },
             child: Container(
                 padding: EdgeInsets.all(12),

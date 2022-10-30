@@ -28,9 +28,7 @@ class LogRegButtons extends StatelessWidget {
 
   Widget loginButton(BuildContext context) {
     return AppButton(
-      onTap: () {
-        context.read<LoginCubit>().login(context);
-      },
+      onTap: () => context.read<LoginCubit>().login(context),
       text: MyText.enter,
       loading:
           (context.watch<LoginCubit>().state is LoginInProgress) ? true : false,

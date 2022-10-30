@@ -1,10 +1,5 @@
 // Dart imports:
-import 'dart:convert';
-
-import 'package:uikit/infrastructure/model/response/register_response.dart';
-import 'package:uikit/utils/extensions/index.dart';
-// Package imports:
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'package:uikit/infrastructure/model/response/register_response.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
@@ -14,40 +9,67 @@ import '../../utils/constants/result_keys.dart';
 import '../../utils/delegate/my_printer.dart';
 import '../config/dio_general.dart';
 import '../model/response/status_dynamic.dart';
+import '../services/hive_service.dart';
 
 class AuthProvider {
   static DioG get dioG => locator<DioG>();
 
+  static HiveService get _prefs => locator<HiveService>();
+
   static Future<StatusDynamic> login({
     required String? password,
     required String? email,
+    required String? fcmToken,
   }) async {
     StatusDynamic statusDynamic = StatusDynamic();
 
     var api = ApiKeys.login;
-    var url = Uri.parse(api);
 
-    var body = ApiKeys.loginBody(
-      password: password,
-      email: email,
-    );
+    var body =
+        ApiKeys.loginBody(password: password, email: email, fcmToken: fcmToken);
 
-    final response =
-        await http.post(url, headers: ApiKeys.headers, body: jsonEncode(body));
-    iiii(response.headers.toString());
-
+    final response = await dioG.dio.post(api, data: body);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
-      String? accessToken = response.headers['x-mask-jwt'];
-      String? refreshToken = response.headers['x-mask-refresh-jwt:'];
+      String? accessToken =
+          response.headers.map[ApiKeys.accessTokenDict]?.first;
+      String? refreshToken =
+          response.headers.map[ApiKeys.refreshTokenDict]?.first;
       Map<String, String?> tokens = {
         "accessToken": accessToken,
         "refreshToken": refreshToken,
       };
       statusDynamic.data = tokens;
-    } else {
-      eeee("Gijdedi");
-    }
+    } else {}
+    return statusDynamic;
+  }
+
+  static Future<StatusDynamic> refreshToken() async {
+    StatusDynamic statusDynamic = StatusDynamic();
+
+    var api = ApiKeys.refreshToken;
+    final headers = {
+      ApiKeys.refreshTokenDict: _prefs.refreshToken,
+      "Content-type": "application/json",
+      "Accept": "application/json"
+    };
+
+    final response = await dioG.dio.post(
+      api,
+      options: Options(headers: headers),
+    );
+    statusDynamic.statusCode = response.statusCode;
+    if (response.statusCode == ResultKey.successCode) {
+      String? accessToken =
+          response.headers.map[ApiKeys.accessTokenDict]?.first;
+      String? refreshToken =
+          response.headers.map[ApiKeys.refreshTokenDict]?.first;
+      Map<String, String?> tokens = {
+        "accessToken": accessToken,
+        "refreshToken": refreshToken,
+      };
+      statusDynamic.data = tokens;
+    } else {}
     return statusDynamic;
   }
 

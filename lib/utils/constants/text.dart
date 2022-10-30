@@ -23,6 +23,7 @@ class MyText {
 
   //register
   static const String email = "E-poçt";
+  static const String emailOrPassNotCorrect = "E-poçt və ya şifrə yanlışdır";
   static const String phone = "Mobil nömrə";
   static const String phone_hint = "+994 (__) ___-__-__";
   static const String password = "Şifrə";

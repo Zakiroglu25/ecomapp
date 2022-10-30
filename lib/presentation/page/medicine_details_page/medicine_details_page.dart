@@ -47,44 +47,6 @@ class MedicineDetailsPage extends StatelessWidget {
           return Center(child: Text("Alinmadi"));
         },
       ),
-      // body: Padding(
-      //   padding: const EdgeInsets.all(16.0),
-      //   child: ListView(
-      //     shrinkWrap: true,
-      //     children: [
-      //       AppField(
-      //         hint: "Dərman axtar",
-      //         suffixIcon: SvgPicture.asset(Assets.svgSearch),
-      //       ),
-      //       // SizedBox(
-      //       //     height: 48.0,
-      //       //     child: ListView.builder(
-      //       //       itemBuilder: (context, index) {
-      //       //         return Container(
-      //       //           width: 108.0,
-      //       //           decoration: BoxDecoration(
-      //       //             borderRadius: BorderRadius.circular(36.0),
-      //       //             color: MyColors.grey245,
-      //       //             shape: BoxShape.rectangle,
-      //       //           ),
-      //       //           child: Row(
-      //       //             crossAxisAlignment: CrossAxisAlignment.center,
-      //       //             mainAxisAlignment: MainAxisAlignment.center,
-      //       //             children: [
-      //       //               SvgPicture.asset(Assets.svgProduct),
-      //       //               MySizedBox.w10,
-      //       //               Text("Hamisi")
-      //       //             ],
-      //       //           ),
-      //       //         );
-      //       //       },
-      //       //       scrollDirection: Axis.horizontal,
-      //       //       itemCount: 20,
-      //       //     )),
-      //
-      //     ],
-      //   ),
-      // ),
     );
   }
 }

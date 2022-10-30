@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../utils/constants/app_text_styles.dart';
 import '../../utils/constants/colors.dart';
+import '../general/app_loading.dart';
 
 class AppButton extends StatelessWidget {
   final Color? color;
@@ -89,7 +90,7 @@ class AppButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
           child: Center(
             child: (loading ?? false)
-                ? CircularProgressIndicator()
+                ? AppLoading.white()
                 : Padding(
                     padding: Paddings.paddingH8,
                     child: (child ??

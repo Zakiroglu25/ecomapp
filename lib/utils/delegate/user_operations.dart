@@ -2,6 +2,7 @@ import 'package:uikit/utils/delegate/my_printer.dart';
 import 'package:uikit/utils/delegate/request_control.dart';
 
 import '../../infrastructure/config/dio_auth.dart';
+import '../../infrastructure/config/recorder.dart';
 import '../../infrastructure/data/account_provider.dart';
 import '../../infrastructure/model/locale/MyUser.dart';
 import '../../infrastructure/services/config_service.dart';
@@ -15,8 +16,7 @@ class UserOperations {
 
   static Future<void> configureUserDataWhenLogin(
       //MyUser user,
-      {
-      // required String fcmToken,
+      {required String fcmToken,
       required String accessToken,
       required String refreshToken,
       required String? path}) async {
@@ -24,56 +24,72 @@ class UserOperations {
     try {
       await _prefs.persistAccessToken(accessToken: accessToken);
       await _prefs.persistRefreshToken(refreshToken: refreshToken);
-      await _prefs.persistIsGuest(false);
       await _prefs.persistPath(path!);
-      await _prefs.persistIsLoggedIn(true);
-      // await _prefs.persistFcmToken(fcmToken: fcmToken);
-      if (locator.isRegistered(instance: await DioAuth.instance)) {
-        locator.unregister(instance: await DioAuth.instance);
-      }
-      locator.registerSingleton(await DioAuth.instance);
-      final result = await AccountProvider.fetchUserInfo(token: accessToken);
-      MyUser user = (result!.data as MyUser);
-      await _prefs.persistUser(user: user);
-      await _configs.persistEmail(email: user.email);
-      // locator.resetLazySingleton(instance: DioAuth.instance);
-
+      await configUserDataWhenOpenApp(
+          fcm: fcmToken, path: path, accessToken: accessToken);
       // await FirestoreDBService.readConfig();
       // await FirestoreDBService.saveUserPath(user, path, fcmToken, accessToken);
     } catch (e, s) {
       print("configureUserData e: $e => s: $s");
-      // Recorder.recordCatchError(e, s);
+      Recorder.recordCatchError(e, s);
     }
   }
 
-  static Future<bool> configUserDataWhenOpenApp({
-    required accessToken,
-  }) async {
-    wtf("1");
-    MyUser userData;
-    wtf("2");
+  static Future<bool> configUserDataWhenOpenApp(
+      {required accessToken, required fcm, String? path}) async {
     try {
-      wtf("3");
+      await register();
+      await _prefs.persistAccessToken(accessToken: accessToken);
       final result = await AccountProvider.fetchUserInfo(token: accessToken);
-      wtf(result.toString());
+      // final deleteAccountu =
+      //     await remoteConfig.getBool(SharedKeys.deleteAccount);
+      //bool deleteAccount = false;
+      // (await fireStore
+      //     .collection('app')
+      //     .doc("config")
+      //     //.collection(SharedKeys.deleteAccount)
+      //     .get()
+      //     .then((value) {
+      //   deleteAccount = value.data()![SharedKeys.deleteAccount] ?? false;
+      // }));
 
-      wtf("4");
       if (isSuccess(result!.statusCode)) {
-        wtf("5");
-        userData = result.data;
-        wtf("6");
-        await _prefs.persistUser(user: userData);
-        wtf("7");
-        iiii("configUserDataWhenOpenApp + userData" + userData.toString());
-        iiii("configUserDataWhenOpenApp + prefsuser" + _prefs.user.toString());
+        final MyUser user = result.data;
+        //userData.cargoBalance = "0.55";
+        //sorgu gonderilir ,xeta yaranarsa ve ya serverle bagli sehvlik olarsa
+        //server error sehifesini goterir
+        await _prefs.persistUser(user: user);
+        Recorder.setUser(user); //crashlyticse user melumatlarini gonderir
+        Recorder.setId("7777"); //crashlyticse id setted
+        Recorder.setUserFCMtoken(fcm); //fcm token setted
+        // checkAndAddAppMember(token: accessToken, user: user);
+
+        await _prefs.persistFcmToken(fcmToken: fcm);
         await _prefs.persistIsGuest(false);
         await _prefs.persistIsLoggedIn(true);
+        //await _prefs.persistDeleteAccount(deleteAccount);
+
+        // await FirestoreDBService.readConfig();
+        // if (path != null) {
+        //   await FirestoreDBService.saveUserPath(user, path, fcm, accessToken);
+        // }
         return true;
       } else
         return false;
     } catch (e, s) {
-      wtf("eeee configUserDataWhenOpenApp $e => $s");
+      Recorder.recordCatchError(e, s);
       return false;
+    }
+    // print("token: " + accessToken.toString());
+
+    //FirestoreDBService.saveUser(userData!);
+  }
+
+  static Future<void> register() async {
+    final dioAuth = await DioAuth.instance;
+    if (locator.isRegistered(instance: dioAuth)) {
+      await locator.unregister(instance: dioAuth);
+      locator.registerSingleton(dioAuth);
     }
   }
 }

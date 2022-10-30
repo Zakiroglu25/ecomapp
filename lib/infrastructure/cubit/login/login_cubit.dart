@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
@@ -75,10 +76,12 @@ class LoginCubit extends Cubit<LoginState> {
       // final email = "bxtyr1903@gmail.com";
       // final pass = 'Baxtiyar1993';
 
-      // final deviceCode = await _fcm.getToken();
+      //final deviceCode = await _fcm.getToken();
+      final fcmToken = 'token';
       final response = await AuthProvider.login(
         email: uEmail.valueOrNull,
         password: uPass.valueOrNull,
+        fcmToken: fcmToken,
       );
 
       if (response.statusCode.isSuccess) {
@@ -87,12 +90,12 @@ class LoginCubit extends Cubit<LoginState> {
           accessToken: tokens['accessToken'],
           refreshToken: tokens['refreshToken'],
           path: uPass.valueOrNull,
+          fcmToken: fcmToken,
         );
         Go.andRemove(context, Pager.app(showSplash: true));
         emit(LoginSuccess(''));
       } else {
-        Snack.display(
-            context: context, message: "e-mail ve ya şifrə yanlışdır");
+        Snack.display(context: context, message: MyText.emailOrPassNotCorrect);
         emit(LoginError());
       }
     } on SocketException catch (_) {

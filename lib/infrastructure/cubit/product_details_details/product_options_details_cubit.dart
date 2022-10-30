@@ -8,27 +8,28 @@ import '../../data/product_options_provider.dart';
 import 'product_details_state.dart';
 
 class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
-  ProductOptionDetailsCubit() : super(ProductOptionInitial());
+  ProductOptionDetailsCubit() : super(ProductODetailsInitial());
   bool paginationActive = false;
   int page = 1;
 
-  fetchProduct([bool loading = true]) async {
-    paginationActive = false;
-    if (loading) {
-      emit(ProductOptionInProgress());
-    }
+  fetchProduct(String guid) async {
+    wtf("cubit");
+
     try {
-      final result = await ProductOptionsProvider.getProduct(page);
+      wtf("cubit1");
+      final result = await ProductOptionsProvider.getByGuid(guid);
+      wtf("cubit2");
+      wtf("cubit"+result.statusCode.toString());
       if (isSuccess(result.statusCode)) {
-        emit(ProductOptionSuccess(result.data));
+        emit(ProductODetailsSuccess(result.data));
       } else {
-        emit(ProductOptionError());
+        emit(ProductODetailsError());
       }
     } on SocketException catch (_) {
-      emit(ProductOptionError());
+      emit(ProductODetailsError());
     } catch (e) {
       eeee("Product Option Error" + e.toString());
-      emit(ProductOptionError());
+      emit(ProductODetailsError());
     }
   }
 }
