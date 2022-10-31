@@ -86,11 +86,11 @@ class LoginCubit extends Cubit<LoginState> {
 
       if (response.statusCode.isSuccess) {
         final tokens = response.data;
+
         await UserOperations.configureUserDataWhenLogin(
           accessToken: tokens['accessToken'],
           refreshToken: tokens['refreshToken'],
           path: uPass.valueOrNull,
-          fcmToken: fcmToken,
         );
         Go.andRemove(context, Pager.app(showSplash: true));
         emit(LoginSuccess(''));

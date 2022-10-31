@@ -24,6 +24,7 @@ class ApiKeys {
 
   //user
   static const user = "$baseUrl/protected/customer/account";
+  static const devices = "$baseUrl/protected/customer/devices";
 
   //address
   static const getAddress = "$baseUrl/protected/customer/address-book";
@@ -79,6 +80,22 @@ class ApiKeys {
       "password": password,
       "phone": phone,
       "newsletterSubscription": ads,
+    };
+
+    map.removeWhere(
+        (key, value) => key == null || value == null || value == 'null');
+    return map;
+  }
+
+  static deviceBody({
+    required String? fcmToken,
+    required String? deviceTypeId,
+    required String? deviceName,
+  }) {
+    final map = {
+      "token": fcmToken,
+      "deviceTypeId": deviceTypeId,
+      "deviceName": deviceName
     };
 
     map.removeWhere(

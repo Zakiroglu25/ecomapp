@@ -1,4 +1,3 @@
-import 'package:uikit/utils/delegate/my_printer.dart';
 import 'package:uikit/utils/delegate/request_control.dart';
 
 import '../../infrastructure/config/dio_auth.dart';
@@ -6,6 +5,7 @@ import '../../infrastructure/config/recorder.dart';
 import '../../infrastructure/data/account_provider.dart';
 import '../../infrastructure/model/locale/MyUser.dart';
 import '../../infrastructure/services/config_service.dart';
+import '../../infrastructure/services/device_info_service.dart';
 import '../../infrastructure/services/hive_service.dart';
 import '../../locator.dart';
 
@@ -14,19 +14,27 @@ class UserOperations {
 
   static ConfigService get _configs => locator<ConfigService>();
 
+  static DeviceInfoService get _devInfo => locator<DeviceInfoService>();
+
   static Future<void> configureUserDataWhenLogin(
-      //MyUser user,
-      {required String fcmToken,
-      required String accessToken,
+      {required String accessToken,
       required String refreshToken,
       required String? path}) async {
-    //llll("configureUserData result result: " + user.toString());
     try {
       await _prefs.persistAccessToken(accessToken: accessToken);
       await _prefs.persistRefreshToken(refreshToken: refreshToken);
       await _prefs.persistPath(path!);
+
+      final deviceFcmToken = _devInfo.fcmToken;
+      final devicePlatformId = _devInfo.platformId;
+      final deviceName = await _devInfo.deviceName;
+
+      await AccountProvider.sendDevice(
+          deviceFcmToken: deviceFcmToken,
+          deviceName: deviceName,
+          deviceTypeId: devicePlatformId);
       await configUserDataWhenOpenApp(
-          fcm: fcmToken, path: path, accessToken: accessToken);
+          fcm: deviceFcmToken, path: path, accessToken: accessToken);
       // await FirestoreDBService.readConfig();
       // await FirestoreDBService.saveUserPath(user, path, fcmToken, accessToken);
     } catch (e, s) {

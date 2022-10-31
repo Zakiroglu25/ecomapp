@@ -54,6 +54,22 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String forgot = "Şifrəni unutmusuz ?";
   static const String are_u_sure_exit = "Çıxış etmək istədiyinizdən əminsiniz?";
 
+  //forgot pass
+  static const String enter_new_pass = 'Yeni şifrəni daxil edin';
+  static const String enter_new_pass_again = 'Yeni şifrəni təkrar daxil edin';
+  static const String your_pass_reseted =
+      'Sizin mövcud şifrəniz sıfırlandı. Yenisini təyin etmək xahiş olunur. Şifrənizi unutmayın.';
+  static const String we_have_sent_new_pass_email =
+      'Sizin mövcud şifrəniz sıfırlandı. Yeni şifrə e-poçt ünvanınıza göndərildi. Hesaba daxil olaraq şifrəni dəyişə bilərsiniz.';
+  static const String code = 'Kod';
+  static const String codeHasSent = 'Kod sizin e-poçt ünvanınıza göndərildi.';
+  static const String send = 'Göndər';
+  static const String searchX = 'Axtar 🔍';
+  static const String ok = 'OK';
+  static const String reject = 'İmtina';
+  static const String error = "Əməliyyat zamanı xəta yarandı!";
+  static const String unknownError = "Bilinməyən xəta yarandı!";
+
   //bottomnavigation
   static const String product = "Məhsullar";
   static const String favorite = "Seçilmişlər";

@@ -33,10 +33,10 @@ class RegisterCubit extends Cubit<RegisterState> {
 
       if (response == 200) {
         await UserOperations.configureUserDataWhenLogin(
-            refreshToken: '',
-            accessToken: response.toString(),
-            path: uPassMain.valueOrNull,
-            fcmToken: deviceCode);
+          refreshToken: '',
+          accessToken: response.toString(),
+          path: uPassMain.valueOrNull,
+        );
         emit(RegisterSuccess(""));
         Snack.display(context: context, message: "Qeydiyyat Uğurla tamamlandı");
         Go.to(context, Pager.login);

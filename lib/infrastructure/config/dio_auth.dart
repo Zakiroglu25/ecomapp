@@ -51,7 +51,7 @@ class JwtInterceptor extends Interceptor {
     // final sharedPrefs = await SharedPreferences.getInstance();
     final accessToken = _prefs.accessToken;
     if (accessToken != null) {
-      options.headers['Authorization'] = 'Bearer $accessToken';
+      options.headers['x-mask-jwt'] = '$accessToken';
     }
 
     return handler.next(options);
@@ -83,7 +83,10 @@ class JwtInterceptor extends Interceptor {
       {required ErrorInterceptorHandler handler,
       required Response? response}) async {
     final res = await AuthProvider.refreshToken();
+
     if (res.statusCode.isSuccess && response != null) {
+      final accessToken = res.data['accessToken'];
+      _prefs.persistAccessToken(accessToken: accessToken);
       handler.resolve(response);
     }
   }
@@ -98,10 +101,12 @@ class JwtInterceptor extends Interceptor {
   }
 
   Future<Response<dynamic>> _retry(RequestOptions requestOptions) async {
-    final options = new Options(
+    final options = Options(
       method: requestOptions.method,
       headers: requestOptions.headers,
     );
+
+    options.headers!['x-mask-jwt'] = _prefs.accessToken;
 
     return await dioG.dio.request<dynamic>(requestOptions.path,
         data: requestOptions.data,

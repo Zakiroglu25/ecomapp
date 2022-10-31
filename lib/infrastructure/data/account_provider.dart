@@ -29,4 +29,25 @@ class AccountProvider {
     }
     return statusDynamic;
   }
+
+  static Future<StatusDynamic?> sendDevice({
+    required String? deviceFcmToken,
+    required String? deviceTypeId,
+    required String? deviceName,
+  }) async {
+    StatusDynamic<MyUser> statusDynamic = StatusDynamic<MyUser>();
+    var api = ApiKeys.devices;
+    final data = ApiKeys.deviceBody(
+        fcmToken: deviceFcmToken,
+        deviceTypeId: deviceTypeId,
+        deviceName: deviceName);
+    final response = await dioAuth.dio.post(api, data: data);
+
+    statusDynamic.statusCode = response.statusCode;
+    if (response.statusCode == ResultKey.successCode) {
+    } else {
+      eeee("sendDevice bad url :$api, response: ${response}");
+    }
+    return statusDynamic;
+  }
 }
