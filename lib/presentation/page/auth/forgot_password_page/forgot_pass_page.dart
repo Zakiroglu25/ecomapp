@@ -36,34 +36,34 @@ class ForgetPasswordPage extends StatelessWidget {
                     stepCount: 3, current: 10,
                     // current: forgotCubit.currentIndex,
                   ),
-                  BlocBuilder<ForgotPassCubit, ForgotPassState>(
-                      buildWhen: (context, state) {
-                    if (state is ForgotPassInProgress) {
-                      return false;
-                    }
-                    if (state is ForgotPassError) {
-                      return false;
-                    } else
-                      return true;
-                  }, builder: (context, state) {
-                    if (state is ForgotPassEnterMail) {
-                      return FadeIn(key: Key("a"), child: EnterMailBody());
-                    }
-                    if (state is ForgotPassEnterCode) {
-                      return FadeInRight(
-                          duration: Duration(milliseconds: 500),
-                          key: Key("b"),
-                          child: EnterCodeBody());
-                    }
-                    if (state is ForgotPassChanged) {
-                      return FadeInRight(
-                          duration: Duration(milliseconds: 500),
-                          key: Key("c"),
-                          child: PassChangedBody());
-                    } else {
-                      return CaspaLoading.blue();
-                    }
-                  })
+                  // BlocBuilder<ForgotPassCubit, ForgotPassState>(
+                  //     buildWhen: (context, state) {
+                  //   if (state is ForgotPassInProgress) {
+                  //     return false;
+                  //   }
+                  //   if (state is ForgotPassError) {
+                  //     return false;
+                  //   } else
+                  //     return true;
+                  // }, builder: (context, state) {
+                  //   if (state is ForgotPassEnterMail) {
+                  //     return FadeIn(key: Key("a"), child: EnterMailBody());
+                  //   }
+                  //   if (state is ForgotPassEnterCode) {
+                  //     return FadeInRight(
+                  //         duration: Duration(milliseconds: 500),
+                  //         key: Key("b"),
+                  //         child: EnterCodeBody());
+                  //   }
+                  //   if (state is ForgotPassChanged) {
+                  //     return FadeInRight(
+                  //         duration: Duration(milliseconds: 500),
+                  //         key: Key("c"),
+                  //         child: PassChangedBody());
+                  //   } else {
+                  //     return CaspaLoading.blue();
+                  //   }
+                  // })
                 ],
               ),
               const ForgotMainButton()
