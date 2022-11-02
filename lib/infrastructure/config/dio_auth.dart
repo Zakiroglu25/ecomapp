@@ -7,6 +7,7 @@ import '../services/hive_service.dart';
 
 class DioAuth {
   static HiveService get _prefs => locator<HiveService>();
+
   static DioAuth? _instance;
   static late Dio dioAuth;
 
@@ -18,12 +19,10 @@ class DioAuth {
     dioAuth = Dio(
       BaseOptions(
         baseUrl: ApiKeys.baseUrl,
-        contentType: 'application/json',
+        // contentType: 'application/json',
         queryParameters: {"Accept": "application/json"},
         followRedirects: true,
-        headers: ApiKeys.header(
-            token:
-                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkb2N0b3JvIiwiYXVkIjoiZG9jdG9ybyIsInN1YiI6IjJjMDk1ZWU0LWU4ZTAtNDk1ZC1hMDU2LWQ4ZjgyYzdmMWUzNiIsImN1c3RvbWVyR3VpZCI6IjJjMDk1ZWU0LWU4ZTAtNDk1ZC1hMDU2LWQ4ZjgyYzdmMWUzNiIsImlzVGVtcCI6ZmFsc2UsImV4cCI6MTY2Njk0NjY0NH0.vYqommPEdJzJw0gNKgegZZto_AyYleJvYkJojdeoMDCGO131A3DCCuzi7--IvVrFLA1ZJ4VM6lJ03u_V6zOaIQ"),
+        headers: ApiKeys.header(token: _prefs.accessToken),
         validateStatus: (status) {
           //  return status! < 500;
           return true;
@@ -40,9 +39,9 @@ class DioAuth {
 class JwtInterceptor extends Interceptor {
   @override
   void onRequest(
-    RequestOptions options,
-    RequestInterceptorHandler handler,
-  ) async {
+      RequestOptions options,
+      RequestInterceptorHandler handler,
+      ) async {
     // final sharedPrefs = await SharedPreferences.getInstance();
     // final accessToken = sharedPrefs.getString('accessToken');
 
@@ -56,7 +55,6 @@ class JwtInterceptor extends Interceptor {
 
 class CustomInterceptors extends Interceptor {
   HiveService get _prefs => locator<HiveService>();
-
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     print('REQUEST[${options.method}] => PATH: ${options.path}');

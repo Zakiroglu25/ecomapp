@@ -10,7 +10,6 @@ import '../../../../utils/delegate/navigate_utils.dart';
 import '../../../../utils/delegate/pager.dart';
 import '../../../../widgets/custom/product_and_other_widget.dart';
 import '../../../../widgets/custom/text_title_big.dart';
-import '../../medicine_details_page/medicine_details_page.dart';
 import 'bad_and_vitamin.dart';
 import 'pasha_item.dart';
 import 'search_field.dart';

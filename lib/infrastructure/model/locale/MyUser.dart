@@ -4,7 +4,7 @@ class MyUser {
   String? firstName;
   num? patronymic;
   String? lastName;
-  num? birthDate;
+  String? birthDate;
   num? finCode;
   num? insuranceId;
   bool? newsletterSubscription;

@@ -1,10 +1,11 @@
-import 'package:doctoro/infrastructure/cubit/map/map_store_cubit.dart';
-import 'package:doctoro/utils/delegate/navigate_utils.dart';
+import 'dart:convert';
+
+import 'package:uikit/infrastructure/cubit/map/map_store_cubit.dart';
+import 'package:uikit/utils/delegate/navigate_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 import '../../../infrastructure/config/dio_auth.dart';
 import '../../../infrastructure/cubit/map/map_store_state.dart';
@@ -43,7 +44,7 @@ class _MapPageState extends State<MapPage> {
                 markerId: MarkerId(maps.toString()),
                 position: showLocation!, //position of marker
                 infoWindow: InfoWindow(
-                  onTap: (){
+                  onTap: () {
                     Go.to(context, MapDetailsPage(element));
                   },
                   title: "Aptekə keçid elə",

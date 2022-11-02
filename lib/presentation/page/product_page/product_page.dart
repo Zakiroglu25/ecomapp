@@ -1,4 +1,4 @@
-import 'package:doctoro/widgets/doctoro_appbar/doctoro_appbar.dart';
+import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/appbar_address_widget.dart';
@@ -9,22 +9,16 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Scaffold(
-          appBar: DoctorAppbar(
-            contextA: context,
-            title: '',
-            user: true,
-            notification: true,
-            filter: false,
-          ),
-          body: ProductBody(),
-        ),
-        AppBarAddressWidget(),
-      ],
+    return Scaffold(
+      appBar: DoctorAppbar(
+        addressDropdown: true,
+        contextA: context,
+        title: '',
+        user: true,
+        notification: true,
+        filter: false,
+      ),
+      body: ProductBody(),
     );
   }
 }
-
-

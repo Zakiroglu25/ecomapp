@@ -15,7 +15,7 @@ part 'register_state.dart';
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());
 
-   void register(BuildContext context) {
+  void register(BuildContext context) {
     registerPersonal(context);
   }
 
@@ -23,6 +23,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     emit(RegisterLoading());
     try {
       // final deviceCode = await _firebaseMessaging.getToken();
+      final deviceCode = 'token';
       final response = await AuthProvider.registration(
         email: uEmail.valueOrNull,
         phone: phone.valueOrNull,
@@ -32,7 +33,10 @@ class RegisterCubit extends Cubit<RegisterState> {
 
       if (response == 200) {
         await UserOperations.configureUserDataWhenLogin(
-            accessToken: response.toString(), path: uPassMain.valueOrNull);
+          refreshToken: '',
+          accessToken: response.toString(),
+          path: uPassMain.valueOrNull,
+        );
         emit(RegisterSuccess(""));
         Snack.display(context: context, message: "Qeydiyyat Uğurla tamamlandı");
         Go.to(context, Pager.login);

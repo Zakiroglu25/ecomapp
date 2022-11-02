@@ -1,7 +1,7 @@
-import 'package:doctoro/utils/constants/border_radius.dart';
-import 'package:doctoro/utils/constants/colors.dart';
-import 'package:doctoro/utils/constants/sized_box.dart';
-import 'package:doctoro/widgets/main/cupperfold/widgets/custom_cupertino_sliver_navigation_bar.dart';
+import 'package:uikit/utils/constants/border_radius.dart';
+import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/widgets/main/cupperfold/widgets/custom_cupertino_sliver_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

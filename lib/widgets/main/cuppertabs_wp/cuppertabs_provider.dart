@@ -1,5 +1,5 @@
-import 'package:doctoro/utils/constants/colors.dart';
-import 'package:doctoro/widgets/custom/app_tab.dart';
+import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/widgets/custom/app_tab.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/text.dart';

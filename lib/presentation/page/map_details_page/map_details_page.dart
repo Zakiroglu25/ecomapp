@@ -1,4 +1,4 @@
-import 'package:doctoro/infrastructure/model/response/map_medicine.dart';
+import 'package:uikit/infrastructure/model/response/map_medicine.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/colors.dart';
@@ -10,7 +10,7 @@ import 'widget/map_details_header.dart';
 class MapDetailsPage extends StatelessWidget {
   final MapMedicine? maps;
 
-   MapDetailsPage(this.maps, {Key? key}) : super(key: key);
+  MapDetailsPage(this.maps, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

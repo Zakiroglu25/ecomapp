@@ -1,7 +1,7 @@
-import 'package:doctoro/utils/constants/app_text_styles.dart';
-import 'package:doctoro/utils/constants/colors.dart';
-import 'package:doctoro/utils/constants/sized_box.dart';
-import 'package:doctoro/utils/screen/ink_wrapper.dart';
+import 'package:uikit/utils/constants/app_text_styles.dart';
+import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/utils/screen/ink_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -34,6 +34,7 @@ class ProductAndOtherWidget extends StatelessWidget {
       child: Container(
         padding: Paddings.paddingA20,
         width: w,
+        height: 167,
         decoration: BoxDecoration(
           color: color!,
           borderRadius: BorderRadius.circular(12),
@@ -43,7 +44,7 @@ class ProductAndOtherWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(width: 56, height: 56, child: Image.asset(imageUrl!)),
+            SizedBox(width: 56.w, height: 56.h, child: Image.asset(imageUrl!)),
             MySizedBox.h4,
             Text(
               title!,

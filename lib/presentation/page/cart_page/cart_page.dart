@@ -1,8 +1,8 @@
-import 'package:doctoro/presentation/page/cart_page/tabs/delivery_tab/delivery_tab.dart';
-import 'package:doctoro/presentation/page/cart_page/tabs/orders_tab/orders_tab.dart';
-import 'package:doctoro/presentation/page/cart_page/tabs/waiting_tab/waiting_tab.dart';
-import 'package:doctoro/utils/constants/assets.dart';
-import 'package:doctoro/utils/constants/text.dart';
+import 'package:uikit/presentation/page/cart_page/tabs/delivery_tab/delivery_tab.dart';
+import 'package:uikit/presentation/page/cart_page/tabs/orders_tab/orders_tab.dart';
+import 'package:uikit/presentation/page/cart_page/tabs/waiting_tab/waiting_tab.dart';
+import 'package:uikit/utils/constants/assets.dart';
+import 'package:uikit/utils/constants/text.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/custom/app_tab.dart';

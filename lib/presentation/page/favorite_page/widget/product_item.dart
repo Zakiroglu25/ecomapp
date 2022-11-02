@@ -1,4 +1,3 @@
-import 'package:doctoro/utils/delegate/my_printer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,6 +11,7 @@ import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/paddings.dart';
 import '../../../../utils/constants/sized_box.dart';
 import '../../../../utils/constants/text.dart';
+import '../../../../utils/delegate/my_printer.dart';
 import '../../../../utils/delegate/navigate_utils.dart';
 import '../../../../utils/screen/ink_wrapper.dart';
 import '../../../../widgets/custom/app_button.dart';

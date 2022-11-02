@@ -1,12 +1,14 @@
 // Flutter imports:
 
-import 'package:doctoro/widgets/doctoro_appbar/widgets/filter.dart';
+import 'package:uikit/widgets/doctoro_appbar/widgets/filter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:focus_detector/focus_detector.dart';
 
+import '../../presentation/page/product_page/widgets/appbar_address_widget.dart';
 import '../../utils/constants/app_text_styles.dart';
 import '../../utils/constants/colors.dart';
+import '../../utils/constants/paddings.dart';
 import '../../utils/constants/sized_box.dart';
 import '../../utils/screen/widget_or_empty.dart';
 import 'widgets/actions_button.dart';
@@ -29,11 +31,13 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
   final Function? onTapActions;
   final bool? centerTitle;
   final Color? color;
+  final bool? addressDropdown;
 
   DoctorAppbar(
       {required this.title,
       @required this.user,
       this.notification,
+      this.addressDropdown,
       this.exitButton,
       this.actions,
       this.color,
@@ -69,14 +73,16 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
                       onBack: onBack,
                     ),
                   ),
-            Center(
-              child: Text(
-                title!,
-                overflow: TextOverflow.ellipsis,
-                style: AppTextStyles.sfPro600
-                    .copyWith(fontSize: 17.sp, color: MyColors.black),
-              ),
-            ),
+            addressDropdown == false
+                ? Center(
+                    child: Text(
+                      title!,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTextStyles.sfPro600
+                          .copyWith(fontSize: 17.sp, color: MyColors.black),
+                    ),
+                  )
+                : AppBarAddressWidget(),
             rightButtonsRow(context),
           ],
         ),

@@ -9,7 +9,6 @@ import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sized_box.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../widgets/custom/app_button.dart';
-import '../../../widgets/general/empty_widget.dart';
 import '../../../widgets/main/cupperfold/cupperfold.dart';
 import 'widget/add_bank_kart.dart';
 

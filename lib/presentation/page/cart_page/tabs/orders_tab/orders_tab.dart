@@ -1,9 +1,9 @@
-import 'package:doctoro/presentation/page/cart_page/widgets/cart_product/cart_product.dart';
-import 'package:doctoro/presentation/page/cart_page/widgets/cart_total_box/cart_total_box.dart';
-import 'package:doctoro/utils/constants/mock.dart';
-import 'package:doctoro/utils/constants/paddings.dart';
-import 'package:doctoro/utils/constants/physics.dart';
-import 'package:doctoro/utils/constants/sized_box.dart';
+import 'package:uikit/presentation/page/cart_page/widgets/cart_product/cart_product.dart';
+import 'package:uikit/presentation/page/cart_page/widgets/cart_total_box/cart_total_box.dart';
+import 'package:uikit/utils/constants/mock.dart';
+import 'package:uikit/utils/constants/paddings.dart';
+import 'package:uikit/utils/constants/physics.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../widgets/custom/listview_separated.dart';

@@ -14,7 +14,7 @@ class AppBarAddressWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 50,
+      top: 0,
       left: 60,
       right: 90,
       child: Container(

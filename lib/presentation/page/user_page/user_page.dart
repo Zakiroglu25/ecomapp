@@ -1,4 +1,4 @@
-import 'package:doctoro/utils/constants/app_text_styles.dart';
+import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 import '../../../infrastructure/services/hive_service.dart';
@@ -22,10 +22,7 @@ class _PageViewExampleState extends State<PageViewExample> {
 
   final cards = [
     Test(),
-    Test(),
-    Test(),
-    Test(),
-    Test(),
+
   ];
 
   @override
@@ -34,7 +31,7 @@ class _PageViewExampleState extends State<PageViewExample> {
       backgroundColor: MyColors.red250,
       body: PageView.builder(
           controller: _pageViewController,
-          itemCount: 3,
+          itemCount: cards.length,
           physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics()),
           onPageChanged: (index) {
@@ -62,6 +59,7 @@ class _PageViewExampleState extends State<PageViewExample> {
 
 class Test extends StatelessWidget {
 
+  HiveService get _prefs => locator<HiveService>();
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +75,7 @@ class Test extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,7 +91,19 @@ class Test extends StatelessWidget {
                       Icon(Icons.edit)
                     ],
                   ),
-                  Text("_prefs.user.phone!")
+                  Text("Ad"),
+                  Text(_prefs.user.firstName!),
+                  Text("Soyad"),
+                  Text(_prefs.user.lastName!),
+                  Text("Dogum Tarixi"),
+                  Text(_prefs.user.birthDate!),
+                  Text("Seriya Nomresi"),
+                  Text("Boshdur"),
+                  // if(_prefs.user.insuranceId! != null)
+                  // Text(_prefs.user.insuranceId!.toString()),
+
+
+
                 ],
               ),
             )),

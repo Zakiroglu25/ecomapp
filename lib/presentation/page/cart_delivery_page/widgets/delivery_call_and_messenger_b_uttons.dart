@@ -1,6 +1,6 @@
-import 'package:doctoro/utils/constants/assets.dart';
-import 'package:doctoro/utils/constants/sized_box.dart';
-import 'package:doctoro/utils/constants/text.dart';
+import 'package:uikit/utils/constants/assets.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/utils/constants/text.dart';
 import 'package:flutter/material.dart';
 
 import 'cart_circle_button_with_title.dart';

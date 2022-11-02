@@ -1,16 +1,19 @@
 import 'dart:convert';
 
-import 'package:doctoro/infrastructure/model/response/status_dynamic.dart';
-import 'package:doctoro/utils/constants/result_keys.dart';
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
+import '../../utils/constants/result_keys.dart';
 import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
 import '../model/response/product_option_details_model.dart';
 import '../model/response/product_option_model.dart';
 import 'package:http/http.dart' as http;
 
+import '../model/response/status_dynamic.dart';
+import '../services/hive_service.dart';
+
 class ProductOptionsProvider {
+  static HiveService get _prefs => locator<HiveService>();
   static DioAuth get dioAuth => locator<DioAuth>();
 
   static Future<StatusDynamic> getProduct(int page) async {
@@ -33,7 +36,7 @@ class ProductOptionsProvider {
   static Future<ProductOptionDetailsModel?> getByGuid(String guid) async {
     ProductOptionDetailsModel? productOptionDetailsModel;
     const api = ApiKeys.productOptionsGuid;
-    const headers = ApiKeys.headers;
+     var headers = ApiKeys.header(token: _prefs.accessToken);
     var url = Uri.parse(api + '/$guid');
     final response = await http.get(url, headers: headers);
     wtf(response.body);
@@ -41,7 +44,6 @@ class ProductOptionsProvider {
       final comeJson = jsonDecode(response.body);
       productOptionDetailsModel = ProductOptionDetailsModel.fromJson(comeJson);
       wtf(productOptionDetailsModel.guid.toString());
-
     } else {
       eeee("address List:  url: $api , response: ${response.body}");
     }

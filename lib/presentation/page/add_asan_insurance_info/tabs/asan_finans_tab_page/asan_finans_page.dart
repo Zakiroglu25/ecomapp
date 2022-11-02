@@ -1,5 +1,5 @@
-import 'package:doctoro/widgets/custom/app_button.dart';
-import 'package:doctoro/widgets/general/doctoro_field.dart';
+import 'package:uikit/widgets/custom/app_button.dart';
+import 'package:uikit/widgets/general/app_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../infrastructure/cubit/register/register_cubit.dart';
 import '../../../../../utils/constants/text.dart';
-import '../../../../../widgets/general/doctoro_field.dart';
+import '../../../../../widgets/general/app_field.dart';
 
 class EmailFieldRegister extends StatelessWidget {
   final TextEditingController? controller;

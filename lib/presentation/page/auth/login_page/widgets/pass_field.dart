@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../infrastructure/cubit/login/login_cubit.dart';
 import '../../../../../utils/constants/text.dart';
-import '../../../../../widgets/general/doctoro_field.dart';
+import '../../../../../widgets/general/app_field.dart';
 import '../../../../../widgets/icons/invisible_icon.dart';
 import '../../../../../widgets/icons/visible_icon.dart';
 

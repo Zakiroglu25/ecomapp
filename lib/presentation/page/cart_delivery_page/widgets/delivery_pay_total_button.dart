@@ -1,6 +1,5 @@
-import 'package:doctoro/utils/extensions/context.dart';
-import 'package:doctoro/utils/extensions/word.dart';
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../../utils/constants/text.dart';
 import '../../../../widgets/custom/app_button.dart';

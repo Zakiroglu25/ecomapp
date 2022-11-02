@@ -1,4 +1,4 @@
-import 'package:doctoro/infrastructure/model/response/map_medicine.dart';
+import '../../model/response/map_medicine.dart';
 
 abstract class MapStoreState {}
 

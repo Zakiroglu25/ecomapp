@@ -1,4 +1,4 @@
-import 'package:doctoro/presentation/page/cart_delivery_page/widgets/recipe_image_button.dart';
+import 'package:uikit/presentation/page/cart_delivery_page/widgets/recipe_image_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/constants/app_text_styles.dart';

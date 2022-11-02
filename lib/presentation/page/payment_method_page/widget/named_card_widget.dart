@@ -1,5 +1,5 @@
-import 'package:doctoro/utils/constants/sized_box.dart';
-import 'package:doctoro/widgets/general/doctoro_field.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/widgets/general/app_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,6 +21,7 @@ class NamedAndSaveWidget extends StatelessWidget {
       appBar: DoctorAppbar(
         title: 'Ödəniş üsulu əlavə et',
         notification: false,
+        addressDropdown: false,
         user: false,
         filter: false,
         contextA: context,

@@ -1,4 +1,4 @@
-import 'package:doctoro/utils/constants/sized_box.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/assets.dart';

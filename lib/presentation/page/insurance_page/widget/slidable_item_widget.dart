@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 import '../../../../utils/constants/app_text_styles.dart';
@@ -60,7 +61,7 @@ class SlidableWidget extends StatelessWidget {
                   ),
                   MySizedBox.h4,
                   SizedBox(
-                    width: 160,
+                    width: 158.w,
                     child: Text("$subTitle", style: AppTextStyles.sfPro400s14),
                   ),
                 ],
@@ -68,8 +69,8 @@ class SlidableWidget extends StatelessWidget {
               Spacer(),
               if (status == 1)
                 Container(
-                  width: 82,
-                  height: 32,
+                  width: 82.w,
+                  height: 32.h,
                   decoration: BoxDecoration(
                     color: MyColors.green85,
                     borderRadius: BorderRadius.circular(24),
@@ -81,8 +82,8 @@ class SlidableWidget extends StatelessWidget {
                 ),
               if (status == 2)
                 Container(
-                  width: 82,
-                  height: 32,
+                  width: 82.w,
+                  height: 32.h,
                   decoration: BoxDecoration(
                     color: MyColors.orange242,
                     borderRadius: BorderRadius.circular(24),
@@ -94,8 +95,8 @@ class SlidableWidget extends StatelessWidget {
                 ),
               if (status == 3)
                 Container(
-                  width: 82,
-                  height: 32,
+                  width: 82.w,
+                  height: 32.h,
                   decoration: BoxDecoration(
                     color: MyColors.darkRED,
                     borderRadius: BorderRadius.circular(24),
@@ -112,4 +113,5 @@ class SlidableWidget extends StatelessWidget {
     );
   }
 }
+
 void doNothing(BuildContext context) {}

@@ -1,14 +1,13 @@
 // Flutter imports:
 
-import 'package:doctoro/infrastructure/cubit/address/address_cubit.dart';
-import 'package:doctoro/infrastructure/cubit/map/map_store_cubit.dart';
-import 'package:doctoro/presentation/page/auth/forgot_password_page/forgot_pass_page.dart';
-import 'package:doctoro/presentation/page/delivery_address_page/delivery_address_page.dart';
-import 'package:doctoro/presentation/page/landing_page/landing_page.dart';
-import 'package:doctoro/presentation/page/map_medicine_page/map_medicine_page.dart';
-import 'package:doctoro/utils/delegate/my_printer.dart';
+import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
+import 'package:uikit/infrastructure/cubit/map/map_store_cubit.dart';
+import 'package:uikit/presentation/page/auth/forgot_password_page/forgot_pass_page.dart';
+import 'package:uikit/presentation/page/delivery_address_page/delivery_address_page.dart';
+import 'package:uikit/presentation/page/landing_page/landing_page.dart';
+import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart';
+import 'package:uikit/utils/delegate/my_printer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 import '../../app.dart';
 import '../../infrastructure/cubit/authentication/authentication_cubit.dart';

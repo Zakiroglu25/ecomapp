@@ -1,10 +1,10 @@
-import 'package:doctoro/presentation/page/contact_page/contact_page.dart';
-import 'package:doctoro/utils/constants/paddings.dart';
-import 'package:doctoro/utils/constants/sized_box.dart';
-import 'package:doctoro/utils/delegate/navigate_utils.dart';
-import 'package:doctoro/utils/delegate/pager.dart';
-import 'package:doctoro/widgets/doctoro_appbar/doctoro_appbar.dart';
-import 'package:doctoro/widgets/main/cupperfold/cupperfold.dart';
+import 'package:uikit/presentation/page/contact_page/contact_page.dart';
+import 'package:uikit/utils/constants/paddings.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/utils/delegate/navigate_utils.dart';
+import 'package:uikit/utils/delegate/pager.dart';
+import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
+import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -89,17 +89,17 @@ class OtherPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ///bu olmayacaq
-                 ProductAndOtherWidget(
-                                  onTap: () {
-                                    Go.to(context, SettingsPage());
-                                  },
-                                  color: MyColors.grey245,
-                                  h: 167.h,
-                                  w: 167.w,
-                                  imageUrl: Assets.pngSeting3x,
-                                  title: MyText.settings,
-                                  desc: MyText.demoSubtitle,
-                                ),
+                ProductAndOtherWidget(
+                  onTap: () {
+                    Go.to(context, SettingsPage());
+                  },
+                  color: MyColors.grey245,
+                  h: 167.h,
+                  w: 167.w,
+                  imageUrl: Assets.pngSeting3x,
+                  title: MyText.settings,
+                  desc: MyText.demoSubtitle,
+                ),
                 // ProductAndOtherWidget(
                 //   color: MyColors.green77,
                 //   h: 167.h,
@@ -134,7 +134,6 @@ class OtherPage extends StatelessWidget {
                   title: MyText.questionAnswer,
                   desc: MyText.demoSubtitle,
                 ),
-
               ],
             ),
             MySizedBox.h100

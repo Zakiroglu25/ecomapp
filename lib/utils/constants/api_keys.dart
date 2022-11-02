@@ -1,10 +1,11 @@
 // Flutter imports:
-import 'dart:io';
+
+import 'package:uikit/infrastructure/config/configs.dart';
 
 class ApiKeys {
   ApiKeys._();
 
-  static const baseUrl = 'https://doctoro-dev.ml';
+  static const baseUrl = 'https://doctoro${Configs.enviroment}.ml';
 
   ///delete
   static const headers = {
@@ -16,12 +17,14 @@ class ApiKeys {
 
   //reg and login
   static const login = "$baseUrl/public/auth/login";
+  static const refreshToken = "$baseUrl/public/auth/refresh-token";
 
   // register
   static const registerPersonal = "$baseUrl/public/onboarding/sign-up";
 
   //user
   static const user = "$baseUrl/protected/customer/account";
+  static const devices = "$baseUrl/protected/customer/devices";
 
   //address
   static const getAddress = "$baseUrl/protected/customer/address-book";
@@ -38,8 +41,10 @@ class ApiKeys {
 
   //product_options
   static const productOptions = "$baseUrl/protected/product-options/search";
+
   //get product guid
   static const productOptionsGuid = "$baseUrl/protected/product-options";
+
   //get category tree
   static const getCategoryTree = "$baseUrl/protected/content/category-tree";
   static const getAllManufacturers = "$baseUrl/protected/content/manufacturers";
@@ -47,6 +52,7 @@ class ApiKeys {
   static loginBody({
     required String? email,
     required String? password,
+    String? fcmToken,
     // required String? device_name,
     // required String? language,
     // required int? deviceTypeId,
@@ -59,7 +65,7 @@ class ApiKeys {
       // "device_name": device_name,
       // "deviceName": device_name,
       // "deviceTypeId": deviceTypeId,
-      // "deviceCode": deviceCode,
+      // "deviceCode": fcmToken,
       // "language": language,
     };
 
@@ -79,6 +85,22 @@ class ApiKeys {
       "password": password,
       "phone": phone,
       "newsletterSubscription": ads,
+    };
+
+    map.removeWhere(
+        (key, value) => key == null || value == null || value == 'null');
+    return map;
+  }
+
+  static deviceBody({
+    required String? fcmToken,
+    required String? deviceTypeId,
+    required String? deviceName,
+  }) {
+    final map = {
+      "token": fcmToken,
+      "deviceTypeId": deviceTypeId,
+      "deviceName": deviceName
     };
 
     map.removeWhere(
@@ -137,4 +159,8 @@ class ApiKeys {
         (key, value) => key == null || value == null || value == 'null');
     return map;
   }
+
+  //dictionary
+  static const refreshTokenDict = 'x-mask-refresh-jwt';
+  static const accessTokenDict = 'x-mask-jwt';
 }

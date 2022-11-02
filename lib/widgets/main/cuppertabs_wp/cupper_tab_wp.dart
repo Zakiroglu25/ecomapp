@@ -1,4 +1,4 @@
-import 'package:doctoro/widgets/custom/app_tab.dart';
+import 'package:uikit/widgets/custom/app_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

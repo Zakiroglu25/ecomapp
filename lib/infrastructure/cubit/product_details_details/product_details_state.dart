@@ -1,5 +1,4 @@
-import 'package:doctoro/infrastructure/model/response/address_model.dart';
-import 'package:doctoro/infrastructure/model/response/product_option_model.dart';
+import '../../model/response/product_option_model.dart';
 
 import '../../model/response/product_option_details_model.dart';
 
