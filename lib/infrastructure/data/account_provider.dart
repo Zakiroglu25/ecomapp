@@ -50,4 +50,44 @@ class AccountProvider {
     }
     return statusDynamic;
   }
+
+  //User Update
+
+  static Future<StatusDynamic?> updateUserInfo({
+    required String? phone,
+    required String? email,
+    required String? name,
+    required String? patronymic,
+    required String? birthday,
+    required String? finCode,
+    required int? insuranceId,
+    required bool? newsletterSubscription,
+  }) async {
+    StatusDynamic statusDynamic = StatusDynamic();
+    var api = ApiKeys.user;
+    final body = ApiKeys.updateAccountBody(
+      phone: phone,
+      email: email,
+      name: name,
+      finCode: finCode,
+      birthday: birthday,
+      patronymic: patronymic,
+      insuranceId: insuranceId,
+      newsletterSubscription: false,
+    );
+
+    final response = await dioAuth.dio.post(api,
+        data: body, options: Options(headers: {'Accept': "application/json"}));
+    statusDynamic.statusCode = response.statusCode;
+    statusDynamic.data = response.data;
+    if (response.statusCode == ResultKey.successCode) {
+      statusDynamic.data = response.data;
+    } else {
+      statusDynamic.data = response.data['errors'][0][0];
+      eeee("updateAccountBody bad url :$api, response: ${response.data}");
+    }
+    return statusDynamic;
+  }
+//User Update
+
 }

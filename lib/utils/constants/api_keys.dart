@@ -109,35 +109,24 @@ class ApiKeys {
   }
 
   static updateAccountBody({
-    required String? address,
-    required String? language,
-    required String? email,
-    required String? password,
-    required String? old_password,
-    required String? password_confirmation,
     required String? phone,
-    //required int? accept,
-    required String? id_number,
-    required String? fin,
+    required String? email,
+    required String? name,
+    required String? patronymic,
     required String? birthday,
-    required String? company_name,
-    required String? tax_number,
-    required int? ware_house,
+    required String? finCode,
+    required int? insuranceId,
+    required bool? newsletterSubscription,
   }) {
     final map = {
-      "password": password,
-      "password_confirmation": password_confirmation,
-      "birthday": birthday,
-      "id_number": id_number,
-      "fin": fin,
-      "city": 1,
-      "address": address,
-      "email": email,
-      "company_name": company_name,
-      "tax_number": tax_number,
       "phone": phone,
-      "ware_house": 1,
-      "language": language
+      "email": email,
+      "firstName": name,
+      "patronymic": patronymic,
+      "birthday": birthday,
+      "finCode": finCode,
+      "insuranceId": insuranceId,
+      "newsletterSubscription": newsletterSubscription,
     };
 
     map.removeWhere(
@@ -163,4 +152,37 @@ class ApiKeys {
   //dictionary
   static const refreshTokenDict = 'x-mask-refresh-jwt';
   static const accessTokenDict = 'x-mask-jwt';
+
+
+
+  static addressBody({
+    required String? title,
+    required String? streetName,
+    required String? houseNumber,
+    required String? city,
+    required String? country,
+    required String? phone,
+    required String? latitude,
+    required String? longitude,
+    required String? description,
+    required bool? isMain,
+  }) {
+    //
+    final map = {
+      "title": title,
+      "streetName": streetName,
+      "houseNumber": houseNumber,
+      "city": city,
+      "country": country,
+      "phone": phone,
+      "latitude": latitude,
+      "longitude": longitude,
+      "description": country,
+      "isMain": isMain,
+    };
+
+    map.removeWhere(
+            (key, value) => key == null || value == null || value == 'null');
+    return map;
+  }
 }

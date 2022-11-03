@@ -176,4 +176,17 @@ In addition to laying out rules for proper use of your app, you should also clea
       "Hörmətli müştəri, hər hansı bir problemlə raslaşdıqda qaynar xətt nömrəmiz müraciyyət edə bilərsiniz  *8833";
 //notification
   static const String notification = "Bildirişlər";
+  //user
+  static const String userInfo = "Şəxs haqqında haqqında məlumatlar";
+  static const String name = "Ad";
+  static const String firstName = "Soyad";
+  static const String birth = "Dogum Tarixi";
+  static const String seriaNum = "Seriya nömrəsi";
+  static const String fin = "FIN kod";
+  static const String emailAddressIsNotCorrect = "E-poçt düzgün deyil";
+  static const String operationIsSuccess = "Əməliyyat uğurlu oldu!";
+
+
+
+
 }

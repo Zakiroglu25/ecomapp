@@ -55,6 +55,12 @@ abstract class AppTextStyles {
       fontWeight: FontWeight.w600,
       fontStyle: FontStyle.normal,
       letterSpacing: 0.3);
+  static const sfPro600s30 = TextStyle(
+      fontFamily: 'sf',
+      fontSize: 30,
+      fontWeight: FontWeight.w600,
+      fontStyle: FontStyle.normal,
+      letterSpacing: 0.3);
 
   static const sfPro400h2 = TextStyle(
       fontFamily: 'sf',

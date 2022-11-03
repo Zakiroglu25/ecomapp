@@ -26,6 +26,7 @@ class Assets {
   static const String svgCheck = "assets/svg/check.svg";
   static const String svgMinus2 = "assets/svg/minus-2.svg";
   static const String svgEdit = "assets/svg/edit.svg";
+  static const String svgEditUser = "assets/svg/edit_user.svg";
 
   ///bottomnovigation icon
   static const String svgLogo = "assets/svg/logogrey.svg";

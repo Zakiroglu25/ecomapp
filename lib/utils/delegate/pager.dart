@@ -11,10 +11,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../app.dart';
 import '../../infrastructure/cubit/authentication/authentication_cubit.dart';
+import '../../infrastructure/cubit/get_category_tree_cubit/get_category_cubit.dart';
 import '../../infrastructure/cubit/login/login_cubit.dart';
 import '../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
 import '../../infrastructure/cubit/product_option_cubit/product_option_cubit.dart';
 import '../../infrastructure/cubit/register/register_cubit.dart';
+import '../../infrastructure/cubit/user/user_cubit.dart';
 import '../../presentation/page/address_page/address_page.dart';
 import '../../presentation/page/auth/login_page/login_page.dart';
 import '../../presentation/page/auth/register_page/register_page.dart';
@@ -28,6 +30,7 @@ import '../../presentation/page/other_page/other_page.dart';
 import '../../presentation/page/payment_method_page/payment_method_page.dart';
 import '../../presentation/page/product_page/product_page.dart';
 import '../../presentation/page/settings_page/settings_page.dart';
+import '../../presentation/page/user_edit_page/user_edit_page.dart';
 
 class Pager {
   Pager._();
@@ -65,6 +68,10 @@ class Pager {
 
   static get forgot => ForgetPasswordPage();
 
+  static get userEdit => MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => UserCubit())],
+      child: const UserEditPage());
+
   static get paymentMethodPage => PaymentMethodPage();
 
   static get settings => SettingsPage();
@@ -85,6 +92,9 @@ class Pager {
         providers: [
           BlocProvider(
             create: (context) => ProductOptionCubit()..fetchProduct(),
+          ),
+          BlocProvider.value(
+            value: CategoryCubit()..fetch(),
           ),
           BlocProvider(
             create: (context) => ProductOptionDetailsCubit(),

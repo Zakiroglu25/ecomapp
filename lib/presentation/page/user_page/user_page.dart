@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import '../../../infrastructure/services/hive_service.dart';
 import '../../../locator.dart';
 import '../../../utils/constants/colors.dart';
+import '../../../utils/constants/sized_box.dart';
+import 'widget/user_data_body.dart';
+import 'widget/user_data_item_widget.dart';
 
 class PageViewExample extends StatefulWidget {
   const PageViewExample({Key? key}) : super(key: key);
 
-  HiveService get _prefs => locator<HiveService>();
 
   @override
   State<PageViewExample> createState() => _PageViewExampleState();
@@ -21,8 +23,7 @@ class _PageViewExampleState extends State<PageViewExample> {
       PageController(initialPage: 0, viewportFraction: 0.75);
 
   final cards = [
-    Test(),
-
+    UserView(),
   ];
 
   @override
@@ -57,56 +58,26 @@ class _PageViewExampleState extends State<PageViewExample> {
   }
 }
 
-class Test extends StatelessWidget {
+class UserView extends StatelessWidget {
+  const UserView({super.key});
 
   HiveService get _prefs => locator<HiveService>();
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12), color: MyColors.white),
-            width: 311,
-            height: 420,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: 166,
-                        child: Text(
-                          "Şəxs haqqında haqqında məlumatlar",
-                          style: AppTextStyles.sfPro600s17,
-                        ),
-                      ),
-                      Icon(Icons.edit)
-                    ],
-                  ),
-                  Text("Ad"),
-                  Text(_prefs.user.firstName!),
-                  Text("Soyad"),
-                  Text(_prefs.user.lastName!),
-                  Text("Dogum Tarixi"),
-                  Text(_prefs.user.birthDate!),
-                  Text("Seriya Nomresi"),
-                  Text("Boshdur"),
-                  // if(_prefs.user.insuranceId! != null)
-                  // Text(_prefs.user.insuranceId!.toString()),
-
-
-
-                ],
-              ),
-            )),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12), color: MyColors.white),
+          width: 311,
+          height: 420,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: UserDataBody(prefs: _prefs),
+          ),
+        ),
       ],
     );
   }
