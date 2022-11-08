@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 
 import '../../utils/constants/assets.dart';
 import '../../utils/constants/colors.dart';
+import '../../utils/constants/paddings.dart';
 import '../../utils/screen/widget_or_empty.dart';
 
 class AppLoading extends StatelessWidget {
@@ -14,29 +15,32 @@ class AppLoading extends StatelessWidget {
 
   AppLoading.blue({this.color = MyColors.mainGrey});
 
-  AppLoading.white({this.color = MyColors.white});
+  AppLoading.white({this.color = MyColors.white, this.s});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: s ?? null,
-      width: s ?? null,
-      child: Center(
-          child: FadeIn(
-        duration: Duration(milliseconds: 800),
-        child: WidgetOrEmpty(
-          value: color == null,
-          elseChild: CircularProgressIndicator(
-            color: color,
+    return Padding(
+      padding: Paddings.paddingA2,
+      child: SizedBox(
+        height: s,
+        width: s,
+        child: Center(
+            child: FadeIn(
+          duration: Duration(milliseconds: 800),
+          child: WidgetOrEmpty(
+            value: color == null,
+            elseChild: CircularProgressIndicator(
+              color: color,
+            ),
+            child: Container(
+              height: 25,
+              width: 25,
+              // color: Colors.green,
+              child: Lottie.asset(Assets.loading, width: 3),
+            ),
           ),
-          child: Container(
-            height: 25,
-            width: 25,
-            // color: Colors.green,
-            child: Lottie.asset(Assets.loading, width: 2),
-          ),
-        ),
-      )),
+        )),
+      ),
     );
   }
 }

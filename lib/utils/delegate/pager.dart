@@ -1,13 +1,13 @@
 // Flutter imports:
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
+import 'package:uikit/infrastructure/cubit/forgot_pass/forgot_pass_cubit.dart';
 import 'package:uikit/infrastructure/cubit/map/map_store_cubit.dart';
 import 'package:uikit/presentation/page/auth/forgot_password_page/forgot_pass_page.dart';
 import 'package:uikit/presentation/page/delivery_address_page/delivery_address_page.dart';
 import 'package:uikit/presentation/page/landing_page/landing_page.dart';
 import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart';
-import 'package:uikit/utils/delegate/my_printer.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../app.dart';
 import '../../infrastructure/cubit/authentication/authentication_cubit.dart';
@@ -66,11 +66,13 @@ class Pager {
         BlocProvider.value(value: MapStoreCubit()..fetch()),
       ], child: MapPage());
 
-  static get forgot => ForgetPasswordPage();
-
   static get userEdit => MultiBlocProvider(
       providers: [BlocProvider(create: (context) => UserCubit())],
       child: const UserEditPage());
+
+  static get forgotPassword => MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => ForgotPassCubit())],
+      child: const ForgetPasswordPage());
 
   static get paymentMethodPage => PaymentMethodPage();
 

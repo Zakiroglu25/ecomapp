@@ -49,7 +49,7 @@ class MainBuild {
           },
           home: Builder(
             builder: (ctx) {
-              return Pager.login;
+              return Pager.forgotPassword;
             },
           )),
     );

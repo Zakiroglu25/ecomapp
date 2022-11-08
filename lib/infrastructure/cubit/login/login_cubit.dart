@@ -95,7 +95,7 @@ class LoginCubit extends Cubit<LoginState> {
         Go.andRemove(context, Pager.app(showSplash: true));
         emit(LoginSuccess(''));
       } else {
-        Snack.display(context: context, message: MyText.emailOrPassNotCorrect);
+        Snack.display(message: MyText.emailOrPassNotCorrect);
         emit(LoginError());
       }
     } on SocketException catch (_) {

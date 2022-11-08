@@ -76,7 +76,6 @@ class Assets {
   //setting
   static const String svgCallDark = "assets/svg/calldark.svg";
 
-
 ////////////////////////////////////////////////////////////////////////////////
   //png
   static const on_board_capsule = "assets/png/capsule_onboard.png";
@@ -94,10 +93,15 @@ class Assets {
   static const String masterCard = "assets/png/mastercard.png";
   static const String pngAzFlag = "assets/png/azflag.png";
 
-
   //other
   static const String pasha = "assets/png/pasha.png";
 
 //  anim
   static const String loading = "assets/anim/loading.json";
+  static const String animEmptyBox = "assets/anim/empty_box.json";
+  static const String animSadFace = "assets/anim/sad_face.json";
+  static const String animSuccessOpt = "assets/anim/success_operation.json";
+  static const String animProgressbar = "assets/anim/progressbar.json";
+  static const String animPasta = "assets/anim/birthday_pasta.json";
+  static const String oneYear = "assets/anim/oneyear.json";
 }

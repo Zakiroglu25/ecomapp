@@ -38,7 +38,7 @@ class RegisterCubit extends Cubit<RegisterState> {
           path: uPassMain.valueOrNull,
         );
         emit(RegisterSuccess(""));
-        Snack.display(context: context, message: "Qeydiyyat Uğurla tamamlandı");
+        Snack.display(message: "Qeydiyyat Uğurla tamamlandı");
         Go.to(context, Pager.login);
       } else {
         emit(RegisterFailed(message: response!.message));

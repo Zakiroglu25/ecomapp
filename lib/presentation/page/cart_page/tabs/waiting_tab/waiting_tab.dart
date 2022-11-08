@@ -27,6 +27,7 @@ class WaitingTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      fit: StackFit.expand,
       children: [
         ListviewSeparated(
           padding: Paddings.paddingH16 + Paddings.paddingB200,

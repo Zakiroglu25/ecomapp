@@ -6,6 +6,11 @@ class ApiKeys {
   ApiKeys._();
 
   static const baseUrl = 'https://doctoro${Configs.enviroment}.ml';
+  static const public = "$baseUrl/public";
+  static const auth = "$public/auth";
+  static const protected = "$baseUrl/protected";
+  static const customer = "$protected/customer";
+  static const account = "$customer/account";
 
   ///delete
   static const headers = {
@@ -16,22 +21,25 @@ class ApiKeys {
   };
 
   //reg and login
-  static const login = "$baseUrl/public/auth/login";
-  static const refreshToken = "$baseUrl/public/auth/refresh-token";
+  static const login = "$auth/login";
+  static const refreshToken = "$auth/refresh-token";
 
   // register
   static const registerPersonal = "$baseUrl/public/onboarding/sign-up";
 
   //user
-  static const user = "$baseUrl/protected/customer/account";
-  static const devices = "$baseUrl/protected/customer/devices";
+  static const user = "$account";
+  static const devices = "$customer/devices";
 
   //address
-  static const getAddress = "$baseUrl/protected/customer/address-book";
+  static const getAddress = "$customer/address-book";
 
   //forgot
-  static const forgotOtp = "$baseUrl/user/otp";
-  static const forgotOtpApprove = "$baseUrl/user/otp/approve";
+  static const requestOtp = "$auth/request-otp";
+  static const forgotOtpApprove = "$auth/validate-otp";
+  static const resetPassword = "$account/reset-password";
+
+  //static const forgotOtp = "$baseUrl/user/otp";
 
   //contact
   static const contact = "$baseUrl/public/contacts";
@@ -153,8 +161,6 @@ class ApiKeys {
   static const refreshTokenDict = 'x-mask-refresh-jwt';
   static const accessTokenDict = 'x-mask-jwt';
 
-
-
   static addressBody({
     required String? title,
     required String? streetName,
@@ -182,7 +188,7 @@ class ApiKeys {
     };
 
     map.removeWhere(
-            (key, value) => key == null || value == null || value == 'null');
+        (key, value) => key == null || value == null || value == 'null');
     return map;
   }
 }
