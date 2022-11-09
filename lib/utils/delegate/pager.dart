@@ -11,7 +11,7 @@ import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart
 
 import '../../app.dart';
 import '../../infrastructure/cubit/authentication/authentication_cubit.dart';
-import '../../infrastructure/cubit/get_category_tree_cubit/get_category_cubit.dart';
+import '../../infrastructure/cubit/category_cubit/category_cubit.dart';
 import '../../infrastructure/cubit/login/login_cubit.dart';
 import '../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
 import '../../infrastructure/cubit/product_option_cubit/product_option_cubit.dart';
@@ -101,8 +101,8 @@ class Pager {
           BlocProvider(
             create: (context) => ProductOptionCubit()..fetchProduct(),
           ),
-          BlocProvider.value(
-            value: CategoryCubit()..fetch(),
+          BlocProvider(
+            create: (context) => CategoryCubit()..fetch(),
           ),
           BlocProvider(
             create: (context) => ProductOptionDetailsCubit(),

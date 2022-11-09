@@ -90,7 +90,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String other = "Digər";
 
   //product page
-  static const String derman = "Dərmanlar";
+  static const String medicines = "Dərmanlar";
+  static const String medicine = "Dərman";
   static const String carts = "Səbətim";
   static const String nameDoctoro = "Doctoro";
   static const String searchHint = "Ad və ya istehsal olduğu ölkə";

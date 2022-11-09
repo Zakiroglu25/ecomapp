@@ -19,7 +19,7 @@ import '../../medicine_details_page/medicine_details_page.dart';
 import '../../product_details_page/product_details_page.dart';
 
 class ProductItem extends StatelessWidget {
-  final Data? products;
+  final SimpleProduct? products;
 
   ProductItem({this.products});
 
@@ -34,10 +34,13 @@ class ProductItem extends StatelessWidget {
               // context
               //     .read<ProductOptionDetailsCubit>()
               //     .fetchProduct(products!.guid!);
-              Go.to(context, BlocProvider(
-                create: (context) => ProductOptionDetailsCubit()..fetchProduct(products!.guid!),
-                child: ProductOptionDetails(),
-              ));
+              Go.to(
+                  context,
+                  BlocProvider(
+                    create: (context) => ProductOptionDetailsCubit()
+                      ..fetchProduct(products!.guid!),
+                    child: ProductOptionDetails(),
+                  ));
             },
             child: Container(
                 padding: EdgeInsets.all(12),

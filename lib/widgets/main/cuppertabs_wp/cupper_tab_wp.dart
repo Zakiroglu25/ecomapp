@@ -24,6 +24,7 @@ class CupperTabWP extends StatelessWidget {
     this.selectedLabelColor,
     this.selectedTabColor,
     this.showAppbarLittleText = false,
+    this.withCupertinoAppbar = true,
     this.unSelectedLabelColor,
     this.headers,
     this.onRefresh,
@@ -38,6 +39,7 @@ class CupperTabWP extends StatelessWidget {
   final List<Widget>? trailings;
   final bool? user;
   final bool? notification;
+  final bool withCupertinoAppbar;
   final bool? back;
   final bool isScrollable;
   final bool showAppbarLittleText;
@@ -61,6 +63,7 @@ class CupperTabWP extends StatelessWidget {
           CupperProvider()..configAppTab(initialTabs: tabs, first: first),
       child: CupperTabsWithProvider(
           title: title,
+          withCupertinoAppbar: withCupertinoAppbar,
           isScrollable: isScrollable,
           tabPages: tabPages,
           tabs: tabs,

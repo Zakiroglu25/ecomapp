@@ -1,5 +1,6 @@
 // Flutter imports:
 
+import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/widgets/doctoro_appbar/widgets/filter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,11 +28,12 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
   final bool? back;
   final Function? onBack;
   final BuildContext? contextA;
-  final bool? actions;
+  //final bool? actions;
   final Function? onTapActions;
   final bool? centerTitle;
   final Color? color;
   final bool addressDropdown;
+  final List<Widget>? actions;
 
   DoctorAppbar(
       {required this.title,
@@ -52,7 +54,7 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return FocusDetector(
       onFocusGained: () {
-        if (notification ?? true) {
+        if (notification) {
           //  context.read<HeaderCubit>()..fetch();
         }
       },
@@ -95,13 +97,18 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
       children: [
         (notification)
             ? NotificationWidget()
-            : (onTapActions == null ? MySizedBox.w10 : Container()),
-        ActionsButton(
-          onTap: onTapActions,
-        ),
-        (filter)
-            ? FilterWidget()
-            : (onTapActions == null ? MySizedBox.w20 : Container()),
+            : (actions == null ? MySizedBox.w10 : Container()),
+        //...actions,
+
+        ...?actions,
+        // actions!=null? (...?actions) : Container(),
+        // ActionsButton(
+        //   onTap: onTapActions,
+        // ),
+        // (filter)
+        //     ? FilterWidget()
+        //     : (onTapActions == null ? MySizedBox.w20 : Container()),
+        //actions.isNotEmptyOrNull ? MySizedBox.w16 : MySizedBox.zero,
       ],
     );
   }

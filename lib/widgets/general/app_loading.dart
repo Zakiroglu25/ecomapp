@@ -33,10 +33,10 @@ class AppLoading extends StatelessWidget {
               color: color,
             ),
             child: Container(
-              height: 25,
-              width: 25,
+              height: s,
+              width: s,
               // color: Colors.green,
-              child: Lottie.asset(Assets.loading, width: 3),
+              child: Lottie.asset(Assets.loading, width: 1),
             ),
           ),
         )),

@@ -17,9 +17,9 @@ class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
   fetchProduct(String guid) async {
     emit(ProductODetailsInProgress());
     try {
-      final result = await ProductOptionsProvider.getByGuid(guid);
-      if (result!.guid != null) {
-        emit(ProductODetailsSuccess(result));
+      final result = await ProductOptionsProvider.getProductByGuid(guid: guid);
+      if (result.data != null) {
+        emit(ProductODetailsSuccess(result.data));
       } else {
         emit(ProductODetailsError());
         eeee(

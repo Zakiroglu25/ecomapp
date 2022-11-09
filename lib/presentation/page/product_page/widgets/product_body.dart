@@ -34,7 +34,7 @@ class ProductBody extends StatelessWidget {
             color: MyColors.purple,
             h: 167.h,
             imageUrl: Assets.medicine,
-            title: MyText.derman,
+            title: MyText.medicine,
             desc: MyText.medicineSubtitle,
           ),
           MySizedBox.h10,

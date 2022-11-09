@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:uikit/widgets/doctoro_appbar/widgets/app_bar_action_item.dart';
 
 import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/colors.dart';
@@ -13,28 +14,15 @@ class ActionsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (onTap == null) {
-      return InkWrapper(
-        onTap: () => onTap?.call(),
-        child: Container(
-          color: MyColors.transparent,
-          padding: EdgeInsets.only(left: 10),
-          child: Row(
-            children: [
-              SizedBox(
-                width: 20,
-                height: 40,
-                child: SvgPicture.asset(
-                  Assets.svgCheck,
-                ),
-              ),
-              MySizedBox.w12,
-            ],
-          ),
+    return AppBarActionItem(
+      onTap: null,
+      child: SizedBox(
+        width: 20,
+        height: 40,
+        child: SvgPicture.asset(
+          Assets.svgCheck,
         ),
-      );
-    } else {
-      return Container();
-    }
+      ),
+    );
   }
 }

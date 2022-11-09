@@ -34,7 +34,7 @@ class ProductAndOtherWidget extends StatelessWidget {
       child: Container(
         padding: Paddings.paddingA20,
         width: w,
-        height: 167,
+        //height: 167,
         decoration: BoxDecoration(
           color: color!,
           borderRadius: BorderRadius.circular(12),

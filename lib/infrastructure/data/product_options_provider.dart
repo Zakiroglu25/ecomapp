@@ -18,7 +18,7 @@ class ProductOptionsProvider {
 
   static Future<StatusDynamic> getProduct(int page) async {
     StatusDynamic statusDynamic = StatusDynamic();
-    const api = ApiKeys.productOptions;
+    const api = ApiKeys.search;
     final response =
         await dioAuth.dio.get(api, queryParameters: {"page": page});
     statusDynamic.statusCode = response.statusCode;
@@ -33,21 +33,37 @@ class ProductOptionsProvider {
     return statusDynamic;
   }
 
-  static Future<ProductOptionDetailsModel?> getByGuid(String guid) async {
-    ProductOptionDetailsModel? productOptionDetailsModel;
-    const api = ApiKeys.productOptionsGuid;
-     var headers = ApiKeys.header(token: _prefs.accessToken);
-    var url = Uri.parse(api + '/$guid');
-    final response = await http.get(url, headers: headers);
-    wtf(response.body);
+  static Future<StatusDynamic> getProductByGuid({required String guid}) async {
+    StatusDynamic statusDynamic = StatusDynamic();
+    final api = ApiKeys.productOptions + '/$guid';
+    final response = await dioAuth.dio.get(api);
+    statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
-      final comeJson = jsonDecode(response.body);
-      productOptionDetailsModel = ProductOptionDetailsModel.fromJson(comeJson);
-      wtf(productOptionDetailsModel.guid.toString());
+      final comeJson = response.data;
+      ProductOptionModel model = ProductOptionModel.fromJson(comeJson);
+      statusDynamic.data = model.data;
     } else {
-      eeee("address List:  url: $api , response: ${response.body}");
+      eeee("address List:  url: $api , response: ${response.data}");
     }
 
-    return productOptionDetailsModel;
+    return statusDynamic;
   }
+
+  // static Future<ProductOptionDetailsModel?> getByGuid(String guid) async {
+  //   ProductOptionDetailsModel? productOptionDetailsModel;
+  //   const api = ApiKeys.productOptionsGuid;
+  //   var headers = ApiKeys.header(token: _prefs.accessToken);
+  //   var url = Uri.parse(api + '/$guid');
+  //   final response = await http.get(url, headers: headers);
+  //   wtf(response.body);
+  //   if (response.statusCode == ResultKey.successCode) {
+  //     final comeJson = jsonDecode(response.body);
+  //     productOptionDetailsModel = ProductOptionDetailsModel.fromJson(comeJson);
+  //     wtf(productOptionDetailsModel.guid.toString());
+  //   } else {
+  //     eeee("address List:  url: $api , response: ${response.body}");
+  //   }
+  //
+  //   return productOptionDetailsModel;
+  // }
 }

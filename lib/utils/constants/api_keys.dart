@@ -8,8 +8,12 @@ class ApiKeys {
   static const baseUrl = 'https://doctoro${Configs.enviroment}.ml';
   static const public = "$baseUrl/public";
   static const auth = "$public/auth";
+
   static const protected = "$baseUrl/protected";
+
   static const customer = "$protected/customer";
+  static const productOptions = "$protected/product-options";
+
   static const account = "$customer/account";
 
   ///delete
@@ -48,13 +52,13 @@ class ApiKeys {
   static const stores = "$baseUrl/protected/stores";
 
   //product_options
-  static const productOptions = "$baseUrl/protected/product-options/search";
+  static const search = "$productOptions/search";
 
   //get product guid
   static const productOptionsGuid = "$baseUrl/protected/product-options";
 
   //get category tree
-  static const getCategoryTree = "$baseUrl/protected/content/category-tree";
+  static const categoryTree = "$baseUrl/protected/content/category-tree";
   static const getAllManufacturers = "$baseUrl/protected/content/manufacturers";
 
   static loginBody({
