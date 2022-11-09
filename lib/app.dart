@@ -14,7 +14,6 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationCubit, AuthenticationState>(
         builder: (context, state) {
-      bbbb("state: $state");
       if (state is AuthenticationSplash) {
         return Pager.splash;
       } else if (state is AuthenticationLoading) {
@@ -25,7 +24,7 @@ class App extends StatelessWidget {
         return const SafeArea(
           child: Scaffold(
               body: Center(
-            child: Text("MyText.error"),
+            child: Text("error"),
             // refreshButton: () =>
             //   context.read<AuthenticationCubit>()
             //     ..startApp(context, showSplash: false),

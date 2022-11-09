@@ -20,8 +20,8 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
 
   //final bool? back;
-  final bool? filter;
-  final bool? notification;
+  final bool filter;
+  final bool notification;
   final bool? exitButton;
   final bool? user;
   final bool? back;
@@ -31,13 +31,13 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
   final Function? onTapActions;
   final bool? centerTitle;
   final Color? color;
-  final bool? addressDropdown;
+  final bool addressDropdown;
 
   DoctorAppbar(
       {required this.title,
-      @required this.user,
-      this.notification,
-      this.addressDropdown,
+      required this.user,
+      this.notification = true,
+      this.addressDropdown = false,
       this.exitButton,
       this.actions,
       this.color,
@@ -46,7 +46,7 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
       this.onTapActions,
       required this.contextA,
       this.centerTitle,
-      this.filter});
+      this.filter = false});
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,7 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
                       onBack: onBack,
                     ),
                   ),
-            addressDropdown == false
+            !addressDropdown
                 ? Center(
                     child: Text(
                       title!,
@@ -93,13 +93,13 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
   Row rightButtonsRow(BuildContext contextZ) {
     return Row(
       children: [
-        (notification ?? true)
+        (notification)
             ? NotificationWidget()
             : (onTapActions == null ? MySizedBox.w10 : Container()),
         ActionsButton(
           onTap: onTapActions,
         ),
-        (filter ?? true)
+        (filter)
             ? FilterWidget()
             : (onTapActions == null ? MySizedBox.w20 : Container()),
       ],

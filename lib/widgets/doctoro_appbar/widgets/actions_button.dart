@@ -13,7 +13,7 @@ class ActionsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (onTap != null) {
+    if (onTap == null) {
       return InkWrapper(
         onTap: () => onTap?.call(),
         child: Container(

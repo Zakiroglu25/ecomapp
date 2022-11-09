@@ -13,34 +13,38 @@ class AppBarAddressWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: Paddings.paddingH16,
-      width: 224.w,
-      height: 44.h,
-      decoration: BoxDecoration(
-        color: MyColors.green235,
-        borderRadius: BorderRadius.circular(36),
-      ),
-      child: Row(
-        children: [
-          Icon(
-            Icons.location_on_sharp,
-            color: MyColors.green,
-          ),
-          MySizedBox.w12,
-          Flexible(
-            child: Text(
-              "Qara Qarayev ev 4 Menzil 35 ve ne bilim ne",
-              style:
-                  AppTextStyles.sfPro400s14.copyWith(color: MyColors.green85),
-              overflow: TextOverflow.ellipsis,
+    return Expanded(
+      child: Container(
+        margin: Paddings.paddingH20,
+        padding: Paddings.paddingH16 + Paddings.paddingV10,
+        // width: 224.w,
+        // height: 44.h,
+        decoration: BoxDecoration(
+          color: MyColors.green235,
+          borderRadius: BorderRadius.circular(36),
+        ),
+        child: Row(
+          //  mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.location_on_sharp,
+              color: MyColors.green,
             ),
-          ),
-          Icon(
-            Icons.keyboard_arrow_down,
-            color: MyColors.green,
-          )
-        ],
+            MySizedBox.w12,
+            Flexible(
+              child: Text(
+                "Qara Qarayev ev 4 Menzil 35 ve ne bilim ne",
+                style:
+                    AppTextStyles.sfPro400s14.copyWith(color: MyColors.green85),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            Icon(
+              Icons.keyboard_arrow_down,
+              color: MyColors.green,
+            )
+          ],
+        ),
       ),
     );
   }

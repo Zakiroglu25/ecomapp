@@ -24,6 +24,7 @@ import '../../presentation/page/cart_delivery_page/cart_delivery_page.dart';
 import '../../presentation/page/cart_page/cart_page.dart';
 import '../../presentation/page/change_number/change_number_page.dart';
 import '../../presentation/page/contact_page/contact_page.dart';
+import '../../presentation/page/favorite_page/favorite_page.dart';
 import '../../presentation/page/home_page/home_page.dart';
 import '../../presentation/page/medicine_details_page/medicine_details_page.dart';
 import '../../presentation/page/other_page/other_page.dart';
@@ -87,7 +88,9 @@ class Pager {
 
   static get landing => LandingPage();
 
-  static get productPage => ProductPage();
+  static get product => ProductPage();
+
+  static get favorite => FavoritePage();
 
   static get otherPage => OtherPage();
 

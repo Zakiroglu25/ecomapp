@@ -25,8 +25,8 @@ class _LandingPageState extends State<LandingPage> {
   int index = 0;
 
   final pages = <Widget>[
-    Pager.productPage,
-    FavoritePage(),
+    Pager.product,
+    Pager.favorite,
     Pager.mapPage,
     Pager.cart,
     Pager.otherPage,
