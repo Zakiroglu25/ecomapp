@@ -18,7 +18,6 @@ class MedicineDetailsPage extends StatelessWidget {
     return BlocBuilder<CategoryCubit, CategoryState>(builder: (context, state) {
       if (state is CategorySuccess) {
         final categories = state.category;
-
         return CupperTabWP(
             title: MyText.medicines,
             back: true,
