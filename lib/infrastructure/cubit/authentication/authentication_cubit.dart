@@ -43,9 +43,6 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       final String? fcm = 'test fcm';
       final bool isLoggedIn = _prefs.isLoggedIn;
       final String? accessToken = _prefs.accessToken;
-      final String? refreshToken = _prefs.refreshToken;
-      print(isLoggedIn);
-      print(accessToken);
 
       bbbb("accessToken: $accessToken");
       if (isLoggedIn && accessToken != null) {

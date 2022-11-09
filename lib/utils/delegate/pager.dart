@@ -30,6 +30,7 @@ import '../../presentation/page/other_page/other_page.dart';
 import '../../presentation/page/payment_method_page/payment_method_page.dart';
 import '../../presentation/page/product_page/product_page.dart';
 import '../../presentation/page/settings_page/settings_page.dart';
+import '../../presentation/page/splash_page/splash_page.dart';
 import '../../presentation/page/user_edit_page/user_edit_page.dart';
 
 class Pager {
@@ -57,6 +58,8 @@ class Pager {
   static get cartDelivery => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => LoginCubit()),
       ], child: CartDeliveryPage());
+
+  static get splash => SplashPage();
 
   static get deliveryAddress => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => LoginCubit()),

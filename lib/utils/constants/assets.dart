@@ -35,6 +35,7 @@ class Assets {
   static const String svgCart = "assets/svg/svgcart.svg";
   static const String svgShoppingCart = "assets/svg/shopping-cart.svg";
   static const String svgMore = "assets/svg/svgmore.svg";
+  static const String svgBigLogo = "assets/svg/big-logo.svg";
 
   ///appbar
   static const String svgUser = "assets/svg/user.svg";

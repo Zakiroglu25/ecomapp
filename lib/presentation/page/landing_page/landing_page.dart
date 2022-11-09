@@ -35,44 +35,37 @@ class _LandingPageState extends State<LandingPage> {
 
   ///physics deyishdim cunki map hereket elemirdi
   @override
-  Widget build(BuildContext context) => PageView(
-        controller: globalPageController,
-        physics: NeverScrollableScrollPhysics(),
-        children: [
-          // Pager.userCabinet(showBack: true), //
-          Scaffold(
-            key: _key,
-            extendBody: true,
-            body: pages[index],
-            bottomNavigationBar: BottomNavigationBar(
-              // activeColor: MyColors.mainColor,
-              backgroundColor: Colors.white,
-              //elevation: 10,
-              elevation: 0,
-              unselectedFontSize: 11,
-              selectedFontSize: 11,
-              selectedLabelStyle:
-                  AppTextStyles.sfPro500.copyWith(color: MyColors.black),
-              type: BottomNavigationBarType.fixed,
-              selectedItemColor: MyColors.black34,
-              items: [
-                buildBottomNavigationBarItem(
-                    icon: Assets.svgLogo, label: MyText.product),
-                buildBottomNavigationBarItem(
-                    icon: Assets.svgFav, label: MyText.favorite),
-                buildBottomNavigationBarItem(
-                    icon: Assets.svgAptek, label: MyText.aptek),
-                buildBottomNavigationBarItem(
-                    icon: Assets.svgCart, label: MyText.cart),
-                buildBottomNavigationBarItem(
-                    icon: Assets.svgMore, label: MyText.other),
-              ],
-              currentIndex: index,
-              onTap: onChangedTab,
-              // selectedItemColor: MyColors.black,
-            ),
-          )
-        ],
+  Widget build(BuildContext context) => Scaffold(
+        key: _key,
+        extendBody: true,
+        body: pages[index],
+        bottomNavigationBar: BottomNavigationBar(
+          // activeColor: MyColors.mainColor,
+          backgroundColor: Colors.white,
+          //elevation: 10,
+          elevation: 0,
+          unselectedFontSize: 11,
+          selectedFontSize: 11,
+          selectedLabelStyle:
+              AppTextStyles.sfPro500.copyWith(color: MyColors.black),
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: MyColors.black34,
+          items: [
+            buildBottomNavigationBarItem(
+                icon: Assets.svgLogo, label: MyText.product),
+            buildBottomNavigationBarItem(
+                icon: Assets.svgFav, label: MyText.favorite),
+            buildBottomNavigationBarItem(
+                icon: Assets.svgAptek, label: MyText.aptek),
+            buildBottomNavigationBarItem(
+                icon: Assets.svgCart, label: MyText.cart),
+            buildBottomNavigationBarItem(
+                icon: Assets.svgMore, label: MyText.other),
+          ],
+          currentIndex: index,
+          onTap: onChangedTab,
+          // selectedItemColor: MyColors.black,
+        ),
       );
 
   BottomNavigationBarItem buildBottomNavigationBarItem(

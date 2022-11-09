@@ -29,12 +29,13 @@ class UserOperations {
       final devicePlatformId = _devInfo.platformId;
       final deviceName = await _devInfo.deviceName;
 
+      await configUserDataWhenOpenApp(
+          fcm: deviceFcmToken, path: path, accessToken: accessToken);
+
       await AccountProvider.sendDevice(
           deviceFcmToken: deviceFcmToken,
           deviceName: deviceName,
           deviceTypeId: devicePlatformId);
-      await configUserDataWhenOpenApp(
-          fcm: deviceFcmToken, path: path, accessToken: accessToken);
       // await FirestoreDBService.readConfig();
       // await FirestoreDBService.saveUserPath(user, path, fcmToken, accessToken);
     } catch (e, s) {
