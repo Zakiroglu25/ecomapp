@@ -44,6 +44,7 @@ class ApiKeys {
 
   //get product guid
   static const productOptionsGuid = "$baseUrl/protected/product-options";
+  static const favorite = "$baseUrl/protected/customer/favorites";
 
   //get category tree
   static const getCategoryTree = "$baseUrl/protected/content/category-tree";

@@ -31,9 +31,6 @@ class ProductItem extends StatelessWidget {
           padding: Paddings.paddingH16 + Paddings.paddingV10,
           child: GestureDetector(
             onTap: () {
-              // context
-              //     .read<ProductOptionDetailsCubit>()
-              //     .fetchProduct(products!.guid!);
               Go.to(context, BlocProvider(
                 create: (context) => ProductOptionDetailsCubit()..fetchProduct(products!.guid!),
                 child: ProductOptionDetails(),

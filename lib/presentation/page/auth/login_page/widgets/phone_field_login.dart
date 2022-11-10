@@ -14,10 +14,10 @@ class PhoneFieldLogin extends StatelessWidget {
       stream: BlocProvider.of<LoginCubit>(context).emailStream,
       builder: (context, snapshot) {
         return AppField(
-          title: MyText.phone,
-          label: MyText.phone,
+          title: MyText.email,
+          label: MyText.email,
           maxLines: 1,
-          hint: MyText.phone_hint,
+          hint: MyText.email,
           upperCase: false,
           textInputType: TextInputType.emailAddress,
           textCapitalization: TextCapitalization.none,

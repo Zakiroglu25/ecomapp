@@ -29,7 +29,9 @@ class AuthProvider {
         ApiKeys.loginBody(password: password, email: email, fcmToken: fcmToken);
 
     final response = await dioG.dio.post(api, data: body);
+    print(" provider 1");
     statusDynamic.statusCode = response.statusCode;
+    print(" provider 2");
     if (response.statusCode == ResultKey.successCode) {
       String? accessToken =
           response.headers.map[ApiKeys.accessTokenDict]?.first;
@@ -39,6 +41,8 @@ class AuthProvider {
         "accessToken": accessToken,
         "refreshToken": refreshToken,
       };
+      print(" provider 3");
+
       statusDynamic.data = tokens;
     } else {}
     return statusDynamic;

@@ -19,6 +19,7 @@ class ProductOptionsProvider {
   static Future<StatusDynamic> getProduct(int page) async {
     StatusDynamic statusDynamic = StatusDynamic();
     const api = ApiKeys.productOptions;
+    print("1");
     final response =
         await dioAuth.dio.get(api, queryParameters: {"page": page});
     statusDynamic.statusCode = response.statusCode;

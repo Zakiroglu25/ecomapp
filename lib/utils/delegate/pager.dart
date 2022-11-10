@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../app.dart';
 import '../../infrastructure/cubit/authentication/authentication_cubit.dart';
+import '../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../infrastructure/cubit/get_category_tree_cubit/get_category_cubit.dart';
 import '../../infrastructure/cubit/login/login_cubit.dart';
 import '../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
@@ -24,6 +25,7 @@ import '../../presentation/page/cart_delivery_page/cart_delivery_page.dart';
 import '../../presentation/page/cart_page/cart_page.dart';
 import '../../presentation/page/change_number/change_number_page.dart';
 import '../../presentation/page/contact_page/contact_page.dart';
+import '../../presentation/page/favorite_page/favorite_page.dart';
 import '../../presentation/page/home_page/home_page.dart';
 import '../../presentation/page/medicine_details_page/medicine_details_page.dart';
 import '../../presentation/page/other_page/other_page.dart';
@@ -87,6 +89,11 @@ class Pager {
   static get otherPage => OtherPage();
 
   static get contactPage => ContactPage();
+
+  static get favoritePage => BlocProvider(
+        create: (context) => FavoriteCubit()..fetchProduct(),
+        child: FavoritePage(),
+      );
 
   static get productDetails => MultiBlocProvider(
         providers: [
