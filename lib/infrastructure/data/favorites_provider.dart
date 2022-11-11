@@ -22,13 +22,13 @@ class FavoritesProvider {
     const api = ApiKeys.favorite;
     final response =
     await dioAuth.dio.get(api, queryParameters: {"page": page});
-    print("provider 1");
+    print("provider 1"+response.toString());
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
       print("provider 2");
       final comeJson = response.data;
       print("provider 3");
-      FavoriteModel model = FavoriteModel.fromJson(comeJson);
+      ProductOptionModel model = ProductOptionModel.fromJson(comeJson);
       print("provider 4");
       statusDynamic.data = model.data;
       print("provider 5");

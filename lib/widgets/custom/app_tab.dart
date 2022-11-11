@@ -32,7 +32,7 @@ class AppTab extends Tab {
         Provider.of<CupperProvider>(context, listen: true).selected.index ==
             index;
     return SpacedRow(
-      space: 10,
+      space: count != null ? 10 : 0,
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [

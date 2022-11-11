@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/delegate/request_control.dart';
@@ -20,6 +21,26 @@ class ProductOptionCubit extends Cubit<ProductOptionState> {
     try {
       final result = await ProductOptionsProvider.getProduct(page);
       if (isSuccess(result.statusCode)) {
+        emit(ProductOptionSuccess(result.data));
+      } else {
+        emit(ProductOptionError());
+      }
+    } on SocketException catch (_) {
+      emit(ProductOptionError());
+    } catch (e) {
+      eeee("Product Option Error" + e.toString());
+      emit(ProductOptionError());
+    }
+  }
+
+  fetchByGuid({required String guid, bool loading = true}) async {
+    paginationActive = false;
+    if (loading) {
+      emit(ProductOptionInProgress());
+    }
+    try {
+      final result = await ProductOptionsProvider.getProductByGuid(guid: guid);
+      if (result.statusCode.isSuccess) {
         emit(ProductOptionSuccess(result.data));
       } else {
         emit(ProductOptionError());

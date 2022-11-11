@@ -71,11 +71,11 @@ class AppButton extends StatelessWidget {
       decoration: BoxDecoration(
           color: (active)
               ? (color ?? MyColors.btnGreen)
-              : (passiveButtonColor ?? MyColors.btn_passive),
+              : (passiveButtonColor ?? MyColors.grey245),
           border: Border.all(
               color: active
-                  ? (borderColor ?? (color ?? MyColors.btn_passive))
-                  : (passiveButtonColor ?? MyColors.btn_passive)),
+                  ? (borderColor ?? (color ?? MyColors.grey245))
+                  : (passiveButtonColor ?? MyColors.grey245)),
           borderRadius: BorderRadius.circular(borderRadius)),
       child: Material(
         color: Colors.transparent,
@@ -90,7 +90,9 @@ class AppButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
           child: Center(
             child: (loading ?? false)
-                ? AppLoading.white()
+                ? AppLoading.white(
+                    s: 16,
+                  )
                 : Padding(
                     padding: Paddings.paddingH8,
                     child: (child ??
@@ -100,8 +102,7 @@ class AppButton extends StatelessWidget {
                             style: AppTextStyles.sfPro400s14.copyWith(
                                 color: active
                                     ? (textColor ?? Colors.white)
-                                    : (passiveButtonColor ??
-                                        MyColors.btn_passive),
+                                    : (passiveButtonColor ?? MyColors.grey158),
                                 fontSize: textSize ?? 16,
                                 overflow: TextOverflow.clip,
                                 fontWeight: fontWeight ?? FontWeight.w500),

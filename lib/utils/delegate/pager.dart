@@ -1,18 +1,18 @@
 // Flutter imports:
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
+import 'package:uikit/infrastructure/cubit/forgot_pass/forgot_pass_cubit.dart';
 import 'package:uikit/infrastructure/cubit/map/map_store_cubit.dart';
 import 'package:uikit/presentation/page/auth/forgot_password_page/forgot_pass_page.dart';
 import 'package:uikit/presentation/page/delivery_address_page/delivery_address_page.dart';
 import 'package:uikit/presentation/page/landing_page/landing_page.dart';
 import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart';
-import 'package:uikit/utils/delegate/my_printer.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../app.dart';
 import '../../infrastructure/cubit/authentication/authentication_cubit.dart';
 import '../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
-import '../../infrastructure/cubit/get_category_tree_cubit/get_category_cubit.dart';
+import '../../infrastructure/cubit/category_cubit/category_cubit.dart';
 import '../../infrastructure/cubit/login/login_cubit.dart';
 import '../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
 import '../../infrastructure/cubit/product_option_cubit/product_option_cubit.dart';
@@ -32,6 +32,7 @@ import '../../presentation/page/other_page/other_page.dart';
 import '../../presentation/page/payment_method_page/payment_method_page.dart';
 import '../../presentation/page/product_page/product_page.dart';
 import '../../presentation/page/settings_page/settings_page.dart';
+import '../../presentation/page/splash_page/splash_page.dart';
 import '../../presentation/page/user_edit_page/user_edit_page.dart';
 
 class Pager {
@@ -60,6 +61,8 @@ class Pager {
         BlocProvider(create: (context) => LoginCubit()),
       ], child: CartDeliveryPage());
 
+  static get splash => SplashPage();
+
   static get deliveryAddress => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => LoginCubit()),
       ], child: DeliveryAddressPage());
@@ -68,11 +71,13 @@ class Pager {
         BlocProvider.value(value: MapStoreCubit()..fetch()),
       ], child: MapPage());
 
-  static get forgot => ForgetPasswordPage();
-
   static get userEdit => MultiBlocProvider(
       providers: [BlocProvider(create: (context) => UserCubit())],
       child: const UserEditPage());
+
+  static get forgotPassword => MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => ForgotPassCubit())],
+      child: const ForgetPasswordPage());
 
   static get paymentMethodPage => PaymentMethodPage();
 
@@ -84,7 +89,8 @@ class Pager {
 
   static get landing => LandingPage();
 
-  static get productPage => ProductPage();
+  static get product => ProductPage();
+
 
   static get otherPage => OtherPage();
 
@@ -100,8 +106,8 @@ class Pager {
           BlocProvider(
             create: (context) => ProductOptionCubit()..fetchProduct(),
           ),
-          BlocProvider.value(
-            value: CategoryCubit()..fetch(),
+          BlocProvider(
+            create: (context) => CategoryCubit()..fetch(),
           ),
           BlocProvider(
             create: (context) => ProductOptionDetailsCubit(),

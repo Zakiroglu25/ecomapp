@@ -1,5 +1,6 @@
 // Flutter imports:
 
+import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/widgets/doctoro_appbar/widgets/filter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,24 +21,25 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
 
   //final bool? back;
-  final bool? filter;
-  final bool? notification;
+  final bool filter;
+  final bool notification;
   final bool? exitButton;
   final bool? user;
   final bool? back;
   final Function? onBack;
   final BuildContext? contextA;
-  final bool? actions;
+  //final bool? actions;
   final Function? onTapActions;
   final bool? centerTitle;
   final Color? color;
-  final bool? addressDropdown;
+  final bool addressDropdown;
+  final List<Widget>? actions;
 
   DoctorAppbar(
       {required this.title,
-      @required this.user,
-      this.notification,
-      this.addressDropdown,
+      required this.user,
+      this.notification = true,
+      this.addressDropdown = false,
       this.exitButton,
       this.actions,
       this.color,
@@ -46,13 +48,13 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
       this.onTapActions,
       required this.contextA,
       this.centerTitle,
-      this.filter});
+      this.filter = false});
 
   @override
   Widget build(BuildContext context) {
     return FocusDetector(
       onFocusGained: () {
-        if (notification ?? true) {
+        if (notification) {
           //  context.read<HeaderCubit>()..fetch();
         }
       },
@@ -73,7 +75,7 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
                       onBack: onBack,
                     ),
                   ),
-            addressDropdown == false
+            !addressDropdown
                 ? Center(
                     child: Text(
                       title!,
@@ -93,15 +95,20 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
   Row rightButtonsRow(BuildContext contextZ) {
     return Row(
       children: [
-        (notification ?? true)
+        (notification)
             ? NotificationWidget()
-            : (onTapActions == null ? MySizedBox.w10 : Container()),
-        ActionsButton(
-          onTap: onTapActions,
-        ),
-        (filter ?? true)
-            ? FilterWidget()
-            : (onTapActions == null ? MySizedBox.w20 : Container()),
+            : (actions == null ? MySizedBox.w10 : Container()),
+        //...actions,
+
+        ...?actions,
+        // actions!=null? (...?actions) : Container(),
+        // ActionsButton(
+        //   onTap: onTapActions,
+        // ),
+        // (filter)
+        //     ? FilterWidget()
+        //     : (onTapActions == null ? MySizedBox.w20 : Container()),
+        //actions.isNotEmptyOrNull ? MySizedBox.w16 : MySizedBox.zero,
       ],
     );
   }

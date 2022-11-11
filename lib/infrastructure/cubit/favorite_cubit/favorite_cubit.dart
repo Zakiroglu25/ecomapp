@@ -11,11 +11,9 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   FavoriteCubit() : super(FavoriteInitial());
   int page = 1;
   fetchProduct([bool loading = true]) async {
-    print("Cubit 1");
     if (loading) {
       emit(FavoriteInProgress());
     }
-    print("Cubit 2");
     try {
       final result = await FavoritesProvider.getFavorite(page);
       wtf(result.data.toString());

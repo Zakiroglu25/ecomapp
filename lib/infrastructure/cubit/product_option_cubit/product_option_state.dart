@@ -15,6 +15,6 @@ class ProductOptionError extends ProductOptionState {
 class ProductOptionNetworkError extends ProductOptionState {}
 
 class ProductOptionSuccess extends ProductOptionState {
-  ProductOptionSuccess(this.product_option_model);
-  final List<Data> product_option_model;
+  ProductOptionSuccess(this.productList);
+  final List<SimpleProduct> productList;
 }

@@ -57,7 +57,7 @@ class AppField extends StatelessWidget {
     this.suffixText,
     this.textInputType,
   }) : assert(controller == null || initialValue == null,
-  "her ikisi teyin ola bilmez");
+            "her ikisi teyin ola bilmez");
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +74,7 @@ class AppField extends StatelessWidget {
             title ?? "",
             style: TextStyle(
                 fontSize: 14,
-                color: MyColors.grey153,
+                color: MyColors.grey158,
                 fontFamily: "San Francisco"),
           ),
           MySizedBox.h3,
@@ -106,7 +106,7 @@ class AppField extends StatelessWidget {
 
                   keyboardType: textInputType ?? TextInputType.text,
                   textCapitalization:
-                  textCapitalization ?? TextCapitalization.sentences,
+                      textCapitalization ?? TextCapitalization.sentences,
                   inputFormatters: [...?customInputFormat(), ...?formatters],
                   decoration: InputDecoration(
                     counterText: '',
@@ -123,7 +123,7 @@ class AppField extends StatelessWidget {
                     suffixText: suffixText ?? "",
                     filled: true,
                     prefixIcon: prefixIcon,
-                    fillColor: MyColors.mainGrey,
+                    fillColor: MyColors.grey245,
                     contentPadding: EdgeInsets.only(
                         left: 14.0,
                         bottom: 6.0,
@@ -143,14 +143,14 @@ class AppField extends StatelessWidget {
                     child: Center(
                       child: Container(
                         padding: EdgeInsets.symmetric(
-                          //  vertical: errorMessage == null ? 18 : 17,
+                            //  vertical: errorMessage == null ? 18 : 17,
                             horizontal: 2),
                         child: suffixIcon ??
                             (errorMessage != null
                                 ? Container(
-                                height: 20,
-                                //   color:MyColors.grey153,
-                                child: SvgPicture.asset(Assets.svgLock))
+                                    height: 20,
+                                    //   color:MyColors.grey153,
+                                    child: SvgPicture.asset(Assets.svgLock))
                                 : Container()),
                       ),
                     ),

@@ -19,7 +19,7 @@ import '../../medicine_details_page/medicine_details_page.dart';
 import '../../product_details_page/product_details_page.dart';
 
 class ProductItem extends StatelessWidget {
-  final Data? products;
+  final SimpleProduct? products;
 
   ProductItem({this.products});
 
@@ -51,7 +51,7 @@ class ProductItem extends StatelessWidget {
                         SizedBox(
                           width: 199,
                           child: Text(
-                            products!.title!,
+                           products!.title!,
                             style: AppTextStyles.sfPro400s14,
                             softWrap: true,
                             overflow: TextOverflow.ellipsis,

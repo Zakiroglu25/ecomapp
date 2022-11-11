@@ -19,7 +19,7 @@ class FavoritePage extends StatefulWidget {
   _FavoritePageState createState() => _FavoritePageState();
 }
 
-class _FavoritePageState extends State<FavoritePage>{
+class _FavoritePageState extends State<FavoritePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,17 +90,19 @@ class _FavoritePageState extends State<FavoritePage>{
           //   ),
           // ),
           BlocBuilder<FavoriteCubit, FavoriteState>(
-            builder: (context, state) {
-              if (state is FavoriteSuccess) {
-                return ListView.builder(
-                  itemBuilder: (context, index) {
-                    return Text("Alindi");
-                },
-                );
-              }
-              return Text('Alinmado');
-            },
-          ),
-         );
+        builder: (context, state) {
+          if (state is FavoriteSuccess) {
+            final productList = state.product_option_model;
+            return ListView.builder(
+              itemCount: productList.length,
+              itemBuilder: (context, index) {
+                return ProductItem(products: productList[index]);
+              },
+            );
+          }
+          return Text('Alinmado');
+        },
+      ),
+    );
   }
 }

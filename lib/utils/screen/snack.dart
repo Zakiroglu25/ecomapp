@@ -11,7 +11,6 @@ import 'widget_or_empty.dart';
 
 class Snack {
   static display({
-    BuildContext? context,
     required String message,
     bool? positive = false,
     bool showSuccessIcon = false,

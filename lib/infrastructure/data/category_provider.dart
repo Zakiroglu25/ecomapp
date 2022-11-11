@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:uikit/infrastructure/config/recorder.dart';
+
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/constants/result_keys.dart';
@@ -12,37 +14,31 @@ import 'package:http/http.dart' as http;
 
 import '../model/response/status_dynamic.dart';
 
-class CategoryProvider{
+class CategoryProvider {
   static DioAuth get dioAuth => locator<DioAuth>();
 
-  static Future<StatusDynamic> getCategoryTree() async {
-    StatusDynamic statusDynamic = StatusDynamic();
-    const api = ApiKeys.getCategoryTree;
-    final response =
-    await dioAuth.dio.get(api);
-    iiii("1");
+  static Future<StatusDynamic<List<CategoryTree>>> getCategoryTree() async {
+    StatusDynamic<List<CategoryTree>> statusDynamic =
+        StatusDynamic<List<CategoryTree>>();
+    const api = ApiKeys.categoryTree;
+    final response = await dioAuth.dio.get(api);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
-      iiii("2");
       final comeJson = response.data;
-      iiii("3 Burda ilishdi cunki model Zaydi");
-      CategoryTree model = CategoryTree.fromJson(comeJson);
-      iiii("4");
-      iiii(model.toString());
-      iiii("5");
-      statusDynamic.data = model;
-      iiii("6");
+      List<CategoryTree> categoryTreeList =
+          (response.data as List).map((e) => CategoryTree.fromJson(e)).toList();
+      statusDynamic.data = categoryTreeList;
     } else {
       eeee("GetCategoryTree:  url: $api , response: ${response.data}");
     }
 
     return statusDynamic;
   }
+
   static Future<StatusDynamic> getAllManufacturers() async {
     StatusDynamic statusDynamic = StatusDynamic();
     const api = ApiKeys.getAllManufacturers;
-    final response =
-    await dioAuth.dio.get(api);
+    final response = await dioAuth.dio.get(api);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
       final comeJson = response.data;
@@ -54,5 +50,4 @@ class CategoryProvider{
 
     return statusDynamic;
   }
-
 }

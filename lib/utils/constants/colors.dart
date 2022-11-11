@@ -5,6 +5,7 @@ class MyColors {
 
   //main colors
   static const Color main = Color.fromRGBO(255, 0, 55, 1);
+  static const Color brand = Color.fromRGBO(234, 76, 104, 1);
   static const Color secondary = Color.fromRGBO(241, 82, 116, 0.1);
 
   ///onboardlittletext
@@ -13,7 +14,7 @@ class MyColors {
   static const Color black34 = Color.fromRGBO(34, 34, 34, 1);
   static const Color mainRED = Color.fromRGBO(255, 0, 55, 1);
   static const Color darkRED = Color.fromRGBO(211, 41, 45, 1);
-  static const Color btn_passive = Color.fromRGBO(218, 219, 227, 1);
+  static const Color grey165 = Color.fromRGBO(168, 172, 185, 1);
   static const Color error_red = Color.fromRGBO(241, 82, 116, 1);
   static const Color grey130 = Color.fromRGBO(130, 139, 163, 1);
   static const Color grey188 = Color.fromRGBO(188, 192, 208, 1);

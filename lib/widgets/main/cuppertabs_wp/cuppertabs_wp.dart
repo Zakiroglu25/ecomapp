@@ -1,13 +1,11 @@
-import 'package:uikit/utils/constants/border_radius.dart';
-import 'package:uikit/utils/constants/colors.dart';
-import 'package:uikit/utils/constants/sized_box.dart';
-import 'package:uikit/widgets/main/cupperfold/widgets/custom_cupertino_sliver_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:uikit/utils/constants/border_radius.dart';
+import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/widgets/main/cupperfold/widgets/custom_cupertino_sliver_navigation_bar.dart';
 
 import '../../../utils/constants/physics.dart';
 import '../../custom/app_tab.dart';
-import '../../custom/sliver_app_bar_delegate.dart';
 import '../cupperfold/widgets/app_sliver_persistent_cupertino_appbar.dart';
 import 'cuppertabs_provider.dart';
 
@@ -31,6 +29,7 @@ class CupperTabsWithProvider extends StatefulWidget {
     this.selectedTabColor,
     this.barColor,
     this.showAppbarLittleText = false,
+    this.withCupertinoAppbar = true,
     this.unSelectedLabelColor,
     this.onRefresh,
     this.tabbarTitle,
@@ -47,6 +46,7 @@ class CupperTabsWithProvider extends StatefulWidget {
   final bool? notification;
   final bool? back;
   final bool showAppbarLittleText;
+  final bool withCupertinoAppbar;
   final bool isScrollable;
   final Function? onBack;
   final List<AppTab> tabs;
@@ -101,94 +101,97 @@ class _CupperTabsWithProviderState extends State<CupperTabsWithProvider>
   @override
   Widget build(BuildContext context) {
     // bbbb('coooo: ${Provider.of<CupperProvider>(context, listen: true).color}');
-    return SafeArea(
-      child: Scaffold(
-        // A ScrollView that creates custom scroll effects using slivers.
-        backgroundColor: MyColors.white,
-        body: SafeArea(
-          child: Consumer<CupperProvider>(
-            builder: (BuildContext context, value, Widget? child) {
-              return DefaultTabController(
-                length: widget.tabs.length,
-                child: NestedScrollView(
-                    floatHeaderSlivers: false,
-                    physics: Physics.never,
-                    headerSliverBuilder:
-                        (BuildContext context, bool innerBoxIsScrolled) {
-                      return <Widget>[
-                        if (widget.showAppbarLittleText)
-                          AppSliverPersistentCupertinoAppbar(
-                            trailings: widget.trailings,
-                            leadings: widget.leadings,
-                            title: widget.title,
-                            barColor: widget.barColor,
-                            user: widget.user,
-                            notification: widget.notification,
-                            back: widget.back,
-                            onBack: widget.onBack,
-                          ),
-                        if (!widget.showAppbarLittleText)
-                          CustomCupertinoSliverNavigationBar(
-                            trailings: widget.trailings,
-                            leadings: widget.leadings,
-                            title: widget.title,
-                            barColor: widget.barColor,
-                            user: widget.user,
-                            notification: widget.notification,
-                            back: widget.back,
-                            onBack: widget.onBack,
-                          ),
-                        if (widget.headers != null) widget.headers!,
-                        if (widget.tabbarTitle != null)
-                          SliverPersistentHeader(
-                              floating: false,
-                              pinned: true,
-                              delegate: widget.tabbarTitle!),
+    return Scaffold(
+      // A ScrollView that creates custom scroll effects using slivers.
+      backgroundColor: MyColors.white,
+      body: SafeArea(
+        child: Consumer<CupperProvider>(
+          builder: (BuildContext context, value, Widget? child) {
+            return DefaultTabController(
+              length: widget.tabs.length,
+              child: NestedScrollView(
+                  floatHeaderSlivers: true,
+                  physics: Physics.never,
+                  headerSliverBuilder:
+                      (BuildContext context, bool innerBoxIsScrolled) {
+                    return <Widget>[
+                      // if (!widget.withCupertinoAppbar)
+                      //   DoctorAppbar(
+                      //     contextA: context,
+                      //     user: widget.user,
+                      //     title: widget.title,
+                      //   ),
+                      if (widget.showAppbarLittleText)
+                        AppSliverPersistentCupertinoAppbar(
+                          trailings: widget.trailings,
+                          leadings: widget.leadings,
+                          title: widget.title,
+                          barColor: widget.barColor,
+                          user: widget.user,
+                          notification: widget.notification,
+                          back: widget.back,
+                          onBack: widget.onBack,
+                        ),
+                      if (!widget.showAppbarLittleText)
+                        CustomCupertinoSliverNavigationBar(
+                          trailings: widget.trailings,
+                          leadings: widget.leadings,
+                          title: widget.title,
+                          barColor: widget.barColor,
+                          user: widget.user,
+                          notification: widget.notification,
+                          back: widget.back,
+                          onBack: widget.onBack,
+                        ),
+                      if (widget.headers != null) widget.headers!,
+                      if (widget.tabbarTitle != null)
                         SliverPersistentHeader(
                             floating: false,
                             pinned: true,
-                            delegate: _SliverAppBarDelegate(TabBar(
-                              padding: widget.tabbarPadding ??
-                                  const EdgeInsets.only(
-                                      left: 20, right: 20, top: 5, bottom: 10),
-                              controller: _tabController,
-                              indicatorColor: MyColors.green235,
-                              overlayColor:
-                                  MaterialStateProperty.all(Colors.black),
+                            delegate: widget.tabbarTitle!),
+                      SliverPersistentHeader(
+                          floating: false,
+                          pinned: true,
+                          delegate: _SliverAppBarDelegate(TabBar(
+                            padding: widget.tabbarPadding ??
+                                const EdgeInsets.only(
+                                    left: 20, right: 20, top: 5, bottom: 10),
+                            controller: _tabController,
+                            indicatorColor: MyColors.green235,
+                            overlayColor:
+                                MaterialStateProperty.all(Colors.black),
 
-                              indicator: BoxDecoration(
-                                borderRadius: Radiuses.r36,
-                                color: widget.selectedTabColor ??
-                                    MyColors.secondary,
-                              ),
+                            indicator: BoxDecoration(
+                              borderRadius: Radiuses.r36,
+                              color:
+                                  widget.selectedTabColor ?? MyColors.secondary,
+                            ),
 
-                              labelColor:
-                                  widget.selectedLabelColor ?? MyColors.main,
-                              unselectedLabelColor:
-                                  widget.unSelectedLabelColor ??
-                                      MyColors.grey158,
-                              physics: Physics.alwaysBounce,
-                              tabs: Provider.of<CupperProvider>(context,
-                                      listen: true)
-                                  .tabs,
-                              //indicatorSize: TabBarIndicatorSize(),
-                              isScrollable: widget.isScrollable,
-                            )))
-                      ];
-                    },
-                    body: TabBarView(
-                      physics: Physics.alwaysBounce,
-                      controller: _tabController,
-                      children: widget.tabPages.map((Widget child) {
-                        return RefreshIndicator(
-                            color: MyColors.main,
-                            onRefresh: () async => widget.onRefresh?.call(),
-                            child: child);
-                      }).toList(),
-                    )),
-              );
-            },
-          ),
+                            labelColor:
+                                widget.selectedLabelColor ?? MyColors.main,
+                            unselectedLabelColor:
+                                widget.unSelectedLabelColor ?? MyColors.grey158,
+                            physics: Physics.alwaysBounce,
+                            tabs: Provider.of<CupperProvider>(context,
+                                    listen: true)
+                                .tabs,
+                            //indicatorSize: TabBarIndicatorSize(),
+                            isScrollable: widget.isScrollable,
+                          )))
+                    ];
+                  },
+                  body: TabBarView(
+                    physics: Physics.alwaysBounce,
+                    controller: _tabController,
+                    children: widget.tabPages.map((Widget child) {
+                      return RefreshIndicator(
+                          color: MyColors.main,
+                          onRefresh: () async => widget.onRefresh?.call(),
+                          child: child);
+                    }).toList(),
+                  )),
+            );
+          },
         ),
       ),
     );

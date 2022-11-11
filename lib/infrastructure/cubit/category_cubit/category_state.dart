@@ -1,4 +1,4 @@
-part of 'get_category_cubit.dart';
+part of 'category_cubit.dart';
 
 @immutable
 abstract class CategoryState {}
@@ -10,7 +10,7 @@ class CategoryInProgress extends CategoryState {}
 class CategoryError extends CategoryState {}
 
 class CategorySuccess extends CategoryState {
-  final List<Subcategories> category;
+  final List<CategoryTree> category;
 
   CategorySuccess(this.category);
 }

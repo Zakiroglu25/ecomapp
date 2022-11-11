@@ -53,6 +53,8 @@ In addition to laying out rules for proper use of your app, you should also clea
       "Daxil olmaq üçün aşağıda qeyd olunan bəndləri doldurun.";
   static const String forgot = "Şifrəni unutmusuz ?";
   static const String are_u_sure_exit = "Çıxış etmək istədiyinizdən əminsiniz?";
+  static const String new_pass = 'Yeni şifrə';
+  static const String set_new_pass = 'Yeni şifrə təyin edin';
 
   //forgot pass
   static const String enter_new_pass = 'Yeni şifrəni daxil edin';
@@ -68,7 +70,17 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String ok = 'OK';
   static const String reject = 'İmtina';
   static const String error = "Əməliyyat zamanı xəta yarandı!";
+  static const String goOn = "Davam et";
   static const String unknownError = "Bilinməyən xəta yarandı!";
+  static const String are_you_forgot_pass = "Şifrəni unutmusan ?";
+  static const String there_is_code_on_mail = 'Email-a kod göndərildi';
+  static const String setted_new_pass = 'Yeni şifrə təyin edildi.';
+  static const String please_enter_code =
+      'Sizin Email ünvanınıza şifrə göndərmişik. Zəhmət olmasa daxil olub şifrəni daxil edin.';
+  static const String we_will_send_new_pass =
+      "Hörmətli müştəri, şifrə unudulduğu halda biz sizin qeydiyyat zamanı daxil etdiyiniz Email unvanınıza yeni şirfə göndərəcəyik.";
+  static const String confirm_your_email =
+      'E-poçt ünvanının sizə məxsus olduğunu təsdiqləyin. Əks halda qaynar xətt ilə əlaqə saxlaya bilərsiniz.';
 
   //bottomnavigation
   static const String product = "Məhsullar";
@@ -78,7 +90,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String other = "Digər";
 
   //product page
-  static const String derman = "Dərmanlar";
+  static const String medicines = "Dərmanlar";
+  static const String medicine = "Dərman";
   static const String carts = "Səbətim";
   static const String nameDoctoro = "Doctoro";
   static const String searchHint = "Ad və ya istehsal olduğu ölkə";
@@ -184,9 +197,5 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String seriaNum = "Seriya nömrəsi";
   static const String fin = "FIN kod";
   static const String emailAddressIsNotCorrect = "E-poçt düzgün deyil";
-  static const String operationIsSuccess = "Əməliyyat uğurlu oldu!";
-
-
-
-
+  static const String success = "Əməliyyat uğurlu oldu!";
 }

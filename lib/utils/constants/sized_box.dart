@@ -5,6 +5,9 @@ class MySizedBox {
   MySizedBox._();
 
   //-height
+  static const SizedBox zero = SizedBox(height: 0);
+
+  //-height
   static const SizedBox h0 = SizedBox(height: 0);
   static const SizedBox h2 = SizedBox(height: 2);
   static const SizedBox h3 = SizedBox(height: 3);

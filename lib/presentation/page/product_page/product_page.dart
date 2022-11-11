@@ -1,7 +1,8 @@
-import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
 
-import 'widgets/appbar_address_widget.dart';
+import '../../../widgets/doctoro_appbar/widgets/actions_button.dart';
+import '../../../widgets/doctoro_appbar/widgets/filter.dart';
 import 'widgets/product_body.dart';
 
 class ProductPage extends StatelessWidget {
@@ -17,6 +18,10 @@ class ProductPage extends StatelessWidget {
         user: true,
         notification: true,
         filter: false,
+        // actions: [
+        //   ActionsButton(),
+        //   FilterWidget(),
+        // ],
       ),
       body: ProductBody(),
     );

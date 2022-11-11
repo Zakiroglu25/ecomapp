@@ -58,11 +58,11 @@ class UserCubit extends Cubit<UserState> {
           accessToken: _prefs.accessToken!, fcm: _prefs.fcmToken,
           //  path: _prefs.userPath
         );
-        Snack.positive(context: context, message: MyText.operationIsSuccess);
+        Snack.positive(context: context, message: MyText.success);
         emit(UserSuccess(response.data!));
       } else {
         final errors = response.data;
-        Snack.display(context: context, message: errors);
+        Snack.display( message: errors);
         emit(UserFailed(response.statusCode.toString()));
       }
     } catch (e, s) {

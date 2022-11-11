@@ -4,6 +4,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:uikit/infrastructure/services/navigation_service.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../locator.dart';
@@ -23,6 +24,8 @@ class ForgotPassCubit extends Cubit<ForgotPassState> {
 
   HiveService get _prefs => locator<HiveService>();
   String buttonText = MyText.send;
+  String tempToken = '';
+  final context = NavigationService.instance.navigationKey?.currentContext;
 
   void changeState(
       {bool loading = true,
@@ -42,43 +45,58 @@ class ForgotPassCubit extends Cubit<ForgotPassState> {
     emit(states[index ?? currentIndex]);
   }
 
-  Future<bool> sendMail(BuildContext context, {bool loading = true}) async {
-    final result = await ForgotProvider.sendMail(
-        phone: AppOperations.formatNumber(phone.valueOrNull!));
+  Future<bool> requestOTP(BuildContext context, {bool loading = true}) async {
+    final result = await ForgotProvider.requestOTP(
+        phone: AppOperations.formatNumberWith994(phone.valueOrNull!));
     if (result!.statusCode.isSuccess) {
       return true;
     } else {
       emit(ForgotPassError());
       if (result.data.toString().contains('message')) {
-        Snack.display(context: context, message: result.data['message']);
+        Snack.display(message: result.data['message']);
       }
 
       return false;
     }
   }
 
-  Future<bool> enterCode(BuildContext context, {bool loading = true}) async {
+  Future<bool> validateOTP(BuildContext context, {bool loading = true}) async {
     if (loading) {
       emit(ForgotPassInProgress());
     }
-    final result = await ForgotProvider.addCode(
-        phone: AppOperations.formatNumber(phone.valueOrNull!),
+    final result = await ForgotProvider.validateOTP(
+        phone: AppOperations.formatNumberWith994(phone.valueOrNull!),
         code: otpCode.valueOrNull);
 
     if (result!.statusCode.isSuccess) {
+      tempToken = result.data;
       return true;
     } else {
       emit(ForgotPassError());
-      Snack.display(context: context, message: MyText.error);
+      Snack.display(message: MyText.error);
       return false;
     }
   }
 
-  void confirmPass({bool loading = true}) async {
+  Future<bool> confirmPass({bool loading = true}) async {
     if (loading) {
       emit(ForgotPassInProgress());
     }
 
+    if (loading) {
+      emit(ForgotPassInProgress());
+    }
+    final result = await ForgotProvider.resetPass(
+        token: tempToken, newPass: uPassMain.valueOrNull);
+
+    if (result!.statusCode.isSuccess) {
+      //tempToken = result.data;
+      return true;
+    } else {
+      emit(ForgotPassError());
+      Snack.display(message: MyText.error);
+      return false;
+    }
     currentIndex = 2;
     emit(ForgotPassSuccess());
   }
@@ -89,17 +107,16 @@ class ForgotPassCubit extends Cubit<ForgotPassState> {
     switch (currentIndex) {
       case 0:
         buttonText = MyText.send;
-        res = await sendMail(context);
+        res = await requestOTP(context);
         break;
       //return res;
       case 1:
-        buttonText = MyText.login;
-        res = await enterCode(context);
-
-        //return res;
-        break;
+        buttonText = MyText.goOn;
+        res = await validateOTP(context);
+        return res;
+      //break;
       case 2:
-        Go.andRemove(context, Pager.app());
+        res = await confirmPass();
         buttonText = MyText.login;
         break;
       case 3:
@@ -220,7 +237,8 @@ class ForgotPassCubit extends Cubit<ForgotPassState> {
   List states = [
     ForgotPassEnterMail(),
     ForgotPassEnterCode(),
-    ForgotPassChanged(),
+    ForgotPassChange(),
+    ForgotPassSuccess(),
     // ForgotPassNewPass(),
     // ForgotPassSuccess()
   ];

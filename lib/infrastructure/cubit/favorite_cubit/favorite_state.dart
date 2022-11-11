@@ -1,5 +1,6 @@
 
 import '../../model/response/favorite_model.dart';
+import '../../model/response/product_option_model.dart';
 
 abstract class FavoriteState {}
 
@@ -17,5 +18,5 @@ class FavoriteNetworkError extends FavoriteState {}
 
 class FavoriteSuccess extends FavoriteState {
   FavoriteSuccess(this.product_option_model);
-  final List<Data> product_option_model;
+  final List<SimpleProduct> product_option_model;
 }

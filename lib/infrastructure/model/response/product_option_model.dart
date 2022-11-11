@@ -1,5 +1,5 @@
 class ProductOptionModel {
-  List<Data>? data;
+  List<SimpleProduct>? data;
   int? page;
   int? pageSize;
   int? totalItems;
@@ -10,9 +10,9 @@ class ProductOptionModel {
 
   ProductOptionModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <SimpleProduct>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(new SimpleProduct.fromJson(v));
       });
     }
     page = json['page'];
@@ -34,15 +34,15 @@ class ProductOptionModel {
   }
 }
 
-class Data {
+class SimpleProduct {
   String? guid;
   String? title;
   double? minPrice;
   String? imageUrl;
 
-  Data({this.guid, this.title, this.minPrice, this.imageUrl});
+  SimpleProduct({this.guid, this.title, this.minPrice, this.imageUrl});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  SimpleProduct.fromJson(Map<String, dynamic> json) {
     guid = json['guid'];
     title = json['title'];
     minPrice = json['minPrice'];

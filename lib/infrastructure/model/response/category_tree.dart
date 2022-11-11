@@ -1,7 +1,7 @@
 class CategoryTree {
   String? guid;
   String? name;
-  List<Subcategories>? subcategories;
+  List<CategoryTree>? subcategories;
 
   CategoryTree({this.guid, this.name, this.subcategories});
 
@@ -9,9 +9,9 @@ class CategoryTree {
     guid = json['guid'];
     name = json['name'];
     if (json['subcategories'] != null) {
-      subcategories = <Subcategories>[];
+      subcategories = <CategoryTree>[];
       json['subcategories'].forEach((v) {
-        subcategories!.add(new Subcategories.fromJson(v));
+        subcategories!.add(new CategoryTree.fromJson(v));
       });
     }
   }
@@ -25,6 +25,11 @@ class CategoryTree {
     //       this.subcategories!.map((v) => v.toJson()).toList();
     // }
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'CategoryTree{guid: $guid, name: $name, subcategories: $subcategories}';
   }
 }
 
