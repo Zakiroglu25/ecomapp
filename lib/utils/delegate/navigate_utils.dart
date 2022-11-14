@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 
 class Go {
+  Go._();
   // static pushPage(BuildContext context, Widget page) async {
   //   Navigator.push(
   //       context,

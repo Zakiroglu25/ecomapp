@@ -4,21 +4,21 @@ class MyUser {
   String? firstName;
   num? patronymic;
   String? lastName;
-  num? birthDate;
-  num? finCode;
+  String? birthDate;
+  String? finCode;
   num? insuranceId;
   bool? newsletterSubscription;
 
   MyUser(
       {this.phone,
-        this.email,
-        this.firstName,
-        this.patronymic,
-        this.lastName,
-        this.birthDate,
-        this.finCode,
-        this.insuranceId,
-        this.newsletterSubscription});
+      this.email,
+      this.firstName,
+      this.patronymic,
+      this.lastName,
+      this.birthDate,
+      this.finCode,
+      this.insuranceId,
+      this.newsletterSubscription});
 
   MyUser.fromJson(Map<String, dynamic> json) {
     phone = json['phone'];

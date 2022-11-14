@@ -2,13 +2,13 @@ class AddressModel {
   String? guid;
   String? title;
   String? streetName;
-  num? streetNumber;
+  String? streetNumber;
   String? houseNumber;
-  num? postCode;
+  String? postCode;
   String? phone;
   String? country;
   String? city;
-  num? region;
+  String? region;
   String? latitude;
   String? longitude;
   String? description;

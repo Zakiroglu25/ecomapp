@@ -1,5 +1,5 @@
 // Flutter imports:
-import 'package:doctoro/widgets/custom/doctoro_button.dart';
+import 'package:uikit/widgets/custom/app_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -89,7 +89,7 @@ class Alert {
                           ),
                           elseChild: WidgetOrEmpty(
                               value: cancelButton || onTapCancel != null,
-                              child: DoctoroButton(
+                              child: AppButton(
                                   w: buttonSize,
                                   color: MyColors.grey245,
                                   // text: MyText.reject,
@@ -101,7 +101,7 @@ class Alert {
                         ),
                         SizedBox(
                           width: buttonSize,
-                          child: DoctoroButton(
+                          child: AppButton(
                             // text: buttonText ?? MyText.ok,
                             onTap: () {
                               Go.pop(context);
@@ -188,7 +188,7 @@ class Alert {
                           ),
                           elseChild: WidgetOrEmpty(
                               value: cancelButton || onTapCancel != null,
-                              child: DoctoroButton(
+                              child: AppButton(
                                   w: buttonSize,
                                   color: MyColors.grey245,
                                   // text: MyText.reject,
@@ -200,7 +200,7 @@ class Alert {
                         ),
                         SizedBox(
                           width: buttonSize,
-                          child: DoctoroButton(
+                          child: AppButton(
                             text: buttonText ?? "OK",
                             onTap: () {
                               Go.pop(context);

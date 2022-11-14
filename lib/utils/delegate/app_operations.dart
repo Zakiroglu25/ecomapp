@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:uikit/utils/delegate/my_printer.dart';
 
 class AppOperations {
   static int getTime(index) {
@@ -32,6 +33,16 @@ class AppOperations {
       a = num.replaceAll('(', "(0");
     }
 
+    return a.replaceAll(' ', "-");
+  }
+
+  static String formatNumberWith994(String num) {
+    var a = num;
+
+    a = num.replaceAll('(', '+994');
+    a = a.replaceAll(" ", '');
+    a = a.replaceAll(')', '');
+    return a;
     return a.replaceAll(' ', "-");
   }
 
@@ -110,25 +121,25 @@ class AppOperations {
     return newNumInt;
   }
 
-  // static void exitDialog(BuildContext context) {
-  //   Alert.show(context, image: Image.asset(Assets.pngQifil), cancelButton: true,
-  //       onTap: () {
-  //     return context.read<AuthenticationCubit>()
-  //       ..logOut(context, goWithPager: true);
-  //   }, title: MyText.are_u_sure_exit);
-  // }
-  //
-  // static Future<File?> pickPhotoFromGallery({ImageSource? imageSource}) async {
-  //   XFile? pickedFile = await ImagePicker().pickImage(
-  //     source: imageSource ?? ImageSource.gallery,
-  //     maxWidth: 1800,
-  //     maxHeight: 1800,
-  //   );
-  //   if (pickedFile != null) {
-  //     File imageFile = File(pickedFile.path);
-  //     //updateImage(imageFile);
-  //     // bbbb("image picked succesfully!");
-  //     return imageFile;
-  //   }
-  // }
+// static void exitDialog(BuildContext context) {
+//   Alert.show(context, image: Image.asset(Assets.pngQifil), cancelButton: true,
+//       onTap: () {
+//     return context.read<AuthenticationCubit>()
+//       ..logOut(context, goWithPager: true);
+//   }, title: MyText.are_u_sure_exit);
+// }
+//
+// static Future<File?> pickPhotoFromGallery({ImageSource? imageSource}) async {
+//   XFile? pickedFile = await ImagePicker().pickImage(
+//     source: imageSource ?? ImageSource.gallery,
+//     maxWidth: 1800,
+//     maxHeight: 1800,
+//   );
+//   if (pickedFile != null) {
+//     File imageFile = File(pickedFile.path);
+//     //updateImage(imageFile);
+//     // bbbb("image picked succesfully!");
+//     return imageFile;
+//   }
+// }
 }

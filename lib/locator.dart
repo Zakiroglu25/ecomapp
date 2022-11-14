@@ -6,6 +6,7 @@ import 'package:get_it/get_it.dart';
 import 'infrastructure/config/dio_auth.dart';
 import 'infrastructure/config/dio_general.dart';
 import 'infrastructure/services/config_service.dart';
+import 'infrastructure/services/device_info_service.dart';
 import 'infrastructure/services/hive_service.dart';
 
 DioG get dioG => locator<DioG>();
@@ -30,6 +31,11 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton<DioG>(() => dioG);
   final dioA = await DioAuth.instance;
   locator.registerLazySingleton<DioAuth>(() => dioA);
+
+  //services
+
+  locator.registerLazySingleton<DeviceInfoService>(
+      () => DeviceInfoService.instance);
 
   // locator.registerLazySingleton<RegisterRepository>(() => RegisterS)
 }

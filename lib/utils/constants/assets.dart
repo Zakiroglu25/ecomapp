@@ -1,27 +1,46 @@
 class Assets {
   Assets._();
 
+  //couple svg
+  static const String bag_happyC = "assets/svg/bag-happy";
+
   //svg
   static const String red_logo = "assets/svg/logo_red.svg";
+  static const String bag_happy = "assets/svg/bag-happy.svg";
+  static const String bag_happy_xx = "assets/svg/bag-happy-xx.svg";
+  static const String svgClock = "assets/svg/clock.svg";
+  static const String truck_fast = "assets/svg/truck-fast.svg";
   static const String svgEyeOff = "assets/svg/eye-off.svg";
   static const String svgEyeOn = "assets/svg/eye-on.svg";
   static const String svgLock = "assets/svg/lock.svg";
   static const String svgBad = "assets/svg/bad.svg";
+  static const String svgProduct = "assets/svg/product.svg";
   static const String svgWhiteLogo = "assets/svg/whitelogo.svg";
+  static const String svgDots = "assets/svg/dots.svg";
+  static const String svgCard = "assets/svg/card.svg";
+  static const String svgScan = "assets/svg/scan.svg";
+  static const String svgCall = "assets/svg/call.svg";
+  static const String svgMessage = "assets/svg/messages.svg";
+  static const String svgLoaction = "assets/svg/locationsvg.svg";
 
   static const String svgCheck = "assets/svg/check.svg";
   static const String svgMinus2 = "assets/svg/minus-2.svg";
+  static const String svgEdit = "assets/svg/edit.svg";
+  static const String svgEditUser = "assets/svg/edit_user.svg";
 
   ///bottomnovigation icon
   static const String svgLogo = "assets/svg/logogrey.svg";
-  static const String svgProduct = "assets/svg/product.svg";
+  static const String svgFav = "assets/svg/iconheart.svg";
   static const String svgAptek = "assets/svg/svgaptek.svg";
   static const String svgCart = "assets/svg/svgcart.svg";
+  static const String svgShoppingCart = "assets/svg/shopping-cart.svg";
   static const String svgMore = "assets/svg/svgmore.svg";
+  static const String svgBigLogo = "assets/svg/big-logo.svg";
 
   ///appbar
   static const String svgUser = "assets/svg/user.svg";
   static const String svgBackArrow = "assets/svg/back_arrow.svg";
+  static const String svgLeft = "assets/svg/left.svg";
   static const String svgBell = "assets/svg/bell.svg";
   static const String svgFilter = "assets/svg/filter.svg";
 
@@ -37,15 +56,26 @@ class Assets {
   static const String pngContact3x = "assets/png/contact.png";
   static const String pngQuestion3x = "assets/png/question.png";
   static const String pngSeting3x = "assets/png/setting.png";
-///product page
+
+  ///product page
   static const String pngVitamin3x = "assets/png/vitamin.png";
   static const String pngLab3x = "assets/png/lab.png";
   static const String pngPashaIn3x = "assets/png/pashadetails.png";
+  static const String docu = "assets/svg/product.svg";
+  static const String dHeart = "assets/png/dheart.png";
+
   //pashadetails
   static const String pngPhone3x = "assets/png/phone.png";
   static const String pngUser3x = "assets/png/user.png";
   static const String pngAt3x = "assets/png/at.png";
 
+  ///contact
+  static const String pngWhatsapp = "assets/png/whatsapp.png";
+  static const String pngTelegram = "assets/png/telegram.png";
+  static const String pngFacebook = "assets/png/facebook.png";
+  static const String pngHotline = "assets/png/hotline.png";
+  //setting
+  static const String svgCallDark = "assets/svg/calldark.svg";
 
 ////////////////////////////////////////////////////////////////////////////////
   //png
@@ -56,12 +86,23 @@ class Assets {
   static const String keyChild = "assets/png/keychild.png";
   static const String medicine = "assets/png/medicine.png";
   static const String pngBad = "assets/png/bad.png";
+  static const String pngCourier = "assets/png/courier.png";
+  static const String demo = "assets/png/demo.png";
+  static const String demo1 = "assets/png/demoderman.png";
+  static const String demo2 = "assets/png/zeytun.png";
+
+  static const String masterCard = "assets/png/mastercard.png";
+  static const String pngAzFlag = "assets/png/azflag.png";
 
   //other
   static const String pasha = "assets/png/pasha.png";
 
 //  anim
   static const String loading = "assets/anim/loading.json";
-
-
+  static const String animEmptyBox = "assets/anim/empty_box.json";
+  static const String animSadFace = "assets/anim/sad_face.json";
+  static const String animSuccessOpt = "assets/anim/success_operation.json";
+  static const String animProgressbar = "assets/anim/progressbar.json";
+  static const String animPasta = "assets/anim/birthday_pasta.json";
+  static const String oneYear = "assets/anim/oneyear.json";
 }

@@ -1,25 +1,22 @@
 // Dart imports:
-import 'dart:convert';
 import 'dart:io';
-
-// Flutter imports:
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/constants/text.dart';
-import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/delegate/pager.dart';
-import '../../../utils/delegate/request_control.dart';
 import '../../../utils/delegate/user_operations.dart';
 import '../../../utils/screen/snack.dart';
 import '../../../utils/validators/validator.dart';
+import '../../config/recorder.dart';
 import '../../data/auth_provider.dart';
-import '../../model/remote/general/MyMessage.dart';
 import 'login_state.dart';
 
 // Project imports:
@@ -79,30 +76,32 @@ class LoginCubit extends Cubit<LoginState> {
       // final email = "bxtyr1903@gmail.com";
       // final pass = 'Baxtiyar1993';
 
-      // final deviceCode = await _fcm.getToken();
+      //final deviceCode = await _fcm.getToken();
+      final fcmToken = 'token';
       final response = await AuthProvider.login(
         email: uEmail.valueOrNull,
         password: uPass.valueOrNull,
+        fcmToken: fcmToken,
       );
 
-      if (isSuccess(response.statusCode)) {
+      if (response.statusCode.isSuccess) {
+        final tokens = response.data;
+
         await UserOperations.configureUserDataWhenLogin(
-          accessToken: response.data,
+          accessToken: tokens['accessToken'],
+          refreshToken: tokens['refreshToken'],
           path: uPass.valueOrNull,
-          //    fcmToken: '',
         );
         Go.andRemove(context, Pager.app(showSplash: true));
         emit(LoginSuccess(''));
       } else {
-        Snack.display(
-            context: context, message: "e-mail ve ya şifrə yanlışdır");
+        Snack.display(message: MyText.emailOrPassNotCorrect);
         emit(LoginError());
-        eeee(
-            "login result bad: ${ResponseMessage.fromJson(jsonDecode(response.data)).message}");
       }
     } on SocketException catch (_) {
       emit(LoginError(error: 'network_error'));
-    } catch (e) {
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
       emit(LoginError(error: e.toString()));
     }
   }

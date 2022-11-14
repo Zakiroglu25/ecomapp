@@ -21,7 +21,9 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   AuthenticationCubit() : super(AuthenticationUninitialized());
 
   HiveService get _prefs => locator<HiveService>();
+
   ConfigService get _configs => locator<ConfigService>();
+
   // MyUser? userData = MyUser();
   // FirebaseMessaging _fcm = FirebaseMessaging.instance;
   // final remoteConfig = FirebaseRemoteConfig.instance;
@@ -35,21 +37,22 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       emit(AuthenticationLoading());
     }
     try {
+      // _prefs.clear();
       // configureFcm(context: context);
-      // final String? fcm = await _fcm.getToken();
-      final bool isLoggedIn = await _prefs.isLoggedIn;
-      final String? accessToken = await _prefs.accessToken;
-      print(isLoggedIn);
-      print(accessToken);
+      //final String? fcm = await _fcm.getToken();
+      final String? fcm = 'test fcm';
+      final bool isLoggedIn = _prefs.isLoggedIn;
+      final String? accessToken = _prefs.accessToken;
 
       bbbb("accessToken: $accessToken");
       if (isLoggedIn && accessToken != null) {
         //userin girish edib etmemeyi yoxlanilir
         await Future.wait([
-          //splah screen ucun min 4 san. gozledilir
+          //splah screen ucun min 2 san. gozledilir
           delay(showSplash),
           // eyni zamanda konfiqurasiya edilir
-          UserOperations.configUserDataWhenOpenApp(accessToken: accessToken)
+          UserOperations.configUserDataWhenOpenApp(
+              accessToken: accessToken, fcm: fcm)
         ]);
         // if (goOn!) {
         emit(AuthenticationAuthenticated());
@@ -63,7 +66,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
 
         //  if (goOn!) {
 
-        if (await _configs.onBoardIsSeen) {
+        if (_configs.onBoardIsSeen) {
           emit(AuthenticationUninitialized());
         } else {
           emit(AuthenticationOnboarding());
@@ -102,7 +105,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   }
 
   Future<void> delay(bool showSplash) async {
-    if (showSplash) await Future.delayed(Duration(seconds: 4));
+    if (showSplash) await Future.delayed(Duration(seconds: 2));
   }
 
   void showLogoutDialog(BuildContext context, {bool goWithPager = false}) {

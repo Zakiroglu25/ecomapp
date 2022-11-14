@@ -1,31 +1,26 @@
-// import 'package:flutter/material.dart';
-//
-// class Gradients {
-//   Gradients._();
-//
-//   static const LinearGradient gBlues = LinearGradient(
-//       begin: Alignment.topCenter,
-//       end: Alignment.bottomCenter,
-//       colors: [
-//         // Color.fromRGBO(105, 145, 244, 1),
-//         Color.fromRGBO(78, 167, 244, 1),
-//         Color.fromRGBO(89, 193, 228, 1),
-//       ]);
-//
-//   static const LinearGradient gGreens = LinearGradient(
-//       begin: Alignment.topCenter,
-//       end: Alignment.bottomCenter,
-//       colors: [
-//         Color.fromRGBO(23, 187, 158, 1),
-//         Color.fromRGBO(36, 227, 194, 1),
-//       ]);
-//
-//   static const LinearGradient gReds = LinearGradient(
-//       begin: Alignment.topCenter,
-//       end: Alignment.bottomCenter,
-//       colors: [
-//         Color.fromRGBO(248, 20, 80, 1),
-//         Color.fromRGBO(248, 90, 80, 1),
-//        // Color.fromRGBO(248, 102, 170, 1),
-//       ]);
-// }
+import 'package:flutter/material.dart';
+
+class Gradients {
+  Gradients._();
+
+  static const LinearGradient gBack = LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [
+        Color.fromRGBO(93, 95, 239, 0.5),
+        Color.fromRGBO(39, 227, 216, 0.5),
+        Color.fromRGBO(227, 46, 46, 0.5),
+        Color.fromRGBO(254, 178, 1, 0.5),
+      ]);
+
+  static const LinearGradient gBorder = LinearGradient(
+      tileMode: TileMode.mirror,
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [
+        Color.fromRGBO(248, 235, 253, 1),
+        Color.fromRGBO(248, 235, 253, 1),
+        Color.fromRGBO(255, 246, 225, 1),
+        Color.fromRGBO(235, 251, 228, 1),
+      ]);
+}

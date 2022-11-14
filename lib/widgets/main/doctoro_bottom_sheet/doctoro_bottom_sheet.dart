@@ -26,7 +26,7 @@ class OptimalBottomSheet extends StatelessWidget {
     var sW = MediaQuery.of(context).size.width;
 
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: Colors.white70,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(40),

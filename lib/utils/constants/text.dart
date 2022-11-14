@@ -1,3 +1,5 @@
+import 'package:uikit/utils/extensions/word.dart';
+
 class MyText {
   MyText._();
 
@@ -21,6 +23,7 @@ class MyText {
 
   //register
   static const String email = "E-poçt";
+  static const String emailOrPassNotCorrect = "E-poçt və ya şifrə yanlışdır";
   static const String phone = "Mobil nömrə";
   static const String phone_hint = "+994 (__) ___-__-__";
   static const String password = "Şifrə";
@@ -50,6 +53,34 @@ In addition to laying out rules for proper use of your app, you should also clea
       "Daxil olmaq üçün aşağıda qeyd olunan bəndləri doldurun.";
   static const String forgot = "Şifrəni unutmusuz ?";
   static const String are_u_sure_exit = "Çıxış etmək istədiyinizdən əminsiniz?";
+  static const String new_pass = 'Yeni şifrə';
+  static const String set_new_pass = 'Yeni şifrə təyin edin';
+
+  //forgot pass
+  static const String enter_new_pass = 'Yeni şifrəni daxil edin';
+  static const String enter_new_pass_again = 'Yeni şifrəni təkrar daxil edin';
+  static const String your_pass_reseted =
+      'Sizin mövcud şifrəniz sıfırlandı. Yenisini təyin etmək xahiş olunur. Şifrənizi unutmayın.';
+  static const String we_have_sent_new_pass_email =
+      'Sizin mövcud şifrəniz sıfırlandı. Yeni şifrə e-poçt ünvanınıza göndərildi. Hesaba daxil olaraq şifrəni dəyişə bilərsiniz.';
+  static const String code = 'Kod';
+  static const String codeHasSent = 'Kod sizin e-poçt ünvanınıza göndərildi.';
+  static const String send = 'Göndər';
+  static const String searchX = 'Axtar 🔍';
+  static const String ok = 'OK';
+  static const String reject = 'İmtina';
+  static const String error = "Əməliyyat zamanı xəta yarandı!";
+  static const String goOn = "Davam et";
+  static const String unknownError = "Bilinməyən xəta yarandı!";
+  static const String are_you_forgot_pass = "Şifrəni unutmusan ?";
+  static const String there_is_code_on_mail = 'Email-a kod göndərildi';
+  static const String setted_new_pass = 'Yeni şifrə təyin edildi.';
+  static const String please_enter_code =
+      'Sizin Email ünvanınıza şifrə göndərmişik. Zəhmət olmasa daxil olub şifrəni daxil edin.';
+  static const String we_will_send_new_pass =
+      "Hörmətli müştəri, şifrə unudulduğu halda biz sizin qeydiyyat zamanı daxil etdiyiniz Email unvanınıza yeni şirfə göndərəcəyik.";
+  static const String confirm_your_email =
+      'E-poçt ünvanının sizə məxsus olduğunu təsdiqləyin. Əks halda qaynar xətt ilə əlaqə saxlaya bilərsiniz.';
 
   //bottomnavigation
   static const String product = "Məhsullar";
@@ -59,8 +90,19 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String other = "Digər";
 
   //product page
-  static const String derman = "Dərmanlar";
+  static const String medicines = "Dərmanlar";
+  static const String medicine = "Dərman";
   static const String carts = "Səbətim";
+  static const String nameDoctoro = "Doctoro";
+  static const String searchHint = "Ad və ya istehsal olduğu ölkə";
+  static const String pashaTitleProduct = "Paşa Sığorta məhsulları burada!";
+  static const String medicineSubtitle =
+      "Reseptli və reseptsiz satışda olan dərmanları buradan əldə edib qiymətlərini müqaisə edə bilərsiniz.";
+  static const String bad = "BAD";
+  static const String badSub = "Bioaktiv qidalar üçün əlavələr.";
+  static const String vitamin = "Vitaminlər";
+  static const String vitaminSub = "Bütün qrup vitəminləri əldə edin.";
+  static const String otherSub = "Axtardığınız məhsulu tapmaq üçün";
 
   //otherpage
   static const String bigTitle = "Digər";
@@ -70,19 +112,90 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String insurance = "Sığorta";
   static const String likeMedicine = "Öxşar dərmanlar";
   static const String questionAnswer = "Sual-cavab";
-  static const String address = "Ünvanlarım";
+  static const String myAddresses = "Ünvanlarım";
+  static const String address = "Ünvan";
   static const String contact = "Əlaqə";
   static const String settings = "Tənzimləmələr";
   static const String demoSubtitle = "Axtardığınız məhsulu tapmaq üçün";
 
+  //cart page
+  static const String recipe = "Resept";
+  static const String uploadRecipe = "Resepti yüklə";
+  static const String orders = "Sifarişlər";
+  static const String in_waiting = "Gözləmə";
+  static const String makeOrder = "Sifariş et";
+  static const String deliveryPrice = "Çatdırılma haqqı";
+  static const String delivery = "Çatdırılma";
+  static const String insuranceInfo =
+      "Əgər sizin sığortanız varsa, o zaman sığorta ilə ödə funksiyasını aktivləşdirin.";
+  static const String total = "Toplam";
+  static const String pay = "Ödə";
+  static const String payTotal = "Toplam ödə";
+  static const String recipeInReview =
+      "Resept aptek tərəfindən dəyərləndirilir";
+  static const String recipePartialyAccepted = "Resept qismən qarşılanır";
+  static const String recipeConfirmed =
+      "Resept təsdiqləndi, çatdırılma edə bilərsiniz";
+  static const String payWithInsurance = "Sığorta ilə ödə";
+  static const String keepInTouch = "Əlaqə saxla️";
+  static final String keepInTouchX = keepInTouch.withX("☎");
+  static const String orderDelivery = "Çatdırılma sifariş et";
+  static final String orderDeliveryX = orderDelivery.withX("🚚");
+  static final String call = "Zəng et";
+  static final String messennger = "Messenger";
+  static final String insuranceCover = "Sığorta qarşılayır";
+  static final String insuranceDoesNotCover = "Sığorta qarşılamır";
+  static final String countOfMedicine = "Dərman sayı";
+  static final String totalPrice = "Toplam qiymət:";
+  static final String orderDate = "Sifariş tarixi";
+  static final String chooseDeliveryType = "Çatdırılma üsulunu seçin";
+  static final String contactNumber = "Əlaqə nömrəsi";
+  static final String note = "Qeyd";
+
   //pashadetails
 
-  static const String pashaTitle = "Həkim müayinəsinə asan və sürətli şəkildə onlayn yazılın";
+  static const String pashaTitle =
+      "Həkim müayinəsinə asan və sürətli şəkildə onlayn yazılın";
   static const String downApp = "Tətbiqi yüklə";
-  static const String downAppDetails = "Tətbiqi App Store marketindən yükləyə bilərsiniz";
+  static const String downAppDetails =
+      "Tətbiqi App Store marketindən yükləyə bilərsiniz";
   static const String personalAccount = "Şəxsi Kabinet";
-  static const String personalAccountDetails = "Kabinet bölməsinə keçid edə bilərsiniz";
+  static const String personalAccountDetails =
+      "Kabinet bölməsinə keçid edə bilərsiniz";
   static const String webSite = "Veb sayta keç";
   static const String webSiteinfo = "PAŞA Sığorta ilə bağlı məlumatlar saytda";
 
+  //demo
+  static const String demo =
+      "Swiss Energy Herbs Hot Balm Forte isidici balzam  75 ml Forte";
+  static const String emptyText = "Bura doşdur";
+  static const String emptyTextDesc =
+      "Axtardığınız məhsulu tapmaq üçün, zəhmət olmasa məhsullar bölməsinə keçin";
+
+  //question
+  static const String expan =
+      "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.";
+
+//asan finance
+  static const String save = "Yadda saxla";
+
+  static const String asanCheckbox =
+      "Mən “ASAN Finans”-dan məlumatlarımı yoxlanılmasına icazımi verirəm  ";
+  static const String asanInsuranceNumCheckbox =
+      "Mən “Pİ Bazası”-dan məlumatlarımı yoxlanılmasına icazımi verirəm";
+
+  //contact
+  static const String contactDesc =
+      "Hörmətli müştəri, hər hansı bir problemlə raslaşdıqda qaynar xətt nömrəmiz müraciyyət edə bilərsiniz  *8833";
+//notification
+  static const String notification = "Bildirişlər";
+  //user
+  static const String userInfo = "Şəxs haqqında haqqında məlumatlar";
+  static const String name = "Ad";
+  static const String firstName = "Soyad";
+  static const String birth = "Dogum Tarixi";
+  static const String seriaNum = "Seriya nömrəsi";
+  static const String fin = "FIN kod";
+  static const String emailAddressIsNotCorrect = "E-poçt düzgün deyil";
+  static const String success = "Əməliyyat uğurlu oldu!";
 }

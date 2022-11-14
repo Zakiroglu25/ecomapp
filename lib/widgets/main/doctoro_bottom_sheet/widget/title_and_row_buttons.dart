@@ -7,11 +7,13 @@ class TitleAndRowButtons extends StatelessWidget {
   final bool? showConfirmButton;
   final String? title;
 
-  TitleAndRowButtons(
-      {this.onConfirm,
-      this.showCloseButton,
-      this.showConfirmButton,
-      this.title});
+  const TitleAndRowButtons({
+    Key? key,
+    this.onConfirm,
+    this.showCloseButton,
+    this.showConfirmButton,
+    this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

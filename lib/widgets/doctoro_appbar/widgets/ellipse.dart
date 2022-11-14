@@ -17,7 +17,7 @@ class Ellipse extends StatelessWidget {
           padding: const EdgeInsets.all(3.0),
           child: SvgPicture.asset(
             'assets/svg/ellipse.svg',
-            color: MyColors.mainRed,
+            color: MyColors.darkRED,
           ),
         ),
       ),

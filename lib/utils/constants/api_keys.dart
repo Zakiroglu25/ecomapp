@@ -1,42 +1,71 @@
 // Flutter imports:
-import 'dart:io';
+
+import 'package:uikit/infrastructure/config/configs.dart';
 
 class ApiKeys {
   ApiKeys._();
 
-  static const baseUrl = 'https://doctoro-dev.ml';
+  static const baseUrl = 'https://doctoro${Configs.enviroment}.ml';
+  static const public = "$baseUrl/public";
+  static const auth = "$public/auth";
+
+  static const protected = "$baseUrl/protected";
+
+  static const customer = "$protected/customer";
+  static const productOptions = "$protected/product-options";
+
+  static const account = "$customer/account";
 
   ///delete
   static const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
+    "x-mask-jwt":
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkb2N0b3JvIiwiYXVkIjoiZG9jdG9ybyIsInN1YiI6IjJjMDk1ZWU0LWU4ZTAtNDk1ZC1hMDU2LWQ4ZjgyYzdmMWUzNiIsImN1c3RvbWVyR3VpZCI6IjJjMDk1ZWU0LWU4ZTAtNDk1ZC1hMDU2LWQ4ZjgyYzdmMWUzNiIsImlzVGVtcCI6ZmFsc2UsImV4cCI6MTY2Njk0NjY0NH0.vYqommPEdJzJw0gNKgegZZto_AyYleJvYkJojdeoMDCGO131A3DCCuzi7--IvVrFLA1ZJ4VM6lJ03u_V6zOaIQ",
   };
 
   //reg and login
-  static const login = "$baseUrl/public/auth/login";
+  static const login = "$auth/login";
+  static const refreshToken = "$auth/refresh-token";
 
   // register
   static const registerPersonal = "$baseUrl/public/onboarding/sign-up";
 
   //user
-  static const user = "$baseUrl/protected/customer/account";
+  static const user = "$account";
+  static const devices = "$customer/devices";
 
   //address
-  static const getAddress = "$baseUrl/protected/customer/address-book";
-
+  static const getAddress = "$customer/address-book";
 
   //forgot
-  static const forgotOtp = "$baseUrl/user/otp";
-  static const forgotOtpApprove = "$baseUrl/user/otp/approve";
+  static const requestOtp = "$auth/request-otp";
+  static const forgotOtpApprove = "$auth/validate-otp";
+  static const resetPassword = "$account/reset-password";
+
+  //static const forgotOtp = "$baseUrl/user/otp";
 
   //contact
   static const contact = "$baseUrl/public/contacts";
 
+  //map
+  static const stores = "$baseUrl/protected/stores";
 
+  //product_options
+  static const search = "$productOptions/search";
+
+  //get product guid
+  static const productOptionsGuid = "$baseUrl/protected/product-options";
+  static const favorite = "$baseUrl/protected/customer/favorites";
+
+  //get category tree
+  static const categoryTree = "$baseUrl/protected/content/category-tree";
+  static const getAllManufacturers = "$baseUrl/protected/content/manufacturers";
 
   static loginBody({
     required String? email,
     required String? password,
+    String? fcmToken,
     // required String? device_name,
     // required String? language,
     // required int? deviceTypeId,
@@ -49,94 +78,8 @@ class ApiKeys {
       // "device_name": device_name,
       // "deviceName": device_name,
       // "deviceTypeId": deviceTypeId,
-      // "deviceCode": deviceCode,
+      // "deviceCode": fcmToken,
       // "language": language,
-    };
-
-    map.removeWhere(
-        (key, value) => key == null || value == null || value == 'null');
-    return map;
-  }
-
-  static orderViaLinkBody({
-    required String? link,
-    required double? price,
-    required double? cargo_price,
-    required String? detail,
-    required int? qty,
-    int? id,
-  }) {
-    //
-    final map = {
-      "link": link,
-      "id": id,
-      "qty": qty,
-      "price": price,
-      "cargo_price": cargo_price,
-      "detail": detail,
-    };
-
-    map.removeWhere(
-        (key, value) => key == null || value == null || value == 'null');
-    return map;
-  }
-
-  static registrationBusinessBody({
-    required String? name,
-    required String? surname,
-    required String? address,
-    required String? email,
-    required String? language,
-    required String? deviceCode,
-    required int? deviceTypeId,
-    required String? password,
-    required String? password_confirmation,
-    required String? phone,
-    required int? accept,
-    required String? company_name,
-    required String? tax_number,
-  }) {
-    //
-    final map = {
-      "name": name,
-      "surname": surname,
-      "address": address,
-      "email": email,
-      "password": password,
-      "password_confirmation": password_confirmation,
-      "phone": phone,
-      "accept": 1,
-      "company_name": company_name,
-      "tax_number": tax_number,
-      "deviceCode": deviceCode,
-      "deviceTypeId": deviceTypeId,
-      "language": language
-    };
-
-    map.removeWhere(
-        (key, value) => key == null || value == null || value == 'null');
-    return map;
-  }
-
-  static reportBody({
-    required String? store,
-    required int? qty,
-    required int? category,
-    required String? tracking,
-    required double? price,
-    required String? currency,
-    required File? invoice,
-    required String? note,
-  }) {
-    //
-    final Map<String, dynamic> map = {
-      "store": store,
-      "qty": qty,
-      "category": category,
-      "tracking": tracking,
-      "price": price,
-      "currency": currency,
-      "note": note,
     };
 
     map.removeWhere(
@@ -154,7 +97,23 @@ class ApiKeys {
       "email": email,
       "password": password,
       "phone": phone,
-      "newsletterSubscription": false,
+      "newsletterSubscription": ads,
+    };
+
+    map.removeWhere(
+        (key, value) => key == null || value == null || value == 'null');
+    return map;
+  }
+
+  static deviceBody({
+    required String? fcmToken,
+    required String? deviceTypeId,
+    required String? deviceName,
+  }) {
+    final map = {
+      "token": fcmToken,
+      "deviceTypeId": deviceTypeId,
+      "deviceName": deviceName
     };
 
     map.removeWhere(
@@ -163,35 +122,24 @@ class ApiKeys {
   }
 
   static updateAccountBody({
-    required String? address,
-    required String? language,
-    required String? email,
-    required String? password,
-    required String? old_password,
-    required String? password_confirmation,
     required String? phone,
-    //required int? accept,
-    required String? id_number,
-    required String? fin,
+    required String? email,
+    required String? name,
+    required String? patronymic,
     required String? birthday,
-    required String? company_name,
-    required String? tax_number,
-    required int? ware_house,
+    required String? finCode,
+    required int? insuranceId,
+    required bool? newsletterSubscription,
   }) {
     final map = {
-      "password": password,
-      "password_confirmation": password_confirmation,
-      "birthday": birthday,
-      "id_number": id_number,
-      "fin": fin,
-      "city": 1,
-      "address": address,
-      "email": email,
-      "company_name": company_name,
-      "tax_number": tax_number,
       "phone": phone,
-      "ware_house": 1,
-      "language": language
+      "email": email,
+      "firstName": name,
+      "patronymic": patronymic,
+      "birthday": birthday,
+      "finCode": finCode,
+      "insuranceId": insuranceId,
+      "newsletterSubscription": newsletterSubscription,
     };
 
     map.removeWhere(
@@ -207,6 +155,41 @@ class ApiKeys {
       'x-mask-jwt': '$token',
       "Accept": "application/json",
       "Content-Type": "application/json",
+    };
+
+    map.removeWhere(
+        (key, value) => key == null || value == null || value == 'null');
+    return map;
+  }
+
+  //dictionary
+  static const refreshTokenDict = 'x-mask-refresh-jwt';
+  static const accessTokenDict = 'x-mask-jwt';
+
+  static addressBody({
+    required String? title,
+    required String? streetName,
+    required String? houseNumber,
+    required String? city,
+    required String? country,
+    required String? phone,
+    required String? latitude,
+    required String? longitude,
+    required String? description,
+    required bool? isMain,
+  }) {
+    //
+    final map = {
+      "title": title,
+      "streetName": streetName,
+      "houseNumber": houseNumber,
+      "city": city,
+      "country": country,
+      "phone": phone,
+      "latitude": latitude,
+      "longitude": longitude,
+      "description": country,
+      "isMain": isMain,
     };
 
     map.removeWhere(

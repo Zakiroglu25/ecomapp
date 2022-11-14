@@ -1,1 +1,1 @@
-enum RegisterType{personal,company}
+enum RegisterType { personal, company }

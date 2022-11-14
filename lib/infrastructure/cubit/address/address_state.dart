@@ -1,4 +1,4 @@
-import 'package:doctoro/infrastructure/model/response/address_model.dart';
+import '../../model/response/address_model.dart';
 
 abstract class AddressState {}
 
@@ -17,5 +17,5 @@ class AddressNetworkError extends AddressState {}
 class AddressSuccess extends AddressState {
   AddressSuccess(this.addressModel);
 
-  final AddressModel addressModel;
+  final List<AddressModel> addressModel;
 }

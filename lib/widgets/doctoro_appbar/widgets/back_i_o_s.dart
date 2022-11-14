@@ -20,7 +20,7 @@ class BackIOS extends StatelessWidget {
               Navigator.pop(context);
             }
           },
-          icon: SvgPicture.asset(Assets.svgBackArrow)),
+          icon: SvgPicture.asset(Assets.svgLeft)),
     );
   }
 }

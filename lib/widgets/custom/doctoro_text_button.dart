@@ -1,4 +1,4 @@
-import 'package:doctoro/widgets/custom/doctoro_button.dart';
+import 'package:uikit/widgets/custom/app_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/constants/colors.dart';
@@ -34,10 +34,10 @@ class DoctoroTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DoctoroButton(
+    return AppButton(
       text: text,
       color: Colors.transparent,
-      splashColor: splashColor ?? MyColors.mainRed.withOpacity(0.2),
+      splashColor: splashColor ?? MyColors.darkRED.withOpacity(0.2),
       highlightColor: highlightColor ?? Colors.transparent,
       w: w ?? 150,
       h: h ?? 30,
@@ -45,7 +45,7 @@ class DoctoroTextButton extends StatelessWidget {
       onTap: onTap,
       fontWeight: fontWeight ?? FontWeight.w500,
       borderRadius: borderRadius ?? 4,
-      textColor: textColor ?? MyColors.mainRed,
+      textColor: textColor ?? MyColors.darkRED,
     );
   }
 }
