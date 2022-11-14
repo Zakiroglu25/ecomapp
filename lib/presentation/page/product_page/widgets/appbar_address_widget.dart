@@ -35,7 +35,7 @@ class AppBarAddressWidget extends StatelessWidget {
               child: Text(
                 "Qara Qarayev ev 4 Menzil 35 ve ne bilim ne",
                 style:
-                    AppTextStyles.sfPro400s14.copyWith(color: MyColors.green85),
+                AppTextStyles.sfPro400s14.copyWith(color: MyColors.green85),
                 overflow: TextOverflow.ellipsis,
               ),
             ),

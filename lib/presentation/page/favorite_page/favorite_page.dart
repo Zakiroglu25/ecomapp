@@ -1,3 +1,4 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/utils/constants/assets.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
@@ -7,7 +8,10 @@ import 'package:uikit/widgets/general/empty_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
+import '../../../infrastructure/cubit/favorite_cubit/favorite_state.dart';
 import '../../../utils/constants/paddings.dart';
+import '../../../widgets/custom/app_button.dart';
 import 'widget/product_item.dart';
 
 class FavoritePage extends StatefulWidget {
@@ -15,19 +19,7 @@ class FavoritePage extends StatefulWidget {
   _FavoritePageState createState() => _FavoritePageState();
 }
 
-class _FavoritePageState extends State<FavoritePage>
-    with TickerProviderStateMixin {
-  TabController? _controller;
-
-  int _selectedIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller =
-        TabController(vsync: this, length: 1, initialIndex: _selectedIndex);
-  }
-
+class _FavoritePageState extends State<FavoritePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,84 +30,78 @@ class _FavoritePageState extends State<FavoritePage>
         title: MyText.favorite,
         filter: false,
       ),
-      body: DefaultTabController(
-        length: 1,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              MySizedBox.h26,
-              Container(
-                height: 60,
-                color: Colors.white,
-                padding: EdgeInsets.only(left: 10, bottom: 20, right: 10),
-                child: TabBar(
-                  controller: _controller,
-                  isScrollable: true,
-                  indicatorWeight: 0.01,
-                  unselectedLabelColor:
-                      Theme.of(context).textTheme.headline1!.color,
-                  labelColor: MyColors.darkRED,
-                  onTap: (index) => setState(() => _selectedIndex = index),
-                  tabs: List<Widget>.generate(
-                    _controller!.length,
-                    (index) => Tab(
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: index == _selectedIndex
-                              ? MyColors.red250
-                              : MyColors.grey245,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            children: [
-                              index == 0
-                                  ? SvgPicture.asset(
-                                      Assets.svgFav,
-                                      color: _selectedIndex == 0
-                                          ? MyColors.darkRED
-                                          : MyColors.grey158,
-                                    )
-                                  : SvgPicture.asset(
-                                      Assets.docu,
-                                      color: _selectedIndex == 1
-                                          ? MyColors.darkRED
-                                          : MyColors.grey158,
-                                    ),
-                              MySizedBox.w10,
-                              index == 0
-                                  ? Text(MyText.favorite)
-                                  : Text("Ödəniş şablonlar")
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height,
-                child: TabBarView(controller: _controller, children: [
-                  Padding(
-                    padding: Paddings.paddingH16,
-                    child: ListView(
-                      children: [
-                        // ProductItem(
-                        //
-                        // ),
-                      ],
-                    ),
-                  ),
-                ]),
-              ),
-            ],
-          ),
-        ),
+      body:
+
+          // Container(
+          //   height: 60,
+          //   color: Colors.white,
+          //   padding: EdgeInsets.only(left: 10, bottom: 20, right: 10),
+          //   child: TabBar(
+          //     controller: _controller,
+          //     isScrollable: true,
+          //     indicatorWeight: 0.01,
+          //     unselectedLabelColor:
+          //     Theme
+          //         .of(context)
+          //         .textTheme
+          //         .headline1!
+          //         .color,
+          //     labelColor: MyColors.darkRED,
+          //     onTap: (index) => setState(() => _selectedIndex = index),
+          //     tabs: List<Widget>.generate(
+          //       _controller!.length,
+          //           (index) =>
+          //           Tab(
+          //             child: Container(
+          //               alignment: Alignment.center,
+          //               decoration: BoxDecoration(
+          //                 color: index == _selectedIndex
+          //                     ? MyColors.red250
+          //                     : MyColors.grey245,
+          //                 borderRadius: BorderRadius.circular(20),
+          //               ),
+          //               child: Padding(
+          //                 padding: const EdgeInsets.all(12.0),
+          //                 child: Row(
+          //                   children: [
+          //                     index == 0
+          //                         ? SvgPicture.asset(
+          //                       Assets.svgFav,
+          //                       color: _selectedIndex == 0
+          //                           ? MyColors.darkRED
+          //                           : MyColors.grey158,
+          //                     )
+          //                         : SvgPicture.asset(
+          //                       Assets.docu,
+          //                       color: _selectedIndex == 1
+          //                           ? MyColors.darkRED
+          //                           : MyColors.grey158,
+          //                     ),
+          //                     MySizedBox.w10,
+          //                     index == 0
+          //                         ? Text(MyText.favorite)
+          //                         : Text("Ödəniş şablonlar")
+          //                   ],
+          //                 ),
+          //               ),
+          //             ),
+          //           ),
+          //     ),
+          //   ),
+          // ),
+          BlocBuilder<FavoriteCubit, FavoriteState>(
+        builder: (context, state) {
+          if (state is FavoriteSuccess) {
+            final productList = state.product_option_model;
+            return ListView.builder(
+              itemCount: productList.length,
+              itemBuilder: (context, index) {
+                return ProductItem(products: productList[index]);
+              },
+            );
+          }
+          return Text('Alinmado');
+        },
       ),
     );
   }

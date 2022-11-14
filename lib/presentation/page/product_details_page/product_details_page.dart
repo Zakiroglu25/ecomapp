@@ -94,7 +94,7 @@ class _ProductOptionDetailsState extends State<ProductOptionDetails> {
             return AppLoading();
           }
           return Center(
-            child: EmptyWidget(),
+            child: Text(""),
           );
         },
       ),

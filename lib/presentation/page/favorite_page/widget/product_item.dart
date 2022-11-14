@@ -31,16 +31,10 @@ class ProductItem extends StatelessWidget {
           padding: Paddings.paddingH16 + Paddings.paddingV10,
           child: GestureDetector(
             onTap: () {
-              // context
-              //     .read<ProductOptionDetailsCubit>()
-              //     .fetchProduct(products!.guid!);
-              Go.to(
-                  context,
-                  BlocProvider(
-                    create: (context) => ProductOptionDetailsCubit()
-                      ..fetchProduct(products!.guid!),
-                    child: ProductOptionDetails(),
-                  ));
+              Go.to(context, BlocProvider(
+                create: (context) => ProductOptionDetailsCubit()..fetchProduct(products!.guid!),
+                child: ProductOptionDetails(),
+              ));
             },
             child: Container(
                 padding: EdgeInsets.all(12),
@@ -57,7 +51,7 @@ class ProductItem extends StatelessWidget {
                         SizedBox(
                           width: 199,
                           child: Text(
-                            products!.title!,
+                           products!.title!,
                             style: AppTextStyles.sfPro400s14,
                             softWrap: true,
                             overflow: TextOverflow.ellipsis,

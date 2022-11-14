@@ -11,6 +11,7 @@ import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart
 
 import '../../app.dart';
 import '../../infrastructure/cubit/authentication/authentication_cubit.dart';
+import '../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../infrastructure/cubit/category_cubit/category_cubit.dart';
 import '../../infrastructure/cubit/login/login_cubit.dart';
 import '../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
@@ -90,11 +91,15 @@ class Pager {
 
   static get product => ProductPage();
 
-  static get favorite => FavoritePage();
 
   static get otherPage => OtherPage();
 
   static get contactPage => ContactPage();
+
+  static get favoritePage => BlocProvider(
+        create: (context) => FavoriteCubit()..fetchProduct(),
+        child: FavoritePage(),
+      );
 
   static get productDetails => MultiBlocProvider(
         providers: [

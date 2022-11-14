@@ -5,6 +5,8 @@ import '../../../locator.dart';
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/string_operations.dart';
 import '../../../widgets/general/app_field.dart';
+import 'widget/fields/birthday_field.dart';
+import 'widget/fields/finField.dart';
 import 'widget/fields/name_field.dart';
 import 'widget/fields/patronymic_field.dart';
 
@@ -27,19 +29,16 @@ class UserEditPage extends StatelessWidget {
                 StringOperations.stringToController(_prefs.user.lastName),
           ),
 
+          BirthdayFieldUser(
+            controller:
+                StringOperations.stringToController(_prefs.user.birthDate),
+          ),
+
+          FinFieldUser(
+              controller:
+                  StringOperations.stringToController(_prefs.user.finCode)),
+
           ///bunu duzelt birthDate e
-          AppField(
-            title: MyText.birth,
-            hint: _prefs.user.birthDate,
-          ),
-          AppField(
-            title: MyText.seriaNum,
-            hint: _prefs.user.insuranceId.toString(),
-          ),
-          AppField(
-            title: MyText.fin,
-            hint: _prefs.user.finCode,
-          ),
         ],
       ),
     );
