@@ -59,6 +59,7 @@ dependencies:
 
 
   #test:
+  equatable:
 #  uikit:
 #    git:
 #      url: https://github.com/sohrabonline/uikit/module/uikit.git
