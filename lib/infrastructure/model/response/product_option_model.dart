@@ -1,3 +1,5 @@
+import 'favorite_model.dart';
+
 class ProductOptionModel {
   List<SimpleProduct>? data;
   int? page;
@@ -39,6 +41,7 @@ class SimpleProduct {
   String? title;
   double? minPrice;
   String? imageUrl;
+  Product? product;
 
   SimpleProduct({this.guid, this.title, this.minPrice, this.imageUrl});
 

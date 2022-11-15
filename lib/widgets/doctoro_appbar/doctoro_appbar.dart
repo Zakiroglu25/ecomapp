@@ -97,7 +97,7 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
       children: [
         (notification)
             ? NotificationWidget()
-            : (actions == null ? MySizedBox.w10 : Container()),
+            : (actions == null ? MySizedBox.w20 : Container()),
         //...actions,
 
         ...?actions,

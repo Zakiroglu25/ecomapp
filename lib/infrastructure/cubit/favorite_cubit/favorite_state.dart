@@ -1,5 +1,4 @@
 
-import '../../model/response/favorite_model.dart';
 import '../../model/response/product_option_model.dart';
 
 abstract class FavoriteState {}
