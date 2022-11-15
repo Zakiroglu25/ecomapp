@@ -9,9 +9,13 @@ class ForgotMainText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: AppTextStyles.sfPro400s14.copyWith(fontSize: 25),
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Text(
+        text,
+        textAlign: TextAlign.start,
+        style: AppTextStyles.sfPro600s30.copyWith(fontSize: 25, height: 0.5),
+      ),
     );
   }
 }

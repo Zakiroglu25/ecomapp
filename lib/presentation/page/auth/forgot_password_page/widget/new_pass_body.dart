@@ -18,9 +18,9 @@ class NewPassBody extends StatelessWidget {
       child: Column(
         children: [
           MySizedBox.h30,
-          Flash(child: ForgotMainText(MyText.there_is_code_on_mail)),
+          Flash(child: ForgotMainText(MyText.enterCode)),
           MySizedBox.h16,
-          ForgotSecondText(MyText.please_enter_code),
+          ForgotSecondText(MyText.codeSent),
           MySizedBox.h16,
           CodeFieldForgot(),
           // MySizedBox.h8,

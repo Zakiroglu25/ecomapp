@@ -11,7 +11,7 @@ class ForgotSecondText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.start,
       style: AppTextStyles.sfPro400s14
           .copyWith(fontSize: 14, color: MyColors.grey165),
     );
