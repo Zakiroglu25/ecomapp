@@ -48,16 +48,19 @@ class ProductItem extends StatelessWidget {
                       children: [
                         Image.asset(Assets.demo),
                         MySizedBox.w12,
+                        if(products != null)
                         SizedBox(
                           width: 199,
                           child: Text(
-                           products!.title!,
+                           products!.product!.title!,
                             style: AppTextStyles.sfPro400s14,
                             softWrap: true,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                           ),
                         ),
+                        if(products != null)
+                          Text("Salam"),
                         Spacer(),
                         GestureDetector(
                             onTap: () {

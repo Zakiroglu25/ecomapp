@@ -10,6 +10,7 @@ import 'favorite_state.dart';
 class FavoriteCubit extends Cubit<FavoriteState> {
   FavoriteCubit() : super(FavoriteInitial());
   int page = 1;
+
   fetchProduct([bool loading = true]) async {
     if (loading) {
       emit(FavoriteInProgress());
@@ -17,10 +18,10 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     try {
       final result = await FavoritesProvider.getFavorite(page);
       wtf(result.data.toString());
-      if (isSuccess(result.statusCode)) {
+      if (result.data != null) {
         print("Cubit 3");
 
-        emit(FavoriteSuccess(result.data));
+        emit(FavoriteSuccess(result.data!));
       } else {
         emit(FavoriteError());
       }
@@ -32,12 +33,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     }
   }
 
-// pagination() async {
-//   try {
-//     final result = await FavoritesProvider.getProduct(3);
-//     iiii(result.toString());
-//
-//     if (result.data != null) {}
-//   } catch (e) {}
-// }
+  void addFavorite() async {
+
+  }
 }
