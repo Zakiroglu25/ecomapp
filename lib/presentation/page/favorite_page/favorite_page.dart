@@ -1,17 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:uikit/utils/constants/assets.dart';
-import 'package:uikit/utils/constants/colors.dart';
-import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
-import 'package:uikit/widgets/general/empty_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../../infrastructure/cubit/favorite_cubit/favorite_state.dart';
-import '../../../utils/constants/paddings.dart';
-import '../../../widgets/custom/app_button.dart';
+import '../../../utils/delegate/my_printer.dart';
 import 'widget/product_item.dart';
 
 class FavoritePage extends StatefulWidget {
@@ -92,11 +86,12 @@ class _FavoritePageState extends State<FavoritePage> {
           BlocBuilder<FavoriteCubit, FavoriteState>(
         builder: (context, state) {
           if (state is FavoriteSuccess) {
-            final productList = state.product_option_model;
             return ListView.builder(
-              itemCount: productList.length,
+              itemCount: state.product_option_model.length,
               itemBuilder: (context, index) {
-                return ProductItem(products: productList[index]);
+                iiii(state.product_option_model.first.toString());
+                return ProductItem(products: state.product_option_model[index]);
+                // return Text(state.product_option_model[index].product!.title!);
               },
             );
           }

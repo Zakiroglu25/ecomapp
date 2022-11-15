@@ -20,6 +20,7 @@ class MyText {
   static const String all_fields_must_be_filled =
       "Bütün xanalar doldurulmalıdır!";
   static const String field_is_not_correct = "Xana düzgün doldurulmayıb!";
+  static const String successfullyRegistered = "Qeydiyyat Uğurla tamamlandı";
 
   //register
   static const String email = "E-poçt";
@@ -54,13 +55,13 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String forgot = "Şifrəni unutmusuz ?";
   static const String are_u_sure_exit = "Çıxış etmək istədiyinizdən əminsiniz?";
   static const String new_pass = 'Yeni şifrə';
-  static const String set_new_pass = 'Yeni şifrə təyin edin';
+  static const String set_new_pass = 'Yeni şifrəni təyin et';
 
   //forgot pass
   static const String enter_new_pass = 'Yeni şifrəni daxil edin';
   static const String enter_new_pass_again = 'Yeni şifrəni təkrar daxil edin';
-  static const String your_pass_reseted =
-      'Sizin mövcud şifrəniz sıfırlandı. Yenisini təyin etmək xahiş olunur. Şifrənizi unutmayın.';
+  static const String enterNewPassAndTapGoOnButton =
+      'Təyin etmək istədiyini şifrəni daxil edin, təsdiqləyin və "Davam et" butonuna toxunun';
   static const String we_have_sent_new_pass_email =
       'Sizin mövcud şifrəniz sıfırlandı. Yeni şifrə e-poçt ünvanınıza göndərildi. Hesaba daxil olaraq şifrəni dəyişə bilərsiniz.';
   static const String code = 'Kod';
@@ -73,12 +74,12 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String goOn = "Davam et";
   static const String unknownError = "Bilinməyən xəta yarandı!";
   static const String are_you_forgot_pass = "Şifrəni unutmusan ?";
-  static const String there_is_code_on_mail = 'Email-a kod göndərildi';
+  static const String enterCode = 'Kodu daxil edin';
   static const String setted_new_pass = 'Yeni şifrə təyin edildi.';
-  static const String please_enter_code =
-      'Sizin Email ünvanınıza şifrə göndərmişik. Zəhmət olmasa daxil olub şifrəni daxil edin.';
-  static const String we_will_send_new_pass =
-      "Hörmətli müştəri, şifrə unudulduğu halda biz sizin qeydiyyat zamanı daxil etdiyiniz Email unvanınıza yeni şirfə göndərəcəyik.";
+  static const String codeSent =
+      'Qeydiyyatda olan mobil nömrənizə SMS ilə birdəfəlik şifrə göndərildi';
+  static const String smsCodeWillSend =
+      "Yeni şifrəni teyin etmək üçün qeydiyyatda olan mobil nömrənizə SMS ilə kod göndəriləcəkdir";
   static const String confirm_your_email =
       'E-poçt ünvanının sizə məxsus olduğunu təsdiqləyin. Əks halda qaynar xətt ilə əlaqə saxlaya bilərsiniz.';
 
@@ -103,9 +104,6 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String vitamin = "Vitaminlər";
   static const String vitaminSub = "Bütün qrup vitəminləri əldə edin.";
   static const String otherSub = "Axtardığınız məhsulu tapmaq üçün";
-
-  //otherpage
-  static const String bigTitle = "Digər";
 
   static const String paymentMetod = "Ödəniş üsulu";
   static const String messenger = "Messenger";
