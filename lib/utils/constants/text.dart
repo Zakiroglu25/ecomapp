@@ -20,6 +20,7 @@ class MyText {
   static const String all_fields_must_be_filled =
       "Bütün xanalar doldurulmalıdır!";
   static const String field_is_not_correct = "Xana düzgün doldurulmayıb!";
+  static const String successfullyRegistered = "Qeydiyyat Uğurla tamamlandı";
 
   //register
   static const String email = "E-poçt";
@@ -103,9 +104,6 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String vitamin = "Vitaminlər";
   static const String vitaminSub = "Bütün qrup vitəminləri əldə edin.";
   static const String otherSub = "Axtardığınız məhsulu tapmaq üçün";
-
-  //otherpage
-  static const String bigTitle = "Digər";
 
   static const String paymentMetod = "Ödəniş üsulu";
   static const String messenger = "Messenger";

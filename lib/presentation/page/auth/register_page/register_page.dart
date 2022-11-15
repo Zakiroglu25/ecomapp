@@ -1,12 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uikit/presentation/page/auth/register_page/widgets/create_password_field.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
-import 'package:uikit/widgets/custom/app_button.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../infrastructure/cubit/register/register_cubit.dart';
 import '../../../../utils/screen/snack.dart';
@@ -14,6 +13,7 @@ import 'widgets/checkbox_ads.dart';
 import 'widgets/email_field_register.dart';
 import 'widgets/phone_field_register.dart';
 import 'widgets/policy_checkbox.dart';
+import 'widgets/register_button.dart';
 
 class Register extends StatelessWidget {
   const Register({Key? key}) : super(key: key);
@@ -42,12 +42,7 @@ class Register extends StatelessWidget {
         },
         listener: (context, state) {
           if (state is RegisterFailed) {
-            Snack.display(message: state.message!.toString());
-            // TODO: implement listener
-          }
-          if (state is RegisterSuccess) {
-            Snack.display(
-                message: "Oldu Reis", positive: true, showSuccessIcon: true);
+            Snack.display(message: state.message ?? MyText.error);
           }
         },
         child: Padding(
@@ -64,24 +59,7 @@ class Register extends StatelessWidget {
                 MySizedBox.h20,
                 AdsCheckbox(),
                 MySizedBox.h50,
-                StreamBuilder<bool>(
-                    stream: BlocProvider.of<RegisterCubit>(context)
-                        .registerActiveeStream,
-                    builder: (context, snapshot) {
-                      return AppButton(
-                        // isButtonActive: snapshot.data,
-                        loading: (context.watch<RegisterCubit>().state
-                            is RegisterLoading),
-                        onTap: () =>
-                            context.read<RegisterCubit>().register(context),
-                        child: Text(
-                          MyText.goOn,
-                          style: AppTextStyles.sfPro500
-                              .copyWith(color: MyColors.white, fontSize: 15.sp),
-                        ),
-                        color: MyColors.grey288,
-                      );
-                    })
+                RegisterButton()
               ],
             ),
           ),

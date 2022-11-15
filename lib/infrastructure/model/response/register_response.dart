@@ -29,6 +29,11 @@ class RegisterResponse {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return 'RegisterResponse{time: $time, message: $message, details: $details, status: $status, validation: $validation}';
+  }
 }
 
 class Validation {
@@ -50,5 +55,10 @@ class Validation {
     data['phone'] = this.phone;
     data['email'] = this.email;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'Validation{password: $password, phone: $phone, email: $email}';
   }
 }
