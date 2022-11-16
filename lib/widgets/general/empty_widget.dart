@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../utils/constants/app_text_styles.dart';
 import '../../utils/constants/colors.dart';
@@ -37,8 +38,8 @@ class EmptyWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
           child: SizedBox(
-              width: 127,
-              height: 127,
+              width: 127.w,
+              height: 127.h,
               child: Image.asset(imageUrl!)),
         ),
         MySizedBox.h16,

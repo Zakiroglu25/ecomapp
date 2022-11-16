@@ -74,7 +74,9 @@ class _MapPageState extends State<MapPage> {
             ),
           );
         } else {
-          return Center(child: Text("Alinmadi"));
+          return Center(child: Text("Hec bir Aptek Movcud deyil")
+
+          );
         }
       },
     );

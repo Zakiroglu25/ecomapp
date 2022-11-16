@@ -18,8 +18,11 @@ import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/paddings.dart';
 import '../../../utils/constants/sized_box.dart';
 import '../../../utils/delegate/my_printer.dart';
+import '../../../utils/delegate/navigate_utils.dart';
+import '../../../utils/delegate/pager.dart';
 import '../../../widgets/custom/app_button.dart';
 import '../../../widgets/custom/text_title_big.dart';
+import 'widget/add_address.dart';
 
 class AddressPage extends StatelessWidget {
   AddressPage({Key? key}) : super(key: key);
@@ -131,6 +134,9 @@ class AddressPage extends StatelessWidget {
                   ),
                   Spacer(),
                   AppButton(
+                    onTap: (){
+                      Go.to(context, Pager.addAddress(address: model.first));
+                    },
                     text: "+ Yeni ünvan yarat",
                   ),
                   MySizedBox.h16,
@@ -144,7 +150,7 @@ class AddressPage extends StatelessWidget {
               ),
             );
           }
-          return Text("");
+          return EmptyAddress();
         }),
       ),
     );

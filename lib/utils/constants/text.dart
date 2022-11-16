@@ -198,4 +198,13 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String fin = "FIN kod";
   static const String emailAddressIsNotCorrect = "E-poçt düzgün deyil";
   static const String success = "Əməliyyat uğurlu oldu!";
+
+  //address
+  static const String city = "Şəhər";
+  static const String cityAdd = "Şəhər daxil edin";
+  static const String region = "Rayon";
+  static const String regionAdd = "Rayon seçimi edin";
+  static const String addressAdd = "Ünvan daxil edin";
+
+
 }

@@ -10,6 +10,7 @@ import 'package:uikit/presentation/page/landing_page/landing_page.dart';
 import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart';
 
 import '../../app.dart';
+import '../../infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
 import '../../infrastructure/cubit/authentication/authentication_cubit.dart';
 import '../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../infrastructure/cubit/category_cubit/category_cubit.dart';
@@ -18,6 +19,8 @@ import '../../infrastructure/cubit/product_details_details/product_options_detai
 import '../../infrastructure/cubit/product_option_cubit/product_option_cubit.dart';
 import '../../infrastructure/cubit/register/register_cubit.dart';
 import '../../infrastructure/cubit/user/user_cubit.dart';
+import '../../infrastructure/model/response/address_model.dart';
+import '../../presentation/page/add_address_page/add_address_page.dart';
 import '../../presentation/page/address_page/address_page.dart';
 import '../../presentation/page/auth/login_page/login_page.dart';
 import '../../presentation/page/auth/register_page/register_page.dart';
@@ -91,6 +94,12 @@ class Pager {
 
   static get product => ProductPage();
 
+  static addAddress({AddressModel? address}) => BlocProvider(
+        create: (context) => AddAddressCubit(),
+        child: AddAddressPage(
+          addressModel: address,
+        ),
+      );
 
   static get otherPage => OtherPage();
 
