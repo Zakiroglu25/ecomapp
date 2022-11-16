@@ -14,5 +14,5 @@ class AddAddressError extends AddAddressState {
 
 class AddAddressNetworkError extends AddAddressState {}
 
-class AddAddressSuccess extends AddAddressState {
-}
+class AddAddressSuccess extends AddAddressState {}
+class AddAddressEditSuccess extends AddAddressState {}

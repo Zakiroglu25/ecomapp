@@ -1,8 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:uikit/infrastructure/config/recorder.dart';
+import 'package:uikit/utils/delegate/my_printer.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/constants/text.dart';
+import '../../../utils/delegate/app_operations.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/delegate/pager.dart';
 import '../../../utils/delegate/user_operations.dart';
@@ -26,26 +30,31 @@ class RegisterCubit extends Cubit<RegisterState> {
       final deviceCode = 'token';
       final response = await AuthProvider.registration(
         email: uEmail.valueOrNull,
-        phone: phone.valueOrNull,
+        phone: AppOperations.formatNumberWith994(phone.valueOrNull!),
         password: uPassMain.value,
         ads: checkbox.valueOrNull,
       );
 
-      if (response == 200) {
-        await UserOperations.configureUserDataWhenLogin(
-          refreshToken: '',
-          accessToken: response.toString(),
-          path: uPassMain.valueOrNull,
-        );
+      if (response!.status.isSuccess) {
+        // await UserOperations.configureUserDataWhenLogin(
+        //   refreshToken: '',
+        //   accessToken: response.toString(),
+        //   path: uPassMain.valueOrNull,
+        // );
         emit(RegisterSuccess(""));
-        Snack.display(message: "Qeydiyyat Uğurla tamamlandı");
+        Snack.positive(message: MyText.successfullyRegistered);
         Go.to(context, Pager.login);
       } else {
-        emit(RegisterFailed(message: response!.message));
+        // String error = '';
+        // response?.validation?.toJson().entries.map((e) {
+        //   error = "${error} ," + '${e.key} : ${e.value}';
+        // });
+        bbbb("errork: ${response.details}");
+        emit(RegisterFailed(message: response.details));
       }
     } catch (e, s) {
-      print("register cubit -> registrationPersonal ->catch : $e=> $s");
       emit(RegisterFailed(message: e.toString()));
+      Recorder.recordCatchError(e, s);
     }
   }
 
@@ -77,6 +86,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       emailValid = Validator.mail(value);
       uEmail.sink.add(value);
     }
+    isUserInfoValid();
   }
 
   bool get isEmailIncorrect => (!uEmail.hasValue ||
@@ -96,6 +106,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     } else {
       phone.sink.add(value);
     }
+    isUserInfoValid();
   }
 
   bool get isPhoneIncorrect =>
@@ -113,6 +124,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     } else {
       uPassMain.sink.add(value);
     }
+    isUserInfoValid();
   }
 
   bool get isMainPassInCorrect => (!uPassMain.hasValue ||
@@ -127,11 +139,11 @@ class RegisterCubit extends Cubit<RegisterState> {
   updateCheckBox(bool value) {
     checkbox.sink.add(value);
     //}
+    isUserInfoValid();
   }
 
-  bool get isCheckBoxIncorrect => (!checkboxAds.hasValue ||
-      checkboxAds.value == null ||
-      checkboxAds.value == false);
+  bool get isCheckBoxIncorrect =>
+      (!checkbox.hasValue || checkbox.value == null || checkbox.value == false);
 
   //checkbox ads
   final BehaviorSubject<bool> checkboxAds = BehaviorSubject<bool>.seeded(false);
@@ -141,10 +153,12 @@ class RegisterCubit extends Cubit<RegisterState> {
   updateCheckBoxAds(bool value) {
     checkboxAds.sink.add(value);
     //}
+    isUserInfoValid();
   }
 
-  bool get isCheckBoxAdsIncorrect =>
-      (!checkbox.hasValue || checkbox.value == null || checkbox.value == false);
+  bool get isCheckBoxAdsIncorrect => (!checkboxAds.hasValue ||
+      checkboxAds.value == null ||
+      checkboxAds.value == false);
 
   //gender
 
@@ -152,6 +166,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     if (!isEmailIncorrect &&
         !isMainPassInCorrect &&
         !isCheckBoxIncorrect &&
+        !isCheckBoxAdsIncorrect &&
         !isEmailIncorrect &&
         !isPhoneIncorrect) {
       //  emit(RegisterButtonActive());

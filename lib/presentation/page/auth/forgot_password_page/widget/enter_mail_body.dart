@@ -14,11 +14,12 @@ class EnterMailBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return FadeIn(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MySizedBox.h30,
           ForgotMainText(MyText.are_you_forgot_pass),
           MySizedBox.h16,
-          ForgotSecondText(MyText.we_will_send_new_pass),
+          ForgotSecondText(MyText.smsCodeWillSend),
           MySizedBox.h16,
           PhoneFieldForgot(),
         ],

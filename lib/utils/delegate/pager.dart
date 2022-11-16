@@ -5,7 +5,6 @@ import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
 import 'package:uikit/infrastructure/cubit/forgot_pass/forgot_pass_cubit.dart';
 import 'package:uikit/infrastructure/cubit/map/map_store_cubit.dart';
 import 'package:uikit/presentation/page/auth/forgot_password_page/forgot_pass_page.dart';
-import 'package:uikit/presentation/page/delivery_address_page/delivery_address_page.dart';
 import 'package:uikit/presentation/page/landing_page/landing_page.dart';
 import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart';
 
@@ -66,10 +65,6 @@ class Pager {
 
   static get splash => SplashPage();
 
-  static get deliveryAddress => MultiBlocProvider(providers: [
-        BlocProvider(create: (context) => LoginCubit()),
-      ], child: DeliveryAddressPage());
-
   static get mapPage => MultiBlocProvider(providers: [
         BlocProvider.value(value: MapStoreCubit()..fetch()),
       ], child: MapPage());
@@ -96,9 +91,7 @@ class Pager {
 
   static addAddress({AddressModel? address}) => BlocProvider(
         create: (context) => AddAddressCubit(),
-        child: AddAddressPage(
-          addressModel: address,
-        ),
+        child: AddAddressPage(),
       );
 
   static get otherPage => OtherPage();

@@ -30,5 +30,28 @@ class AddressCubit extends Cubit<AddressState> {
       emit(AddressError(error: e.toString()));
     }
   }
+  void delete(String? id, {bool loading = true}) async {
+    if (loading) {
+      emit(AddressInProgress());
+    }
+
+    try {
+      final result = await AddressProvider.delete(guid: "$id");
+
+      if (isSuccess(result!.statusCode)) {
+        emit(AddressDelete());
+        fetch(false);
+      } else {
+        emit(AddressError(error: MyText.error));
+      }
+    } on SocketException catch (_) {
+      //network olacaq
+      emit(AddressNetworkError());
+    } catch (e) {
+      emit(AddressError(error: MyText.error + " " + e.toString()));
+    }
+
+    //user/attorneys/delete
+  }
 
 }

@@ -4,16 +4,16 @@ import '../../../../../utils/constants/text.dart';
 import '../../../../../widgets/general/app_field.dart';
 import '../../../../infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
 
-class RegionField extends StatelessWidget {
+class CourierDescField extends StatelessWidget {
   final TextEditingController? controller;
 
-  RegionField({this.controller}); //= new TextEditingController();
+  CourierDescField({this.controller}); //= new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return AppField(
-      title: MyText.region,
+      title: MyText.courierDesc,
       maxLines: 1,
-      hint: MyText.region,
+      hint: MyText.enterDesc,
       upperCase: false,
       textInputType: TextInputType.name,
       textCapitalization: TextCapitalization.sentences,

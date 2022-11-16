@@ -10,24 +10,15 @@ class TitleField extends StatelessWidget {
   TitleField({this.controller}); //= new TextEditingController();
   @override
   Widget build(BuildContext context) {
-    if (controller!.text != '' && controller!.text != 'null')
-      BlocProvider.of<AddAddressCubit>(context).updateTitle(controller!.text);
-    return StreamBuilder<String>(
-      stream: BlocProvider.of<AddAddressCubit>(context).titleStream,
-      builder: (context, snapshot) {
-        return AppField(
-          title: MyText.city,
-          maxLines: 1,
-          hint: MyText.cityAdd,
-          upperCase: false,
-          textInputType: TextInputType.name,
-          textCapitalization: TextCapitalization.sentences,
-          errorMessage: snapshot.error == null ? null : '${snapshot.error}',
-          controller: controller,
-          onChanged: (value) =>
-              BlocProvider.of<AddAddressCubit>(context).updateTitle(value),
-        );
-      },
+    return AppField(
+      title: MyText.city,
+      maxLines: 1,
+      hint: MyText.cityAdd,
+      upperCase: false,
+      textInputType: TextInputType.name,
+      textCapitalization: TextCapitalization.sentences,
+      // errorMessage: snapshot.error == null ? null : '${snapshot.error}',
+      controller: controller,
     );
   }
 }

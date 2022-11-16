@@ -92,30 +92,12 @@ class AuthProvider {
       ads: false,
     );
     final response = await dioG.dio.post(api, data: body);
-
+    registerResponse.status = response.statusCode;
     if (response.statusCode.isSuccess) {
       iiii("Qeydiyyat ugurla tamamlandi");
-    } else if (response.statusCode! > 399) {
-      RegisterResponse registerResponse =
-          RegisterResponse.fromJson(response.data);
-      eeee("Qeydiyyat Xetalidir" +
-          "\n" +
-          "email  " +
-          email! +
-          "\n" +
-          "password   " +
-          password! +
-          "\n" +
-          "phone   " +
-          phone! +
-          ads.toString());
-      eeee(registerResponse.validation.toString());
-      eeee(registerResponse.message.toString());
-      eeee(registerResponse.validation!.email.toString());
-      eeee(registerResponse.validation!.phone.toString());
-      eeee(registerResponse.validation!.password.toString());
-    } else {}
-
+    } else {
+      registerResponse = RegisterResponse.fromJson(response.data);
+    }
     return registerResponse;
   }
 }

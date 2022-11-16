@@ -4,16 +4,16 @@ import '../../../../../utils/constants/text.dart';
 import '../../../../../widgets/general/app_field.dart';
 import '../../../../infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
 
-class RegionField extends StatelessWidget {
+class NameAddressField extends StatelessWidget {
   final TextEditingController? controller;
 
-  RegionField({this.controller}); //= new TextEditingController();
+  NameAddressField({this.controller}); //= new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return AppField(
-      title: MyText.region,
+      title: MyText.nameAddress,
       maxLines: 1,
-      hint: MyText.region,
+      hint: MyText.exampleName,
       upperCase: false,
       textInputType: TextInputType.name,
       textCapitalization: TextCapitalization.sentences,

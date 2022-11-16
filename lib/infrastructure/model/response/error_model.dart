@@ -1,14 +1,14 @@
-class RegisterResponse {
+class ErrorModel {
   String? time;
   String? message;
   String? details;
   int? status;
   Validation? validation;
 
-  RegisterResponse(
+  ErrorModel(
       {this.time, this.message, this.details, this.status, this.validation});
 
-  RegisterResponse.fromJson(Map<String, dynamic> json) {
+  ErrorModel.fromJson(Map<String, dynamic> json) {
     time = json['time'];
     message = json['message'];
     details = json['details'];
@@ -29,36 +29,45 @@ class RegisterResponse {
     }
     return data;
   }
-
-  @override
-  String toString() {
-    return 'RegisterResponse{time: $time, message: $message, details: $details, status: $status, validation: $validation}';
-  }
 }
 
 class Validation {
-  String? password;
-  String? phone;
-  String? email;
+  String? country;
+  String? streetName;
+  String? city;
+  String? isMain;
+  String? latitude;
+  String? title;
+  String? longitude;
 
-  Validation({this.password, this.phone, this.email});
+  Validation(
+      {this.country,
+        this.streetName,
+        this.city,
+        this.isMain,
+        this.latitude,
+        this.title,
+        this.longitude});
 
   Validation.fromJson(Map<String, dynamic> json) {
-    password = json['password'];
-    phone = json['phone'];
-    email = json['email'];
+    country = json['country'];
+    streetName = json['streetName'];
+    city = json['city'];
+    isMain = json['isMain'];
+    latitude = json['latitude'];
+    title = json['title'];
+    longitude = json['longitude'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['password'] = this.password;
-    data['phone'] = this.phone;
-    data['email'] = this.email;
+    data['country'] = this.country;
+    data['streetName'] = this.streetName;
+    data['city'] = this.city;
+    data['isMain'] = this.isMain;
+    data['latitude'] = this.latitude;
+    data['title'] = this.title;
+    data['longitude'] = this.longitude;
     return data;
-  }
-
-  @override
-  String toString() {
-    return 'Validation{password: $password, phone: $phone, email: $email}';
   }
 }
