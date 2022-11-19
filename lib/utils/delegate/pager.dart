@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
 import 'package:uikit/infrastructure/cubit/forgot_pass/forgot_pass_cubit.dart';
 import 'package:uikit/infrastructure/cubit/map/map_store_cubit.dart';
+import 'package:uikit/infrastructure/cubit/otp/otp_cubit.dart';
 import 'package:uikit/presentation/page/auth/forgot_password_page/forgot_pass_page.dart';
+import 'package:uikit/presentation/page/auth/otp_page/otp_page.dart';
 import 'package:uikit/presentation/page/landing_page/landing_page.dart';
 import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart';
 
@@ -72,6 +74,10 @@ class Pager {
   static get userEdit => MultiBlocProvider(
       providers: [BlocProvider(create: (context) => UserCubit())],
       child: const UserEditPage());
+
+  static otp(String phone) => MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => OTPCubit(phone: phone))],
+      child: const OTPPage());
 
   static get forgotPassword => MultiBlocProvider(
       providers: [BlocProvider(create: (context) => ForgotPassCubit())],

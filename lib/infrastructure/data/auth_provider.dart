@@ -29,9 +29,7 @@ class AuthProvider {
         ApiKeys.loginBody(password: password, email: email, fcmToken: fcmToken);
 
     final response = await dioG.dio.post(api, data: body);
-    print(" provider 1");
     statusDynamic.statusCode = response.statusCode;
-    print(" provider 2");
     if (response.statusCode == ResultKey.successCode) {
       String? accessToken =
           response.headers.map[ApiKeys.accessTokenDict]?.first;
@@ -41,9 +39,35 @@ class AuthProvider {
         "accessToken": accessToken,
         "refreshToken": refreshToken,
       };
-      print(" provider 3");
 
       statusDynamic.data = tokens;
+    } else {}
+    return statusDynamic;
+  }
+
+  static Future<StatusDynamic> validateOtp({
+    required String? phone,
+    required String? otp,
+  }) async {
+    StatusDynamic statusDynamic = StatusDynamic();
+
+    var api = ApiKeys.validateOtp;
+    https: //doctoro-dev.ml/public/auth/validate-otp
+    var body = ApiKeys.otpBody(phone: phone, otp: otp);
+
+    final response = await dioG.dio.post(api, data: body);
+    statusDynamic.statusCode = response.statusCode;
+    if (response.statusCode == ResultKey.successCode) {
+      // String? accessToken =
+      //     response.headers.map[ApiKeys.accessTokenDict]?.first;
+      // String? refreshToken =
+      //     response.headers.map[ApiKeys.refreshTokenDict]?.first;
+      // Map<String, String?> tokens = {
+      //   "accessToken": accessToken,
+      //   "refreshToken": refreshToken,
+      // };
+      //
+      // statusDynamic.data = tokens;
     } else {}
     return statusDynamic;
   }
