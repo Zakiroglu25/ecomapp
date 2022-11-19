@@ -50,6 +50,7 @@ dependencies:
 #  geolocator: ^9.0.2
   permission_handler: ^10.0.1
 #  geocoding: ^2.0.5
+  map_location_picker: ^1.0.2
 
 
   #firebase

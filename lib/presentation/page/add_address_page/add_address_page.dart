@@ -88,9 +88,10 @@ class AddAddressPage extends StatelessWidget {
               loading:
                   context.read<AddAddressCubit>().state is AddAddressInProgress,
               onTap: () {
-                addressModel != null
-                    ? context.read<AddAddressCubit>().editAddress(addressModel!)
-                    : context.read<AddAddressCubit>().addAddress(context);
+                // addressModel != null
+                //     ? context.read<AddAddressCubit>().editAddress(addressModel!)
+                //     :
+                context.read<AddAddressCubit>().addAddress(context);
               },
               text: "yadda Saxla",
             )
