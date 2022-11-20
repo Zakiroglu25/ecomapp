@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../infrastructure/services/hive_service.dart';
 import '../../../locator.dart';
-import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/string_operations.dart';
-import '../../../widgets/general/app_field.dart';
 import 'widget/fields/birthday_field.dart';
 import 'widget/fields/finField.dart';
 import 'widget/fields/name_field.dart';

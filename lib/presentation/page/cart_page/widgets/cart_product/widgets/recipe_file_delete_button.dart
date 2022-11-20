@@ -1,12 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:uikit/utils/constants/border_radius.dart';
 import 'package:uikit/utils/constants/mock.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/extensions/word.dart';
 import 'package:uikit/widgets/custom/app_unicorn_button.dart';
-import 'package:flutter/material.dart';
 
 import '../../../../../../utils/constants/gradients.dart';
-import '../../../../../../widgets/general/colorfull_bordered.dart';
 
 class RecipeFileDeleteButton extends StatelessWidget {
   const RecipeFileDeleteButton({Key? key}) : super(key: key);

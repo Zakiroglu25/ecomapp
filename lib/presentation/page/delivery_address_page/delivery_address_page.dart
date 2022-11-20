@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/assets.dart';
 import 'package:uikit/utils/constants/border_radius.dart';
@@ -8,7 +9,6 @@ import 'package:uikit/widgets/custom/column_with_space.dart';
 import 'package:uikit/widgets/custom/text_title_big.dart';
 import 'package:uikit/widgets/general/app_element_box.dart';
 import 'package:uikit/widgets/general/app_field.dart';
-import 'package:flutter/material.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/paddings.dart';

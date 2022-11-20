@@ -1,5 +1,5 @@
-import 'package:uikit/utils/screen/ink_wrapper.dart';
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/screen/ink_wrapper.dart';
 
 import '../../../../../../utils/constants/border_radius.dart';
 import '../../../../../../utils/constants/colors.dart';

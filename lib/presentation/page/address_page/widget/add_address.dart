@@ -7,8 +7,6 @@ import '../../../../utils/delegate/pager.dart';
 import '../../../../widgets/custom/app_button.dart';
 import '../../../../widgets/custom/text_title_big.dart';
 import '../../../../widgets/general/empty_widget.dart';
-import '../../../../widgets/main/cupperfold/cupperfold.dart';
-import '../../add_address_page/add_address_page.dart';
 
 class EmptyAddress extends StatelessWidget {
   const EmptyAddress({Key? key}) : super(key: key);

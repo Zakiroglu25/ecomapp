@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:uikit/presentation/page/cart_page/widgets/cart_order_product/card_order_product.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/physics.dart';
-import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/delegate/navigate_utils.dart';
 import 'package:uikit/utils/delegate/pager.dart';
@@ -10,7 +10,6 @@ import 'package:uikit/utils/extensions/context.dart';
 import 'package:uikit/widgets/custom/app_button.dart';
 import 'package:uikit/widgets/custom/column_with_space.dart';
 import 'package:uikit/widgets/custom/listview_separated.dart';
-import 'package:flutter/material.dart';
 
 class WaitingTab extends StatelessWidget {
   const WaitingTab({Key? key}) : super(key: key);

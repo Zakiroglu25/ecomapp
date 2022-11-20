@@ -1,4 +1,3 @@
-import 'package:uikit/utils/constants/physics.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/constants/paddings.dart';

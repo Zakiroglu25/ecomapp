@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uikit/utils/screen/ink_wrapper.dart';
 import 'package:uikit/utils/screen/sheet.dart';
 

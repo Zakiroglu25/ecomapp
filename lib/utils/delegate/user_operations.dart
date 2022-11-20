@@ -19,11 +19,11 @@ class UserOperations {
   static Future<void> configureUserDataWhenLogin(
       {required String accessToken,
       required String refreshToken,
-      required String? path}) async {
+      String? path}) async {
     try {
       await _prefs.persistAccessToken(accessToken: accessToken);
       await _prefs.persistRefreshToken(refreshToken: refreshToken);
-      await _prefs.persistPath(path!);
+      if (path != null) await _prefs.persistPath(path);
 
       final deviceFcmToken = _devInfo.fcmToken;
       final devicePlatformId = _devInfo.platformId;

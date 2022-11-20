@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:uikit/presentation/page/cart_delivery_page/widgets/delivery_call_and_messenger_b_uttons.dart';
 import 'package:uikit/presentation/page/cart_delivery_page/widgets/delivery_med_count.dart';
 import 'package:uikit/presentation/page/cart_delivery_page/widgets/delivery_order_date.dart';
@@ -7,7 +8,6 @@ import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/widgets/custom/column_with_space.dart';
 import 'package:uikit/widgets/custom/sliver_app_bar_delegate.dart';
-import 'package:flutter/material.dart';
 
 class DeliveryHeaders extends StatelessWidget {
   const DeliveryHeaders({Key? key}) : super(key: key);

@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../utils/constants/text.dart';
@@ -30,6 +29,7 @@ class AddressCubit extends Cubit<AddressState> {
       emit(AddressError(error: e.toString()));
     }
   }
+
   void delete(String? id, {bool loading = true}) async {
     if (loading) {
       emit(AddressInProgress());
@@ -53,5 +53,4 @@ class AddressCubit extends Cubit<AddressState> {
 
     //user/attorneys/delete
   }
-
 }

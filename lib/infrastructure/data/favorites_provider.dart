@@ -1,14 +1,9 @@
-import 'dart:convert';
-
-import 'package:uikit/infrastructure/model/response/favorite_model.dart';
-
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/constants/result_keys.dart';
 import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
 import '../model/response/product_option_model.dart';
-
 import '../model/response/status_dynamic.dart';
 import '../services/hive_service.dart';
 

@@ -8,14 +8,11 @@ import 'package:uikit/widgets/custom/app_button.dart';
 import '../../../infrastructure/model/response/address_model.dart';
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/navigate_utils.dart';
-import '../../../utils/delegate/string_operations.dart';
 import '../../../utils/screen/snack.dart';
 import '../../../widgets/doctoro_appbar/doctoro_appbar.dart';
-import '../../../widgets/general/app_field.dart';
 import 'fields/address_field.dart';
 import 'fields/courier_desc_field.dart';
 import 'fields/name_address_field.dart';
-import 'fields/phone_field.dart';
 import 'fields/region_field.dart';
 import 'fields/title_fields.dart';
 

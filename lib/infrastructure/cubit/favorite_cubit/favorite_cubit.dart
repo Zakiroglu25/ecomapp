@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../utils/delegate/my_printer.dart';
-import '../../../utils/delegate/request_control.dart';
 import '../../data/favorites_provider.dart';
 import 'favorite_state.dart';
 
@@ -33,7 +32,5 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     }
   }
 
-  void addFavorite() async {
-
-  }
+  void addFavorite() async {}
 }
