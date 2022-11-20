@@ -1,7 +1,7 @@
-import 'package:uikit/utils/constants/app_text_styles.dart';
-import 'package:uikit/utils/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/constants/app_text_styles.dart';
+import 'package:uikit/utils/constants/colors.dart';
 
 import '../../utils/screen/widget_or_empty.dart';
 

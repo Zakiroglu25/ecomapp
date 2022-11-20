@@ -1,7 +1,7 @@
-import 'package:uikit/utils/constants/colors.dart';
-import 'package:uikit/utils/screen/widget_or_empty.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/utils/screen/widget_or_empty.dart';
 
 import '../../../../utils/constants/paddings.dart';
 import '../../../custom/row_with_space.dart';

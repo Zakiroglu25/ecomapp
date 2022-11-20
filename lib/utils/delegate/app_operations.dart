@@ -2,7 +2,6 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:uikit/utils/delegate/my_printer.dart';
 
 class AppOperations {
   static int getTime(index) {

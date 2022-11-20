@@ -1,16 +1,13 @@
-import 'package:uikit/utils/constants/sized_box.dart';
-import 'package:uikit/widgets/general/app_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/widgets/general/app_field.dart';
 
 import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/colors.dart';
-import '../../../../utils/delegate/navigate_utils.dart';
 import '../../../../widgets/custom/app_button.dart';
 import '../../../../widgets/doctoro_appbar/doctoro_appbar.dart';
-import '../payment_method_page.dart';
-import 'add_bank_kart.dart';
 
 class NamedAndSaveWidget extends StatelessWidget {
   const NamedAndSaveWidget({Key? key}) : super(key: key);

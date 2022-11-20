@@ -1,11 +1,9 @@
-import 'package:uikit/presentation/page/contact_page/widget/sosial_item.dart';
-import 'package:uikit/utils/constants/colors.dart';
-import 'package:uikit/widgets/custom/text_title_big.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uikit/presentation/page/contact_page/widget/sosial_item.dart';
+import 'package:uikit/utils/constants/colors.dart';
 
 import '../../../utils/constants/assets.dart';
-import '../../../utils/constants/paddings.dart';
 import '../../../utils/constants/text.dart';
 import '../../../widgets/custom/product_and_other_widget.dart';
 import '../../../widgets/main/cupperfold/cupperfold.dart';

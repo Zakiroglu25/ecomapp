@@ -58,16 +58,16 @@ class AuthProvider {
     final response = await dioG.dio.post(api, data: body);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
-      // String? accessToken =
-      //     response.headers.map[ApiKeys.accessTokenDict]?.first;
-      // String? refreshToken =
-      //     response.headers.map[ApiKeys.refreshTokenDict]?.first;
-      // Map<String, String?> tokens = {
-      //   "accessToken": accessToken,
-      //   "refreshToken": refreshToken,
-      // };
-      //
-      // statusDynamic.data = tokens;
+      String? accessToken =
+          response.headers.map[ApiKeys.accessTokenDict]?.first;
+      String? refreshToken =
+          response.headers.map[ApiKeys.refreshTokenDict]?.first;
+      Map<String, String?> tokens = {
+        "accessToken": accessToken,
+        "refreshToken": refreshToken,
+      };
+
+      statusDynamic.data = tokens;
     } else {}
     return statusDynamic;
   }

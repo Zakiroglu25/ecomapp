@@ -1,11 +1,11 @@
 // Flutter imports:
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:uikit/widgets/doctoro_appbar/widgets/back_i_o_s.dart';
 import 'package:flutter/material.dart';
 // Project imports:
 // Package imports:
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import 'package:uikit/widgets/doctoro_appbar/widgets/back_i_o_s.dart';
 
 import 'carousel_indicator.dart';
 

@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
-import 'package:flutter/material.dart';
 
 import '../../../utils/constants/assets.dart';
 import '../../../utils/delegate/navigate_utils.dart';

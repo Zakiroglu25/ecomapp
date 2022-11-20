@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../infrastructure/cubit/product_details_details/product_details_state.dart';
 import '../../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
 import '../../../infrastructure/model/response/product_option_details_model.dart';
@@ -10,7 +11,6 @@ import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sized_box.dart';
 import '../../../widgets/custom/app_button.dart';
 import '../../../widgets/general/app_loading.dart';
-import '../../../widgets/general/empty_widget.dart';
 import 'widget/details_title_text.dart';
 import 'widget/header_info_text.dart';
 import 'widget/header_price_text.dart';
@@ -141,7 +141,7 @@ class _ProductOptionDetailsState extends State<ProductOptionDetails> {
                 Text(
                   "Sebete",
                   style:
-                  AppTextStyles.sfPro600s17.copyWith(color: MyColors.white),
+                      AppTextStyles.sfPro600s17.copyWith(color: MyColors.white),
                 ),
               ],
             ),

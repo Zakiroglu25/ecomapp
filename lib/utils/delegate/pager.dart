@@ -13,8 +13,8 @@ import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart
 import '../../app.dart';
 import '../../infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
 import '../../infrastructure/cubit/authentication/authentication_cubit.dart';
-import '../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../infrastructure/cubit/category_cubit/category_cubit.dart';
+import '../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../infrastructure/cubit/login/login_cubit.dart';
 import '../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
 import '../../infrastructure/cubit/product_option_cubit/product_option_cubit.dart';

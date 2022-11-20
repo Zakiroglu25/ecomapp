@@ -1,6 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/text.dart';
-import 'package:flutter/cupertino.dart';
 
 enum CartOrderType {
   waiting,

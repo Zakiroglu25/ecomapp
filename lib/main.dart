@@ -1,5 +1,5 @@
-import 'package:uikit/infrastructure/config/init.dart';
 import 'package:flutter/material.dart';
+import 'package:uikit/infrastructure/config/init.dart';
 
 import 'mate_app.dart';
 

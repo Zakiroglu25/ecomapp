@@ -1,9 +1,9 @@
-import 'package:uikit/utils/constants/durations.dart';
-import 'package:uikit/utils/screen/widget_or_empty.dart';
-import 'package:uikit/widgets/custom/row_with_space.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:uikit/utils/constants/durations.dart';
+import 'package:uikit/utils/screen/widget_or_empty.dart';
+import 'package:uikit/widgets/custom/row_with_space.dart';
 
 import '../../utils/constants/app_text_styles.dart';
 import '../../utils/constants/border_radius.dart';

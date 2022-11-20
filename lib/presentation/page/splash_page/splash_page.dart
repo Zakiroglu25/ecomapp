@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:uikit/utils/constants/colors.dart';
-import 'package:uikit/utils/extensions/index.dart';
-import '../../../utils/constants/assets.dart';
+
 import '../../../utils/constants/paddings.dart';
 import '../../../widgets/general/app_big_logo.dart';
 

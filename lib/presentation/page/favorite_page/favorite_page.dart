@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
-import 'package:flutter/material.dart';
 
 import '../../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../../infrastructure/cubit/favorite_cubit/favorite_state.dart';

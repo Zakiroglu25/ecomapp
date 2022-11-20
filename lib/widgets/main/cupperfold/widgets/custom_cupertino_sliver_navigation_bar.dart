@@ -1,6 +1,6 @@
-import 'package:uikit/utils/constants/paddings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/constants/paddings.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/screen/widget_or_empty.dart';

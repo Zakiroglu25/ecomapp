@@ -1,6 +1,6 @@
 // Flutter imports:
-import 'package:uikit/utils/constants/paddings.dart';
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/constants/paddings.dart';
 
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/sized_box.dart';
