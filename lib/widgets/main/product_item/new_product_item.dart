@@ -21,7 +21,6 @@ class NewProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bbbb("pro: $product");
     return Container(
       height: 126,
       padding: Paddings.paddingA12,
