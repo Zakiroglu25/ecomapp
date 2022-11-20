@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uikit/presentation/page/auth/otp_page/widgets/login_button.dart';
+import 'package:uikit/presentation/page/auth/otp_page/widgets/otp_login_button.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
@@ -37,7 +37,7 @@ class OtpBuildGeneralBody extends StatelessWidget {
             const OtpInfoText(),
           ],
         ),
-        const LoginButton(),
+        const OtpLoginButton(),
       ],
     );
   }

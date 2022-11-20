@@ -32,6 +32,7 @@ import '../../presentation/page/contact_page/contact_page.dart';
 import '../../presentation/page/favorite_page/favorite_page.dart';
 import '../../presentation/page/home_page/home_page.dart';
 import '../../presentation/page/medicine_details_page/medicine_details_page.dart';
+import '../../presentation/page/medicines_page/medicines_page.dart';
 import '../../presentation/page/other_page/other_page.dart';
 import '../../presentation/page/payment_method_page/payment_method_page.dart';
 import '../../presentation/page/product_page/product_page.dart';
@@ -56,6 +57,10 @@ class Pager {
   static get login => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => LoginCubit()),
       ], child: const LoginPage());
+
+  static get medicines => MultiBlocProvider(providers: [
+        BlocProvider(create: (context) => ProductOptionCubit()),
+      ], child: const MedicinesPage());
 
   static get cart => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => LoginCubit()),

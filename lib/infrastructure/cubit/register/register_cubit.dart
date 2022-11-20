@@ -41,14 +41,14 @@ class RegisterCubit extends Cubit<RegisterState> {
         //   path: uPassMain.valueOrNull,
         // );
         emit(RegisterSuccess(""));
-        Snack.positive(message: MyText.successfullyRegistered);
-        Go.to(context, Pager.login);
+        Snack.positive(message: MyText.otpSent);
+        Go.to(context, Pager.otp(phone.value));
       } else {
         // String error = '';
         // response?.validation?.toJson().entries.map((e) {
         //   error = "${error} ," + '${e.key} : ${e.value}';
         // });
-        bbbb("errork: ${response.details}");
+        bbbb("error: ${response.details}");
         emit(RegisterFailed(message: response.details));
       }
     } catch (e, s) {

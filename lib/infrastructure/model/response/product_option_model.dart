@@ -34,6 +34,11 @@ class ProductOptionModel {
     data['totalPages'] = this.totalPages;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'ProductOptionModel{data: $data, page: $page, pageSize: $pageSize, totalItems: $totalItems, totalPages: $totalPages}';
+  }
 }
 
 class SimpleProduct {
@@ -59,5 +64,10 @@ class SimpleProduct {
     data['minPrice'] = this.minPrice;
     data['imageUrl'] = this.imageUrl;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'SimpleProduct{guid: $guid, title: $title, minPrice: $minPrice, imageUrl: $imageUrl, product: $product}';
   }
 }

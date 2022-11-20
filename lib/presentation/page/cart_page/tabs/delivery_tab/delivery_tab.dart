@@ -13,7 +13,7 @@ class DeliveryTab extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return ListviewSeparated(
+    return ListViewSeparated(
       //  shrinkWrap: true,
       physics: Physics.never,
       // space: 16,

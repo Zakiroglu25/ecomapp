@@ -50,7 +50,7 @@ class ProductItem extends StatelessWidget {
                           SizedBox(
                             width: 199,
                             child: Text(
-                              products!.product!.title!,
+                              "${products?.product?.title}",
                               style: AppTextStyles.sfPro400s14,
                               softWrap: true,
                               overflow: TextOverflow.ellipsis,

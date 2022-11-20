@@ -27,7 +27,7 @@ class DeliveryProducts extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             Center(child: HandleLine()),
-            ListviewSeparated(
+            ListViewSeparated(
                 shrinkWrap: true,
                 physics: Physics.never,
                 itemCount: products.length,

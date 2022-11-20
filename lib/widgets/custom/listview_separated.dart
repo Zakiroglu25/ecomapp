@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../utils/constants/paddings.dart';
 import '../../utils/constants/sized_box.dart';
 
-class ListviewSeparated extends StatelessWidget {
-  const ListviewSeparated(
+class ListViewSeparated extends StatelessWidget {
+  const ListViewSeparated(
       {Key? key,
       required this.itemCount,
       required this.itemBuilder,

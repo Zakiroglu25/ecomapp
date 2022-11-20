@@ -39,7 +39,7 @@ class OTPCubit extends Cubit<OtpState> {
   }
 
   bool get isOtpIncorrect =>
-      (!otp.hasValue || otp.value == null || otp.value.isEmpty);
+      (!otp.hasValue || otp.value.length != 6 || otp.value.isEmpty);
 
   @override
   Future<void> close() {
@@ -52,9 +52,6 @@ class OTPCubit extends Cubit<OtpState> {
       if (loading ?? true) {
         emit(OtpInProgress());
       }
-      //
-      //
-      //
     } on SocketException catch (_) {
       emit(OtpError(error: 'network_error'));
     } catch (e, s) {
@@ -72,6 +69,7 @@ class OTPCubit extends Cubit<OtpState> {
       final response =
           await AuthProvider.validateOtp(phone: phone, otp: otp.valueOrNull);
       if (!response.statusCode.isSuccess) {
+        updateOtp('');
         emit(OtpError());
         return;
       }

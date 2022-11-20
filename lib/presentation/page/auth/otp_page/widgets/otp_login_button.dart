@@ -5,8 +5,8 @@ import 'package:uikit/infrastructure/cubit/otp/otp_cubit.dart';
 import '../../../../../utils/constants/text.dart';
 import '../../../../../widgets/custom/app_button.dart';
 
-class LoginButton extends StatelessWidget {
-  const LoginButton({Key? key}) : super(key: key);
+class OtpLoginButton extends StatelessWidget {
+  const OtpLoginButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +15,7 @@ class LoginButton extends StatelessWidget {
       left: 16,
       right: 16,
       child: AppButton(
+        isButtonActive: !context.watch<OTPCubit>().isOtpIncorrect,
         text: MyText.login,
         onTap: () => context.read<OTPCubit>().validateOtp(context),
       ),

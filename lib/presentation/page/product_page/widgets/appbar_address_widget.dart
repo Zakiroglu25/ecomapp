@@ -22,7 +22,7 @@ class AppBarAddressWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Burda Address Listi olacaq"),
+                  Text("Burda Address Listi olacaq\ninwallah, Baxa"),
                 ],
               ),
               context: context);
