@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
@@ -9,8 +10,12 @@ import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/paddings.dart';
 import '../../../../utils/constants/sized_box.dart';
+import '../../../../utils/constants/text.dart';
+import '../../../../utils/delegate/my_printer.dart';
 import '../../../../utils/delegate/navigate_utils.dart';
+import '../../../../utils/screen/ink_wrapper.dart';
 import '../../../../widgets/custom/app_button.dart';
+import '../../medicine_details_page/medicine_details_page.dart';
 import '../../product_details_page/product_details_page.dart';
 
 class ProductItem extends StatelessWidget {
@@ -50,7 +55,7 @@ class ProductItem extends StatelessWidget {
                           SizedBox(
                             width: 199,
                             child: Text(
-                              "${products?.product?.title}",
+                              products!.product!.title!,
                               style: AppTextStyles.sfPro400s14,
                               softWrap: true,
                               overflow: TextOverflow.ellipsis,

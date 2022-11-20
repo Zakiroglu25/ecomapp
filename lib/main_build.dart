@@ -48,7 +48,7 @@ class MainBuild {
             return ScrollConfiguration(
                 behavior: ScrollBehaviorModified(), child: widget!);
           },
-          home: Pager.app()),
+          home: Pager.otp("+994704051040")),
     );
   }
 }
