@@ -21,8 +21,11 @@ import 'fields/title_fields.dart';
 
 class AddAddressPage extends StatelessWidget {
   final AddressModel? addressModel;
+  double? lat;
+  double? lng;
+  TextEditingController? textController = TextEditingController();
 
-  AddAddressPage({this.addressModel});
+  AddAddressPage({this.addressModel, this.lat, this.lng, this.textController});
 
   bool first = true;
 
@@ -68,32 +71,38 @@ class AddAddressPage extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.all(16),
           children: [
+            AddressField(
+              controller:
+                  textController == null ? textController : textController,
+            ),
+            NameAddressField(
+              controller: addAttorneysCubit.titleCnt,
+            ),
             TitleField(
               controller: addAttorneysCubit.cityController,
             ),
             RegionField(
               controller: addAttorneysCubit.countryController,
             ),
-            AddressField(
-              controller: addAttorneysCubit.latitudeController,
-            ),
             CourierDescField(
               controller: addAttorneysCubit.descriptionController,
             ),
-            NameAddressField(
-              controller: addAttorneysCubit.streetNameController,
-            ),
+
             MySizedBox.h50,
             AppButton(
+              isButtonActive: lng == null ? false : true,
               loading:
                   context.read<AddAddressCubit>().state is AddAddressInProgress,
               onTap: () {
-                // addressModel != null
-                //     ? context.read<AddAddressCubit>().editAddress(addressModel!)
-                //     :
-                context.read<AddAddressCubit>().addAddress(context);
+                addressModel != null
+                    ? context.read<AddAddressCubit>().editAddress(addressModel!)
+                    : context.read<AddAddressCubit>().addAddress(
+                        context: context,
+                        lat: lat,
+                        lng: lng,
+                        streetNameController: textController);
               },
-              text: "yadda Saxla",
+              text: "Yadda Saxla",
             )
             // AddressField()
           ],

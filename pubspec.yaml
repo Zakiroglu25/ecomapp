@@ -46,13 +46,13 @@ dependencies:
   flutter_slidable: ^2.0.0
 #  map
   google_maps_flutter: ^2.2.0
-  location: ^4.4.0
+  map_picker: ^0.0.3
+  geocoding: ^2.0.5
+#  location: ^4.4.0
 #  geolocator: ^9.0.2
   permission_handler: ^10.0.1
 #  geocoding: ^2.0.5
-  map_location_picker: ^1.0.2
-
-
+#  map_location_picker: ^1.0.2
   #firebase
   firebase_core: ^2.1.1
   firebase_crashlytics: ^3.0.3

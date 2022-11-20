@@ -8,8 +8,9 @@ import '../../address_page/select_map_page/select_map_page.dart';
 
 class AddressField extends StatelessWidget {
   final TextEditingController? controller;
+  String? name;
 
-  AddressField({this.controller}); //= new TextEditingController();
+  AddressField({this.controller, this.name}); //= new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return AppField(
@@ -21,12 +22,10 @@ class AddressField extends StatelessWidget {
       textCapitalization: TextCapitalization.sentences,
       controller: controller,
       suffixIcon: InkWell(
-          onTap: (){
-            print("Salam");
-            // Go.to(context, MapSample());
+          onTap: () {
+            Go.to(context, MapSample());
           },
           child: Icon(Icons.my_location_sharp)),
-
     );
   }
 }
