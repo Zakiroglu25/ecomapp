@@ -71,6 +71,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String ok = 'OK';
   static const String reject = 'İmtina';
   static const String error = "Əməliyyat zamanı xəta yarandı!";
+  static const String networkError = "İnternet bağlantısı zamanı xəta yarandı";
   static const String goOn = "Davam et";
   static const String unknownError = "Bilinməyən xəta yarandı!";
   static const String are_you_forgot_pass = "Şifrəni unutmusan ?";
@@ -207,6 +208,4 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String enterDesc = "Daxil edin";
   static const String nameAddress = "Ünvanı adlandır";
   static const String exampleName = "Məsələn: Ev ünvanı";
-
-
 }

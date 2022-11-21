@@ -56,7 +56,7 @@ class ForgetPasswordPage extends StatelessWidget {
               //color: Colors.red,
               padding: Paddings.paddingH20,
               child: Stack(
-                //fit: StackFit.expand,
+                fit: StackFit.expand,
                 children: [
                   Column(
                     children: [
