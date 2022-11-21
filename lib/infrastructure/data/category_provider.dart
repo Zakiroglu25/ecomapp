@@ -35,8 +35,8 @@ class CategoryProvider {
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
       final comeJson = response.data;
-      ProductOptionModel model = ProductOptionModel.fromJson(comeJson);
-      statusDynamic.data = model.data;
+      FavResult model = FavResult.fromJson(comeJson);
+      statusDynamic.data = model.products;
     } else {
       eeee("AllManufacturers List:  url: $api , response: ${response.data}");
     }

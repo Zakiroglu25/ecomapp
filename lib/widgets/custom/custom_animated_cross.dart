@@ -14,6 +14,7 @@ class CustomAnimatedCross extends StatelessWidget {
   final Widget first;
   final Widget second;
   final Duration duration;
+
 //
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/delegate/my_printer.dart';
 import '../../data/favorites_provider.dart';
+import '../../model/response/product_option_model.dart';
 import 'favorite_state.dart';
 
 class FavoriteCubit extends Cubit<FavoriteState> {
@@ -16,11 +18,9 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     }
     try {
       final result = await FavoritesProvider.getFavorite(page);
-      wtf(result.data.toString());
-      if (result.data != null) {
-        print("Cubit 3");
-
-        emit(FavoriteSuccess(result.data!));
+      if (result.statusCode.isSuccess) {
+        final favRes = result.data as FavResult;
+        emit(FavoriteSuccess(favRes));
       } else {
         emit(FavoriteError());
       }

@@ -19,9 +19,9 @@ import '../../medicine_details_page/medicine_details_page.dart';
 import '../../product_details_page/product_details_page.dart';
 
 class ProductItem extends StatelessWidget {
-  final SimpleProduct? products;
+  final SimpleProduct? product;
 
-  ProductItem({this.products});
+  ProductItem({this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class ProductItem extends StatelessWidget {
                   context,
                   BlocProvider(
                     create: (context) => ProductOptionDetailsCubit()
-                      ..fetchProduct(products!.guid!),
+                      ..fetchProduct(product!.guid!),
                     child: ProductOptionDetails(),
                   ));
             },
@@ -51,18 +51,18 @@ class ProductItem extends StatelessWidget {
                       children: [
                         Image.asset(Assets.demo),
                         MySizedBox.w12,
-                        if (products != null)
+                        if (product != null)
                           SizedBox(
                             width: 199,
                             child: Text(
-                              products!.product!.title!,
+                              product!.product!.title!,
                               style: AppTextStyles.sfPro400s14,
                               softWrap: true,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 2,
                             ),
                           ),
-                        if (products != null) Text("Salam"),
+                        if (product != null) Text("Salam"),
                         Spacer(),
                         GestureDetector(
                             onTap: () {
@@ -76,7 +76,7 @@ class ProductItem extends StatelessWidget {
                       children: [
                         MySizedBox.w75,
                         Text(
-                          products!.minPrice!.toString() + " ₼-dan",
+                          product!.minPrice!.toString() + " ₼-dan",
                           style: AppTextStyles.sfPro600s16,
                         ),
                         Spacer(),

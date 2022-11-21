@@ -15,32 +15,35 @@ class AppLoading extends StatelessWidget {
 
   AppLoading.blue({this.color = MyColors.mainGrey});
   AppLoading.main({this.color = MyColors.main});
+  AppLoading.big({this.color = MyColors.main, this.s = 120});
 
   AppLoading.white({this.color = MyColors.white, this.s});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: Paddings.paddingA2,
-      child: SizedBox(
-        height: s,
-        width: s,
-        child: Center(
-            child: FadeIn(
-          duration: Duration(milliseconds: 800),
-          child: WidgetOrEmpty(
-            value: color == null,
-            elseChild: CircularProgressIndicator(
-              color: color,
+    return Center(
+      child: Padding(
+        padding: Paddings.paddingA2,
+        child: SizedBox(
+          height: s,
+          width: s,
+          child: Center(
+              child: FadeIn(
+            duration: Duration(milliseconds: 800),
+            child: WidgetOrEmpty(
+              value: color == null,
+              elseChild: CircularProgressIndicator(
+                color: color,
+              ),
+              child: Container(
+                height: s,
+                width: s,
+                // color: Colors.green,
+                child: Lottie.asset(Assets.loading, width: 1),
+              ),
             ),
-            child: Container(
-              height: s,
-              width: s,
-              // color: Colors.green,
-              child: Lottie.asset(Assets.loading, width: 1),
-            ),
-          ),
-        )),
+          )),
+        ),
       ),
     );
   }

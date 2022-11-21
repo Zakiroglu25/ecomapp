@@ -17,20 +17,13 @@ class FavoritesProvider {
     const api = ApiKeys.favorite;
     final response =
         await dioAuth.dio.get(api, queryParameters: {"page": page});
-    print("provider 1" + response.toString());
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
-      print("provider 2");
-      final comeJson = response.data;
-      print("provider 3");
-      ProductOptionModel model = ProductOptionModel.fromJson(comeJson);
-      print("provider 4");
-      statusDynamic.data = model.data;
-      print("provider 5");
+      FavResult model = FavResult.fromJson(response.data);
+      statusDynamic.data = model;
     } else {
-      eeee("address List:  url: $api , response: ${response.data}");
+      eeee("getFavorite List:  url: $api , response: ${response.data}");
     }
-
     return statusDynamic;
   }
 
@@ -44,9 +37,9 @@ class FavoritesProvider {
       print("provider 2");
       final comeJson = response.data;
       print("provider 3");
-      ProductOptionModel model = ProductOptionModel.fromJson(comeJson);
+      FavResult model = FavResult.fromJson(comeJson);
       print("provider 4");
-      statusDynamic.data = model.data;
+      statusDynamic.data = model.products;
       print("provider 5");
     } else {
       eeee("address List:  url: $api , response: ${response.data}");
