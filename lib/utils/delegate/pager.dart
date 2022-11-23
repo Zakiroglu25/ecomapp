@@ -13,8 +13,8 @@ import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart
 import '../../app.dart';
 import '../../infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
 import '../../infrastructure/cubit/authentication/authentication_cubit.dart';
-import '../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../infrastructure/cubit/category_cubit/category_cubit.dart';
+import '../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../infrastructure/cubit/login/login_cubit.dart';
 import '../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
 import '../../infrastructure/cubit/product_option_cubit/product_option_cubit.dart';
@@ -32,6 +32,7 @@ import '../../presentation/page/contact_page/contact_page.dart';
 import '../../presentation/page/favorite_page/favorite_page.dart';
 import '../../presentation/page/home_page/home_page.dart';
 import '../../presentation/page/medicine_details_page/medicine_details_page.dart';
+import '../../presentation/page/medicines_page/medicines_page.dart';
 import '../../presentation/page/other_page/other_page.dart';
 import '../../presentation/page/payment_method_page/payment_method_page.dart';
 import '../../presentation/page/product_page/product_page.dart';
@@ -56,6 +57,10 @@ class Pager {
   static get login => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => LoginCubit()),
       ], child: const LoginPage());
+
+  static get medicines => MultiBlocProvider(providers: [
+        BlocProvider(create: (context) => ProductOptionCubit()),
+      ], child: const MedicinesPage());
 
   static get cart => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => LoginCubit()),

@@ -1,9 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:uikit/utils/constants/border_radius.dart';
 import 'package:uikit/utils/constants/colors.dart';
-import 'package:flutter/material.dart';
 
 import '../../../utils/constants/physics.dart';
-import '../../custom/app_tab.dart';
 import 'widgets/custom_cupertino_sliver_navigation_bar.dart';
 
 class CupperTabs extends StatefulWidget {

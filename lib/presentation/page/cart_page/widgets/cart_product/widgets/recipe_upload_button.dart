@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:uikit/utils/constants/border_radius.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/screen/ink_wrapper.dart';
-import 'package:flutter/material.dart';
 
 class RecipeUploadButton extends StatelessWidget {
   const RecipeUploadButton({Key? key}) : super(key: key);

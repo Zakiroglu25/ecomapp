@@ -1,11 +1,11 @@
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:nil/nil.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/assets.dart';
-import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
-import 'package:uikit/utils/delegate/cart_operations.dart';
-import 'package:uikit/utils/delegate/my_printer.dart';
 import 'package:uikit/utils/enums/cart_order_type.dart';
 import 'package:uikit/utils/extensions/word.dart';
 import 'package:uikit/utils/screen/widget_or_empty.dart';
@@ -14,10 +14,6 @@ import 'package:uikit/widgets/custom/column_with_space.dart';
 import 'package:uikit/widgets/custom/dots_button.dart';
 import 'package:uikit/widgets/custom/row_with_space.dart';
 import 'package:uikit/widgets/general/app_element_box.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:nil/nil.dart';
 
 import '../../../../../utils/constants/text.dart';
 

@@ -1,5 +1,5 @@
-import 'package:uikit/utils/constants/paddings.dart';
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/constants/paddings.dart';
 
 import '../delegate/random.dart';
 

@@ -2,14 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rxdart/rxdart.dart';
 
 import '../../../locator.dart';
 import '../../../utils/constants/text.dart';
-import '../../../utils/delegate/app_operations.dart';
 import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/delegate/request_control.dart';
-import '../../../utils/delegate/string_operations.dart';
 import '../../data/address_provider.dart';
 import '../../model/response/address_model.dart';
 import '../../services/hive_service.dart';

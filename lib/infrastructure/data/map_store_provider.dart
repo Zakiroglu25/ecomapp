@@ -3,8 +3,6 @@
 
 import 'dart:developer';
 
-import 'package:dio/dio.dart';
-import 'package:uikit/infrastructure/model/response/address_model.dart';
 import 'package:uikit/infrastructure/model/response/map_medicine.dart';
 
 import '../../locator.dart';

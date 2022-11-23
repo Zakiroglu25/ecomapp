@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/infrastructure/data/auth_provider.dart';
 import 'package:uikit/utils/extensions/index.dart';
+
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../services/hive_service.dart';

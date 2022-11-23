@@ -1,17 +1,13 @@
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/constants/app_text_styles.dart';
 
 import '../../../infrastructure/services/hive_service.dart';
 import '../../../locator.dart';
 import '../../../utils/constants/colors.dart';
-import '../../../utils/constants/sized_box.dart';
 import '../../../utils/delegate/navigate_utils.dart';
-import '../../../utils/delegate/pager.dart';
 import '../../../widgets/doctoro_appbar/doctoro_appbar.dart';
 import '../insurance_page/add_insurance_page.dart';
 import 'widget/user_data_body.dart';
-import 'widget/user_data_item_widget.dart';
 
 class PageViewExample extends StatefulWidget {
   const PageViewExample({Key? key}) : super(key: key);

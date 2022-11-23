@@ -1,7 +1,5 @@
 // Flutter imports:
 
-import 'package:uikit/utils/extensions/index.dart';
-import 'package:uikit/widgets/doctoro_appbar/widgets/filter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:focus_detector/focus_detector.dart';
@@ -9,10 +7,8 @@ import 'package:focus_detector/focus_detector.dart';
 import '../../presentation/page/product_page/widgets/appbar_address_widget.dart';
 import '../../utils/constants/app_text_styles.dart';
 import '../../utils/constants/colors.dart';
-import '../../utils/constants/paddings.dart';
 import '../../utils/constants/sized_box.dart';
 import '../../utils/screen/widget_or_empty.dart';
-import 'widgets/actions_button.dart';
 import 'widgets/back_i_o_s.dart';
 import 'widgets/notification_widget.dart';
 import 'widgets/user_button.dart';

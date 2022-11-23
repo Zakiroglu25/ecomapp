@@ -1,10 +1,9 @@
-import 'package:uikit/utils/constants/paddings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:uikit/utils/constants/paddings.dart';
 
 import '../../../presentation/page/landing_page/landing_page.dart';
 import '../../../presentation/page/notification_page/notifications_page.dart';
-import '../../../presentation/page/user_page/user_page.dart';
 import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/durations.dart';

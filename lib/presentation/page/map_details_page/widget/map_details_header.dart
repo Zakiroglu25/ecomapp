@@ -1,16 +1,11 @@
-import 'package:uikit/presentation/page/cart_delivery_page/widgets/delivery_call_and_messenger_b_uttons.dart';
-import 'package:uikit/presentation/page/cart_delivery_page/widgets/delivery_med_count.dart';
-import 'package:uikit/presentation/page/cart_delivery_page/widgets/delivery_order_date.dart';
-import 'package:uikit/presentation/page/cart_delivery_page/widgets/delivery_recipe.dart';
-import 'package:uikit/presentation/page/cart_delivery_page/widgets/delivery_total_price.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/screen/snack.dart';
 import 'package:uikit/widgets/custom/column_with_space.dart';
 import 'package:uikit/widgets/custom/sliver_app_bar_delegate.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../infrastructure/model/response/map_medicine.dart';
@@ -73,8 +68,9 @@ class MapDetailsHeaders extends StatelessWidget {
                         padding: Paddings.paddingH12 + Paddings.paddingV4,
                         height: 32.h,
                         decoration: BoxDecoration(
-                          color:
-                              maps.isOpen! ? MyColors.green85 : MyColors.mainRED,
+                          color: maps.isOpen!
+                              ? MyColors.green85
+                              : MyColors.mainRED,
                           borderRadius: BorderRadius.circular(24),
                         ),
                         child: Center(

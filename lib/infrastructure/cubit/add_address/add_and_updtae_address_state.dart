@@ -1,5 +1,3 @@
-import '../../model/response/address_model.dart';
-
 abstract class AddAddressState {}
 
 class AddAddressInitial extends AddAddressState {}
@@ -15,4 +13,5 @@ class AddAddressError extends AddAddressState {
 class AddAddressNetworkError extends AddAddressState {}
 
 class AddAddressSuccess extends AddAddressState {}
+
 class AddAddressEditSuccess extends AddAddressState {}

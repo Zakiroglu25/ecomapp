@@ -1,20 +1,24 @@
 import 'favorite_model.dart';
 
-class ProductOptionModel {
-  List<SimpleProduct>? data;
+class FavResult {
+  List<SimpleProduct>? products;
   int? page;
   int? pageSize;
   int? totalItems;
   int? totalPages;
 
-  ProductOptionModel(
-      {this.data, this.page, this.pageSize, this.totalItems, this.totalPages});
+  FavResult(
+      {this.products,
+      this.page,
+      this.pageSize,
+      this.totalItems,
+      this.totalPages});
 
-  ProductOptionModel.fromJson(Map<String, dynamic> json) {
+  FavResult.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      data = <SimpleProduct>[];
+      products = <SimpleProduct>[];
       json['data'].forEach((v) {
-        data!.add(new SimpleProduct.fromJson(v));
+        products!.add(new SimpleProduct.fromJson(v));
       });
     }
     page = json['page'];
@@ -25,14 +29,19 @@ class ProductOptionModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    if (this.products != null) {
+      data['data'] = this.products!.map((v) => v.toJson()).toList();
     }
     data['page'] = this.page;
     data['pageSize'] = this.pageSize;
     data['totalItems'] = this.totalItems;
     data['totalPages'] = this.totalPages;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'ProductOptionModel{data: $products, page: $page, pageSize: $pageSize, totalItems: $totalItems, totalPages: $totalPages}';
   }
 }
 
@@ -59,5 +68,10 @@ class SimpleProduct {
     data['minPrice'] = this.minPrice;
     data['imageUrl'] = this.imageUrl;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'SimpleProduct{guid: $guid, title: $title, minPrice: $minPrice, imageUrl: $imageUrl, product: $product}';
   }
 }

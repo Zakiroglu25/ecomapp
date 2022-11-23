@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uikit/utils/screen/ink_wrapper.dart';
 import 'package:uikit/utils/screen/sheet.dart';
 
@@ -23,7 +22,7 @@ class AppBarAddressWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Burda Address Listi olacaq"),
+                  Text("Burda Address Listi olacaq\ninwallah, Baxa"),
                 ],
               ),
               context: context);

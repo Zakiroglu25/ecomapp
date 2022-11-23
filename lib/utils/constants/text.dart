@@ -57,6 +57,13 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String new_pass = 'Yeni şifrə';
   static const String set_new_pass = 'Yeni şifrəni təyin et';
 
+  //otp
+  static const String otp = "OTP";
+  static const String inputOtp = "Input your one-time password";
+  static const String otpSent = "Telefon nömrənizə birdəfəlik şifrə göndərildi";
+  static const String otpInfo =
+      "A one-time password will be sent to your phone. It will be active within 5 minutes";
+
   //forgot pass
   static const String enter_new_pass = 'Yeni şifrəni daxil edin';
   static const String enter_new_pass_again = 'Yeni şifrəni təkrar daxil edin';
@@ -118,6 +125,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String demoSubtitle = "Axtardığınız məhsulu tapmaq üçün";
 
   //cart page
+  static const String toCart = "Səbətə";
   static const String recipe = "Resept";
   static const String uploadRecipe = "Resepti yüklə";
   static const String orders = "Sifarişlər";
