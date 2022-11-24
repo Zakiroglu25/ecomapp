@@ -20,7 +20,7 @@ class Go {
         context, MaterialPageRoute(builder: (context) => page));
   }
 
-  static pop(BuildContext context) async {
+  static  pop(BuildContext context) async {
     Navigator.pop(context);
   }
 

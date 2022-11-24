@@ -32,5 +32,19 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     }
   }
 
-  void addFavorite() async {}
+  void addFavorite() async {
+    try {
+      final result = await FavoritesProvider.addFavorite();
+      if (result.statusCode.isSuccess) {
+        emit(FavoriteAdding());
+      } else {
+        emit(FavoriteNotAdding());
+      }
+    } on SocketException catch (_) {
+      emit(FavoriteError());
+    } catch (e) {
+      eeee("Fvorite Error" + e.toString());
+      emit(FavoriteError());
+    }
+  }
 }

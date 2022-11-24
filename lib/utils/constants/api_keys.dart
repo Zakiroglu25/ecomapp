@@ -63,6 +63,10 @@ class ApiKeys {
   static const categoryTree = "$baseUrl/protected/content/category-tree";
   static const getAllManufacturers = "$baseUrl/protected/content/manufacturers";
 
+  //faq
+  static const faq = "$baseUrl/public/faq";
+
+
   static loginBody({
     required String? email,
     required String? password,

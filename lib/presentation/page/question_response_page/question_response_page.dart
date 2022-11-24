@@ -1,9 +1,14 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/infrastructure/cubit/faq_cubit/faq_cubit.dart';
+import 'package:uikit/infrastructure/cubit/faq_cubit/faq_state.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
+
+import '../../../widgets/general/app_loading.dart';
 
 class AnswerQuestionPage extends StatefulWidget {
   @override
@@ -24,14 +29,25 @@ class AnswerQuestionPageState extends State<AnswerQuestionPage> {
           iconColor: MyColors.grey158,
           useInkWell: true,
         ),
-        child: Column(
-          children: <Widget>[
-            Card1(),
-            Card1(),
-            Card1(),
-            Card1(),
-            Card1(),
-          ],
+        child: BlocBuilder<FaqCubit, FaqState>(
+          builder: (context, state) {
+            if (state is FaqSuccess) {
+              return ListView.builder(
+                shrinkWrap: true,
+                  itemCount: state.faq_list.data.length,
+                  itemBuilder: (context, index) {
+                return Card1(
+                  question: state.faq_list.data[index].question,
+                  answer: state.faq_list.data[index].answer
+                );
+              });
+            }else if(state is FaqLoading){
+              return AppLoading();
+            }
+            return Center(
+              child: Text("Bilinməyən xəta"),
+            );
+          },
         ),
       ),
     );
@@ -39,6 +55,11 @@ class AnswerQuestionPageState extends State<AnswerQuestionPage> {
 }
 
 class Card1 extends StatelessWidget {
+  String? question;
+  String? answer;
+
+  Card1({this.question, this.answer});
+
   @override
   Widget build(BuildContext context) {
     return ExpandableNotifier(
@@ -62,11 +83,11 @@ class Card1 extends StatelessWidget {
                 header: Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      "Service description",
+                      question!,
                       style: AppTextStyles.sfPro600s16,
                     )),
                 collapsed: Text(
-                  MyText.expan,
+                  answer!,
                   softWrap: true,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -77,7 +98,7 @@ class Card1 extends StatelessWidget {
                     Padding(
                         padding: EdgeInsets.only(bottom: 10),
                         child: Text(
-                          MyText.expan,
+                          answer!,
                           softWrap: true,
                           overflow: TextOverflow.fade,
                           style: AppTextStyles.sfPro400s14,

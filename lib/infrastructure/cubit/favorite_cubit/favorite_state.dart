@@ -5,6 +5,8 @@ abstract class FavoriteState {}
 class FavoriteInitial extends FavoriteState {}
 
 class FavoriteInProgress extends FavoriteState {}
+class FavoriteAdding extends FavoriteState {}
+class FavoriteNotAdding extends FavoriteState {}
 
 class FavoriteError extends FavoriteState {
   String? error;

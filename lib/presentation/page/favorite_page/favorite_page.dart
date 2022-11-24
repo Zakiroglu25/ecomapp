@@ -33,6 +33,8 @@ class _FavoritePageState extends State<FavoritePage> {
         builder: (context, state) {
           if (state is FavoriteSuccess) {
             final products = state.favResult.products;
+
+
             return ListOrEmpty(
               list: products,
               child: ListView.builder(

@@ -91,6 +91,8 @@ class _MapSampleState extends State<MapSample> {
             child: AppButton(
               text: "Addresi tesdiq et",
               onTap: (){
+                // Navigator.of(context).pop(textController.text);
+                Go.pop(context);
                 Go.replace(
                           context,
                           BlocProvider(

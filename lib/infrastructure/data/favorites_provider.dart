@@ -27,10 +27,10 @@ class FavoritesProvider {
     return statusDynamic;
   }
 
-  static Future<StatusDynamic> addFavorite(String guid) async {
+  static Future<StatusDynamic> addFavorite() async {
     StatusDynamic statusDynamic = StatusDynamic();
     const api = ApiKeys.favorite;
-    final response = await dioAuth.dio.post(api + "/$guid");
+    final response = await dioAuth.dio.post(api);
     print("provider 1" + response.toString());
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {

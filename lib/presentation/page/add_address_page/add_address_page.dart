@@ -70,7 +70,7 @@ class AddAddressPage extends StatelessWidget {
           children: [
             AddressField(
               controller:
-                  textController == null ? textController : textController,
+                  textController ?? textController,
             ),
             NameAddressField(
               controller: addAttorneysCubit.titleCnt,
