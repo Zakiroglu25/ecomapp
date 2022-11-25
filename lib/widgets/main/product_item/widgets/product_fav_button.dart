@@ -5,13 +5,14 @@ import 'package:uikit/infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import 'package:uikit/utils/constants/assets.dart';
 import 'package:uikit/widgets/custom/custom_animated_cross.dart';
 
+import '../../../../infrastructure/model/response/product_option_model.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/screen/ink_wrapper.dart';
 
 class ProductFavButton extends StatefulWidget {
-  ProductFavButton({Key? key,required this.guid}) : super(key: key);
-  String? guid;
-
+  const ProductFavButton({Key? key, required this.product})
+      : super(key: key);
+  final SimpleProduct? product;
   @override
   State<ProductFavButton> createState() => _ProductFavButtonState();
 }
@@ -23,7 +24,7 @@ class _ProductFavButtonState extends State<ProductFavButton> {
   Widget build(BuildContext context) {
     return InkWrapper(
       onTap: () {
-        context.read<FavoriteCubit>().addFavorite();
+        context.read<FavoriteCubit>().addFavorite(widget.product!.guid);
         fav = !fav;
         setState(() {});
 

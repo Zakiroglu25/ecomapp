@@ -8,7 +8,6 @@ import '../model/response/status_dynamic.dart';
 import '../services/hive_service.dart';
 
 class FavoritesProvider {
-  static HiveService get _prefs => locator<HiveService>();
 
   static DioAuth get dioAuth => locator<DioAuth>();
 
@@ -27,20 +26,14 @@ class FavoritesProvider {
     return statusDynamic;
   }
 
-  static Future<StatusDynamic> addFavorite() async {
+  static Future<StatusDynamic> addFavorite(String guid) async {
     StatusDynamic statusDynamic = StatusDynamic();
     const api = ApiKeys.favorite;
-    final response = await dioAuth.dio.post(api);
+    final response = await dioAuth.dio.post(api+"/$guid");
     print("provider 1" + response.toString());
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
-      print("provider 2");
-      final comeJson = response.data;
-      print("provider 3");
-      FavResult model = FavResult.fromJson(comeJson);
-      print("provider 4");
-      statusDynamic.data = model.products;
-      print("provider 5");
+
     } else {
       eeee("address List:  url: $api , response: ${response.data}");
     }

@@ -32,9 +32,9 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     }
   }
 
-  void addFavorite() async {
+  void addFavorite(String? guid) async {
     try {
-      final result = await FavoritesProvider.addFavorite();
+      final result = await FavoritesProvider.addFavorite(guid!);
       if (result.statusCode.isSuccess) {
         emit(FavoriteAdding());
       } else {

@@ -205,6 +205,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String fin = "FIN kod";
   static const String emailAddressIsNotCorrect = "E-poçt düzgün deyil";
   static const String success = "Əməliyyat uğurlu oldu!";
+  static const String patronomic = "Ata adı";
+  static const String lastName = "Soyadı";
 
   //address
   static const String city = "Şəhər";

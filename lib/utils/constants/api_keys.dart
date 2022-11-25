@@ -65,6 +65,8 @@ class ApiKeys {
 
   //faq
   static const faq = "$baseUrl/public/faq";
+  //basket
+  static const addBasket = "$baseUrl/$customer/cart";
 
 
   static loginBody({
@@ -132,21 +134,25 @@ class ApiKeys {
   static updateAccountBody({
     required String? phone,
     required String? email,
-    required String? name,
+    required String? firstName,
+    required String? lastName,
     required String? patronymic,
     required String? birthday,
     required String? finCode,
-    required int? insuranceId,
+    // required int? insuranceId,
+    required String? idSerialNumber,
     required bool? newsletterSubscription,
   }) {
     final map = {
       "phone": phone,
       "email": email,
-      "firstName": name,
+      "firstName": firstName,
       "patronymic": patronymic,
-      "birthday": birthday,
+      "lastName": lastName,
+      "birthDate": birthday,
       "finCode": finCode,
-      "insuranceId": insuranceId,
+      // "insuranceId": insuranceId,
+      "idSerialNumber": idSerialNumber,
       "newsletterSubscription": newsletterSubscription,
     };
 
