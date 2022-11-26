@@ -1,4 +1,6 @@
 // Dart imports:
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 
 import '../../locator.dart';
@@ -8,10 +10,13 @@ import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
 import '../model/locale/MyUser.dart';
 import '../model/response/status_dynamic.dart';
+import 'package:http/http.dart'as http;
+
+import '../services/hive_service.dart';
 
 class AccountProvider {
   static DioAuth get dioAuth => locator<DioAuth>();
-
+  static HiveService get _prefs => locator<HiveService>();
   static Future<StatusDynamic?> fetchUserInfo({
     required String? token,
   }) async {
@@ -56,28 +61,42 @@ class AccountProvider {
   static Future<StatusDynamic?> updateUserInfo({
     required String? phone,
     required String? email,
-    required String? name,
+    required String? firstName,
+    required String? lastName,
     required String? patronymic,
     required String? birthday,
     required String? finCode,
-    required int? insuranceId,
+    // required int? insuranceId,
+    required String? idSerialNumber,
     required bool? newsletterSubscription,
   }) async {
     StatusDynamic statusDynamic = StatusDynamic();
     var api = ApiKeys.user;
+     Uri url = Uri.parse(api);
     final body = ApiKeys.updateAccountBody(
       phone: phone,
       email: email,
-      name: name,
-      finCode: finCode,
-      birthday: birthday,
+      firstName: firstName,
       patronymic: patronymic,
-      insuranceId: insuranceId,
+      lastName: lastName,
+      birthday: birthday,
+      finCode: finCode,
+      // insuranceId: insuranceId,
+      idSerialNumber:idSerialNumber,
       newsletterSubscription: false,
     );
 
-    final response = await dioAuth.dio.post(api,
-        data: body, options: Options(headers: {'Accept': "application/json"}));
+    iiii(api);
+    iiii(body.toString());
+
+    // final response = await http.put(url,headers: ApiKeys.header(token: _prefs.accessToken));
+    final response = await dioAuth.dio.put(api,
+        data: jsonEncode(body));
+    iiii(response.toString());
+    iiii(response.data.toString());
+    iiii(response.statusCode.toString());
+    // iiii(response.statusMessage.toString());
+
     statusDynamic.statusCode = response.statusCode;
     statusDynamic.data = response.data;
     if (response.statusCode == ResultKey.successCode) {

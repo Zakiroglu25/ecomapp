@@ -63,6 +63,15 @@ class ApiKeys {
   static const categoryTree = "$baseUrl/protected/content/category-tree";
   static const getAllManufacturers = "$baseUrl/protected/content/manufacturers";
 
+  //faq
+  static const faq = "$baseUrl/public/faq";
+  //basket
+  static const addBasket = "$baseUrl/$customer/cart";
+
+  //bank card
+  static const card = "$baseUrl/$customer/card";
+
+
   static loginBody({
     required String? email,
     required String? password,
@@ -128,21 +137,25 @@ class ApiKeys {
   static updateAccountBody({
     required String? phone,
     required String? email,
-    required String? name,
+    required String? firstName,
+    required String? lastName,
     required String? patronymic,
     required String? birthday,
     required String? finCode,
-    required int? insuranceId,
+    // required int? insuranceId,
+    required String? idSerialNumber,
     required bool? newsletterSubscription,
   }) {
     final map = {
       "phone": phone,
       "email": email,
-      "firstName": name,
+      "firstName": firstName,
       "patronymic": patronymic,
-      "birthday": birthday,
+      "lastName": lastName,
+      "birthDate": birthday,
       "finCode": finCode,
-      "insuranceId": insuranceId,
+      // "insuranceId": insuranceId,
+      "idSerialNumber": idSerialNumber,
       "newsletterSubscription": newsletterSubscription,
     };
 

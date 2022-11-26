@@ -1,17 +1,21 @@
 class MyUser {
+  // "idSerialNumber": "1223232",
   String? phone;
   String? email;
   String? firstName;
-  num? patronymic;
+  String? patronymic;
   String? lastName;
   String? birthDate;
   String? finCode;
+  String? idSerialNumber;
+
   num? insuranceId;
   bool? newsletterSubscription;
 
   MyUser(
       {this.phone,
       this.email,
+        this.idSerialNumber,
       this.firstName,
       this.patronymic,
       this.lastName,
@@ -29,20 +33,22 @@ class MyUser {
     birthDate = json['birthDate'];
     finCode = json['finCode'];
     insuranceId = json['insuranceId'];
+    idSerialNumber = json['idSerialNumber'];
     newsletterSubscription = json['newsletterSubscription'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['phone'] = this.phone;
-    data['email'] = this.email;
-    data['firstName'] = this.firstName;
-    data['patronymic'] = this.patronymic;
-    data['lastName'] = this.lastName;
-    data['birthDate'] = this.birthDate;
-    data['finCode'] = this.finCode;
-    data['insuranceId'] = this.insuranceId;
-    data['newsletterSubscription'] = this.newsletterSubscription;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['phone'] = phone;
+    data['email'] = email;
+    data['firstName'] = firstName;
+    data['patronymic'] = patronymic;
+    data['lastName'] = lastName;
+    data['birthDate'] = birthDate;
+    data['finCode'] = finCode;
+    data['insuranceId'] = insuranceId;
+    data['idSerialNumber'] = idSerialNumber;
+    data['newsletterSubscription'] = newsletterSubscription;
     return data;
   }
 }

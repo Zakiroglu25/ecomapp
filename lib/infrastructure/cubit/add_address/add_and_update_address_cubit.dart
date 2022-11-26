@@ -19,7 +19,6 @@ class AddAddressCubit extends Cubit<AddAddressState> {
   final titleCnt = TextEditingController();
   final countryController = TextEditingController();
   final houseNumberController = TextEditingController();
-  final streetNameController = TextEditingController();
   final cityController = TextEditingController();
   final phoneController = TextEditingController();
   final latitudeController = TextEditingController();
@@ -27,21 +26,27 @@ class AddAddressCubit extends Cubit<AddAddressState> {
   final descriptionController = TextEditingController();
   final isMain = TextEditingController();
 
-  void addAddress(BuildContext context, [bool loading = true]) async {
+  void addAddress({double? lat, double? lng, BuildContext? context,TextEditingController? streetNameController }) async {
     try {
-      if (loading) {
+
         print("Cubit1");
         emit(AddAddressInProgress());
         print("Cubit2");
+
+        if(lng.toString() == null){
+          emit(AddAddressError(error: "Addres Secilmeyib" ));
+
+        }
+
         final result = await AddressProvider.addAddress(
             city: cityController.text,
-            country: countryController.text,
-            title: "titleCnttext",
-            houseNumber: "houseNumberControllertext",
-            streetName: streetNameController.text,
+            country: "Azərbaycan",
+            title: titleCnt.text,
+            houseNumber: "12",
+            streetName: streetNameController!.text,
             phone: _prefs.user.phone,
-            latitude: "43.000",
-            longitude: "45.00",
+            latitude: lat.toString(),
+            longitude: lng.toString(),
             description: descriptionController.text,
             isMain: false);
         print("Cubit3");
@@ -55,10 +60,8 @@ class AddAddressCubit extends Cubit<AddAddressState> {
           emit(AddAddressError(error: MyText.error + " ${result!.statusCode}"));
         }
         emit(AddAddressInProgress());
-      } else {
-        emit(AddAddressError(error: MyText.all_fields_must_be_filled));
-        print("Cubit6");
-      }
+
+
     } on SocketException catch (_) {
       //network olacaq
       emit(AddAddressError(error: MyText.demo));
@@ -77,7 +80,7 @@ class AddAddressCubit extends Cubit<AddAddressState> {
           country: countryController.text,
           title: "titleCnttext",
           houseNumber: "houseNumberControllertext",
-          streetName: streetNameController.text,
+          streetName: "streetNameController.text",
           phone: _prefs.user.phone,
           latitude: "43.000",
           longitude: "45.00",

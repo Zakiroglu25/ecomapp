@@ -6,6 +6,7 @@ import 'package:focus_detector/focus_detector.dart';
 import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
 import 'package:uikit/infrastructure/cubit/address/address_state.dart';
 import 'package:uikit/infrastructure/model/response/address_model.dart';
+import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/screen/ink_wrapper.dart';
 import 'package:uikit/widgets/general/app_loading.dart';
 
@@ -114,7 +115,13 @@ class AddressPage extends StatelessWidget {
                                               style: AppTextStyles.sfPro600s16,
                                             ),
                                             Text(
-                                              "${model[index].streetName}",
+                                              model[index].streetName!.length >
+                                                      30
+                                                  ? model[index]
+                                                      .streetName!
+                                                      .substring(0, 30)
+                                                  : model[index].streetName!,
+                                              textAlign: TextAlign.center,
                                               style: AppTextStyles.sfPro400s14,
                                             ),
                                           ],
@@ -137,7 +144,7 @@ class AddressPage extends StatelessWidget {
                             },
                             separatorBuilder:
                                 (BuildContext context, int index) {
-                              return Divider();
+                              return const Divider();
                             },
                           ),
                         ),
@@ -148,7 +155,7 @@ class AddressPage extends StatelessWidget {
                       onTap: () {
                         Go.to(context, Pager.addAddress());
                       },
-                      text: "+ Yeni ünvan yarat",
+                      text: MyText.addressAdd,
                     ),
                     MySizedBox.h16,
                   ],

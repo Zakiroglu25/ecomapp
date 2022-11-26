@@ -123,7 +123,7 @@ class OtherPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ProductAndOtherWidget(
-                  onTap: () => {Go.to(context, AnswerQuestionPage())},
+                  onTap: () => {Go.to(context, Pager.faqPage)},
                   color: MyColors.red250,
                   h: 167.h,
                   w: 167.w,

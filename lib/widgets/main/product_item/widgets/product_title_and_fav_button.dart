@@ -18,7 +18,7 @@ class ProductTitleAndFavButton extends StatelessWidget {
         ProductTitle(
           title: product.title,
         ),
-        ProductFavButton()
+        ProductFavButton(product: product)
       ],
     );
   }

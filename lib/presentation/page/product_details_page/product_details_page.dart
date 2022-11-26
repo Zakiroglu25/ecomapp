@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/infrastructure/model/response/product_option_model.dart';
 
 import '../../../infrastructure/cubit/product_details_details/product_details_state.dart';
 import '../../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
@@ -19,9 +20,9 @@ import 'widget/product_manufacturer_info.dart';
 import 'widget/show_insurance_page.dart';
 
 class ProductOptionDetails extends StatefulWidget {
-  String? guid;
+  SimpleProduct? product;
 
-  ProductOptionDetails({this.guid});
+  ProductOptionDetails({this.product});
 
   @override
   _ProductOptionDetailsState createState() => _ProductOptionDetailsState();
@@ -60,15 +61,15 @@ class _ProductOptionDetailsState extends State<ProductOptionDetails> {
       body: BlocBuilder<ProductOptionDetailsCubit, ProductOptionDetailsState>(
         builder: (context, state) {
           if (state is ProductODetailsSuccess) {
-            ProductOptionDetailsModel? product = state.product_o_d_model;
+            FavResult? product = state.product_o_d_model;
             return ListView(
               children: [
                 ImagePageViewList(
                     controller: controller,
                     offerImage: offerImage,
                     currentIndex: currentIndex),
-                InfoRowWidget(product: product),
-                DetailsTitleWidget(product: product),
+                // InfoRowWidget(product: product),
+                // DetailsTitleWidget(product: product),
                 ShowInsuranceSwitch(switchValue: switchValue),
                 MySizedBox.h16,
                 PriceTitleWidget(),
@@ -87,14 +88,14 @@ class _ProductOptionDetailsState extends State<ProductOptionDetails> {
                     ),
                   ),
                 ),
-                ProductManfactureInfo(product: product)
+                // ProductManfactureInfo(product: product)
               ],
             );
           } else if (state is ProductODetailsInProgress) {
             return AppLoading();
           }
           return Center(
-            child: Text(""),
+            child: Text("Alinmadi"),
           );
         },
       ),

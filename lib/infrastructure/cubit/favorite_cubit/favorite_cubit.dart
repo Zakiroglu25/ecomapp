@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/delegate/my_printer.dart';
+import '../../../utils/enums/transaction_type.dart';
 import '../../data/favorites_provider.dart';
 import '../../model/response/product_option_model.dart';
 import 'favorite_state.dart';
@@ -11,8 +13,24 @@ import 'favorite_state.dart';
 class FavoriteCubit extends Cubit<FavoriteState> {
   FavoriteCubit() : super(FavoriteInitial());
   int page = 1;
+  //List<SimpleProduct> products = [];
+  final BehaviorSubject<List<SimpleProduct>> products =
+      BehaviorSubject<List<SimpleProduct>>.seeded([]);
+
+  Stream<List<SimpleProduct>> get productsStream => products.stream;
+
+  updateProducts(List<SimpleProduct> value) {
+    if (value.isEmpty) {
+      products.valueOrNull?.clear();
+      ;
+      //products.sink.addError(MyText.all_fields_must_be_filled);
+    } else {
+      products.sink.add(value);
+    }
+  }
 
   fetchProduct([bool loading = true]) async {
+    updateProducts([]);
     if (loading) {
       emit(FavoriteInProgress());
     }
@@ -20,6 +38,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
       final result = await FavoritesProvider.getFavorite(page);
       if (result.statusCode.isSuccess) {
         final favRes = result.data as FavResult;
+        updateProducts(favRes.products!);
         emit(FavoriteSuccess(favRes));
       } else {
         emit(FavoriteError());
@@ -32,5 +51,26 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     }
   }
 
-  void addFavorite() async {}
+  void addFavorite(String? guid, {required bool inFav}) async {
+    try {
+      if (inFav) {
+        updateProducts(products.value
+          ..remove(
+              products.value.firstWhere((element) => element.guid == guid)));
+      }
+      final result = await FavoritesProvider.addFavorite(guid!,
+          trnType: inFav ? TrnType.delete : TrnType.post);
+      if (result.statusCode.isSuccess) {
+        emit(FavoriteAdding());
+        fetchProduct();
+      } else {
+        emit(FavoriteNotAdding());
+      }
+    } on SocketException catch (_) {
+      emit(FavoriteError());
+    } catch (e) {
+      eeee("Fvorite Error" + e.toString());
+      emit(FavoriteError());
+    }
+  }
 }

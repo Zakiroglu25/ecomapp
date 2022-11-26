@@ -37,7 +37,7 @@ class BirthdayFieldUser extends StatelessWidget {
                 BlocProvider.of<UserCubit>(context).updateBirthDate(''),
             controller: controller,
           ),
-          // errorMessage: snapshot.error == null ? null : '${snapshot.error}',
+          errorMessage: snapshot.error == null ? null : '${snapshot.error}',
           onTap: () {
             _openDatePicker(context, controller, null);
           },
@@ -52,12 +52,13 @@ class BirthdayFieldUser extends StatelessWidget {
   Future<void> _openDatePicker(BuildContext context,
       TextEditingController? birtController, String? initial) async {
     if (birtController?.text == null) {
-      initial = DateFormat("dd-MM-yyyy")
+      initial = DateFormat("yyy-MM-dd")
+
           .format(DateTime(DateTime.now().year - 18, 12, 31))
           .toString();
       birtController?.text = initial;
       BlocProvider.of<UserCubit>(context).updateBirthDate(
-          new DateFormat("dd-MM-yyyy")
+          new DateFormat("yyy-MM-dd")
               .format(DateTime(DateTime.now().year - 18, 12, 31))
               .toString());
     }
@@ -97,14 +98,14 @@ class BirthdayFieldUser extends StatelessWidget {
                   child: CupertinoDatePicker(
                     initialDateTime: DateTime(DateTime.now().year - 18, 12, 31),
                     onDateTimeChanged: (DateTime chosenDate) {
-                      initial = new DateFormat("dd-MM-yyyy")
+                      initial = new DateFormat("yyy-MM-dd")
                           .format(chosenDate)
                           .toString();
-                      birtController?.text = new DateFormat("dd-MM-yyyy")
+                      birtController?.text = new DateFormat("yyy-MM-dd")
                           .format(chosenDate)
                           .toString();
                       BlocProvider.of<UserCubit>(context).updateBirthDate(
-                          new DateFormat("dd-MM-yyyy")
+                          new DateFormat("yyy-MM-dd")
                               .format(chosenDate)
                               .toString());
                     },

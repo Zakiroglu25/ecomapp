@@ -10,7 +10,7 @@ class ProductTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Flexible(
-      child: Container(
+      child: SizedBox(
         height: 48,
         child: Text(
           title ?? '',

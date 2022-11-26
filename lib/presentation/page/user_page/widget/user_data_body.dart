@@ -105,7 +105,7 @@ class UserDataBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "12345678",
+              _prefs.user.idSerialNumber.toString(),
               style: AppTextStyles.sfPro600s30,
             ),
             Icon(Icons.copy)

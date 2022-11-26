@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uikit/utils/screen/widget_or_empty.dart';
 
 import '../../utils/constants/app_text_styles.dart';
+import '../../utils/constants/assets.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/paddings.dart';
 import '../../utils/constants/sized_box.dart';
@@ -41,7 +42,9 @@ class EmptyWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             child: SizedBox(
-                width: 127.w, height: 127.h, child: Image.asset(imageUrl!)),
+                width: 127.w,
+                height: 127.h,
+                child: Image.asset(imageUrl ?? Assets.pngBad)),
           ),
         ),
         MySizedBox.h16,
