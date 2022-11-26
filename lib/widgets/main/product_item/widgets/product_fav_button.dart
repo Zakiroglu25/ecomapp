@@ -25,9 +25,8 @@ class _ProductFavButtonState extends State<ProductFavButton> {
     return InkWrapper(
       onTap: () {
         context.read<FavoriteCubit>().addFavorite(widget.product!.guid);
-        fav = !fav;
+        widget.product!.isFavorite = !widget.product!.isFavorite!;
         setState(() {});
-
       },
       child: Container(
         height: 48,
@@ -45,7 +44,7 @@ class _ProductFavButtonState extends State<ProductFavButton> {
               height: 28,
               width: 28,
             ),
-            showFirst: !fav,
+            showFirst: !widget.product!.isFavorite!,
           ),
         ),
       ),

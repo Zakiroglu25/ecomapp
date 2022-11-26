@@ -27,9 +27,7 @@ class _FavoritePageState extends State<FavoritePage> {
         title: MyText.favorite,
         filter: false,
       ),
-      body:
-
-          BlocBuilder<FavoriteCubit, FavoriteState>(
+      body: BlocBuilder<FavoriteCubit, FavoriteState>(
         builder: (context, state) {
           if (state is FavoriteSuccess) {
             final products = state.favResult.products;

@@ -19,32 +19,21 @@ class NewProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWrapper(
-      onTap: (){
-        Go.to(
-            context,
-            BlocProvider(
-              create: (context) => ProductOptionDetailsCubit()
-                ..fetchProduct(product.guid!),
-              child: ProductOptionDetails(),
-            ));
-      },
-      child: Container(
-        height: 126,
-        padding: Paddings.paddingA12,
-        decoration:
-            BoxDecoration(borderRadius: Radiuses.r12, color: MyColors.grey245),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ProductImage(imageUrl: product.imageUrl),
-            MySizedBox.w12,
-            ProductDetailsAndButtons(
-              product: product,
-            )
-          ],
-        ),
+    return Container(
+      height: 126,
+      padding: Paddings.paddingA12,
+      decoration:
+          BoxDecoration(borderRadius: Radiuses.r12, color: MyColors.grey245),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ProductImage(imageUrl: product.imageUrl),
+          MySizedBox.w12,
+          ProductDetailsAndButtons(
+            product: product,
+          )
+        ],
       ),
     );
   }

@@ -15,7 +15,7 @@ import '../model/response/status_dynamic.dart';
 class BasketProvider {
   static DioAuth get dioAuth => locator<DioAuth>();
 
-  static Future<StatusDynamic> addBasket() async {
+  static Future<StatusDynamic> addCart() async {
     StatusDynamic statusDynamic = StatusDynamic();
     const api = ApiKeys.addBasket;
     const body = ({
