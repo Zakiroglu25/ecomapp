@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uikit/utils/screen/widget_or_empty.dart';
 
 import '../../utils/constants/app_text_styles.dart';
 import '../../utils/constants/colors.dart';
@@ -30,27 +31,28 @@ class EmptyWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Container(
-          width: 167,
-          height: 167,
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(12),
+        WidgetOrEmpty(
+          value: imageUrl != null,
+          child: Container(
+            width: 167,
+            height: 167,
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: SizedBox(
+                width: 127.w, height: 127.h, child: Image.asset(imageUrl!)),
           ),
-          child: SizedBox(
-              width: 127.w,
-              height: 127.h,
-              child: Image.asset(imageUrl!)),
         ),
         MySizedBox.h16,
-        Text(text!,
+        Text(text ?? '',
             style: AppTextStyles.sfPro700
                 .copyWith(fontSize: 24, color: MyColors.grey158)),
         MySizedBox.h10,
         Padding(
           padding: Paddings.paddingH40,
           child: Text(
-            description!,
+            description ?? '',
             textAlign: TextAlign.center,
             style: AppTextStyles.sfPro400s14
                 .copyWith(fontSize: 16, color: MyColors.grey158),
