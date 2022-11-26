@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
+
 import '../../../locator.dart';
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/my_printer.dart';
@@ -40,15 +41,18 @@ class UserCubit extends Cubit<UserState> {
     if (isLoading!) {
       emit(UserLoading());
     }
+
     try {
       final response = await AccountProvider.updateUserInfo(
-        name: name.valueOrNull,
-        email: uEmail.valueOrNull,
-        patronymic: patronymic.valueOrNull,
         phone: phone.valueOrNull,
+        email: uEmail.valueOrNull,
+        firstName: name.valueOrNull,
+        lastName: lastname.valueOrNull,
+        patronymic: patronymic.valueOrNull,
         birthday: birthDate.valueOrNull,
         finCode: fin.valueOrNull,
-        insuranceId: null,
+        idSerialNumber: seria.valueOrNull,
+        // insuranceId: 1,
         newsletterSubscription: false,
       );
 
@@ -62,7 +66,7 @@ class UserCubit extends Cubit<UserState> {
         emit(UserSuccess(response.data!));
       } else {
         final errors = response.data;
-        Snack.display( message: errors);
+        Snack.display(message: errors);
         emit(UserFailed(response.statusCode.toString()));
       }
     } catch (e, s) {
@@ -79,7 +83,7 @@ class UserCubit extends Cubit<UserState> {
   updatePhone(String value) {
     if (value.isEmpty) {
       phone.value = '';
-      phone.sink.addError("field_is_not_correct");
+      phone.sink.addError("Xana doldurulmalıdır");
     } else {
       phone.sink.add(value);
     }
@@ -116,7 +120,7 @@ class UserCubit extends Cubit<UserState> {
   updateBirthDate(String value) {
     if (value.isEmpty) {
       birthDate.value = '';
-      birthDate.sink.addError("field_is_not_correct");
+      birthDate.sink.addError("Xana doldurulmalıdır");
     } else {
       birthDate.sink.add(value);
     }
@@ -134,7 +138,7 @@ class UserCubit extends Cubit<UserState> {
   updateFin(String value) {
     if (value.isEmpty) {
       fin.value = '';
-      fin.sink.addError("field_is_not_correct");
+      fin.sink.addError("Xana doldurulmalıdır");
     } else {
       fin.sink.add(value);
     }
@@ -151,7 +155,7 @@ class UserCubit extends Cubit<UserState> {
   updateName(String value) {
     if (value.isEmpty) {
       name.value = '';
-      name.sink.addError("field_is_not_correct");
+      name.sink.addError("Xana doldurulmalıdır");
     } else {
       name.sink.add(value);
     }
@@ -159,6 +163,41 @@ class UserCubit extends Cubit<UserState> {
   }
 
   bool get isNameIncorrect => (!name.hasValue || name.value.isEmpty);
+
+  //lastname
+  final BehaviorSubject<String> lastname = BehaviorSubject<String>();
+
+  Stream<String> get lastnameStream => lastname.stream;
+
+  updateLastname(String value) {
+    if (value.isEmpty) {
+      lastname.value = '';
+      lastname.sink.addError("Xana doldurulmalıdır");
+    } else {
+      lastname.sink.add(value);
+    }
+    isUserInfoValid();
+  }
+
+  bool get isLastNameIncorrect =>
+      (!lastname.hasValue || lastname.value.isEmpty);
+
+  //fin
+  final BehaviorSubject<String> seria = BehaviorSubject<String>();
+
+  Stream<String> get seriaStream => seria.stream;
+
+  updateSeria(String value) {
+    if (value.isEmpty) {
+      seria.value = '';
+      seria.sink.addError("Xana doldurulmalıdır");
+    } else {
+      seria.sink.add(value);
+    }
+    isUserInfoValid();
+  }
+
+  bool get isSeriaIncorrect => (!seria.hasValue || seria.value.isEmpty);
 
   //patronymic
   final BehaviorSubject<String> patronymic = BehaviorSubject<String>();
@@ -168,7 +207,7 @@ class UserCubit extends Cubit<UserState> {
   patronymicName(String value) {
     if (value.isEmpty) {
       patronymic.value = '';
-      patronymic.sink.addError("field_is_not_correct");
+      patronymic.sink.addError("Xana doldurulmalıdır");
     } else {
       patronymic.sink.add(value);
     }
@@ -182,6 +221,8 @@ class UserCubit extends Cubit<UserState> {
     if (!isBirthDateIncorrect &&
         !isFinIncorrect &&
         !isNameIncorrect &&
+        !isLastNameIncorrect &&
+        !isSeriaIncorrect &&
         !isEmailIncorrect &&
         !isPatronymicIncorrect &&
         !isPhoneIncorrect) {

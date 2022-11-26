@@ -1,18 +1,11 @@
-import 'dart:convert';
-
-import 'package:uikit/infrastructure/cubit/map/map_store_cubit.dart';
-import 'package:uikit/utils/delegate/navigate_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:http/http.dart' as http;
+import 'package:uikit/infrastructure/cubit/map/map_store_cubit.dart';
+import 'package:uikit/utils/delegate/navigate_utils.dart';
 
-import '../../../infrastructure/config/dio_auth.dart';
 import '../../../infrastructure/cubit/map/map_store_state.dart';
 import '../../../infrastructure/model/response/map_medicine.dart';
-import '../../../locator.dart';
-import '../../../utils/constants/api_keys.dart';
-import '../../../utils/delegate/my_printer.dart';
 import '../map_details_page/map_details_page.dart';
 
 class MapPage extends StatefulWidget {
@@ -74,7 +67,9 @@ class _MapPageState extends State<MapPage> {
             ),
           );
         } else {
-          return Center(child: Text("Alinmadi"));
+          return Center(child: Text("Hec bir Aptek Movcud deyil")
+
+          );
         }
       },
     );

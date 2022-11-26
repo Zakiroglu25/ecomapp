@@ -1,20 +1,17 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:uikit/presentation/page/contact_page/contact_page.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/delegate/navigate_utils.dart';
 import 'package:uikit/utils/delegate/pager.dart';
-import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/text.dart';
 import '../../../widgets/custom/product_and_other_widget.dart';
-import '../../../widgets/custom/text_title_big.dart';
-import '../../../widgets/general/cupertino_modal_body.dart';
 import '../insurance_page/add_insurance_page.dart';
 import '../payment_method_page/payment_method_page.dart';
 import '../question_response_page/question_response_page.dart';
@@ -126,7 +123,7 @@ class OtherPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ProductAndOtherWidget(
-                  onTap: () => {Go.to(context, AnswerQuestionPage())},
+                  onTap: () => {Go.to(context, Pager.faqPage)},
                   color: MyColors.red250,
                   h: 167.h,
                   w: 167.w,

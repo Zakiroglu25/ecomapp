@@ -28,6 +28,10 @@ class Assets {
   static const String svgEdit = "assets/svg/edit.svg";
   static const String svgEditUser = "assets/svg/edit_user.svg";
 
+  ///fav
+  static const String svgFilledHearth = "assets/svg/filled-heart.svg";
+  static const String svgEmptyHearth = "assets/svg/empty-heart.svg";
+
   ///bottomnovigation icon
   static const String svgLogo = "assets/svg/logogrey.svg";
   static const String svgFav = "assets/svg/iconheart.svg";
@@ -74,6 +78,7 @@ class Assets {
   static const String pngTelegram = "assets/png/telegram.png";
   static const String pngFacebook = "assets/png/facebook.png";
   static const String pngHotline = "assets/png/hotline.png";
+  static const String pngHeart = "assets/png/heart.png";
   //setting
   static const String svgCallDark = "assets/svg/calldark.svg";
 

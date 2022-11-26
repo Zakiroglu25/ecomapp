@@ -1,16 +1,12 @@
-import 'package:uikit/presentation/page/favorite_page/favorite_page.dart';
-import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:uikit/utils/constants/app_text_styles.dart';
 
-import '../../../presentation/page/home_page/home_page.dart';
 import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/colors.dart';
-import '../../../utils/constants/physics.dart';
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/pager.dart';
-import '../map_medicine_page/map_medicine_page.dart';
 
 final globalPageController = PageController(initialPage: 1);
 
@@ -25,7 +21,7 @@ class _LandingPageState extends State<LandingPage> {
   int index = 0;
 
   final pages = <Widget>[
-    Pager.product,
+    Pager.medicines,
     Pager.favoritePage,
     Pager.mapPage,
     Pager.cart,

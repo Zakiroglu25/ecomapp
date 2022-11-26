@@ -57,6 +57,13 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String new_pass = 'Yeni şifrə';
   static const String set_new_pass = 'Yeni şifrəni təyin et';
 
+  //otp
+  static const String otp = "OTP";
+  static const String inputOtp = "Input your one-time password";
+  static const String otpSent = "Telefon nömrənizə birdəfəlik şifrə göndərildi";
+  static const String otpInfo =
+      "A one-time password will be sent to your phone. It will be active within 5 minutes";
+
   //forgot pass
   static const String enter_new_pass = 'Yeni şifrəni daxil edin';
   static const String enter_new_pass_again = 'Yeni şifrəni təkrar daxil edin';
@@ -71,6 +78,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String ok = 'OK';
   static const String reject = 'İmtina';
   static const String error = "Əməliyyat zamanı xəta yarandı!";
+  static const String networkError = "İnternet bağlantısı zamanı xəta yarandı";
   static const String goOn = "Davam et";
   static const String unknownError = "Bilinməyən xəta yarandı!";
   static const String are_you_forgot_pass = "Şifrəni unutmusan ?";
@@ -117,6 +125,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String demoSubtitle = "Axtardığınız məhsulu tapmaq üçün";
 
   //cart page
+  static const String toCart = "Səbətə";
   static const String recipe = "Resept";
   static const String uploadRecipe = "Resepti yüklə";
   static const String orders = "Sifarişlər";
@@ -166,7 +175,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   //demo
   static const String demo =
       "Swiss Energy Herbs Hot Balm Forte isidici balzam  75 ml Forte";
-  static const String emptyText = "Bura doşdur";
+  static const String emptyText = "Bura boşdur";
   static const String emptyTextDesc =
       "Axtardığınız məhsulu tapmaq üçün, zəhmət olmasa məhsullar bölməsinə keçin";
 
@@ -196,4 +205,17 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String fin = "FIN kod";
   static const String emailAddressIsNotCorrect = "E-poçt düzgün deyil";
   static const String success = "Əməliyyat uğurlu oldu!";
+  static const String patronomic = "Ata adı";
+  static const String lastName = "Soyadı";
+
+  //address
+  static const String city = "Şəhər";
+  static const String cityAdd = "Şəhər daxil edin";
+  static const String region = "Rayon";
+  static const String regionAdd = "Rayon seçimi edin";
+  static const String addressAdd = "Ünvan daxil edin";
+  static const String courierDesc = "Kuryer üçün qeyd";
+  static const String enterDesc = "Daxil edin";
+  static const String nameAddress = "Ünvanı adlandır";
+  static const String exampleName = "Məsələn: Ev ünvanı";
 }

@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:uikit/utils/delegate/index.dart';
-import 'package:equatable/equatable.dart';
+
 part 'test_for_state.dart';
 
 class TestForCubit extends Cubit<TestForState> {

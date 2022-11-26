@@ -1,5 +1,5 @@
-import 'package:uikit/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/constants/colors.dart';
 
 import '../../../../../../utils/constants/mock.dart';
 import '../../../../../../utils/screen/errorable_image.dart';

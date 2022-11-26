@@ -42,6 +42,7 @@ class MyColors {
   static const Color orange242 = Color.fromRGBO(242, 151, 67, 1);
   static const Color red250 = Color.fromRGBO(250, 233, 232, 1);
   static const Color btnGreen = Color(0xFF55A158);
+  static const Color gold = Color(0xFFFDF5E0);
   static const Color purple240 = Color.fromRGBO(240, 240, 248, 1);
   static const Color orange225 = Color.fromRGBO(225, 142, 50, 0.1);
   static const Color blue157 = Color.fromRGBO(57, 149, 210, 0.15);

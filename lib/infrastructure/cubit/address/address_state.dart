@@ -13,6 +13,7 @@ class AddressError extends AddressState {
 }
 
 class AddressNetworkError extends AddressState {}
+class AddressDelete extends AddressState {}
 
 class AddressSuccess extends AddressState {
   AddressSuccess(this.addressModel);

@@ -27,6 +27,7 @@ class ApiKeys {
   //reg and login
   static const login = "$auth/login";
   static const refreshToken = "$auth/refresh-token";
+  static const validateOtp = "$auth/validate-otp";
 
   // register
   static const registerPersonal = "$baseUrl/public/onboarding/sign-up";
@@ -62,25 +63,37 @@ class ApiKeys {
   static const categoryTree = "$baseUrl/protected/content/category-tree";
   static const getAllManufacturers = "$baseUrl/protected/content/manufacturers";
 
+  //faq
+  static const faq = "$baseUrl/public/faq";
+  //basket
+  static const addBasket = "$baseUrl/$customer/cart";
+
+  //bank card
+  static const card = "$baseUrl/$customer/card";
+
+
   static loginBody({
     required String? email,
     required String? password,
     String? fcmToken,
-    // required String? device_name,
-    // required String? language,
-    // required int? deviceTypeId,
-    // required String? deviceCode,
   }) {
     //
     final map = {
       "username": email,
       "password": password,
-      // "device_name": device_name,
-      // "deviceName": device_name,
-      // "deviceTypeId": deviceTypeId,
-      // "deviceCode": fcmToken,
-      // "language": language,
     };
+
+    map.removeWhere(
+        (key, value) => key == null || value == null || value == 'null');
+    return map;
+  }
+
+  static otpBody({
+    required String? phone,
+    required String? otp,
+  }) {
+    //
+    final map = {"phone": phone, "otp": otp};
 
     map.removeWhere(
         (key, value) => key == null || value == null || value == 'null');
@@ -124,21 +137,25 @@ class ApiKeys {
   static updateAccountBody({
     required String? phone,
     required String? email,
-    required String? name,
+    required String? firstName,
+    required String? lastName,
     required String? patronymic,
     required String? birthday,
     required String? finCode,
-    required int? insuranceId,
+    // required int? insuranceId,
+    required String? idSerialNumber,
     required bool? newsletterSubscription,
   }) {
     final map = {
       "phone": phone,
       "email": email,
-      "firstName": name,
+      "firstName": firstName,
       "patronymic": patronymic,
-      "birthday": birthday,
+      "lastName": lastName,
+      "birthDate": birthday,
       "finCode": finCode,
-      "insuranceId": insuranceId,
+      // "insuranceId": insuranceId,
+      "idSerialNumber": idSerialNumber,
       "newsletterSubscription": newsletterSubscription,
     };
 

@@ -1,20 +1,24 @@
 import 'favorite_model.dart';
 
-class ProductOptionModel {
-  List<SimpleProduct>? data;
+class FavResult {
+  List<SimpleProduct>? products;
   int? page;
   int? pageSize;
   int? totalItems;
   int? totalPages;
 
-  ProductOptionModel(
-      {this.data, this.page, this.pageSize, this.totalItems, this.totalPages});
+  FavResult(
+      {this.products,
+      this.page,
+      this.pageSize,
+      this.totalItems,
+      this.totalPages});
 
-  ProductOptionModel.fromJson(Map<String, dynamic> json) {
+  FavResult.fromJson(Map<String, dynamic> json) {
+    products = <SimpleProduct>[];
     if (json['data'] != null) {
-      data = <SimpleProduct>[];
       json['data'].forEach((v) {
-        data!.add(new SimpleProduct.fromJson(v));
+        products!.add(SimpleProduct.fromJson(v));
       });
     }
     page = json['page'];
@@ -24,15 +28,20 @@ class ProductOptionModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    if (products != null) {
+      data['data'] = products!.map((v) => v.toJson()).toList();
     }
-    data['page'] = this.page;
-    data['pageSize'] = this.pageSize;
-    data['totalItems'] = this.totalItems;
-    data['totalPages'] = this.totalPages;
+    data['page'] = page;
+    data['pageSize'] = pageSize;
+    data['totalItems'] = totalItems;
+    data['totalPages'] = totalPages;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'ProductOptionModel{data: $products, page: $page, pageSize: $pageSize, totalItems: $totalItems, totalPages: $totalPages}';
   }
 }
 
@@ -42,22 +51,52 @@ class SimpleProduct {
   double? minPrice;
   String? imageUrl;
   Product? product;
+  bool? isFavorite;
 
-  SimpleProduct({this.guid, this.title, this.minPrice, this.imageUrl});
+  SimpleProduct(
+      {this.guid, this.title, this.minPrice, this.imageUrl, this.isFavorite});
 
   SimpleProduct.fromJson(Map<String, dynamic> json) {
     guid = json['guid'];
     title = json['title'];
     minPrice = json['minPrice'];
     imageUrl = json['imageUrl'];
+    isFavorite = json['isFavorite'] ?? false;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['guid'] = this.guid;
-    data['title'] = this.title;
-    data['minPrice'] = this.minPrice;
-    data['imageUrl'] = this.imageUrl;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['guid'] = guid;
+    data['title'] = title;
+    data['minPrice'] = minPrice;
+    data['imageUrl'] = imageUrl;
+    data['isFavorite'] = isFavorite;
     return data;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SimpleProduct &&
+          runtimeType == other.runtimeType &&
+          guid == other.guid &&
+          title == other.title &&
+          minPrice == other.minPrice &&
+          imageUrl == other.imageUrl &&
+          product == other.product &&
+          isFavorite == other.isFavorite;
+
+  @override
+  int get hashCode =>
+      guid.hashCode ^
+      title.hashCode ^
+      minPrice.hashCode ^
+      imageUrl.hashCode ^
+      product.hashCode ^
+      isFavorite.hashCode;
+
+  @override
+  String toString() {
+    return 'SimpleProduct{guid: $guid, title: $title, minPrice: $minPrice, imageUrl: $imageUrl, product: $product}';
   }
 }

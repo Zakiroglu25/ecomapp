@@ -21,7 +21,6 @@ class NameFieldUser extends StatelessWidget {
         return AppField(
           title: MyText.name,
           hint: MyText.name,
-          upperCase: false,
           textInputType: TextInputType.name,
           textCapitalization: TextCapitalization.none,
           errorMessage: snapshot.error == null ? null : '${snapshot.error}',

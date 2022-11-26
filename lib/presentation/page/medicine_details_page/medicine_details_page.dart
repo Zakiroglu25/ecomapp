@@ -53,7 +53,7 @@ class MedicineDetailsPage extends StatelessWidget {
               return ListView.builder(
                   itemCount: productList.length,
                   itemBuilder: (context, index) =>
-                      ProductItem(products: productList[index]));
+                      ProductItem(product: productList[index]));
             } else if (state is ProductOptionError) {
               return Center(child: Text("Error"));
             } else if (state is ProductOptionInProgress) {

@@ -1,8 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:uikit/test/test2.dart';
-import 'package:uikit/test/test_for_cubit.dart';
 import 'package:uikit/utils/delegate/pager.dart';
 
 import 'infrastructure/cubit/authentication/authentication_cubit.dart';

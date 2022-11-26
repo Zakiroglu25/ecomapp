@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/infrastructure/model/response/product_option_model.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/delegate/my_printer.dart';
@@ -10,11 +11,11 @@ import 'product_option_state.dart';
 
 class ProductOptionCubit extends Cubit<ProductOptionState> {
   ProductOptionCubit() : super(ProductOptionInitial());
-  bool paginationActive = false;
+  bool _loadMoreActivated = false;
   int page = 1;
 
   fetchProduct([bool loading = true]) async {
-    paginationActive = false;
+    _loadMoreActivated = false;
     if (loading) {
       emit(ProductOptionInProgress());
     }
@@ -34,7 +35,7 @@ class ProductOptionCubit extends Cubit<ProductOptionState> {
   }
 
   fetchByGuid({required String guid, bool loading = true}) async {
-    paginationActive = false;
+    _loadMoreActivated = false;
     if (loading) {
       emit(ProductOptionInProgress());
     }
@@ -53,12 +54,40 @@ class ProductOptionCubit extends Cubit<ProductOptionState> {
     }
   }
 
-  pagination() async {
-    try {
-      final result = await ProductOptionsProvider.getProduct(3);
-      iiii(result.toString());
 
-      if (result.data != null) {}
-    } catch (e) {}
+  Future<void> loadMore() async {
+    if (_loadMoreActivated) {
+      return;
+    }
+
+    try {
+      if (state is! ProductOptionSuccess) {
+        return;
+      }
+
+      _loadMoreActivated = true;
+
+      final successState = (state as ProductOptionSuccess);
+      // emit(successState.copyWith(showBottomLoading: true));
+
+
+
+      final result = await ProductOptionsProvider.getProduct(
+       2
+      );
+
+      List<SimpleProduct> modelsList = successState.productList;
+
+      if (result.data != null) {
+        modelsList.addAll(result.data);
+      }
+      emit(ProductOptionSuccess(modelsList));
+      _loadMoreActivated = false;
+    } catch (e) {
+      _loadMoreActivated = false;
+      if (state is ProductOptionSuccess) {
+        emit(state);
+      }
+    }
   }
 }

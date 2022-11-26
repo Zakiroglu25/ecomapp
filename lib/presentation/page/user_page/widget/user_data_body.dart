@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../infrastructure/services/hive_service.dart';
@@ -45,14 +46,34 @@ class UserDataBody extends StatelessWidget {
           ],
         ),
         MySizedBox.h20,
-        UserDataWidgetItem(
-          title: MyText.name,
-          content: _prefs.user.firstName,
+        Row(
+          children: [
+            Container(
+              width: 96.w,
+              height: 96,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: MyColors.grey288),
+              child: Center(
+                child: Icon(Icons.person),
+              ),
+            ),
+            MySizedBox.w8,
+            Column(
+              children: [
+                UserDataWidgetItem(
+                  title: MyText.name,
+                  content: _prefs.user.firstName,
+                ),
+                UserDataWidgetItem(
+                  title: MyText.firstName,
+                  content: _prefs.user.lastName,
+                ),
+              ],
+            ),
+          ],
         ),
-        UserDataWidgetItem(
-          title: MyText.firstName,
-          content: _prefs.user.lastName,
-        ),
+        MySizedBox.h20,
         UserDataWidgetItem(
           title: MyText.birth,
           content: _prefs.user.birthDate,
@@ -84,7 +105,7 @@ class UserDataBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "12345678",
+              _prefs.user.idSerialNumber.toString(),
               style: AppTextStyles.sfPro600s30,
             ),
             Icon(Icons.copy)

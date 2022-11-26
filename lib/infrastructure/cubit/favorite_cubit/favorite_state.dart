@@ -1,4 +1,3 @@
-
 import '../../model/response/product_option_model.dart';
 
 abstract class FavoriteState {}
@@ -6,6 +5,8 @@ abstract class FavoriteState {}
 class FavoriteInitial extends FavoriteState {}
 
 class FavoriteInProgress extends FavoriteState {}
+class FavoriteAdding extends FavoriteState {}
+class FavoriteNotAdding extends FavoriteState {}
 
 class FavoriteError extends FavoriteState {
   String? error;
@@ -16,6 +17,6 @@ class FavoriteError extends FavoriteState {
 class FavoriteNetworkError extends FavoriteState {}
 
 class FavoriteSuccess extends FavoriteState {
-  FavoriteSuccess(this.product_option_model);
-  final List<SimpleProduct> product_option_model;
+  FavoriteSuccess(this.favResult);
+  final FavResult favResult;
 }

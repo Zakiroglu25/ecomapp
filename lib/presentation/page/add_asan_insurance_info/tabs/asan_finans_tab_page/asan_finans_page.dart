@@ -1,7 +1,7 @@
-import 'package:uikit/widgets/custom/app_button.dart';
-import 'package:uikit/widgets/general/app_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uikit/widgets/custom/app_button.dart';
+import 'package:uikit/widgets/general/app_field.dart';
 
 import '../../../../../utils/constants/app_text_styles.dart';
 import '../../../../../utils/constants/colors.dart';

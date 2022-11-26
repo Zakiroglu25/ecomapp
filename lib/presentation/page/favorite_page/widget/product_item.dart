@@ -19,9 +19,9 @@ import '../../medicine_details_page/medicine_details_page.dart';
 import '../../product_details_page/product_details_page.dart';
 
 class ProductItem extends StatelessWidget {
-  final SimpleProduct? products;
+  final SimpleProduct? product;
 
-  ProductItem({this.products});
+  ProductItem({this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +31,13 @@ class ProductItem extends StatelessWidget {
           padding: Paddings.paddingH16 + Paddings.paddingV10,
           child: GestureDetector(
             onTap: () {
-              Go.to(context, BlocProvider(
-                create: (context) => ProductOptionDetailsCubit()..fetchProduct(products!.guid!),
-                child: ProductOptionDetails(),
-              ));
+              Go.to(
+                  context,
+                  BlocProvider(
+                    create: (context) => ProductOptionDetailsCubit()
+                      ..fetchProduct(product!.guid!),
+                    child: ProductOptionDetails(),
+                  ));
             },
             child: Container(
                 padding: EdgeInsets.all(12),
@@ -48,19 +51,18 @@ class ProductItem extends StatelessWidget {
                       children: [
                         Image.asset(Assets.demo),
                         MySizedBox.w12,
-                        if(products != null)
-                        SizedBox(
-                          width: 199,
-                          child: Text(
-                           products!.product!.title!,
-                            style: AppTextStyles.sfPro400s14,
-                            softWrap: true,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
+                        if (product != null)
+                          SizedBox(
+                            width: 199,
+                            child: Text(
+                              product!.product!.title!,
+                              style: AppTextStyles.sfPro400s14,
+                              softWrap: true,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                            ),
                           ),
-                        ),
-                        if(products != null)
-                          Text("Salam"),
+                        if (product != null) Text("Salam"),
                         Spacer(),
                         GestureDetector(
                             onTap: () {
@@ -74,7 +76,7 @@ class ProductItem extends StatelessWidget {
                       children: [
                         MySizedBox.w75,
                         Text(
-                          products!.minPrice!.toString() + " ₼-dan",
+                          product!.minPrice!.toString() + " ₼-dan",
                           style: AppTextStyles.sfPro600s16,
                         ),
                         Spacer(),

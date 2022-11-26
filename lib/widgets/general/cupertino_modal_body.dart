@@ -1,7 +1,7 @@
-import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
 
 import '../../presentation/page/payment_method_page/widget/modal_with_scroll.dart';
 

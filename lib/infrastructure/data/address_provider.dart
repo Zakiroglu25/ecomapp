@@ -45,7 +45,6 @@ class AddressProvider {
   }) async {
     StatusDynamic statusDynamic = StatusDynamic();
     var api = ApiKeys.getAddress;
-
     var body = ApiKeys.addressBody(
         title: title,
         streetName: streetName,
@@ -57,7 +56,6 @@ class AddressProvider {
         longitude: longitude,
         description: description,
         isMain: isMain);
-
     final response = await dioAuth.dio.post(api, data: body);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
@@ -68,10 +66,10 @@ class AddressProvider {
     return statusDynamic;
   }
 
-  static Future<StatusDynamic?> delete({required int guid}) async {
+  static Future<StatusDynamic?> delete({required String guid}) async {
     StatusDynamic statusDynamic = StatusDynamic();
-    var api = ApiKeys.getAddress + "$guid";
-    final response = await dioAuth.dio.get(api);
+    var api = ApiKeys.getAddress + "/$guid";
+    final response = await dioAuth.dio.delete(api);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
       statusDynamic.data = response.data;

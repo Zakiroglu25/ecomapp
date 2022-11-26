@@ -4,7 +4,6 @@ import 'package:uikit/test/test_for_cubit.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/delegate/my_printer.dart';
 
-import '../utils/constants/boxx.dart';
 import '../utils/screen/ink_wrapper.dart';
 
 class TestForPage extends StatelessWidget {
@@ -20,17 +19,15 @@ class TestForPage extends StatelessWidget {
           bbbb("build c");
           return InkWrapper(
               onTap: () => context.read<TestForCubit>()..emitState(),
-              child: Builder(
-                builder: (context) {
-                  bbbb("build d");
-                  return Container(
-                    width: 90,
-                    height: 90,
-                    child: Text("${true}"),
-                    color: context.watch<TestForCubit>().color,
-                  );
-                }
-              ));
+              child: Builder(builder: (context) {
+                bbbb("build d");
+                return Container(
+                  width: 90,
+                  height: 90,
+                  child: Text("${true}"),
+                  color: context.watch<TestForCubit>().color,
+                );
+              }));
         })),
       ),
     );

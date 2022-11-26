@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../utils/delegate/my_printer.dart';
-import '../../../utils/delegate/request_control.dart';
 import '../../data/product_options_provider.dart';
 import '../../model/remote/general/MyMessage.dart';
 import 'product_details_state.dart';

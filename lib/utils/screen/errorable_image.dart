@@ -1,12 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:uikit/utils/screen/ink_wrapper.dart';
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/utils/screen/ink_wrapper.dart';
 
 import '../../widgets/custom/gallery_photo_view_wrapper.dart';
 import '../../widgets/general/app_loading.dart';
 
 class ErrorableImage extends StatelessWidget {
-  final String imageUrl;
+  final String? imageUrl;
   final Widget? errorIcon;
   final Widget? placeHolder;
   final BoxFit? fit;
@@ -32,33 +33,43 @@ class ErrorableImage extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(r ?? 0),
       child: InkWrapper(
-        onTap: () => open(context, 0),
+        onTap: imageUrl != null ? () => open(context, 0) : null,
         child: Container(
           color: backColor,
-          child: CachedNetworkImage(
-            imageUrl: imageUrl,
-            fit: fit ?? BoxFit.contain,
-            width: w,
-            height: h,
-            memCacheHeight: 300,
-            memCacheWidth: 300,
-            placeholder: (context, url) => Center(
-                child: SizedBox(
-                    height: 10, width: 10, child: placeHolder ?? AppLoading())),
-            errorWidget: (context, url, error) =>
-                errorIcon ?? Icon(Icons.error),
-          ),
+          child: imageUrl != null
+              ? CachedNetworkImage(
+                  imageUrl: imageUrl!,
+                  fit: fit ?? BoxFit.contain,
+                  width: w,
+                  height: h,
+                  memCacheHeight: 300,
+                  memCacheWidth: 300,
+                  placeholder: (context, url) => Center(
+                      child: SizedBox(
+                          height: 10,
+                          width: 10,
+                          child: placeHolder ?? AppLoading())),
+                  errorWidget: (context, url, error) => errorImage(),
+                )
+              : errorImage(),
         ),
       ),
     );
   }
+
+  Widget errorImage() =>
+      errorIcon ??
+      const Icon(
+        Icons.error,
+        color: MyColors.grey158,
+      );
 
   void open(BuildContext context, final int index) {
     Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) => GalleryPhotoViewWrapper(
-                  galleryItems: [imageUrl],
+                  galleryItems: [imageUrl!],
                   loadingBuilder: (a, b) {
                     return Center(child: AppLoading());
                   },

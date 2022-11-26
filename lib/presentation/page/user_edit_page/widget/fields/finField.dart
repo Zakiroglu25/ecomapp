@@ -21,7 +21,6 @@ class FinFieldUser extends StatelessWidget {
           title: MyText.fin,
           maxLines: 1,
           hint: MyText.fin,
-          upperCase: true,
           suffixIcon: Tooltip(message: 'burda fin kod olacay'),
           textInputType: TextInputType.name,
           textCapitalization: TextCapitalization.characters,

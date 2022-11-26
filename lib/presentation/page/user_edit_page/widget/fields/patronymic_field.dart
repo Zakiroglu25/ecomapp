@@ -19,8 +19,8 @@ class PatronymicFieldUser extends StatelessWidget {
       stream: BlocProvider.of<UserCubit>(context).patronymicStream,
       builder: (context, snapshot) {
         return AppField(
-          title: MyText.firstName,
-          hint: MyText.firstName,
+          title: MyText.patronomic,
+          hint: MyText.patronomic,
           upperCase: false,
           textInputType: TextInputType.name,
           textCapitalization: TextCapitalization.none,

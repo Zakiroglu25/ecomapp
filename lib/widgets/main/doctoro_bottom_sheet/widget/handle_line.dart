@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/extensions/context.dart';
-import 'package:flutter/material.dart';
 
 import '../../../../utils/constants/colors.dart';
 
