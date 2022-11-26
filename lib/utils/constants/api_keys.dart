@@ -68,6 +68,9 @@ class ApiKeys {
   //basket
   static const addBasket = "$baseUrl/$customer/cart";
 
+  //bank card
+  static const card = "$baseUrl/$customer/card";
+
 
   static loginBody({
     required String? email,
