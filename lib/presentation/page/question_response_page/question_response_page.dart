@@ -33,15 +33,14 @@ class AnswerQuestionPageState extends State<AnswerQuestionPage> {
           builder: (context, state) {
             if (state is FaqSuccess) {
               return ListView.builder(
-                shrinkWrap: true,
+                  shrinkWrap: true,
                   itemCount: state.faq_list.data.length,
                   itemBuilder: (context, index) {
-                return Card1(
-                  question: state.faq_list.data[index].question,
-                  answer: state.faq_list.data[index].answer
-                );
-              });
-            }else if(state is FaqLoading){
+                    return Card1(
+                        question: state.faq_list.data[index].question,
+                        answer: state.faq_list.data[index].answer);
+                  });
+            } else if (state is FaqLoading) {
               return AppLoading();
             }
             return Center(
@@ -83,11 +82,11 @@ class Card1 extends StatelessWidget {
                 header: Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      question!,
+                      question ?? '',
                       style: AppTextStyles.sfPro600s16,
                     )),
                 collapsed: Text(
-                  answer!,
+                  answer ?? '',
                   softWrap: true,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,

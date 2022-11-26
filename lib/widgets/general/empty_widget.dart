@@ -44,11 +44,12 @@ class EmptyWidget extends StatelessWidget {
             child: SizedBox(
                 width: 127.w,
                 height: 127.h,
-                child: Image.asset(imageUrl ?? Assets.pngBad)),
+                child: Image.asset(imageUrl ?? Assets.pngHeart)),
           ),
         ),
         MySizedBox.h16,
         Text(text ?? '',
+            textAlign: TextAlign.center,
             style: AppTextStyles.sfPro700
                 .copyWith(fontSize: 24, color: MyColors.grey158)),
         MySizedBox.h10,
@@ -57,7 +58,7 @@ class EmptyWidget extends StatelessWidget {
           child: Text(
             description ?? '',
             textAlign: TextAlign.center,
-            style: AppTextStyles.sfPro400s14
+            style: AppTextStyles.sfPro400s16
                 .copyWith(fontSize: 16, color: MyColors.grey158),
           ),
         ),

@@ -12,6 +12,7 @@ import 'package:uikit/widgets/main/product_item/new_product_item.dart';
 
 import '../../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../../infrastructure/cubit/favorite_cubit/favorite_state.dart';
+import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/paddings.dart';
 
 class FavoritePage extends StatefulWidget {
@@ -41,6 +42,9 @@ class _FavoritePageState extends State<FavoritePage> {
                   if (!snapshot.hasData) return nil;
                   return ListOrEmpty(
                     list: snapshot.data,
+                    image: Assets.pngHeart,
+                    text: MyText.emptyText,
+                    description: MyText.emptyTextDesc,
                     child: ListViewSeparated(
                       padding: Paddings.paddingA16 + Paddings.paddingB60,
                       itemCount: snapshot.data!.length,

@@ -72,8 +72,6 @@ class JwtInterceptor extends Interceptor {
   void onError(DioError err, ErrorInterceptorHandler handler) async {
     super.onError(err, handler);
 
-    final error = ErrorResponse.fromJson(err.response?.data);
-
     switch (err.response?.statusCode) {
       case 200:
         break;
@@ -83,6 +81,7 @@ class JwtInterceptor extends Interceptor {
         _retry(err.requestOptions);
         break;
       case 500:
+        final error = ErrorResponse.fromJson(err.response?.data);
         switch (error.status) {
           case 10005:
           //Go.to(NavigationService.instance.navigationKey.currentContext,Pager.otp(phone));
