@@ -21,32 +21,36 @@ class _ProductFavButtonState extends State<ProductFavButton> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWrapper(
-      onTap: () {
-        context.read<FavoriteCubit>().addFavorite(
-              widget.product!.guid,
-              inFav: widget.product!.isFavorite!,
-            );
-        widget.product!.isFavorite = !widget.product!.isFavorite!;
-        setState(() {});
-      },
-      child: Container(
-        height: 48,
-        width: 48,
-        color: MyColors.transparent,
-        child: Center(
-          child: CustomAnimatedCross(
-            second: SvgPicture.asset(
-              Assets.svgFilledHearth,
-              height: 28,
-              width: 28,
+    return Positioned(
+      top: 5,
+      right: 5,
+      child: InkWrapper(
+        onTap: () {
+          context.read<FavoriteCubit>().addFavorite(
+                widget.product!.guid,
+                inFav: widget.product!.isFavorite!,
+              );
+          widget.product!.isFavorite = !widget.product!.isFavorite!;
+          setState(() {});
+        },
+        child: Container(
+          height: 48,
+          width: 48,
+          color: MyColors.transparent,
+          child: Center(
+            child: CustomAnimatedCross(
+              second: SvgPicture.asset(
+                Assets.svgFilledHearth,
+                height: 28,
+                width: 28,
+              ),
+              first: SvgPicture.asset(
+                Assets.svgEmptyHearth,
+                height: 28,
+                width: 28,
+              ),
+              showFirst: !widget.product!.isFavorite!,
             ),
-            first: SvgPicture.asset(
-              Assets.svgEmptyHearth,
-              height: 28,
-              width: 28,
-            ),
-            showFirst: !widget.product!.isFavorite!,
           ),
         ),
       ),

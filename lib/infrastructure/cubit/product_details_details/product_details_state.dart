@@ -16,7 +16,7 @@ class ProductODetailsError extends ProductOptionDetailsState {
 class ProductODetailsNetworkError extends ProductOptionDetailsState {}
 
 class ProductODetailsSuccess extends ProductOptionDetailsState {
-  ProductODetailsSuccess(this.product_o_d_model);
+  ProductODetailsSuccess(this.productDetails);
 
-  final FavResult? product_o_d_model;
+  final ProductDetails? productDetails;
 }

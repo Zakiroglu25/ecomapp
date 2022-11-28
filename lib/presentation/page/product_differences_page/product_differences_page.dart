@@ -2,13 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/model/response/product_option_model.dart';
-import 'package:uikit/presentation/page/product_details_page/widget/product_detail_property.dart';
-import 'package:uikit/utils/constants/physics.dart';
-import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/widgets/custom/product_image_slider.dart';
-import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
-import 'package:uikit/widgets/general/empty_widget.dart';
-import 'package:uikit/widgets/general/manat_price.dart';
 
 import '../../../infrastructure/cubit/product_details_details/product_details_state.dart';
 import '../../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
@@ -16,11 +10,15 @@ import '../../../infrastructure/model/response/product_option_details_model.dart
 import '../../../utils/constants/app_text_styles.dart';
 import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/colors.dart';
-import '../../../utils/constants/paddings.dart';
 import '../../../utils/constants/sized_box.dart';
 import '../../../widgets/custom/app_button.dart';
 import '../../../widgets/general/app_loading.dart';
+import 'widget/details_title_text.dart';
+import 'widget/header_info_text.dart';
 import 'widget/header_price_text.dart';
+import 'widget/image_page_view_list.dart';
+import 'widget/product_manufacturer_info.dart';
+import 'widget/show_insurance_page.dart';
 
 class ProductOptionDetails extends StatefulWidget {
   SimpleProduct? product;
@@ -56,7 +54,11 @@ class _ProductOptionDetailsState extends State<ProductOptionDetails> {
   Widget build(BuildContext context) {
     bool switchValue = true;
     return Scaffold(
-      appBar: DoctorAppbar(title: "", user: false, contextA: context),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: MyColors.white,
+        iconTheme: IconThemeData(color: MyColors.black),
+      ),
       body: BlocBuilder<ProductOptionDetailsCubit, ProductOptionDetailsState>(
         builder: (context, state) {
           if (state is ProductODetailsSuccess) {
@@ -76,64 +78,33 @@ class _ProductOptionDetailsState extends State<ProductOptionDetails> {
                 //     currentIndex: currentIndex),
                 // InfoRowWidget(product: product),
                 // DetailsTitleWidget(product: product),
-                //ShowInsuranceSwitch(switchValue: switchValue),
-                // Text("${product?.stockItems?.first.price}"),
-                ListView(
-                  shrinkWrap: true,
-                  physics: Physics.never,
-                  padding: Paddings.paddingH16 + Paddings.paddingV12,
-                  children: [
-                    ManatPrice(
-                      price: "${product?.stockItems?.first.price}",
-                      textSize: 25,
-                      manatSize: 25,
+                ShowInsuranceSwitch(switchValue: switchValue),
+                MySizedBox.h16,
+                const PriceTitleWidget(),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: MyColors.grey245,
                     ),
-                    MySizedBox.h16,
-                    Text(
-                      'Swiss Energy Herbs Hot Balm Forte isidici balzam  75 ml Forte',
-                      style: AppTextStyles.sfPro600s17,
+                    child: Column(
+                      children: [
+                        aptek_tile(),
+                        aptek_tile(),
+                      ],
                     ),
-                    MySizedBox.h16,
-                    ProductDetailProperty(
-                      title: 'İstehsal olduğu ölkə',
-                      value: '${product?.manufacturedIn}',
-                    ),
-                    ProductDetailProperty(
-                      title: 'Resept',
-                      value: (product?.prescriptionRequired ?? false)
-                          ? MyText.required
-                          : MyText.notRequired,
-                    ),
-                    ProductDetailProperty(
-                      title: 'Məhsulun kodu',
-                      value: '${product?.publicId}',
-                    ),
-                    ProductDetailProperty(
-                      title: 'İstehsalçı',
-                      value: '${product?.manufacturer?.name}',
-                    ),
-                    ProductDetailProperty(
-                      title: 'Əczaçılıq forması',
-                      value: '${product?.pharmaceuticalForm}',
-                    ),
-                    ProductDetailProperty(
-                      title: 'Təsvir',
-                      value: '${product?.description}',
-                    ),
-                    MySizedBox.h16,
-                    AppButton(
-                      text: MyText.addToCart,
-                    )
-                  ],
+                  ),
                 ),
-
                 // ProductManfactureInfo(product: product)
               ],
             );
           } else if (state is ProductODetailsInProgress) {
-            return AppLoading.big();
+            return AppLoading();
           }
-          return EmptyWidget();
+          return Center(
+            child: Text("Alinmadi"),
+          );
         },
       ),
     );

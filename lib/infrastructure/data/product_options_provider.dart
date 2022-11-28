@@ -3,6 +3,7 @@ import '../../utils/constants/api_keys.dart';
 import '../../utils/constants/result_keys.dart';
 import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
+import '../model/response/product_option_details_model.dart';
 import '../model/response/product_option_model.dart';
 import '../model/response/status_dynamic.dart';
 import '../services/hive_service.dart';
@@ -35,8 +36,8 @@ class ProductOptionsProvider {
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
       final comeJson = response.data;
-      FavResult model = FavResult.fromJson(comeJson);
-      statusDynamic.data = model.products;
+      ProductDetails model = ProductDetails.fromJson(comeJson);
+      statusDynamic.data = model;
     } else {
       eeee("address List:  url: $api , response: ${response.data}");
     }

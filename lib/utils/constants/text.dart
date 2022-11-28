@@ -123,9 +123,12 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String contact = "Əlaqə";
   static const String settings = "Tənzimləmələr";
   static const String demoSubtitle = "Axtardığınız məhsulu tapmaq üçün";
+  static const String required = "Tələb olunur";
+  static const String notRequired = "Tələb olunmur";
 
   //cart page
   static const String toCart = "Səbətə";
+  static const String addToCart = "Səbətə at";
   static const String recipe = "Resept";
   static const String uploadRecipe = "Resepti yüklə";
   static const String orders = "Sifarişlər";
@@ -157,9 +160,9 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String chooseDeliveryType = "Çatdırılma üsulunu seçin";
   static const String contactNumber = "Əlaqə nömrəsi";
   static const String note = "Qeyd";
-  static const String mediciniesDesc = "Reseptli və reseptsiz satışda olan dərmanları buradan əldə edib qiymətlərini müqaisə edə bilərsiniz.";
+  static const String mediciniesDesc =
+      "Reseptli və reseptsiz satışda olan dərmanları buradan əldə edib qiymətlərini müqaisə edə bilərsiniz.";
   static const String nameOrProducedCountry = "Ad və ya istehsal olduğu ölkə";
-
 
   //pashadetails
 
