@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nil/nil.dart';
 import 'package:uikit/infrastructure/model/response/product_option_model.dart';
 import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/delegate/my_printer.dart';
 import 'package:uikit/widgets/custom/listview_separated.dart';
 import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'package:uikit/widgets/general/app_loading.dart';
@@ -32,24 +32,28 @@ class _FavoritePageState extends State<FavoritePage> {
         filter: false,
       ),
       body: BlocBuilder<FavoriteCubit, FavoriteState>(
+        buildWhen: (prv, nxt) {
+          if (nxt is FavoriteAdding) return false;
+          return true;
+        },
         builder: (context, state) {
           if (state is FavoriteSuccess) {
-            //final products = state.favResult.products;
+            List<SimpleProduct>? products = state.favResult.products;
             //final products = context.watch<FavoriteCubit>().products;
             return StreamBuilder<List<SimpleProduct>>(
                 stream: context.read<FavoriteCubit>().productsStream,
                 builder: (context, snapshot) {
-                  if (!snapshot.hasData) return nil;
+                  if (snapshot.hasData) products = snapshot.data;
                   return ListOrEmpty(
-                    list: snapshot.data,
+                    list: products,
                     image: Assets.pngHeart,
                     text: MyText.emptyText,
                     description: MyText.emptyTextDesc,
                     child: ListViewSeparated(
                       padding: Paddings.paddingA16 + Paddings.paddingB60,
-                      itemCount: snapshot.data!.length,
+                      itemCount: products!.length,
                       itemBuilder: (context, index) {
-                        final currentProduct = snapshot.data![index];
+                        final currentProduct = products![index];
                         return NewProductItem(product: currentProduct);
                         // return Text(state.product_option_model[index].product!.title!);
                       },

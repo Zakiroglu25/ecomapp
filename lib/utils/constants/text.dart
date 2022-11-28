@@ -148,16 +148,18 @@ In addition to laying out rules for proper use of your app, you should also clea
   static final String keepInTouchX = keepInTouch.withX("☎");
   static const String orderDelivery = "Çatdırılma sifariş et";
   static final String orderDeliveryX = orderDelivery.withX("🚚");
-  static final String call = "Zəng et";
-  static final String messennger = "Messenger";
-  static final String insuranceCover = "Sığorta qarşılayır";
-  static final String insuranceDoesNotCover = "Sığorta qarşılamır";
-  static final String countOfMedicine = "Dərman sayı";
-  static final String totalPrice = "Toplam qiymət:";
-  static final String orderDate = "Sifariş tarixi";
-  static final String chooseDeliveryType = "Çatdırılma üsulunu seçin";
-  static final String contactNumber = "Əlaqə nömrəsi";
-  static final String note = "Qeyd";
+  static const String call = "Zəng et";
+  static const String insuranceCover = "Sığorta qarşılayır";
+  static const String insuranceDoesNotCover = "Sığorta qarşılamır";
+  static const String countOfMedicine = "Dərman sayı";
+  static const String totalPrice = "Toplam qiymət:";
+  static const String orderDate = "Sifariş tarixi";
+  static const String chooseDeliveryType = "Çatdırılma üsulunu seçin";
+  static const String contactNumber = "Əlaqə nömrəsi";
+  static const String note = "Qeyd";
+  static const String mediciniesDesc = "Reseptli və reseptsiz satışda olan dərmanları buradan əldə edib qiymətlərini müqaisə edə bilərsiniz.";
+  static const String nameOrProducedCountry = "Ad və ya istehsal olduğu ölkə";
+
 
   //pashadetails
 

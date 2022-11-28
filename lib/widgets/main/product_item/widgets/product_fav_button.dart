@@ -23,8 +23,10 @@ class _ProductFavButtonState extends State<ProductFavButton> {
   Widget build(BuildContext context) {
     return InkWrapper(
       onTap: () {
-        context.read<FavoriteCubit>().addFavorite(widget.product!.guid,
-            inFav: widget.product!.isFavorite!);
+        context.read<FavoriteCubit>().addFavorite(
+              widget.product!.guid,
+              inFav: widget.product!.isFavorite!,
+            );
         widget.product!.isFavorite = !widget.product!.isFavorite!;
         setState(() {});
       },

@@ -61,7 +61,7 @@ class Pager {
       ], child: const LoginPage());
 
   static get medicines => MultiBlocProvider(providers: [
-        BlocProvider(create: (context) => ProductOptionCubit()),
+        BlocProvider(create: (context) => ProductOptionCubit()..fetchProduct()),
         BlocProvider(create: (context) => FavoriteCubit()),
       ], child: const MedicinesPage());
 

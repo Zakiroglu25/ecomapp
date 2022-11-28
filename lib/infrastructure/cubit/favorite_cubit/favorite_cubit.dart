@@ -22,7 +22,6 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   updateProducts(List<SimpleProduct> value) {
     if (value.isEmpty) {
       products.valueOrNull?.clear();
-      ;
       //products.sink.addError(MyText.all_fields_must_be_filled);
     } else {
       products.sink.add(value);
@@ -30,7 +29,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   }
 
   fetchProduct([bool loading = true]) async {
-    updateProducts([]);
+    // updateProducts([]);
     if (loading) {
       emit(FavoriteInProgress());
     }
@@ -62,7 +61,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
           trnType: inFav ? TrnType.delete : TrnType.post);
       if (result.statusCode.isSuccess) {
         emit(FavoriteAdding());
-        fetchProduct();
+        fetchProduct(false);
       } else {
         emit(FavoriteNotAdding());
       }
