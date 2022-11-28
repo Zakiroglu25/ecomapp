@@ -9,6 +9,7 @@ class MedicinesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: DoctorAppbar(
         addressDropdown: true,
         contextA: context,
@@ -21,7 +22,7 @@ class MedicinesPage extends StatelessWidget {
         //   FilterWidget(),
         // ],
       ),
-      body: MedicinesBody(),
+      body: const MedicinesBody(),
     );
   }
 }

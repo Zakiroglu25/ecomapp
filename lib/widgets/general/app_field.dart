@@ -31,6 +31,9 @@ class AppField extends StatelessWidget {
   final Function? onTap;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final TextInputAction? textInputAction;
+  final ValueChanged<String>? onFieldSubmitted;
+  final double radius;
   final String? suffixText;
   final TextInputType? textInputType;
 
@@ -43,14 +46,17 @@ class AppField extends StatelessWidget {
     this.maxLines,
     this.obscure,
     this.readOnly,
+    this.onFieldSubmitted,
     this.upperCase,
     this.formatters,
     this.suffixIcon,
+    this.radius = 12,
     this.title,
     this.infoMessage,
     this.errorMessage,
     this.initialValue,
     this.textCapitalization,
+    this.textInputAction,
     this.onChanged,
     this.onTap,
     this.prefixIcon,
@@ -85,7 +91,7 @@ class AppField extends StatelessWidget {
                 height: 50,
                 duration: Duration(milliseconds: 200),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(radius),
                     border: Border.all(
                         color: errorMessage == null
                             ? MyColors.transparent
@@ -93,7 +99,8 @@ class AppField extends StatelessWidget {
                 child: TextFormField(
                   autocorrect: false,
                   controller: controller,
-                  textInputAction: TextInputAction.done,
+                  onFieldSubmitted: onFieldSubmitted,
+                  textInputAction: textInputAction ?? TextInputAction.done,
                   obscureText: obscure ?? false,
                   maxLength: maxLenght,
                   maxLines: maxLines ?? null,
@@ -111,7 +118,7 @@ class AppField extends StatelessWidget {
                   decoration: InputDecoration(
                     counterText: '',
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(radius),
                       borderSide: BorderSide(
                         width: 0,
                         style: BorderStyle.none,

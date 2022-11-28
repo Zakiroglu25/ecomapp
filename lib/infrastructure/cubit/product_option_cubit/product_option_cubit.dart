@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/model/response/product_option_model.dart';
 import 'package:uikit/utils/extensions/index.dart';
@@ -10,17 +11,21 @@ import '../../data/product_options_provider.dart';
 import 'product_option_state.dart';
 
 class ProductOptionCubit extends Cubit<ProductOptionState> {
-  ProductOptionCubit() : super(ProductOptionInitial());
+  ProductOptionCubit() : super(ProductOptionInitial()) {
+    medSearchController = TextEditingController();
+  }
   bool _loadMoreActivated = false;
   int page = 1;
+  late final TextEditingController medSearchController;
 
-  fetchProduct([bool loading = true]) async {
+  fetchProduct({bool loading = true, String? title}) async {
     _loadMoreActivated = false;
     if (loading) {
       emit(ProductOptionInProgress());
     }
     try {
-      final result = await ProductOptionsProvider.getProduct(page);
+      final result = await ProductOptionsProvider.getProduct(page,
+          title: medSearchController.text);
       if (isSuccess(result.statusCode)) {
         emit(ProductOptionSuccess(result.data));
       } else {
@@ -54,7 +59,6 @@ class ProductOptionCubit extends Cubit<ProductOptionState> {
     }
   }
 
-
   Future<void> loadMore() async {
     if (_loadMoreActivated) {
       return;
@@ -70,11 +74,7 @@ class ProductOptionCubit extends Cubit<ProductOptionState> {
       final successState = (state as ProductOptionSuccess);
       // emit(successState.copyWith(showBottomLoading: true));
 
-
-
-      final result = await ProductOptionsProvider.getProduct(
-       2
-      );
+      final result = await ProductOptionsProvider.getProduct(2);
 
       List<SimpleProduct> modelsList = successState.productList;
 

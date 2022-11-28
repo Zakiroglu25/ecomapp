@@ -11,11 +11,11 @@ class ProductOptionsProvider {
   static HiveService get _prefs => locator<HiveService>();
   static DioAuth get dioAuth => locator<DioAuth>();
 
-  static Future<StatusDynamic> getProduct(int page) async {
+  static Future<StatusDynamic> getProduct(int page, {String? title}) async {
     StatusDynamic statusDynamic = StatusDynamic();
     const api = ApiKeys.search;
-    final response =
-        await dioAuth.dio.get(api, queryParameters: {"page": page});
+    final response = await dioAuth.dio
+        .get(api, queryParameters: {"page": page, "title": title});
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
       final comeJson = response.data;
