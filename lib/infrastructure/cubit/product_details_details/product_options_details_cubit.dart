@@ -10,8 +10,6 @@ import 'product_details_state.dart';
 
 class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
   ProductOptionDetailsCubit() : super(ProductODetailsInitial());
-  bool paginationActive = false;
-  int page = 1;
 
   fetchProduct(String guid) async {
     emit(ProductODetailsInProgress());

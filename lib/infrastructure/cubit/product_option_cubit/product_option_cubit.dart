@@ -39,25 +39,25 @@ class ProductOptionCubit extends Cubit<ProductOptionState> {
     }
   }
 
-  fetchByGuid({required String guid, bool loading = true}) async {
-    _loadMoreActivated = false;
-    if (loading) {
-      emit(ProductOptionInProgress());
-    }
-    try {
-      final result = await ProductOptionsProvider.getProductByGuid(guid: guid);
-      if (result.statusCode.isSuccess) {
-        emit(ProductOptionSuccess(result.data));
-      } else {
-        emit(ProductOptionError());
-      }
-    } on SocketException catch (_) {
-      emit(ProductOptionError());
-    } catch (e) {
-      eeee("Product Option Error" + e.toString());
-      emit(ProductOptionError());
-    }
-  }
+  // fetchByGuid({required String guid, bool loading = true}) async {
+  //   _loadMoreActivated = false;
+  //   if (loading) {
+  //     emit(ProductOptionInProgress());
+  //   }
+  //   try {
+  //     final result = await ProductOptionsProvider.getProductByGuid(guid: guid);
+  //     if (result.statusCode.isSuccess) {
+  //       emit(ProductOptionSuccess(result.data));
+  //     } else {
+  //       emit(ProductOptionError());
+  //     }
+  //   } on SocketException catch (_) {
+  //     emit(ProductOptionError());
+  //   } catch (e) {
+  //     eeee("Product Option Error" + e.toString());
+  //     emit(ProductOptionError());
+  //   }
+  // }
 
   Future<void> loadMore() async {
     if (_loadMoreActivated) {

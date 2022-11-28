@@ -18,7 +18,7 @@ class ProductTitleAndFavButton extends StatelessWidget {
         ProductTitle(
           title: product.title,
         ),
-        ProductFavButton(product: product)
+        SizedBox(height: 48, width: 48)
       ],
     );
   }

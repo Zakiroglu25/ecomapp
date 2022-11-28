@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/widgets/main/product_item/widgets/product_fav_button.dart';
 import 'package:uikit/widgets/main/product_item/widgets/product_image.dart';
 
 import '../../../../utils/constants/border_radius.dart';
@@ -19,22 +20,38 @@ class NewProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 126,
-      padding: Paddings.paddingA12,
-      decoration:
-          BoxDecoration(borderRadius: Radiuses.r12, color: MyColors.grey245),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ProductImage(imageUrl: product.imageUrl),
-          MySizedBox.w12,
-          ProductDetailsAndButtons(
-            product: product,
-          )
-        ],
-      ),
+    return Stack(
+      children: [
+        InkWrapper(
+          onTap: () {
+            Go.to(
+                context,
+                BlocProvider(
+                  create: (context) =>
+                      ProductOptionDetailsCubit()..fetchProduct(product.guid!),
+                  child: ProductOptionDetails(),
+                ));
+          },
+          child: Container(
+            height: 126,
+            padding: Paddings.paddingA12,
+            decoration: BoxDecoration(
+                borderRadius: Radiuses.r12, color: MyColors.grey245),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ProductImage(imageUrl: product.imageUrl),
+                MySizedBox.w12,
+                ProductDetailsAndButtons(
+                  product: product,
+                )
+              ],
+            ),
+          ),
+        ),
+        ProductFavButton(product: product),
+      ],
     );
   }
 }

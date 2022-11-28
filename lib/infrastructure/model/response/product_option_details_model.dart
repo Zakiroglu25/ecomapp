@@ -1,4 +1,4 @@
-class ProductOptionDetailsModel {
+class ProductDetails {
   String? guid;
   int? publicId;
   String? title;
@@ -18,32 +18,32 @@ class ProductOptionDetailsModel {
   List<Images>? images;
   List<StockItems>? stockItems;
 
-  ProductOptionDetailsModel(
+  ProductDetails(
       {this.guid,
-        this.publicId,
-        this.title,
-        this.slug,
-        this.prescriptionRequired,
-        this.manufacturedIn,
-        this.description,
-        this.substances,
-        this.excipients,
-        this.dosage,
-        this.packaging,
-        this.packagingAmount,
-        this.pharmaceuticalForm,
-        this.registrationDate,
-        this.manufacturer,
-        this.categories,
-        this.images,
-        this.stockItems});
+      this.publicId,
+      this.title,
+      this.slug,
+      this.prescriptionRequired = false,
+      this.manufacturedIn,
+      this.description,
+      this.substances,
+      this.excipients,
+      this.dosage,
+      this.packaging,
+      this.packagingAmount,
+      this.pharmaceuticalForm,
+      this.registrationDate,
+      this.manufacturer,
+      this.categories,
+      this.images,
+      this.stockItems});
 
-  ProductOptionDetailsModel.fromJson(Map<String, dynamic> json) {
+  ProductDetails.fromJson(Map<String, dynamic> json) {
     guid = json['guid'];
     publicId = json['publicId'];
     title = json['title'];
     slug = json['slug'];
-    prescriptionRequired = json['prescriptionRequired'];
+    prescriptionRequired = json['prescriptionRequired'] ?? false;
     manufacturedIn = json['manufacturedIn'];
     description = json['description'];
     substances = json['substances'];
@@ -190,15 +190,15 @@ class Store {
 
   Store(
       {this.guid,
-        this.name,
-        this.slug,
-        this.website,
-        this.worksWithInsurance,
-        this.opensAtHour,
-        this.closesAtHour,
-        this.opensAtMinutes,
-        this.closesAtMinutes,
-        this.open});
+      this.name,
+      this.slug,
+      this.website,
+      this.worksWithInsurance,
+      this.opensAtHour,
+      this.closesAtHour,
+      this.opensAtMinutes,
+      this.closesAtMinutes,
+      this.open});
 
   Store.fromJson(Map<String, dynamic> json) {
     guid = json['guid'];
@@ -228,15 +228,14 @@ class Store {
     return data;
   }
 }
+
 class Images {
   String? url;
-
 
   Images({this.url});
 
   Images.fromJson(Map<String, dynamic> json) {
     url = json['url'];
-
   }
 
   Map<String, dynamic> toJson() {

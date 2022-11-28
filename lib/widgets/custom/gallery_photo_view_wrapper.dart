@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import 'package:uikit/utils/delegate/my_printer.dart';
 import 'package:uikit/widgets/doctoro_appbar/widgets/back_i_o_s.dart';
 
 import 'carousel_indicator.dart';
@@ -43,6 +44,7 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
     // TODO: implement initState
     super.initState();
     currentImageIndex = widget.initialIndex;
+    bbbb("fgg: ${widget.galleryItems.length}");
   }
 
   void onPageChanged(int index) {
