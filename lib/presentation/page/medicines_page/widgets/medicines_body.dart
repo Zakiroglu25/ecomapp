@@ -38,8 +38,10 @@ class MedicinesBody extends StatelessWidget {
                       padding: Paddings.paddingA16 + Paddings.paddingB60,
                       controller: _scrollController,
                       itemCount: productList.length,
-                      itemBuilder: (context, index) =>
-                          NewProductItem(product: productList[index])),
+                      itemBuilder: (context, index) => NewProductItem(
+                            product: productList[index],
+                            inFav: false,
+                          )),
                 ),
               );
             } else if (state is ProductOptionInProgress) {

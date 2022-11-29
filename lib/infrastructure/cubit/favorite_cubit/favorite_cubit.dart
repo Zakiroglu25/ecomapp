@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/delegate/my_printer.dart';
@@ -50,15 +51,17 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     }
   }
 
-  void addFavorite(String? guid, {required bool inFav}) async {
+  void addFavorite(String? guid,
+      {bool isFav = false, bool inFav = false}) async {
     try {
-      if (inFav) {
+      if (isFav && inFav) {
         updateProducts(products.value
-          ..remove(
-              products.value.firstWhere((element) => element.guid == guid)));
+          ..remove(products.value
+              .where((element) => element.guid == guid)
+              .firstOrNull));
       }
       final result = await FavoritesProvider.addFavorite(guid!,
-          trnType: inFav ? TrnType.delete : TrnType.post);
+          trnType: isFav ? TrnType.delete : TrnType.post);
       if (result.statusCode.isSuccess) {
         emit(FavoriteAdding());
         fetchProduct(false);
@@ -67,8 +70,8 @@ class FavoriteCubit extends Cubit<FavoriteState> {
       }
     } on SocketException catch (_) {
       emit(FavoriteError());
-    } catch (e) {
-      eeee("Fvorite Error" + e.toString());
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
       emit(FavoriteError());
     }
   }

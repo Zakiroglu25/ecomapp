@@ -10,15 +10,15 @@ import '../../../../utils/constants/colors.dart';
 import '../../../../utils/screen/ink_wrapper.dart';
 
 class ProductFavButton extends StatefulWidget {
-  const ProductFavButton({Key? key, required this.product}) : super(key: key);
+  const ProductFavButton({Key? key, required this.product, required this.inFav})
+      : super(key: key);
   final SimpleProduct? product;
+  final bool inFav;
   @override
   State<ProductFavButton> createState() => _ProductFavButtonState();
 }
 
 class _ProductFavButtonState extends State<ProductFavButton> {
-  bool fav = false;
-
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -26,10 +26,8 @@ class _ProductFavButtonState extends State<ProductFavButton> {
       right: 5,
       child: InkWrapper(
         onTap: () {
-          context.read<FavoriteCubit>().addFavorite(
-                widget.product!.guid,
-                inFav: widget.product!.isFavorite!,
-              );
+          context.read<FavoriteCubit>().addFavorite(widget.product!.guid,
+              isFav: widget.product!.isFavorite!, inFav: widget.inFav);
           widget.product!.isFavorite = !widget.product!.isFavorite!;
           setState(() {});
         },

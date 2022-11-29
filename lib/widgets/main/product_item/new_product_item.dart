@@ -15,8 +15,10 @@ import '../../../utils/screen/ink_wrapper.dart';
 import 'widgets/product_details_and_buttons.dart';
 
 class NewProductItem extends StatelessWidget {
-  const NewProductItem({Key? key, required this.product}) : super(key: key);
+  const NewProductItem({Key? key, required this.product, this.inFav = false})
+      : super(key: key);
   final SimpleProduct product;
+  final bool inFav;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,10 @@ class NewProductItem extends StatelessWidget {
             ),
           ),
         ),
-        ProductFavButton(product: product),
+        ProductFavButton(
+          product: product,
+          inFav: inFav,
+        ),
       ],
     );
   }
