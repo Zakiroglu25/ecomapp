@@ -78,6 +78,8 @@ class Assets {
   static const String pngTelegram = "assets/png/telegram.png";
   static const String pngFacebook = "assets/png/facebook.png";
   static const String pngHotline = "assets/png/hotline.png";
+  static const String pngHeart = "assets/png/heart.png";
+  static const String pngMed = "assets/png/med.png";
   //setting
   static const String svgCallDark = "assets/svg/calldark.svg";
 

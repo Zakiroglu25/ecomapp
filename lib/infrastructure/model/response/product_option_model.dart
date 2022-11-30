@@ -15,8 +15,8 @@ class FavResult {
       this.totalPages});
 
   FavResult.fromJson(Map<String, dynamic> json) {
+    products = <SimpleProduct>[];
     if (json['data'] != null) {
-      products = <SimpleProduct>[];
       json['data'].forEach((v) {
         products!.add(SimpleProduct.fromJson(v));
       });
@@ -53,15 +53,15 @@ class SimpleProduct {
   Product? product;
   bool? isFavorite;
 
-
-  SimpleProduct({this.guid, this.title, this.minPrice, this.imageUrl,this.isFavorite});
+  SimpleProduct(
+      {this.guid, this.title, this.minPrice, this.imageUrl, this.isFavorite});
 
   SimpleProduct.fromJson(Map<String, dynamic> json) {
     guid = json['guid'];
     title = json['title'];
     minPrice = json['minPrice'];
     imageUrl = json['imageUrl'];
-    isFavorite = json['isFavorite'];
+    isFavorite = json['isFavorite'] ?? false;
   }
 
   Map<String, dynamic> toJson() {
@@ -73,6 +73,27 @@ class SimpleProduct {
     data['isFavorite'] = isFavorite;
     return data;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SimpleProduct &&
+          runtimeType == other.runtimeType &&
+          guid == other.guid &&
+          title == other.title &&
+          minPrice == other.minPrice &&
+          imageUrl == other.imageUrl &&
+          product == other.product &&
+          isFavorite == other.isFavorite;
+
+  @override
+  int get hashCode =>
+      guid.hashCode ^
+      title.hashCode ^
+      minPrice.hashCode ^
+      imageUrl.hashCode ^
+      product.hashCode ^
+      isFavorite.hashCode;
 
   @override
   String toString() {
