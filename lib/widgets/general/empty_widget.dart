@@ -40,6 +40,7 @@ class EmptyWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        MySizedBox.h16,
         Container(
           width: 167,
           height: 167,
@@ -54,7 +55,7 @@ class EmptyWidget extends StatelessWidget {
         ),
         MySizedBox.h16,
         Center(
-          child: Text("$text",
+          child: Text(text ?? MyText.error,
               textAlign: TextAlign.center,
               style: AppTextStyles.sfPro700
                   .copyWith(fontSize: 24, color: MyColors.grey158)),

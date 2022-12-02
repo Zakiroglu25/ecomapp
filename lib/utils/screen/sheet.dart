@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/constants/border_radius.dart';
 
 // Project imports:
 import '../../../widgets/general/custom_bottom_sheet.dart' as bs;
@@ -8,11 +9,12 @@ import '../../widgets/main/doctoro_bottom_sheet/doctoro_bottom_sheet.dart';
 
 class Sheet {
   static display({
-    required BuildContext? context,
+    required BuildContext context,
     Widget? child,
     final OnItemSelected? onItemSelected,
     final Function? onConfirm,
     final bool? showCloseButton = false,
+    final bool? showHandle = true,
     final bool? showConfirmButton = false,
     final String? title,
   }) {
@@ -26,11 +28,10 @@ class Sheet {
 // barrierColor: Colors.red,
         isScrollControlled: true,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
+          borderRadius: Radiuses.rt24,
         ),
-        context: context!,
-        builder: (contextZ) => OptimalBottomSheet(
+        context: context,
+        builder: (contextZ) => AppBottomSheet(
               child: child!,
               onConfirm: onConfirm,
               showCloseButton: showCloseButton,

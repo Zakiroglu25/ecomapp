@@ -5,6 +5,8 @@ import 'package:uikit/utils/extensions/context.dart';
 import '../../../../utils/constants/colors.dart';
 
 class HandleLine extends StatelessWidget {
+  const HandleLine({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(

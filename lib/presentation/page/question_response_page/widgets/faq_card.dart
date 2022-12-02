@@ -1,5 +1,6 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+
 import '../../../../infrastructure/model/response/faq_model.dart';
 import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/colors.dart';
@@ -7,7 +8,8 @@ import '../../../../utils/constants/paddings.dart';
 
 class FaqCard extends StatelessWidget {
   final FastAskedQuestion? faq;
-  const FaqCard({this.faq});
+  const FaqCard({Key? key, this.faq}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ExpandableNotifier(
@@ -55,7 +57,8 @@ class FaqCard extends StatelessWidget {
               ),
               builder: (_, collapsed, expanded) {
                 return Padding(
-                  padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                  padding:
+                      const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                   child: Expandable(
                     collapsed: collapsed,
                     expanded: expanded,
