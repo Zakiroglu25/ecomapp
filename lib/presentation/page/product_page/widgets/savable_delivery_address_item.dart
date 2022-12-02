@@ -12,6 +12,7 @@ class SavableDeliveryAddressItem extends StatefulWidget {
   const SavableDeliveryAddressItem(
       {Key? key,
       required this.title,
+      this.onTap,
       this.image = Assets.pngHomeAddress,
       this.subTitleColor = MyColors.grey158,
       this.titleColor = MyColors.black,
@@ -22,6 +23,7 @@ class SavableDeliveryAddressItem extends StatefulWidget {
   final String? title, subTitle;
   final String image;
   final bool selected;
+  final Function? onTap;
   final Color titleColor, subTitleColor;
 
   @override
@@ -58,6 +60,7 @@ class _SavableDeliveryAddressItemState
       onTap: () {
         selected = !selected;
         setState(() {});
+        widget.onTap?.call();
       },
       child: Column(
         children: [

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/infrastructure/model/response/address_model.dart';
 
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/request_control.dart';
@@ -16,7 +17,7 @@ class AddressCubit extends Cubit<AddressState> {
       emit(AddressInProgress());
     }
     try {
-      final result = await AddressProvider.getAddresses();
+      List<AddressModel> result = await AddressProvider.getAddresses();
       emit(AddressSuccess(result));
     } on SocketException catch (_) {
       emit(AddressNetworkError());
@@ -33,6 +34,32 @@ class AddressCubit extends Cubit<AddressState> {
 
     try {
       final result = await AddressProvider.delete(guid: "$id");
+
+      if (isSuccess(result!.statusCode)) {
+        emit(AddressDelete());
+        fetch(false);
+      } else {
+        emit(AddressError(error: MyText.error));
+      }
+    } on SocketException catch (_) {
+      //network olacaq
+      emit(AddressNetworkError());
+    } catch (e) {
+      emit(AddressError(error: MyText.error + " " + e.toString()));
+    }
+
+    //user/attorneys/delete
+  }
+
+  void update(String? id,
+      {bool loading = true, required AddressModel address}) async {
+    if (loading) {
+      emit(AddressInProgress());
+    }
+
+    try {
+      final result =
+          await AddressProvider.update(guid: "$id", address: address);
 
       if (isSuccess(result!.statusCode)) {
         emit(AddressDelete());

@@ -1,6 +1,7 @@
 // Dart imports:
 // Package imports:
 
+import 'package:uikit/utils/enums/transaction_type.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../locator.dart';
@@ -66,6 +67,23 @@ class AddressProvider {
     StatusDynamic statusDynamic = StatusDynamic();
     var api = ApiKeys.getAddress + "/$guid";
     final response = await dioAuth.dio.delete(api);
+    statusDynamic.statusCode = response.statusCode;
+    if (response.statusCode == ResultKey.successCode) {
+      statusDynamic.data = response.data;
+    } else {
+      eeee("deleteAddress bad url :$api, response: ${response}");
+    }
+    return statusDynamic;
+  }
+
+  static Future<StatusDynamic?> update({
+    required String guid,
+    required AddressModel address,
+  }) async {
+    StatusDynamic statusDynamic = StatusDynamic();
+    var api = ApiKeys.getAddress + "/$guid";
+    final data = address.toJson();
+    final response = await dioAuth.dio.put(api, data: data);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
       statusDynamic.data = response.data;
