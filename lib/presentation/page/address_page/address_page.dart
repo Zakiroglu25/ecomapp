@@ -44,7 +44,7 @@ class AddressPage extends StatelessWidget {
           child: BlocBuilder<AddressCubit, AddressState>(
               builder: (context, state) {
             if (state is AddressSuccess) {
-              List<AddressModel> model = state.addressModel;
+              List<AddressModel> model = state.addressList;
               return Padding(
                 padding: Paddings.paddingH16,
                 child: Column(

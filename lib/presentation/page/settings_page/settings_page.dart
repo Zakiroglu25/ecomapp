@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../infrastructure/services/hive_service.dart';
+import '../../../locator.dart';
 import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/paddings.dart';
@@ -9,10 +11,12 @@ import '../../../utils/delegate/navigate_utils.dart';
 import '../../../widgets/main/cupperfold/cupperfold.dart';
 import '../change_number/change_number_page.dart';
 import '../language_page/change_launguage_page.dart';
+import 'widget/change_password.dart';
 import 'widget/edit_field_widget.dart';
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+   const SettingsPage({Key? key}) : super(key: key);
+  HiveService get _prefs => locator<HiveService>();
 
   @override
   Widget build(BuildContext context) {
@@ -25,20 +29,25 @@ class SettingsPage extends StatelessWidget {
         padding: Paddings.paddingH16 + Paddings.paddingV16,
         child: Column(
           children: [
-            EditFieldWidget(
-              onTap: () {
-                Go.to(context, ChangeNumberPage());
-              },
-              headText: "Nömrəniz",
-              subTitle: "Mövcud nömrəniz",
-              title: "+994 50 805 05 20",
-              png: false,
-              switchW: false,
-              sufixImageUrl: Assets.svgCallDark,
-              prefixImageUrl: SvgPicture.asset(Assets.svgEdit),
-            ),
+            // EditFieldWidget(
+            //   onTap: () {
+            //     Go.to(context, ChangeNumberPage());
+            //   },
+            //   headText: "Nömrəniz",
+            //   subTitle: "Mövcud nömrəniz",
+            //   title: _prefs.user.phone,
+            //   png: false,
+            //   switchW: false,
+            //   sufixImageUrl: Assets.svgCallDark,
+            //   prefixImageUrl: SvgPicture.asset(Assets.svgEdit),
+            // ),
             MySizedBox.h16,
-            const EditFieldWidget(
+             EditFieldWidget(
+              onTap: () {
+                Go.to(context, ChangePassword());
+                ///sifreni deyis
+
+              },
               headText: "Təhlükəsizlik",
               title: "Şifrəni dəyiş",
               switchW: false,

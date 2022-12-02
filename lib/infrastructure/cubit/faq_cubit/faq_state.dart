@@ -1,4 +1,3 @@
-
 import '../../model/response/faq_model.dart';
 
 abstract class FaqState {}
@@ -6,8 +5,8 @@ abstract class FaqState {}
 class FaqInitial extends FaqState {}
 
 class FaqProgress extends FaqState {}
-class FaqLoading extends FaqState {}
 
+class FaqLoading extends FaqState {}
 
 class FaqError extends FaqState {
   String? error;
@@ -18,7 +17,7 @@ class FaqError extends FaqState {
 class FaqNetworkError extends FaqState {}
 
 class FaqSuccess extends FaqState {
-  FaqSuccess(this.faq_list);
+  FaqSuccess(this.faqList);
 
-  final FaqModel faq_list;
+  final FaqModel faqList;
 }

@@ -54,7 +54,10 @@ class _FavoritePageState extends State<FavoritePage> {
                       itemCount: products!.length,
                       itemBuilder: (context, index) {
                         final currentProduct = products![index];
-                        return NewProductItem(product: currentProduct);
+                        return NewProductItem(
+                          product: currentProduct,
+                          inFav: true,
+                        );
                         // return Text(state.product_option_model[index].product!.title!);
                       },
                     ),
@@ -63,7 +66,7 @@ class _FavoritePageState extends State<FavoritePage> {
           } else if (state is FavoriteInProgress) {
             return AppLoading.big();
           } else {
-            return EmptyWidget();
+            return EmptyWidget.error();
           }
         },
       ),

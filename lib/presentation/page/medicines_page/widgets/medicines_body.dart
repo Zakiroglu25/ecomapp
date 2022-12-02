@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:uikit/presentation/page/medicines_page/widgets/med_search_field.dart';
+import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/widgets/custom/listview_separated.dart';
 import 'package:uikit/widgets/general/empty_widget.dart';
 import 'package:uikit/widgets/general/list_or_empty.dart';
@@ -38,17 +39,23 @@ class MedicinesBody extends StatelessWidget {
                       padding: Paddings.paddingA16 + Paddings.paddingB60,
                       controller: _scrollController,
                       itemCount: productList.length,
-                      itemBuilder: (context, index) =>
-                          NewProductItem(product: productList[index])),
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) => NewProductItem(
+                            product: productList[index],
+                            inFav: false,
+                          )),
                 ),
               );
             } else if (state is ProductOptionInProgress) {
               return Center(child: AppLoading.big());
             } else {
-              return EmptyWidget();
+              return Expanded(
+                child: EmptyWidget.error(),
+              );
             }
           },
         ),
+        //  Spacer(),
       ],
     );
   }

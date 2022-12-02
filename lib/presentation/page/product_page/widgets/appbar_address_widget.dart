@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/constants/sheets.dart';
 import 'package:uikit/utils/screen/ink_wrapper.dart';
-import 'package:uikit/utils/screen/sheet.dart';
 
 import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/colors.dart';
@@ -17,15 +17,7 @@ class AppBarAddressWidget extends StatelessWidget {
     return Expanded(
       child: InkWrapper(
         onTap: () {
-          Sheet.display(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Burda Address Listi olacaq\ninwallah, Baxa"),
-                ],
-              ),
-              context: context);
+          Sheets.homeAddresses;
         },
         child: Container(
           margin: Paddings.paddingH20,

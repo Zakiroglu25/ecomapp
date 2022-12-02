@@ -9,10 +9,10 @@ import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/enums/transaction_type.dart';
 import '../../data/favorites_provider.dart';
 import '../../model/response/product_option_model.dart';
-import 'favorite_state.dart';
+import 'cart_state.dart';
 
-class FavoriteCubit extends Cubit<FavoriteState> {
-  FavoriteCubit() : super(FavoriteInitial());
+class CartCubit extends Cubit<CartState> {
+  CartCubit() : super(CartInitial());
   int page = 1;
   //List<SimpleProduct> products = [];
   final BehaviorSubject<List<SimpleProduct>> products =
@@ -32,22 +32,22 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   fetchProduct([bool loading = true]) async {
     // updateProducts([]);
     if (loading) {
-      emit(FavoriteInProgress());
+      emit(CartInProgress());
     }
     try {
       final result = await FavoritesProvider.getFavorite(page);
       if (result.statusCode.isSuccess) {
         final favRes = result.data as FavResult;
         updateProducts(favRes.products!);
-        emit(FavoriteSuccess(favRes));
+        emit(CartSuccess(favRes));
       } else {
-        emit(FavoriteError());
+        emit(CartError());
       }
     } on SocketException catch (_) {
-      emit(FavoriteError());
+      emit(CartError());
     } catch (e) {
       eeee("Fvorite Error" + e.toString());
-      emit(FavoriteError());
+      emit(CartError());
     }
   }
 
@@ -63,16 +63,16 @@ class FavoriteCubit extends Cubit<FavoriteState> {
       final result = await FavoritesProvider.addFavorite(guid!,
           trnType: isFav ? TrnType.delete : TrnType.post);
       if (result.statusCode.isSuccess) {
-        emit(FavoriteAdding());
+        emit(CartAdding());
         fetchProduct(false);
       } else {
-        emit(FavoriteNotAdding());
+        emit(CartNotAdding());
       }
     } on SocketException catch (_) {
-      emit(FavoriteError());
+      emit(CartError());
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
-      emit(FavoriteError());
+      emit(CartError());
     }
   }
 }

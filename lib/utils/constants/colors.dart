@@ -21,6 +21,7 @@ class MyColors {
   static const Color grey288 = Color.fromRGBO(228, 232, 238, 1);
   static const Color halfGrey = const Color.fromRGBO(214, 214, 214, 1);
   static const Color grey245 = Color.fromRGBO(245, 246, 248, 1);
+  static const Color grey235 = Color.fromRGBO(235, 236, 238, 1);
   static const Color field_grey = Color.fromRGBO(248, 249, 253, 1);
   static const Color transparent = Colors.transparent;
   static const Color white = Colors.white;

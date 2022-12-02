@@ -50,6 +50,9 @@ class Assets {
 
   ///homepage
   static const String svgSearch = "assets/svg/search.svg";
+  static const String svgLocation = "assets/svg/location.svg";
+  static const String svgAddress = "assets/svg/address.svg";
+  static const String svgTickCircle = "assets/svg/tick-circle.svg";
 
   ///otherpage
   static const String location3x = "assets/png/location.png";
@@ -60,6 +63,8 @@ class Assets {
   static const String pngContact3x = "assets/png/contact.png";
   static const String pngQuestion3x = "assets/png/question.png";
   static const String pngSeting3x = "assets/png/setting.png";
+  static const String pngHomeAddress = "assets/png/home.png";
+  static const String pngLocationIcon = "assets/png/location_icon.png";
 
   ///product page
   static const String pngVitamin3x = "assets/png/vitamin.png";

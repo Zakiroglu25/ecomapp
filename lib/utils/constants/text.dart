@@ -23,7 +23,7 @@ class MyText {
   static const String successfullyRegistered = "Qeydiyyat Uğurla tamamlandı";
 
   //register
-  static const String email = "E-poçt";
+  static const String email = "E-poçt və ya mobil";
   static const String emailOrPassNotCorrect = "E-poçt və ya şifrə yanlışdır";
   static const String phone = "Mobil nömrə";
   static const String phone_hint = "+994 (__) ___-__-__";
@@ -136,6 +136,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String makeOrder = "Sifariş et";
   static const String deliveryPrice = "Çatdırılma haqqı";
   static const String delivery = "Çatdırılma";
+  static const String deliveryAddresses = "Çatdırılma ünvanları";
   static const String insuranceInfo =
       "Əgər sizin sığortanız varsa, o zaman sığorta ilə ödə funksiyasını aktivləşdirin.";
   static const String total = "Toplam";
@@ -223,4 +224,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String enterDesc = "Daxil edin";
   static const String nameAddress = "Ünvanı adlandır";
   static const String exampleName = "Məsələn: Ev ünvanı";
+  static const String addCurrentAddress = "Mövcüd ünvan əlavə et";
+
+  //faq
+  static const String faq = 'Sual-cavab';
 }

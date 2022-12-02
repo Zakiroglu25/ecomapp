@@ -13,4 +13,7 @@ class Radiuses {
   static final BorderRadius r20 = BorderRadius.circular(20);
   static final BorderRadius r36 = BorderRadius.circular(36);
   static final BorderRadius r99 = BorderRadius.circular(99);
+
+  static const BorderRadius rt24 = BorderRadius.only(
+      topLeft: Radius.circular(24), topRight: Radius.circular(24));
 }
