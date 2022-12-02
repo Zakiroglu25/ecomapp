@@ -20,7 +20,6 @@ import '../../../utils/constants/paddings.dart';
 import '../../../utils/constants/sized_box.dart';
 import '../../../widgets/custom/app_button.dart';
 import '../../../widgets/general/app_loading.dart';
-import 'widget/header_price_text.dart';
 
 class ProductOptionDetails extends StatefulWidget {
   SimpleProduct? product;
@@ -133,7 +132,9 @@ class _ProductOptionDetailsState extends State<ProductOptionDetails> {
           } else if (state is ProductODetailsInProgress) {
             return AppLoading.big();
           }
-          return EmptyWidget();
+          return EmptyWidget(
+            text: MyText.error,
+          );
         },
       ),
     );

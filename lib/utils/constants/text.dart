@@ -223,4 +223,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String enterDesc = "Daxil edin";
   static const String nameAddress = "Ünvanı adlandır";
   static const String exampleName = "Məsələn: Ev ünvanı";
+
+  //faq
+  static const String faq = 'Sual-cavab';
 }
