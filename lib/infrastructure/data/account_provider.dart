@@ -10,13 +10,15 @@ import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
 import '../model/locale/MyUser.dart';
 import '../model/response/status_dynamic.dart';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 
 import '../services/hive_service.dart';
 
 class AccountProvider {
   static DioAuth get dioAuth => locator<DioAuth>();
+
   static HiveService get _prefs => locator<HiveService>();
+
   static Future<StatusDynamic?> fetchUserInfo({
     required String? token,
   }) async {
@@ -56,6 +58,25 @@ class AccountProvider {
     return statusDynamic;
   }
 
+  static Future<StatusDynamic?> changePhone({
+    required String? phone,
+    required String? password,
+  }) async {
+    StatusDynamic<MyUser> statusDynamic = StatusDynamic<MyUser>();
+    var api = ApiKeys.changeNumber;
+    final data = ApiKeys.changePhoneBody(phone: phone, password: password);
+    print(data);
+    final response = await dioAuth.dio.post(api, data: data);
+    print(response.statusMessage);
+    print(response.statusCode);
+    statusDynamic.statusCode = response.statusCode;
+    if (response.statusCode == ResultKey.successCode) {
+    } else {
+      eeee("changePhone bad url :$api, response: ${response}");
+    }
+    return statusDynamic;
+  }
+
   //User Update
 
   static Future<StatusDynamic?> updateUserInfo({
@@ -72,7 +93,7 @@ class AccountProvider {
   }) async {
     StatusDynamic statusDynamic = StatusDynamic();
     var api = ApiKeys.user;
-     Uri url = Uri.parse(api);
+    Uri url = Uri.parse(api);
     final body = ApiKeys.updateAccountBody(
       phone: phone,
       email: email,
@@ -82,7 +103,7 @@ class AccountProvider {
       birthday: birthday,
       finCode: finCode,
       // insuranceId: insuranceId,
-      idSerialNumber:idSerialNumber,
+      idSerialNumber: idSerialNumber,
       newsletterSubscription: false,
     );
 
@@ -90,8 +111,7 @@ class AccountProvider {
     iiii(body.toString());
 
     // final response = await http.put(url,headers: ApiKeys.header(token: _prefs.accessToken));
-    final response = await dioAuth.dio.put(api,
-        data: jsonEncode(body));
+    final response = await dioAuth.dio.put(api, data: jsonEncode(body));
     iiii(response.toString());
     iiii(response.data.toString());
     iiii(response.statusCode.toString());

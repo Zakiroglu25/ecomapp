@@ -83,6 +83,10 @@ class Pager {
       providers: [BlocProvider(create: (context) => UserCubit())],
       child: const UserEditPage());
 
+  static get editNum => MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => UserCubit())],
+      child: const UserEditPage());
+
   static otp(String phone) => MultiBlocProvider(
       providers: [BlocProvider(create: (context) => OTPCubit(phone: phone))],
       child: const OTPPage());
@@ -100,7 +104,10 @@ class Pager {
 
   static get settings => SettingsPage();
 
-  static get changeNumber => ChangeNumberPage();
+  static get changeNumber => BlocProvider(
+        create: (context) => UserCubit(),
+        child: ChangeNumberPage(),
+      );
 
   static get home => HomePage();
 
