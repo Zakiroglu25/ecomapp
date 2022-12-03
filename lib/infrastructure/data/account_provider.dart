@@ -16,6 +16,7 @@ import '../services/hive_service.dart';
 
 class AccountProvider {
   static DioAuth get dioAuth => locator<DioAuth>();
+
   static HiveService get _prefs => locator<HiveService>();
   static Future<StatusDynamic> fetchUserInfo({
     required String? token,
@@ -52,6 +53,25 @@ class AccountProvider {
     if (response.statusCode == ResultKey.successCode) {
     } else {
       eeee("sendDevice bad url :$api, response: ${response}");
+    }
+    return statusDynamic;
+  }
+
+  static Future<StatusDynamic?> changePhone({
+    required String? phone,
+    required String? password,
+  }) async {
+    StatusDynamic<MyUser> statusDynamic = StatusDynamic<MyUser>();
+    var api = ApiKeys.changeNumber;
+    final data = ApiKeys.changePhoneBody(phone: phone, password: password);
+    print(data);
+    final response = await dioAuth.dio.post(api, data: data);
+    print(response.statusMessage);
+    print(response.statusCode);
+    statusDynamic.statusCode = response.statusCode;
+    if (response.statusCode == ResultKey.successCode) {
+    } else {
+      eeee("changePhone bad url :$api, response: ${response}");
     }
     return statusDynamic;
   }

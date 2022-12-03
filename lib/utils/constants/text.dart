@@ -216,6 +216,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String success = "Əməliyyat uğurlu oldu!";
   static const String patronomic = "Ata adı";
   static const String lastName = "Soyadı";
+  static const String num = "Nömrə";
+  static const String mail = "Email";
 
   //address
   static const String city = "Şəhər";

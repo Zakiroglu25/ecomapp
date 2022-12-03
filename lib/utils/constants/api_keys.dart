@@ -41,6 +41,8 @@ class ApiKeys {
   //user
   static const user = "$account";
   static const devices = "$customer/devices";
+  static const changeNumber = "$account/request-update-phone-otp";
+
 
   //address
   static const getAddress = "$customer/address-book";
@@ -113,6 +115,20 @@ class ApiKeys {
         (key, value) => key == null || value == null || value == 'null');
     return map;
   }
+
+
+  static changePhoneBody({
+    required String? phone,
+    required String? password,
+  }) {
+    //
+    final map = {"phone": phone, "password": password};
+
+    map.removeWhere(
+            (key, value) => key == null || value == null || value == 'null');
+    return map;
+  }
+
 
   static registrationPersonalBody({
     required String? email,

@@ -11,7 +11,6 @@ import 'widget/fields/email_field.dart';
 import 'widget/fields/finField.dart';
 import 'widget/fields/last_name_fiedl.dart';
 import 'widget/fields/name_field.dart';
-import 'widget/fields/number_field.dart';
 import 'widget/fields/patronymic_field.dart';
 import 'widget/fields/seria_field.dart';
 import 'widget/save_button.dart';
@@ -33,9 +32,9 @@ class UserEditPage extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(16),
         children: [
-          PhoneFieldUser(
-            controller: StringOperations.stringToController(_prefs.user.phone),
-          ),
+          // PhoneFieldUser(
+          //   controller: StringOperations.stringToController(_prefs.user.phone),
+          // ),
           EmailFieldUser(
               controller:
                   StringOperations.stringToController(_prefs.user.email)),

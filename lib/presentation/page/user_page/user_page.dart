@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:uikit/utils/constants/app_text_styles.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
 
 import '../../../infrastructure/services/hive_service.dart';
 import '../../../locator.dart';
+import '../../../utils/constants/app_text_styles.dart';
+import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/colors.dart';
+import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/navigate_utils.dart';
+import '../../../utils/delegate/pager.dart';
+import '../../../utils/screen/ink_wrapper.dart';
 import '../../../widgets/doctoro_appbar/doctoro_appbar.dart';
-import '../insurance_page/add_insurance_page.dart';
+import '../change_number/change_number_page.dart';
+import 'widget/add_insurance.dart';
+import 'widget/edit_num_page.dart';
 import 'widget/user_data_body.dart';
+import 'widget/user_data_item_widget.dart';
+import 'widget/user_view.dart';
 
 class PageViewExample extends StatefulWidget {
   const PageViewExample({Key? key}) : super(key: key);
@@ -25,6 +35,7 @@ class _PageViewExampleState extends State<PageViewExample> {
   final cards = [
     UserView(),
     AddInsurance(),
+    EditContact(),
   ];
 
   @override
@@ -66,8 +77,8 @@ class _PageViewExampleState extends State<PageViewExample> {
   }
 }
 
-class UserView extends StatelessWidget {
-  const UserView({super.key});
+class EditContact extends StatelessWidget {
+  const EditContact({Key? key}) : super(key: key);
 
   HiveService get _prefs => locator<HiveService>();
 
@@ -82,57 +93,38 @@ class UserView extends StatelessWidget {
           width: 311,
           height: 420,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: UserDataBody(prefs: _prefs),
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Kontaktlar",
+                      style: AppTextStyles.sfPro600s17,
+                    ),
+                    InkWrapper(
+                        onTap: () {
+                          Go.to(context, Pager.changeNumber);
+                        },
+                        child: SvgPicture.asset(Assets.svgEditUser))
+                  ],
+                ),
+                MySizedBox.h16,
+                UserDataWidgetItem(
+                  title: MyText.mail,
+                  content: _prefs.user.email,
+                ),
+                UserDataWidgetItem(
+                  title: MyText.num,
+                  content: _prefs.user.phone,
+                ),
+              ],
+            ),
           ),
         ),
-      ],
-    );
-  }
-}
-
-class AddInsurance extends StatelessWidget {
-  const AddInsurance({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12), color: MyColors.white),
-            width: 311,
-            height: 420,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Go.to(context, AddInsurancePage());
-                  },
-                  child: Container(
-                    width: 64,
-                    height: 64,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: MyColors.black),
-                    child: const Icon(
-                      Icons.add,
-                      color: MyColors.white,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 49.0, right: 49, top: 16),
-                  child: Text("Daha bir sığorta əlavə et",
-                      textAlign: TextAlign.center,
-                      style: AppTextStyles.sfPro700s24
-                          .copyWith(color: MyColors.grey158)),
-                )
-              ],
-            )),
       ],
     );
   }
