@@ -5,6 +5,7 @@ import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/utils/delegate/my_printer.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
+import '../../../locator.dart';
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/app_operations.dart';
 import '../../../utils/delegate/navigate_utils.dart';
@@ -12,12 +13,14 @@ import '../../../utils/delegate/pager.dart';
 import '../../../utils/screen/snack.dart';
 import '../../../utils/validators/validator.dart';
 import '../../data/auth_provider.dart';
+import '../../services/hive_service.dart';
 
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());
 
+  HiveService get _prefs => locator<HiveService>();
   void register(BuildContext context) {
     registerPersonal(context);
   }
@@ -27,14 +30,17 @@ class RegisterCubit extends Cubit<RegisterState> {
     try {
       // final deviceCode = await _firebaseMessaging.getToken();
       final deviceCode = 'token';
+      final formattedPhone =
+          AppOperations.formatNumberWith994(phone.valueOrNull!);
       final response = await AuthProvider.registration(
         email: uEmail.valueOrNull,
-        phone: AppOperations.formatNumberWith994(phone.valueOrNull!),
+        phone: formattedPhone,
         password: uPassMain.value,
         ads: checkbox.valueOrNull,
       );
 
       if (response!.status.isSuccess) {
+        _prefs.persistPhone(phone: formattedPhone);
         // await UserOperations.configureUserDataWhenLogin(
         //   refreshToken: '',
         //   accessToken: response.toString(),
