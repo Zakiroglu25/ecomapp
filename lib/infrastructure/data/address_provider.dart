@@ -28,7 +28,7 @@ class AddressProvider {
     return statusDynamic;
   }
 
-  static Future<StatusDynamic?> addAddress({
+  static Future<StatusDynamic> addAddress({
     required String? title,
     required String? streetName,
     required String? houseNumber,

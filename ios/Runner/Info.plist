@@ -52,5 +52,11 @@
 	<false/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+    <string>App need camera permission for select user photo</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>This app needs access to location when open.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>App need gallery permission for select report photo of product</string>
 </dict>
 </plist>

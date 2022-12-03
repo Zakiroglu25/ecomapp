@@ -5,6 +5,9 @@ import 'package:uikit/infrastructure/config/configs.dart';
 class ApiKeys {
   ApiKeys._();
 
+  static const bigDataCloud = 'https://api.bigdatacloud.net/data';
+  static const googleMap = 'https://maps.googleapis.com/maps/api/geocode';
+
   static const baseUrl = 'https://doctoro${Configs.enviroment}.ml';
   static const public = "$baseUrl/public";
   static const auth = "$public/auth";
@@ -77,6 +80,10 @@ class ApiKeys {
 
   //bank card
   static const card = "$baseUrl/$customer/card";
+
+  //general
+  static const localityInfoBigData = '$bigDataCloud/reverse-geocode-client';
+  static const localityInfoGoogleMap = '$googleMap/json';
 
   static loginBody({
     required String? email,
@@ -211,7 +218,7 @@ class ApiKeys {
       "phone": phone,
       "latitude": latitude,
       "longitude": longitude,
-      "description": country,
+      "description": description,
       "isMain": isMain,
     };
 

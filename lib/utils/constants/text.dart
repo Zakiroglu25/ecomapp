@@ -55,6 +55,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String forgot = "Şifrəni unutmusuz ?";
   static const String are_u_sure_exit = "Çıxış etmək istədiyinizdən əminsiniz?";
   static const String new_pass = 'Yeni şifrə';
+  static const String info = 'Məlumat';
   static const String set_new_pass = 'Yeni şifrəni təyin et';
 
   //otp
@@ -223,8 +224,25 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String courierDesc = "Kuryer üçün qeyd";
   static const String enterDesc = "Daxil edin";
   static const String nameAddress = "Ünvanı adlandır";
+  static const String addressNotSelected = "Ünvan seçilməyib";
   static const String exampleName = "Məsələn: Ev ünvanı";
-  static const String addCurrentAddress = "Mövcüd ünvan əlavə et";
+  static const String addCurrentAddress = "Mövcud ünvanı əlavə et";
+  static const String addNewAddress = "Yeni ünvan yarat";
+  static const String we_will_redirect_to_settings_gallery =
+      "Sizi tətbiq icazələrinə yönləndirəcəyik. Fotolar --> Bütün fotolar yolunu izləyin. Daha sonra geri qayıdın.";
+  static const String we_will_redirect_to_settings_locatoin =
+      "Sizi tətbiq icazələrinə yönləndirəcəyik. Location --> While Using the App. Daha sonra geri qayıdın.";
+  static const String we_need_access_to_gallery =
+      "Fotolara əlçatanlıq üçün icazə lazımdır";
+  static const String we_need_access_to_locatoin =
+      "Cari yer məlumatlarına əlçatanlıq üçün icazə lazımdır";
+  static const String youMustSelectOneOfThem =
+      "Davam etmək üçün aşağıdakılardan birini seçməlisiniz:\n\n";
+  static const String locationAccessDenied = "İcazə rədd edildi";
+  static const String locationAccessDisabled =
+      "İcazə qalıcı olaraq rədd edilib";
+  static const String emptyDeliveryAddressDesc =
+      "Hal-hazırda sənin çatdırılacaq ünvanların qeyd olunmayıb. Yeni ünvan əlavə et.";
 
   //faq
   static const String faq = 'Sual-cavab';

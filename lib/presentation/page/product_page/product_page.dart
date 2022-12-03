@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
 
-import 'widgets/product_body.dart';
+import '../medicines_page/widgets/product_body.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({Key? key}) : super(key: key);

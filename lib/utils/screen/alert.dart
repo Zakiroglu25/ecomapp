@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uikit/widgets/custom/app_button.dart';
 
+import '../constants/app_text_styles.dart';
 import '../constants/colors.dart';
 import '../constants/paddings.dart';
+import '../constants/text.dart';
 import '../delegate/navigate_utils.dart';
 import 'widget_or_empty.dart';
 // Project imports:
@@ -54,10 +56,10 @@ class Alert {
                       SizedBox(
                         height: 10.sm,
                       ),
-                  // Text(
-                  //   title ?? MyText.operationIsSuccess,
-                  //   style: AppTextStyles.sanF600.copyWith(fontSize: 18.sm),
-                  // ),
+                  Text(
+                    title ?? MyText.info,
+                    style: AppTextStyles.sfPro600.copyWith(fontSize: 18.sm),
+                  ),
                   SizedBox(
                     height: 10.sm,
                   ),
@@ -102,7 +104,7 @@ class Alert {
                         SizedBox(
                           width: buttonSize,
                           child: AppButton(
-                            // text: buttonText ?? MyText.ok,
+                            text: buttonText ?? MyText.ok,
                             onTap: () {
                               Go.pop(context);
                               if (onTap != null) {

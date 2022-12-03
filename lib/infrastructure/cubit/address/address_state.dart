@@ -21,3 +21,9 @@ class AddressSuccess extends AddressState {
 
   final List<AddressModel> addressList;
 }
+
+class AddressMainSuccess extends AddressState {
+  AddressMainSuccess(this.address);
+
+  final AddressModel? address;
+}
