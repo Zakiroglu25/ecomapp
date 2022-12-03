@@ -33,6 +33,7 @@ class ApiKeys {
   static const login = "$auth/login";
   static const refreshToken = "$auth/refresh-token";
   static const validateOtp = "$auth/validate-otp";
+  static const requestOtp = "$auth/request-otp";
 
   // register
   static const registerPersonal = "$baseUrl/public/onboarding/sign-up";
@@ -45,7 +46,6 @@ class ApiKeys {
   static const getAddress = "$customer/address-book";
 
   //forgot
-  static const requestOtp = "$auth/request-otp";
   static const forgotOtpApprove = "$auth/validate-otp";
   static const resetPassword = "$account/reset-password";
 
@@ -104,9 +104,10 @@ class ApiKeys {
   static otpBody({
     required String? phone,
     required String? otp,
+    required String? email,
   }) {
     //
-    final map = {"phone": phone, "otp": otp};
+    final map = {"phone": phone, "otp": otp, "email": email};
 
     map.removeWhere(
         (key, value) => key == null || value == null || value == 'null');

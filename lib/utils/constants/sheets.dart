@@ -8,10 +8,12 @@ import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/screen/sheet.dart';
+import 'package:uikit/widgets/custom/app_button.dart';
 import 'package:uikit/widgets/custom/text_title_big.dart';
 
 import '../../infrastructure/cubit/address/address_cubit.dart';
 import '../../presentation/page/medicines_page/widgets/current_delivery_address_button.dart';
+import '../../presentation/page/medicines_page/widgets/sheet_add_new_address_button.dart';
 import 'durations.dart';
 
 class Sheets {
@@ -44,7 +46,9 @@ class Sheets {
                         BigSection(title: MyText.deliveryAddresses),
                         MySizedBox.h16,
                         const CurrentDeliveryAddressButton(),
-                        const SavedAddressList()
+                        const SavedAddressList(),
+                        MySizedBox.h16,
+                        SheetAddNewAddressButton()
                       ],
                     ),
                   ),

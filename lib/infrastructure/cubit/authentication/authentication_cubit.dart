@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../locator.dart';
 import '../../../utils/constants/assets.dart';
@@ -12,6 +14,9 @@ import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/delegate/pager.dart';
 import '../../../utils/delegate/user_operations.dart';
 import '../../../utils/screen/alert.dart';
+import '../../config/recorder.dart';
+import '../../data/account_provider.dart';
+import '../../model/response/error_response.dart';
 import '../../model/response/status_dynamic.dart';
 import '../../services/config_service.dart';
 import '../../services/hive_service.dart';
@@ -41,8 +46,18 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       // configureFcm(context: context);
       //final String? fcm = await _fcm.getToken();
       final String? fcm = 'test fcm';
+
+      //  _prefs.persistIsLoggedIn(true);
       final bool isLoggedIn = _prefs.isLoggedIn;
       final String? accessToken = _prefs.accessToken;
+      final bool? isNumberValidated = await checkIsValidated();
+
+      //nomrenin tesdiq olunumagini yoxlayir
+      //olunmayibsa otp sehifesi acilir
+      if (isNumberValidated == false) {
+        emit(AuthenticationOtpRequest());
+        return;
+      }
 
       bbbb("accessToken: $accessToken");
       if (isLoggedIn && accessToken != null) {
@@ -63,14 +78,14 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
           delay(showSplash),
           // configGuest(context),
         ]);
-
+        emit(AuthenticationUninitialized());
         //  if (goOn!) {
 
-        if (_configs.onBoardIsSeen) {
-          emit(AuthenticationUninitialized());
-        } else {
-          emit(AuthenticationOnboarding());
-        }
+        // if (_configs.onBoardIsSeen) {
+        //   emit(AuthenticationUninitialized());
+        // } else {
+        //   emit(AuthenticationOnboarding());
+        // }
 
         //Go.to(context, Pager.login);
         // }
@@ -82,6 +97,29 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       eeee("AuthenticationError: $s" + e.toString());
       emit(AuthenticationError());
     }
+  }
+
+  Future<bool?> checkIsValidated({bool? loading}) async {
+    try {
+      final result =
+          await AccountProvider.fetchUserInfo(token: _prefs.accessToken);
+      if (result.statusCode.isSuccess) return true;
+    } on DioError catch (err, s) {
+      switch (err.response?.statusCode) {
+        case 500:
+          final error = ErrorResponse.fromJson(err.response?.data);
+          switch (error.status) {
+            case 10005:
+              return false;
+          }
+          break;
+        default:
+          break;
+      }
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+    }
+    return null;
   }
 
   Future<void> serverControl(StatusDynamic? result, Function isSuccess) async {
@@ -111,7 +149,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   void showLogoutDialog(BuildContext context, {bool goWithPager = false}) {
     Alert.show(context,
         image: SizedBox(
-            width: 120, height: 120, child: Image.asset(Assets.svgLogo)),
+            width: 120, height: 120, child: Image.asset(Assets.pngSetting3x)),
         cancelButton: true, onTap: () {
       logOut(context, goWithPager: goWithPager);
     }, title: MyText.are_u_sure_exit);
@@ -129,6 +167,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
 
       PaintingBinding.instance.imageCache.clear();
       imageCache.clear();
+      Go.andRemove(context, Pager.login);
     } catch (e, s) {
       // Recorder.recordCatchError(e, s);
     }

@@ -98,24 +98,29 @@ class AddressPage extends StatelessWidget {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "${model[index].title}",
-                                        style: AppTextStyles.sfPro600s16,
-                                      ),
-                                      Text(
-                                        model[index].streetName!.length > 30
-                                            ? model[index]
-                                                .streetName!
-                                                .substring(0, 30)
-                                            : model[index].streetName!,
-                                        textAlign: TextAlign.center,
-                                        style: AppTextStyles.sfPro400s14,
-                                      ),
-                                    ],
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "${model[index].title}",
+                                          style: AppTextStyles.sfPro600s16,
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1,
+                                        ),
+                                        Text(
+                                          model[index].streetName!.length > 30
+                                              ? model[index]
+                                                  .streetName!
+                                                  .substring(0, 30)
+                                              : model[index].streetName!,
+                                          textAlign: TextAlign.center,
+                                          maxLines: 2,
+                                          style: AppTextStyles.sfPro400s14,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                   Spacer(),
                                   InkWrapper(

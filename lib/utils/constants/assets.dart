@@ -62,7 +62,7 @@ class Assets {
   static const String pngLikeMedicine = "assets/png/likemedicine.png";
   static const String pngContact3x = "assets/png/contact.png";
   static const String pngQuestion3x = "assets/png/question.png";
-  static const String pngSeting3x = "assets/png/setting.png";
+  static const String pngSetting3x = "assets/png/setting.png";
   static const String pngHomeAddress = "assets/png/home.png";
   static const String pngLocationIcon = "assets/png/location_icon.png";
 
@@ -93,7 +93,6 @@ class Assets {
   static const on_board_capsule = "assets/png/capsule_onboard.png";
   static const String courier_png = "assets/png/on_board_courier.png";
   static const String capsule_png = "assets/png/on_board_capsule.png";
-  static const String pngLock = "assets/png/lock_otp.png";
   static const String keyChild = "assets/png/keychild.png";
   static const String medicine = "assets/png/medicine.png";
   static const String pngBad = "assets/png/bad.png";

@@ -8,6 +8,8 @@ import 'package:uikit/utils/extensions/index.dart';
 
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
+import '../../utils/delegate/navigate_utils.dart';
+import '../../utils/delegate/pager.dart';
 import '../../utils/screen/alert.dart';
 import '../model/response/detailed_error.dart';
 import '../model/response/error_response.dart';
@@ -91,7 +93,14 @@ class JwtInterceptor extends Interceptor {
         final error = ErrorResponse.fromJson(err.response?.data);
         switch (error.status) {
           case 10005:
-          //Go.to(NavigationService.instance.navigationKey.currentContext,Pager.otp(phone));
+            // Go.to(
+            //     NavigationService.instance.navigationKey!.currentContext!,
+            //     Pager.otp(
+            //         phone: _prefs.phoneNumber,
+            //         email: _prefs.email,
+            //         requestNew: true));
+            // handler.next(err);
+            return;
         }
         break;
       default:

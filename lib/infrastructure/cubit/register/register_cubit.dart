@@ -42,7 +42,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         // );
         emit(RegisterSuccess(""));
         Snack.positive(message: MyText.otpSent);
-        Go.to(context, Pager.otp(phone.value));
+        Go.to(context, Pager.otp());
       } else {
         // String error = '';
         // response?.validation?.toJson().entries.map((e) {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:uikit/infrastructure/cubit/authentication/authentication_cubit.dart';
 import 'package:uikit/presentation/page/contact_page/contact_page.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
@@ -14,7 +16,6 @@ import '../../../utils/constants/text.dart';
 import '../../../widgets/custom/product_and_other_widget.dart';
 import '../insurance_page/add_insurance_page.dart';
 import '../payment_method_page/payment_method_page.dart';
-import '../question_response_page/question_response_page.dart';
 import '../settings_page/settings_page.dart';
 
 class OtherPage extends StatelessWidget {
@@ -93,7 +94,7 @@ class OtherPage extends StatelessWidget {
                   color: MyColors.grey245,
                   h: 167.h,
                   w: 167.w,
-                  imageUrl: Assets.pngSeting3x,
+                  imageUrl: Assets.pngSetting3x,
                   title: MyText.settings,
                   desc: MyText.demoSubtitle,
                 ),
@@ -130,6 +131,17 @@ class OtherPage extends StatelessWidget {
                   imageUrl: Assets.pngQuestion3x,
                   title: MyText.questionAnswer,
                   desc: MyText.demoSubtitle,
+                ),
+                ProductAndOtherWidget(
+                  onTap: () => context
+                      .read<AuthenticationCubit>()
+                      .showLogoutDialog(context),
+                  color: MyColors.purple,
+                  h: 167.h,
+                  w: 167.w,
+                  imageUrl: Assets.pngQuestion3x,
+                  title: MyText.logout,
+                  desc: MyText.logoutSub,
                 ),
               ],
             ),

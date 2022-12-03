@@ -3,28 +3,45 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:uikit/infrastructure/data/auth_provider.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
+import '../../../locator.dart';
 import '../../../utils/constants/text.dart';
+import '../../../utils/delegate/app_operations.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/delegate/pager.dart';
 import '../../../utils/delegate/user_operations.dart';
 import '../../config/recorder.dart';
+import '../../services/hive_service.dart';
+import '../../services/navigation_service.dart';
 import 'otp_state.dart';
 
 // Project imports:
 
 class OTPCubit extends Cubit<OtpState> {
-  OTPCubit({required this.phone}) : super(OtpInitial());
+  OTPCubit({this.requestNew = false}) : super(OtpInitial()) {
+    email = _prefs.email;
+    phone = _prefs.phoneNumber;
+    if (requestNew)
+      requestOtp();
+    else
+      emit(OtpRequested());
+  }
+
+  HiveService get _prefs => locator<HiveService>();
+  BuildContext outContext =
+      NavigationService.instance.navigationKey!.currentContext!;
 
   bool emailValid = false;
 
-  final String phone;
-
+  String? phone;
+  String? email;
+  final bool requestNew;
   final BehaviorSubject<String> otp = BehaviorSubject<String>();
 
   Stream<String> get otpStream => otp.stream;
@@ -47,11 +64,13 @@ class OTPCubit extends Cubit<OtpState> {
     return super.close();
   }
 
-  void requestOtp(BuildContext context, {bool? loading}) async {
+  void requestOtp({bool? loading}) async {
     try {
       if (loading ?? true) {
         emit(OtpInProgress());
       }
+      final res = await AuthProvider.requestOtp(phone: phone, email: email);
+      if (res.statusCode.isSuccess) emit(OtpRequested());
     } on SocketException catch (_) {
       emit(OtpError(error: 'network_error'));
     } catch (e, s) {
@@ -65,9 +84,9 @@ class OTPCubit extends Cubit<OtpState> {
       if (loading ?? true) {
         emit(OtpInProgress());
       }
-      //
-      final response =
-          await AuthProvider.validateOtp(phone: phone, otp: otp.valueOrNull);
+      final formattedPhone = AppOperations.formatNumberWith994(phone);
+      final response = await AuthProvider.validateOtp(
+          email: email, phone: formattedPhone, otp: otp.valueOrNull);
       if (!response.statusCode.isSuccess) {
         updateOtp('');
         emit(OtpError());
@@ -77,8 +96,10 @@ class OTPCubit extends Cubit<OtpState> {
 
       await UserOperations.configureUserDataWhenLogin(
           accessToken: tokens['accessToken'],
-          refreshToken: tokens['refreshToken']);
-      Go.andRemove(context, Pager.app(showSplash: true));
+          refreshToken: tokens['refreshToken'],
+          email: email,
+          phone: formattedPhone);
+      Go.andRemove(outContext, Pager.app(showSplash: true));
       emit(OtpSuccess(''));
       //
       //

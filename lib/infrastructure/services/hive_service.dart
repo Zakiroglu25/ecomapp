@@ -50,8 +50,7 @@ class HiveService {
       await _box!.put(SharedKeys.accessToken, accessToken);
   }
 
-  String? get accessToken => _box!.get(SharedKeys
-      .accessToken);
+  String? get accessToken => _box!.get(SharedKeys.accessToken);
 
   bool get hasAccessToken =>
       (_box?.containsKey(SharedKeys.accessToken)) ?? false;
@@ -122,6 +121,26 @@ class HiveService {
   }
 
   String get fcmToken => _box!.get("fcm_token")!;
+
+  //email
+  Future<void> persistEmail({String? email}) async {
+    if (email == null) {
+      await _box!.delete(SharedKeys.email);
+    } else
+      await _box!.put(SharedKeys.email, email);
+  }
+
+  String? get email => _box!.get(SharedKeys.email);
+
+  //phone
+  Future<void> persistPhone({String? phone}) async {
+    if (phone == null) {
+      await _box!.delete(SharedKeys.phoneNumber);
+    } else
+      await _box!.put(SharedKeys.phoneNumber, phone);
+  }
+
+  String? get phoneNumber => _box!.get(SharedKeys.phoneNumber);
 
   // read(String key) async {
   //   //  print("read shared 1");

@@ -17,6 +17,7 @@ class MyText {
   //login btn text
   static const String register = "Qeydiyyatdan keç";
   static const String login = "Hesaba daxil ol";
+  static const String logout = "Çıxış";
   static const String all_fields_must_be_filled =
       "Bütün xanalar doldurulmalıdır!";
   static const String field_is_not_correct = "Xana düzgün doldurulmayıb!";
@@ -113,6 +114,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String vitamin = "Vitaminlər";
   static const String vitaminSub = "Bütün qrup vitəminləri əldə edin.";
   static const String otherSub = "Axtardığınız məhsulu tapmaq üçün";
+  static const String logoutSub = "Təsdiqlədikdən sonra çıxış edəcəksiniz";
 
   static const String paymentMetod = "Ödəniş üsulu";
   static const String messenger = "Messenger";
