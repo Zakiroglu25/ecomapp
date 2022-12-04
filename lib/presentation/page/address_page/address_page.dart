@@ -7,6 +7,7 @@ import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
 import 'package:uikit/infrastructure/cubit/address/address_state.dart';
 import 'package:uikit/infrastructure/model/response/address_model.dart';
 import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/enums/transaction_type.dart';
 import 'package:uikit/utils/screen/ink_wrapper.dart';
 import 'package:uikit/widgets/general/app_loading.dart';
 
@@ -44,7 +45,7 @@ class AddressPage extends StatelessWidget {
           child: BlocBuilder<AddressCubit, AddressState>(
               builder: (context, state) {
             if (state is AddressSuccess) {
-              List<AddressModel> model = state.addressModel;
+              List<AddressModel> model = state.addressList;
               return Padding(
                 padding: Paddings.paddingH16,
                 child: Column(
@@ -87,7 +88,7 @@ class AddressPage extends StatelessWidget {
                                             onPressed: (context) {
                                               context
                                                   .read<AddressCubit>()
-                                                  .delete(model[index].guid);
+                                                  .delete(model[index].guid!);
                                             },
                                             backgroundColor: MyColors.darkRED,
                                             foregroundColor: Colors.white,

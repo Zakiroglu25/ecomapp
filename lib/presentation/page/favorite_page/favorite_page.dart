@@ -66,7 +66,7 @@ class _FavoritePageState extends State<FavoritePage> {
           } else if (state is FavoriteInProgress) {
             return AppLoading.big();
           } else {
-            return EmptyWidget();
+            return EmptyWidget.error();
           }
         },
       ),

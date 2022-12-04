@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/widgets/main/product_item/widgets/product_cart_button.dart';
 import 'package:uikit/widgets/main/product_item/widgets/product_fav_button.dart';
 import 'package:uikit/widgets/main/product_item/widgets/product_image.dart';
 
@@ -24,7 +25,7 @@ class NewProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        InkWrapper(
+        GestureDetector(
           onTap: () {
             Go.to(
                 context,
@@ -56,6 +57,7 @@ class NewProductItem extends StatelessWidget {
           product: product,
           inFav: inFav,
         ),
+        //  ProductCartButton()
       ],
     );
   }

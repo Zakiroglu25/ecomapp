@@ -2,24 +2,28 @@
 
 import 'package:flutter/material.dart';
 
+import '../../../utils/constants/border_radius.dart';
+import 'widget/handle_line.dart';
 import 'widget/title_and_row_buttons.dart';
 
 typedef OnItemSelected = void Function(List<String> selectedPromoCodeNames);
 
-class OptimalBottomSheet extends StatelessWidget {
+class AppBottomSheet extends StatelessWidget {
   final Widget? child;
   final Function? onConfirm;
-
-  final bool? showCloseButton;
-  final bool? showConfirmButton;
+  final bool? showCloseButton, showConfirmButton;
+  final bool showHandle;
   final String? title;
 
-  OptimalBottomSheet(
-      {this.child,
+  const AppBottomSheet(
+      {Key? key,
+      required this.child,
       this.onConfirm,
       this.title,
       this.showCloseButton,
-      this.showConfirmButton});
+      this.showHandle = true,
+      this.showConfirmButton})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +31,15 @@ class OptimalBottomSheet extends StatelessWidget {
 
     return Container(
       decoration: const BoxDecoration(
-          color: Colors.white70,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(40),
-            topRight: Radius.circular(40),
-          )),
+          color: Colors.white70, borderRadius: Radiuses.rt24),
       // height: 270,
-      child: child!,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          showHandle ? const HandleLine() : Container(),
+          child!,
+        ],
+      ),
     );
   }
 

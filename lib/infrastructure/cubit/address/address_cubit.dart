@@ -1,10 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/infrastructure/model/response/address_model.dart';
 
 import '../../../utils/constants/text.dart';
-import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/delegate/request_control.dart';
+import '../../config/recorder.dart';
 import '../../data/address_provider.dart';
 import 'address_state.dart';
 
@@ -16,16 +17,12 @@ class AddressCubit extends Cubit<AddressState> {
       emit(AddressInProgress());
     }
     try {
-      final result = await AddressProvider.getAddresses();
-      if (result.isNotEmpty) {
-        emit(AddressSuccess(result));
-      } else {
-        emit(AddressError(error: "Xeta"));
-      }
+      List<AddressModel> result = await AddressProvider.getAddresses();
+      emit(AddressSuccess(result));
     } on SocketException catch (_) {
       emit(AddressNetworkError());
-    } catch (e) {
-      eeee("address catch: $e");
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
       emit(AddressError(error: e.toString()));
     }
   }
@@ -37,6 +34,32 @@ class AddressCubit extends Cubit<AddressState> {
 
     try {
       final result = await AddressProvider.delete(guid: "$id");
+
+      if (isSuccess(result!.statusCode)) {
+        emit(AddressDelete());
+        fetch(false);
+      } else {
+        emit(AddressError(error: MyText.error));
+      }
+    } on SocketException catch (_) {
+      //network olacaq
+      emit(AddressNetworkError());
+    } catch (e) {
+      emit(AddressError(error: MyText.error + " " + e.toString()));
+    }
+
+    //user/attorneys/delete
+  }
+
+  void update(String? id,
+      {bool loading = true, required AddressModel address}) async {
+    if (loading) {
+      emit(AddressInProgress());
+    }
+
+    try {
+      final result =
+          await AddressProvider.update(guid: "$id", address: address);
 
       if (isSuccess(result!.statusCode)) {
         emit(AddressDelete());

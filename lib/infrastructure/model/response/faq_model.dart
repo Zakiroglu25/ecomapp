@@ -1,23 +1,23 @@
-class FaqModel{
-  List<Data> data = [];
+class FaqModel {
+  List<FastAskedQuestion> data = [];
 
   FaqModel(this.data);
 
-  FaqModel.fromJson(List json){
-    for(int i = 0; i < json.length; i++){
-      data.add(Data.fromJson(json[i]));
+  FaqModel.fromJson(List json) {
+    for (int i = 0; i < json.length; i++) {
+      data.add(FastAskedQuestion.fromJson(json[i]));
     }
   }
 }
 
-class Data {
+class FastAskedQuestion {
   String? question;
   String? answer;
   int? faqOrder;
 
-  Data({this.question, this.answer, this.faqOrder});
+  FastAskedQuestion({this.question, this.answer, this.faqOrder});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  FastAskedQuestion.fromJson(Map<String, dynamic> json) {
     question = json['question'];
     answer = json['answer'];
     faqOrder = json['faqOrder'];
