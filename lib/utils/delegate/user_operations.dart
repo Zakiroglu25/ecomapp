@@ -1,4 +1,5 @@
 import 'package:uikit/utils/delegate/request_control.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../infrastructure/config/dio_auth.dart';
 import '../../infrastructure/config/recorder.dart';
@@ -16,21 +17,28 @@ class UserOperations {
 
   static DeviceInfoService get _devInfo => locator<DeviceInfoService>();
 
-  static Future<void> configureUserDataWhenLogin(
+  static Future<bool> configureUserDataWhenLogin(
       {required String accessToken,
       required String refreshToken,
+      required String? phone,
+      required String? email,
       String? path}) async {
     try {
       await _prefs.persistAccessToken(accessToken: accessToken);
       await _prefs.persistRefreshToken(refreshToken: refreshToken);
+      await _prefs.persistEmail(email: email);
+      await _prefs.persistPhone(phone: phone);
+      await _prefs.persistIsLoggedIn(true);
       if (path != null) await _prefs.persistPath(path);
 
       final deviceFcmToken = _devInfo.fcmToken;
       final devicePlatformId = _devInfo.platformId;
       final deviceName = await _devInfo.deviceName;
 
-      await configUserDataWhenOpenApp(
+      final otpCheck = await configUserDataWhenOpenApp(
           fcm: deviceFcmToken, path: path, accessToken: accessToken);
+
+      if (!otpCheck) return false;
 
       await AccountProvider.sendDevice(
           deviceFcmToken: deviceFcmToken,
@@ -42,6 +50,7 @@ class UserOperations {
       print("configureUserData e: $e => s: $s");
       Recorder.recordCatchError(e, s);
     }
+    return true;
   }
 
   static Future<bool> configUserDataWhenOpenApp(
@@ -62,7 +71,7 @@ class UserOperations {
       //   deleteAccount = value.data()![SharedKeys.deleteAccount] ?? false;
       // }));
 
-      if (isSuccess(result!.statusCode)) {
+      if (result.statusCode.isSuccess) {
         final MyUser user = result.data;
         //userData.cargoBalance = "0.55";
         //sorgu gonderilir ,xeta yaranarsa ve ya serverle bagli sehvlik olarsa

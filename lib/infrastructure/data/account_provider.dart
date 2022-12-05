@@ -18,8 +18,7 @@ class AccountProvider {
   static DioAuth get dioAuth => locator<DioAuth>();
 
   static HiveService get _prefs => locator<HiveService>();
-
-  static Future<StatusDynamic?> fetchUserInfo({
+  static Future<StatusDynamic> fetchUserInfo({
     required String? token,
   }) async {
     StatusDynamic statusDynamic = StatusDynamic();

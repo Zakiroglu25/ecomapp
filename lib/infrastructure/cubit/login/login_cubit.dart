@@ -3,9 +3,11 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/constants/text.dart';
@@ -25,20 +27,20 @@ class LoginCubit extends Cubit<LoginState> {
 
   bool emailValid = false;
 
-  final BehaviorSubject<String> uEmail = BehaviorSubject<String>();
+  final BehaviorSubject<String> username = BehaviorSubject<String>();
   final BehaviorSubject<String> uPass = BehaviorSubject<String>();
 
-  Stream<String> get emailStream => uEmail.stream;
+  Stream<String> get emailStream => username.stream;
 
   Stream<String> get passStream => uPass.stream;
 
   updateEmail(String value) {
     if (value == null || value.isEmpty) {
-      uEmail.value = '';
-      uEmail.sink.addError(MyText.all_fields_must_be_filled);
+      username.value = '';
+      username.sink.addError(MyText.all_fields_must_be_filled);
     } else {
       emailValid = Validator.mail(value);
-      uEmail.sink.add(value);
+      username.sink.add(value);
     }
   }
 
@@ -54,15 +56,15 @@ class LoginCubit extends Cubit<LoginState> {
   bool get isPassIncorrect =>
       (!uPass.hasValue || uPass.value == null || uPass.value.isEmpty);
 
-  bool get isEmailIncorrect => (!uEmail.hasValue ||
-      uEmail.value == null ||
-      uEmail.value.isEmpty ||
+  bool get isEmailIncorrect => (!username.hasValue ||
+      username.value == null ||
+      username.value.isEmpty ||
       !emailValid);
 
   @override
   Future<void> close() {
     uPass.close();
-    uEmail.close();
+    username.close();
     return super.close();
   }
 
@@ -77,8 +79,10 @@ class LoginCubit extends Cubit<LoginState> {
 
       //final deviceCode = await _fcm.getToken();
       final fcmToken = 'token';
+
+      final userNameIsEmail = Validator.mail(username.valueOrNull);
       final response = await AuthProvider.login(
-        email: uEmail.valueOrNull,
+        email: username.valueOrNull,
         password: uPass.valueOrNull,
         fcmToken: fcmToken,
       );
@@ -90,15 +94,17 @@ class LoginCubit extends Cubit<LoginState> {
           accessToken: tokens['accessToken'],
           refreshToken: tokens['refreshToken'],
           path: uPass.valueOrNull,
+          email: userNameIsEmail ? username.valueOrNull : null,
+          phone: !userNameIsEmail ? username.valueOrNull : null,
         );
-        Go.andRemove(context, Pager.app(showSplash: true));
         emit(LoginSuccess(''));
+        Go.andRemove(context, Pager.app(showSplash: true));
       } else {
         Snack.display(message: MyText.emailOrPassNotCorrect);
         emit(LoginError());
       }
     } on SocketException catch (_) {
-      emit(LoginError(error: 'network_error'));
+      emit(LoginError(error: MyText.networkError));
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
       emit(LoginError(error: e.toString()));

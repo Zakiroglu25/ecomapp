@@ -4,8 +4,10 @@ import 'package:uikit/infrastructure/cubit/add_address/add_and_update_address_cu
 import 'package:uikit/infrastructure/cubit/add_address/add_and_updtae_address_state.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/widgets/custom/app_button.dart';
+import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
 
 import '../../../infrastructure/model/response/address_model.dart';
+import '../../../utils/constants/paddings.dart';
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/screen/snack.dart';
@@ -40,15 +42,11 @@ class AddAddressPage extends StatelessWidget {
       addAttorneysCubit.descriptionController.text = addressModel!.description!;
       first = false;
     }
-    return Scaffold(
-      appBar: DoctorAppbar(
-        user: false,
-        notification: false,
-        addressDropdown: false,
-        contextA: context,
-        title: "Yeni ünvan yarat",
-      ),
-      body: BlocListener<AddAddressCubit, AddAddressState>(
+    return Cupperfold(
+      title: MyText.addNewAddress,
+      showAppbarLittleText: true,
+      user: false,
+      child: BlocListener<AddAddressCubit, AddAddressState>(
         listener: (context, state) {
           if (state is AddAddressSuccess) {
             Go.pop(context);
@@ -66,11 +64,11 @@ class AddAddressPage extends StatelessWidget {
           }
         },
         child: ListView(
-          padding: EdgeInsets.all(16),
+          padding: Paddings.paddingH16,
+          shrinkWrap: true,
           children: [
             AddressField(
-              controller:
-                  textController ?? textController,
+              controller: textController ?? textController,
             ),
             NameAddressField(
               controller: addAttorneysCubit.titleCnt,

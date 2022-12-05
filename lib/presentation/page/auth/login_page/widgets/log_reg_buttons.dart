@@ -39,11 +39,7 @@ class LogRegButtons extends StatelessWidget {
     return AppButton(
       color: MyColors.grey288,
       textColor: MyColors.black,
-      // borderColor: MyColors.mainColor,
-      onTap: () {
-        // context.read<RegisterCubit>().register(context);
-        Go.to(context, Pager.register);
-      },
+      onTap: () => Go.to(context, Pager.register),
       text: MyText.register,
     );
   }

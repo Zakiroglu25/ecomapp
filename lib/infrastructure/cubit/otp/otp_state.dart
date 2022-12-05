@@ -8,6 +8,8 @@ class OtpInitial extends OtpState {}
 
 class OtpInProgress extends OtpState {}
 
+class OtpRequested extends OtpState {}
+
 class OtpSocketError extends OtpState {}
 
 class OtpError extends OtpState {

@@ -63,6 +63,7 @@ class Pager {
   static get medicines => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => ProductOptionCubit()..fetchProduct()),
         BlocProvider(create: (context) => FavoriteCubit()),
+        BlocProvider(create: (context) => AddressCubit()..fetchMainAddress()),
       ], child: const MedicinesPage());
 
   static get cart => MultiBlocProvider(providers: [
@@ -87,9 +88,13 @@ class Pager {
       providers: [BlocProvider(create: (context) => UserCubit())],
       child: const UserEditPage());
 
-  static otp(String phone) => MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => OTPCubit(phone: phone))],
-      child: const OTPPage());
+  static otp({
+    bool requestNew = false,
+    bool showBackButton = true,
+  }) =>
+      MultiBlocProvider(providers: [
+        BlocProvider(create: (context) => OTPCubit(requestNew: requestNew))
+      ], child: OTPPage(showBackButton: showBackButton));
 
   static get forgotPassword => MultiBlocProvider(
       providers: [BlocProvider(create: (context) => ForgotPassCubit())],
@@ -111,7 +116,9 @@ class Pager {
 
   static get home => HomePage();
 
-  static get landing => LandingPage();
+  static get landing => MultiBlocProvider(providers: [
+        BlocProvider(create: (context) => AddressCubit()),
+      ], child: const LandingPage());
 
   static get product => ProductPage();
 

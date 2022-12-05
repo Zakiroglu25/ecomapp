@@ -17,6 +17,7 @@ class MyText {
   //login btn text
   static const String register = "Qeydiyyatdan keç";
   static const String login = "Hesaba daxil ol";
+  static const String logout = "Çıxış";
   static const String all_fields_must_be_filled =
       "Bütün xanalar doldurulmalıdır!";
   static const String field_is_not_correct = "Xana düzgün doldurulmayıb!";
@@ -55,6 +56,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String forgot = "Şifrəni unutmusuz ?";
   static const String are_u_sure_exit = "Çıxış etmək istədiyinizdən əminsiniz?";
   static const String new_pass = 'Yeni şifrə';
+  static const String info = 'Məlumat';
   static const String set_new_pass = 'Yeni şifrəni təyin et';
 
   //otp
@@ -112,6 +114,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String vitamin = "Vitaminlər";
   static const String vitaminSub = "Bütün qrup vitəminləri əldə edin.";
   static const String otherSub = "Axtardığınız məhsulu tapmaq üçün";
+  static const String logoutSub = "Təsdiqlədikdən sonra çıxış edəcəksiniz";
 
   static const String paymentMetod = "Ödəniş üsulu";
   static const String messenger = "Messenger";
@@ -225,8 +228,25 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String courierDesc = "Kuryer üçün qeyd";
   static const String enterDesc = "Daxil edin";
   static const String nameAddress = "Ünvanı adlandır";
+  static const String addressNotSelected = "Ünvan seçilməyib";
   static const String exampleName = "Məsələn: Ev ünvanı";
-  static const String addCurrentAddress = "Mövcüd ünvan əlavə et";
+  static const String addCurrentAddress = "Mövcud ünvanı əlavə et";
+  static const String addNewAddress = "Yeni ünvan yarat";
+  static const String we_will_redirect_to_settings_gallery =
+      "Sizi tətbiq icazələrinə yönləndirəcəyik. Fotolar --> Bütün fotolar yolunu izləyin. Daha sonra geri qayıdın.";
+  static const String we_will_redirect_to_settings_locatoin =
+      "Sizi tətbiq icazələrinə yönləndirəcəyik. Location --> While Using the App. Daha sonra geri qayıdın.";
+  static const String we_need_access_to_gallery =
+      "Fotolara əlçatanlıq üçün icazə lazımdır";
+  static const String we_need_access_to_locatoin =
+      "Cari yer məlumatlarına əlçatanlıq üçün icazə lazımdır";
+  static const String youMustSelectOneOfThem =
+      "Davam etmək üçün aşağıdakılardan birini seçməlisiniz:\n\n";
+  static const String locationAccessDenied = "İcazə rədd edildi";
+  static const String locationAccessDisabled =
+      "İcazə qalıcı olaraq rədd edilib";
+  static const String emptyDeliveryAddressDesc =
+      "Hal-hazırda sənin çatdırılacaq ünvanların qeyd olunmayıb. Yeni ünvan əlavə et.";
 
   //faq
   static const String faq = 'Sual-cavab';

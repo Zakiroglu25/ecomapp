@@ -6,6 +6,8 @@ class AuthenticationAuthenticated extends AuthenticationState {}
 
 class AuthenticationCustomerMode extends AuthenticationState {}
 
+class AuthenticationOtpRequest extends AuthenticationState {}
+
 class AuthenticationServerError extends AuthenticationState {}
 
 class AuthenticationOnboarding extends AuthenticationState {}

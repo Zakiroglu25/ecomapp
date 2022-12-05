@@ -4,8 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uikit/widgets/custom/app_button.dart';
 
+import '../constants/app_text_styles.dart';
+import '../constants/assets.dart';
+import '../constants/border_radius.dart';
 import '../constants/colors.dart';
 import '../constants/paddings.dart';
+import '../constants/text.dart';
 import '../delegate/navigate_utils.dart';
 import 'widget_or_empty.dart';
 // Project imports:
@@ -32,8 +36,7 @@ class Alert {
               : sW - 66;
           return AlertDialog(
             backgroundColor: MyColors.white,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(16.0))),
+            shape: RoundedRectangleBorder(borderRadius: Radiuses.r16),
             contentPadding: EdgeInsets.only(top: 10.0),
             insetPadding: Paddings.zero,
             content: Container(
@@ -46,18 +49,18 @@ class Alert {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   image ??
-                      // Container(
-                      //   child: Image.asset(Assets.pngNote),
-                      //   height: 120.sm,
-                      //   width: 120.sm,
-                      // ),
-                      SizedBox(
-                        height: 10.sm,
+                      Container(
+                        child: Image.asset(Assets.pngSetting3x),
+                        height: 120.sm,
+                        width: 120.sm,
                       ),
-                  // Text(
-                  //   title ?? MyText.operationIsSuccess,
-                  //   style: AppTextStyles.sanF600.copyWith(fontSize: 18.sm),
-                  // ),
+                  SizedBox(
+                    height: 10.sm,
+                  ),
+                  Text(
+                    title ?? MyText.info,
+                    style: AppTextStyles.sfPro600.copyWith(fontSize: 18.sm),
+                  ),
                   SizedBox(
                     height: 10.sm,
                   ),
@@ -92,8 +95,8 @@ class Alert {
                               child: AppButton(
                                   w: buttonSize,
                                   color: MyColors.grey245,
-                                  // text: MyText.reject,
-                                  // textColor: MyColors.black,
+                                  text: MyText.reject,
+                                  textColor: MyColors.black,
                                   onTap: () =>
                                       (onTapCancel?.call() ?? Go.pop(context))
                                   //  color: ,
@@ -102,7 +105,7 @@ class Alert {
                         SizedBox(
                           width: buttonSize,
                           child: AppButton(
-                            // text: buttonText ?? MyText.ok,
+                            text: buttonText ?? MyText.ok,
                             onTap: () {
                               Go.pop(context);
                               if (onTap != null) {

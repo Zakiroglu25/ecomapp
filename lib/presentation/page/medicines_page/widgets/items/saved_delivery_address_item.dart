@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
 import 'package:uikit/infrastructure/model/response/address_model.dart';
-import 'package:uikit/presentation/page/product_page/widgets/savable_delivery_address_item.dart';
+import 'package:uikit/presentation/page/medicines_page/widgets/items/savable_delivery_address_item.dart';
 
 class SavedDeliveryAddressItem extends SavableDeliveryAddressItem {
   SavedDeliveryAddressItem(

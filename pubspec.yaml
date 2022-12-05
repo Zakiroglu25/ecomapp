@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -44,7 +44,8 @@ dependencies:
   custom_pop_up_menu: ^1.2.4
   expandable: ^5.0.1
   flutter_slidable: ^2.0.0
-#  map
+
+  #map
   google_maps_flutter: ^2.2.0
   map_picker: ^0.0.3
   geocoding: ^2.0.5
@@ -62,6 +63,11 @@ dependencies:
   #device info and permissions
   device_info_plus: ^8.0.0
 
+  #location
+  geolocator: ^9.0.2
+  geocoder2: ^1.4.0
+  geocode: ^1.0.2
+  location:
 
   #helper
   pin_code_fields: ^7.4.0
@@ -84,8 +90,15 @@ dev_dependencies:
 
   flutter_lints: ^1.0.0
   logger: ^1.1.0
+  logging: ^1.1.0
+  flutter_launcher_icons: ^0.11.0
 
 
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
 
 
 flutter:
@@ -96,6 +109,7 @@ flutter:
     - assets/svg/
     - assets/png/
     - assets/anim/
+    - assets/icon/
 
   fonts:
     - family: SF Pro Display Semibold

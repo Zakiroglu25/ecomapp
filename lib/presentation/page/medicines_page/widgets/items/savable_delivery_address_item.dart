@@ -6,7 +6,8 @@ import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/screen/ink_wrapper.dart';
 import 'package:uikit/widgets/custom/custom_radio.dart';
 
-import '../../../../utils/constants/colors.dart';
+import '../../../../../utils/constants/colors.dart';
+import '../../../../../utils/delegate/navigate_utils.dart';
 
 class SavableDeliveryAddressItem extends StatefulWidget {
   const SavableDeliveryAddressItem(
@@ -57,10 +58,11 @@ class _SavableDeliveryAddressItemState
   @override
   Widget build(BuildContext context) {
     return InkWrapper(
-      onTap: () {
+      onTap: () async {
         selected = !selected;
         setState(() {});
-        widget.onTap?.call();
+        await widget.onTap?.call();
+        Go.pop(context);
       },
       child: Column(
         children: [

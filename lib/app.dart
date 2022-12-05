@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:uikit/utils/constants/assets.dart';
+import 'package:uikit/utils/delegate/index.dart';
 
 import 'infrastructure/cubit/authentication/authentication_cubit.dart';
 import 'infrastructure/cubit/authentication/authentication_state.dart';
@@ -14,6 +15,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationCubit, AuthenticationState>(
         builder: (context, state) {
+      bbbb("stiii: $state");
       if (state is AuthenticationSplash) {
         return Pager.splash;
       } else if (state is AuthenticationLoading) {
@@ -33,6 +35,9 @@ class App extends StatelessWidget {
       }
       if (state is AuthenticationUninitialized) {
         return Pager.login;
+      }
+      if (state is AuthenticationOtpRequest) {
+        return Pager.otp(requestNew: true, showBackButton: false);
       } else if (state is AuthenticationAuthenticated) {
         return Pager.landing;
       } else {

@@ -75,4 +75,9 @@ class FavoriteCubit extends Cubit<FavoriteState> {
       emit(FavoriteError());
     }
   }
+
+  @override
+  emit(FavoriteState state) {
+    if (!isClosed) return super.emit(state);
+  }
 }
