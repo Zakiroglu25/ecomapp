@@ -59,7 +59,7 @@ class ApiKeys {
   //static const forgotOtp = "$baseUrl/user/otp";
 
   //contact
-  static const contact = "$baseUrl/public/contacts";
+  static const contact = "$baseUrl/protected/content/contacts";
 
   //map
   static const stores = "$baseUrl/protected/stores";
@@ -81,7 +81,7 @@ class ApiKeys {
   static const addBasket = "$baseUrl/$customer/cart";
 
   //bank card
-  static const card = "$baseUrl/$customer/card";
+  static const card = "$customer/cards";
 
   //general
   static const localityInfoBigData = '$bigDataCloud/reverse-geocode-client';

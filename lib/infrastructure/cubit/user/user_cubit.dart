@@ -45,10 +45,10 @@ class UserCubit extends Cubit<UserState> {
           phone: phone.valueOrNull, password: password.valueOrNull);
       final errors = response!.data;
       if (isSuccess(response.statusCode)) {
-        Snack.positive(context: context, message: MyText.success);
         emit(UserSuccess(response.data!));
+        Snack.positive(context: context, message: MyText.success);
       } else {
-          Snack.display(message: errors);
+        Snack.display(message: errors);
         emit(UserFailed(response.statusCode.toString()));
       }
     } catch (e) {

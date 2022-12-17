@@ -1,7 +1,6 @@
 // Dart imports:
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
 
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
@@ -10,7 +9,6 @@ import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
 import '../model/locale/MyUser.dart';
 import '../model/response/status_dynamic.dart';
-import 'package:http/http.dart' as http;
 
 import '../services/hive_service.dart';
 
@@ -105,16 +103,7 @@ class AccountProvider {
       idSerialNumber: idSerialNumber,
       newsletterSubscription: false,
     );
-
-    iiii(api);
-    iiii(body.toString());
-
-    // final response = await http.put(url,headers: ApiKeys.header(token: _prefs.accessToken));
     final response = await dioAuth.dio.put(api, data: jsonEncode(body));
-    iiii(response.toString());
-    iiii(response.data.toString());
-    iiii(response.statusCode.toString());
-    // iiii(response.statusMessage.toString());
 
     statusDynamic.statusCode = response.statusCode;
     statusDynamic.data = response.data;

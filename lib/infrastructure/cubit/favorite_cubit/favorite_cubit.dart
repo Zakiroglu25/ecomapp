@@ -14,7 +14,6 @@ import 'favorite_state.dart';
 class FavoriteCubit extends Cubit<FavoriteState> {
   FavoriteCubit() : super(FavoriteInitial());
   int page = 1;
-  //List<SimpleProduct> products = [];
   final BehaviorSubject<List<SimpleProduct>> products =
       BehaviorSubject<List<SimpleProduct>>.seeded([]);
 
@@ -23,14 +22,12 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   updateProducts(List<SimpleProduct> value) {
     if (value.isEmpty) {
       products.valueOrNull?.clear();
-      //products.sink.addError(MyText.all_fields_must_be_filled);
     } else {
       products.sink.add(value);
     }
   }
 
   fetchProduct([bool loading = true]) async {
-    // updateProducts([]);
     if (loading) {
       emit(FavoriteInProgress());
     }

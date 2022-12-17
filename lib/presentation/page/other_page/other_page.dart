@@ -60,7 +60,7 @@ class OtherPage extends StatelessWidget {
               children: [
                 ProductAndOtherWidget(
                   onTap: () {
-                    Go.to(context, PaymentMethodPage());
+                    Go.to(context, Pager.paymentMethodPage);
                   },
                   color: MyColors.green235,
                   h: 167.h,
@@ -108,7 +108,7 @@ class OtherPage extends StatelessWidget {
                 // ),
                 ProductAndOtherWidget(
                   onTap: () {
-                    Go.to(context, ContactPage());
+                    Go.to(context, Pager.contactPage);
                   },
                   color: MyColors.orange225,
                   h: 167.h,

@@ -27,6 +27,7 @@ class Assets {
   static const String svgMinus2 = "assets/svg/minus-2.svg";
   static const String svgEdit = "assets/svg/edit.svg";
   static const String svgEditUser = "assets/svg/edit_user.svg";
+  static const String svgDelete = "assets/svg/trash.svg";
 
   ///fav
   static const String svgFilledHearth = "assets/svg/filled-heart.svg";
@@ -102,6 +103,7 @@ class Assets {
   static const String demo2 = "assets/png/zeytun.png";
 
   static const String masterCard = "assets/png/mastercard.png";
+  static const String visa = "assets/png/visa.png";
   static const String pngAzFlag = "assets/png/azflag.png";
 
   //other

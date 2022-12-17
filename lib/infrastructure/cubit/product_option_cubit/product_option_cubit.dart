@@ -13,6 +13,7 @@ class ProductOptionCubit extends Cubit<ProductOptionState> {
   ProductOptionCubit() : super(ProductOptionInitial()) {
     medSearchController = TextEditingController();
   }
+
   bool _loadMoreActivated = false;
   int page = 1;
   late final TextEditingController medSearchController;
@@ -25,6 +26,7 @@ class ProductOptionCubit extends Cubit<ProductOptionState> {
     try {
       final result = await ProductOptionsProvider.getProduct(page,
           title: medSearchController.text);
+      wtf(result.data.toString());
       if (isSuccess(result.statusCode)) {
         emit(ProductOptionSuccess(result.data));
       } else {
@@ -58,35 +60,23 @@ class ProductOptionCubit extends Cubit<ProductOptionState> {
   //   }
   // }
 
-  Future<void> loadMore() async {
-    if (_loadMoreActivated) {
-      return;
+  void loadMore() async {
+    if (state is PostsLoading) return;
+
+    final currentState = state;
+
+    var oldPosts = <SimpleProduct>[];
+    if (currentState is ProductOptionSuccess) {
+      oldPosts = currentState.productList;
+    }
+    emit(PostsLoading(oldPosts, isFirstFetch: page == 1));
+    final result = await ProductOptionsProvider.getProduct(page++);
+    final posts = (state as PostsLoading).oldList;
+    if (result.data != null) {
+      posts.addAll(result.data);
     }
 
-    try {
-      if (state is! ProductOptionSuccess) {
-        return;
-      }
 
-      _loadMoreActivated = true;
-
-      final successState = (state as ProductOptionSuccess);
-      // emit(successState.copyWith(showBottomLoading: true));
-
-      final result = await ProductOptionsProvider.getProduct(2);
-
-      List<SimpleProduct> modelsList = successState.productList;
-
-      if (result.data != null) {
-        modelsList.addAll(result.data);
-      }
-      emit(ProductOptionSuccess(modelsList));
-      _loadMoreActivated = false;
-    } catch (e) {
-      _loadMoreActivated = false;
-      if (state is ProductOptionSuccess) {
-        emit(state);
-      }
-    }
+    emit(ProductOptionSuccess(posts));
   }
 }

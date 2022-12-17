@@ -4,6 +4,7 @@ import 'package:uikit/infrastructure/cubit/add_address/add_and_update_address_cu
 import 'package:uikit/infrastructure/cubit/add_address/add_and_updtae_address_state.dart';
 import 'package:uikit/infrastructure/cubit/user/user_cubit.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/delegate/my_printer.dart';
 
 import '../../../infrastructure/services/hive_service.dart';
@@ -11,6 +12,7 @@ import '../../../locator.dart';
 import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/paddings.dart';
 import '../../../utils/constants/text.dart';
+import '../../../utils/delegate/pager.dart';
 import '../../../utils/delegate/string_operations.dart';
 import '../../../widgets/custom/app_button.dart';
 import '../../../widgets/doctoro_appbar/doctoro_appbar.dart';
@@ -39,11 +41,12 @@ class ChangeNumberPage extends StatelessWidget {
         ),
         body: BlocListener<UserCubit, UserState>(
           listener: (context, state) {
-            if(state is AddAddressEditSuccess){
+            if (state is UserSuccess) {
+              Go.to(context, Pager.otp());
               wtf("Deyishiklik oldu");
-            }else{
-              wtf("Deyishiklik olmadi");
 
+            } else if (state is UserFailed) {
+              wtf("Deyishiklik olmadi");
             }
           },
           child: ListView(
@@ -61,7 +64,7 @@ class ChangeNumberPage extends StatelessWidget {
               MySizedBox.h16,
               PhoneFieldUser(
                   controller:
-                  StringOperations.stringToController(_prefs.user.phone)),
+                      StringOperations.stringToController(_prefs.user.phone)),
               PasswordFieldUser(
                 controller: controller!,
               ),

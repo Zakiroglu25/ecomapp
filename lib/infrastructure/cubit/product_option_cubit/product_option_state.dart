@@ -18,3 +18,9 @@ class ProductOptionSuccess extends ProductOptionState {
   ProductOptionSuccess(this.productList);
   final List<SimpleProduct> productList;
 }
+class PostsLoading extends ProductOptionState {
+  final List<SimpleProduct> oldList;
+  final bool isFirstFetch;
+
+  PostsLoading(this.oldList, {this.isFirstFetch = false});
+}
