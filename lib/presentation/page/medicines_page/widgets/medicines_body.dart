@@ -26,7 +26,7 @@ class MedicinesBody extends StatelessWidget {
   void setupScrollController(context) {
     scrollController.addListener(() {
       if (scrollController.position.atEdge) {
-        if (scrollController.position.pixels != 0) {
+        if (scrollController.position.pixels != 10) {
           BlocProvider.of<ProductOptionCubit>(context).loadMore();
         }
       }
@@ -80,7 +80,7 @@ class MedicinesBody extends StatelessWidget {
                 ),
               );
             } else if (state is ProductOptionInProgress) {
-              return Center(child: AppLoading.big());
+              return Center(child: AppLoading.main());
             } else {
               return Expanded(
                 child: EmptyWidget.error(),

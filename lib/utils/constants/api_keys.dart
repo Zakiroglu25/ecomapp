@@ -82,6 +82,8 @@ class ApiKeys {
 
   //bank card
   static const card = "$customer/cards";
+  //notification
+  static const notification = "$protected/notifications";
 
   //general
   static const localityInfoBigData = '$bigDataCloud/reverse-geocode-client';

@@ -26,7 +26,6 @@ class ProductOptionCubit extends Cubit<ProductOptionState> {
     try {
       final result = await ProductOptionsProvider.getProduct(page,
           title: medSearchController.text);
-      wtf(result.data.toString());
       if (isSuccess(result.statusCode)) {
         emit(ProductOptionSuccess(result.data));
       } else {
