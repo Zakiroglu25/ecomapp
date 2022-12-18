@@ -6,6 +6,7 @@ import 'package:uikit/utils/constants/assets.dart';
 import 'package:uikit/widgets/custom/custom_animated_cross.dart';
 
 import '../../../../infrastructure/model/response/product_option_model.dart';
+import '../../../../infrastructure/model/response/search_items.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/screen/ink_wrapper.dart';
 

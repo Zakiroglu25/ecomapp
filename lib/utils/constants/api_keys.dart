@@ -15,11 +15,15 @@ class ApiKeys {
   static const protected = "$baseUrl/protected";
 
   static const customer = "$protected/customer";
-  static const productOptions = "$protected/product-options";
+  //static const productOptions = "$protected/product-options";
 
   static const account = "$customer/account";
 
   static const cart = "$customer/cart";
+
+  static const stock = "$protected/stock";
+
+  static const stockSearch = "$stock/search";
 
   ///delete
   static const headers = {
@@ -43,7 +47,6 @@ class ApiKeys {
   static const devices = "$customer/devices";
   static const changeNumber = "$account/request-update-phone-otp";
 
-
   //address
   static const getAddress = "$customer/address-book";
 
@@ -59,13 +62,13 @@ class ApiKeys {
   //static const forgotOtp = "$baseUrl/user/otp";
 
   //contact
-  static const contact = "$baseUrl/public/contacts";
+  static const contact = "$baseUrl/protected/content/contacts";
 
   //map
   static const stores = "$baseUrl/protected/stores";
 
   //product_options
-  static const search = "$productOptions/search";
+  //static const search = "$productOptions/search";
 
   //get product guid
   static const productOptionsGuid = "$baseUrl/protected/product-options";
@@ -81,7 +84,9 @@ class ApiKeys {
   static const addBasket = "$baseUrl/$customer/cart";
 
   //bank card
-  static const card = "$baseUrl/$customer/card";
+  static const card = "$customer/cards";
+  //notification
+  static const notification = "$protected/notifications";
 
   //general
   static const localityInfoBigData = '$bigDataCloud/reverse-geocode-client';
@@ -116,7 +121,6 @@ class ApiKeys {
     return map;
   }
 
-
   static changePhoneBody({
     required String? phone,
     required String? password,
@@ -125,10 +129,9 @@ class ApiKeys {
     final map = {"phone": phone, "password": password};
 
     map.removeWhere(
-            (key, value) => key == null || value == null || value == 'null');
+        (key, value) => key == null || value == null || value == 'null');
     return map;
   }
-
 
   static registrationPersonalBody({
     required String? email,

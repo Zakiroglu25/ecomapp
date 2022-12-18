@@ -5,6 +5,7 @@ import '../../utils/delegate/my_printer.dart';
 import '../../utils/enums/transaction_type.dart';
 import '../config/dio_auth.dart';
 import '../model/response/product_option_model.dart';
+import '../model/response/search_items.dart';
 import '../model/response/status_dynamic.dart';
 import '../services/hive_service.dart';
 
@@ -18,7 +19,7 @@ class FavoritesProvider {
         await dioAuth.dio.get(api, queryParameters: {"page": page});
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
-      FavResult model = FavResult.fromJson(response.data);
+      SearchItems model = SearchItems.fromJson(response.data);
       statusDynamic.data = model;
     } else {
       eeee("getFavorite List:  url: $api , response: ${response.data}");

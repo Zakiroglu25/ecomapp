@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
 import '../../../../infrastructure/model/response/product_option_model.dart';
+import '../../../../infrastructure/model/response/search_items.dart';
 import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/colors.dart';
@@ -55,7 +56,7 @@ class ProductItem extends StatelessWidget {
                           SizedBox(
                             width: 199,
                             child: Text(
-                              product!.product!.title!,
+                              "${product!.title}",
                               style: AppTextStyles.sfPro400s14,
                               softWrap: true,
                               overflow: TextOverflow.ellipsis,
@@ -76,7 +77,7 @@ class ProductItem extends StatelessWidget {
                       children: [
                         MySizedBox.w75,
                         Text(
-                          product!.minPrice!.toString() + " ₼-dan",
+                          product!.price!.toString() + " ₼-dan",
                           style: AppTextStyles.sfPro600s16,
                         ),
                         Spacer(),

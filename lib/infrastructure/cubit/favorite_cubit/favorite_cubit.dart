@@ -9,12 +9,12 @@ import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/enums/transaction_type.dart';
 import '../../data/favorites_provider.dart';
 import '../../model/response/product_option_model.dart';
+import '../../model/response/search_items.dart';
 import 'favorite_state.dart';
 
 class FavoriteCubit extends Cubit<FavoriteState> {
   FavoriteCubit() : super(FavoriteInitial());
   int page = 1;
-  //List<SimpleProduct> products = [];
   final BehaviorSubject<List<SimpleProduct>> products =
       BehaviorSubject<List<SimpleProduct>>.seeded([]);
 
@@ -23,21 +23,19 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   updateProducts(List<SimpleProduct> value) {
     if (value.isEmpty) {
       products.valueOrNull?.clear();
-      //products.sink.addError(MyText.all_fields_must_be_filled);
     } else {
       products.sink.add(value);
     }
   }
 
   fetchProduct([bool loading = true]) async {
-    // updateProducts([]);
     if (loading) {
       emit(FavoriteInProgress());
     }
     try {
       final result = await FavoritesProvider.getFavorite(page);
       if (result.statusCode.isSuccess) {
-        final favRes = result.data as FavResult;
+        final favRes = result.data as SearchItems;
         updateProducts(favRes.products!);
         emit(FavoriteSuccess(favRes));
       } else {

@@ -9,6 +9,7 @@ import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/enums/transaction_type.dart';
 import '../../data/favorites_provider.dart';
 import '../../model/response/product_option_model.dart';
+import '../../model/response/search_items.dart';
 import 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
@@ -37,7 +38,7 @@ class CartCubit extends Cubit<CartState> {
     try {
       final result = await FavoritesProvider.getFavorite(page);
       if (result.statusCode.isSuccess) {
-        final favRes = result.data as FavResult;
+        final favRes = result.data as SearchItems;
         updateProducts(favRes.products!);
         emit(CartSuccess(favRes));
       } else {

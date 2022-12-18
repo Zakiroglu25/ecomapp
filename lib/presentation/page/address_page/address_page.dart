@@ -23,7 +23,6 @@ import '../../../utils/constants/sized_box.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/delegate/pager.dart';
 import '../../../widgets/custom/app_button.dart';
-import '../../../widgets/custom/text_title_big.dart';
 import 'widget/add_address.dart';
 
 class AddressPage extends StatelessWidget {
@@ -142,13 +141,20 @@ class AddressPage extends StatelessWidget {
                       },
                     ),
                   ),
+                  MySizedBox.h50,
+                  AppButton(
+                    onTap: () {
+                      Go.to(context, Pager.addAddress());
+                    },
+                    text: MyText.addressAdd,
+                  ),
+                  MySizedBox.h16,
                 ],
               ),
             );
           } else if (state is AddressInProgress) {
             return Center(
-              child: AppLoading(
-                s: 20,
+              child: AppLoading.main(
               ),
             );
           }

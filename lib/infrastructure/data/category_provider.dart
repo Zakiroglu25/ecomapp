@@ -5,6 +5,7 @@ import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
 import '../model/response/category_tree.dart';
 import '../model/response/product_option_model.dart';
+import '../model/response/search_items.dart';
 import '../model/response/status_dynamic.dart';
 
 class CategoryProvider {
@@ -35,7 +36,7 @@ class CategoryProvider {
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
       final comeJson = response.data;
-      FavResult model = FavResult.fromJson(comeJson);
+      SearchItems model = SearchItems.fromJson(comeJson);
       statusDynamic.data = model.products;
     } else {
       eeee("AllManufacturers List:  url: $api , response: ${response.data}");

@@ -1,31 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:uikit/presentation/page/medicines_page/widgets/med_search_field.dart';
-import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/widgets/custom/listview_separated.dart';
 import 'package:uikit/widgets/general/empty_widget.dart';
 import 'package:uikit/widgets/general/list_or_empty.dart';
 import 'package:uikit/widgets/main/product_item/new_product_item.dart';
+
 import '../../../../infrastructure/cubit/product_option_cubit/product_option_cubit.dart';
 import '../../../../infrastructure/cubit/product_option_cubit/product_option_state.dart';
 import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/paddings.dart';
 import '../../../../utils/constants/text.dart';
-import '../../../../widgets/general/app_field.dart';
 import '../../../../widgets/general/app_loading.dart';
 
 class MedicinesBody extends StatelessWidget {
-  const MedicinesBody({Key? key}) : super(key: key);
+  MedicinesBody({Key? key}) : super(key: key);
+
+  final scrollController = ScrollController();
+
+  void setupScrollController(context) {
+    scrollController.addListener(() {
+      if (scrollController.position.atEdge) {
+        if (scrollController.position.pixels != 10) {
+          BlocProvider.of<ProductOptionCubit>(context).loadMore();
+        }
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final ScrollController _scrollController = ScrollController();
+    setupScrollController(context);
+    BlocProvider.of<ProductOptionCubit>(context).loadMore();
+
     return Column(
       children: [
         const MedSearchField(),
         BlocBuilder<ProductOptionCubit, ProductOptionState>(
           builder: (context, state) {
+            bbbb("steee: $state");
             if (state is ProductOptionSuccess) {
               final productList = state.productList;
               //final productList = [];
@@ -35,23 +49,41 @@ class MedicinesBody extends StatelessWidget {
                   image: Assets.pngMed,
                   text: MyText.medicines,
                   description: MyText.mediciniesDesc,
-                  child: ListViewSeparated(
-                      padding: Paddings.paddingA16 + Paddings.paddingB60,
-                      controller: _scrollController,
-                      itemCount: productList.length,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) => NewProductItem(
-                            product: productList[index],
-                            inFav: false,
-                          )),
+                  child: StreamBuilder<bool>(
+                      stream: BlocProvider.of<ProductOptionCubit>(context)
+                          .haveElseStream,
+                      builder: (context, snapshot) {
+                        return ListViewSeparated(
+                          padding: Paddings.paddingA16 + Paddings.paddingB60,
+                          controller: scrollController,
+                          itemCount: snapshot.data ?? false
+                              ? productList.length + 1
+                              : productList.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return index == productList.length
+                                ? AppLoading.main()
+                                : NewProductItem(
+                                    product: productList[index],
+                                    inFav: false,
+                                  );
+                            // Timer(Durations.s1, () {
+                            //   scrollController.jumpTo(
+                            //       scrollController.position.maxScrollExtent);
+                            // });
+                          },
+                        );
+                      }),
                 ),
               );
             } else if (state is ProductOptionInProgress) {
-              return Center(child: AppLoading.big());
-            } else {
-              return Expanded(
-                child: EmptyWidget.error(),
-              );
+              return Center(child: AppLoading.main());
+            }
+            // else if (state is PostsLoading) {
+            //   return Center(child: AppLoading.main());
+            // }
+            else {
+              return Expanded(child: EmptyWidget.error());
             }
           },
         ),

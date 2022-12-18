@@ -55,7 +55,7 @@ class MedicineDetailsPage extends StatelessWidget {
                   itemBuilder: (context, index) =>
                       ProductItem(product: productList[index]));
             } else if (state is ProductOptionError) {
-              return Center(child: Text("Error"));
+              return Center(child: Text(MyText.error));
             } else if (state is ProductOptionInProgress) {
               return Center(
                   child: AppLoading(

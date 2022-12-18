@@ -15,7 +15,6 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationCubit, AuthenticationState>(
         builder: (context, state) {
-      bbbb("stiii: $state");
       if (state is AuthenticationSplash) {
         return Pager.splash;
       } else if (state is AuthenticationLoading) {

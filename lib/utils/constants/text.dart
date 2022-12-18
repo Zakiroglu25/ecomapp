@@ -250,4 +250,9 @@ In addition to laying out rules for proper use of your app, you should also clea
 
   //faq
   static const String faq = 'Sual-cavab';
+  //card
+  static const String yes = 'Bəli';
+  static const String no = 'Xeyr';
+  static const String deleteCardInfo = 'Kart məlumatlarınız, silinsin?';
+
 }

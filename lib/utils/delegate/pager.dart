@@ -14,7 +14,9 @@ import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart
 import '../../app.dart';
 import '../../infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
 import '../../infrastructure/cubit/authentication/authentication_cubit.dart';
+import '../../infrastructure/cubit/card_cubit/card_cubit.dart';
 import '../../infrastructure/cubit/category_cubit/category_cubit.dart';
+import '../../infrastructure/cubit/contact_cubit/contact_cubit.dart';
 import '../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../infrastructure/cubit/login/login_cubit.dart';
 import '../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
@@ -100,7 +102,10 @@ class Pager {
       providers: [BlocProvider(create: (context) => ForgotPassCubit())],
       child: const ForgetPasswordPage());
 
-  static get paymentMethodPage => PaymentMethodPage();
+  static get paymentMethodPage => BlocProvider(
+        create: (context) => CardCubit()..getCard(),
+        child: PaymentMethodPage(),
+      );
 
   static get faqPage => BlocProvider(
         create: (context) => FaqCubit()..getFaq(),
@@ -129,7 +134,10 @@ class Pager {
 
   static get otherPage => OtherPage();
 
-  static get contactPage => ContactPage();
+  static get contactPage => BlocProvider(
+        create: (context) => ContactCubit()..fetch(),
+        child: ContactPage(),
+      );
 
   static get favoritePage => BlocProvider(
         create: (context) => FavoriteCubit()..fetchProduct(),

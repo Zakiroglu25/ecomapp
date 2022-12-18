@@ -12,6 +12,7 @@ import 'package:uikit/widgets/main/product_item/new_product_item.dart';
 
 import '../../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../../infrastructure/cubit/favorite_cubit/favorite_state.dart';
+import '../../../infrastructure/model/response/search_items.dart';
 import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/paddings.dart';
 
@@ -38,7 +39,7 @@ class _FavoritePageState extends State<FavoritePage> {
         },
         builder: (context, state) {
           if (state is FavoriteSuccess) {
-            List<SimpleProduct>? products = state.favResult.products;
+            List<SimpleProduct>? products = state.searchItems.products;
             //final products = context.watch<FavoriteCubit>().products;
             return StreamBuilder<List<SimpleProduct>>(
                 stream: context.read<FavoriteCubit>().productsStream,

@@ -30,7 +30,6 @@ class DioAuth {
       BaseOptions(
         baseUrl: ApiKeys.baseUrl,
         // contentType: 'application/json',
-        queryParameters: {"Accept": "application/json"},
         followRedirects: true,
         //headers: ApiKeys.header(token: _prefs.accessToken),
         validateStatus: (status) {

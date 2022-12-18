@@ -4,6 +4,7 @@
 import 'dart:developer';
 
 import 'package:uikit/infrastructure/model/response/map_medicine.dart';
+import 'package:uikit/infrastructure/model/response/search_items.dart';
 
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
@@ -39,7 +40,7 @@ class BasketProvider {
     final response = await dioAuth.dio.get(api);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
-      FavResult model = FavResult.fromJson(response.data);
+      SearchItems model = SearchItems.fromJson(response.data);
       statusDynamic.data = model;
     } else {
       eeee("getCart List:  url: $api , response: ${response.data}");
