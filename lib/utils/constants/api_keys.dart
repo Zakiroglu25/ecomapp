@@ -19,8 +19,6 @@ class ApiKeys {
 
   static const account = "$customer/account";
 
-  static const cart = "$customer/cart";
-
   static const stock = "$protected/stock";
 
   static const stockSearch = "$stock/search";
@@ -62,31 +60,34 @@ class ApiKeys {
   //static const forgotOtp = "$baseUrl/user/otp";
 
   //contact
-  static const contact = "$baseUrl/protected/content/contacts";
+  static const contact = "$protected/content/contacts";
 
   //map
-  static const stores = "$baseUrl/protected/stores";
+  static const stores = "$protected/stores";
 
   //product_options
   //static const search = "$productOptions/search";
 
   //get product guid
-  static const productOptionsGuid = "$baseUrl/protected/product-options";
-  static const favorite = "$baseUrl/protected/customer/favorites";
+  static const productOptionsGuid = "$protected/product-options";
+  static const favorite = "$customer/favorites";
 
   //get category tree
-  static const categoryTree = "$baseUrl/protected/content/category-tree";
-  static const getAllManufacturers = "$baseUrl/protected/content/manufacturers";
+  static const content = "$protected/content";
+  static const categoryTree = "$content/category-tree";
+  static const getAllManufacturers = "$content/manufacturers";
 
   //faq
-  static const faq = "$baseUrl/public/faq";
-  //basket
-  static const addBasket = "$baseUrl/$customer/cart";
+  static const faq = "$public/faq";
 
   //bank card
   static const card = "$customer/cards";
+
   //notification
   static const notification = "$protected/notifications";
+
+  //cart
+  static const cart = "$customer/cart";
 
   //general
   static const localityInfoBigData = '$bigDataCloud/reverse-geocode-client';
@@ -240,6 +241,21 @@ class ApiKeys {
       "longitude": longitude,
       "description": description,
       "isMain": isMain,
+    };
+
+    map.removeWhere(
+        (key, value) => key == null || value == null || value == 'null');
+    return map;
+  }
+
+  static addCart({
+    required String? itemGuid,
+    required int? amount,
+  }) {
+    //
+    final map = {
+      "stockItemGuid": itemGuid,
+      "amount": 1,
     };
 
     map.removeWhere(

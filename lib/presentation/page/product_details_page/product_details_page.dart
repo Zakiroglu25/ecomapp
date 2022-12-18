@@ -90,7 +90,7 @@ class _ProductOptionDetailsState extends State<ProductOptionDetails> {
                     ),
                     MySizedBox.h16,
                     Text(
-                      'Swiss Energy Herbs Hot Balm Forte isidici balzam  75 ml Forte',
+                      "${product?.title!}",
                       style: AppTextStyles.sfPro600s17,
                     ),
                     MySizedBox.h16,

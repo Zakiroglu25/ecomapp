@@ -33,7 +33,7 @@ class ProductOptionsProvider {
 
   static Future<StatusDynamic> getProductByGuid({required String guid}) async {
     StatusDynamic statusDynamic = StatusDynamic();
-    final api = ApiKeys.stockSearch + '/$guid';
+    final api = ApiKeys.stock + '/$guid';
     final response = await dioAuth.dio.get(api);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {

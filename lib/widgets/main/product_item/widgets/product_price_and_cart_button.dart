@@ -19,7 +19,7 @@ class ProductPriceAndCartButton extends StatelessWidget {
           ProductPrice(
             price: product.price,
           ),
-          ProductCartButton()
+          ProductCartButton(guid: product.guid!)
         ],
       ),
     );
