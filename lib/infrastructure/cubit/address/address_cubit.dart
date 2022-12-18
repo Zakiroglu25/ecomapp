@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/infrastructure/model/response/address_model.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/request_control.dart';
@@ -16,8 +18,25 @@ class AddressCubit extends Cubit<AddressState> {
       emit(AddressInProgress());
     }
     try {
-      final result = await AddressProvider.getAddresses();
+      List<AddressModel> result = await AddressProvider.getAddresses();
       emit(AddressSuccess(result));
+    } on SocketException catch (_) {
+      emit(AddressNetworkError());
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+      emit(AddressError(error: e.toString()));
+    }
+  }
+
+  void fetchMainAddress([bool loading = true]) async {
+    if (loading) {
+      emit(AddressInProgress());
+    }
+    try {
+      List<AddressModel> result = await AddressProvider.getAddresses();
+      final address =
+          result.where((element) => element.isMain == true).firstOrNull;
+      emit(AddressMainSuccess(address));
     } on SocketException catch (_) {
       emit(AddressNetworkError());
     } catch (e, s) {
@@ -48,5 +67,42 @@ class AddressCubit extends Cubit<AddressState> {
     }
 
     //user/attorneys/delete
+  }
+
+  void update(String? id,
+      {bool loading = true, required AddressModel address}) async {
+    if (loading) {
+      emit(AddressInProgress());
+    }
+
+    try {
+      final result =
+          await AddressProvider.update(guid: "$id", address: address);
+
+      if (isSuccess(result!.statusCode)) {
+        emit(AddressDelete());
+        fetch(false);
+      } else {
+        emit(AddressError(error: MyText.error));
+      }
+    } on SocketException catch (_) {
+      //network olacaq
+      emit(AddressNetworkError());
+    } catch (e, s) {
+      emit(AddressError(error: MyText.error + " " + e.toString()));
+    }
+
+    //user/attorneys/delete
+  }
+
+  @override
+  emit(AddressState state) {
+    if (!isClosed) return super.emit(state);
+  }
+
+  @override
+  Future<void> close() {
+    // TODO: implement close
+    return super.close();
   }
 }

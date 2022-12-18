@@ -22,7 +22,7 @@ class MedicinesPage extends StatelessWidget {
         //   FilterWidget(),
         // ],
       ),
-      body: const MedicinesBody(),
+      body:  MedicinesBody(),
     );
   }
 }

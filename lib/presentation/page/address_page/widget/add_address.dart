@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/colors.dart';
+import '../../../../utils/constants/text.dart';
 import '../../../../utils/delegate/navigate_utils.dart';
 import '../../../../utils/delegate/pager.dart';
 import '../../../../widgets/custom/app_button.dart';
@@ -18,7 +19,7 @@ class EmptyAddress extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           BigSection(
-            title: 'Ünvanlarım',
+            title: MyText.myAddresses,
           ),
           Spacer(),
           EmptyWidget(

@@ -9,11 +9,7 @@ class FaqCubit extends Cubit<FaqState> {
     if (loading) {
       emit(FaqLoading());
     }
-      final result = await PublicProvider.faq();
-      print(result);
-        emit(FaqSuccess(result.data));
-
-
+    final result = await PublicProvider.faq();
+    emit(FaqSuccess(result.data));
   }
-
 }

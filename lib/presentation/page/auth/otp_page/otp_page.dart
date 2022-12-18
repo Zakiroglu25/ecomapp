@@ -15,8 +15,8 @@ import '../forgot_password_page/widget/forgot_back_button.dart';
 import 'widgets/otp_pin_code_field.dart';
 
 class OTPPage extends StatelessWidget {
-  const OTPPage({Key? key}) : super(key: key);
-
+  const OTPPage({Key? key, required this.showBackButton}) : super(key: key);
+  final bool showBackButton;
   @override
   Widget build(BuildContext context) {
     return AppSafeArea(
@@ -32,7 +32,7 @@ class OTPPage extends StatelessWidget {
             return Stack(
               fit: StackFit.expand,
               children: [
-                const ForgotBackButton(),
+                showBackButton ? const ForgotBackButton() : Container(),
                 SpacedColumn(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   space: 16,
@@ -56,7 +56,9 @@ class OTPPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                OtpLoginButton(),
+                OtpLoginButton(
+                  showLogOutButton: !showBackButton,
+                ),
               ],
             );
           },

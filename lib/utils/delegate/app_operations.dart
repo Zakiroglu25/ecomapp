@@ -35,7 +35,8 @@ class AppOperations {
     return a.replaceAll(' ', "-");
   }
 
-  static String formatNumberWith994(String num) {
+  static String? formatNumberWith994(String? num) {
+    if (num == null) return null;
     var a = num;
 
     a = num.replaceAll('(', '+994');

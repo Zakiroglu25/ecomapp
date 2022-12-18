@@ -7,8 +7,10 @@ import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/enums/transaction_type.dart';
+import '../../data/cart_provider.dart';
 import '../../data/favorites_provider.dart';
 import '../../model/response/product_option_model.dart';
+import '../../model/response/search_items.dart';
 import 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
@@ -29,15 +31,15 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  fetchProduct([bool loading = true]) async {
+  fetch([bool loading = true]) async {
     // updateProducts([]);
     if (loading) {
       emit(CartInProgress());
     }
     try {
-      final result = await FavoritesProvider.getFavorite(page);
+      final result = await CartProvider.getCart();
       if (result.statusCode.isSuccess) {
-        final favRes = result.data as FavResult;
+        final favRes = result.data as SearchItems;
         updateProducts(favRes.products!);
         emit(CartSuccess(favRes));
       } else {
@@ -51,20 +53,18 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  void addFavorite(String? guid,
-      {bool isFav = false, bool inFav = false}) async {
+  void add(String? guid, {bool isCart = false, bool inCart = false}) async {
     try {
-      if (isFav && inFav) {
+      if (isCart && inCart) {
         updateProducts(products.value
           ..remove(products.value
               .where((element) => element.guid == guid)
               .firstOrNull));
       }
-      final result = await FavoritesProvider.addFavorite(guid!,
-          trnType: isFav ? TrnType.delete : TrnType.post);
+      final result = await CartProvider.addCart(itemGuid: guid, amount: 1);
       if (result.statusCode.isSuccess) {
         emit(CartAdding());
-        fetchProduct(false);
+        fetch(false);
       } else {
         emit(CartNotAdding());
       }

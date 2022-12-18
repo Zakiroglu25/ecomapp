@@ -27,6 +27,7 @@ class Assets {
   static const String svgMinus2 = "assets/svg/minus-2.svg";
   static const String svgEdit = "assets/svg/edit.svg";
   static const String svgEditUser = "assets/svg/edit_user.svg";
+  static const String svgDelete = "assets/svg/trash.svg";
 
   ///fav
   static const String svgFilledHearth = "assets/svg/filled-heart.svg";
@@ -62,7 +63,7 @@ class Assets {
   static const String pngLikeMedicine = "assets/png/likemedicine.png";
   static const String pngContact3x = "assets/png/contact.png";
   static const String pngQuestion3x = "assets/png/question.png";
-  static const String pngSeting3x = "assets/png/setting.png";
+  static const String pngSetting3x = "assets/png/setting.png";
   static const String pngHomeAddress = "assets/png/home.png";
   static const String pngLocationIcon = "assets/png/location_icon.png";
 
@@ -93,7 +94,6 @@ class Assets {
   static const on_board_capsule = "assets/png/capsule_onboard.png";
   static const String courier_png = "assets/png/on_board_courier.png";
   static const String capsule_png = "assets/png/on_board_capsule.png";
-  static const String pngLock = "assets/png/lock_otp.png";
   static const String keyChild = "assets/png/keychild.png";
   static const String medicine = "assets/png/medicine.png";
   static const String pngBad = "assets/png/bad.png";
@@ -103,6 +103,7 @@ class Assets {
   static const String demo2 = "assets/png/zeytun.png";
 
   static const String masterCard = "assets/png/mastercard.png";
+  static const String visa = "assets/png/visa.png";
   static const String pngAzFlag = "assets/png/azflag.png";
 
   //other

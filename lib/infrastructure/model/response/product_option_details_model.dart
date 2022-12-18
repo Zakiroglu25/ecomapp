@@ -41,11 +41,11 @@ class ProductDetails {
   ProductDetails.fromJson(Map<String, dynamic> json) {
     guid = json['guid'];
     publicId = json['publicId'];
-    title = json['title'];
+    title = json['title'] ?? '';
     slug = json['slug'];
     prescriptionRequired = json['prescriptionRequired'] ?? false;
-    manufacturedIn = json['manufacturedIn'];
-    description = json['description'];
+    manufacturedIn = json['manufacturedIn'] ?? '';
+    description = json['description'] ?? '';
     substances = json['substances'];
     excipients = json['excipients'];
     dosage = json['dosage'];

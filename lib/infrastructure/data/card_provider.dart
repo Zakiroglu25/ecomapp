@@ -4,21 +4,20 @@ import '../../utils/constants/result_keys.dart';
 import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
 import '../model/response/product_option_model.dart';
+import '../model/response/search_items.dart';
 import '../model/response/status_dynamic.dart';
 import '../services/hive_service.dart';
 
 class CardProvider {
-
   static DioAuth get dioAuth => locator<DioAuth>();
 
   static Future<StatusDynamic> getCard() async {
     StatusDynamic statusDynamic = StatusDynamic();
     const api = ApiKeys.card;
-    final response =
-    await dioAuth.dio.get(api);
+    final response = await dioAuth.dio.get(api);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
-      FavResult model = FavResult.fromJson(response.data);
+      SearchItems model = SearchItems.fromJson(response.data);
       statusDynamic.data = model;
     } else {
       eeee("getFavorite List:  url: $api , response: ${response.data}");
@@ -29,7 +28,7 @@ class CardProvider {
   static Future<StatusDynamic> deleteCard(String guid) async {
     StatusDynamic statusDynamic = StatusDynamic();
     const api = ApiKeys.card;
-    final response = await dioAuth.dio.delete(api+"/$guid");
+    final response = await dioAuth.dio.delete(api + "/$guid");
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
     } else {

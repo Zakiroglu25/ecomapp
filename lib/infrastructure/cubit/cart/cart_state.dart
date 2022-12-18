@@ -1,3 +1,5 @@
+import 'package:uikit/infrastructure/model/response/search_items.dart';
+
 import '../../model/response/product_option_model.dart';
 
 abstract class CartState {}
@@ -19,6 +21,6 @@ class CartError extends CartState {
 class CartNetworkError extends CartState {}
 
 class CartSuccess extends CartState {
-  CartSuccess(this.favResult);
-  final FavResult favResult;
+  CartSuccess(this.items);
+  final SearchItems items;
 }

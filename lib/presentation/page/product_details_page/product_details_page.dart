@@ -13,6 +13,7 @@ import 'package:uikit/widgets/general/manat_price.dart';
 import '../../../infrastructure/cubit/product_details_details/product_details_state.dart';
 import '../../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
 import '../../../infrastructure/model/response/product_option_details_model.dart';
+import '../../../infrastructure/model/response/search_items.dart';
 import '../../../utils/constants/app_text_styles.dart';
 import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/colors.dart';
@@ -89,7 +90,7 @@ class _ProductOptionDetailsState extends State<ProductOptionDetails> {
                     ),
                     MySizedBox.h16,
                     Text(
-                      'Swiss Energy Herbs Hot Balm Forte isidici balzam  75 ml Forte',
+                      "${product?.title!}",
                       style: AppTextStyles.sfPro600s17,
                     ),
                     MySizedBox.h16,

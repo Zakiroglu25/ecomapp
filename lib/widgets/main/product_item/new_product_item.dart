@@ -10,8 +10,10 @@ import 'package:uikit/widgets/main/product_item/widgets/product_image.dart';
 import '../../../../utils/constants/border_radius.dart';
 import '../../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
 import '../../../infrastructure/model/response/product_option_model.dart';
+import '../../../infrastructure/model/response/search_items.dart';
 import '../../../presentation/page/product_details_page/product_details_page.dart';
 import '../../../utils/delegate/navigate_utils.dart';
+import '../../../utils/delegate/pager.dart';
 import '../../../utils/screen/ink_wrapper.dart';
 import 'widgets/product_details_and_buttons.dart';
 
@@ -19,6 +21,7 @@ class NewProductItem extends StatelessWidget {
   const NewProductItem({Key? key, required this.product, this.inFav = false})
       : super(key: key);
   final SimpleProduct product;
+  //inFav mean that this widget is in Favorite page
   final bool inFav;
 
   @override
@@ -27,13 +30,7 @@ class NewProductItem extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            Go.to(
-                context,
-                BlocProvider(
-                  create: (context) =>
-                      ProductOptionDetailsCubit()..fetchProduct(product.guid!),
-                  child: ProductOptionDetails(),
-                ));
+            Go.to(context, Pager.productDetails(guid: product.guid!));
           },
           child: Container(
             height: 126,

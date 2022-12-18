@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../locator.dart';
 import '../../../utils/constants/text.dart';
@@ -26,42 +27,42 @@ class AddAddressCubit extends Cubit<AddAddressState> {
   final descriptionController = TextEditingController();
   final isMain = TextEditingController();
 
-  void addAddress({double? lat, double? lng, BuildContext? context,TextEditingController? streetNameController }) async {
+  void addAddress(
+      {double? lat,
+      double? lng,
+      BuildContext? context,
+      TextEditingController? streetNameController}) async {
     try {
+      print("Cubit1");
+      emit(AddAddressInProgress());
+      print("Cubit2");
 
-        print("Cubit1");
-        emit(AddAddressInProgress());
-        print("Cubit2");
+      if (lng.toString() == null) {
+        emit(AddAddressError(error: "Addres Secilmeyib"));
+      }
 
-        if(lng.toString() == null){
-          emit(AddAddressError(error: "Addres Secilmeyib" ));
+      final result = await AddressProvider.addAddress(
+          city: cityController.text,
+          country: "Azərbaycan",
+          title: titleCnt.text,
+          houseNumber: "12",
+          streetName: streetNameController!.text,
+          phone: _prefs.user.phone,
+          latitude: lat.toString(),
+          longitude: lng.toString(),
+          description: descriptionController.text,
+          isMain: false);
+      print("Cubit3");
 
-        }
-
-        final result = await AddressProvider.addAddress(
-            city: cityController.text,
-            country: "Azərbaycan",
-            title: titleCnt.text,
-            houseNumber: "12",
-            streetName: streetNameController!.text,
-            phone: _prefs.user.phone,
-            latitude: lat.toString(),
-            longitude: lng.toString(),
-            description: descriptionController.text,
-            isMain: false);
-        print("Cubit3");
-
-        bbbb("resoooo: " + result.toString());
-        if (isSuccess(result?.statusCode)) {
-          print("Cubit4");
-          emit(AddAddressSuccess());
-        } else {
-          print("Cubit5");
-          emit(AddAddressError(error: MyText.error + " ${result!.statusCode}"));
-        }
-        emit(AddAddressInProgress());
-
-
+      bbbb("resoooo: " + result.toString());
+      if (result.statusCode.isSuccess) {
+        print("Cubit4");
+        emit(AddAddressSuccess());
+      } else {
+        print("Cubit5");
+        emit(AddAddressError(error: MyText.error + " ${result.statusCode}"));
+      }
+      emit(AddAddressInProgress());
     } on SocketException catch (_) {
       //network olacaq
       emit(AddAddressError(error: MyText.demo));
@@ -89,12 +90,12 @@ class AddAddressCubit extends Cubit<AddAddressState> {
       print("Cubit3");
 
       bbbb("resoooo: " + result.toString());
-      if (isSuccess(result?.statusCode)) {
+      if (isSuccess(result.statusCode)) {
         print("Cubit4");
         emit(AddAddressEditSuccess());
       } else {
         print("Cubit5");
-        emit(AddAddressError(error: MyText.error + " ${result!.statusCode}"));
+        emit(AddAddressError(error: MyText.error + " ${result.statusCode}"));
       }
       emit(AddAddressInProgress());
     } on SocketException catch (_) {
@@ -103,5 +104,10 @@ class AddAddressCubit extends Cubit<AddAddressState> {
     } catch (e) {
       emit(AddAddressError());
     }
+  }
+
+  @override
+  emit(AddAddressState state) {
+    if (!isClosed) return super.emit(state);
   }
 }

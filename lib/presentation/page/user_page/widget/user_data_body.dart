@@ -50,7 +50,7 @@ class UserDataBody extends StatelessWidget {
           children: [
             Container(
               width: 96.w,
-              height: 96,
+              height: 96.h,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: MyColors.grey288),
@@ -60,6 +60,7 @@ class UserDataBody extends StatelessWidget {
             ),
             MySizedBox.w8,
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 UserDataWidgetItem(
                   title: MyText.name,

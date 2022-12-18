@@ -22,8 +22,6 @@ class MapStoreProvider {
         final comeJson = response.data;
         for (int i = 0; i < (comeJson as List).length; i++) {
           statusDynamic.add(MapMedicine.fromJson(comeJson[i]));
-          iiii("getAddresses" + response.toString());
-          // Map responseBody = json.decode(response.data);
         }
       } else {
         eeee("address List:  url: $api , response: ${response.data}");

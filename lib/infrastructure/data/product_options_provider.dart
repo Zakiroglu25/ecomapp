@@ -1,3 +1,5 @@
+import 'package:uikit/infrastructure/model/response/search_items.dart';
+
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/constants/result_keys.dart';
@@ -12,16 +14,16 @@ class ProductOptionsProvider {
   static HiveService get _prefs => locator<HiveService>();
   static DioAuth get dioAuth => locator<DioAuth>();
 
-  static Future<StatusDynamic> getProduct(int page, {String? title}) async {
-    StatusDynamic statusDynamic = StatusDynamic();
-    const api = ApiKeys.search;
+  static Future<StatusDynamic<SearchItems>> getProduct(int page,
+      {String? title}) async {
+    StatusDynamic<SearchItems> statusDynamic = StatusDynamic();
+    final api = ApiKeys.stockSearch; //+ '?page=$page&title=$title';
     final response = await dioAuth.dio
         .get(api, queryParameters: {"page": page, "title": title});
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
-      final comeJson = response.data;
-      FavResult model = FavResult.fromJson(comeJson);
-      statusDynamic.data = model.products;
+      SearchItems model = SearchItems.fromJson(response.data);
+      statusDynamic.data = model;
     } else {
       eeee("address List:  url: $api , response: ${response.data}");
     }
@@ -31,7 +33,7 @@ class ProductOptionsProvider {
 
   static Future<StatusDynamic> getProductByGuid({required String guid}) async {
     StatusDynamic statusDynamic = StatusDynamic();
-    final api = ApiKeys.productOptions + '/$guid';
+    final api = ApiKeys.stock + '/$guid';
     final response = await dioAuth.dio.get(api);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {

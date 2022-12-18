@@ -5,6 +5,9 @@ import 'package:uikit/infrastructure/config/configs.dart';
 class ApiKeys {
   ApiKeys._();
 
+  static const bigDataCloud = 'https://api.bigdatacloud.net/data';
+  static const googleMap = 'https://maps.googleapis.com/maps/api/geocode';
+
   static const baseUrl = 'https://doctoro${Configs.enviroment}.ml';
   static const public = "$baseUrl/public";
   static const auth = "$public/auth";
@@ -12,11 +15,13 @@ class ApiKeys {
   static const protected = "$baseUrl/protected";
 
   static const customer = "$protected/customer";
-  static const productOptions = "$protected/product-options";
+  //static const productOptions = "$protected/product-options";
 
   static const account = "$customer/account";
 
-  static const cart = "$customer/cart";
+  static const stock = "$protected/stock";
+
+  static const stockSearch = "$stock/search";
 
   ///delete
   static const headers = {
@@ -30,6 +35,7 @@ class ApiKeys {
   static const login = "$auth/login";
   static const refreshToken = "$auth/refresh-token";
   static const validateOtp = "$auth/validate-otp";
+  static const requestOtp = "$auth/request-otp";
 
   // register
   static const registerPersonal = "$baseUrl/public/onboarding/sign-up";
@@ -37,12 +43,12 @@ class ApiKeys {
   //user
   static const user = "$account";
   static const devices = "$customer/devices";
+  static const changeNumber = "$account/request-update-phone-otp";
 
   //address
   static const getAddress = "$customer/address-book";
 
   //forgot
-  static const requestOtp = "$auth/request-otp";
   static const forgotOtpApprove = "$auth/validate-otp";
   static const resetPassword = "$account/reset-password";
 
@@ -54,29 +60,38 @@ class ApiKeys {
   //static const forgotOtp = "$baseUrl/user/otp";
 
   //contact
-  static const contact = "$baseUrl/public/contacts";
+  static const contact = "$protected/content/contacts";
 
   //map
-  static const stores = "$baseUrl/protected/stores";
+  static const stores = "$protected/stores";
 
   //product_options
-  static const search = "$productOptions/search";
+  //static const search = "$productOptions/search";
 
   //get product guid
-  static const productOptionsGuid = "$baseUrl/protected/product-options";
-  static const favorite = "$baseUrl/protected/customer/favorites";
+  static const productOptionsGuid = "$protected/product-options";
+  static const favorite = "$customer/favorites";
 
   //get category tree
-  static const categoryTree = "$baseUrl/protected/content/category-tree";
-  static const getAllManufacturers = "$baseUrl/protected/content/manufacturers";
+  static const content = "$protected/content";
+  static const categoryTree = "$content/category-tree";
+  static const getAllManufacturers = "$content/manufacturers";
 
   //faq
-  static const faq = "$baseUrl/public/faq";
-  //basket
-  static const addBasket = "$baseUrl/$customer/cart";
+  static const faq = "$public/faq";
 
   //bank card
-  static const card = "$baseUrl/$customer/card";
+  static const card = "$customer/cards";
+
+  //notification
+  static const notification = "$protected/notifications";
+
+  //cart
+  static const cart = "$customer/cart";
+
+  //general
+  static const localityInfoBigData = '$bigDataCloud/reverse-geocode-client';
+  static const localityInfoGoogleMap = '$googleMap/json';
 
   static loginBody({
     required String? email,
@@ -97,9 +112,22 @@ class ApiKeys {
   static otpBody({
     required String? phone,
     required String? otp,
+    required String? email,
   }) {
     //
-    final map = {"phone": phone, "otp": otp};
+    final map = {"phone": phone, "otp": otp, "email": email};
+
+    map.removeWhere(
+        (key, value) => key == null || value == null || value == 'null');
+    return map;
+  }
+
+  static changePhoneBody({
+    required String? phone,
+    required String? password,
+  }) {
+    //
+    final map = {"phone": phone, "password": password};
 
     map.removeWhere(
         (key, value) => key == null || value == null || value == 'null');
@@ -211,8 +239,23 @@ class ApiKeys {
       "phone": phone,
       "latitude": latitude,
       "longitude": longitude,
-      "description": country,
+      "description": description,
       "isMain": isMain,
+    };
+
+    map.removeWhere(
+        (key, value) => key == null || value == null || value == 'null');
+    return map;
+  }
+
+  static addCart({
+    required String? itemGuid,
+    required int? amount,
+  }) {
+    //
+    final map = {
+      "stockItemGuid": itemGuid,
+      "amount": 1,
     };
 
     map.removeWhere(

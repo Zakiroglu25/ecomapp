@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/config/init.dart';
+import 'package:uikit/infrastructure/cubit/app_bloc_observer.dart';
 
 import 'mate_app.dart';
 
@@ -46,7 +48,12 @@ void main() async {
   print("object client4: ${client4.hashCode}");
 
   await init();
-  runApp(const MateApp());
+  BlocOverrides.runZoned(
+    () {
+      runApp(const MateApp());
+    },
+    blocObserver: AppBlocObserver(),
+  );
 }
 
 class SohClient {

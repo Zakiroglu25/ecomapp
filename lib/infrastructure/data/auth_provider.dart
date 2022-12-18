@@ -47,13 +47,14 @@ class AuthProvider {
 
   static Future<StatusDynamic> validateOtp({
     required String? phone,
+    required String? email,
     required String? otp,
   }) async {
     StatusDynamic statusDynamic = StatusDynamic();
 
     var api = ApiKeys.validateOtp;
     https: //doctoro-dev.ml/public/auth/validate-otp
-    var body = ApiKeys.otpBody(phone: phone, otp: otp);
+    var body = ApiKeys.otpBody(phone: phone, otp: otp, email: email);
 
     final response = await dioG.dio.post(api, data: body);
     statusDynamic.statusCode = response.statusCode;
@@ -68,6 +69,23 @@ class AuthProvider {
       };
 
       statusDynamic.data = tokens;
+    } else {}
+    return statusDynamic;
+  }
+
+  static Future<StatusDynamic> requestOtp({
+    required String? phone,
+    required String? email,
+  }) async {
+    StatusDynamic statusDynamic = StatusDynamic();
+
+    final tail = phone != null ? "/$phone" : "/$email";
+    var api = ApiKeys.requestOtp + tail;
+
+    final response = await dioG.dio.post(api);
+    bbbb("resss:${response.data}");
+    statusDynamic.statusCode = response.statusCode;
+    if (response.statusCode == ResultKey.successCode) {
     } else {}
     return statusDynamic;
   }

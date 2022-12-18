@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
-
 import '../../../locator.dart';
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/my_printer.dart';
@@ -37,6 +36,26 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
+  void changePhone(BuildContext context, {bool? isLoading = true}) async {
+    if (isLoading!) {
+      emit(UserLoading());
+    }
+    try {
+      final response = await AccountProvider.changePhone(
+          phone: phone.valueOrNull, password: password.valueOrNull);
+      final errors = response!.data;
+      if (isSuccess(response.statusCode)) {
+        emit(UserSuccess(response.data!));
+        Snack.positive(context: context, message: MyText.success);
+      } else {
+        Snack.display(message: errors);
+        emit(UserFailed(response.statusCode.toString()));
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   void update(BuildContext context, {bool? isLoading = true}) async {
     if (isLoading!) {
       emit(UserLoading());
@@ -44,7 +63,7 @@ class UserCubit extends Cubit<UserState> {
 
     try {
       final response = await AccountProvider.updateUserInfo(
-        phone: phone.valueOrNull,
+        phone: _prefs.user.phone,
         email: uEmail.valueOrNull,
         firstName: name.valueOrNull,
         lastName: lastname.valueOrNull,
@@ -74,6 +93,24 @@ class UserCubit extends Cubit<UserState> {
       emit(UserFailed(MyText.error));
     }
   }
+
+  //[password]
+  final BehaviorSubject<String> password = BehaviorSubject<String>();
+
+  Stream<String> get passwordStream => password.stream;
+
+  updatePassword(String value) {
+    if (value.isEmpty) {
+      password.value = '';
+      password.sink.addError("Xana doldurulmalıdır");
+    } else {
+      password.sink.add(value);
+    }
+    isUserInfoValid();
+  }
+
+  bool get isPasswordIncorrect =>
+      (!password.hasValue || password.value.isEmpty);
 
   //phone
   final BehaviorSubject<String> phone = BehaviorSubject<String>();
@@ -219,13 +256,15 @@ class UserCubit extends Cubit<UserState> {
 
   bool isUserInfoValid() {
     if (!isBirthDateIncorrect &&
-        !isFinIncorrect &&
-        !isNameIncorrect &&
-        !isLastNameIncorrect &&
-        !isSeriaIncorrect &&
-        !isEmailIncorrect &&
-        !isPatronymicIncorrect &&
-        !isPhoneIncorrect) {
+            !isFinIncorrect &&
+            !isNameIncorrect &&
+            !isLastNameIncorrect &&
+            !isSeriaIncorrect &&
+            !isEmailIncorrect &&
+            !isPatronymicIncorrect
+        // !isPhoneIncorrect
+
+        ) {
       emit(UserButtonActive());
       return true;
     } else {

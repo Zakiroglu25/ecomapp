@@ -98,5 +98,6 @@ class Paddings {
 
   //only right
   static const EdgeInsets paddingR8 = EdgeInsets.only(right: 8);
+  static const EdgeInsets paddingR12 = EdgeInsets.only(right: 12);
   static const EdgeInsets paddingR16 = EdgeInsets.only(right: 16);
 }

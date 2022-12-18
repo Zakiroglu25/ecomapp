@@ -3,12 +3,15 @@ import 'package:flutter/foundation.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/infrastructure/data/auth_provider.dart';
 import 'package:uikit/infrastructure/services/navigation_service.dart';
+import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/delegate/navigate_utils.dart';
 import '../../utils/delegate/pager.dart';
+import '../../utils/screen/alert.dart';
+import '../model/response/detailed_error.dart';
 import '../model/response/error_response.dart';
 import '../services/hive_service.dart';
 
@@ -27,11 +30,10 @@ class DioAuth {
       BaseOptions(
         baseUrl: ApiKeys.baseUrl,
         // contentType: 'application/json',
-        queryParameters: {"Accept": "application/json"},
         followRedirects: true,
         //headers: ApiKeys.header(token: _prefs.accessToken),
         validateStatus: (status) {
-          return status! < 300;
+          return status! < 500;
           //return true;
         },
       ),
@@ -66,6 +68,16 @@ class JwtInterceptor extends Interceptor {
   void onResponse(Response response, ResponseInterceptorHandler handler) async {
     // TODO: implement onResponse
     super.onResponse(response, handler);
+    if (response.statusCode == null) return;
+    switch (response.statusCode) {
+      case 401:
+      case 403:
+        await refreshToken(handler: handler, response: response);
+        _retry(response.requestOptions);
+        break;
+      default:
+        break;
+    }
   }
 
   @override
@@ -74,17 +86,20 @@ class JwtInterceptor extends Interceptor {
 
     switch (err.response?.statusCode) {
       case 200:
-        break;
-      case 401:
-      case 403:
-        await refreshToken(handler: handler, response: err.response);
-        _retry(err.requestOptions);
+      case 201:
         break;
       case 500:
         final error = ErrorResponse.fromJson(err.response?.data);
         switch (error.status) {
           case 10005:
-          //Go.to(NavigationService.instance.navigationKey.currentContext,Pager.otp(phone));
+            // Go.to(
+            //     NavigationService.instance.navigationKey!.currentContext!,
+            //     Pager.otp(
+            //         phone: _prefs.phoneNumber,
+            //         email: _prefs.email,
+            //         requestNew: true));
+            // handler.next(err);
+            return;
         }
         break;
       default:
@@ -93,13 +108,13 @@ class JwtInterceptor extends Interceptor {
   }
 
   Future<void> refreshToken(
-      {required ErrorInterceptorHandler handler,
+      {required ResponseInterceptorHandler handler,
       required Response? response}) async {
     final res = await AuthProvider.refreshToken();
 
     if (res.statusCode.isSuccess && response != null) {
       final accessToken = res.data['accessToken'];
-      _prefs.persistAccessToken(accessToken: accessToken);
+      await _prefs.persistAccessToken(accessToken: accessToken);
       handler.resolve(response);
     }
   }
@@ -149,6 +164,21 @@ class CustomInterceptors extends Interceptor {
     }
     //  return
     super.onResponse(response, handler);
+    if (response.statusCode == null) return;
+    if (response.statusCode.isSuccess ||
+        response.statusCode == 403 ||
+        response.statusCode == 401 ||
+        response.statusCode! >= 500) return;
+    switch (response.statusCode) {
+      case 200:
+      case 201:
+        break;
+      default:
+        final error = DetailedError.fromJson(response.data);
+        Alert.show(NavigationService.instance.navigationKey!.currentContext!,
+            content: error.details ?? '', title: MyText.error);
+        break;
+    }
   }
 
   @override
