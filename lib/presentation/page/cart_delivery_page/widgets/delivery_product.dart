@@ -40,7 +40,7 @@ class DeliveryProduct extends StatelessWidget {
                       textAlign: TextAlign.end,
                       style: AppTextStyles.sfPro400s12.copyWith(
                           color: insuranceCover
-                              ? MyColors.green85
+                              ? MyColors.mainGreen85
                               : MyColors.darkRED),
                     ),
                     Text('16.10'.withManat)

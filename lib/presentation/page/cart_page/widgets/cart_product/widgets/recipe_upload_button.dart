@@ -26,7 +26,7 @@ class RecipeUploadButton extends StatelessWidget {
         ),
         decoration: BoxDecoration(
             color: MyColors.green235,
-            border: Border.all(color: MyColors.green85),
+            border: Border.all(color: MyColors.mainGreen85),
             borderRadius: Radiuses.r99),
       ),
     );

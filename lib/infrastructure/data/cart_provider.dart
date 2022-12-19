@@ -42,7 +42,7 @@ class CartProvider {
     return statusDynamic;
   }
 
-  static Future<StatusDynamic> deleteCart(String guid) async {
+  static Future<StatusDynamic> deleteCart({required String guid}) async {
     StatusDynamic statusDynamic = StatusDynamic();
     const api = ApiKeys.cart;
     final response = await dioAuth.dio.delete(api + "/$guid");

@@ -10,6 +10,8 @@ class CartInProgress extends CartState {}
 
 class CartAdding extends CartState {}
 
+class CartDeleted extends CartState {}
+
 class CartNotAdding extends CartState {}
 
 class CartError extends CartState {

@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
+import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/extensions/index.dart';
+import 'package:uikit/utils/screen/snack.dart';
 
 import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/enums/transaction_type.dart';
@@ -64,12 +66,33 @@ class CartCubit extends Cubit<CartState> {
       final result = await CartProvider.addCart(itemGuid: guid, amount: 1);
       if (result.statusCode.isSuccess) {
         emit(CartAdding());
+        Snack.positive(message: MyText.addToCart);
         fetch(false);
       } else {
         emit(CartNotAdding());
       }
-    } on SocketException catch (_) {
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
       emit(CartError());
+    }
+  }
+
+  void delete(String? guid, {bool isCart = false, bool inCart = false}) async {
+    try {
+      if (isCart && inCart) {
+        updateProducts(products.value
+          ..remove(products.value
+              .where((element) => element.guid == guid)
+              .firstOrNull));
+      }
+      final result = await CartProvider.deleteCart(guid: guid!);
+      if (result.statusCode.isSuccess) {
+        emit(CartDeleted());
+        Snack.positive(message: MyText.addToCart);
+        fetch(false);
+      } else {
+        emit(CartNotAdding());
+      }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
       emit(CartError());
