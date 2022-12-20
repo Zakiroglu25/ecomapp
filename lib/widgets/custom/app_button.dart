@@ -3,6 +3,7 @@ import 'package:uikit/utils/constants/paddings.dart';
 
 import '../../utils/constants/app_text_styles.dart';
 import '../../utils/constants/colors.dart';
+import '../../utils/constants/durations.dart';
 import '../general/app_loading.dart';
 
 class AppButton extends StatelessWidget {
@@ -65,7 +66,8 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool active = isButtonActive ?? true;
-    return Container(
+    return AnimatedContainer(
+      duration: Durations.ms300,
       height: h ?? 52,
       width: w ?? double.infinity,
       decoration: BoxDecoration(

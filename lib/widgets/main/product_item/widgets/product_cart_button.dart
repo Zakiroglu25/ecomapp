@@ -11,18 +11,51 @@ import 'package:uikit/utils/constants/text.dart';
 import '../../../../utils/constants/assets.dart';
 import '../../../custom/app_button.dart';
 
-class ProductCartButton extends StatelessWidget {
+class ProductCartButton extends StatefulWidget {
   const ProductCartButton({Key? key, required this.product}) : super(key: key);
   final SimpleProduct product;
 
   @override
+  State<ProductCartButton> createState() => _ProductCartButtonState();
+}
+
+class _ProductCartButtonState extends State<ProductCartButton> {
+  bool inCart = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    starLogic();
+  }
+
+  @override
+  void didUpdateWidget(covariant ProductCartButton oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+    starLogic();
+  }
+
+  void starLogic() {
+    inCart = widget.product.isInCart!;
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final inCart = product.inCart!;
     //final inCart = true;
     return Expanded(
       child: AppButton(
         color: inCart ? MyColors.brand : MyColors.mainGreen85,
-        onTap: () => context.read<CartCubit>().add(product.guid),
+        onTap: () {
+          if (inCart) {
+            context.read<CartCubit>().delete(widget.product.guid);
+          } else {
+            context.read<CartCubit>().add(widget.product.guid);
+          }
+          inCart = !inCart;
+          setState(() {});
+        },
         // w: 90,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -24,7 +24,7 @@ class DeliveryProduct extends StatelessWidget {
         children: [
           Expanded(flex: 1, child: MedPhoto()),
           MySizedBox.w16,
-          Flexible(flex: 3, child: CartMedName()),
+          Flexible(flex: 3, child: CartMedName(name: 'nameee')),
           MySizedBox.w16,
           Expanded(
             flex: 2,
