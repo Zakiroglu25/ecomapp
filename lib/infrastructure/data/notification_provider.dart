@@ -8,11 +8,11 @@ import '../model/response/status_dynamic.dart';
 
 class NotificationProvider {
   static DioAuth get dioAuth => locator<DioAuth>();
-
-  Future<StatusDynamic> getNotification() async {
+  static Future<StatusDynamic> getNotification() async {
     StatusDynamic statusDynamic = StatusDynamic();
     const api = ApiKeys.notification;
     final response = await dioAuth.dio.get(api);
+    wtf(response.toString());
     try {
       statusDynamic.statusCode = response.statusCode;
       if (response.statusCode == ResultKey.successCode) {
