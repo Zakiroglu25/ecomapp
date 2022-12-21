@@ -31,6 +31,7 @@ class MedProductDetails extends StatelessWidget {
           RecipeBox(
             recipeRequired: item?.prescriptionRequired,
             url: item?.prescriptionImage,
+            cartGuid: item?.guid,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

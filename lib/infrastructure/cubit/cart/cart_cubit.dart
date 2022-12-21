@@ -77,21 +77,42 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  void delete(String? guid, {bool isCart = false, bool inCart = false}) async {
+  void delete(String? stockGuid,
+      {bool isCart = false, bool inCart = false}) async {
     try {
       if (isCart && inCart) {
         updateProducts(products.value
           ..remove(products.value
-              .where((element) => element.guid == guid)
+              .where((element) => element.guid == stockGuid)
               .firstOrNull));
       }
-      final result = await CartProvider.deleteCart(guid: guid!);
+      final result = await CartProvider.deleteCart(guid: stockGuid!);
       if (result.statusCode.isSuccess) {
         emit(CartDeleted());
         Snack.display(message: MyText.removedFromCart, color: MyColors.brand);
         fetch(false);
       } else {
         emit(CartNotAdding());
+      }
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+      emit(CartError());
+    }
+  }
+
+  void deletePrescription(String cartGuid, {bool loading = true}) async {
+    if (loading) {
+      emit(CartInProgress());
+    }
+    try {
+      final result = await CartProvider.deleteCartPrescription(guid: cartGuid);
+      if (result.statusCode.isSuccess) {
+        // emit(CartDeleted());
+        Snack.display(
+            message: MyText.cartPrescriptionRemoved, color: MyColors.brand);
+        fetch(false);
+      } else {
+        Snack.display(message: MyText.error, color: MyColors.brand);
       }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);

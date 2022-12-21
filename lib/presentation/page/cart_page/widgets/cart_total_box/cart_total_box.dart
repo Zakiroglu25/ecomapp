@@ -25,7 +25,10 @@ class CartTotalBox extends StatelessWidget {
           CartTotalPrice(),
           CartInsuranceInfo(),
           CartInsuranceSwitch(),
-          CartTotalRecipe(),
+          CartTotalRecipe(
+            url: '',
+            cartGuid: '',
+          ),
           CartMakeOrderButton()
         ]),
       ),

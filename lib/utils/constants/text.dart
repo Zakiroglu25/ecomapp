@@ -135,6 +135,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String addToCart = "Səbətə at";
   static const String addedToCart = "Səbətə atıldı";
   static const String removedFromCart = "Səbətdən çıxarıldı";
+  static const String cartPrescriptionRemoved = "Resept silindi";
   static const String recipe = "Resept";
   static const String uploadRecipe = "Resepti yüklə";
   static const String orders = "Sifarişlər";
