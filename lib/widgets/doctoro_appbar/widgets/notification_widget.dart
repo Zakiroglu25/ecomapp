@@ -8,6 +8,7 @@ import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/durations.dart';
 import '../../../utils/delegate/navigate_utils.dart';
+import '../../../utils/delegate/pager.dart';
 import '../../../utils/screen/ink_wrapper.dart';
 
 class NotificationWidget extends StatelessWidget {
@@ -15,7 +16,7 @@ class NotificationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWrapper(
       onTap: () {
-        Go.to(context, NotificationsPage());
+        Go.to(context, Pager.notificationPage);
         globalPageController.animateTo(0,
             duration: Durations.ms300, curve: Curves.linear);
       },
