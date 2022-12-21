@@ -58,7 +58,7 @@ class MapDetailsHeaders extends StatelessWidget {
                               "${maps.opensAtMinutes}" +
                                   "${maps.opensAtHour}:00-${maps.closesAtHour}:00",
                               style: AppTextStyles.sfPro400s14
-                                  .copyWith(color: MyColors.green85)),
+                                  .copyWith(color: MyColors.mainGreen85)),
                         ],
                       ),
                       MySizedBox.h10,
@@ -69,7 +69,7 @@ class MapDetailsHeaders extends StatelessWidget {
                         height: 32.h,
                         decoration: BoxDecoration(
                           color: maps.isOpen!
-                              ? MyColors.green85
+                              ? MyColors.mainGreen85
                               : MyColors.mainRED,
                           borderRadius: BorderRadius.circular(24),
                         ),

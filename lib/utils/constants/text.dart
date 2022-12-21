@@ -131,7 +131,10 @@ In addition to laying out rules for proper use of your app, you should also clea
 
   //cart page
   static const String toCart = "Səbətə";
+  static const String cancel = "Ləğv et";
   static const String addToCart = "Səbətə at";
+  static const String addedToCart = "Səbətə atıldı";
+  static const String removedFromCart = "Səbətdən çıxarıldı";
   static const String recipe = "Resept";
   static const String uploadRecipe = "Resepti yüklə";
   static const String orders = "Sifarişlər";
@@ -254,5 +257,4 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String yes = 'Bəli';
   static const String no = 'Xeyr';
   static const String deleteCardInfo = 'Kart məlumatlarınız, silinsin?';
-
 }

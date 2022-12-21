@@ -5,12 +5,13 @@ import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/mock.dart';
 
 class CartMedName extends StatelessWidget {
-  const CartMedName({Key? key}) : super(key: key);
+  const CartMedName({Key? key, required this.name}) : super(key: key);
+  final String? name;
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      MockData.medicineName,
+      "$name",
       overflow: TextOverflow.ellipsis,
       maxLines: 3,
       style: AppTextStyles.sfPro400h2.copyWith(

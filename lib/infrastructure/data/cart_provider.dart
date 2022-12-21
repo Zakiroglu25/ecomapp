@@ -8,6 +8,7 @@ import '../../utils/constants/api_keys.dart';
 import '../../utils/constants/result_keys.dart';
 import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
+import '../model/response/cart_items.dart';
 import '../model/response/status_dynamic.dart';
 
 class CartProvider {
@@ -28,21 +29,22 @@ class CartProvider {
     return statusDynamic;
   }
 
-  static Future<StatusDynamic> getCart() async {
-    StatusDynamic statusDynamic = StatusDynamic();
+  static Future<StatusDynamic<List<CartItem>>> getCartItems() async {
+    StatusDynamic<List<CartItem>> statusDynamic = StatusDynamic();
     const api = ApiKeys.cart;
     final response = await dioAuth.dio.get(api);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
-      SearchItems model = SearchItems.fromJson(response.data);
-      statusDynamic.data = model;
+      List<CartItem> cartItems =
+          (response.data as List).map((e) => CartItem.fromJson(e)).toList();
+      statusDynamic.data = cartItems;
     } else {
       eeee("getCart List:  url: $api , response: ${response.data}");
     }
     return statusDynamic;
   }
 
-  static Future<StatusDynamic> deleteCart(String guid) async {
+  static Future<StatusDynamic> deleteCart({required String guid}) async {
     StatusDynamic statusDynamic = StatusDynamic();
     const api = ApiKeys.cart;
     final response = await dioAuth.dio.delete(api + "/$guid");

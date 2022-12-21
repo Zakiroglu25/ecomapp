@@ -52,6 +52,7 @@ class SimpleProduct {
   double? price;
   Null? imageUrl;
   bool? isFavorite;
+  bool? isInCart;
 
   SimpleProduct(
       {this.guid,
@@ -60,6 +61,7 @@ class SimpleProduct {
       this.productOptionGuid,
       this.title,
       this.price,
+      this.isInCart,
       this.imageUrl,
       this.isFavorite});
 
@@ -69,6 +71,7 @@ class SimpleProduct {
     storeName = json['storeName'];
     productOptionGuid = json['productOptionGuid'];
     title = json['title'];
+    isInCart = json['isInCart'] ?? false;
     price = json['price'];
     imageUrl = json['imageUrl'];
     isFavorite = json['isFavorite'];
@@ -79,6 +82,7 @@ class SimpleProduct {
     data['guid'] = this.guid;
     data['storeGuid'] = this.storeGuid;
     data['storeName'] = this.storeName;
+    data['isInCart'] = this.isInCart;
     data['productOptionGuid'] = this.productOptionGuid;
     data['title'] = this.title;
     data['price'] = this.price;
@@ -89,6 +93,6 @@ class SimpleProduct {
 
   @override
   String toString() {
-    return 'Data{guid: $guid, storeGuid: $storeGuid, storeName: $storeName, productOptionGuid: $productOptionGuid, title: $title, price: $price, imageUrl: $imageUrl, isFavorite: $isFavorite}';
+    return 'Data{guid: $guid, storeGuid: $storeGuid, isInCart: $isInCart, storeName: $storeName, productOptionGuid: $productOptionGuid, title: $title, price: $price, imageUrl: $imageUrl, isFavorite: $isFavorite}';
   }
 }

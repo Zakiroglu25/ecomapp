@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uikit/infrastructure/model/response/cart_items.dart';
 
 import '../../../../../../widgets/custom/column_with_space.dart';
 import '../../../../../../widgets/general/manat_price.dart';
@@ -8,10 +9,12 @@ import 'cart_pharm_name.dart';
 import 'receip_box.dart';
 
 class MedProductDetails extends StatelessWidget {
-  const MedProductDetails({Key? key, this.url, this.recipeRequired})
+  const MedProductDetails(
+      {Key? key, this.url, this.recipeRequired, required this.item})
       : super(key: key);
   final String? url;
   final bool? recipeRequired;
+  final CartItem? item;
 
   @override
   Widget build(BuildContext context) {
@@ -21,18 +24,28 @@ class MedProductDetails extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         space: 8,
         children: [
-          const CartMedName(),
-          const CartPharmName(),
+          CartMedName(name: item?.title),
+          CartPharmName(
+            name: item?.storeName,
+          ),
           RecipeBox(
-            recipeRequired: recipeRequired,
-            url: url,
+            recipeRequired: item?.prescriptionRequired,
+            url: item?.prescriptionImage,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [ManatPrice(price: "1212"), const CartCounter()],
+            children: [
+              ManatPrice(price: "${calculate(item?.amount, item?.price)}"),
+              const CartCounter()
+            ],
           ),
         ],
       ),
     );
+  }
+
+  num calculate(num? amount, num? price) {
+    if (amount == null || price == null) return 0;
+    return amount * price;
   }
 }

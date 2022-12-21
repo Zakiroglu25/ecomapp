@@ -14,9 +14,9 @@ enum CartOrderType {
       case CartOrderType.waitingPayment:
         return MyColors.orange242.withOpacity(.1);
       case CartOrderType.confirmed:
-        return MyColors.green85.withOpacity(.1);
+        return MyColors.mainGreen85.withOpacity(.1);
       default:
-        return MyColors.green85.withOpacity(.1);
+        return MyColors.mainGreen85.withOpacity(.1);
     }
   }
 
