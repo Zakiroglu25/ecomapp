@@ -15,6 +15,7 @@ class ApiKeys {
   static const protected = "$baseUrl/protected";
 
   static const customer = "$protected/customer";
+
   //static const productOptions = "$protected/product-options";
 
   static const account = "$customer/account";
@@ -85,6 +86,7 @@ class ApiKeys {
 
   //notification
   static const notification = "$protected/notifications";
+  static const notificationDelete = "$protected/notifications";
 
   //cart
   static const cart = "$customer/cart";

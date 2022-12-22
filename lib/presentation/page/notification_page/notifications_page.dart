@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/infrastructure/model/response/notification_model.dart';
 
 import '../../../infrastructure/cubit/notification_cubit/notification_cubit.dart';
 import '../../../infrastructure/cubit/notification_cubit/notification_state.dart';
@@ -24,16 +25,22 @@ class NotificationsPage extends StatelessWidget {
         ),
         body: BlocBuilder<NotificationCubit, NotificationState>(
           builder: (context, state) {
-            if(state is NotificationSuccess){
+            if (state is NotificationSuccess) {
+              List<Notificationse>? notificationList =
+                  state.notificationList.data;
+              // return Center(child: Text("Alindi"));
               return ListView.builder(
-                  itemCount: 12,
+                  itemCount: notificationList.length,
                   itemBuilder: (context, index) {
                     return NotificationElement(
-                      onXTap: null,
+                      onXTap: () {},
+                      list: notificationList[index],
                     );
                   });
 
-            }else{
+            } else if (state is NotificationError) {
+              return Center(child: Text("alinmadi"));
+            } else {
               return EmptyWidget();
             }
           },

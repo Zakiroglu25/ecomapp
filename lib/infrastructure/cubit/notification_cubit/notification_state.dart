@@ -1,4 +1,5 @@
-import '../../model/response/Notification_model.dart';
+
+import '../../model/response/notification_model.dart';
 
 abstract class NotificationState {}
 
@@ -19,7 +20,7 @@ class NotificationError extends NotificationState {
 class NotificationNetworkError extends NotificationState {}
 
 class NotificationSuccess extends NotificationState {
-  NotificationSuccess(this.NotificationList);
+  NotificationSuccess(this.notificationList);
 
-  final NotificationModel NotificationList;
+  final NotificationModel notificationList;
 }
