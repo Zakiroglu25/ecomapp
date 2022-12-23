@@ -196,8 +196,11 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String expan =
       "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.";
 
-//asan finance
+  //asan finance
   static const String save = "Yadda saxla";
+  static const String gallery = "Qalerya";
+  static const String camera = "Kamera";
+  static const String avatarNotAdded = 'Foto əlavə edilmədi!';
 
   static const String asanCheckbox =
       "Mən “ASAN Finans”-dan məlumatlarımı yoxlanılmasına icazımi verirəm  ";

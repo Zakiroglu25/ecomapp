@@ -1,7 +1,6 @@
 // Dart imports:
 import 'dart:convert';
 
-
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/constants/result_keys.dart';
@@ -20,7 +19,7 @@ class AccountProvider {
     required String? token,
   }) async {
     StatusDynamic statusDynamic = StatusDynamic();
-    var api = ApiKeys.user;
+    var api = ApiKeys.account;
     final response = await dioAuth.dio.get(api);
 
     statusDynamic.statusCode = response.statusCode;
@@ -89,7 +88,7 @@ class AccountProvider {
     required bool? newsletterSubscription,
   }) async {
     StatusDynamic statusDynamic = StatusDynamic();
-    var api = ApiKeys.user;
+    var api = ApiKeys.account;
     Uri url = Uri.parse(api);
     final body = ApiKeys.updateAccountBody(
       phone: phone,

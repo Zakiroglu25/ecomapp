@@ -21,7 +21,9 @@ class RecipeFileDeleteButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppUnicornButton(
       padding: Paddings.paddingH6,
-      onPressed: () => context.read<CartCubit>().deletePrescription(cartGuid!),
+      onPressed: () => context
+          .read<CartCubit>()
+          .deletePrescription(context, cartGuid!, loading: false),
       child: Container(
         padding: Paddings.paddingH8 + Paddings.paddingV8,
         child: Row(

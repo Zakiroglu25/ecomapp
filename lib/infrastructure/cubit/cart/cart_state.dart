@@ -12,6 +12,8 @@ class CartDeleted extends CartState {}
 
 class CartNotAdding extends CartState {}
 
+class CartPrescriptionAdded extends CartState {}
+
 class CartError extends CartState {
   String? error;
 

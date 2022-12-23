@@ -1,6 +1,9 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/utils/constants/colors.dart';
@@ -8,8 +11,12 @@ import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/utils/screen/snack.dart';
 
+import '../../../utils/delegate/file_operations.dart';
 import '../../../utils/delegate/my_printer.dart';
+import '../../../utils/screen/alert.dart';
+import '../../../utils/screen/overlay_loader.dart';
 import '../../data/cart_provider.dart';
+import '../../data/images_provider.dart';
 import '../../model/response/cart_items.dart';
 import 'cart_state.dart';
 
@@ -100,10 +107,12 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  void deletePrescription(String cartGuid, {bool loading = true}) async {
+  void deletePrescription(BuildContext context, String cartGuid,
+      {bool loading = true}) async {
     if (loading) {
       emit(CartInProgress());
     }
+    Loader.show(context);
     try {
       final result = await CartProvider.deleteCartPrescription(guid: cartGuid);
       if (result.statusCode.isSuccess) {
@@ -117,6 +126,114 @@ class CartCubit extends Cubit<CartState> {
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
       emit(CartError());
+    }
+    Loader.hide();
+  }
+
+  void checkAndPickImage(BuildContext context,
+      {required ImageSource imageSource, required String? cartGuid}) async {
+    Loader.show(context);
+    try {
+      await updateImage(await FileOperations.checkAndPickImage(
+          context: context, imageSource: imageSource));
+      await addPrescription(cartGuid: cartGuid!, context: context);
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+      Snack.display(context: context, message: e.toString());
+    }
+    Loader.hide();
+  }
+
+  Future<void> showGalleryAccessAlert(BuildContext context) async {
+    Alert.show(context,
+        title: MyText.we_need_access_to_gallery,
+        content: MyText.we_will_redirect_to_settings_gallery,
+        buttonText: MyText.goOn,
+        onTap: () async => await openAppSettings());
+  }
+
+  addPrescription({
+    required BuildContext context,
+    bool? isLoading = false,
+    required String cartGuid,
+  }) async {
+    if (isLoading!) {
+      emit(CartInProgress());
+    }
+    try {
+      final guid = await addImage(isLoading: false);
+      if (guid == null) {
+        //emit(CartError());
+        return;
+      } else {
+        final response = await CartProvider.addCartPrescription(
+            cartGuid: cartGuid, prescriptionGuid: guid);
+
+        if (response.statusCode.isSuccess) {
+          Snack.positive(message: MyText.success);
+          //emit(CartPrescriptionAdded());
+          fetch(false);
+        } else {
+          Snack.display(message: MyText.error);
+          emit(CartError());
+        }
+      }
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+      emit(CartError());
+    }
+  }
+
+  Future<String?> addImage({bool isLoading = true}) async {
+    if (isLoading) {
+      emit(CartInProgress());
+    }
+    try {
+      if (isPhotoValid()) {
+        final response =
+            await ImagesProvider.addPrescription(invoice: image.valueOrNull);
+
+        if (response!.statusCode.isSuccess)
+          return response.data;
+        else {
+          Snack.display(message: MyText.error);
+          emit(CartError());
+        }
+      } else {
+        emit(CartError());
+      }
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+      emit(CartError());
+    }
+    return null;
+  }
+
+  //values
+  //photo
+  final BehaviorSubject<File?> image = BehaviorSubject<File>();
+
+  Stream<File?> get imageStream => image.stream;
+
+  updateImage(File? value) {
+    if (value == null || value.path == null) {
+      image.sink.addError(MyText.field_is_not_correct);
+    } else {
+      image.sink.add(value);
+    }
+    // isUserInfoValid(registerType: _registerType);
+  }
+
+  bool get isImageIncorrect => (!image.hasValue || image.value == null);
+
+  bool isPhotoValid() {
+    if (!isImageIncorrect) {
+      //emit(UserButtonActive());
+      //bbbb("---- true");
+      return true;
+    } else {
+      //bbbb("---- false");
+      return false;
     }
   }
 }

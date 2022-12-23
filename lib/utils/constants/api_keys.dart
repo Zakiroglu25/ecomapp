@@ -21,6 +21,8 @@ class ApiKeys {
 
   static const stock = "$protected/stock";
 
+  static const images = "$protected/images";
+
   static const stockSearch = "$stock/search";
 
   ///delete
@@ -41,7 +43,6 @@ class ApiKeys {
   static const registerPersonal = "$baseUrl/public/onboarding/sign-up";
 
   //user
-  static const user = "$account";
   static const devices = "$customer/devices";
   static const changeNumber = "$account/request-update-phone-otp";
 
@@ -76,6 +77,9 @@ class ApiKeys {
   static const content = "$protected/content";
   static const categoryTree = "$content/category-tree";
   static const getAllManufacturers = "$content/manufacturers";
+
+  //images
+  static const prescription = "$images/prescription";
 
   //faq
   static const faq = "$public/faq";
