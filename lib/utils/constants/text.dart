@@ -122,8 +122,9 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String insurance = "Sığorta";
   static const String likeMedicine = "Öxşar dərmanlar";
   static const String questionAnswer = "Sual-cavab";
-  static const String myAddresses = "Ünvanlarım";
+  static const String myAddresses = "Ünvalarım";
   static const String address = "Ünvan";
+  static const String addresses = "Ünvanlar";
   static const String contact = "Əlaqə";
   static const String settings = "Tənzimləmələr";
   static const String demoSubtitle = "Axtardığınız məhsulu tapmaq üçün";

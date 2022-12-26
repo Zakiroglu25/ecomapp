@@ -15,8 +15,8 @@ import '../model/response/status_dynamic.dart';
 class AddressProvider {
   static DioAuth get dioAuth => locator<DioAuth>();
 
-  static Future<List<AddressModel>> getAddresses() async {
-    List<AddressModel> statusDynamic = [];
+  static Future<List<Address>> getAddresses() async {
+    List<Address> statusDynamic = [];
     const api = ApiKeys.getAddress;
     final response = await dioAuth.dio.get(api);
     if (response.statusCode.isSuccess) {
@@ -78,7 +78,7 @@ class AddressProvider {
 
   static Future<StatusDynamic?> update({
     required String guid,
-    required AddressModel address,
+    required Address address,
   }) async {
     StatusDynamic statusDynamic = StatusDynamic();
     var api = ApiKeys.getAddress + "/$guid";

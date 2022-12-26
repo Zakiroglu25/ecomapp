@@ -149,7 +149,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   void showLogoutDialog(BuildContext context, {bool goWithPager = false}) {
     Alert.show(context,
         image: SizedBox(
-            width: 120, height: 120, child: Image.asset(Assets.pngSetting3x)),
+            width: 120, height: 120, child: Image.asset(Assets.pngSetting)),
         cancelButton: true, onTap: () {
       logOut(context, goWithPager: goWithPager);
     }, title: MyText.are_u_sure_exit);

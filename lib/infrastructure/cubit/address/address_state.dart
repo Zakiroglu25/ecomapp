@@ -19,11 +19,11 @@ class AddressDelete extends AddressState {}
 class AddressSuccess extends AddressState {
   AddressSuccess(this.addressList);
 
-  final List<AddressModel> addressList;
+  final List<Address> addressList;
 }
 
 class AddressMainSuccess extends AddressState {
   AddressMainSuccess(this.address);
 
-  final AddressModel? address;
+  final Address? address;
 }

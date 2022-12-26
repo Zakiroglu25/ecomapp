@@ -2,7 +2,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/widgets/custom/app_button.dart';
+import 'package:uikit/widgets/general/app_element_box.dart';
 
 import '../constants/app_text_styles.dart';
 import '../constants/assets.dart';
@@ -48,22 +50,24 @@ class Alert {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  image ??
-                      Container(
-                        child: Image.asset(Assets.pngSetting3x),
-                        height: 120.sm,
-                        width: 120.sm,
-                      ),
-                  SizedBox(
-                    height: 10.sm,
+                  Container(
+                    child: image ??
+                        AppElementBox(
+                          color: MyColors.orange241.withOpacity(0.15),
+                          child: Image.asset(
+                            Assets.pngFireIsoColor,
+                            // width: 220,
+                            fit: BoxFit.cover,
+                            // scale: 2,
+                          ),
+                        ),
                   ),
+                  MySizedBox.h4,
                   Text(
                     title ?? MyText.info,
                     style: AppTextStyles.sfPro600.copyWith(fontSize: 18.sm),
                   ),
-                  SizedBox(
-                    height: 10.sm,
-                  ),
+                  MySizedBox.h4,
                   Padding(
                     padding: Paddings.paddingH16,
                     child: Text(

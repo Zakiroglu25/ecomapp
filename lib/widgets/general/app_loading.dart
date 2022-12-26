@@ -11,7 +11,7 @@ class AppLoading extends StatelessWidget {
   final Color? color;
   final double? s;
 
-  const AppLoading({this.color, this.s = 120});
+  const AppLoading({Key? key, this.color, this.s = 120});
 
   const AppLoading.blue(
       {Key? key, this.color = MyColors.mainGrey, this.s = 120})

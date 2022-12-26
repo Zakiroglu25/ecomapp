@@ -94,7 +94,7 @@ class OtherPage extends StatelessWidget {
                   color: MyColors.grey245,
                   h: 167.h,
                   w: 167.w,
-                  imageUrl: Assets.pngSetting3x,
+                  imageUrl: Assets.pngSetting,
                   title: MyText.settings,
                   desc: MyText.demoSubtitle,
                 ),

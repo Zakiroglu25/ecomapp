@@ -19,7 +19,7 @@ import 'fields/region_field.dart';
 import 'fields/title_fields.dart';
 
 class AddAddressPage extends StatelessWidget {
-  final AddressModel? addressModel;
+  final Address? addressModel;
   double? lat;
   double? lng;
   TextEditingController? textController = TextEditingController();

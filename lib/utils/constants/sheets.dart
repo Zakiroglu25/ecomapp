@@ -32,9 +32,8 @@ class Sheets {
         child: Builder(builder: (context) {
           return Flexible(
             child: FocusDetector(
-              onFocusLost: () {
-                prevContext.read<AddressCubit>().fetchMainAddress();
-              },
+              onFocusLost: () =>
+                  prevContext.read<AddressCubit>().fetchMainAddress(),
               child: AnimatedSize(
                 duration: Durations.ms200,
                 child: Container(

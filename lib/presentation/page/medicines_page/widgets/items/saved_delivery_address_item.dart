@@ -15,6 +15,6 @@ class SavedDeliveryAddressItem extends SavableDeliveryAddressItem {
               ..update(address.guid!, address: address..isMain = true),
             selected: address.isMain ?? false);
 
-  final AddressModel address;
+  final Address address;
   final BuildContext context;
 }
