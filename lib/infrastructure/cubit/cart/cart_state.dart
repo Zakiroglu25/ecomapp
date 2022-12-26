@@ -6,13 +6,7 @@ class CartInitial extends CartState {}
 
 class CartInProgress extends CartState {}
 
-class CartAdding extends CartState {}
-
-class CartDeleted extends CartState {}
-
-class CartNotAdding extends CartState {}
-
-class CartPrescriptionAdded extends CartState {}
+class CartOperationError extends CartState {}
 
 class CartError extends CartState {
   String? error;
@@ -20,14 +14,8 @@ class CartError extends CartState {
   CartError({this.error});
 }
 
-class CartNetworkError extends CartState {}
-
 class CartFetched extends CartState {
   CartFetched(this.items);
-  final List<CartItem> items;
-}
 
-class CartSuccess extends CartState {
-  CartSuccess(this.items);
   final List<CartItem> items;
 }

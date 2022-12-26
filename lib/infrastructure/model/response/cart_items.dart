@@ -6,7 +6,7 @@ class CartItem {
   String? storeName;
   String? productSlug;
   num? price;
-  num? amount;
+  int? amount;
   double? discountedPrice;
   bool? prescriptionRequired;
   String? prescriptionImageGuid;
@@ -35,7 +35,7 @@ class CartItem {
     title = json['title'];
     productSlug = json['productSlug'];
     price = json['price'];
-    amount = json['amount'];
+    amount = json['amount'] ?? 0;
     storeName = json['storeName'];
     discountedPrice = json['discountedPrice'];
     productOptionImages = json['productOptionImages'].cast<String>();

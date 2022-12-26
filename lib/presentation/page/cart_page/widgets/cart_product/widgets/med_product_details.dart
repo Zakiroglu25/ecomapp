@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uikit/infrastructure/model/response/cart_items.dart';
+import 'package:uikit/utils/delegate/index.dart';
 
 import '../../../../../../widgets/custom/column_with_space.dart';
 import '../../../../../../widgets/general/manat_price.dart';
@@ -18,6 +19,7 @@ class MedProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bbbb("itemitemitem: $item");
     return Flexible(
       child: SpacedColumn(
         mainAxisSize: MainAxisSize.min,
@@ -36,8 +38,10 @@ class MedProductDetails extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ManatPrice(price: "${calculate(item?.amount, item?.price)}"),
-              const CartCounter()
+              ManatPrice(
+                  price:
+                      "${calculate(item?.amount, item?.price).toStringAsFixed(2)}"),
+              CartCounter(item: item)
             ],
           ),
         ],

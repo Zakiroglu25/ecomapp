@@ -259,7 +259,7 @@ class ApiKeys {
     //
     final map = {
       "stockItemGuid": itemGuid,
-      "amount": 1,
+      "amount": amount,
     };
 
     map.removeWhere(

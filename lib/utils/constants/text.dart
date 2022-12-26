@@ -103,6 +103,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   //product page
   static const String medicines = "Dərmanlar";
   static const String medicine = "Dərman";
+  static const String tryAgain = 'Yenidən cəhd et';
   static const String carts = "Səbətim";
   static const String nameDoctoro = "Doctoro";
   static const String searchHint = "Ad və ya istehsal olduğu ölkə";
