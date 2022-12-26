@@ -1,10 +1,14 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:uikit/infrastructure/data/notification_provider.dart';
 
+import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/delegate/request_control.dart';
+import '../../../utils/screen/snack.dart';
+import '../../config/recorder.dart';
 import 'notification_state.dart';
 
 class NotificationCubit extends Cubit<NotificationState> {
@@ -16,9 +20,11 @@ class NotificationCubit extends Cubit<NotificationState> {
     }
     try {
       final result = await NotificationProvider.getNotification();
-
-      if (isSuccess(result.statusCode)) {
+      if (result.statusCode == 200) {
+        // iiii("2"+result.statusCode.toString());
         emit(NotificationSuccess(result.data));
+        // iiii("3"+result.data);
+
       } else {
         emit(NotificationError());
       }
@@ -30,25 +36,30 @@ class NotificationCubit extends Cubit<NotificationState> {
     }
   }
 
-// void deleteNotification(String? id, {bool loading = true}) async {
-//   if (loading) {
-//     emit(NotificationProgress());
-//   }
-//   try {
-//     final result = await PublicProvider.deleteNotification(guid: "$id");
-//     if (isSuccess(result!.statusCode)) {
-//       emit(NotificationDelete());
-//       // getNotification(false);
-//     } else {
-//       emit(NotificationError(error: MyText.error));
-//     }
-//   } on SocketException catch (_) {
-//     //network olacaq
-//     emit(NotificationNetworkError());
-//   } catch (e) {
-//     emit(NotificationError(error: MyText.error + " " + e.toString()));
-//   }
-//
-//   //user/attorneys/delete
-// }
+  Future<bool?> removeNotificion(
+      {required String notificationId,
+      bool? loading,
+      required BuildContext? context}) async {
+    if (loading ?? true) {
+      emit(NotificationProgress());
+    }
+
+    try {
+      final result = await NotificationProvider.removeNotification(
+          notificationId: notificationId);
+      if (isSuccess(result!.statusCode)) {
+        Snack.positive(message: "Pozuldu");
+        getNotification(loading: false);
+      } else {
+        emit(NotificationError());
+      }
+    } on SocketException catch (_) {
+      emit(NotificationNetworkError());
+      return false;
+    } catch (e, s) {
+      emit(NotificationError());
+      Recorder.recordCatchError(e, s);
+      return false;
+    }
+  }
 }
