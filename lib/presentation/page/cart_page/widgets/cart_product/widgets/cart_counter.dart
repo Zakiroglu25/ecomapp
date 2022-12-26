@@ -1,25 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/enums/operation_type.dart';
 
+import '../../../../../../infrastructure/model/response/cart_items.dart';
 import '../../../../../../widgets/custom/row_with_space.dart';
 import 'count_text.dart';
 import 'counter_button.dart';
 
 class CartCounter extends StatelessWidget {
-  const CartCounter({Key? key}) : super(key: key);
-
+  const CartCounter({Key? key, required this.item}) : super(key: key);
+  final CartItem? item;
   @override
   Widget build(BuildContext context) {
-    return const SpacedRow(
+    return SpacedRow(
       space: 4,
       children: [
         CounterButton(
-          text: '-',
+          count: item!.amount!,
+          guid: item?.stockItemGuid,
+          operationType: OperationType.delete,
         ),
         CountText(
-          count: '5',
+          count: item?.amount,
         ),
-        const CounterButton(
-          text: '+',
+        CounterButton(
+          count: item!.amount!,
+          guid: item?.stockItemGuid,
+          operationType: OperationType.add,
         ),
       ],
     );

@@ -3,18 +3,13 @@ import 'package:uikit/utils/constants/colors.dart';
 
 import '../../../../../../utils/constants/mock.dart';
 import '../../../../../../utils/screen/errorable_image.dart';
+import '../../../../../../widgets/main/product_item/widgets/product_image.dart';
 
 class RecipePhoto extends StatelessWidget {
-  const RecipePhoto({Key? key}) : super(key: key);
-
+  const RecipePhoto({Key? key, required this.url}) : super(key: key);
+  final String? url;
   @override
   Widget build(BuildContext context) {
-    return ErrorableImage(
-      backColor: MyColors.white,
-      imageUrl: MockData.recipeImgURL,
-      r: 6,
-      w: 64,
-      h: 64,
-    );
+    return ProductImage(imageUrl: url);
   }
 }

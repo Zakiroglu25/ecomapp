@@ -48,7 +48,7 @@ class ErrorableImage extends StatelessWidget {
                       child: SizedBox(
                           height: 10,
                           width: 10,
-                          child: placeHolder ?? AppLoading())),
+                          child: placeHolder ?? AppLoading.blue())),
                   errorWidget: (context, url, error) => errorImage(),
                 )
               : errorImage(),

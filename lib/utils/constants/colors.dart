@@ -16,6 +16,7 @@ class MyColors {
   static const Color darkRED = Color.fromRGBO(211, 41, 45, 1);
   static const Color grey165 = Color.fromRGBO(168, 172, 185, 1);
   static const Color error_red = Color.fromRGBO(241, 82, 116, 1);
+  static const Color orange241 = Color.fromRGBO(241, 110, 82, 1);
   static const Color grey130 = Color.fromRGBO(130, 139, 163, 1);
   static const Color grey188 = Color.fromRGBO(188, 192, 208, 1);
   static const Color grey288 = Color.fromRGBO(228, 232, 238, 1);
@@ -34,7 +35,7 @@ class MyColors {
   static const Color mainGrey = Color(0xFFF5F5F5);
   static const Color grey226 = Color.fromRGBO(226, 226, 226, 1);
   static const Color green = Color.fromRGBO(85, 169, 50, 1);
-  static const Color green85 = Color.fromRGBO(85, 161, 88, 1);
+  static const Color mainGreen85 = Color.fromRGBO(85, 161, 88, 1);
   static const Color newGREEN = Colors.lightGreen;
   static const Color mainOpacityDark = Color.fromRGBO(211, 211, 219, .5);
   static const Color green235 = Color.fromRGBO(235, 250, 227, 1);

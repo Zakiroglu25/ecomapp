@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/infrastructure/cubit/cart/cart_cubit.dart';
 import 'package:uikit/presentation/page/cart_page/tabs/delivery_tab/delivery_tab.dart';
 import 'package:uikit/presentation/page/cart_page/tabs/orders_tab/orders_tab.dart';
 import 'package:uikit/presentation/page/cart_page/tabs/waiting_tab/waiting_tab.dart';
@@ -37,6 +39,7 @@ class CartPage extends StatelessWidget {
     return CupperTabWP(
         title: MyText.cart,
         isScrollable: true,
+        onRefresh: () => context.read<CartCubit>().fetch(),
         tabPages: [
           OrdersTab(),
           WaitingTab(),

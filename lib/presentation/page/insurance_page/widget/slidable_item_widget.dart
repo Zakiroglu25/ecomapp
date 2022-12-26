@@ -72,7 +72,7 @@ class SlidableWidget extends StatelessWidget {
                   width: 82.w,
                   height: 32.h,
                   decoration: BoxDecoration(
-                    color: MyColors.green85,
+                    color: MyColors.mainGreen85,
                     borderRadius: BorderRadius.circular(24),
                   ),
                   child: Center(

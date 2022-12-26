@@ -1,6 +1,4 @@
-import 'package:uikit/infrastructure/model/response/search_items.dart';
-
-import '../../model/response/product_option_model.dart';
+import '../../model/response/cart_items.dart';
 
 abstract class CartState {}
 
@@ -8,9 +6,7 @@ class CartInitial extends CartState {}
 
 class CartInProgress extends CartState {}
 
-class CartAdding extends CartState {}
-
-class CartNotAdding extends CartState {}
+class CartOperationError extends CartState {}
 
 class CartError extends CartState {
   String? error;
@@ -18,9 +14,8 @@ class CartError extends CartState {
   CartError({this.error});
 }
 
-class CartNetworkError extends CartState {}
+class CartFetched extends CartState {
+  CartFetched(this.items);
 
-class CartSuccess extends CartState {
-  CartSuccess(this.items);
-  final SearchItems items;
+  final List<CartItem> items;
 }

@@ -103,6 +103,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   //product page
   static const String medicines = "Dərmanlar";
   static const String medicine = "Dərman";
+  static const String tryAgain = 'Yenidən cəhd et';
   static const String carts = "Səbətim";
   static const String nameDoctoro = "Doctoro";
   static const String searchHint = "Ad və ya istehsal olduğu ölkə";
@@ -121,8 +122,9 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String insurance = "Sığorta";
   static const String likeMedicine = "Öxşar dərmanlar";
   static const String questionAnswer = "Sual-cavab";
-  static const String myAddresses = "Ünvanlarım";
+  static const String myAddresses = "Ünvalarım";
   static const String address = "Ünvan";
+  static const String addresses = "Ünvanlar";
   static const String contact = "Əlaqə";
   static const String settings = "Tənzimləmələr";
   static const String demoSubtitle = "Axtardığınız məhsulu tapmaq üçün";
@@ -131,7 +133,11 @@ In addition to laying out rules for proper use of your app, you should also clea
 
   //cart page
   static const String toCart = "Səbətə";
+  static const String cancel = "Ləğv et";
   static const String addToCart = "Səbətə at";
+  static const String addedToCart = "Səbətə atıldı";
+  static const String removedFromCart = "Səbətdən çıxarıldı";
+  static const String cartPrescriptionRemoved = "Resept silindi";
   static const String recipe = "Resept";
   static const String uploadRecipe = "Resepti yüklə";
   static const String orders = "Sifarişlər";
@@ -192,8 +198,11 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String expan =
       "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.";
 
-//asan finance
+  //asan finance
   static const String save = "Yadda saxla";
+  static const String gallery = "Qalerya";
+  static const String camera = "Kamera";
+  static const String avatarNotAdded = 'Foto əlavə edilmədi!';
 
   static const String asanCheckbox =
       "Mən “ASAN Finans”-dan məlumatlarımı yoxlanılmasına icazımi verirəm  ";
@@ -254,5 +263,4 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String yes = 'Bəli';
   static const String no = 'Xeyr';
   static const String deleteCardInfo = 'Kart məlumatlarınız, silinsin?';
-
 }

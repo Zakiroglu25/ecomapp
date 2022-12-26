@@ -20,6 +20,7 @@ class Assets {
   static const String svgCard = "assets/svg/card.svg";
   static const String svgScan = "assets/svg/scan.svg";
   static const String svgCall = "assets/svg/call.svg";
+  static const String svgTrash = "assets/svg/trash.svg";
   static const String svgMessage = "assets/svg/messages.svg";
   static const String svgLoaction = "assets/svg/locationsvg.svg";
 
@@ -38,6 +39,7 @@ class Assets {
   static const String svgFav = "assets/svg/iconheart.svg";
   static const String svgAptek = "assets/svg/svgaptek.svg";
   static const String svgCart = "assets/svg/svgcart.svg";
+  static const String svgBagCross = "assets/svg/bag-cross.svg";
   static const String svgShoppingCart = "assets/svg/shopping-cart.svg";
   static const String svgMore = "assets/svg/svgmore.svg";
   static const String svgBigLogo = "assets/svg/big-logo.svg";
@@ -63,7 +65,8 @@ class Assets {
   static const String pngLikeMedicine = "assets/png/likemedicine.png";
   static const String pngContact3x = "assets/png/contact.png";
   static const String pngQuestion3x = "assets/png/question.png";
-  static const String pngSetting3x = "assets/png/setting.png";
+  static const String pngSetting = "assets/png/setting.png";
+  static const String pngFireIsoColor = "assets/png/fire-iso-color.png";
   static const String pngHomeAddress = "assets/png/home.png";
   static const String pngLocationIcon = "assets/png/location_icon.png";
 

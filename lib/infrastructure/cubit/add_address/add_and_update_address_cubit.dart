@@ -71,7 +71,7 @@ class AddAddressCubit extends Cubit<AddAddressState> {
     }
   }
 
-  void editAddress(AddressModel address) async {
+  void editAddress(Address address) async {
     try {
       print("Cubit1");
       emit(AddAddressInProgress());

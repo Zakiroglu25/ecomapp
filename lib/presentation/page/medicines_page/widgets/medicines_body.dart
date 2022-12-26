@@ -5,7 +5,7 @@ import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/widgets/custom/listview_separated.dart';
 import 'package:uikit/widgets/general/empty_widget.dart';
 import 'package:uikit/widgets/general/list_or_empty.dart';
-import 'package:uikit/widgets/main/product_item/new_product_item.dart';
+import 'package:uikit/widgets/main/product_item/product_item.dart';
 
 import '../../../../infrastructure/cubit/product_option_cubit/product_option_cubit.dart';
 import '../../../../infrastructure/cubit/product_option_cubit/product_option_state.dart';
@@ -63,7 +63,7 @@ class MedicinesBody extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return index == productList.length
                                 ? AppLoading.main()
-                                : NewProductItem(
+                                : ProductItem(
                                     product: productList[index],
                                     inFav: false,
                                   );

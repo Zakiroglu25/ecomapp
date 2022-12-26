@@ -22,9 +22,13 @@ class DeliveryProduct extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         //space: 16,
         children: [
-          Expanded(flex: 1, child: MedPhoto()),
+          Expanded(
+              flex: 1,
+              child: MedPhoto(
+                productOptionImages: [],
+              )),
           MySizedBox.w16,
-          Flexible(flex: 3, child: CartMedName()),
+          Flexible(flex: 3, child: CartMedName(name: 'nameee')),
           MySizedBox.w16,
           Expanded(
             flex: 2,
@@ -40,7 +44,7 @@ class DeliveryProduct extends StatelessWidget {
                       textAlign: TextAlign.end,
                       style: AppTextStyles.sfPro400s12.copyWith(
                           color: insuranceCover
-                              ? MyColors.green85
+                              ? MyColors.mainGreen85
                               : MyColors.darkRED),
                     ),
                     Text('16.10'.withManat)

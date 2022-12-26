@@ -10,6 +10,7 @@ import 'package:uikit/presentation/page/auth/forgot_password_page/forgot_pass_pa
 import 'package:uikit/presentation/page/auth/otp_page/otp_page.dart';
 import 'package:uikit/presentation/page/landing_page/landing_page.dart';
 import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart';
+import 'package:uikit/presentation/page/notification_page/notifications_page.dart';
 
 import '../../app.dart';
 import '../../infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
@@ -19,6 +20,7 @@ import '../../infrastructure/cubit/cart/cart_cubit.dart';
 import '../../infrastructure/cubit/contact_cubit/contact_cubit.dart';
 import '../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../infrastructure/cubit/login/login_cubit.dart';
+import '../../infrastructure/cubit/notification_cubit/notification_cubit.dart';
 import '../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
 import '../../infrastructure/cubit/product_option_cubit/product_option_cubit.dart';
 import '../../infrastructure/cubit/register/register_cubit.dart';
@@ -71,6 +73,7 @@ class Pager {
 
   static get cart => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => LoginCubit()),
+        BlocProvider(create: (context) => CartCubit()..fetch()),
       ], child: CartPage());
 
   static get cartDelivery => MultiBlocProvider(providers: [
@@ -107,6 +110,10 @@ class Pager {
         create: (context) => CardCubit()..getCard(),
         child: PaymentMethodPage(),
       );
+  static get notificationPage => BlocProvider(
+    create: (context) => NotificationCubit()..getNotification(),
+    child: NotificationsPage(),
+  );
 
   static get faqPage => BlocProvider(
         create: (context) => FaqCubit()..getFaq(),
@@ -128,7 +135,7 @@ class Pager {
 
   static get product => ProductPage();
 
-  static addAddress({AddressModel? address}) => BlocProvider(
+  static addAddress({Address? address}) => BlocProvider(
         create: (context) => AddAddressCubit(),
         child: AddAddressPage(),
       );

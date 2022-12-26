@@ -1,14 +1,26 @@
+
 class NotificationModel {
+  List<Notificationse> data = [];
+
+  NotificationModel(this.data);
+
+  NotificationModel.fromJson(List json) {
+    for (int i = 0; i < json.length; i++) {
+      data.add(Notificationse.fromJson(json[i]));
+    }
+  }
+}
+class Notificationse {
   String? guid;
   String? title;
   String? body;
   Metadata? metadata;
   String? createdAt;
 
-  NotificationModel(
+  Notificationse(
       {this.guid, this.title, this.body, this.metadata, this.createdAt});
 
-  NotificationModel.fromJson(Map<String, dynamic> json) {
+  Notificationse.fromJson(Map<String, dynamic> json) {
     guid = json['guid'];
     title = json['title'];
     body = json['body'];
@@ -32,17 +44,17 @@ class NotificationModel {
 }
 
 class Metadata {
-  String? title;
+  String? type;
 
-  Metadata({this.title});
+  Metadata({this.type});
 
   Metadata.fromJson(Map<String, dynamic> json) {
-    title = json['title'];
+    type = json['type'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
+    data['type'] = this.type;
     return data;
   }
 }

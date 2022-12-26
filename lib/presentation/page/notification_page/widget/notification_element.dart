@@ -2,22 +2,29 @@
 // Package imports:
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uikit/infrastructure/model/response/notification_model.dart';
 
+import '../../../../infrastructure/cubit/notification_cubit/notification_cubit.dart';
 import '../../../../utils/constants/app_text_styles.dart';
+import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/paddings.dart';
 import '../../../../utils/constants/sized_box.dart';
+import '../../../../utils/constants/text.dart';
+import '../../../../utils/screen/alert.dart';
 
 class NotificationElement extends StatelessWidget {
   final Function? onXTap;
   final bool? increase;
-  // final MyNotification notification;
+  final Notificationse list;
 
   const NotificationElement({
     Key? key,
     required this.onXTap,
-    // required this.notification,
     this.increase,
+    required this.list,
   }) : super(key: key);
 
   @override
@@ -41,8 +48,22 @@ class NotificationElement extends StatelessWidget {
         alignment: Alignment.centerRight,
       ),
       direction: DismissDirection.endToStart,
+      confirmDismiss: (DismissDirection direction) async {
+        return Alert.show(
+          context,
+          title: "MyText.are_u_sure_delete",
+          buttonText: MyText.yes,
+          cancelButton: true,
+          onTap: () => context.read<NotificationCubit>().removeNotificion(
+              context: context, loading: false, notificationId: list.guid!),
+          image: SizedBox(
+            width: 120.sm,
+            height: 120.sm,
+            child: Image.asset(Assets.medicine),
+          ),
+        );
+      },
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
             padding: Paddings.paddingA16,
@@ -51,15 +72,23 @@ class NotificationElement extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "notification.title!",
+                  list.title!,
                   style: AppTextStyles.sfPro600
                       .copyWith(fontSize: 14, color: MyColors.black34),
                 ),
                 MySizedBox.h4,
-                Text(
-                  "notification.description!",
-                  style: AppTextStyles.sfPro400s14
-                      .copyWith(fontSize: 14, color: MyColors.grey153),
+                Row(
+                  children: [
+                    Text(
+                      list.body!,
+                      style: AppTextStyles.sfPro400s14
+                          .copyWith(fontSize: 14, color: MyColors.grey153),
+                    ),
+                    Spacer(),
+                    Text(list.createdAt!.substring(0, 10),
+                        style: AppTextStyles.sfPro400s14
+                            .copyWith(fontSize: 10, color: MyColors.grey153))
+                  ],
                 ),
               ],
             ),

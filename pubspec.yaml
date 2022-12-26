@@ -72,7 +72,8 @@ dependencies:
   #helper
   pin_code_fields: ^7.4.0
 
-
+  #plugin
+  image_picker: ^0.8.5+3
 
   #test:
   equatable:

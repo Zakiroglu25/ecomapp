@@ -94,7 +94,7 @@ class OtherPage extends StatelessWidget {
                   color: MyColors.grey245,
                   h: 167.h,
                   w: 167.w,
-                  imageUrl: Assets.pngSetting3x,
+                  imageUrl: Assets.pngSetting,
                   title: MyText.settings,
                   desc: MyText.demoSubtitle,
                 ),
@@ -132,17 +132,17 @@ class OtherPage extends StatelessWidget {
                   title: MyText.questionAnswer,
                   desc: MyText.demoSubtitle,
                 ),
-                ProductAndOtherWidget(
-                  onTap: () => context
-                      .read<AuthenticationCubit>()
-                      .showLogoutDialog(context),
-                  color: MyColors.purple,
-                  h: 167.h,
-                  w: 167.w,
-                  imageUrl: Assets.pngQuestion3x,
-                  title: MyText.logout,
-                  desc: MyText.logoutSub,
-                ),
+                // ProductAndOtherWidget(
+                //   onTap: () => context
+                //       .read<AuthenticationCubit>()
+                //       .showLogoutDialog(context),
+                //   color: MyColors.purple,
+                //   h: 167.h,
+                //   w: 167.w,
+                //   imageUrl: Assets.pngQuestion3x,
+                //   title: MyText.logout,
+                //   desc: MyText.logoutSub,
+                // ),
               ],
             ),
             MySizedBox.h100

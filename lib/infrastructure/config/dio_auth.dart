@@ -173,6 +173,10 @@ class CustomInterceptors extends Interceptor {
       case 200:
       case 201:
         break;
+      case 413:
+        Alert.show(NavigationService.instance.navigationKey!.currentContext!,
+            title: MyText.unknownError);
+        break;
       default:
         final error = DetailedError.fromJson(response.data);
         Alert.show(NavigationService.instance.navigationKey!.currentContext!,

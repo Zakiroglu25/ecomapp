@@ -15,11 +15,14 @@ class ApiKeys {
   static const protected = "$baseUrl/protected";
 
   static const customer = "$protected/customer";
+
   //static const productOptions = "$protected/product-options";
 
   static const account = "$customer/account";
 
   static const stock = "$protected/stock";
+
+  static const images = "$protected/images";
 
   static const stockSearch = "$stock/search";
 
@@ -41,7 +44,6 @@ class ApiKeys {
   static const registerPersonal = "$baseUrl/public/onboarding/sign-up";
 
   //user
-  static const user = "$account";
   static const devices = "$customer/devices";
   static const changeNumber = "$account/request-update-phone-otp";
 
@@ -77,6 +79,9 @@ class ApiKeys {
   static const categoryTree = "$content/category-tree";
   static const getAllManufacturers = "$content/manufacturers";
 
+  //images
+  static const prescription = "$images/prescription";
+
   //faq
   static const faq = "$public/faq";
 
@@ -85,6 +90,7 @@ class ApiKeys {
 
   //notification
   static const notification = "$protected/notifications";
+  static const notificationDelete = "$protected/notifications";
 
   //cart
   static const cart = "$customer/cart";
@@ -255,7 +261,7 @@ class ApiKeys {
     //
     final map = {
       "stockItemGuid": itemGuid,
-      "amount": 1,
+      "amount": amount,
     };
 
     map.removeWhere(

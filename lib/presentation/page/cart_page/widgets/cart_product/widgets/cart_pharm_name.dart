@@ -5,12 +5,13 @@ import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/mock.dart';
 
 class CartPharmName extends StatelessWidget {
-  const CartPharmName({Key? key}) : super(key: key);
+  const CartPharmName({Key? key, required this.name}) : super(key: key);
+  final String? name;
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      MockData.pharmName,
+      "$name",
       style: AppTextStyles.sfPro400h2.copyWith(
         color: MyColors.darkRED,
       ),
