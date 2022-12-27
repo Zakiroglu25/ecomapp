@@ -8,7 +8,7 @@ import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'package:uikit/widgets/general/app_loading.dart';
 import 'package:uikit/widgets/general/empty_widget.dart';
 import 'package:uikit/widgets/general/list_or_empty.dart';
-import 'package:uikit/widgets/main/product_item/new_product_item.dart';
+import 'package:uikit/widgets/main/product_item/product_item.dart';
 
 import '../../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../../infrastructure/cubit/favorite_cubit/favorite_state.dart';
@@ -55,7 +55,7 @@ class _FavoritePageState extends State<FavoritePage> {
                       itemCount: products!.length,
                       itemBuilder: (context, index) {
                         final currentProduct = products![index];
-                        return NewProductItem(
+                        return ProductItem(
                           product: currentProduct,
                           inFav: true,
                         );

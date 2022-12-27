@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:uikit/infrastructure/services/navigation_service.dart';
 import 'package:uikit/utils/constants/colors.dart';
 
 import '../../widgets/general/app_loading.dart';
@@ -10,16 +9,16 @@ const defaultValue = 56.0;
 class Loader extends StatelessWidget {
   static OverlayEntry? _currentLoader;
 
-  Loader._(this._progressIndicator, this._themeData);
+  Loader._(this._progressIndicator);
 
   final Widget _progressIndicator;
-  final ThemeData _themeData;
+  // final ThemeData _themeData;
 
   static OverlayState? _overlayState;
 
   static void show(BuildContext context,
       {Widget? progressIndicator,
-      ThemeData? themeData,
+      //  ThemeData? themeData,
       Color? overlayColor,
       double? overlayFromTop,
       double? overlayFromBottom,
@@ -40,9 +39,9 @@ class Loader extends StatelessWidget {
             ),
             Center(
                 child: Loader._(
-              progressIndicator ?? AppLoading.blue(),
-              themeData ??
-                  Theme.of(context).copyWith(accentColor: MyColors.mainGrey),
+              progressIndicator ?? AppLoading.green(),
+              // themeData ??
+              //     Theme.of(context).copyWith(accentColor: MyColors.mainGrey),
             )),
           ],
         );
@@ -68,9 +67,6 @@ class Loader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: CircularProgressIndicator(
-      valueColor: new AlwaysStoppedAnimation<Color>(MyColors.mainGrey),
-    ));
+    return Center(child: AppLoading.green());
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:uikit/infrastructure/model/response/cart_items.dart';
 import 'package:uikit/utils/constants/durations.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/utils/delegate/navigate_utils.dart';
+import 'package:uikit/utils/delegate/pager.dart';
 import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/widgets/general/app_element_box.dart';
 
@@ -17,22 +19,24 @@ class CartProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppElementBox(
+        onTap: () =>
+            Go.to(context, Pager.productDetails(guid: item!.stockItemGuid!)),
         child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ProductImage(
-          imageUrl: item?.productOptionImages.firstOrNull,
-        ),
-        // MedPhoto(
-        //   productOptionImages: item?.productOptionImages,
-        // ),
-        MySizedBox.w12,
-        MedProductDetails(
-          item: item,
-          // url: url,
-          // recipeRequired: recipeRequired,
-        )
-      ],
-    ));
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ProductImage(
+              imageUrl: item?.productOptionImages.firstOrNull,
+            ),
+            // MedPhoto(
+            //   productOptionImages: item?.productOptionImages,
+            // ),
+            MySizedBox.w12,
+            MedProductDetails(
+              item: item,
+              // url: url,
+              // recipeRequired: recipeRequired,
+            )
+          ],
+        ));
   }
 }

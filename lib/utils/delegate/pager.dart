@@ -135,7 +135,7 @@ class Pager {
 
   static get product => ProductPage();
 
-  static addAddress({AddressModel? address}) => BlocProvider(
+  static addAddress({Address? address}) => BlocProvider(
         create: (context) => AddAddressCubit(),
         child: AddAddressPage(),
       );

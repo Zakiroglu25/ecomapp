@@ -12,7 +12,7 @@ import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/utils/screen/snack.dart';
 
 import '../../../utils/delegate/file_operations.dart';
-import '../../../utils/delegate/my_printer.dart';
+import '../../../utils/enums/operation_type.dart';
 import '../../../utils/screen/alert.dart';
 import '../../../utils/screen/overlay_loader.dart';
 import '../../data/cart_provider.dart';
@@ -24,20 +24,20 @@ class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitial());
   int page = 1;
 
-  //List<SimpleProduct> products = [];
-  final BehaviorSubject<List<CartItem>> products =
-      BehaviorSubject<List<CartItem>>.seeded([]);
-
-  Stream<List<CartItem>> get productsStream => products.stream;
-
-  updateProducts(List<CartItem> value) {
-    if (value.isEmpty) {
-      products.valueOrNull?.clear();
-      //products.sink.addError(MyText.all_fields_must_be_filled);
-    } else {
-      products.sink.add(value);
-    }
-  }
+  // //List<SimpleProduct> products = [];
+  // final BehaviorSubject<List<CartItem>> products =
+  //     BehaviorSubject<List<CartItem>>.seeded([]);
+  //
+  // Stream<List<CartItem>> get productsStream => products.stream;
+  //
+  // updateProducts(List<CartItem> value) {
+  //   if (value.isEmpty) {
+  //     products.valueOrNull?.clear();
+  //     //products.sink.addError(MyText.all_fields_must_be_filled);
+  //   } else {
+  //     products.sink.add(value);
+  //   }
+  // }
 
   fetch([bool loading = true]) async {
     // updateProducts([]);
@@ -46,10 +46,9 @@ class CartCubit extends Cubit<CartState> {
     }
     try {
       final result = await CartProvider.getCartItems();
-      bbbb("oh res: $result");
       if (result.statusCode.isSuccess) {
         final cartItems = result.data ?? [];
-        updateProducts(cartItems);
+        // updateProducts(cartItems);
         emit(CartFetched(cartItems));
       } else {
         emit(CartError());
@@ -62,21 +61,20 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  void add(String? guid, {bool isCart = false, bool inCart = false}) async {
+  void add(String? guid) async {
     try {
-      if (isCart && inCart) {
-        updateProducts(products.value
-          ..remove(products.value
-              .where((element) => element.guid == guid)
-              .firstOrNull));
-      }
+      // if (isCart && inCart) {
+      //   updateProducts(products.value
+      //     ..remove(products.value
+      //         .where((element) => element.guid == guid)
+      //         .firstOrNull));
+      // }
       final result = await CartProvider.addCart(itemGuid: guid, amount: 1);
       if (result.statusCode.isSuccess) {
-        emit(CartAdding());
         Snack.positive(message: MyText.addedToCart);
         fetch(false);
       } else {
-        emit(CartNotAdding());
+        emit(CartOperationError());
       }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
@@ -84,22 +82,45 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
+  void updateInCart(String? guid,
+      {required int amount,
+      required BuildContext context,
+      required OperationType operationType}) async {
+    Loader.show(context);
+    try {
+      final netAmount =
+          operationType == OperationType.add ? amount + 1 : amount - 1;
+      final result =
+          await CartProvider.addCart(itemGuid: guid, amount: netAmount);
+      if (result.statusCode.isSuccess) {
+        // emit(CartAdding());
+        Snack.positive(message: MyText.success);
+        fetch(false);
+      } else {
+        emit(CartOperationError());
+      }
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+      emit(CartError());
+    }
+    Loader.hide();
+  }
+
   void delete(String? stockGuid,
       {bool isCart = false, bool inCart = false}) async {
     try {
-      if (isCart && inCart) {
-        updateProducts(products.value
-          ..remove(products.value
-              .where((element) => element.guid == stockGuid)
-              .firstOrNull));
-      }
+      // if (isCart && inCart) {
+      //   updateProducts(products.value
+      //     ..remove(products.value
+      //         .where((element) => element.guid == stockGuid)
+      //         .firstOrNull));
+      // }
       final result = await CartProvider.deleteCart(guid: stockGuid!);
       if (result.statusCode.isSuccess) {
-        emit(CartDeleted());
         Snack.display(message: MyText.removedFromCart, color: MyColors.brand);
         fetch(false);
       } else {
-        emit(CartNotAdding());
+        emit(CartOperationError());
       }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
@@ -109,9 +130,7 @@ class CartCubit extends Cubit<CartState> {
 
   void deletePrescription(BuildContext context, String cartGuid,
       {bool loading = true}) async {
-    if (loading) {
-      emit(CartInProgress());
-    }
+    if (loading) emit(CartInProgress());
     Loader.show(context);
     try {
       final result = await CartProvider.deleteCartPrescription(guid: cartGuid);
@@ -175,7 +194,7 @@ class CartCubit extends Cubit<CartState> {
           fetch(false);
         } else {
           Snack.display(message: MyText.error);
-          emit(CartError());
+          emit(CartOperationError());
         }
       }
     } catch (e, s) {
@@ -189,7 +208,7 @@ class CartCubit extends Cubit<CartState> {
       emit(CartInProgress());
     }
     try {
-      if (isPhotoValid()) {
+      if (!isImageIncorrect) {
         final response =
             await ImagesProvider.addPrescription(invoice: image.valueOrNull);
 
@@ -197,10 +216,10 @@ class CartCubit extends Cubit<CartState> {
           return response.data;
         else {
           Snack.display(message: MyText.error);
-          emit(CartError());
+          emit(CartOperationError());
         }
       } else {
-        emit(CartError());
+        emit(CartOperationError());
       }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
@@ -225,15 +244,4 @@ class CartCubit extends Cubit<CartState> {
   }
 
   bool get isImageIncorrect => (!image.hasValue || image.value == null);
-
-  bool isPhotoValid() {
-    if (!isImageIncorrect) {
-      //emit(UserButtonActive());
-      //bbbb("---- true");
-      return true;
-    } else {
-      //bbbb("---- false");
-      return false;
-    }
-  }
 }

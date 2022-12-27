@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:focus_detector/focus_detector.dart';
 import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
 import 'package:uikit/infrastructure/cubit/address/address_state.dart';
 import 'package:uikit/infrastructure/model/response/address_model.dart';
+import 'package:uikit/presentation/page/address_page/widgets/address_widget.dart';
+import 'package:uikit/utils/constants/border_radius.dart';
 import 'package:uikit/utils/constants/text.dart';
-import 'package:uikit/utils/enums/transaction_type.dart';
-import 'package:uikit/utils/screen/ink_wrapper.dart';
+import 'package:uikit/widgets/custom/listview_separated.dart';
 import 'package:uikit/widgets/general/app_loading.dart';
+import 'package:uikit/widgets/general/empty_widget.dart';
 import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
 
 import '../../../infrastructure/services/hive_service.dart';
 import '../../../locator.dart';
 import '../../../utils/constants/app_text_styles.dart';
-import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/colors.dart';
+import '../../../utils/constants/dividers.dart';
+import '../../../utils/constants/durations.dart';
 import '../../../utils/constants/paddings.dart';
 import '../../../utils/constants/physics.dart';
 import '../../../utils/constants/sized_box.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/delegate/pager.dart';
 import '../../../widgets/custom/app_button.dart';
-import 'widget/add_address.dart';
 
 class AddressPage extends StatelessWidget {
   AddressPage({Key? key}) : super(key: key);
@@ -36,116 +36,46 @@ class AddressPage extends StatelessWidget {
       title: MyText.myAddresses,
       user: false,
       child: FocusDetector(
-        onFocusGained: () {
-          context.read<AddressCubit>().fetch(false);
-        },
+        onFocusGained: () => context.read<AddressCubit>().fetch(false),
         child:
             BlocBuilder<AddressCubit, AddressState>(builder: (context, state) {
           if (state is AddressSuccess) {
-            List<AddressModel> model = state.addressList;
+            List<Address> addressList = state.addressList;
             return Padding(
               padding: Paddings.paddingH16,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'ÜNVANLAR',
+                    MyText.addresses.toUpperCase(),
                     style: AppTextStyles.sfPro400s14
                         .copyWith(color: MyColors.grey158),
                   ),
                   MySizedBox.h4,
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: MyColors.grey245,
-                    ),
-                    child: ListView.separated(
-                      physics: Physics.never,
-                      shrinkWrap: true,
-                      itemCount: model.length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {},
-                          child: Slidable(
-                            key: ValueKey(0),
-                            endActionPane: ActionPane(
-                              extentRatio: 0.20,
-                              motion: ScrollMotion(),
-                              children: [
-                                SizedBox(
-                                  width: 55,
-                                  height: 48,
-                                  child: Center(
-                                    child: SlidableAction(
-                                      onPressed: (context) {
-                                        context
-                                            .read<AddressCubit>()
-                                            .delete(model[index].guid!);
-                                      },
-                                      backgroundColor: MyColors.darkRED,
-                                      foregroundColor: Colors.white,
-                                      icon: Icons.delete,
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            child: Padding(
-                              padding:
-                                  Paddings.paddingH16 + Paddings.paddingV12,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "${model[index].title}",
-                                          style: AppTextStyles.sfPro600s16,
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1,
-                                        ),
-                                        Text(
-                                          model[index].streetName!.length > 30
-                                              ? model[index]
-                                                  .streetName!
-                                                  .substring(0, 30)
-                                              : model[index].streetName!,
-                                          textAlign: TextAlign.center,
-                                          maxLines: 2,
-                                          style: AppTextStyles.sfPro400s14,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Spacer(),
-                                  InkWrapper(
-                                      onTap: () {
-                                        Go.to(
-                                            context,
-                                            Pager.addAddress(
-                                                address: model[index]));
-                                      },
-                                      child: SvgPicture.asset(Assets.svgEdit))
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return const Divider();
-                      },
+                  ClipRRect(
+                    borderRadius: Radiuses.r12,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: Radiuses.r12,
+                        color: MyColors.grey245,
+                      ),
+                      child: AnimatedSize(
+                        duration: Durations.ms100,
+                        child: ListViewSeparated(
+                          physics: Physics.never,
+                          shrinkWrap: true,
+                          padding: Paddings.paddingV16,
+                          itemCount: addressList.length,
+                          itemBuilder: (context, index) =>
+                              AddressWidget(address: addressList[index]),
+                          separator: Dividers.h16grey,
+                        ),
+                      ),
                     ),
                   ),
                   MySizedBox.h50,
                   AppButton(
-                    onTap: () {
-                      Go.to(context, Pager.addAddress());
-                    },
+                    onTap: () => Go.to(context, Pager.addAddress()),
                     text: MyText.addressAdd,
                   ),
                   MySizedBox.h16,
@@ -153,12 +83,9 @@ class AddressPage extends StatelessWidget {
               ),
             );
           } else if (state is AddressInProgress) {
-            return Center(
-              child: AppLoading.main(
-              ),
-            );
+            return const AppLoading();
           }
-          return EmptyAddress();
+          return EmptyWidget();
         }),
       ),
     );

@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/model/response/address_model.dart';
 import 'package:uikit/utils/extensions/index.dart';
+import 'package:uikit/utils/screen/overlay_loader.dart';
 
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/request_control.dart';
@@ -18,7 +20,7 @@ class AddressCubit extends Cubit<AddressState> {
       emit(AddressInProgress());
     }
     try {
-      List<AddressModel> result = await AddressProvider.getAddresses();
+      List<Address> result = await AddressProvider.getAddresses();
       emit(AddressSuccess(result));
     } on SocketException catch (_) {
       emit(AddressNetworkError());
@@ -33,7 +35,7 @@ class AddressCubit extends Cubit<AddressState> {
       emit(AddressInProgress());
     }
     try {
-      List<AddressModel> result = await AddressProvider.getAddresses();
+      List<Address> result = await AddressProvider.getAddresses();
       final address =
           result.where((element) => element.isMain == true).firstOrNull;
       emit(AddressMainSuccess(address));
@@ -45,32 +47,31 @@ class AddressCubit extends Cubit<AddressState> {
     }
   }
 
-  void delete(String? id, {bool loading = true}) async {
+  void delete(String? id,
+      {bool loading = true, required BuildContext context}) async {
     if (loading) {
       emit(AddressInProgress());
     }
+    Loader.show(context);
 
     try {
       final result = await AddressProvider.delete(guid: "$id");
 
       if (isSuccess(result!.statusCode)) {
-        emit(AddressDelete());
+        //emit(AddressDelete());
         fetch(false);
       } else {
         emit(AddressError(error: MyText.error));
       }
-    } on SocketException catch (_) {
-      //network olacaq
-      emit(AddressNetworkError());
-    } catch (e) {
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
       emit(AddressError(error: MyText.error + " " + e.toString()));
     }
-
-    //user/attorneys/delete
+    Loader.hide();
   }
 
   void update(String? id,
-      {bool loading = true, required AddressModel address}) async {
+      {bool loading = true, required Address address}) async {
     if (loading) {
       emit(AddressInProgress());
     }

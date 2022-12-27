@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-List<AddressModel> addressFromJson(List<dynamic> str) =>
-    List<AddressModel>.from(str.map((x) => AddressModel.fromJson(x)));
+List<Address> addressFromJson(List<dynamic> str) =>
+    List<Address>.from(str.map((x) => Address.fromJson(x)));
 
-String addressToJson(List<AddressModel> data) =>
+String addressToJson(List<Address> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class AddressModel {
+class Address {
   String? guid;
   String? title;
   String? streetName;
@@ -22,7 +22,7 @@ class AddressModel {
   String? description;
   bool? isMain;
 
-  AddressModel(
+  Address(
       {this.guid,
       this.title,
       this.streetName,
@@ -38,7 +38,7 @@ class AddressModel {
       this.description,
       this.isMain});
 
-  AddressModel.fromJson(Map<String, dynamic> json) {
+  Address.fromJson(Map<String, dynamic> json) {
     guid = json['guid'];
     title = json['title'];
     streetName = json['streetName'];

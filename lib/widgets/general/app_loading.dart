@@ -11,10 +11,14 @@ class AppLoading extends StatelessWidget {
   final Color? color;
   final double? s;
 
-  const AppLoading({this.color, this.s = 120});
+  const AppLoading({Key? key, this.color, this.s = 120});
 
   const AppLoading.blue(
       {Key? key, this.color = MyColors.mainGrey, this.s = 120})
+      : super(key: key);
+
+  const AppLoading.green(
+      {Key? key, this.color = MyColors.btnGreen, this.s = 120})
       : super(key: key);
 
   const AppLoading.main({this.color = MyColors.main, this.s = 120});
@@ -33,11 +37,13 @@ class AppLoading extends StatelessWidget {
           width: s,
           child: Center(
               child: FadeIn(
-            duration: Duration(milliseconds: 800),
+            duration: const Duration(milliseconds: 800),
             child: WidgetOrEmpty(
               value: color == null,
               elseChild: CircularProgressIndicator(
                 color: color,
+                valueColor: AlwaysStoppedAnimation<Color>(
+                    color ?? MyColors.mainGreen85),
               ),
               child: Container(
                 height: s,
