@@ -11,7 +11,7 @@ class CartItem {
   bool? prescriptionRequired;
   String? prescriptionImageGuid;
   String? prescriptionImage;
-  String? productImage;
+  List<String>? productOptionImages;
 
   CartItem(
       {this.guid,
@@ -22,7 +22,7 @@ class CartItem {
       this.productSlug,
       this.price,
       this.amount,
-      this.productImage,
+      this.productOptionImages,
       this.discountedPrice,
       this.prescriptionRequired,
       this.prescriptionImageGuid,
@@ -38,7 +38,7 @@ class CartItem {
     amount = json['amount'];
     storeName = json['storeName'];
     discountedPrice = json['discountedPrice'];
-    productImage = json['productImage'];
+    productOptionImages = json['productOptionImages'].cast<String>();
     prescriptionRequired = json['prescriptionRequired'];
     prescriptionImageGuid = json['prescriptionImageGuid'];
     prescriptionImage = json['prescriptionImage'];
@@ -52,10 +52,10 @@ class CartItem {
     data['title'] = this.title;
     data['productSlug'] = this.productSlug;
     data['price'] = this.price;
-    data['productImage'] = this.productImage;
     data['amount'] = this.amount;
     data['storeName'] = this.storeName;
     data['discountedPrice'] = this.discountedPrice;
+    data['productOptionImages'] = this.productOptionImages;
     data['prescriptionRequired'] = this.prescriptionRequired;
     data['prescriptionImageGuid'] = this.prescriptionImageGuid;
     data['prescriptionImage'] = this.prescriptionImage;
@@ -64,6 +64,6 @@ class CartItem {
 
   @override
   String toString() {
-    return 'CartItems{guid: $guid,productImage: $productImage, storeName: $storeName, stockItemGuid: $stockItemGuid, productOptionGuid: $productOptionGuid, productTitle: $title, productSlug: $productSlug, price: $price, amount: $amount, discountedPrice: $discountedPrice, prescriptionRequired: $prescriptionRequired, prescriptionImageGuid: $prescriptionImageGuid, prescriptionImage: $prescriptionImage}';
+    return 'CartItems{guid: $guid,productOptionImages: $productOptionImages, storeName: $storeName, stockItemGuid: $stockItemGuid, productOptionGuid: $productOptionGuid, productTitle: $title, productSlug: $productSlug, price: $price, amount: $amount, discountedPrice: $discountedPrice, prescriptionRequired: $prescriptionRequired, prescriptionImageGuid: $prescriptionImageGuid, prescriptionImage: $prescriptionImage}';
   }
 }

@@ -56,4 +56,33 @@ class CartProvider {
 
     return statusDynamic;
   }
+
+  static Future<StatusDynamic> deleteCartPrescription(
+      {required String guid}) async {
+    StatusDynamic statusDynamic = StatusDynamic();
+    const api = ApiKeys.cart;
+    final response = await dioAuth.dio.delete(api + "/$guid/prescription");
+    statusDynamic.statusCode = response.statusCode;
+    if (response.statusCode == ResultKey.successCode) {
+    } else {
+      eeee("delete cart:  url: $api , response: ${response.data}");
+    }
+
+    return statusDynamic;
+  }
+
+  static Future<StatusDynamic> addCartPrescription(
+      {required String cartGuid, required String prescriptionGuid}) async {
+    StatusDynamic statusDynamic = StatusDynamic();
+    const api = ApiKeys.cart;
+    final response = await dioAuth.dio
+        .post(api + "/$cartGuid/prescription/$prescriptionGuid");
+    statusDynamic.statusCode = response.statusCode;
+    if (response.statusCode == ResultKey.successCode) {
+    } else {
+      eeee("delete cart:  url: $api , response: ${response.data}");
+    }
+
+    return statusDynamic;
+  }
 }

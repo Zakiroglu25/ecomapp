@@ -37,7 +37,7 @@ class HiveService {
     }
   }
 
-  String get refreshToken => _box!.get(SharedKeys.refreshToken);
+  String? get refreshToken => _box!.get(SharedKeys.refreshToken);
 
   bool get hasRefreshToken =>
       _box?.containsKey(SharedKeys.refreshToken) ?? false;

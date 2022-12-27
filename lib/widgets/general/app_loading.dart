@@ -8,16 +8,20 @@ import '../../utils/constants/paddings.dart';
 import '../../utils/screen/widget_or_empty.dart';
 
 class AppLoading extends StatelessWidget {
-  Color? color;
-  double? s;
+  final Color? color;
+  final double? s;
 
-  AppLoading({this.color, this.s = 120});
+  const AppLoading({this.color, this.s = 120});
 
-  AppLoading.blue({this.color = MyColors.mainGrey});
-  AppLoading.main({this.color = MyColors.main});
-  AppLoading.big({this.color = MyColors.main, this.s = 120});
+  const AppLoading.blue(
+      {Key? key, this.color = MyColors.mainGrey, this.s = 120})
+      : super(key: key);
 
-  AppLoading.white({this.color = MyColors.white, this.s});
+  const AppLoading.main({this.color = MyColors.main, this.s = 120});
+
+  const AppLoading.big({this.color = MyColors.main, this.s = 120});
+
+  const AppLoading.white({this.color = MyColors.white, this.s});
 
   @override
   Widget build(BuildContext context) {
