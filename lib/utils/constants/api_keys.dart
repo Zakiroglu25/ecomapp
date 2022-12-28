@@ -26,6 +26,8 @@ class ApiKeys {
 
   static const stockSearch = "$stock/search";
 
+  static const content = "$protected/content";
+
   ///delete
   static const headers = {
     "Content-Type": "application/json",
@@ -75,9 +77,9 @@ class ApiKeys {
   static const favorite = "$customer/favorites";
 
   //get category tree
-  static const content = "$protected/content";
   static const categoryTree = "$content/category-tree";
   static const getAllManufacturers = "$content/manufacturers";
+  static const cartPage = "$content/cart-page";
 
   //images
   static const prescription = "$images/prescription";

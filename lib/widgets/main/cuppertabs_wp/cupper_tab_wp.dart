@@ -5,6 +5,8 @@ import 'package:uikit/widgets/custom/app_tab.dart';
 import 'cuppertabs_provider.dart';
 import 'cuppertabs_wp.dart';
 
+typedef OnTabChanged = void Function(int index);
+
 class CupperTabWP extends StatelessWidget {
   const CupperTabWP({
     Key? key,
@@ -16,11 +18,12 @@ class CupperTabWP extends StatelessWidget {
     this.onBack,
     this.tabController,
     this.isScrollable = false,
-    this.first = 0,
+    this.first,
     required this.tabs,
     required this.tabPages,
     this.tabbarPadding,
     this.tabbarTitle,
+    this.onChange,
     this.selectedLabelColor,
     this.selectedTabColor,
     this.showAppbarLittleText = false,
@@ -34,7 +37,7 @@ class CupperTabWP extends StatelessWidget {
 
   final Widget? child;
   final String? title;
-  final int first;
+  final int? first;
   final List<Widget>? leadings;
   final List<Widget>? trailings;
   final bool? user;
@@ -45,6 +48,7 @@ class CupperTabWP extends StatelessWidget {
   final bool showAppbarLittleText;
   final SliverPersistentHeader? headers;
   final Function? onBack;
+  final OnTabChanged? onChange;
   final List<AppTab> tabs;
   final List<Widget> tabPages;
   final SliverPersistentHeaderDelegate? tabbarTitle;
@@ -69,6 +73,7 @@ class CupperTabWP extends StatelessWidget {
           tabs: tabs,
           child: child,
           first: first,
+          onChange: onChange,
           tabbarTitle: tabbarTitle,
           leadings: leadings,
           trailings: trailings,

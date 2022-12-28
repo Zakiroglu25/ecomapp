@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uikit/utils/constants/border_radius.dart';
 import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/utils/extensions/object.dart';
 import 'package:uikit/widgets/main/cupperfold/widgets/custom_cupertino_sliver_navigation_bar.dart';
 
 import '../../../utils/constants/physics.dart';
 import '../../custom/app_tab.dart';
 import '../cupperfold/widgets/app_sliver_persistent_cupertino_appbar.dart';
+import 'cupper_tab_wp.dart';
 import 'cuppertabs_provider.dart';
 
 class CupperTabsWithProvider extends StatefulWidget {
@@ -25,6 +27,7 @@ class CupperTabsWithProvider extends StatefulWidget {
     required this.tabs,
     required this.tabPages,
     this.tabbarPadding,
+    this.onChange,
     this.selectedLabelColor,
     this.selectedTabColor,
     this.barColor,
@@ -39,13 +42,14 @@ class CupperTabsWithProvider extends StatefulWidget {
 
   final Widget? child;
   final String? title;
-  final int first;
+  final int? first;
   final List<Widget>? leadings;
   final List<Widget>? trailings;
   final bool? user;
   final bool? notification;
   final bool? back;
   final bool showAppbarLittleText;
+  final OnTabChanged? onChange;
   final bool withCupertinoAppbar;
   final bool isScrollable;
   final Function? onBack;
@@ -84,11 +88,12 @@ class _CupperTabsWithProviderState extends State<CupperTabsWithProvider>
           .round(); //_tabController.animation.value returns double
       Provider.of<CupperProvider>(context, listen: false)
           .changeTab(widget.tabs[_currentIndex]);
+      widget.onChange?.call(_currentIndex);
       setState(() {});
     });
 
-    if (widget.first != -1) {
-      _tabController.animateTo(widget.first);
+    if (widget.first.isNotNull && widget.first != -1) {
+      _tabController.animateTo(widget.first!);
     }
   }
 

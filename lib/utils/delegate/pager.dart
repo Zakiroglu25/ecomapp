@@ -24,6 +24,7 @@ import '../../infrastructure/cubit/notification_cubit/notification_cubit.dart';
 import '../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
 import '../../infrastructure/cubit/product_option_cubit/product_option_cubit.dart';
 import '../../infrastructure/cubit/register/register_cubit.dart';
+import '../../infrastructure/cubit/tab_counts/tab_counts_cubit.dart';
 import '../../infrastructure/cubit/user/user_cubit.dart';
 import '../../infrastructure/model/response/address_model.dart';
 import '../../presentation/page/add_address_page/add_address_page.dart';
@@ -74,6 +75,7 @@ class Pager {
   static get cart => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => CartCubit()..fetch()),
+        BlocProvider(create: (context) => TabCountsCubit()..fetch()),
       ], child: CartPage());
 
   static get cartDelivery => MultiBlocProvider(providers: [
@@ -111,9 +113,9 @@ class Pager {
         child: PaymentMethodPage(),
       );
   static get notificationPage => BlocProvider(
-    create: (context) => NotificationCubit()..getNotification(),
-    child: NotificationsPage(),
-  );
+        create: (context) => NotificationCubit()..getNotification(),
+        child: NotificationsPage(),
+      );
 
   static get faqPage => BlocProvider(
         create: (context) => FaqCubit()..getFaq(),
