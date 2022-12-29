@@ -28,6 +28,8 @@ class ApiKeys {
 
   static const content = "$protected/content";
 
+  static const orders = "$customer/orders";
+
   ///delete
   static const headers = {
     "Content-Type": "application/json",
@@ -96,6 +98,9 @@ class ApiKeys {
 
   //cart
   static const cart = "$customer/cart";
+
+  //orders
+  static const ordersRegister = "$orders/register";
 
   //general
   static const localityInfoBigData = '$bigDataCloud/reverse-geocode-client';
@@ -264,6 +269,19 @@ class ApiKeys {
     final map = {
       "stockItemGuid": itemGuid,
       "amount": amount,
+    };
+
+    map.removeWhere(
+        (key, value) => key == null || value == null || value == 'null');
+    return map;
+  }
+
+  static ordersRegisterBody({String? addressGuid}) {
+    //
+    final map = {
+      "paymentType": "ONLINE",
+      "deliveryType": "COURIER",
+      "addressGuid": addressGuid
     };
 
     map.removeWhere(
