@@ -83,6 +83,7 @@ class EmptyWidget extends StatelessWidget {
                           .copyWith(fontSize: 16, color: MyColors.grey158),
                     ),
                   ),
+                  MySizedBox.h10,
                   WidgetOrEmpty(
                       value: onRefresh != null,
                       child: Padding(

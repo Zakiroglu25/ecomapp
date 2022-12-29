@@ -1,8 +1,6 @@
 // Dart imports:
 // Package imports:
 
-import 'package:uikit/infrastructure/model/response/search_items.dart';
-
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/constants/result_keys.dart';
@@ -29,15 +27,13 @@ class CartProvider {
     return statusDynamic;
   }
 
-  static Future<StatusDynamic<List<CartItem>>> getCartItems() async {
-    StatusDynamic<List<CartItem>> statusDynamic = StatusDynamic();
+  static Future<StatusDynamic<CartInfo>> getCartItems() async {
+    StatusDynamic<CartInfo> statusDynamic = StatusDynamic();
     const api = ApiKeys.cart;
     final response = await dioAuth.dio.get(api);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
-      List<CartItem> cartItems =
-          (response.data as List).map((e) => CartItem.fromJson(e)).toList();
-      statusDynamic.data = cartItems;
+      statusDynamic.data = CartInfo.fromJson(response.data);
     } else {
       eeee("getCart List:  url: $api , response: ${response.data}");
     }

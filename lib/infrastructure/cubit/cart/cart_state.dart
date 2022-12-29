@@ -15,7 +15,7 @@ class CartError extends CartState {
 }
 
 class CartFetched extends CartState {
-  CartFetched(this.items);
+  CartFetched(this.cartInfo);
 
-  final List<CartItem> items;
+  final CartInfo? cartInfo;
 }

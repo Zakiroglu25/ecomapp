@@ -26,6 +26,10 @@ class ApiKeys {
 
   static const stockSearch = "$stock/search";
 
+  static const content = "$protected/content";
+
+  static const orders = "$customer/orders";
+
   ///delete
   static const headers = {
     "Content-Type": "application/json",
@@ -75,9 +79,9 @@ class ApiKeys {
   static const favorite = "$customer/favorites";
 
   //get category tree
-  static const content = "$protected/content";
   static const categoryTree = "$content/category-tree";
   static const getAllManufacturers = "$content/manufacturers";
+  static const cartPage = "$content/cart-page";
 
   //images
   static const prescription = "$images/prescription";
@@ -94,6 +98,9 @@ class ApiKeys {
 
   //cart
   static const cart = "$customer/cart";
+
+  //orders
+  static const ordersRegister = "$orders/register";
 
   //general
   static const localityInfoBigData = '$bigDataCloud/reverse-geocode-client';
@@ -262,6 +269,19 @@ class ApiKeys {
     final map = {
       "stockItemGuid": itemGuid,
       "amount": amount,
+    };
+
+    map.removeWhere(
+        (key, value) => key == null || value == null || value == 'null');
+    return map;
+  }
+
+  static ordersRegisterBody({String? addressGuid}) {
+    //
+    final map = {
+      "paymentType": "ONLINE",
+      "deliveryType": "COURIER",
+      "addressGuid": addressGuid
     };
 
     map.removeWhere(
