@@ -1,5 +1,6 @@
 import 'package:uikit/infrastructure/model/response/search_items.dart';
 
+import '../../model/response/orders_data.dart';
 import '../../model/response/product_option_model.dart';
 
 abstract class WaitingOrdersState {}
@@ -15,6 +16,6 @@ class WaitingOrdersError extends WaitingOrdersState {
 }
 
 class WaitingOrdersSuccess extends WaitingOrdersState {
-  WaitingOrdersSuccess(this.searchItems);
-  final SearchItems searchItems;
+  WaitingOrdersSuccess(this.orders);
+  final List<CartOrder> orders;
 }

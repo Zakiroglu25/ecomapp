@@ -4,6 +4,7 @@ import 'package:uikit/app.dart';
 import 'package:uikit/infrastructure/cubit/cart/cart_cubit.dart';
 import 'package:uikit/infrastructure/cubit/tab_counts/tab_counts_cubit.dart';
 import 'package:uikit/infrastructure/cubit/tab_counts/tab_counts_state.dart';
+import 'package:uikit/infrastructure/cubit/waiting_orders/waiting_orders_cubit.dart';
 import 'package:uikit/presentation/page/cart_page/tabs/delivery_tab/delivery_tab.dart';
 import 'package:uikit/presentation/page/cart_page/tabs/orders_tab/orders_tab.dart';
 import 'package:uikit/presentation/page/cart_page/tabs/waiting_tab/waiting_tab.dart';
@@ -33,6 +34,7 @@ class CartPage extends StatelessWidget {
           isScrollable: true,
           onChange: (index) {
             context.read<CartCubit>().fetch();
+            // context.read<WaitingOrdersCubit>().fetch();
             context.read<TabCountsCubit>().setCurrentTab(index);
             context.read<TabCountsCubit>().fetch(false);
           },

@@ -26,6 +26,7 @@ import '../../infrastructure/cubit/product_option_cubit/product_option_cubit.dar
 import '../../infrastructure/cubit/register/register_cubit.dart';
 import '../../infrastructure/cubit/tab_counts/tab_counts_cubit.dart';
 import '../../infrastructure/cubit/user/user_cubit.dart';
+import '../../infrastructure/cubit/waiting_orders/waiting_orders_cubit.dart';
 import '../../infrastructure/model/response/address_model.dart';
 import '../../presentation/page/add_address_page/add_address_page.dart';
 import '../../presentation/page/address_page/address_page.dart';
@@ -75,6 +76,7 @@ class Pager {
   static get cart => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => CartCubit()..fetch()),
+        BlocProvider(create: (context) => WaitingOrdersCubit()..fetch()),
         BlocProvider(create: (context) => TabCountsCubit()..fetch()),
       ], child: CartPage());
 
