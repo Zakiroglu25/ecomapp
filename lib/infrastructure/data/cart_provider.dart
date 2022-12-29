@@ -53,20 +53,6 @@ class CartProvider {
     return statusDynamic;
   }
 
-  static Future<StatusDynamic> orderRegister({String? addressGuid}) async {
-    StatusDynamic statusDynamic = StatusDynamic();
-    const api = ApiKeys.ordersRegister;
-    final body = ApiKeys.ordersRegisterBody(addressGuid: addressGuid);
-    final response = await dioAuth.dio.post(api, data: body);
-    statusDynamic.statusCode = response.statusCode;
-    if (response.statusCode == ResultKey.successCode) {
-    } else {
-      eeee("delete cart:  url: $api , response: ${response.data}");
-    }
-
-    return statusDynamic;
-  }
-
   static Future<StatusDynamic> deleteCartPrescription(
       {required String guid}) async {
     StatusDynamic statusDynamic = StatusDynamic();
