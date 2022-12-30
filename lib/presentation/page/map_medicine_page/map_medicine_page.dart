@@ -1,11 +1,18 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uikit/infrastructure/cubit/map/map_store_cubit.dart';
+import 'package:uikit/utils/constants/app_text_styles.dart';
+import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/delegate/navigate_utils.dart';
 
 import '../../../infrastructure/cubit/map/map_store_state.dart';
 import '../../../infrastructure/model/response/map_medicine.dart';
+import '../../../utils/constants/assets.dart';
+import '../../../widgets/custom/info_window.dart';
 import '../map_details_page/map_details_page.dart';
 
 class MapPage extends StatefulWidget {
@@ -18,10 +25,33 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
+  CustomInfoWindowController _customInfoWindowController =
+      CustomInfoWindowController();
   GoogleMapController? mapController;
 
   LatLng? showLocation;
   Set<Marker> markers = Set();
+  BitmapDescriptor? icon;
+
+  @override
+  void initState() {
+    getIcons();
+    super.initState();
+  }
+
+  getIcons() async {
+    var icon = await BitmapDescriptor.fromAssetImage(
+        const ImageConfiguration(devicePixelRatio: 3.3), Assets.marker);
+    setState(() {
+      this.icon = icon;
+    });
+  }
+
+  @override
+  void dispose() {
+    _customInfoWindowController.dispose();
+    super.dispose();
+  }
 
   //
   @override
@@ -31,45 +61,92 @@ class _MapPageState extends State<MapPage> {
         if (state is MapStoreSuccess) {
           List<MapMedicine> maps = state.addressModel;
           maps.forEach((element) {
+            print(element.name);
             showLocation = LatLng(element.addressLat!, element.addressLong!);
             markers.add(
               Marker(
-                markerId: MarkerId(maps.toString()),
+                markerId: MarkerId(element.guid.toString()),
                 position: showLocation!, //position of marker
-                infoWindow: InfoWindow(
-                  onTap: () {
-                    Go.to(context, MapDetailsPage(element));
-                  },
-                  title: "Aptekə keçid elə",
-                ),
-                icon: BitmapDescriptor.defaultMarker, //Icon for Marker
+                onTap: () {
+                  _customInfoWindowController.addInfoWindow!(
+                    Column(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.circular(36),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Aptekə keçid elə",
+                                  style: AppTextStyles.sfPro400s14
+                                      .copyWith(color: MyColors.white),
+                                ),
+                              ],
+                            ),
+                            width: double.infinity,
+                            height: double.infinity,
+                          ),
+                        ),
+                      ],
+                    ),
+                    showLocation!,
+                  );
+                },
+                // infoWindow: InfoWindow(
+                //   onTap: () {
+                //     Go.to(context, MapDetailsPage(element));
+                //   },
+                //   title: "Aptekə keçid elə",
+                // ),
+                icon: icon!, //Icon for Marker
               ),
             );
           });
 
           return Scaffold(
-            body: GoogleMap(
-              zoomGesturesEnabled: true,
-              initialCameraPosition: CameraPosition(
-                target: showLocation!, //initial position
-                zoom: 13.0, //initial zoom level
-              ),
-              markers: markers,
-              //markers to show on map
-              mapType: MapType.normal,
-              //map type
-              onMapCreated: (controller) {
-                //method called when map is created
-                setState(() {
-                  mapController = controller;
-                });
-              },
+            body: Stack(
+              children: [
+                GoogleMap(
+                  zoomGesturesEnabled: true,
+                  initialCameraPosition: CameraPosition(
+                    target: showLocation!, //initial position
+                    zoom: 13.0, //initial zoom level
+                  ),
+                  onTap: (position) {
+                    _customInfoWindowController.hideInfoWindow!();
+                  },
+                  onCameraMove: (position) {
+                    _customInfoWindowController.onCameraMove!();
+                  },
+                  markers: markers,
+                  //markers to show on map
+                  mapType: MapType.normal,
+                  //map type
+                  onMapCreated: (GoogleMapController controller) async {
+                    _customInfoWindowController.googleMapController =
+                        controller;
+                  },
+                ),
+                CustomInfoWindow(
+                  controller: _customInfoWindowController,
+                  height: 48,
+                  width: 133,
+                ),
+                // CustomInfoWindow(
+                //   controller: ,
+                //   height: MediaQuery.of(context).size.width * 0.12,
+                //   width: MediaQuery.of(context).size.width * 0.4,
+                //   offset: 50,
+                // ),
+              ],
             ),
           );
         } else {
-          return Center(child: Text("Hec bir Aptek Movcud deyil")
-
-          );
+          return Center(child: Text("Hec bir Aptek Movcud deyil"));
         }
       },
     );
