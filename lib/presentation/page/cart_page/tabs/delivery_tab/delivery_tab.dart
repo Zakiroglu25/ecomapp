@@ -7,9 +7,9 @@ import 'package:uikit/widgets/custom/listview_separated.dart';
 class DeliveryTab extends StatelessWidget {
   const DeliveryTab({Key? key}) : super(key: key);
   static const List products = [
-    CartOrderProduct(
-      cartOrderType: CartOrderType.confirmed,
-    )
+    // CartOrderProduct(
+    //   cartOrderType: CartOrderType.confirmed,
+    // )
   ];
   @override
   Widget build(BuildContext context) {

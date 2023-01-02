@@ -5,6 +5,7 @@ import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
 import 'package:uikit/infrastructure/cubit/faq_cubit/faq_cubit.dart';
 import 'package:uikit/infrastructure/cubit/forgot_pass/forgot_pass_cubit.dart';
 import 'package:uikit/infrastructure/cubit/map/map_store_cubit.dart';
+import 'package:uikit/infrastructure/cubit/order_info/index.dart';
 import 'package:uikit/infrastructure/cubit/otp/otp_cubit.dart';
 import 'package:uikit/presentation/page/auth/forgot_password_page/forgot_pass_page.dart';
 import 'package:uikit/presentation/page/auth/otp_page/otp_page.dart';
@@ -80,8 +81,8 @@ class Pager {
         BlocProvider(create: (context) => TabCountsCubit()..fetch()),
       ], child: CartPage());
 
-  static get cartDelivery => MultiBlocProvider(providers: [
-        BlocProvider(create: (context) => LoginCubit()),
+  static cartDelivery(String guid) => MultiBlocProvider(providers: [
+        BlocProvider(create: (context) => OrderInfoCubit()..fetch(guid: guid)),
       ], child: CartDeliveryPage());
 
   static get splash => SplashPage();

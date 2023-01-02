@@ -15,6 +15,7 @@ import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/text.dart';
 import '../../../widgets/custom/product_and_other_widget.dart';
 import '../insurance_page/add_insurance_page.dart';
+import '../messenger_page/messenger_page.dart';
 import '../payment_method_page/payment_method_page.dart';
 import '../settings_page/settings_page.dart';
 
@@ -40,6 +41,9 @@ class OtherPage extends StatelessWidget {
                   imageUrl: Assets.pngMessenger3x,
                   title: MyText.messenger,
                   desc: MyText.demoSubtitle,
+                  onTap: () {
+                    Go.to(context, MessengerPage());
+                  },
                 ),
                 ProductAndOtherWidget(
                   onTap: () {

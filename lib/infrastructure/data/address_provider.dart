@@ -11,10 +11,10 @@ import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
 import '../model/response/address_model.dart';
 import '../model/response/status_dynamic.dart';
+import '../services/hive_service.dart';
 
 class AddressProvider {
   static DioAuth get dioAuth => locator<DioAuth>();
-
   static Future<List<Address>> getAddresses() async {
     List<Address> statusDynamic = [];
     const api = ApiKeys.getAddress;
@@ -22,6 +22,7 @@ class AddressProvider {
     if (response.statusCode.isSuccess) {
       final comeJson = response.data;
       statusDynamic = addressFromJson(comeJson);
+
     } else {
       eeee("address List:  url: $api , response: ${response.data}");
     }

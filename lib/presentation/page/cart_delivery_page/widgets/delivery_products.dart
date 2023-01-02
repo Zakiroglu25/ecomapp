@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/infrastructure/cubit/order_info/index.dart';
 import 'package:uikit/presentation/page/cart_delivery_page/widgets/delivery_product.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/paddings.dart';
@@ -6,15 +8,18 @@ import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/widgets/custom/listview_separated.dart';
 import 'package:uikit/widgets/main/doctoro_bottom_sheet/widget/handle_line.dart';
 
+import '../../../../widgets/general/app_loading.dart';
+
 class DeliveryProducts extends StatelessWidget {
   const DeliveryProducts({Key? key}) : super(key: key);
-  static const List<Widget> products = [
-    DeliveryProduct(),
-    DeliveryProduct(
-      insuranceCover: false,
-    ),
-    DeliveryProduct(),
-  ];
+
+  // static const List<Widget> products = [
+  //   DeliveryProduct(),
+  //   DeliveryProduct(
+  //     insuranceCover: false,
+  //   ),
+  //   DeliveryProduct(),
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +32,24 @@ class DeliveryProducts extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             Center(child: HandleLine()),
-            ListViewSeparated(
-                shrinkWrap: true,
-                physics: Physics.never,
-                itemCount: products.length,
-                itemBuilder: (context, index) {
-                  return products[index];
-                })
+            BlocBuilder<OrderInfoCubit, OrderInfoState>(
+              builder: (context, state) {
+                if (state is OrderInfoSuccess) {
+                  final orderInfo = state.orderDetails;
+                  return ListViewSeparated(
+                      shrinkWrap: true,
+                      physics: Physics.never,
+                      itemCount: orderInfo.orderedItems!.length,
+                      itemBuilder: (context, index) {
+                        return DeliveryProduct();
+                      });
+                } else if (state is OrderInfoError) {
+                  return Container();
+                } else {
+                  return AppLoading();
+                }
+              },
+            )
           ],
         ),
         decoration: BoxDecoration(
