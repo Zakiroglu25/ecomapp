@@ -13,6 +13,7 @@ class MapDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // print(maps!.name.toString()+"aldmf;dsg;lsd;lfk");
     return Cupperfold(
       barColor: MyColors.green235,
       backColor: MyColors.green235,

@@ -105,6 +105,7 @@ class Assets {
   static const String demo = "assets/png/demo.png";
   static const String demo1 = "assets/png/demoderman.png";
   static const String demo2 = "assets/png/zeytun.png";
+  static const String marker = "assets/png/marker.png";
 
   static const String masterCard = "assets/png/mastercard.png";
   static const String visa = "assets/png/visa.png";
