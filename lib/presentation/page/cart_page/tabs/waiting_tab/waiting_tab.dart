@@ -22,14 +22,14 @@ import '../../../../../widgets/general/empty_widget.dart';
 class WaitingTab extends StatelessWidget {
   const WaitingTab({Key? key}) : super(key: key);
 
-  static const _elementList = [
-    CartOrderProduct(
-      cartOrderType: CartOrderType.waiting,
-    ),
-    CartOrderProduct(
-      cartOrderType: CartOrderType.waitingPayment,
-    ),
-  ];
+  // static const _elementList = [
+  //   CartOrderProduct(
+  //     cartOrderType: CartOrderType.waiting,
+  //   ),
+  //   CartOrderProduct(
+  //     cartOrderType: CartOrderType.waitingPayment,
+  //   ),
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +45,10 @@ class WaitingTab extends StatelessWidget {
                 shrinkWrap: true,
                 physics: Physics.never,
                 itemBuilder: (context, index) {
+                  final order = orders[index];
                   return CartOrderProduct(
-                    cartOrderType: CartOrderType.waitingPayment,
+                    order: order,
+                    cartOrderType: CartOrderType.waiting,
                   );
                 },
                 itemCount: orders.length,
@@ -74,7 +76,7 @@ class WaitingTab extends StatelessWidget {
                 AppButton.black(
                   w: context.dynamicW(.5),
                   text: MyText.orderDeliveryX,
-                  onTap: () => Go.to(context, Pager.cartDelivery),
+                  // onTap: () => Go.to(context, Pager.cartDelivery),
                 ),
               ],
             ))
