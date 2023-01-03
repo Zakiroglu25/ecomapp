@@ -83,6 +83,8 @@ class Paddings {
   static const EdgeInsets paddingT4 = EdgeInsets.only(top: 4);
   static const EdgeInsets paddingT6 = EdgeInsets.only(top: 6);
   static const EdgeInsets paddingT8 = EdgeInsets.only(top: 8);
+  static const EdgeInsets paddingT10 = EdgeInsets.only(top: 10);
+  static const EdgeInsets paddingT11 = EdgeInsets.only(top: 11);
   static const EdgeInsets paddingT12 = EdgeInsets.only(top: 12);
   static const EdgeInsets paddingT14 = EdgeInsets.only(top: 14);
   static const EdgeInsets paddingT16 = EdgeInsets.only(top: 16);

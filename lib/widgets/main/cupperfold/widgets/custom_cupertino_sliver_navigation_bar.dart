@@ -4,6 +4,7 @@ import 'package:uikit/utils/constants/paddings.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/screen/widget_or_empty.dart';
+import '../../../custom/nav_bar.dart';
 import '../../../custom/row_with_space.dart';
 import '../../../doctoro_appbar/widgets/back_i_o_s.dart';
 import '../../../doctoro_appbar/widgets/notification_widget.dart';
@@ -33,13 +34,13 @@ class CustomCupertinoSliverNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoSliverNavigationBar(
+    return MyCustomCupertinoSliverNavigationBar(
       backgroundColor: barColor ?? MyColors.white,
       padding: EdgeInsetsDirectional.zero,
 
       border: const Border(bottom: BorderSide(color: Colors.transparent)),
       leading: SpacedRow(
-        padding: Paddings.paddingT4,
+        padding: Paddings.paddingT11,
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -59,9 +60,15 @@ class CustomCupertinoSliverNavigationBar extends StatelessWidget {
       // This title is visible in both collapsed and expanded states.
       // When the "middle" parameter is omitted, the widget provided
       // in the "largeTitle" parameter is used instead in the collapsed state.
-      largeTitle: Text(title ?? ''),
+
+      largeTitle: Padding(
+        padding: Paddings.paddingT10,
+        child: Text(
+          title ?? '',
+        ),
+      ),
       trailing: SpacedRow(
-        padding: Paddings.paddingT4,
+        padding: Paddings.paddingT10,
         mainAxisAlignment: MainAxisAlignment.end,
         mainAxisSize: MainAxisSize.min,
         children: [
