@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uikit/infrastructure/model/response/order_details.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/extensions/word.dart';
 
@@ -10,9 +11,11 @@ import '../../cart_page/widgets/cart_product/widgets/cart_med_name.dart';
 import '../../cart_page/widgets/cart_product/widgets/med_photo.dart';
 
 class DeliveryProduct extends StatelessWidget {
-  const DeliveryProduct({Key? key, this.insuranceCover = true})
+  const DeliveryProduct(
+      {Key? key, this.insuranceCover = true, required this.order})
       : super(key: key);
   final bool insuranceCover;
+  final OrderedItems order;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,7 @@ class DeliveryProduct extends StatelessWidget {
                 productOptionImages: [],
               )),
           MySizedBox.w16,
-          Flexible(flex: 3, child: CartMedName(name: 'nameee')),
+          Flexible(flex: 3, child: CartMedName(name: '${order.title}')),
           MySizedBox.w16,
           Expanded(
             flex: 2,
@@ -47,7 +50,7 @@ class DeliveryProduct extends StatelessWidget {
                               ? MyColors.mainGreen85
                               : MyColors.darkRED),
                     ),
-                    Text('16.10'.withManat)
+                    Text('${order.price}'.withManat)
                   ]),
             ),
           )

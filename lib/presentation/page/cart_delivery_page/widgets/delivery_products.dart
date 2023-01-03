@@ -8,6 +8,7 @@ import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/widgets/custom/listview_separated.dart';
 import 'package:uikit/widgets/main/doctoro_bottom_sheet/widget/handle_line.dart';
 
+import '../../../../utils/constants/border_radius.dart';
 import '../../../../widgets/general/app_loading.dart';
 
 class DeliveryProducts extends StatelessWidget {
@@ -31,29 +32,30 @@ class DeliveryProducts extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Center(child: HandleLine()),
+            const Center(child: const HandleLine()),
             BlocBuilder<OrderInfoCubit, OrderInfoState>(
               builder: (context, state) {
                 if (state is OrderInfoSuccess) {
                   final orderInfo = state.orderDetails;
+                  final orderedItems = orderInfo.orderedItems;
                   return ListViewSeparated(
                       shrinkWrap: true,
                       physics: Physics.never,
-                      itemCount: orderInfo.orderedItems!.length,
+                      itemCount: orderedItems!.length,
                       itemBuilder: (context, index) {
-                        return DeliveryProduct();
+                        return DeliveryProduct(order: orderedItems[index]);
                       });
                 } else if (state is OrderInfoError) {
                   return Container();
                 } else {
-                  return AppLoading();
+                  return const AppLoading();
                 }
               },
             )
           ],
         ),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        decoration: const BoxDecoration(
+          borderRadius: Radiuses.rt24,
           color: MyColors.white,
         ),
       ),
