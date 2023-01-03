@@ -16,8 +16,10 @@ import 'package:uikit/widgets/custom/listview_separated.dart';
 
 import '../../../../../infrastructure/cubit/cart/cart_cubit.dart';
 import '../../../../../infrastructure/cubit/tab_counts/tab_counts_cubit.dart';
+import '../../../../../utils/constants/assets.dart';
 import '../../../../../widgets/general/app_loading.dart';
 import '../../../../../widgets/general/empty_widget.dart';
+import '../../../../../widgets/general/list_or_empty.dart';
 
 class WaitingTab extends StatelessWidget {
   const WaitingTab({Key? key}) : super(key: key);
@@ -39,19 +41,26 @@ class WaitingTab extends StatelessWidget {
         BlocBuilder<WaitingOrdersCubit, WaitingOrdersState>(
           builder: (context, state) {
             if (state is WaitingOrdersSuccess) {
-              final orders = state.orders;
-              return ListViewSeparated(
-                padding: Paddings.paddingH16 + Paddings.paddingB200,
-                shrinkWrap: true,
-                physics: Physics.never,
-                itemBuilder: (context, index) {
-                  final order = orders[index];
-                  return CartOrderProduct(
-                    order: order,
-                    cartOrderType: CartOrderType.waiting,
-                  );
-                },
-                itemCount: orders.length,
+              final orders = [];
+              return ListOrEmpty(
+                list: orders,
+                onRefresh: () => onRefresh(context),
+                image: Assets.pngEmptyCart,
+                text: MyText.cartIsEmpty,
+                description: MyText.goToProductSectionToFindProducts,
+                child: ListViewSeparated(
+                  padding: Paddings.paddingH16 + Paddings.paddingB200,
+                  shrinkWrap: true,
+                  physics: Physics.never,
+                  itemBuilder: (context, index) {
+                    final order = orders[index];
+                    return CartOrderProduct(
+                      order: order,
+                      cartOrderType: CartOrderType.waiting,
+                    );
+                  },
+                  itemCount: orders.length,
+                ),
               );
             } else if (state is WaitingOrdersInProgress) {
               return AppLoading();
@@ -86,6 +95,6 @@ class WaitingTab extends StatelessWidget {
 
   void onRefresh(BuildContext context) {
     context.read<TabCountsCubit>().fetch(false);
-    // context.read<WaitingOrdersCubit>().fetch();
+    context.read<WaitingOrdersCubit>().fetch();
   }
 }
