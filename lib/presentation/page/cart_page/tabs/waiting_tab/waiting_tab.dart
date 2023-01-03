@@ -41,7 +41,7 @@ class WaitingTab extends StatelessWidget {
         BlocBuilder<WaitingOrdersCubit, WaitingOrdersState>(
           builder: (context, state) {
             if (state is WaitingOrdersSuccess) {
-              final orders = [];
+              final orders = state.orders;
               return ListOrEmpty(
                 list: orders,
                 onRefresh: () => onRefresh(context),
