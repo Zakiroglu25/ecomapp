@@ -17,27 +17,14 @@ import '../../../utils/screen/alert.dart';
 import '../../../utils/screen/overlay_loader.dart';
 import '../../data/cart_provider.dart';
 import '../../data/images_provider.dart';
+import '../../data/orders_provider.dart';
 import '../../model/response/cart_items.dart';
+import '../tab_counts/tab_counts_cubit.dart';
 import 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitial());
   int page = 1;
-
-  // //List<SimpleProduct> products = [];
-  // final BehaviorSubject<List<CartItem>> products =
-  //     BehaviorSubject<List<CartItem>>.seeded([]);
-  //
-  // Stream<List<CartItem>> get productsStream => products.stream;
-  //
-  // updateProducts(List<CartItem> value) {
-  //   if (value.isEmpty) {
-  //     products.valueOrNull?.clear();
-  //     //products.sink.addError(MyText.all_fields_must_be_filled);
-  //   } else {
-  //     products.sink.add(value);
-  //   }
-  // }
 
   fetch([bool loading = true]) async {
     // updateProducts([]);
@@ -47,7 +34,7 @@ class CartCubit extends Cubit<CartState> {
     try {
       final result = await CartProvider.getCartItems();
       if (result.statusCode.isSuccess) {
-        final cartItems = result.data ?? [];
+        final cartItems = result.data;
         // updateProducts(cartItems);
         emit(CartFetched(cartItems));
       } else {
@@ -63,12 +50,6 @@ class CartCubit extends Cubit<CartState> {
 
   void add(String? guid) async {
     try {
-      // if (isCart && inCart) {
-      //   updateProducts(products.value
-      //     ..remove(products.value
-      //         .where((element) => element.guid == guid)
-      //         .firstOrNull));
-      // }
       final result = await CartProvider.addCart(itemGuid: guid, amount: 1);
       if (result.statusCode.isSuccess) {
         Snack.positive(message: MyText.addedToCart);
@@ -109,12 +90,6 @@ class CartCubit extends Cubit<CartState> {
   void delete(String? stockGuid,
       {bool isCart = false, bool inCart = false}) async {
     try {
-      // if (isCart && inCart) {
-      //   updateProducts(products.value
-      //     ..remove(products.value
-      //         .where((element) => element.guid == stockGuid)
-      //         .firstOrNull));
-      // }
       final result = await CartProvider.deleteCart(guid: stockGuid!);
       if (result.statusCode.isSuccess) {
         Snack.display(message: MyText.removedFromCart, color: MyColors.brand);
@@ -126,6 +101,26 @@ class CartCubit extends Cubit<CartState> {
       Recorder.recordCatchError(e, s);
       emit(CartError());
     }
+  }
+
+  void ordersRegister(
+      {bool loading = false, required BuildContext context}) async {
+    try {
+      if (loading) emit(CartInProgress());
+      Loader.show(context);
+      final result = await OrdersProvider.orderRegister(addressGuid: null);
+      if (result.statusCode.isSuccess) {
+        Snack.positive(message: MyText.orderRegistered);
+        fetch(false);
+      } else {
+        emit(CartOperationError());
+      }
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+      emit(CartError());
+    }
+    context.read<TabCountsCubit>().fetch(false);
+    Loader.hide();
   }
 
   void deletePrescription(BuildContext context, String cartGuid,

@@ -12,6 +12,7 @@ class ListOrEmpty extends StatelessWidget {
   final double? h;
   final String? image;
   final String? description;
+  final Function? onRefresh;
 
   ListOrEmpty(
       {required this.list,
@@ -19,6 +20,7 @@ class ListOrEmpty extends StatelessWidget {
       this.text,
       this.h,
       this.description,
+      this.onRefresh,
       this.image,
       this.elseChild});
 
@@ -31,6 +33,7 @@ class ListOrEmpty extends StatelessWidget {
         child: EmptyWidget(
           elseChild: elseChild,
           imageUrl: image,
+          onRefresh: onRefresh,
           h: h ?? MediaQuery.of(context).size.height / 2,
           text: text,
           description: description,

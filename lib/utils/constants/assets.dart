@@ -68,6 +68,7 @@ class Assets {
   static const String pngSetting = "assets/png/setting.png";
   static const String pngFireIsoColor = "assets/png/fire-iso-color.png";
   static const String pngHomeAddress = "assets/png/home.png";
+  static const String pngEmptyCart = "assets/png/empty_cart.png";
   static const String pngLocationIcon = "assets/png/location_icon.png";
 
   ///product page
