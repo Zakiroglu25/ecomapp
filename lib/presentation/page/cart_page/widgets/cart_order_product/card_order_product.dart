@@ -2,6 +2,7 @@ import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nil/nil.dart';
+import 'package:uikit/infrastructure/model/response/orders_data.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/assets.dart';
 import 'package:uikit/utils/constants/paddings.dart';
@@ -16,14 +17,19 @@ import 'package:uikit/widgets/custom/row_with_space.dart';
 import 'package:uikit/widgets/general/app_element_box.dart';
 
 import '../../../../../utils/constants/text.dart';
+import '../../../../../utils/delegate/navigate_utils.dart';
+import '../../../../../utils/delegate/pager.dart';
 
 class CartOrderProduct extends StatelessWidget {
-  const CartOrderProduct({Key? key, required this.cartOrderType})
+  const CartOrderProduct(
+      {Key? key, required this.cartOrderType, required this.order})
       : super(key: key);
   final CartOrderType cartOrderType;
+  final CartOrder order;
   @override
   Widget build(BuildContext context) {
     return AppElementBox(
+      onTap: () => Go.to(context, Pager.cartDelivery(order.guid!)),
       color: CartOrderType.color(cartOrderType),
       child: SpacedColumn(
           space: 6,
@@ -36,15 +42,15 @@ class CartOrderProduct extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SvgPicture.asset(Assets.svgShoppingCart),
-                DotsButton(
-                    controller: CustomPopupMenuController(),
-                    menuBuilder: () {
-                      return nil;
-                    })
+                // DotsButton(
+                //     controller: CustomPopupMenuController(),
+                //     menuBuilder: () {
+                //       return nil;
+                //     })
               ],
             ),
             Text(
-              "Baglama 001",
+              "Baglama ${order.guid}",
               style: AppTextStyles.sfPro600.copyWith(fontSize: 16),
             ),
             MySizedBox.h2,
@@ -52,7 +58,7 @@ class CartOrderProduct extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Dərman sayı: 5',
+                    'Dərman sayı: ',
                     style: AppTextStyles.sfPro500s13,
                   ),
                   Text(
@@ -64,7 +70,7 @@ class CartOrderProduct extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Qiymət: 64.00 ₼',
+                    'Qiymət: ${order.totalPrice} ₼',
                     style: AppTextStyles.sfPro500s13,
                   ),
                 ]),

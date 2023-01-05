@@ -1,12 +1,12 @@
 // import 'package:firebase_core/firebase_core.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../locator.dart';
 import '../../utils/constants/colors.dart';
-import '../cubit/app_bloc_observer.dart';
 
 Future<void> init() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,8 +34,9 @@ Future<void> init() async {
   //   dio.interceptors.add(LogInterceptorService());
   // }
 
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarBrightness: Brightness.dark,
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarBrightness:
+        Platform.isAndroid ? Brightness.light : Brightness.dark,
     systemNavigationBarColor: MyColors.white,
     statusBarIconBrightness: Brightness.light,
     statusBarColor: MyColors.main, // status bar color

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uikit/utils/constants/paddings.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../utils/constants/app_text_styles.dart';
 import '../../utils/constants/colors.dart';
@@ -97,19 +98,23 @@ class AppButton extends StatelessWidget {
                   )
                 : Padding(
                     padding: Paddings.paddingH8,
-                    child: (child ??
-                        FittedBox(
-                          child: Text(
-                            text ?? "",
-                            style: AppTextStyles.sfPro400s14.copyWith(
-                                color: active
-                                    ? (textColor ?? Colors.white)
-                                    : (passiveButtonColor ?? MyColors.grey158),
-                                fontSize: textSize ?? 16,
-                                overflow: TextOverflow.clip,
-                                fontWeight: fontWeight ?? FontWeight.w500),
-                          ),
-                        )),
+                    child: SizedBox(
+                      width: w.isNotNull ? w! - 60 : w,
+                      child: (child ??
+                          FittedBox(
+                            child: Text(
+                              text ?? "",
+                              style: AppTextStyles.sfPro400s14.copyWith(
+                                  color: active
+                                      ? (textColor ?? Colors.white)
+                                      : (passiveButtonColor ??
+                                          MyColors.grey158),
+                                  fontSize: textSize ?? 16,
+                                  overflow: TextOverflow.clip,
+                                  fontWeight: fontWeight ?? FontWeight.w500),
+                            ),
+                          )),
+                    ),
                   ),
           ),
         ),

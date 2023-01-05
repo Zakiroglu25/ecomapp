@@ -11,7 +11,7 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: MyColors.brand,
+        color: MyColors.main,
         padding: Paddings.paddingH30,
         child: const Center(child: AppBigLogo()),
       ),

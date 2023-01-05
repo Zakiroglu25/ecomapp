@@ -1,11 +1,14 @@
 // Dart imports:
 // Package imports:
 
+import 'package:uikit/utils/extensions/index.dart';
+
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/constants/result_keys.dart';
 import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
+import '../model/response/order_details.dart';
 import '../model/response/orders_data.dart';
 import '../model/response/status_dynamic.dart';
 
@@ -29,10 +32,21 @@ class OrdersProvider {
   static Future<CartOrdersData?> pendingOrders({int? page}) async {
     final api = ApiKeys.orders + '?status=PENDING_APPROVAL&page=$page';
     final response = await dioAuth.dio.get(api);
-    if (response.statusCode == ResultKey.successCode) {
+    if (response.statusCode.isSuccess) {
       return CartOrdersData.fromJson(response.data);
     } else {
       eeee("pendingOrders:  url: $api , response: ${response.data}");
+    }
+    return null;
+  }
+
+  static Future<OrderDetails?> orderDetails({required String guid}) async {
+    final api = ApiKeys.orders + '/$guid';
+    final response = await dioAuth.dio.get(api);
+    if (response.statusCode.isSuccess) {
+      return OrderDetails.fromJson(response.data);
+    } else {
+      eeee("orderDetails:  url: $api , response: ${response.data}");
     }
     return null;
   }

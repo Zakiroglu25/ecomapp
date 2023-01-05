@@ -31,7 +31,6 @@ class MyText {
   static const String password = "Şifrə";
 
   //PrivacyRegister
-  static const String checkPrivacy = "Məxfilik siyasəti və istifadə qaydaları";
   static const String checkPrivacyAds =
       "Reklam və kampaniyalarla bağlı, fərdi təkliflərlə bağlı məlumatların əldə edilməsinə etiraz etmirəm";
   static const String ruleText = "Məxfilik siyasəti və qaydalar";
