@@ -190,6 +190,13 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String webSite = "Veb sayta keç";
   static const String webSiteinfo = "PAŞA Sığorta ilə bağlı məlumatlar saytda";
 
+  //product
+  static const String manufacturedIn = 'İstehsal olduğu ölkə';
+  static const String productCode = 'Məhsulun kodu';
+  static const String producer = 'İstehsalçı';
+  static const String pharmaceuticalForm = 'Əczaçılıq forması';
+  static const String description = 'Təsvir';
+
   //demo
   static const String demo =
       "Swiss Energy Herbs Hot Balm Forte isidici balzam  75 ml Forte";
