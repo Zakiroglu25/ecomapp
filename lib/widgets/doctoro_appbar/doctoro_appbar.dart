@@ -7,6 +7,7 @@ import 'package:focus_detector/focus_detector.dart';
 import '../../presentation/page/medicines_page/widgets/appbar_address_widget.dart';
 import '../../utils/constants/app_text_styles.dart';
 import '../../utils/constants/colors.dart';
+import '../../utils/constants/paddings.dart';
 import '../../utils/constants/sized_box.dart';
 import '../../utils/screen/widget_or_empty.dart';
 import 'widgets/back_i_o_s.dart';
@@ -60,29 +61,32 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
         foregroundColor: color,
         elevation: 0,
         titleSpacing: 0,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            (user ?? true)
-                ? UserButton()
-                : WidgetOrEmpty(
-                    value: back,
-                    child: BackIOS(
-                      onBack: onBack,
+        title: Padding(
+          padding: Paddings.paddingT12,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              (user ?? true)
+                  ? UserButton()
+                  : WidgetOrEmpty(
+                      value: back,
+                      child: BackIOS(
+                        onBack: onBack,
+                      ),
                     ),
-                  ),
-            !addressDropdown
-                ? Center(
-                    child: Text(
-                      title!,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.sfPro600
-                          .copyWith(fontSize: 17.sp, color: MyColors.black),
-                    ),
-                  )
-                : AppBarAddressWidget(),
-            rightButtonsRow(context),
-          ],
+              !addressDropdown
+                  ? Center(
+                      child: Text(
+                        title!,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTextStyles.sfPro600
+                            .copyWith(fontSize: 16.sp, color: MyColors.black),
+                      ),
+                    )
+                  : AppBarAddressWidget(),
+              rightButtonsRow(context),
+            ],
+          ),
         ),
       ),
     );

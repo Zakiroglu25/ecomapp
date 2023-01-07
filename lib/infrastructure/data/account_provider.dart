@@ -1,6 +1,8 @@
 // Dart imports:
 import 'dart:convert';
 
+import 'package:uikit/utils/extensions/index.dart';
+
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/constants/result_keys.dart';
@@ -8,13 +10,13 @@ import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
 import '../model/locale/MyUser.dart';
 import '../model/response/status_dynamic.dart';
-
 import '../services/hive_service.dart';
 
 class AccountProvider {
   static DioAuth get dioAuth => locator<DioAuth>();
 
   static HiveService get _prefs => locator<HiveService>();
+
   static Future<StatusDynamic> fetchUserInfo({
     required String? token,
   }) async {
@@ -114,6 +116,18 @@ class AccountProvider {
     }
     return statusDynamic;
   }
+
+  static Future<bool?> deleteAccount() async {
+    var api = ApiKeys.rtbf;
+    final response = await dioAuth.dio.post(api);
+    if (response.statusCode.isSuccess) {
+      return true;
+    } else {
+      eeee("deleteAccount bad url :$api, response: ${response}");
+    }
+    return null;
+  }
+
 //User Update
 
 }

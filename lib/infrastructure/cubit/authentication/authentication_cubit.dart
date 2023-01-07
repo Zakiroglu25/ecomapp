@@ -155,6 +155,15 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     }, title: MyText.are_u_sure_exit);
   }
 
+  void showDeleteDialog(BuildContext context, {bool goWithPager = false}) {
+    Alert.show(context,
+        image: SizedBox(
+            width: 120, height: 120, child: Image.asset(Assets.pngSetting)),
+        cancelButton: true, onTap: () {
+      deleteAccount(context, goWithPager: goWithPager);
+    }, title: MyText.are_u_sure_delete_account);
+  }
+
   void logOut(BuildContext context, {bool goWithPager = false}) async {
     try {
       //   emit(AuthenticationLoading());
@@ -169,7 +178,16 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       imageCache.clear();
       Go.andRemove(context, Pager.login);
     } catch (e, s) {
-      // Recorder.recordCatchError(e, s);
+      Recorder.recordCatchError(e, s);
+    }
+  }
+
+  void deleteAccount(BuildContext context, {bool goWithPager = false}) async {
+    try {
+      final result = await AccountProvider.deleteAccount();
+      if (result.isNotNull) logOut(context);
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
     }
   }
 

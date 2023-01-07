@@ -25,7 +25,7 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  CustomInfoWindowController _customInfoWindowController =
+  final CustomInfoWindowController _customInfoWindowController =
       CustomInfoWindowController();
   GoogleMapController? mapController;
 
@@ -72,23 +72,29 @@ class _MapPageState extends State<MapPage> {
                     Column(
                       children: [
                         Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(36),
+                          child: InkWell(
+                            onTap: (){
+                              Go.to(context, MapDetailsPage(element));
+
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(36),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Aptekə keçid elə",
+                                    style: AppTextStyles.sfPro400s14
+                                        .copyWith(color: MyColors.white),
+                                  ),
+                                ],
+                              ),
+                              width: double.infinity,
+                              height: double.infinity,
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Aptekə keçid elə",
-                                  style: AppTextStyles.sfPro400s14
-                                      .copyWith(color: MyColors.white),
-                                ),
-                              ],
-                            ),
-                            width: double.infinity,
-                            height: double.infinity,
                           ),
                         ),
                       ],

@@ -27,6 +27,8 @@ class DeliveryHeaders extends StatelessWidget {
               child: BlocBuilder<OrderInfoCubit, OrderInfoState>(
                 builder: (context, state) {
                   if (state is OrderInfoSuccess) {
+                    final orderInfo = state.orderDetails;
+                    final orderedItems = orderInfo.orderedItems;
                     return FittedBox(
                       fit: BoxFit.contain,
                       child: SpacedColumn(
@@ -35,12 +37,12 @@ class DeliveryHeaders extends StatelessWidget {
                         children: [
                           MySizedBox.h16,
                           DeliveryMedCount(
-                            count: 8,
+                            count: orderedItems!.length,
                           ),
                           DeliveryTotalPrice(
-                            price: 64.00,
+                            price: orderInfo.totalPrice,
                           ),
-                          DeliveryOrderDate(date: '27.08.2022'),
+                          DeliveryOrderDate(date: orderInfo.createdAt),
                           DeliveryRecipe(),
                           MySizedBox.h8,
                           DeliveryCallAndMessengerBUttons(),

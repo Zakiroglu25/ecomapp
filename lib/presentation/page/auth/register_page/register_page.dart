@@ -12,7 +12,7 @@ import '../../../../utils/screen/snack.dart';
 import 'widgets/checkbox_ads.dart';
 import 'widgets/email_field_register.dart';
 import 'widgets/phone_field_register.dart';
-import 'widgets/policy_checkbox.dart';
+import 'widgets/policy_chechkbox_text.dart';
 import 'widgets/register_button.dart';
 
 class Register extends StatelessWidget {
@@ -56,7 +56,7 @@ class Register extends StatelessWidget {
                 MainPassFieldRegister(),
                 MySizedBox.h26,
                 PolicyCheckbox(),
-                MySizedBox.h20,
+                //MySizedBox.h20,
                 AdsCheckbox(),
                 MySizedBox.h50,
                 RegisterButton()
