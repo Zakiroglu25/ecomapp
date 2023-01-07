@@ -43,6 +43,7 @@ class DoctoroTextButton extends StatelessWidget {
       h: h ?? 30,
       textSize: textSize ?? 14,
       onTap: onTap,
+      fittedText: true,
       fontWeight: fontWeight ?? FontWeight.w500,
       borderRadius: borderRadius ?? 4,
       textColor: textColor ?? MyColors.darkRED,

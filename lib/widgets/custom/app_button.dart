@@ -6,6 +6,7 @@ import '../../utils/constants/app_text_styles.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/durations.dart';
 import '../general/app_loading.dart';
+import 'custom_fitted_box.dart';
 
 class AppButton extends StatelessWidget {
   final Color? color;
@@ -21,6 +22,7 @@ class AppButton extends StatelessWidget {
   final FontWeight? fontWeight;
   final String? text;
   final Widget? child;
+  final bool fittedText;
   final double? w;
   final bool? loading;
   late final bool? isButtonActive;
@@ -36,6 +38,7 @@ class AppButton extends StatelessWidget {
       this.isButtonActive,
       this.highlightColor,
       this.passiveTextColor,
+      this.fittedText = false,
       this.passiveButtonColor,
       this.splashColor,
       this.w,
@@ -56,6 +59,7 @@ class AppButton extends StatelessWidget {
       this.highlightColor,
       this.passiveTextColor,
       this.passiveButtonColor,
+      this.fittedText = false,
       this.splashColor,
       this.w,
       this.textColor = MyColors.white,
@@ -101,7 +105,8 @@ class AppButton extends StatelessWidget {
                     child: SizedBox(
                       width: w.isNotNull ? w! - 60 : w,
                       child: (child ??
-                          FittedBox(
+                          CustomFittedBox(
+                            fit: fittedText,
                             child: Text(
                               text ?? "",
                               style: AppTextStyles.sfPro400s14.copyWith(

@@ -39,7 +39,7 @@ class Alert {
           return AlertDialog(
             backgroundColor: MyColors.white,
             shape: RoundedRectangleBorder(borderRadius: Radiuses.r16),
-            contentPadding: EdgeInsets.only(top: 10.0),
+            contentPadding: Paddings.paddingT10,
             insetPadding: Paddings.zero,
             content: Container(
               width: sW - 32,
