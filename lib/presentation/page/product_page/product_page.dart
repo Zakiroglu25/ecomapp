@@ -5,7 +5,7 @@ import '../medicines_page/widgets/product_body.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({Key? key}) : super(key: key);
-
+//
   @override
   Widget build(BuildContext context) {
     return Scaffold(

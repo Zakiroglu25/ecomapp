@@ -159,8 +159,11 @@ class Pager {
         child: ContactPage(),
       );
 
-  static get favoritePage => BlocProvider(
-        create: (context) => FavoriteCubit()..fetchProduct(),
+  static get favoritePage => MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => FavoriteCubit()..fetchProduct()),
+          BlocProvider(create: (context) => CartCubit()),
+        ],
         child: FavoritePage(),
       );
 
