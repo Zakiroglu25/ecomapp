@@ -41,9 +41,11 @@ class CartOrdersData {
 
 class CartOrder {
   String? guid;
-  num? price;
-  num? totalPrice;
-  num? discountedPrice;
+  int? orderNumber;
+  int? totalStockItemsOrdered;
+  double? price;
+  double? totalPrice;
+  double? discountedPrice;
   String? paymentType;
   String? deliveryType;
   String? status;
@@ -51,6 +53,8 @@ class CartOrder {
 
   CartOrder(
       {this.guid,
+      this.orderNumber,
+      this.totalStockItemsOrdered,
       this.price,
       this.totalPrice,
       this.discountedPrice,
@@ -61,6 +65,8 @@ class CartOrder {
 
   CartOrder.fromJson(Map<String, dynamic> json) {
     guid = json['guid'];
+    orderNumber = json['orderNumber'] ?? 0;
+    totalStockItemsOrdered = json['totalStockItemsOrdered'];
     price = json['price'];
     totalPrice = json['totalPrice'];
     discountedPrice = json['discountedPrice'];
@@ -73,6 +79,8 @@ class CartOrder {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['guid'] = this.guid;
+    data['orderNumber'] = this.orderNumber;
+    data['totalStockItemsOrdered'] = this.totalStockItemsOrdered;
     data['price'] = this.price;
     data['totalPrice'] = this.totalPrice;
     data['discountedPrice'] = this.discountedPrice;
@@ -85,6 +93,6 @@ class CartOrder {
 
   @override
   String toString() {
-    return 'CartOrderInfo{guid: $guid, price: $price, totalPrice: $totalPrice, discountedPrice: $discountedPrice, paymentType: $paymentType, deliveryType: $deliveryType, status: $status, createdAt: $createdAt}';
+    return 'CartOrder{guid: $guid, orderNumber: $orderNumber, totalStockItemsOrdered: $totalStockItemsOrdered, price: $price, totalPrice: $totalPrice, discountedPrice: $discountedPrice, paymentType: $paymentType, deliveryType: $deliveryType, status: $status, createdAt: $createdAt}';
   }
 }

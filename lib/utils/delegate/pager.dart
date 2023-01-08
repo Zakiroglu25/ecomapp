@@ -81,9 +81,15 @@ class Pager {
         BlocProvider(create: (context) => TabCountsCubit()..fetch()),
       ], child: CartPage());
 
-  static cartDelivery(String guid) => MultiBlocProvider(providers: [
-        BlocProvider(create: (context) => OrderInfoCubit()..fetch(guid: guid)),
-      ], child: CartDeliveryPage());
+  static cartDelivery(String guid, {required int orderNumber}) =>
+      MultiBlocProvider(
+          providers: [
+            BlocProvider(
+                create: (context) => OrderInfoCubit()..fetch(guid: guid)),
+          ],
+          child: CartDeliveryPage(
+            orderNumber: orderNumber,
+          ));
 
   static get splash => SplashPage();
 
@@ -167,6 +173,11 @@ class Pager {
       ], child: ProductOptionDetails());
 
   static get addressPage => BlocProvider(
+        create: (context) => AddressCubit()..fetch(),
+        child: AddressPage(),
+      );
+
+  static get orderConfirm => BlocProvider(
         create: (context) => AddressCubit()..fetch(),
         child: AddressPage(),
       );

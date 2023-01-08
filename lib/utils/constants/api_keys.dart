@@ -58,13 +58,6 @@ class ApiKeys {
   static const forgotOtpApprove = "$auth/validate-otp";
   static const resetPassword = "$account/reset-password";
 
-  //cart
-  //static const addCart = 'https://doctoro-dev.ml/protected/customer/cart';
-
-  //w2qadsa
-
-  //static const forgotOtp = "$baseUrl/user/otp";
-
   //contact
   static const contact = "$protected/content/contacts";
 
@@ -108,6 +101,12 @@ class ApiKeys {
   //general
   static const localityInfoBigData = '$bigDataCloud/reverse-geocode-client';
   static const localityInfoGoogleMap = '$googleMap/json';
+  //Messenger
+  static const getMessenger = "$protected/chat";
+
+
+  ///seni sevirem
+
 
   static loginBody({
     required String? email,

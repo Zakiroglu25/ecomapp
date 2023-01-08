@@ -169,7 +169,9 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String insuranceCover = "Sığorta qarşılayır";
   static const String insuranceDoesNotCover = "Sığorta qarşılamır";
   static const String countOfMedicine = "Dərman sayı";
+  static const String package = "Bağlama";
   static const String totalPrice = "Toplam qiymət:";
+  static const String price = "Qiymət:";
   static const String orderDate = "Sifariş tarixi";
   static const String chooseDeliveryType = "Çatdırılma üsulunu seçin";
   static const String contactNumber = "Əlaqə nömrəsi";
