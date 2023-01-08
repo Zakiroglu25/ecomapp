@@ -17,7 +17,7 @@ class LoginFields extends StatelessWidget {
         PhoneFieldLogin(),
         PassField(),
         DoctoroTextButton(
-          text: MyText.forgot,
+          text: MyText.are_you_forgot_pass,
           onTap: () => Go.to(context, Pager.forgotPassword),
         ),
       ],

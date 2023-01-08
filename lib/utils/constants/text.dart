@@ -52,8 +52,9 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String enter = "Daxil olun";
   static const String enterText =
       "Daxil olmaq üçün aşağıda qeyd olunan bəndləri doldurun.";
-  static const String forgot = "Şifrəni unutmusuz ?";
   static const String are_u_sure_exit = "Çıxış etmək istədiyinizdən əminsiniz?";
+  static const String are_u_sure_delete_account =
+      "Hesabı silmək istədiyinizdən əminsiniz?";
   static const String new_pass = 'Yeni şifrə';
   static const String info = 'Məlumat';
   static const String set_new_pass = 'Yeni şifrəni təyin et';
@@ -82,7 +83,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String networkError = "İnternet bağlantısı zamanı xəta yarandı";
   static const String goOn = "Davam et";
   static const String unknownError = "Bilinməyən xəta yarandı!";
-  static const String are_you_forgot_pass = "Şifrəni unutmusan ?";
+  static const String are_you_forgot_pass = "Şifrəni unutmusunuz?";
   static const String enterCode = 'Kodu daxil edin';
   static const String setted_new_pass = 'Yeni şifrə təyin edildi.';
   static const String codeSent =
@@ -185,10 +186,19 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String downAppDetails =
       "Tətbiqi App Store marketindən yükləyə bilərsiniz";
   static const String personalAccount = "Şəxsi Kabinet";
+  static const String account = "Hesab";
+  static const String deleteAccount = "Hesabı sil";
   static const String personalAccountDetails =
       "Kabinet bölməsinə keçid edə bilərsiniz";
   static const String webSite = "Veb sayta keç";
   static const String webSiteinfo = "PAŞA Sığorta ilə bağlı məlumatlar saytda";
+
+  //product
+  static const String manufacturedIn = 'İstehsal olduğu ölkə';
+  static const String productCode = 'Məhsulun kodu';
+  static const String producer = 'İstehsalçı';
+  static const String pharmaceuticalForm = 'Əczaçılıq forması';
+  static const String description = 'Təsvir';
 
   //demo
   static const String demo =

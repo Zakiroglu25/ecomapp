@@ -22,6 +22,7 @@ import 'widget/edit_num_page.dart';
 import 'widget/indicator_widget.dart';
 import 'widget/user_data_body.dart';
 import 'widget/user_data_item_widget.dart';
+import 'widget/user_log_out_button.dart';
 import 'widget/user_view.dart';
 
 class PageViewExample extends StatefulWidget {
@@ -97,16 +98,7 @@ class _PageViewExampleState extends State<PageViewExample> {
             children: [
               Indicator(curr: currentPageValue.round()),
               MySizedBox.h32,
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: AppButton(
-                  onTap: () => context
-                      .read<AuthenticationCubit>()
-                      .showLogoutDialog(context),
-                  text: MyText.logout,
-                  color: MyColors.mainRED,
-                ),
-              ),
+              UserLogOutButton(),
               MySizedBox.h32,
             ],
           )

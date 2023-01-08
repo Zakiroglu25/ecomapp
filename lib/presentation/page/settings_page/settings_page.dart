@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/widgets/custom/column_with_space.dart';
 
+import '../../../infrastructure/cubit/authentication/authentication_cubit.dart';
 import '../../../infrastructure/services/hive_service.dart';
 import '../../../locator.dart';
 import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/paddings.dart';
-import '../../../utils/constants/sized_box.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../widgets/main/cupperfold/cupperfold.dart';
-import '../change_number/change_number_page.dart';
 import '../language_page/change_launguage_page.dart';
 import 'widget/change_password.dart';
 import 'widget/edit_field_widget.dart';
 
 class SettingsPage extends StatelessWidget {
-   const SettingsPage({Key? key}) : super(key: key);
+  const SettingsPage({Key? key}) : super(key: key);
+
   HiveService get _prefs => locator<HiveService>();
 
   @override
@@ -24,10 +26,11 @@ class SettingsPage extends StatelessWidget {
       onBack: () => Go.pop(context),
       notification: false,
       user: false,
-      title: 'Tənzimləmələr',
+      title: MyText.settings,
       child: Padding(
         padding: Paddings.paddingH16 + Paddings.paddingV16,
-        child: Column(
+        child: SpacedColumn(
+          space: 16,
           children: [
             // EditFieldWidget(
             //   onTap: () {
@@ -41,12 +44,12 @@ class SettingsPage extends StatelessWidget {
             //   sufixImageUrl: Assets.svgCallDark,
             //   prefixImageUrl: SvgPicture.asset(Assets.svgEdit),
             // ),
-            MySizedBox.h16,
-             EditFieldWidget(
+            //  MySizedBox.h16,
+            EditFieldWidget(
               onTap: () {
                 Go.to(context, ChangePassword());
-                ///sifreni deyis
 
+                ///sifreni deyis
               },
               headText: "Təhlükəsizlik",
               title: "Şifrəni dəyiş",
@@ -56,29 +59,39 @@ class SettingsPage extends StatelessWidget {
                 color: MyColors.grey158,
               ),
             ),
-            MySizedBox.h16,
+            //  MySizedBox.h16,
+            ///dil secimi novbeti update
+            // EditFieldWidget(
+            //   onTap: () {
+            //     Go.to(context, LanguagePage());
+            //   },
+            //   headText: "Dil seçimi",
+            //   title: "Azərbaycan",
+            //   sufixImageUrl: Assets.pngAzFlag,
+            //   switchW: false,
+            //   prefixImageUrl: Icon(
+            //     Icons.navigate_next,
+            //     color: MyColors.grey158,
+            //   ),
+            // ),
+            //MySizedBox.h16,
+            // EditFieldWidget(
+            //   headText: "Bildirişlər",
+            //   title: "Bildirişləri aktivləşdir",
+            //   //sufixImageUrl: Assets.pngAzFlag,
+            //   png: false,
+            //   switchW: false,
+            // ),
+
             EditFieldWidget(
-              onTap: () {
-                Go.to(context, LanguagePage());
-              },
-              headText: "Dil seçimi",
-              title: "Azərbaycan",
-              sufixImageUrl: Assets.pngAzFlag,
-              switchW: false,
-              prefixImageUrl: Icon(
-                Icons.navigate_next,
-                color: MyColors.grey158,
-              ),
-            ),
-            MySizedBox.h16,
-            EditFieldWidget(
-              headText: "Bildirişlər",
-              title: "Bildirişləri aktivləşdir",
-              sufixImageUrl: Assets.pngAzFlag,
+              headText: MyText.account,
+              title: MyText.deleteAccount,
+              // sufixImageUrl: Assets.pngAzFlag,
               png: false,
-              switchW: false ,
+              switchW: false,
+              onTap: () =>
+                  context.read<AuthenticationCubit>().showDeleteDialog(context),
             ),
-            
           ],
         ),
       ),

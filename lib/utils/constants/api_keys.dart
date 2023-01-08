@@ -83,6 +83,9 @@ class ApiKeys {
   static const getAllManufacturers = "$content/manufacturers";
   static const cartPage = "$content/cart-page";
 
+  //rtbf
+  static const rtbf = "$protected/rtbf";
+
   //images
   static const prescription = "$images/prescription";
 

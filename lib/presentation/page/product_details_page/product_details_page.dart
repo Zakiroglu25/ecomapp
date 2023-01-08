@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:uikit/infrastructure/model/response/product_option_model.dart';
+import 'package:uikit/infrastructure/cubit/cart/cart_cubit.dart';
 import 'package:uikit/presentation/page/product_details_page/widget/product_detail_property.dart';
 import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/utils/constants/text.dart';
@@ -21,19 +21,13 @@ import '../../../utils/constants/paddings.dart';
 import '../../../utils/constants/sized_box.dart';
 import '../../../widgets/custom/app_button.dart';
 import '../../../widgets/general/app_loading.dart';
+import 'widget/product_add_to_cart_button.dart';
 
-class ProductOptionDetails extends StatefulWidget {
-  SimpleProduct? product;
+class ProductOptionDetails extends StatelessWidget {
+  final SimpleProduct? product;
 
-  ProductOptionDetails({this.product});
+  ProductOptionDetails({Key? key, this.product}) : super(key: key);
 
-  @override
-  _ProductOptionDetailsState createState() => _ProductOptionDetailsState();
-}
-
-class _ProductOptionDetailsState extends State<ProductOptionDetails> {
-  PageController controller = PageController();
-  int currentIndex = 0;
   List<String> offerImage = [
     Assets.demo1,
     Assets.demo1,
@@ -41,20 +35,7 @@ class _ProductOptionDetailsState extends State<ProductOptionDetails> {
   ];
 
   @override
-  void initState() {
-    controller = PageController();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    bool switchValue = true;
     return Scaffold(
       appBar: DoctorAppbar(title: "", user: false, contextA: context),
       body: BlocBuilder<ProductOptionDetailsCubit, ProductOptionDetailsState>(
@@ -70,14 +51,6 @@ class _ProductOptionDetailsState extends State<ProductOptionDetails> {
                     'https://5.imimg.com/data5/CR/VG/DA/SELLER-3251912/paracetamol-and-domperidone-tablets-500x500.jpg'
                   ],
                 ),
-                // ImagePageViewList(
-                //     controller: controller,
-                //     offerImage: offerImage,
-                //     currentIndex: currentIndex),
-                // InfoRowWidget(product: product),
-                // DetailsTitleWidget(product: product),
-                //ShowInsuranceSwitch(switchValue: switchValue),
-                // Text("${product?.stockItems?.first.price}"),
                 ListView(
                   shrinkWrap: true,
                   physics: Physics.never,
@@ -95,34 +68,35 @@ class _ProductOptionDetailsState extends State<ProductOptionDetails> {
                     ),
                     MySizedBox.h16,
                     ProductDetailProperty(
-                      title: 'İstehsal olduğu ölkə',
+                      title: MyText.manufacturedIn,
                       value: '${product?.manufacturedIn}',
                     ),
                     ProductDetailProperty(
-                      title: 'Resept',
+                      title: MyText.recipe,
                       value: (product?.prescriptionRequired ?? false)
                           ? MyText.required
                           : MyText.notRequired,
                     ),
                     ProductDetailProperty(
-                      title: 'Məhsulun kodu',
+                      title: MyText.productCode,
                       value: '${product?.publicId}',
                     ),
                     ProductDetailProperty(
-                      title: 'İstehsalçı',
+                      title: MyText.producer,
                       value: '${product?.manufacturer?.name}',
                     ),
                     ProductDetailProperty(
-                      title: 'Əczaçılıq forması',
+                      title: MyText.pharmaceuticalForm,
                       value: '${product?.pharmaceuticalForm}',
                     ),
                     ProductDetailProperty(
-                      title: 'Təsvir',
+                      title: MyText.description,
                       value: '${product?.description}',
                     ),
                     MySizedBox.h16,
-                    AppButton(
-                      text: MyText.addToCart,
+                    ProductAddToCartButton(
+                      guid: product?.guid,
+                      isInCart: product?.isInCart,
                     )
                   ],
                 ),
@@ -131,7 +105,7 @@ class _ProductOptionDetailsState extends State<ProductOptionDetails> {
               ],
             );
           } else if (state is ProductODetailsInProgress) {
-            return AppLoading.big();
+            return const AppLoading();
           }
           return EmptyWidget(
             text: MyText.error,

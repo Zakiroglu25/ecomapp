@@ -115,6 +115,7 @@ class Pager {
         create: (context) => CardCubit()..getCard(),
         child: PaymentMethodPage(),
       );
+
   static get notificationPage => BlocProvider(
         create: (context) => NotificationCubit()..getNotification(),
         child: NotificationsPage(),
@@ -157,10 +158,13 @@ class Pager {
         child: FavoritePage(),
       );
 
-  static productDetails({required String guid}) => BlocProvider(
-        create: (context) => ProductOptionDetailsCubit()..fetchProduct(guid),
-        child: ProductOptionDetails(),
-      );
+  static productDetails({required String guid}) =>
+      MultiBlocProvider(providers: [
+        BlocProvider(
+            create: (context) =>
+                ProductOptionDetailsCubit()..fetchProduct(guid)),
+        BlocProvider(create: (context) => CartCubit())
+      ], child: ProductOptionDetails());
 
   static get addressPage => BlocProvider(
         create: (context) => AddressCubit()..fetch(),

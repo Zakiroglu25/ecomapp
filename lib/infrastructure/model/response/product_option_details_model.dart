@@ -4,6 +4,7 @@ class ProductDetails {
   String? title;
   String? slug;
   bool? prescriptionRequired;
+  bool? isInCart;
   String? manufacturedIn;
   String? description;
   String? substances;
@@ -51,6 +52,7 @@ class ProductDetails {
     dosage = json['dosage'];
     packaging = json['packaging'];
     packagingAmount = json['packagingAmount'];
+    isInCart = json['isInCart'] ?? false;
     pharmaceuticalForm = json['pharmaceuticalForm'];
     registrationDate = json['registrationDate'];
     manufacturer = json['manufacturer'] != null
@@ -82,6 +84,7 @@ class ProductDetails {
     data['publicId'] = this.publicId;
     data['title'] = this.title;
     data['slug'] = this.slug;
+    data['isInCart'] = this.isInCart;
     data['prescriptionRequired'] = this.prescriptionRequired;
     data['manufacturedIn'] = this.manufacturedIn;
     data['description'] = this.description;
@@ -106,6 +109,11 @@ class ProductDetails {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return 'ProductDetails{guid: $guid, publicId: $publicId, title: $title, slug: $slug, prescriptionRequired: $prescriptionRequired, isInCart: $isInCart, manufacturedIn: $manufacturedIn, description: $description, substances: $substances, excipients: $excipients, dosage: $dosage, packaging: $packaging, packagingAmount: $packagingAmount, pharmaceuticalForm: $pharmaceuticalForm, registrationDate: $registrationDate, manufacturer: $manufacturer, categories: $categories, images: $images, stockItems: $stockItems}';
+  }
 }
 
 class Manufacturer {
@@ -124,6 +132,11 @@ class Manufacturer {
     data['guid'] = this.guid;
     data['name'] = this.name;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'Manufacturer{guid: $guid, name: $name}';
   }
 }
 
@@ -146,6 +159,11 @@ class Categories {
     data['name'] = this.name;
     data['slug'] = this.slug;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'Categories{guid: $guid, name: $name, slug: $slug}';
   }
 }
 
@@ -180,7 +198,7 @@ class Store {
   String? guid;
   String? name;
   String? slug;
-  Null? website;
+  String? website;
   bool? worksWithInsurance;
   int? opensAtHour;
   int? closesAtHour;
