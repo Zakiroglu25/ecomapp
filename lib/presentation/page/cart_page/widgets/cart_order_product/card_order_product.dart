@@ -1,24 +1,20 @@
-import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nil/nil.dart';
 import 'package:uikit/infrastructure/model/response/orders_data.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/assets.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/enums/cart_order_type.dart';
-import 'package:uikit/utils/extensions/word.dart';
-import 'package:uikit/utils/screen/widget_or_empty.dart';
-import 'package:uikit/widgets/custom/app_button.dart';
+import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/widgets/custom/column_with_space.dart';
-import 'package:uikit/widgets/custom/dots_button.dart';
 import 'package:uikit/widgets/custom/row_with_space.dart';
 import 'package:uikit/widgets/general/app_element_box.dart';
 
-import '../../../../../utils/constants/text.dart';
 import '../../../../../utils/delegate/navigate_utils.dart';
 import '../../../../../utils/delegate/pager.dart';
+import 'widgets/c_o_p_order_button.dart';
 
 class CartOrderProduct extends StatelessWidget {
   const CartOrderProduct(
@@ -26,10 +22,12 @@ class CartOrderProduct extends StatelessWidget {
       : super(key: key);
   final CartOrderType cartOrderType;
   final CartOrder order;
+
   @override
   Widget build(BuildContext context) {
     return AppElementBox(
-      onTap: () => Go.to(context, Pager.cartDelivery(order.guid!)),
+      onTap: () => Go.to(context,
+          Pager.cartDelivery(order.guid!, orderNumber: order.orderNumber!)),
       color: CartOrderType.color(cartOrderType),
       child: SpacedColumn(
           space: 6,
@@ -50,7 +48,7 @@ class CartOrderProduct extends StatelessWidget {
               ],
             ),
             Text(
-              "Baglama ${order.guid}",
+              "${MyText.package} ${order.orderNumber}",
               style: AppTextStyles.sfPro600.copyWith(fontSize: 16),
             ),
             MySizedBox.h2,
@@ -58,11 +56,11 @@ class CartOrderProduct extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Dərman sayı: ',
+                    '${MyText.countOfMedicine}: ${order.totalStockItemsOrdered}',
                     style: AppTextStyles.sfPro500s13,
                   ),
                   Text(
-                    'Sifariş tarixi: 27.08.2022',
+                    '${MyText.orderDate}: ${order.createdAt.formatDateTimeFromUtc}',
                     style: AppTextStyles.sfPro500s13,
                   ),
                 ]),
@@ -70,7 +68,7 @@ class CartOrderProduct extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Qiymət: ${order.totalPrice} ₼',
+                    '${MyText.price}: ${order.totalPrice} ₼',
                     style: AppTextStyles.sfPro500s13,
                   ),
                 ]),
@@ -97,22 +95,10 @@ class CartOrderProduct extends StatelessWidget {
                         )
                       ]),
                 ),
-                WidgetOrEmpty(
-                  value: cartOrderType == CartOrderType.waitingPayment,
-                  child: Expanded(
-                    flex: 2,
-                    child: Padding(
-                      padding: Paddings.paddingL8,
-                      child: AppButton.black(
-                        h: 36,
-                        text: MyText.pay.withPrice(999.999),
-                        // w: 140,
-                      ),
-                    ),
-                  ),
-                )
               ],
-            )
+            ),
+            MySizedBox.h8,
+            COPOrderButton()
           ]),
     );
   }
