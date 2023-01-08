@@ -50,17 +50,15 @@ dependencies:
   map_picker: ^0.0.3
   geocoding: ^2.0.5
   custom_info_window: ^1.0.1
-
-
-#  location: ^4.4.0
-#  geolocator: ^9.0.2
   permission_handler: ^10.0.1
-#  geocoding: ^2.0.5
-#  map_location_picker: ^1.0.2
-  #firebase
+#  firebase
   firebase_core: ^2.1.1
   firebase_crashlytics: ^3.0.3
   firebase_messaging: ^14.0.3
+#  notification
+  flutter_local_notifications: ^9.5.3+1
+  bot_toast: ^4.0.3
+  awesome_notifications: ^0.7.4+1
 
   #device info and permissions
   device_info_plus: ^8.0.0

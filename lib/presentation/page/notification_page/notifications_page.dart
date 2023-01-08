@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/model/response/notification_model.dart';
+import 'package:uikit/utils/constants/assets.dart';
+import 'package:uikit/utils/constants/colors.dart';
 
 import '../../../infrastructure/cubit/notification_cubit/notification_cubit.dart';
 import '../../../infrastructure/cubit/notification_cubit/notification_state.dart';
 import '../../../utils/constants/text.dart';
 import '../../../widgets/doctoro_appbar/doctoro_appbar.dart';
+import '../../../widgets/general/app_loading.dart';
 import '../../../widgets/general/empty_widget.dart';
 import 'widget/notification_element.dart';
 
@@ -28,7 +31,14 @@ class NotificationsPage extends StatelessWidget {
             if (state is NotificationSuccess) {
               List<Notificationse>? notificationList =
                   state.notificationList.data;
-              // return Center(child: Text("Alindi"));
+              if (notificationList.isEmpty) {
+                return EmptyWidget(
+                  imageUrl: Assets.notifyheart,
+                  text: MyText.emptyNotification,
+                  description: MyText.emptyNotiDetail,
+                  color: MyColors.orange254,
+                );
+              }
               return ListView.builder(
                   itemCount: notificationList.length,
                   itemBuilder: (context, index) {
@@ -37,35 +47,17 @@ class NotificationsPage extends StatelessWidget {
                       list: notificationList[index],
                     );
                   });
-
-            } else if (state is NotificationError) {
-              return Center(child: Text("alinmadi"));
+            } else if (state is NotificationProgress) {
+              return AppLoading();
             } else {
-              return EmptyWidget();
+              return EmptyWidget(
+                imageUrl: Assets.notifyheart,
+                text: MyText.emptyNotification,
+                description: MyText.emptyNotiDetail,
+              );
             }
           },
         )
-        // body: BlocConsumer<NotificationCubit, NotificationState>(
-        //   listener: (context, state) {
-        //     if (state is NotificationRemoveSuccess) {
-        //       context.read<NotificationCubit>().fetch();
-        //     }
-        //   },
-        //   builder: (context, state) {
-        //     if (state is NotificationSuccess) {
-        //       if (state.notificationList.isEmpty) {
-        //         return NotificationEmptyWidget();
-        //       }
-        //       return NotificationGroupedList(
-        //         notificationList: state.notificationList,
-        //       );
-        //     } else if (state is NotificationInProgress) {
-        //       return CaspaLoading();
-        //     } else {
-        //       return EmptyWidget();
-        //     }
-        //   },
-        // ),
         );
   }
 }

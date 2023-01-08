@@ -266,4 +266,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String yes = 'Bəli';
   static const String no = 'Xeyr';
   static const String deleteCardInfo = 'Kart məlumatlarınız, silinsin?';
+  //notification
+  static const String emptyNotification = 'Bildiriş yoxdur';
+  static const String emptyNotiDetail = 'Tətbiq daxilində bildiriş gəldikdə, burada əks olunacaqdır. Hal-hazırda heç bir bildiriş, mövcud deyil';
+
 }

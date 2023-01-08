@@ -61,7 +61,6 @@ class _MapPageState extends State<MapPage> {
         if (state is MapStoreSuccess) {
           List<MapMedicine> maps = state.addressModel;
           maps.forEach((element) {
-            print(element.name);
             showLocation = LatLng(element.addressLat!, element.addressLong!);
             markers.add(
               Marker(

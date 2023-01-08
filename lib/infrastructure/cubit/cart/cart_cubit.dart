@@ -178,6 +178,7 @@ class CartCubit extends Cubit<CartState> {
       final guid = await addImage(isLoading: false);
       if (guid == null) {
         //emit(CartError());
+
         return;
       } else {
         final response = await CartProvider.addCartPrescription(
@@ -186,6 +187,7 @@ class CartCubit extends Cubit<CartState> {
         if (response.statusCode.isSuccess) {
           Snack.positive(message: MyText.success);
           //emit(CartPrescriptionAdded());
+          
           fetch(false);
         } else {
           Snack.display(message: MyText.error);

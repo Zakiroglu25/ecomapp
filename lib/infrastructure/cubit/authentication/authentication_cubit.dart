@@ -1,6 +1,8 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/utils/extensions/index.dart';
@@ -20,6 +22,7 @@ import '../../model/response/error_response.dart';
 import '../../model/response/status_dynamic.dart';
 import '../../services/config_service.dart';
 import '../../services/hive_service.dart';
+import '../../services/notification_service.dart';
 import 'authentication_state.dart';
 
 class AuthenticationCubit extends Cubit<AuthenticationState> {
@@ -30,7 +33,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   ConfigService get _configs => locator<ConfigService>();
 
   // MyUser? userData = MyUser();
-  // FirebaseMessaging _fcm = FirebaseMessaging.instance;
+  FirebaseMessaging _fcm = FirebaseMessaging.instance;
   // final remoteConfig = FirebaseRemoteConfig.instance;
 
   bool? goOn; //go on prosesler bitdiyini bildirir ve davam etmeye icaze verir
@@ -43,10 +46,10 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     }
     try {
       // _prefs.clear();
-      // configureFcm(context: context);
-      //final String? fcm = await _fcm.getToken();
-      final String? fcm = 'test fcm';
-
+      configureFcm(context: context);
+      final String? fcm = await _fcm.getToken();
+      // final String? fcm = 'test fcm';
+      log("FCM token"+fcm.toString());
       //  _prefs.persistIsLoggedIn(true);
       final bool isLoggedIn = _prefs.isLoggedIn;
       final String? accessToken = _prefs.accessToken;
