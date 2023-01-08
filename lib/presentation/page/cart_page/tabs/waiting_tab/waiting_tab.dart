@@ -71,24 +71,24 @@ class WaitingTab extends StatelessWidget {
             }
           },
         ),
-        Positioned(
-            bottom: 20,
-            right: 20,
-            child: SpacedColumn(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              space: 10,
-              children: [
-                AppButton.black(
-                  w: context.dynamicW(.4),
-                  text: MyText.keepInTouchX,
-                ),
-                AppButton.black(
-                  w: context.dynamicW(.5),
-                  text: MyText.orderDeliveryX,
-                  // onTap: () => Go.to(context, Pager.cartDelivery),
-                ),
-              ],
-            ))
+        // Positioned(
+        //     bottom: 20,
+        //     right: 20,
+        //     child: SpacedColumn(
+        //       crossAxisAlignment: CrossAxisAlignment.end,
+        //       space: 10,
+        //       children: [
+        //         AppButton.black(
+        //           w: context.dynamicW(.4),
+        //           text: MyText.keepInTouchX,
+        //         ),
+        //         AppButton.black(
+        //           w: context.dynamicW(.5),
+        //           text: MyText.orderDeliveryX,
+        //           // onTap: () => Go.to(context, Pager.cartDelivery),
+        //         ),
+        //       ],
+        //     ))
       ],
     );
   }

@@ -4,11 +4,13 @@ import 'package:uikit/presentation/page/cart_delivery_page/widgets/delivery_prod
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
 
+import '../../../utils/constants/text.dart';
 import 'widgets/delivery_headers.dart';
 
 class CartDeliveryPage extends StatelessWidget {
-  const CartDeliveryPage({Key? key}) : super(key: key);
-
+  const CartDeliveryPage({Key? key, required this.orderNumber})
+      : super(key: key);
+  final int orderNumber;
   @override
   Widget build(BuildContext context) {
     return Cupperfold(
@@ -17,7 +19,7 @@ class CartDeliveryPage extends StatelessWidget {
       backColor: MyColors.orange254,
       showAppbarLittleText: true,
       user: false,
-      title: "Bağlama 002",
+      title: "${MyText.package} $orderNumber",
       slivers: [DeliveryHeaders(), DeliveryProducts()],
     );
   }

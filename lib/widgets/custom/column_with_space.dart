@@ -6,7 +6,7 @@ class SpacedColumn extends StatelessWidget {
   const SpacedColumn({
     Key? key,
     required this.children,
-    this.space,
+    this.space = 0,
     this.mainAxisSize = MainAxisSize.min,
     this.padding = Paddings.zero,
     this.mainAxisAlignment = MainAxisAlignment.start,
@@ -20,7 +20,7 @@ class SpacedColumn extends StatelessWidget {
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
   final EdgeInsets padding;
-  final double? space;
+  final double space;
 
   // final TextDirection? textDirection;
   // final VerticalDirection? verticalDirection;
@@ -33,7 +33,8 @@ class SpacedColumn extends StatelessWidget {
       child: Column(
         children: children
             .map<Widget>((e) => Padding(
-                  padding: EdgeInsets.only(bottom: space ?? 0),
+                  padding:
+                      EdgeInsets.only(bottom: e != children.last ? (space) : 0),
                   child: e,
                 ))
             .toList(),
