@@ -60,27 +60,28 @@ class SettingsPage extends StatelessWidget {
               ),
             ),
             //  MySizedBox.h16,
-            EditFieldWidget(
-              onTap: () {
-                Go.to(context, LanguagePage());
-              },
-              headText: "Dil seçimi",
-              title: "Azərbaycan",
-              sufixImageUrl: Assets.pngAzFlag,
-              switchW: false,
-              prefixImageUrl: Icon(
-                Icons.navigate_next,
-                color: MyColors.grey158,
-              ),
-            ),
+            ///dil secimi novbeti update
+            // EditFieldWidget(
+            //   onTap: () {
+            //     Go.to(context, LanguagePage());
+            //   },
+            //   headText: "Dil seçimi",
+            //   title: "Azərbaycan",
+            //   sufixImageUrl: Assets.pngAzFlag,
+            //   switchW: false,
+            //   prefixImageUrl: Icon(
+            //     Icons.navigate_next,
+            //     color: MyColors.grey158,
+            //   ),
+            // ),
             //MySizedBox.h16,
-            EditFieldWidget(
-              headText: "Bildirişlər",
-              title: "Bildirişləri aktivləşdir",
-              //sufixImageUrl: Assets.pngAzFlag,
-              png: false,
-              switchW: false,
-            ),
+            // EditFieldWidget(
+            //   headText: "Bildirişlər",
+            //   title: "Bildirişləri aktivləşdir",
+            //   //sufixImageUrl: Assets.pngAzFlag,
+            //   png: false,
+            //   switchW: false,
+            // ),
 
             EditFieldWidget(
               headText: MyText.account,

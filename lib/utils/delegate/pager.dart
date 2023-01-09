@@ -22,6 +22,7 @@ import '../../infrastructure/cubit/cart/cart_cubit.dart';
 import '../../infrastructure/cubit/contact_cubit/contact_cubit.dart';
 import '../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../infrastructure/cubit/login/login_cubit.dart';
+import '../../infrastructure/cubit/messenger_cubit/messenger_cubit.dart';
 import '../../infrastructure/cubit/notification_cubit/notification_cubit.dart';
 import '../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
 import '../../infrastructure/cubit/product_option_cubit/product_option_cubit.dart';
@@ -40,6 +41,7 @@ import '../../presentation/page/contact_page/contact_page.dart';
 import '../../presentation/page/favorite_page/favorite_page.dart';
 import '../../presentation/page/home_page/home_page.dart';
 import '../../presentation/page/medicines_page/medicines_page.dart';
+import '../../presentation/page/messenger_page/messenger_page.dart';
 import '../../presentation/page/other_page/other_page.dart';
 import '../../presentation/page/payment_method_page/payment_method_page.dart';
 import '../../presentation/page/product_details_page/product_details_page.dart';
@@ -138,6 +140,11 @@ class Pager {
       );
 
   static get home => HomePage();
+
+  static get messenger => BlocProvider(
+        create: (context) => MessengerCubit(),
+        child: MessengerPage(),
+      );
 
   static get landing => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => AddressCubit()),
