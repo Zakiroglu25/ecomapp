@@ -9,6 +9,7 @@ import 'package:uikit/infrastructure/cubit/order_info/index.dart';
 import 'package:uikit/infrastructure/cubit/otp/otp_cubit.dart';
 import 'package:uikit/presentation/page/auth/forgot_password_page/forgot_pass_page.dart';
 import 'package:uikit/presentation/page/auth/otp_page/otp_page.dart';
+import 'package:uikit/presentation/page/cart_order_details_page/cart_order_details_page.dart';
 import 'package:uikit/presentation/page/landing_page/landing_page.dart';
 import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart';
 import 'package:uikit/presentation/page/notification_page/notifications_page.dart';
@@ -33,7 +34,6 @@ import '../../presentation/page/add_address_page/add_address_page.dart';
 import '../../presentation/page/address_page/address_page.dart';
 import '../../presentation/page/auth/login_page/login_page.dart';
 import '../../presentation/page/auth/register_page/register_page.dart';
-import '../../presentation/page/cart_delivery_page/cart_delivery_page.dart';
 import '../../presentation/page/cart_page/cart_page.dart';
 import '../../presentation/page/change_number/change_number_page.dart';
 import '../../presentation/page/contact_page/contact_page.dart';
@@ -75,21 +75,19 @@ class Pager {
       ], child: const MedicinesPage());
 
   static get cart => MultiBlocProvider(providers: [
-        BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => CartCubit()..fetch()),
         BlocProvider(create: (context) => WaitingOrdersCubit()..fetch()),
         BlocProvider(create: (context) => TabCountsCubit()..fetch()),
       ], child: CartPage());
 
-  static cartDelivery(String guid, {required int orderNumber}) =>
-      MultiBlocProvider(
-          providers: [
-            BlocProvider(
-                create: (context) => OrderInfoCubit()..fetch(guid: guid)),
-          ],
-          child: CartDeliveryPage(
-            orderNumber: orderNumber,
-          ));
+  static cartOrderDetails(
+    String guid, {
+    required int orderNumber,
+    required String status,
+  }) =>
+      MultiBlocProvider(providers: [
+        BlocProvider(create: (context) => OrderInfoCubit()..fetch(guid: guid)),
+      ], child: CartOrderDetailsPage(orderNumber: orderNumber, status: status));
 
   static get splash => SplashPage();
 

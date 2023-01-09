@@ -104,7 +104,7 @@ class OrderedItems {
     isRejected = json['isRejected'];
     images = json['images'].cast<String>();
     rejectReason = json['rejectReason'];
-    isCoveredByInsurance = json['isCoveredByInsurance'];
+    isCoveredByInsurance = json['isCoveredByInsurance'] ?? false;
   }
 
   Map<String, dynamic> toJson() {
@@ -120,5 +120,10 @@ class OrderedItems {
     data['rejectReason'] = this.rejectReason;
     data['isCoveredByInsurance'] = this.isCoveredByInsurance;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'OrderedItems{productOptionGuid: $productOptionGuid, title: $title, slug: $slug, price: $price, amount: $amount, discountedPrice: $discountedPrice, isRejected: $isRejected, images: $images, rejectReason: $rejectReason, isCoveredByInsurance: $isCoveredByInsurance}';
   }
 }

@@ -78,7 +78,10 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String send = 'Göndər';
   static const String searchX = 'Axtar 🔍';
   static const String ok = 'OK';
+  static const String iAmAgree = 'Razıyam';
+  static const String iAmDisAgree = 'Razı deyiləm';
   static const String reject = 'İmtina';
+  static const String rejected = 'İmtina olunub';
   static const String error = "Əməliyyat zamanı xəta yarandı!";
   static const String networkError = "İnternet bağlantısı zamanı xəta yarandı";
   static const String goOn = "Davam et";

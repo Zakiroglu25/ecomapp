@@ -5,6 +5,7 @@ import 'package:uikit/utils/extensions/index.dart';
 
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
+import '../../utils/constants/order_status.dart';
 import '../../utils/constants/result_keys.dart';
 import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
@@ -30,7 +31,15 @@ class OrdersProvider {
   }
 
   static Future<CartOrdersData?> pendingOrders({int? page}) async {
-    final api = ApiKeys.orders + '?status=PENDING_APPROVAL&page=$page';
+    final List<String> waitingTabStatusList = [
+      OrderStatus.PENDING_APPROVAL,
+      OrderStatus.PENDING_PAYMENT,
+      OrderStatus.PAYMENT_UNSUCCESSFUL,
+      OrderStatus.REJECTED,
+      OrderStatus.APPROVED
+    ];
+    final api =
+        ApiKeys.orders + '?status=${waitingTabStatusList.join(',')}&page=$page';
     final response = await dioAuth.dio.get(api);
     if (response.statusCode.isSuccess) {
       return CartOrdersData.fromJson(response.data);

@@ -18,38 +18,30 @@ class PolicyCheckbox extends StatelessWidget {
     return StreamBuilder<bool>(
       stream: BlocProvider.of<RegisterCubit>(context).checkBoxStream,
       builder: (context, snapshot) {
-        return GestureDetector(
-          onTap: () {
-            bbbb("jhghjg");
-            BlocProvider.of<RegisterCubit>(context)
-                .updateCheckBox(!snapshot.data!);
-          },
-          child: Padding(
-            padding: Paddings.paddingV5,
-            child: Row(
-              children: [
-                SizedBox(
-                  height: 18.0.sp,
-                  width: 18.0.sp,
-                  child: Checkbox(
-                      side: MaterialStateBorderSide.resolveWith(
-                        (states) =>
-                            BorderSide(width: 1, color: MyColors.grey188),
-                      ),
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                      value: snapshot.data ?? false,
-                      // color of tick Mark
-                      activeColor: MyColors.darkRED,
-                      onChanged: (v) {
-                        BlocProvider.of<RegisterCubit>(context)
-                            .updateCheckBox(v!);
-                      }),
-                ),
-                MySizedBox.w8,
-                PolicyChechkBoxText(),
-              ],
-            ),
+        return Padding(
+          padding: Paddings.paddingV5,
+          child: Row(
+            children: [
+              SizedBox(
+                height: 18.0.sp,
+                width: 18.0.sp,
+                child: Checkbox(
+                    side: MaterialStateBorderSide.resolveWith(
+                      (states) => BorderSide(width: 1, color: MyColors.grey188),
+                    ),
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                    value: snapshot.data ?? false,
+                    // color of tick Mark
+                    activeColor: MyColors.darkRED,
+                    onChanged: (v) {
+                      BlocProvider.of<RegisterCubit>(context)
+                          .updateCheckBox(v!);
+                    }),
+              ),
+              MySizedBox.w8,
+              PolicyChechkBoxText(),
+            ],
           ),
         );
       },

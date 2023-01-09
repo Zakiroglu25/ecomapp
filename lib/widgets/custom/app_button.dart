@@ -97,13 +97,13 @@ class AppButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
           child: Center(
             child: (loading ?? false)
-                ? AppLoading.white(
+                ? const AppLoading.white(
                     s: 16,
                   )
                 : Padding(
                     padding: Paddings.paddingH8,
                     child: SizedBox(
-                      width: w.isNotNull ? w! - 60 : w,
+                      // width: w.isNotNull ? w! - 60 : w,
                       child: (child ??
                           CustomFittedBox(
                             fit: fittedText,

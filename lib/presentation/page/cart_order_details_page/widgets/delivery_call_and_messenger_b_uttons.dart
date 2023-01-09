@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:uikit/utils/constants/assets.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'cart_circle_button_with_title.dart';
 
-class DeliveryCallAndMessengerBUttons extends StatelessWidget {
-  const DeliveryCallAndMessengerBUttons({Key? key}) : super(key: key);
+class DeliveryCallAndMessengerButtons extends StatelessWidget {
+  const DeliveryCallAndMessengerButtons({
+    Key? key,
+    required this.storeGuid,
+    required this.storeName,
+    required this.storePhone,
+  }) : super(key: key);
+  final String? storePhone, storeName, storeGuid;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +24,7 @@ class DeliveryCallAndMessengerBUttons extends StatelessWidget {
         CartCircleButtonWithTitle(
           svg: Assets.svgCall,
           title: MyText.call,
-          onTap: () {},
+          onTap: () => launch("tel://$storePhone"),
         ),
         MySizedBox.w16,
         CartCircleButtonWithTitle(

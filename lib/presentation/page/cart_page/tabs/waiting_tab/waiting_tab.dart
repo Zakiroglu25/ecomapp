@@ -6,15 +6,8 @@ import 'package:uikit/presentation/page/cart_page/widgets/cart_order_product/car
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/utils/constants/text.dart';
-import 'package:uikit/utils/delegate/navigate_utils.dart';
-import 'package:uikit/utils/delegate/pager.dart';
-import 'package:uikit/utils/enums/cart_order_type.dart';
-import 'package:uikit/utils/extensions/context.dart';
-import 'package:uikit/widgets/custom/app_button.dart';
-import 'package:uikit/widgets/custom/column_with_space.dart';
 import 'package:uikit/widgets/custom/listview_separated.dart';
 
-import '../../../../../infrastructure/cubit/cart/cart_cubit.dart';
 import '../../../../../infrastructure/cubit/tab_counts/tab_counts_cubit.dart';
 import '../../../../../utils/constants/assets.dart';
 import '../../../../../widgets/general/app_loading.dart';
@@ -52,13 +45,8 @@ class WaitingTab extends StatelessWidget {
                   padding: Paddings.paddingH16 + Paddings.paddingB200,
                   shrinkWrap: true,
                   physics: Physics.never,
-                  itemBuilder: (context, index) {
-                    final order = orders[index];
-                    return CartOrderProduct(
-                      order: order,
-                      cartOrderType: CartOrderType.waiting,
-                    );
-                  },
+                  itemBuilder: (context, index) =>
+                      CartOrderProduct(order: orders[index]),
                   itemCount: orders.length,
                 ),
               );
