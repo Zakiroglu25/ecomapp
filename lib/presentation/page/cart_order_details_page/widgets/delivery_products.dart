@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/order_info/index.dart';
-import 'package:uikit/presentation/page/cart_delivery_page/widgets/delivery_product.dart';
+import 'package:uikit/presentation/page/cart_order_details_page/widgets/delivery_product.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/physics.dart';
@@ -42,9 +42,8 @@ class DeliveryProducts extends StatelessWidget {
                       shrinkWrap: true,
                       physics: Physics.never,
                       itemCount: orderedItems!.length,
-                      itemBuilder: (context, index) {
-                        return DeliveryProduct(order: orderedItems[index]);
-                      });
+                      itemBuilder: (context, index) =>
+                          DeliveryProduct(order: orderedItems[index]));
                 } else if (state is OrderInfoError) {
                   return Container();
                 } else {

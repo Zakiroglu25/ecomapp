@@ -11,10 +11,7 @@ import '../../cart_page/widgets/cart_product/widgets/cart_med_name.dart';
 import '../../cart_page/widgets/cart_product/widgets/med_photo.dart';
 
 class DeliveryProduct extends StatelessWidget {
-  const DeliveryProduct(
-      {Key? key, this.insuranceCover = true, required this.order})
-      : super(key: key);
-  final bool insuranceCover;
+  const DeliveryProduct({Key? key, required this.order}) : super(key: key);
   final OrderedItems order;
 
   @override
@@ -41,12 +38,12 @@ class DeliveryProduct extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      insuranceCover
+                      order.isCoveredByInsurance!
                           ? MyText.insuranceCover
                           : MyText.insuranceDoesNotCover,
                       textAlign: TextAlign.end,
                       style: AppTextStyles.sfPro400s12.copyWith(
-                          color: insuranceCover
+                          color: order.isCoveredByInsurance!
                               ? MyColors.mainGreen85
                               : MyColors.darkRED),
                     ),

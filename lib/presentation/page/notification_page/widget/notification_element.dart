@@ -13,7 +13,9 @@ import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/paddings.dart';
 import '../../../../utils/constants/sized_box.dart';
 import '../../../../utils/constants/text.dart';
+import '../../../../utils/delegate/navigate_utils.dart';
 import '../../../../utils/screen/alert.dart';
+import '../../notification_details_page/notification_details_page.dart';
 
 class NotificationElement extends StatelessWidget {
   final Function? onXTap;
@@ -65,38 +67,44 @@ class NotificationElement extends StatelessWidget {
       },
       child: Column(
         children: [
-          Container(
-            padding: Paddings.paddingA16,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  list.title!,
-                  style: AppTextStyles.sfPro600
-                      .copyWith(fontSize: 14, color: MyColors.black34),
-                ),
-                MySizedBox.h4,
-                Row(
-                  children: [
-                    Text(
-                      list.body!,
-                      style: AppTextStyles.sfPro400s14
-                          .copyWith(fontSize: 14, color: MyColors.grey153),
-                    ),
-                    Spacer(),
-                    Text(list.createdAt!.substring(0, 10),
+          InkWell(
+            onTap: (){
+              Go.to(context, NotificationDetailsPage(list:list));
+
+            },
+            child: Container(
+              padding: Paddings.paddingA16,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    list.title!,
+                    style: AppTextStyles.sfPro600
+                        .copyWith(fontSize: 14, color: MyColors.black34),
+                  ),
+                  MySizedBox.h4,
+                  Row(
+                    children: [
+                      Text(
+                        list.body!,
                         style: AppTextStyles.sfPro400s14
-                            .copyWith(fontSize: 10, color: MyColors.grey153))
-                  ],
-                ),
-              ],
+                            .copyWith(fontSize: 14, color: MyColors.grey153),
+                      ),
+                      Spacer(),
+                      Text(list.createdAt!.substring(0, 10),
+                          style: AppTextStyles.sfPro400s14
+                              .copyWith(fontSize: 10, color: MyColors.grey153))
+                    ],
+                  ),
+                ],
+              ),
+              // decoration: BoxDecoration(
+              //     color: (notification.read == 0)
+              //         ? MyColors.grey245
+              //         : Colors.transparent,
+              //     borderRadius: BorderRadius.circular(12)),
             ),
-            // decoration: BoxDecoration(
-            //     color: (notification.read == 0)
-            //         ? MyColors.grey245
-            //         : Colors.transparent,
-            //     borderRadius: BorderRadius.circular(12)),
           ),
         ],
       ),

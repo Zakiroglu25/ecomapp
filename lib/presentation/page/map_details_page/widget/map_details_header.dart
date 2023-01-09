@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uikit/presentation/page/cart_order_details_page/widgets/cart_circle_button_with_title.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
@@ -11,7 +12,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../infrastructure/model/response/map_medicine.dart';
 import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/paddings.dart';
-import '../../cart_delivery_page/widgets/cart_circle_button_with_title.dart';
+import '../../cart_order_details_page/widgets/cart_circle_button_with_title.dart';
 
 class MapDetailsHeaders extends StatelessWidget {
   final MapMedicine maps;

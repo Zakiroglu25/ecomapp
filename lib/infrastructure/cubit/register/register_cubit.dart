@@ -147,6 +147,12 @@ class RegisterCubit extends Cubit<RegisterState> {
     isUserInfoValid();
   }
 
+  inverseCheckBox() {
+    checkbox.sink.add(!checkbox.value);
+    //}
+    isUserInfoValid();
+  }
+
   bool get isCheckBoxIncorrect =>
       (!checkbox.hasValue || checkbox.value == null || checkbox.value == false);
 

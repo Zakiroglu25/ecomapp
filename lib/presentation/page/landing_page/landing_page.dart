@@ -67,19 +67,15 @@ class _LandingPageState extends State<LandingPage> {
   BottomNavigationBarItem buildBottomNavigationBarItem(
       {required String icon, required String label}) {
     return BottomNavigationBarItem(
-      backgroundColor: Colors.white,
-      activeIcon: SvgPicture.asset(
-        icon,
-        color: index == 2 ? MyColors.green : MyColors.darkRED,
-      ),
-      icon: SvgPicture.asset(icon),
-      label: label,
-    );
+        backgroundColor: Colors.white,
+        activeIcon: SvgPicture.asset(icon,
+            color: index == 2 ? MyColors.green : MyColors.darkRED),
+        icon: SvgPicture.asset(icon),
+        label: label);
   }
 
-  void onChangedTab(int index) {
-    setState(() {
-      this.index = index;
-    });
+  void onChangedTab(int selected) {
+    index = selected;
+    setState(() {});
   }
 }

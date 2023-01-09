@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "831917852046",
+    "project_id": "doctoro-5ce1d",
+    "storage_bucket": "doctoro-5ce1d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831917852046:android:372baf07ac41a252d490df",
+        "android_client_info": {
+          "package_name": "az.doctoro.doctoro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831917852046-j1mfklbs4hi1bqvhq6veaiocdv4kjmp9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgnRNHqftt8wnHKlX-IXqp59wukR_YLoE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "831917852046-j1mfklbs4hi1bqvhq6veaiocdv4kjmp9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

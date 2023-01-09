@@ -6,7 +6,7 @@ import 'package:uikit/utils/constants/assets.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
-import 'package:uikit/utils/enums/cart_order_type.dart';
+import 'package:uikit/utils/delegate/cart_order_utils.dart';
 import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/widgets/custom/column_with_space.dart';
 import 'package:uikit/widgets/custom/row_with_space.dart';
@@ -17,18 +17,18 @@ import '../../../../../utils/delegate/pager.dart';
 import 'widgets/c_o_p_order_button.dart';
 
 class CartOrderProduct extends StatelessWidget {
-  const CartOrderProduct(
-      {Key? key, required this.cartOrderType, required this.order})
-      : super(key: key);
-  final CartOrderType cartOrderType;
+  const CartOrderProduct({Key? key, required this.order}) : super(key: key);
+
   final CartOrder order;
 
   @override
   Widget build(BuildContext context) {
     return AppElementBox(
-      onTap: () => Go.to(context,
-          Pager.cartDelivery(order.guid!, orderNumber: order.orderNumber!)),
-      color: CartOrderType.color(cartOrderType),
+      onTap: () => Go.to(
+          context,
+          Pager.cartOrderDetails(order.guid!,
+              orderNumber: order.orderNumber!, status: order.status!)),
+      color: CartOrderUtils.cartOrderStatus(order.status!).color,
       child: SpacedColumn(
           space: 6,
           padding: Paddings.paddingA8,
@@ -88,7 +88,7 @@ class CartOrderProduct extends StatelessWidget {
                         MySizedBox.w8,
                         Flexible(
                           child: Text(
-                            CartOrderType.stText(cartOrderType),
+                            CartOrderUtils.cartOrderStatus(order.status!).text,
                             style: AppTextStyles.sfPro500,
                             //  overflow: TextOverflow.ellipsis,
                           ),

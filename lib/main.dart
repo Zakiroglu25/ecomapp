@@ -22,6 +22,13 @@ class Adam {
   cap() => print(this.name);
 }
 
+Future<dynamic> onBackgroundMessageHandler(Map<String, dynamic> message) async {
+  if (message['data'] != null) {
+    final data = message['data'];
+    final title = data['title'];
+    final body = data['message'];
+  }
+}
 void main() async {
   Adam a1 = Adam();
   Adam a2 = Adam();
