@@ -105,8 +105,6 @@ class ApiKeys {
   static const getMessenger = "$protected/chat";
 
 
-  ///seni sevirem
-
 
   static loginBody({
     required String? email,

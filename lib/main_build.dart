@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/utils/delegate/pager.dart';
@@ -43,8 +44,8 @@ class MainBuild {
               scaffoldBackgroundColor: MyColors.white),
           builder: (context, widget) {
             // ScreenUtil.setContext(context);
-            // widgets = BotToastInit().call(context, widgets);
-            //  widgets = botToastBuilder(context,widgets);
+            widget = BotToastInit().call(context, widget);
+             // widgets = botToastBuilder(context,widgets);
             return ScrollConfiguration(
                 behavior: ScrollBehaviorModified(), child: widget!);
           },

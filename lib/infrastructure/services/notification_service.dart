@@ -4,10 +4,9 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-
 final messaging = FirebaseMessaging.instance;
 FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-FlutterLocalNotificationsPlugin();
+    FlutterLocalNotificationsPlugin();
 
 Future<void> onBackgroundMessage(RemoteMessage message) async {
   debugPrint('onBackgroundMessage: ${message}');
@@ -43,12 +42,16 @@ void configureFcm({String? topic, required BuildContext context}) async {
       // _refreshData(context);
     }
   });
+
+  FirebaseMessaging.onBackgroundMessage(onBackgroundMessage);
+  messaging.subscribeToTopic('all');
+  messaging.subscribeToTopic('1.0.0');
+  messaging.subscribeToTopic('test5');
 }
 
-// void _refreshData(BuildContext context) {
-//   context.read<OrderBloc>().add(GetActiveOrder());
-//   context.read<UserBloc>().add(RefreshUser());
-// }
+void _refreshData(BuildContext context) {
+  //context read get messenger olacaq refresh ucun
+}
 
 initializeFCMNotification() async {
   FirebaseMessaging _firebaseMessaging =
@@ -57,7 +60,7 @@ initializeFCMNotification() async {
     print("token is $token");
   });
   const initializationSettingsAndroid =
-  AndroidInitializationSettings('@mipmap/ic_launcher');
+      AndroidInitializationSettings('@mipmap/ic_launcher');
 
   const initializationSettingsIOS = IOSInitializationSettings(
     requestSoundPermission: true,
@@ -70,9 +73,9 @@ initializeFCMNotification() async {
 
   await flutterLocalNotificationsPlugin.initialize(initializationSettings,
       onSelectNotification: (var payload) {
-        //return
-        onSelectNotification(payload);
-      });
+    //return
+    onSelectNotification(payload);
+  });
 }
 
 Future onSelectNotification(var payload) async {
