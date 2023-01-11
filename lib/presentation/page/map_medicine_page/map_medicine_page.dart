@@ -13,6 +13,7 @@ import '../../../infrastructure/cubit/map/map_store_state.dart';
 import '../../../infrastructure/model/response/map_medicine.dart';
 import '../../../utils/constants/assets.dart';
 import '../../../widgets/custom/info_window.dart';
+import '../../../widgets/general/app_loading.dart';
 import '../map_details_page/map_details_page.dart';
 
 class MapPage extends StatefulWidget {
@@ -31,7 +32,7 @@ class _MapPageState extends State<MapPage> {
 
   LatLng? showLocation;
   Set<Marker> markers = Set();
-  BitmapDescriptor? icon;
+   BitmapDescriptor? icon;
 
   @override
   void initState() {
@@ -43,7 +44,12 @@ class _MapPageState extends State<MapPage> {
     var icon = await BitmapDescriptor.fromAssetImage(
         const ImageConfiguration(devicePixelRatio: 3.3), Assets.marker);
     setState(() {
+      if(icon == null){
+        BitmapDescriptor.defaultMarker;
+      }else{
       this.icon = icon;
+
+      }
     });
   }
 
@@ -72,9 +78,8 @@ class _MapPageState extends State<MapPage> {
                       children: [
                         Expanded(
                           child: InkWell(
-                            onTap: (){
+                            onTap: () {
                               Go.to(context, MapDetailsPage(element));
-
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -150,9 +155,12 @@ class _MapPageState extends State<MapPage> {
               ],
             ),
           );
-        } else {
-          return Center(child: Text("Hec bir Aptek Movcud deyil"));
+        } else if (state is MapStoreInProgress) {
+          return AppLoading.main();
+        } else if (state is MapStoreError) {
+          return AppLoading.main();
         }
+        return Center(child: Text("Hec bir Aptek Movcud deyil"));
       },
     );
   }
