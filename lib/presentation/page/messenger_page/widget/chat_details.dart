@@ -14,6 +14,8 @@ class Chat extends StatelessWidget {
 
   Chat(this.guid, this.storeName);
 
+  TextEditingController controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +74,7 @@ class Chat extends StatelessWidget {
                                   color: MyColors.field_grey,
                                   borderRadius: BorderRadius.circular(99)),
                               child: TextField(
-                                // controller: messageEditingController,
+                                controller: controller,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: new EdgeInsets.symmetric(
@@ -81,15 +83,25 @@ class Chat extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(
-                            width: 20,
-                          ),
                           GestureDetector(
-                            onTap: () {},
-                            child: Icon(
-                              Icons.send,
-                              color: Colors.black,
-                              size: 25,
+                            onTap: () {
+                              context.read<ChatMessengerCubit>().sendMessage(
+                                  message: controller.text,
+                                  guid: guid,
+                                  context: context);
+                            },
+                            child: BlocListener<ChatMessengerCubit,
+                                ChatMessengerState>(
+                              listener: (context, state) {
+                                if (state is ChatMessengerInProgress) {
+                                  AppLoading();
+                                }
+                              },
+                              child: Icon(
+                                Icons.send,
+                                color: Colors.black,
+                                size: 25,
+                              ),
                             ),
                           ),
                         ],
@@ -98,10 +110,10 @@ class Chat extends StatelessWidget {
                   )
                 ],
               );
-            }else if(state is ChatMessengerInProgress){
+            } else if (state is ChatMessengerInProgress) {
               return AppLoading();
             }
-            return SizedBox.shrink();
+            return AppLoading();
           },
         ),
       ),

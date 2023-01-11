@@ -35,4 +35,30 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
       emit(ChatMessengerError(error: e.toString()));
     }
   }
+
+  void sendMessage(
+      {required BuildContext context,
+      bool? isLoading = false,
+      String? message,
+      String? guid}) async {
+    if (isLoading!) {
+      emit(ChatMessengerInProgress());
+    }
+
+    try {
+      final result = await MessengerProvider.sendMessage(guid, message);
+      if (isSuccess(result.statusCode)) {
+        emit(SendChatMessage());
+        fetch(context: context, guid: guid!);
+      } else {
+        emit(SendChatMessageError());
+      }
+    } on SocketException catch (_) {
+      //network olacaq
+      emit(SendChatMessageError());
+    } catch (e, s) {
+      eeee("ChatMessengerCubit fetch catch: $e");
+      emit(SendChatMessageError(error: e.toString()));
+    }
+  }
 }

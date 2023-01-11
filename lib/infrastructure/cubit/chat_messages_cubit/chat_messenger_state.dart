@@ -14,6 +14,14 @@ class ChatMessengerError extends ChatMessengerState {
   ChatMessengerError({this.error});
 }
 
+class SendChatMessage extends ChatMessengerState {}
+
+class SendChatMessageError extends ChatMessengerState {
+  String? error;
+
+  SendChatMessageError({this.error});
+}
+
 class ChatMessengerNetworkError extends ChatMessengerState {}
 
 class ChatMessengerSuccess extends ChatMessengerState {
