@@ -22,7 +22,7 @@ class AppButton extends StatelessWidget {
   final FontWeight? fontWeight;
   final String? text;
   final Widget? child;
-  final bool fittedText;
+  final bool fitText;
   final double? w;
   final bool? loading;
   late final bool? isButtonActive;
@@ -38,7 +38,7 @@ class AppButton extends StatelessWidget {
       this.isButtonActive,
       this.highlightColor,
       this.passiveTextColor,
-      this.fittedText = false,
+      this.fitText = false,
       this.passiveButtonColor,
       this.splashColor,
       this.w,
@@ -59,7 +59,7 @@ class AppButton extends StatelessWidget {
       this.highlightColor,
       this.passiveTextColor,
       this.passiveButtonColor,
-      this.fittedText = false,
+      this.fitText = false,
       this.splashColor,
       this.w,
       this.textColor = MyColors.white,
@@ -106,10 +106,10 @@ class AppButton extends StatelessWidget {
                       // width: w.isNotNull ? w! - 60 : w,
                       child: (child ??
                           CustomFittedBox(
-                            fit: fittedText,
+                            fit: fitText,
                             child: Text(
                               text ?? "",
-                              style: AppTextStyles.sfPro400s14.copyWith(
+                              style: AppTextStyles.sfPro500.copyWith(
                                   color: active
                                       ? (textColor ?? Colors.white)
                                       : (passiveButtonColor ??

@@ -32,7 +32,7 @@ class CardBody extends StatelessWidget {
               if (state is CardSuccess) {
                 final cardList = state.cardList;
                 return CardItemWidget(cardList: cardList);
-              } else if (state is CardProgress) {
+              } else if (state is CardInProgress) {
                 return Center(
                   child: AppLoading.main(),
                 );
@@ -48,4 +48,3 @@ class CardBody extends StatelessWidget {
     );
   }
 }
-

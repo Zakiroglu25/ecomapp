@@ -52,7 +52,7 @@ class CartCubit extends Cubit<CartState> {
     try {
       final result = await CartProvider.addCart(itemGuid: guid, amount: 1);
       if (result.statusCode.isSuccess) {
-        Snack.positive(message: MyText.addedToCart);
+        //  Snack.positive(message: MyText.addedToCart);
         fetch(false);
       } else {
         emit(CartOperationError());
@@ -92,7 +92,7 @@ class CartCubit extends Cubit<CartState> {
     try {
       final result = await CartProvider.deleteCart(guid: stockGuid!);
       if (result.statusCode.isSuccess) {
-        Snack.display(message: MyText.removedFromCart, color: MyColors.brand);
+        // Snack.display(message: MyText.removedFromCart, color: MyColors.brand);
         fetch(false);
       } else {
         emit(CartOperationError());
@@ -187,7 +187,7 @@ class CartCubit extends Cubit<CartState> {
         if (response.statusCode.isSuccess) {
           Snack.positive(message: MyText.success);
           //emit(CartPrescriptionAdded());
-          
+
           fetch(false);
         } else {
           Snack.display(message: MyText.error);

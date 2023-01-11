@@ -2,6 +2,7 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
+import 'package:uikit/infrastructure/cubit/chat_messages_cubit/chat_messenger_cubit.dart';
 import 'package:uikit/infrastructure/cubit/faq_cubit/faq_cubit.dart';
 import 'package:uikit/infrastructure/cubit/forgot_pass/forgot_pass_cubit.dart';
 import 'package:uikit/infrastructure/cubit/map/map_store_cubit.dart';
@@ -10,6 +11,7 @@ import 'package:uikit/infrastructure/cubit/otp/otp_cubit.dart';
 import 'package:uikit/presentation/page/auth/forgot_password_page/forgot_pass_page.dart';
 import 'package:uikit/presentation/page/auth/otp_page/otp_page.dart';
 import 'package:uikit/presentation/page/cart_order_details_page/cart_order_details_page.dart';
+import 'package:uikit/presentation/page/delivery_and_payment_page/delivery_and_payment_page.dart';
 import 'package:uikit/presentation/page/landing_page/landing_page.dart';
 import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart';
 import 'package:uikit/presentation/page/notification_page/notifications_page.dart';
@@ -42,6 +44,7 @@ import '../../presentation/page/favorite_page/favorite_page.dart';
 import '../../presentation/page/home_page/home_page.dart';
 import '../../presentation/page/medicines_page/medicines_page.dart';
 import '../../presentation/page/messenger_page/messenger_page.dart';
+import '../../presentation/page/messenger_page/widget/chat_details.dart';
 import '../../presentation/page/other_page/other_page.dart';
 import '../../presentation/page/payment_method_page/payment_method_page.dart';
 import '../../presentation/page/product_details_page/product_details_page.dart';
@@ -152,6 +155,11 @@ class Pager {
 
   static get product => ProductPage();
 
+  static chat({String? guid, String? storeName}) => BlocProvider(
+        create: (context) => ChatMessengerCubit(),
+        child: Chat(guid, storeName),
+      );
+
   static addAddress({Address? address}) => BlocProvider(
         create: (context) => AddAddressCubit(),
         child: AddAddressPage(),
@@ -188,5 +196,15 @@ class Pager {
   static get orderConfirm => BlocProvider(
         create: (context) => AddressCubit()..fetch(),
         child: AddressPage(),
+      );
+
+  static get deliveryAndPaymentPage => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => AddressCubit()..fetch(),
+          ),
+          BlocProvider(create: (context) => CardCubit()..getCard()),
+        ],
+        child: DeliveryAndPaymentPage(),
       );
 }

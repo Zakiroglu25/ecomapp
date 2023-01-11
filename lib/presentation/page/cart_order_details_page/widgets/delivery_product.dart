@@ -16,43 +16,35 @@ class DeliveryProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        //space: 16,
-        children: [
-          Expanded(
-              flex: 1,
-              child: MedPhoto(
-                productOptionImages: [],
-              )),
-          MySizedBox.w16,
-          Flexible(flex: 3, child: CartMedName(name: '${order.title}')),
-          MySizedBox.w16,
-          Expanded(
-            flex: 2,
-            child: Container(
-              child: SpacedColumn(
-                  space: 4,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      order.isCoveredByInsurance!
-                          ? MyText.insuranceCover
-                          : MyText.insuranceDoesNotCover,
-                      textAlign: TextAlign.end,
-                      style: AppTextStyles.sfPro400s12.copyWith(
-                          color: order.isCoveredByInsurance!
-                              ? MyColors.mainGreen85
-                              : MyColors.darkRED),
-                    ),
-                    Text('${order.price}'.withManat)
-                  ]),
-            ),
-          )
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      //space: 16,
+      children: [
+        Expanded(flex: 1, child: MedPhoto(productOptionImages: order.images)),
+        MySizedBox.w16,
+        Flexible(flex: 3, child: CartMedName(name: '${order.title}')),
+        MySizedBox.w16,
+        Expanded(
+          flex: 2,
+          child: SpacedColumn(
+              space: 4,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  order.isCoveredByInsurance!
+                      ? MyText.insuranceCover
+                      : MyText.insuranceDoesNotCover,
+                  textAlign: TextAlign.end,
+                  style: AppTextStyles.sfPro400s12.copyWith(
+                      color: order.isCoveredByInsurance!
+                          ? MyColors.mainGreen85
+                          : MyColors.darkRED),
+                ),
+                Text('${order.price}'.withManat)
+              ]),
+        )
+      ],
     );
   }
 }

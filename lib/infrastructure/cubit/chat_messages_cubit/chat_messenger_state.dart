@@ -1,25 +1,31 @@
-
-
 import '../../model/response/messenger_chats.dart';
 
 abstract class ChatMessengerState {}
 
-class MessengerInitial extends ChatMessengerState {}
+class ChatMessengerInitial extends ChatMessengerState {}
 
-class MessengerInProgress extends ChatMessengerState {}
+class ChatMessengerInProgress extends ChatMessengerState {}
 
-class MessengerInAdding extends ChatMessengerState {}
+class ChatMessengerInAdding extends ChatMessengerState {}
 
-class MessengerError extends ChatMessengerState {
+class ChatMessengerError extends ChatMessengerState {
   String? error;
 
-  MessengerError({this.error});
+  ChatMessengerError({this.error});
 }
 
-class MessengerNetworkError extends ChatMessengerState {}
+class SendChatMessage extends ChatMessengerState {}
 
-class MessengerSuccess extends ChatMessengerState {
-  MessengerSuccess(this.contactList);
+class SendChatMessageError extends ChatMessengerState {
+  String? error;
+
+  SendChatMessageError({this.error});
+}
+
+class ChatMessengerNetworkError extends ChatMessengerState {}
+
+class ChatMessengerSuccess extends ChatMessengerState {
+  ChatMessengerSuccess(this.contactList);
 
   final List<Data> contactList;
 }

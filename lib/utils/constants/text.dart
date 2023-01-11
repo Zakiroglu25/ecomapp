@@ -151,6 +151,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String in_waiting = "Gözləmə";
   static const String makeOrder = "Sifariş et";
   static const String deliveryPrice = "Çatdırılma haqqı";
+  static const String cards = "KARTLAR";
   static const String delivery = "Çatdırılma";
   static const String deliveryAddresses = "Çatdırılma ünvanları";
   static const String insuranceInfo =
@@ -197,6 +198,10 @@ In addition to laying out rules for proper use of your app, you should also clea
       "Kabinet bölməsinə keçid edə bilərsiniz";
   static const String webSite = "Veb sayta keç";
   static const String webSiteinfo = "PAŞA Sığorta ilə bağlı məlumatlar saytda";
+
+  //"Ödəniş və çatdırılma"
+
+  static const String deliveryAndPayment = "Ödəniş və çatdırılma";
 
   //product
   static const String manufacturedIn = 'İstehsal olduğu ölkə';
@@ -283,6 +288,6 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String deleteCardInfo = 'Kart məlumatlarınız, silinsin?';
   //notification
   static const String emptyNotification = 'Bildiriş yoxdur';
-  static const String emptyNotiDetail = 'Tətbiq daxilində bildiriş gəldikdə, burada əks olunacaqdır. Hal-hazırda heç bir bildiriş, mövcud deyil';
-
+  static const String emptyNotiDetail =
+      'Tətbiq daxilində bildiriş gəldikdə, burada əks olunacaqdır. Hal-hazırda heç bir bildiriş, mövcud deyil';
 }
