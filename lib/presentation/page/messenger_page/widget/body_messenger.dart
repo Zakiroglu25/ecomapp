@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:uikit/utils/delegate/index.dart';
 
 import '../../../../infrastructure/model/response/messenger_users.dart';
 import '../../../../utils/constants/app_text_styles.dart';
@@ -28,7 +29,11 @@ class BodyMessenger extends StatelessWidget {
       itemBuilder: (context, index) {
         return InkWell(
             onTap: () {
-              Go.to(context, Chat());
+              Go.to(
+                  context,
+                  Pager.chat(
+                      guid: list[index].guid,
+                      storeName: list[index].storeName));
             },
             child: Slidable(
               key: UniqueKey(),
@@ -42,7 +47,7 @@ class BodyMessenger extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
-                  children:  [
+                  children: [
                     ImageMessage(),
                     MySizedBox.w12,
                     TitleMessage(list[index])
@@ -50,7 +55,6 @@ class BodyMessenger extends StatelessWidget {
                 ),
               ),
             ));
-        ;
       },
       separatorBuilder: (BuildContext context, int index) {
         return const Padding(

@@ -1,14 +1,125 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/infrastructure/cubit/chat_messages_cubit/chat_messenger_cubit.dart';
+import 'package:uikit/infrastructure/cubit/chat_messages_cubit/chat_messenger_state.dart';
+import 'package:uikit/utils/constants/colors.dart';
+
+import '../../../../widgets/doctoro_appbar/doctoro_appbar.dart';
+import '../../../../widgets/general/app_loading.dart';
+import '../../../../widgets/main/cupperfold/cupperfold.dart';
 
 class Chat extends StatelessWidget {
-  const Chat({Key? key}) : super(key: key);
+  String? guid;
+  String? storeName;
+
+  Chat(this.guid, this.storeName);
+
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: DoctorAppbar(
+        title: storeName,
+        notification: false,
+        user: false,
+        contextA: context,
+      ),
+      body: BlocProvider(
+        create: (context) =>
+            ChatMessengerCubit()..fetch(context: context, guid: guid!),
+        child: BlocBuilder<ChatMessengerCubit, ChatMessengerState>(
+          builder: (context, state) {
+            if (state is ChatMessengerSuccess) {
+              var chatList = state.contactList;
+              return Stack(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height,
+                    child: ListView.builder(
+                      reverse: false,
+                      shrinkWrap: true,
+                      itemCount: chatList.length,
+                      itemBuilder: (context, index) {
+                        return Align(
+                          alignment: chatList[index].isByYou == true
+                              ? Alignment.centerRight
+                              : Alignment.centerLeft,
+                          child: Container(
+                            height: 36,
+                            decoration: BoxDecoration(
+                                color: MyColors.field_grey,
+                                borderRadius: BorderRadius.circular(12)),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 16.0, right: 16.0, top: 6, bottom: 6),
+                              child: Text(chatList[index].message!),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 16),
+                      color: Colors.white,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: MyColors.field_grey,
+                                  borderRadius: BorderRadius.circular(99)),
+                              child: TextField(
+                                controller: controller,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: new EdgeInsets.symmetric(
+                                      vertical: 7, horizontal: 15),
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              context.read<ChatMessengerCubit>().sendMessage(
+                                  message: controller.text,
+                                  guid: guid,
+                                  context: context);
+                            },
+                            child: BlocListener<ChatMessengerCubit,
+                                ChatMessengerState>(
+                              listener: (context, state) {
+                                if (state is ChatMessengerInProgress) {
+                                  AppLoading();
+                                }
+                              },
+                              child: Icon(
+                                Icons.send,
+                                color: Colors.black,
+                                size: 25,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              );
+            } else if (state is ChatMessengerInProgress) {
+              return AppLoading();
+            }
+            return AppLoading();
+          },
+        ),
+      ),
+    );
   }
 }
-
 
 // import 'package:flutter/material.dart';
 //

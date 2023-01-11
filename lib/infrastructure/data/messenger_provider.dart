@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:uikit/infrastructure/model/response/messenger_users.dart';
 import 'package:uikit/infrastructure/model/response/status_dynamic.dart';
@@ -32,7 +34,7 @@ class MessengerProvider {
 
   static Future<StatusDynamic> getChatMessage(String? guid) async {
     StatusDynamic statusDynamic = StatusDynamic();
-    final api = ApiKeys.getMessenger+"/$guid";
+    final api = ApiKeys.getMessenger + "/$guid";
     final response = await dioAuth.dio.get(api);
     statusDynamic.statusCode = response.statusCode;
     wtf(response.toString());
@@ -42,6 +44,23 @@ class MessengerProvider {
     } else {
       eeee(
           "GetMessages error :${response.requestOptions.path},response: $response");
+    }
+
+    return statusDynamic;
+  }
+
+  static Future<StatusDynamic> sendMessage(
+      String? guid, String? message) async {
+    StatusDynamic statusDynamic = StatusDynamic();
+    final api = ApiKeys.getMessenger + "/$guid";
+    final body = {"message": message};
+    final response = await dioAuth.dio.post(api, data: jsonEncode(body));
+    statusDynamic.statusCode = response.statusCode;
+    if (response.statusCode == ResultKey.successCode) {
+      iiii("Mesaj Gonderildi");
+    } else {
+      eeee(
+          "sendMessage Messages error :${response.requestOptions.path},response: $response");
     }
 
     return statusDynamic;
