@@ -11,6 +11,7 @@ import 'package:uikit/infrastructure/cubit/otp/otp_cubit.dart';
 import 'package:uikit/presentation/page/auth/forgot_password_page/forgot_pass_page.dart';
 import 'package:uikit/presentation/page/auth/otp_page/otp_page.dart';
 import 'package:uikit/presentation/page/cart_order_details_page/cart_order_details_page.dart';
+import 'package:uikit/presentation/page/delivery_and_payment_page/delivery_and_payment_page.dart';
 import 'package:uikit/presentation/page/landing_page/landing_page.dart';
 import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart';
 import 'package:uikit/presentation/page/notification_page/notifications_page.dart';
@@ -154,9 +155,9 @@ class Pager {
 
   static get product => ProductPage();
 
-  static  chat({String? guid, String? storeName}) => BlocProvider(
+  static chat({String? guid, String? storeName}) => BlocProvider(
         create: (context) => ChatMessengerCubit(),
-        child: Chat(guid,storeName),
+        child: Chat(guid, storeName),
       );
 
   static addAddress({Address? address}) => BlocProvider(
@@ -195,5 +196,15 @@ class Pager {
   static get orderConfirm => BlocProvider(
         create: (context) => AddressCubit()..fetch(),
         child: AddressPage(),
+      );
+
+  static get deliveryAndPaymentPage => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => AddressCubit()..fetch(),
+          ),
+          BlocProvider(create: (context) => CardCubit()..getCard()),
+        ],
+        child: DeliveryAndPaymentPage(),
       );
 }

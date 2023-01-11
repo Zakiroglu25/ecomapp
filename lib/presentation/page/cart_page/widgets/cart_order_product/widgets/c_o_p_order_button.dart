@@ -17,7 +17,7 @@ class COPOrderButton extends StatelessWidget {
         w: 122,
         text: MyText.makeOrder,
         textSize: 14,
-        onTap: () => Go.to(context, Pager.orderConfirm),
+        onTap: () => Go.to(context, Pager.deliveryAndPaymentPage),
       ),
     );
   }
