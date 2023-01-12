@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:uikit/infrastructure/cubit/card_cubit/card_cubit.dart';
-import 'package:uikit/infrastructure/cubit/card_cubit/card_state.dart';
+import 'package:uikit/presentation/page/delivery_and_payment_page/widget/cash_payment_box.dart';
+import 'package:uikit/presentation/page/delivery_and_payment_page/widget/fields/delivery_address_field.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
+import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/delegate/random.dart';
-import 'package:uikit/utils/screen/widget_or_empty.dart';
 import 'package:uikit/widgets/custom/app_tab.dart';
 import 'package:uikit/widgets/custom/column_with_space.dart';
 import 'package:uikit/widgets/custom/text_title_big.dart';
 import 'package:uikit/widgets/general/app_element_box.dart';
 import 'package:uikit/widgets/general/app_field.dart';
-import 'package:uikit/widgets/general/app_loading.dart';
 
 import '../../../infrastructure/services/hive_service.dart';
 import '../../../locator.dart';
+import '../../../utils/constants/dividers.dart';
 import '../../../utils/constants/paddings.dart';
 import '../../../widgets/custom/app_button.dart';
 import '../../../widgets/custom/sliver_app_bar_delegate.dart';
 import '../../../widgets/main/cuppertabs_wp/cupper_tab_wp.dart';
+import 'widget/cards_view.dart';
 import 'widget/static_delivery_field.dart';
 
 class DeliveryAndPaymentPage extends StatelessWidget {
@@ -49,7 +50,7 @@ class DeliveryAndPaymentPage extends StatelessWidget {
         ///tab1
         Container(
           padding: Paddings.paddingA16,
-          child: ListView(children: [
+          child: ListView(physics: Physics.never, children: [
             const StaticDeliveryWidget(),
             AppField(
               title: MyText.contactNumber,
@@ -61,14 +62,13 @@ class DeliveryAndPaymentPage extends StatelessWidget {
               size: 16.sp,
             ),
             MySizedBox.h24,
-            AppField(
-              title: MyText.address,
-            ),
+            DeliveryAddressField(),
+            MySizedBox.h16,
             AppField(
               title: MyText.note,
             ),
             BigSection(
-              title: MyText.paymentMetod,
+              title: MyText.payment,
               size: 16.sp,
             ),
             MySizedBox.h24,
@@ -120,26 +120,19 @@ class DeliveryAndPaymentPage extends StatelessWidget {
               ),
             ),
             MySizedBox.h24,
-            BigSection(
-              title: MyText.cards,
-              size: 16.sp,
+            Text(
+              MyText.cards,
+              style:
+                  AppTextStyles.sfPro400s12.copyWith(color: MyColors.grey158),
             ),
-            MySizedBox.h24,
-            BlocBuilder<CardCubit, CardState>(builder: (_, state) {
-              if (state is CardInProgress) {
-                return const AppLoading();
-              } else if (state is CardSuccess) {
-                final cardList = state.cardList.data;
-                return WidgetOrEmpty(
-                  value: cardList.isNotEmpty,
-                  child: AppElementBox(
-                    child: Text('${cardList.last.pan}'),
-                  ),
-                );
-              } else {
-                return const SizedBox.shrink();
-              }
-            })
+            MySizedBox.h4,
+            AppElementBox(
+              padding: Paddings.paddingA16,
+              child: SpacedColumn(
+                space: 16,
+                children: [CardsView(), Dividers.h1grey, CashPaymentBox()],
+              ),
+            )
           ]),
         ),
 

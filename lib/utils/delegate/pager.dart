@@ -200,9 +200,10 @@ class Pager {
 
   static get deliveryAndPaymentPage => MultiBlocProvider(
         providers: [
-          BlocProvider(
-            create: (context) => AddressCubit()..fetch(),
-          ),
+          BlocProvider(create: (context) => AddressCubit()..fetchMainAddress()),
+          // BlocProvider(
+          //   create: (context) => AddressCubit()..fetch(),
+          // ),
           BlocProvider(create: (context) => CardCubit()..getCard()),
         ],
         child: DeliveryAndPaymentPage(),

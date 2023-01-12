@@ -42,7 +42,7 @@ class NamedAndSaveWidget extends StatelessWidget {
                   child: Row(
                     children: [
                       MySizedBox.w16,
-                      Image.asset(Assets.masterCard),
+                      Image.asset(Assets.pngMasterCard),
                       MySizedBox.w16,
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

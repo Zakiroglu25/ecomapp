@@ -121,6 +121,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String logoutSub = "Təsdiqlədikdən sonra çıxış edəcəksiniz";
 
   static const String paymentMetod = "Ödəniş üsulu";
+  static const String payment = "Ödəniş";
   static const String messenger = "Messenger";
   static const String insurance = "Sığorta";
   static const String likeMedicine = "Öxşar dərmanlar";
@@ -168,6 +169,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String keepInTouch = "Əlaqə saxla️";
   static final String keepInTouchX = keepInTouch.withX("☎");
   static const String orderDelivery = "Çatdırılma sifariş et";
+  static const String cash = "Nağd";
+  static const String cashPayment = "Nağd ödəniş";
   static final String orderDeliveryX = orderDelivery.withX("🚚");
   static const String call = "Zəng et";
   static const String insuranceCover = "Sığorta qarşılayır";

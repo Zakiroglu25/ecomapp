@@ -108,8 +108,11 @@ class Assets {
   static const String marker = "assets/png/marker.png";
   static const String notifyheart = "assets/png/notifyheart.png";
 
-  static const String masterCard = "assets/png/mastercard.png";
-  static const String visa = "assets/png/visa.png";
+  static const String pngMasterCard = "assets/png/mastercard.png";
+  static const String pngMaster = "assets/png/master.png";
+  static const String pngCash = "assets/png/cash.png";
+  static const String pngVisa = "assets/png/visa.png";
+  static const String pngTempCard = "assets/png/card_temp.png";
   static const String pngAzFlag = "assets/png/azflag.png";
 
   //other
