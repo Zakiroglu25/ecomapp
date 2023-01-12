@@ -70,6 +70,7 @@ class Assets {
   static const String pngHomeAddress = "assets/png/home.png";
   static const String pngEmptyCart = "assets/png/empty_cart.png";
   static const String pngLocationIcon = "assets/png/location_icon.png";
+  static const String pngWallet = "assets/png/wallet.png";
 
   ///product page
   static const String pngVitamin3x = "assets/png/vitamin.png";

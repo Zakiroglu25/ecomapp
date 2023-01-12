@@ -24,6 +24,7 @@ class CardBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
           padding: const EdgeInsets.all(16.0),
@@ -31,14 +32,31 @@ class CardBody extends StatelessWidget {
             builder: (context, state) {
               if (state is CardSuccess) {
                 final cardList = state.cardList;
+                if (cardList.data.isEmpty) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height / 2,
+                    child: EmptyWidget(
+                      imageUrl: Assets.pngWallet,
+                      color: MyColors.green235,
+                      text: MyText.emptyText,
+                      description: MyText.emptyWallet,
+                    ),
+                  );
+                }
                 return CardItemWidget(cardList: cardList);
               } else if (state is CardProgress) {
-                return Center(
-                  child: AppLoading.main(),
+                return const Center(
+                  child: AppLoading(),
                 );
               }
-              return EmptyWidget(
-                text: MyText.emptyText,
+              return SizedBox(
+                height: MediaQuery.of(context).size.height / 2,
+                child: EmptyWidget(
+                  imageUrl: Assets.pngWallet,
+                  color: MyColors.green235,
+                  text: MyText.emptyText,
+                  description: MyText.emptyWallet,
+                ),
               );
             },
           ),
@@ -48,4 +66,3 @@ class CardBody extends StatelessWidget {
     );
   }
 }
-
