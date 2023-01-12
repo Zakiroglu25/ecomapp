@@ -38,7 +38,7 @@ class OtherPage extends StatelessWidget {
                   color: MyColors.blue157,
                   h: 167.h,
                   w: 167.w,
-                  imageUrl: Assets.pngMessenger3x,
+                  imageUrl: Assets.pngChat,
                   title: MyText.messenger,
                   desc: MyText.demoSubtitle,
                   onTap: () {
