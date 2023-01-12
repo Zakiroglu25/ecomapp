@@ -101,9 +101,14 @@ class ApiKeys {
   //general
   static const localityInfoBigData = '$bigDataCloud/reverse-geocode-client';
   static const localityInfoGoogleMap = '$googleMap/json';
+
   //Messenger
   static const getMessenger = "$protected/chat";
 
+  //insurance
+  static const getInsurance = "$protected/insurance";
+  //change password
+  static const changePass = "$account/update-password";
 
 
   static loginBody({
@@ -141,6 +146,18 @@ class ApiKeys {
   }) {
     //
     final map = {"phone": phone, "password": password};
+
+    map.removeWhere(
+        (key, value) => key == null || value == null || value == 'null');
+    return map;
+  }
+
+  static changePassword({
+    required String? oldPass,
+    required String? newPass,
+  }) {
+    //
+    final map = {"oldPass": oldPass, "newPass": newPass};
 
     map.removeWhere(
         (key, value) => key == null || value == null || value == 'null');

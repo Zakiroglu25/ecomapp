@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/infrastructure/cubit/user/user_cubit.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/widgets/custom/column_with_space.dart';
 
@@ -18,7 +19,6 @@ import 'widget/edit_field_widget.dart';
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
-  HiveService get _prefs => locator<HiveService>();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,10 @@ class SettingsPage extends StatelessWidget {
             //  MySizedBox.h16,
             EditFieldWidget(
               onTap: () {
-                Go.to(context, ChangePassword());
+                Go.to(context, BlocProvider(
+                  create: (context) => UserCubit(),
+                  child: ChangePassword(),
+                ));
 
                 ///sifreni deyis
               },

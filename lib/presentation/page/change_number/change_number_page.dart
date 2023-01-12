@@ -25,7 +25,7 @@ class ChangeNumberPage extends StatelessWidget {
   ChangeNumberPage({Key? key}) : super(key: key);
 
   HiveService get _prefs => locator<HiveService>();
-  TextEditingController? controller = new TextEditingController();
+  TextEditingController? controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

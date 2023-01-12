@@ -60,6 +60,7 @@ class Assets {
   ///otherpage
   static const String location3x = "assets/png/location.png";
   static const String pngMessenger3x = "assets/png/messenger.png";
+  static const String pngChat = "assets/png/chat.png";
   static const String pngPaymentMethod3x = "assets/png/payment.png";
   static const String pngInsurance3x = "assets/png/insurance.png";
   static const String pngLikeMedicine = "assets/png/likemedicine.png";
@@ -70,6 +71,7 @@ class Assets {
   static const String pngHomeAddress = "assets/png/home.png";
   static const String pngEmptyCart = "assets/png/empty_cart.png";
   static const String pngLocationIcon = "assets/png/location_icon.png";
+  static const String pngWallet = "assets/png/wallet.png";
 
   ///product page
   static const String pngVitamin3x = "assets/png/vitamin.png";

@@ -29,6 +29,11 @@ class MyText {
   static const String phone = "Mobil nömrə";
   static const String phone_hint = "+994 (__) ___-__-__";
   static const String password = "Şifrə";
+  static const String newPassword = "Yeni Şifrə";
+  static const String enterNewPassword = "Yeni şifrəni daxil edin";
+  static const String oldPassword = "Köhnə Şifrə";
+  static const String enterOldPassword = "Köhnə şifrəni daxil edin";
+
 
   //PrivacyRegister
   static const String checkPrivacyAds =
@@ -217,6 +222,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String demo =
       "Swiss Energy Herbs Hot Balm Forte isidici balzam  75 ml Forte";
   static const String emptyText = "Bura boşdur";
+  static const String emptyWallet = "Ödəniş etdikdə, kartı yadda saxladığınız halda, ödəniş kartı burada görsənəcək";
+  static const String emptyMessenger = "Aptekə mesaj göndərdiyiniz halda, burada messaj görsənəcəkdir";
   static const String emptyTextDesc =
       "Axtardığınız məhsulu tapmaq üçün, zəhmət olmasa məhsullar bölməsinə keçin";
 
