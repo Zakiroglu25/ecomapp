@@ -23,7 +23,7 @@ class MessengerPage extends StatelessWidget {
         child: BlocBuilder<MessengerCubit, MessengerState>(
           builder: (context, state) {
             if (state is MessengerSuccess) {
-              if (state.contactList == []) {
+              if (state.contactList.isEmpty) {
                 EmptyWidget();
               }
               return BodyMessenger(list: state.contactList);

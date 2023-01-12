@@ -99,11 +99,6 @@ class NotificationElement extends StatelessWidget {
                   ),
                 ],
               ),
-              // decoration: BoxDecoration(
-              //     color: (notification.read == 0)
-              //         ? MyColors.grey245
-              //         : Colors.transparent,
-              //     borderRadius: BorderRadius.circular(12)),
             ),
           ),
         ],

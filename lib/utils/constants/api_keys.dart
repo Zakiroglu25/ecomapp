@@ -103,6 +103,8 @@ class ApiKeys {
   static const localityInfoGoogleMap = '$googleMap/json';
   //Messenger
   static const getMessenger = "$protected/chat";
+  //insurance
+  static const getInsurance = "$protected/insurance";
 
 
 

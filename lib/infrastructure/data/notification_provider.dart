@@ -33,7 +33,7 @@ class NotificationProvider {
   static Future<StatusDynamic?> removeNotification(
       {required String notificationId}) async {
     StatusDynamic statusDynamic = StatusDynamic();
-    var api = ApiKeys.notificationDelete + "$notificationId";
+    var api = ApiKeys.notificationDelete + "/$notificationId";
 
     final response = await dioAuth.dio.delete(api);
     statusDynamic.statusCode = response.statusCode;
