@@ -94,6 +94,61 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
+  void resetPassword(BuildContext context) async {
+    try {
+      final response = await AccountProvider.changePassword(
+          oldPass: oldPassword.valueOrNull, newPass: newPassword.valueOrNull);
+      final errors = response!.data;
+
+      if (isSuccess(response.statusCode)) {
+        emit(ChangeUserPassword());
+        Snack.positive(context: context, message: MyText.success);
+      } else {
+        Snack.display(message: "Yanlış şifrə");
+        emit(ErrorChangeUserPassword(response.statusCode.toString()));
+      }
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+      emit(UserFailed(MyText.error));
+    }
+  }
+
+//change pass new password
+  final BehaviorSubject<String> newPassword = BehaviorSubject<String>();
+
+  Stream<String> get newPasswordStream => newPassword.stream;
+
+  updateNewPassword(String value) {
+    if (value.isEmpty) {
+      newPassword.value = '';
+      newPassword.sink.addError("Xana doldurulmalıdır");
+    } else {
+      newPassword.sink.add(value);
+    }
+    isUserInfoValid();
+  }
+
+  bool get isNewPasswordIncorrect =>
+      (!newPassword.hasValue || newPassword.value.isEmpty);
+
+//change pass old password
+  final BehaviorSubject<String> oldPassword = BehaviorSubject<String>();
+
+  Stream<String> get oldPasswordStream => oldPassword.stream;
+
+  updateOldPassword(String value) {
+    if (value.isEmpty) {
+      oldPassword.value = '';
+      oldPassword.sink.addError("Xana doldurulmalıdır");
+    } else {
+      oldPassword.sink.add(value);
+    }
+    isUserInfoValid();
+  }
+
+  bool get isOldPasswordIncorrect =>
+      (!oldPassword.hasValue || oldPassword.value.isEmpty);
+
   //[password]
   final BehaviorSubject<String> password = BehaviorSubject<String>();
 

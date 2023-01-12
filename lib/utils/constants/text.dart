@@ -29,6 +29,11 @@ class MyText {
   static const String phone = "Mobil nömrə";
   static const String phone_hint = "+994 (__) ___-__-__";
   static const String password = "Şifrə";
+  static const String newPassword = "Yeni Şifrə";
+  static const String enterNewPassword = "Yeni şifrəni daxil edin";
+  static const String oldPassword = "Köhnə Şifrə";
+  static const String enterOldPassword = "Köhnə şifrəni daxil edin";
+
 
   //PrivacyRegister
   static const String checkPrivacyAds =
