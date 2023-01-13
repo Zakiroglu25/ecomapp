@@ -12,7 +12,7 @@ class SlidableWidget extends StatelessWidget {
   String? insuranceIcon;
   String? title;
   String? subTitle;
-  int? status;
+  bool? status;
 
   SlidableWidget({this.insuranceIcon, this.title, this.subTitle, this.status});
 
@@ -67,7 +67,7 @@ class SlidableWidget extends StatelessWidget {
                 ],
               ),
               Spacer(),
-              if (status == 1)
+              if (status == true)
                 Container(
                   width: 82.w,
                   height: 32.h,
@@ -93,7 +93,7 @@ class SlidableWidget extends StatelessWidget {
                           style: AppTextStyles.sfPro400s14
                               .copyWith(color: MyColors.white))),
                 ),
-              if (status == 3)
+              if (status == false)
                 Container(
                   width: 82.w,
                   height: 32.h,

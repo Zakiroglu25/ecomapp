@@ -22,6 +22,7 @@ import '../../infrastructure/cubit/card_cubit/card_cubit.dart';
 import '../../infrastructure/cubit/cart/cart_cubit.dart';
 import '../../infrastructure/cubit/contact_cubit/contact_cubit.dart';
 import '../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
+import '../../infrastructure/cubit/insurance_cubit/insurance_cubit.dart';
 import '../../infrastructure/cubit/login/login_cubit.dart';
 import '../../infrastructure/cubit/messenger_cubit/messenger_cubit.dart';
 import '../../infrastructure/cubit/notification_cubit/notification_cubit.dart';
@@ -41,6 +42,7 @@ import '../../presentation/page/change_number/change_number_page.dart';
 import '../../presentation/page/contact_page/contact_page.dart';
 import '../../presentation/page/favorite_page/favorite_page.dart';
 import '../../presentation/page/home_page/home_page.dart';
+import '../../presentation/page/insurance_page/add_insurance_page.dart';
 import '../../presentation/page/medicines_page/medicines_page.dart';
 import '../../presentation/page/messenger_page/messenger_page.dart';
 import '../../presentation/page/messenger_page/widget/chat_details.dart';
@@ -136,6 +138,11 @@ class Pager {
 
   static get settings => SettingsPage();
 
+  static get insurance => BlocProvider(
+        create: (context) => InsuranceCubit()..getInsurance(),
+        child: AddInsurancePage(),
+      );
+
   static get changeNumber => BlocProvider(
         create: (context) => UserCubit(),
         child: ChangeNumberPage(),
@@ -154,9 +161,9 @@ class Pager {
 
   static get product => ProductPage();
 
-  static  chat({String? guid, String? storeName}) => BlocProvider(
+  static chat({String? guid, String? storeName}) => BlocProvider(
         create: (context) => ChatMessengerCubit(),
-        child: Chat(guid,storeName),
+        child: Chat(guid, storeName),
       );
 
   static addAddress({Address? address}) => BlocProvider(

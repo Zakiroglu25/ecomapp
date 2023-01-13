@@ -75,7 +75,7 @@ class OtherPage extends StatelessWidget {
                 ),
                 ProductAndOtherWidget(
                   onTap: () {
-                    Go.to(context, AddInsurancePage());
+                    Go.to(context, Pager.insurance);
                   },
                   color: MyColors.purple240,
                   h: 167.h,

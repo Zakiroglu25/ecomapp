@@ -27,34 +27,6 @@ class InsuranceNumTab extends StatelessWidget {
             title: "Kart nömrəsini daxil edin",
             hint: "Daxil edin",
           ),
-          Row(
-            children: [
-              SizedBox(
-                height: 18.0.h,
-                width: 18.0.w,
-                child: Checkbox(
-                    side: MaterialStateBorderSide.resolveWith(
-                      (states) => BorderSide(width: 1, color: MyColors.grey188),
-                    ),
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                    value: false,
-                    // color of tick Mark
-                    activeColor: MyColors.darkRED,
-                    onChanged: (v) {}),
-              ),
-              MySizedBox.w8,
-              SizedBox(
-                width: 258,
-                child: RichText(
-                  text: TextSpan(
-                      text: MyText.asanInsuranceNumCheckbox,
-                      style: AppTextStyles.sfPro400s14
-                          .copyWith(color: MyColors.grey130, fontSize: 12.sp)),
-                ),
-              ),
-            ],
-          ),
           Spacer(),
           AppButton(
             text: MyText.save,
