@@ -9,11 +9,18 @@ class InsuranceProgress extends InsuranceState {}
 class InsuranceDelete extends InsuranceState {}
 
 class InsuranceLoading extends InsuranceState {}
+class InsuranceButtonActive extends InsuranceState {}
 
 class InsuranceError extends InsuranceState {
   String? error;
 
   InsuranceError({this.error});
+}
+
+class AddInsuranceSuccess extends InsuranceState {
+  String? error;
+
+  AddInsuranceSuccess({this.error});
 }
 
 class InsuranceNetworkError extends InsuranceState {}

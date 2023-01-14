@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/insurance_cubit/insurance_state.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/utils/delegate/pager.dart';
 import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
 
 import '../../../infrastructure/cubit/insurance_cubit/insurance_cubit.dart';
@@ -35,10 +36,11 @@ class AddInsurancePage extends StatelessWidget {
                     itemCount: insuranceList.data.length,
                     itemBuilder: (context, index) {
                       return SlidableWidget(
-                        title: "Pasha Sığorta",
-                        subTitle: insuranceList.data[index].policyNumber,
+                        title: insuranceList.data[index].provider!.title,
+                        subTitle: insuranceList.data[index].provider!.description,
                         insuranceIcon: Assets.pasha,
                         status: insuranceList.data[index].isValidated,
+                        image: insuranceList.data[index].provider!.imageUrl,
                       );
                     }),
                 MySizedBox.h70,
@@ -47,7 +49,7 @@ class AddInsurancePage extends StatelessWidget {
                   child: AppButton(
                     text: "Sığorta əlavə et",
                     onTap: () {
-                      Go.to(context, AddAsanInsuranceInfo());
+                      Go.to(context, Pager.addInsuranceInfo);
                     },
                   ),
                 )

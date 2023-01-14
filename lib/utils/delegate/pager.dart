@@ -34,6 +34,7 @@ import '../../infrastructure/cubit/user/user_cubit.dart';
 import '../../infrastructure/cubit/waiting_orders/waiting_orders_cubit.dart';
 import '../../infrastructure/model/response/address_model.dart';
 import '../../presentation/page/add_address_page/add_address_page.dart';
+import '../../presentation/page/add_asan_insurance_info/add_asan_insurance_info_page.dart';
 import '../../presentation/page/address_page/address_page.dart';
 import '../../presentation/page/auth/login_page/login_page.dart';
 import '../../presentation/page/auth/register_page/register_page.dart';
@@ -172,6 +173,11 @@ class Pager {
       );
 
   static get otherPage => OtherPage();
+
+  static get addInsuranceInfo => BlocProvider(
+        create: (context) => InsuranceCubit(),
+        child: AddAsanInsuranceInfo(),
+      );
 
   static get contactPage => BlocProvider(
         create: (context) => ContactCubit()..fetch(),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/constants/result_keys.dart';
@@ -25,12 +27,23 @@ class InsuranceProvider {
     }
     return statusDynamic;
   }
-  static Future<StatusDynamic> addInsurance() async {
+
+  static Future<StatusDynamic> addInsurance(
+      {required String? policyNumber, required String? phoneNumber}) async {
+    print("provider1");
     StatusDynamic statusDynamic = StatusDynamic();
-    const api = ApiKeys.getInsurance;
-    final response = await dioAuth.dio.get(api);
+    const api = ApiKeys.addInsuranceApi;
+    // final body = ApiKeys.addInsurance(
+    //     policyNumber: policyNumber, phoneNumber: phoneNumber);
+    final body = {"policyNumber": policyNumber, "phoneNumber": phoneNumber};
+    print("provider2");
+    final response = await dioAuth.dio.post(api, data: body);
+    print("provider3");
     statusDynamic.statusCode = response.statusCode;
+    print("provider4");
     if (response.statusCode == ResultKey.successCode) {
+      print("provider5");
+
       // InsuranceModel model = InsuranceModel.fromJson(response.data);
       // statusDynamic.data = model;
     } else {
@@ -38,6 +51,4 @@ class InsuranceProvider {
     }
     return statusDynamic;
   }
-
 }
-

@@ -13,8 +13,10 @@ class SlidableWidget extends StatelessWidget {
   String? title;
   String? subTitle;
   bool? status;
+  String? image;
 
-  SlidableWidget({this.insuranceIcon, this.title, this.subTitle, this.status});
+  SlidableWidget(
+      {this.insuranceIcon, this.title, this.subTitle, this.status, this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,7 @@ class SlidableWidget extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(Assets.pasha),
+              Image.network(image!),
               MySizedBox.w16,
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +64,8 @@ class SlidableWidget extends StatelessWidget {
                   MySizedBox.h4,
                   SizedBox(
                     width: 158.w,
-                    child: Text("$subTitle", style: AppTextStyles.sfPro400s14),
+                    child: Text(subTitle == null ? "Qeyd yoxdur" : "$subTitle",
+                        style: AppTextStyles.sfPro400s14),
                   ),
                 ],
               ),
@@ -77,19 +80,6 @@ class SlidableWidget extends StatelessWidget {
                   ),
                   child: Center(
                       child: Text("Aktivdir",
-                          style: AppTextStyles.sfPro400s14
-                              .copyWith(color: MyColors.white))),
-                ),
-              if (status == 2)
-                Container(
-                  width: 82.w,
-                  height: 32.h,
-                  decoration: BoxDecoration(
-                    color: MyColors.orange242,
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: Center(
-                      child: Text("Yoxlanılır",
                           style: AppTextStyles.sfPro400s14
                               .copyWith(color: MyColors.white))),
                 ),
