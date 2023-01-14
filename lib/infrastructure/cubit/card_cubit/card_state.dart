@@ -15,7 +15,7 @@ class CardError extends CardState {
 }
 
 class CardSuccess extends CardState {
-  CardSuccess(this.cardList);
+  CardSuccess(this.cardData);
 
-  final CardModel cardList;
+  final CardModel cardData;
 }

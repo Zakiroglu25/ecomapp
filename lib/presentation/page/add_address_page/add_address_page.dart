@@ -97,7 +97,7 @@ class AddAddressPage extends StatelessWidget {
                         lng: lng,
                         streetNameController: textController);
               },
-              text: "Yadda Saxla",
+              text: MyText.save,
             )
             // AddressField()
           ],

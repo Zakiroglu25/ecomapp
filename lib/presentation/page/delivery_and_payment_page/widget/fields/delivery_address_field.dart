@@ -4,8 +4,10 @@ import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
 import 'package:uikit/infrastructure/cubit/address/address_state.dart';
 import 'package:uikit/presentation/page/medicines_page/widgets/main_address_box.dart';
 import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/utils/constants/durations.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sheets.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/screen/ink_wrapper.dart';
@@ -14,6 +16,7 @@ import 'package:uikit/widgets/custom/column_with_space.dart';
 import 'package:uikit/widgets/general/app_element_box.dart';
 import 'package:uikit/widgets/general/app_field.dart';
 import 'package:uikit/widgets/general/small_section.dart';
+import 'package:uikit/utils/extensions/word.dart';
 
 class DeliveryAddressField extends StatelessWidget {
   const DeliveryAddressField({Key? key}) : super(key: key);
@@ -29,60 +32,75 @@ class DeliveryAddressField extends StatelessWidget {
           SmallSection(
             title: MyText.address,
           ),
-          BlocBuilder<AddressCubit, AddressState>(
-            builder: (context, state) {
-              if (state is AddressMainSuccess) {
-                final address = state.address;
-                final isAddressNull = address == null;
-                final secondColor =
-                    isAddressNull ? MyColors.secondary : MyColors.green235;
-                final mainColor =
-                    isAddressNull ? MyColors.brand : MyColors.green;
-                return AppElementBox(
-                  color: secondColor,
-                  child: Row(
-                    //  mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
+          AnimatedSize(
+            duration: Durations.ms300,
+            child: BlocBuilder<AddressCubit, AddressState>(
+              builder: (context, state) {
+                if (state is AddressMainSuccess) {
+                  final address = state.address;
+                  final isAddressNull = address == null;
+                  final secondColor =
+                      isAddressNull ? MyColors.secondary : MyColors.green235;
+                  final mainColor =
+                      isAddressNull ? MyColors.brand : MyColors.green;
+                  return Column(
                     children: [
-                      Padding(
-                        padding: Paddings.paddingR12,
-                        child: Icon(
-                          Icons.location_on_sharp,
-                          color: mainColor,
+                      AppElementBox(
+                        color: secondColor,
+                        child: Row(
+                          //  mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: Paddings.paddingR12,
+                              child: Icon(
+                                Icons.location_on_sharp,
+                                color: mainColor,
+                              ),
+                            ),
+                            //MySizedBox.w12,
+                            Expanded(
+                              child: Text(
+                                isAddressNull
+                                    ? MyText.addressNotSelected
+                                    : "${address.title}",
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            // AppField(
+                            //   title: MyText.address,
+                            //   initialValue: isAddressNull
+                            //       ? MyText.addressNotSelected
+                            //       : "${address.title}",
+                            //   fillColor: secondColor,
+                            //   readOnly: true,
+                            // ),
+                            Spacer(),
+                            Icon(Icons.keyboard_arrow_down, color: mainColor)
+                          ],
                         ),
                       ),
-                      //MySizedBox.w12,
-                      Expanded(
-                        child: Text(
-                          isAddressNull
-                              ? MyText.addressNotSelected
-                              : "${address.title}",
-                          overflow: TextOverflow.ellipsis,
-                        ),
+                      MySizedBox.h16,
+                      AppField(
+                        title: MyText.note,
+                        initialValue:
+                            address?.description?.removeNewLineOperators,
+                        maxLines: 1,
+                        readOnly: true,
                       ),
-                      // AppField(
-                      //   title: MyText.address,
-                      //   initialValue: isAddressNull
-                      //       ? MyText.addressNotSelected
-                      //       : "${address.title}",
-                      //   fillColor: secondColor,
-                      //   readOnly: true,
-                      // ),
-                      Spacer(),
-                      Icon(Icons.keyboard_arrow_down, color: mainColor)
                     ],
-                  ),
-                );
-              } else if (state is AddressInProgress) {
-                return AppElementBox(
-                  child: Container(
-                      padding: Paddings.paddingV4,
-                      child: Center(child: AppLinearLoading.green())),
-                );
-              } else {
-                return Container();
-              }
-            },
+                  );
+                } else if (state is AddressInProgress) {
+                  return AppElementBox(
+                    child: Container(
+                        padding: Paddings.paddingV4,
+                        child: Center(child: AppLinearLoading.green())),
+                  );
+                } else {
+                  return Container();
+                }
+              },
+            ),
           ),
         ],
       ),

@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uikit/presentation/page/delivery_and_payment_page/widget/cash_payment_box.dart';
 import 'package:uikit/presentation/page/delivery_and_payment_page/widget/fields/delivery_address_field.dart';
+import 'package:uikit/presentation/page/delivery_and_payment_page/widget/selectable_payment_cash.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/delegate/app_operations.dart';
 import 'package:uikit/utils/delegate/random.dart';
+import 'package:uikit/utils/extensions/number.dart';
+import 'package:uikit/utils/formatter/phone_formatter.dart';
 import 'package:uikit/widgets/custom/app_tab.dart';
 import 'package:uikit/widgets/custom/column_with_space.dart';
 import 'package:uikit/widgets/custom/text_title_big.dart';
 import 'package:uikit/widgets/general/app_element_box.dart';
 import 'package:uikit/widgets/general/app_field.dart';
+import 'package:uikit/widgets/general/plus994.dart';
 
 import '../../../infrastructure/services/hive_service.dart';
 import '../../../locator.dart';
@@ -54,19 +59,20 @@ class DeliveryAndPaymentPage extends StatelessWidget {
             const StaticDeliveryWidget(),
             AppField(
               title: MyText.contactNumber,
-              initialValue: _prefs.user.phone,
+              initialValue: _prefs.user.phone.formatWith070,
               hint: MyText.contactNumber,
+              textInputType: TextInputType.phone,
+              formatters: [PhoneNumberFormatter(with994: false)],
+              maxLenght: 15,
+              readOnly: true,
+              // prefixIcon: Plus994(),
             ),
             BigSection(
               title: MyText.address,
               size: 16.sp,
             ),
             MySizedBox.h24,
-            DeliveryAddressField(),
-            MySizedBox.h16,
-            AppField(
-              title: MyText.note,
-            ),
+            const DeliveryAddressField(),
             BigSection(
               title: MyText.payment,
               size: 16.sp,
@@ -126,11 +132,16 @@ class DeliveryAndPaymentPage extends StatelessWidget {
                   AppTextStyles.sfPro400s12.copyWith(color: MyColors.grey158),
             ),
             MySizedBox.h4,
-            AppElementBox(
-              padding: Paddings.paddingA16,
+            const AppElementBox(
+              padding: Paddings.zero,
               child: SpacedColumn(
-                space: 16,
-                children: [CardsView(), Dividers.h1grey, CashPaymentBox()],
+                space: 0,
+                padding: Paddings.paddingV5,
+                children: [
+                  CardsView(),
+                  Dividers.h1grey,
+                  SelectablePaymentCash()
+                ],
               ),
             )
           ]),

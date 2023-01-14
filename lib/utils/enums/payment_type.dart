@@ -1,1 +1,1 @@
-enum PaymentType { by_card, later, from_balance }
+enum PaymentType { card, cash }

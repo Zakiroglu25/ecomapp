@@ -22,6 +22,7 @@ import '../../infrastructure/cubit/authentication/authentication_cubit.dart';
 import '../../infrastructure/cubit/card_cubit/card_cubit.dart';
 import '../../infrastructure/cubit/cart/cart_cubit.dart';
 import '../../infrastructure/cubit/contact_cubit/contact_cubit.dart';
+import '../../infrastructure/cubit/delivery_and_payment/delivery_and_payment_cubit.dart';
 import '../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../infrastructure/cubit/login/login_cubit.dart';
 import '../../infrastructure/cubit/messenger_cubit/messenger_cubit.dart';
@@ -201,6 +202,7 @@ class Pager {
   static get deliveryAndPaymentPage => MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => AddressCubit()..fetchMainAddress()),
+          BlocProvider(create: (context) => DeliveryAndPaymentCubit()),
           // BlocProvider(
           //   create: (context) => AddressCubit()..fetch(),
           // ),
