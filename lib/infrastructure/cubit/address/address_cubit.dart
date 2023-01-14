@@ -22,8 +22,6 @@ class AddressCubit extends Cubit<AddressState> {
     try {
       List<Address> result = await AddressProvider.getAddresses();
       emit(AddressSuccess(result));
-    } on SocketException catch (_) {
-      emit(AddressNetworkError());
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
       emit(AddressError(error: e.toString()));
@@ -39,8 +37,6 @@ class AddressCubit extends Cubit<AddressState> {
       final address =
           result.where((element) => element.isMain == true).firstOrNull;
       emit(AddressMainSuccess(address));
-    } on SocketException catch (_) {
-      emit(AddressNetworkError());
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
       emit(AddressError(error: e.toString()));

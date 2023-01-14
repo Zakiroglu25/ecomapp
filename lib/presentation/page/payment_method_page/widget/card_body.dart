@@ -24,7 +24,6 @@ class CardBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
           padding: const EdgeInsets.all(16.0),
@@ -32,31 +31,14 @@ class CardBody extends StatelessWidget {
             builder: (context, state) {
               if (state is CardSuccess) {
                 final cardList = state.cardList;
-                if (cardList.data.isEmpty) {
-                  return SizedBox(
-                    height: MediaQuery.of(context).size.height / 2,
-                    child: EmptyWidget(
-                      imageUrl: Assets.pngWallet,
-                      color: MyColors.green235,
-                      text: MyText.emptyText,
-                      description: MyText.emptyWallet,
-                    ),
-                  );
-                }
                 return CardItemWidget(cardList: cardList);
-              } else if (state is CardProgress) {
-                return const Center(
-                  child: AppLoading(),
+              } else if (state is CardInProgress) {
+                return Center(
+                  child: AppLoading.main(),
                 );
               }
-              return SizedBox(
-                height: MediaQuery.of(context).size.height / 2,
-                child: EmptyWidget(
-                  imageUrl: Assets.pngWallet,
-                  color: MyColors.green235,
-                  text: MyText.emptyText,
-                  description: MyText.emptyWallet,
-                ),
+              return EmptyWidget(
+                text: MyText.emptyText,
               );
             },
           ),

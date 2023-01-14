@@ -11,6 +11,7 @@ import 'package:uikit/infrastructure/cubit/otp/otp_cubit.dart';
 import 'package:uikit/presentation/page/auth/forgot_password_page/forgot_pass_page.dart';
 import 'package:uikit/presentation/page/auth/otp_page/otp_page.dart';
 import 'package:uikit/presentation/page/cart_order_details_page/cart_order_details_page.dart';
+import 'package:uikit/presentation/page/delivery_and_payment_page/delivery_and_payment_page.dart';
 import 'package:uikit/presentation/page/landing_page/landing_page.dart';
 import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart';
 import 'package:uikit/presentation/page/notification_page/notifications_page.dart';
@@ -22,7 +23,6 @@ import '../../infrastructure/cubit/card_cubit/card_cubit.dart';
 import '../../infrastructure/cubit/cart/cart_cubit.dart';
 import '../../infrastructure/cubit/contact_cubit/contact_cubit.dart';
 import '../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
-import '../../infrastructure/cubit/insurance_cubit/insurance_cubit.dart';
 import '../../infrastructure/cubit/login/login_cubit.dart';
 import '../../infrastructure/cubit/messenger_cubit/messenger_cubit.dart';
 import '../../infrastructure/cubit/notification_cubit/notification_cubit.dart';
@@ -34,7 +34,6 @@ import '../../infrastructure/cubit/user/user_cubit.dart';
 import '../../infrastructure/cubit/waiting_orders/waiting_orders_cubit.dart';
 import '../../infrastructure/model/response/address_model.dart';
 import '../../presentation/page/add_address_page/add_address_page.dart';
-import '../../presentation/page/add_asan_insurance_info/add_asan_insurance_info_page.dart';
 import '../../presentation/page/address_page/address_page.dart';
 import '../../presentation/page/auth/login_page/login_page.dart';
 import '../../presentation/page/auth/register_page/register_page.dart';
@@ -43,7 +42,6 @@ import '../../presentation/page/change_number/change_number_page.dart';
 import '../../presentation/page/contact_page/contact_page.dart';
 import '../../presentation/page/favorite_page/favorite_page.dart';
 import '../../presentation/page/home_page/home_page.dart';
-import '../../presentation/page/insurance_page/add_insurance_page.dart';
 import '../../presentation/page/medicines_page/medicines_page.dart';
 import '../../presentation/page/messenger_page/messenger_page.dart';
 import '../../presentation/page/messenger_page/widget/chat_details.dart';
@@ -139,11 +137,6 @@ class Pager {
 
   static get settings => SettingsPage();
 
-  static get insurance => BlocProvider(
-        create: (context) => InsuranceCubit()..getInsurance(),
-        child: AddInsurancePage(),
-      );
-
   static get changeNumber => BlocProvider(
         create: (context) => UserCubit(),
         child: ChangeNumberPage(),
@@ -174,11 +167,6 @@ class Pager {
 
   static get otherPage => OtherPage();
 
-  static get addInsuranceInfo => BlocProvider(
-        create: (context) => InsuranceCubit(),
-        child: AddAsanInsuranceInfo(),
-      );
-
   static get contactPage => BlocProvider(
         create: (context) => ContactCubit()..fetch(),
         child: ContactPage(),
@@ -208,5 +196,16 @@ class Pager {
   static get orderConfirm => BlocProvider(
         create: (context) => AddressCubit()..fetch(),
         child: AddressPage(),
+      );
+
+  static get deliveryAndPaymentPage => MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => AddressCubit()..fetchMainAddress()),
+          // BlocProvider(
+          //   create: (context) => AddressCubit()..fetch(),
+          // ),
+          BlocProvider(create: (context) => CardCubit()..getCard()),
+        ],
+        child: DeliveryAndPaymentPage(),
       );
 }

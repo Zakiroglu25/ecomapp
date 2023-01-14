@@ -54,8 +54,8 @@ class CardItemWidget extends StatelessWidget {
                           height: 28.h,
                           child: Image.asset(
                               cardList.data[index].brand == "MASTER"
-                                  ? Assets.masterCard
-                                  : Assets.visa),
+                                  ? Assets.pngMasterCard
+                                  : Assets.pngVisa),
                         ),
                         MySizedBox.w16,
                         Column(

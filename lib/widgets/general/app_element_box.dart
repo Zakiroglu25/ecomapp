@@ -7,19 +7,21 @@ import '../../utils/constants/paddings.dart';
 class AppElementBox extends StatelessWidget {
   const AppElementBox(
       {Key? key,
-      required this.child,
-      this.color = MyColors.grey245,
-      this.onTap})
+        required this.child,
+        this.color = MyColors.grey245,
+        this.padding = Paddings.paddingA12,
+        this.onTap})
       : super(key: key);
   final Widget child;
   final Color color;
+  final EdgeInsets padding;
   final GestureTapCallback? onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: Paddings.paddingA12,
+        padding: padding,
         child: child,
         decoration: BoxDecoration(color: color, borderRadius: Radiuses.r12),
       ),

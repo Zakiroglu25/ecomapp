@@ -34,7 +34,6 @@ class MyText {
   static const String oldPassword = "Köhnə Şifrə";
   static const String enterOldPassword = "Köhnə şifrəni daxil edin";
 
-
   //PrivacyRegister
   static const String checkPrivacyAds =
       "Reklam və kampaniyalarla bağlı, fərdi təkliflərlə bağlı məlumatların əldə edilməsinə etiraz etmirəm";
@@ -126,6 +125,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String logoutSub = "Təsdiqlədikdən sonra çıxış edəcəksiniz";
 
   static const String paymentMetod = "Ödəniş üsulu";
+  static const String payment = "Ödəniş";
   static const String messenger = "Messenger";
   static const String insurance = "Sığorta";
   static const String likeMedicine = "Öxşar dərmanlar";
@@ -172,6 +172,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String keepInTouch = "Əlaqə saxla️";
   static final String keepInTouchX = keepInTouch.withX("☎");
   static const String orderDelivery = "Çatdırılma sifariş et";
+  static const String cash = "Nağd";
+  static const String cashPayment = "Nağd ödəniş";
   static final String orderDeliveryX = orderDelivery.withX("🚚");
   static const String call = "Zəng et";
   static const String insuranceCover = "Sığorta qarşılayır";
@@ -214,8 +216,10 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String demo =
       "Swiss Energy Herbs Hot Balm Forte isidici balzam  75 ml Forte";
   static const String emptyText = "Bura boşdur";
-  static const String emptyWallet = "Ödəniş etdikdə, kartı yadda saxladığınız halda, ödəniş kartı burada görsənəcək";
-  static const String emptyMessenger = "Aptekə mesaj göndərdiyiniz halda, burada messaj görsənəcəkdir";
+  static const String emptyWallet =
+      "Ödəniş etdikdə, kartı yadda saxladığınız halda, ödəniş kartı burada görsənəcək";
+  static const String emptyMessenger =
+      "Aptekə mesaj göndərdiyiniz halda, burada messaj görsənəcəkdir";
   static const String emptyTextDesc =
       "Axtardığınız məhsulu tapmaq üçün, zəhmət olmasa məhsullar bölməsinə keçin";
 
@@ -237,8 +241,10 @@ In addition to laying out rules for proper use of your app, you should also clea
   //contact
   static const String contactDesc =
       "Hörmətli müştəri, hər hansı bir problemlə raslaşdıqda qaynar xətt nömrəmiz müraciyyət edə bilərsiniz  *8833";
+
 //notification
   static const String notification = "Bildirişlər";
+
   //user
   static const String userInfo = "Şəxs haqqında haqqında məlumatlar";
   static const String name = "Ad";
@@ -284,12 +290,16 @@ In addition to laying out rules for proper use of your app, you should also clea
 
   //faq
   static const String faq = 'Sual-cavab';
+
   //card
   static const String yes = 'Bəli';
   static const String no = 'Xeyr';
   static const String deleteCardInfo = 'Kart məlumatlarınız, silinsin?';
+
   //notification
   static const String emptyNotification = 'Bildiriş yoxdur';
-  static const String emptyNotiDetail = 'Tətbiq daxilində bildiriş gəldikdə, burada əks olunacaqdır. Hal-hazırda heç bir bildiriş, mövcud deyil';
-
+  static const String emptyNotiDetail =
+      'Tətbiq daxilində bildiriş gəldikdə, burada əks olunacaqdır. Hal-hazırda heç bir bildiriş, mövcud deyil';
+  static const String cards = "KARTLAR";
+  static const String deliveryAndPayment = "Ödəniş və çatdırılma";
 }
