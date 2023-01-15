@@ -1,5 +1,6 @@
 import 'package:uikit/infrastructure/model/response/big_data_info.dart';
 import 'package:uikit/infrastructure/model/response/google_map_model.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
@@ -67,18 +68,15 @@ class PublicProvider {
   }
 
 //card
-  static Future<StatusDynamic> getCard() async {
-    StatusDynamic statusDynamic = StatusDynamic();
+  static Future<CardModel?> getCard() async {
     const api = ApiKeys.card;
     final response = await dioAuth.dio.get(api);
-    statusDynamic.statusCode = response.statusCode;
-    if (response.statusCode == ResultKey.successCode) {
-      CardModel model = CardModel.fromJson(response.data);
-      statusDynamic.data = model;
+    if (response.statusCode.isSuccess) {
+      return CardModel.fromJson(response.data);
     } else {
       eeee("card List:  url: $api , response: ${response.data}");
     }
-    return statusDynamic;
+    return null;
   }
 
   static Future<StatusDynamic?> deleteCArd({required String guid}) async {

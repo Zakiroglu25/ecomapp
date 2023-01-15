@@ -21,6 +21,7 @@ import '../../infrastructure/cubit/authentication/authentication_cubit.dart';
 import '../../infrastructure/cubit/card_cubit/card_cubit.dart';
 import '../../infrastructure/cubit/cart/cart_cubit.dart';
 import '../../infrastructure/cubit/contact_cubit/contact_cubit.dart';
+import '../../infrastructure/cubit/delivery_and_payment/delivery_and_payment_cubit.dart';
 import '../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../infrastructure/cubit/insurance_cubit/insurance_cubit.dart';
 import '../../infrastructure/cubit/login/login_cubit.dart';
@@ -41,7 +42,7 @@ import '../../presentation/page/auth/register_page/register_page.dart';
 import '../../presentation/page/cart_page/cart_page.dart';
 import '../../presentation/page/change_number/change_number_page.dart';
 import '../../presentation/page/contact_page/contact_page.dart';
-import '../../presentation/page/delivery_and_payment_page/delivery_address_page.dart';
+import '../../presentation/page/delivery_and_payment_page/delivery_and_payment_page.dart';
 import '../../presentation/page/favorite_page/favorite_page.dart';
 import '../../presentation/page/home_page/home_page.dart';
 import '../../presentation/page/insurance_page/add_insurance_page.dart';
@@ -210,14 +211,18 @@ class Pager {
         child: AddressPage(),
       );
 
-  static get deliveryAndPaymentPage => MultiBlocProvider(
+  static deliveryAndPaymentPage({required String orderGuid}) =>
+      MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => AddressCubit()..fetchMainAddress()),
+          BlocProvider(
+              create: (context) =>
+                  DeliveryAndPaymentCubit()..fetch(guid: orderGuid)),
           // BlocProvider(
           //   create: (context) => AddressCubit()..fetch(),
           // ),
           BlocProvider(create: (context) => CardCubit()..getCard()),
         ],
-        child: DeliveryAndPaymentPage(),
+        child: DeliveryAndPaymentPage(orderGuid: orderGuid),
       );
 }

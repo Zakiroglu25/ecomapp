@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:uikit/infrastructure/model/response/card_model.dart';
+import 'package:uikit/utils/constants/paddings.dart';
 
 import '../../../../infrastructure/cubit/card_cubit/card_cubit.dart';
 import '../../../../infrastructure/cubit/card_cubit/card_state.dart';
-import '../../../../utils/constants/app_text_styles.dart';
-import '../../../../utils/constants/assets.dart';
-import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sized_box.dart';
 import '../../../../utils/constants/text.dart';
 import '../../../../widgets/general/app_loading.dart';
@@ -26,14 +21,13 @@ class CardBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: Paddings.paddingA16,
           child: BlocBuilder<CardCubit, CardState>(
             builder: (context, state) {
               if (state is CardSuccess) {
-                final cardList = state.cardList;
-                return CardItemWidget(cardList: cardList);
+                return CardItemWidget(cardList: state.cardData.list);
               } else if (state is CardInProgress) {
-                return Center(
+                return const Center(
                   child: AppLoading.main(),
                 );
               }
