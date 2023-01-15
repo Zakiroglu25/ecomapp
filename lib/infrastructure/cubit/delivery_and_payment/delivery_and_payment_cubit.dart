@@ -85,4 +85,9 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
   }
 
   bool get isPaymentTypeIncorrect => (!paymentType.hasValue);
+
+  @override
+  emit(DeliveryAndPaymentState state) {
+    if (!isClosed) return super.emit(state);
+  }
 }

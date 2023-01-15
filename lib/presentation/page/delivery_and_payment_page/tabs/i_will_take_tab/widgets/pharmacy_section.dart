@@ -35,6 +35,7 @@ class PharmacySection extends StatelessWidget {
                 PharmacyOrdersListview(orders: orderDetails.orderedItems!),
               ],
             )),
+        MySizedBox.h12,
       ],
     );
   }

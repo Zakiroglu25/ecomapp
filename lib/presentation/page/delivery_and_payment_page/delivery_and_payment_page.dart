@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/infrastructure/cubit/delivery_and_payment/delivery_and_payment_cubit.dart';
 import 'package:uikit/presentation/page/delivery_and_payment_page/tabs/deliver_and_payment_page_delivery_tab/deliver_and_payment_page_delivery_tab.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/text.dart';
@@ -25,6 +27,8 @@ class DeliveryAndPaymentPage extends StatelessWidget {
       showAppbarLittleText: true,
       child: Container(color: Rndm.color),
       title: MyText.deliveryAndPayment,
+      onChange: (i) =>
+          context.read<DeliveryAndPaymentCubit>().fetch(guid: orderGuid),
       tabbarTitle: DeliverAndPaymentTabbarTitle(),
       tabPages: const [DeliverAndPaymentPageDeliveryTab(), IWillTakeTab()],
       tabs: [
