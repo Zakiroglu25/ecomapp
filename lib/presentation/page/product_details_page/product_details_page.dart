@@ -64,7 +64,7 @@ class ProductOptionDetails extends StatelessWidget {
                     MySizedBox.h16,
                     Text(
                       "${product?.title!}",
-                      style: AppTextStyles.sfPro600s17,
+                      style: AppTextStyles.sfPro600s16,
                     ),
                     MySizedBox.h16,
                     ProductDetailProperty(
@@ -132,11 +132,11 @@ class ProductOptionDetails extends StatelessWidget {
               ),
               Text(
                 "19 ₼/ay. ",
-                style: AppTextStyles.sfPro600s17
+                style: AppTextStyles.sfPro600s16
                     .copyWith(fontSize: 17, color: MyColors.black34),
               ),
               Text("Zeytun aptek",
-                  style: AppTextStyles.sfPro600s17
+                  style: AppTextStyles.sfPro600s16
                       .copyWith(fontSize: 17, color: MyColors.mainRED)),
             ],
           ),
@@ -155,7 +155,7 @@ class ProductOptionDetails extends StatelessWidget {
                 Text(
                   "Sebete",
                   style:
-                      AppTextStyles.sfPro600s17.copyWith(color: MyColors.white),
+                      AppTextStyles.sfPro600s16.copyWith(color: MyColors.white),
                 ),
               ],
             ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uikit/presentation/page/delivery_and_payment_page/tabs/deliver_and_payment_page_delivery_tab.dart';
+import 'package:uikit/presentation/page/delivery_and_payment_page/tabs/deliver_and_payment_page_delivery_tab/deliver_and_payment_page_delivery_tab.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/delegate/random.dart';
@@ -10,7 +10,7 @@ import '../../../locator.dart';
 import '../../../utils/constants/paddings.dart';
 import '../../../widgets/custom/sliver_app_bar_delegate.dart';
 import '../../../widgets/main/cuppertabs_wp/cupper_tab_wp.dart';
-import 'tabs/i_will_take_tab.dart';
+import 'tabs/i_will_take_tab/i_will_take_tab.dart';
 import 'widget/deliver_and_payment_tabbar_title.dart';
 
 class DeliveryAndPaymentPage extends StatelessWidget {

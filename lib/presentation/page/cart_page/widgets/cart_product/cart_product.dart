@@ -8,7 +8,7 @@ import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/widgets/general/app_element_box.dart';
 
 import '../../../../../widgets/main/product_item/widgets/product_image.dart';
-import 'widgets/med_photo.dart';
+import '../../../../../widgets/special/med_photo.dart';
 import 'widgets/med_product_details.dart';
 
 class CartProduct extends StatelessWidget {
