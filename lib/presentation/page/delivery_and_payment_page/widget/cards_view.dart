@@ -23,7 +23,7 @@ class CardsView extends StatelessWidget {
       } else if (state is CardSuccess) {
         List<CardData> cardList = state.cardData.list;
         final lastCard = cardList.last;
-        cardList = [];
+        // cardList = [];
         return WidgetOrEmpty(
           value: cardList.isNotEmpty,
           elseChild: AppElementBox(

@@ -97,6 +97,7 @@ class ApiKeys {
 
   //orders
   static const ordersRegister = "$orders/register";
+  static const createPayment = "$orders/create-payment";
 
   //general
   static const localityInfoBigData = '$bigDataCloud/reverse-geocode-client';
@@ -107,9 +108,10 @@ class ApiKeys {
 
   //insurance
   static const getInsurance = "$protected/insurance";
+  static const addInsuranceApi = "$protected/insurance/add";
+
   //change password
   static const changePass = "$account/update-password";
-
 
   static loginBody({
     required String? email,
@@ -299,6 +301,22 @@ class ApiKeys {
       "paymentType": "ONLINE",
       "deliveryType": "COURIER",
       "addressGuid": addressGuid
+    };
+
+    map.removeWhere(
+        (key, value) => key == null || value == null || value == 'null');
+    return map;
+  }
+
+  static createPaymentBody(
+      {required String? orderGuid,
+      required bool? saveCard,
+      required String? cardGuid}) {
+    //
+    final map = {
+      "orderGuid": orderGuid,
+      "saveCard": saveCard,
+      "cardGuid": cardGuid
     };
 
     map.removeWhere(

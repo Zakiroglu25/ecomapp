@@ -11,8 +11,8 @@ import 'package:uikit/widgets/custom/column_with_space.dart';
 import 'package:uikit/widgets/general/app_element_box.dart';
 
 class PaymentTypeSection extends StatelessWidget {
-  const PaymentTypeSection({Key? key}) : super(key: key);
-
+  const PaymentTypeSection({Key? key, this.showCashPayment}) : super(key: key);
+  final bool? showCashPayment;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,7 +26,7 @@ class PaymentTypeSection extends StatelessWidget {
           child: SpacedColumn(
             space: 0,
             padding: Paddings.paddingV5,
-            children: [CardsView()],
+            children: [CardsView(), Dividers.h1grey, SelectablePaymentCash()],
           ),
         ),
       ],

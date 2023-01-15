@@ -28,7 +28,7 @@ class DeliverAndPaymentPageDeliveryTab extends StatelessWidget {
           const DeliveryAddressField(),
           const PaymentDetailsSection(),
           MySizedBox.h24,
-          const PaymentTypeSection(),
+          PaymentTypeSection(),
           MySizedBox.h8,
           SaveCardCheckBox(),
           MySizedBox.h24,
