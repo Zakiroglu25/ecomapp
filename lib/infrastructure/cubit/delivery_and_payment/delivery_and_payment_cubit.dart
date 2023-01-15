@@ -86,6 +86,26 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
 
   bool get isPaymentTypeIncorrect => (!paymentType.hasValue);
 
+  //checkbox card
+  final BehaviorSubject<bool> checkbox = BehaviorSubject<bool>.seeded(false);
+
+  Stream<bool> get checkBoxStream => checkbox.stream;
+
+  updateCheckBox(bool value) {
+    checkbox.sink.add(value);
+    //}
+    // isUserInfoValid();
+  }
+
+  inverseCheckBox() {
+    checkbox.sink.add(!checkbox.value);
+    //}
+    //   isUserInfoValid();
+  }
+
+  bool get isCheckBoxIncorrect =>
+      (!checkbox.hasValue || checkbox.value == null || checkbox.value == false);
+
   @override
   emit(DeliveryAndPaymentState state) {
     if (!isClosed) return super.emit(state);

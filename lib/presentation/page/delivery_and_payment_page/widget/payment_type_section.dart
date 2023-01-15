@@ -26,7 +26,7 @@ class PaymentTypeSection extends StatelessWidget {
           child: SpacedColumn(
             space: 0,
             padding: Paddings.paddingV5,
-            children: [CardsView(), Dividers.h1grey, SelectablePaymentCash()],
+            children: [CardsView()],
           ),
         ),
       ],
