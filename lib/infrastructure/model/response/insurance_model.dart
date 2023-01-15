@@ -21,11 +21,11 @@ class Insurance {
 
   Insurance(
       {this.guid,
-      this.customerGuid,
-      this.phoneNumber,
-      this.policyNumber,
-      this.isValidated,
-      this.createdAt,this.provider});
+        this.customerGuid,
+        this.phoneNumber,
+        this.policyNumber,
+        this.isValidated,
+        this.createdAt,this.provider});
 
   Insurance.fromJson(Map<String, dynamic> json) {
     guid = json['guid'];

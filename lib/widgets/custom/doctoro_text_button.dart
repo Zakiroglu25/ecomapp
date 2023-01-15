@@ -20,17 +20,17 @@ class DoctoroTextButton extends StatelessWidget {
 
   DoctoroTextButton(
       {this.splashColor,
-        this.highlightColor,
-        this.textSize,
-        this.color,
-        this.fontWeight,
-        this.w,
-        this.h,
-        this.textColor,
-        this.onTap,
-        this.borderRadius,
-        this.text,
-        this.borderColor});
+      this.highlightColor,
+      this.textSize,
+      this.color,
+      this.fontWeight,
+      this.w,
+      this.h,
+      this.textColor,
+      this.onTap,
+      this.borderRadius,
+      this.text,
+      this.borderColor});
 
   @override
   Widget build(BuildContext context) {

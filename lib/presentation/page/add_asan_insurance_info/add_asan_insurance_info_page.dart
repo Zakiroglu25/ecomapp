@@ -11,22 +11,22 @@ class AddAsanInsuranceInfo extends StatelessWidget {
   AddAsanInsuranceInfo({Key? key}) : super(key: key);
 
   final List<AppTab> tabs = [
-    // AppTab(
-    //   text: 'ASAN Finans ilə',
-    //   svg: Assets.bag_happy_xx,
-    //   index: 0,
-    // ),
+    AppTab(
+      text: 'ASAN Finans ilə',
+      svg: Assets.bag_happy_xx,
+      index: 0,
+    ),
     AppTab(
       text: 'Sığorta kart nömrəsi ilə',
       svg: Assets.docu,
-      index: 0,
+      index: 1,
     ),
-    // AppTab(
-    //   text: 'Mobiil nömrə ilə',
-    //   svg: Assets.svgCall,
-    //   index: 2,
-    //   color: MyColors.grey158,
-    // ),
+    AppTab(
+      text: 'Mobiil nömrə ilə',
+      svg: Assets.svgCall,
+      index: 2,
+      color: MyColors.grey158,
+    ),
   ];
 
   @override
@@ -35,11 +35,10 @@ class AddAsanInsuranceInfo extends StatelessWidget {
         notification: false,
         user: false,
         isScrollable: true,
-        title: "Sigorta elave et",
         tabPages: [
-          // AsanFinanceTab(),
+          AsanFinanceTab(),
           InsuranceNumTab(),
-          // InsuranceNumTab(),
+          InsuranceNumTab(),
         ],
         tabs: tabs);
   }

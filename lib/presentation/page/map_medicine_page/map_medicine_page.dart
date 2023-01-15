@@ -30,8 +30,9 @@ class _MapPageState extends State<MapPage> {
       CustomInfoWindowController();
   GoogleMapController? mapController;
 
+  LatLng? showLocation;
   Set<Marker> markers = Set();
-  BitmapDescriptor? icon;
+   BitmapDescriptor? icon;
 
   @override
   void initState() {
@@ -43,8 +44,12 @@ class _MapPageState extends State<MapPage> {
     var icon = await BitmapDescriptor.fromAssetImage(
         const ImageConfiguration(devicePixelRatio: 3.3), Assets.marker);
     setState(() {
+      if(icon == null){
         BitmapDescriptor.defaultMarker;
-        this.icon = icon;
+      }else{
+      this.icon = icon;
+
+      }
     });
   }
 
@@ -54,6 +59,7 @@ class _MapPageState extends State<MapPage> {
     super.dispose();
   }
 
+  //
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MapStoreCubit, MapStoreState>(
@@ -61,12 +67,11 @@ class _MapPageState extends State<MapPage> {
         if (state is MapStoreSuccess) {
           List<MapMedicine> maps = state.addressModel;
           maps.forEach((element) {
-            LatLng? showLocation =
-                LatLng(element.addressLat!, element.addressLong!);
+            showLocation = LatLng(element.addressLat!, element.addressLong!);
             markers.add(
               Marker(
                 markerId: MarkerId(element.guid.toString()),
-                position: showLocation, //position of marker
+                position: showLocation!, //position of marker
                 onTap: () {
                   _customInfoWindowController.addInfoWindow!(
                     Column(
@@ -98,11 +103,16 @@ class _MapPageState extends State<MapPage> {
                         ),
                       ],
                     ),
-                    showLocation,
+                    showLocation!,
                   );
                 },
-                // icon: icon!,
-                icon: BitmapDescriptor.defaultMarker,
+                // infoWindow: InfoWindow(
+                //   onTap: () {
+                //     Go.to(context, MapDetailsPage(element));
+                //   },
+                //   title: "Aptekə keçid elə",
+                // ),
+                icon: icon!, //Icon for Marker
               ),
             );
           });
@@ -113,7 +123,7 @@ class _MapPageState extends State<MapPage> {
                 GoogleMap(
                   zoomGesturesEnabled: true,
                   initialCameraPosition: CameraPosition(
-                    target: LatLng(40.39427, 49.880143), //initial position
+                    target: showLocation!, //initial position
                     zoom: 13.0, //initial zoom level
                   ),
                   onTap: (position) {

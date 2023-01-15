@@ -165,17 +165,6 @@ class ApiKeys {
         (key, value) => key == null || value == null || value == 'null');
     return map;
   }
-  static addInsurance({
-    required String? policyNumber,
-    required String? phoneNumber,
-  }) {
-    //
-    final map = {"policyNumber": policyNumber, "phoneNumber": phoneNumber};
-
-    map.removeWhere(
-            (key, value) => key == null || value == null || value == 'null');
-    return map;
-  }
 
   static registrationPersonalBody({
     required String? email,

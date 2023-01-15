@@ -7,10 +7,10 @@ import '../../utils/constants/paddings.dart';
 class AppElementBox extends StatelessWidget {
   const AppElementBox(
       {Key? key,
-        required this.child,
-        this.color = MyColors.grey245,
-        this.padding = Paddings.paddingA12,
-        this.onTap})
+      required this.child,
+      this.color = MyColors.grey245,
+      this.padding = Paddings.paddingA12,
+      this.onTap})
       : super(key: key);
   final Widget child;
   final Color color;

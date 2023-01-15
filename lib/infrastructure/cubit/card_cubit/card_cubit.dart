@@ -14,7 +14,7 @@ class CardCubit extends Cubit<CardState> {
     try {
       final result = await PublicProvider.getCard();
       if (result.isNotNull) {
-        emit(CardSuccess(result.data));
+        emit(CardSuccess(result!));
       } else {
         emit(CardError());
       }

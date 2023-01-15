@@ -40,7 +40,7 @@ class PaymentDetailsSection extends StatelessWidget {
                   space: 20,
                   children: [
                     CartOrdersPrice(details.price),
-                    CartDeliveryPrice(details.totalPrice),
+                    CartDeliveryPrice(details.deliveryPrice),
                     CartTotalPrice(details.totalPrice)
                   ],
                 ),

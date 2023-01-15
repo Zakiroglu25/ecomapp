@@ -98,7 +98,7 @@ class CartOrderProduct extends StatelessWidget {
               ],
             ),
             MySizedBox.h8,
-            COPOrderButton()
+            COPOrderButton(orderGuid: order.guid!)
           ]),
     );
   }
