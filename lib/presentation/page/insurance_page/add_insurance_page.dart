@@ -31,7 +31,6 @@ class AddInsurancePage extends StatelessWidget {
         builder: (context, state) {
           if (state is InsuranceSuccess) {
             var insuranceList = state.InsuranceList;
-
             return Column(
               children: [
                 MySizedBox.h22,

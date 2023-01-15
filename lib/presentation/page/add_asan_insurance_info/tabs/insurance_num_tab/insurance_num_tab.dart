@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uikit/infrastructure/cubit/insurance_cubit/insurance_cubit.dart';
+import 'package:uikit/presentation/page/add_asan_insurance_info/tabs/insurance_num_tab/fields/phone_number_field.dart';
 
+import '../../../../../infrastructure/cubit/insurance_cubit/insurance_state.dart';
 import '../../../../../utils/constants/app_text_styles.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/paddings.dart';
@@ -8,59 +12,50 @@ import '../../../../../utils/constants/sized_box.dart';
 import '../../../../../utils/constants/text.dart';
 import '../../../../../widgets/custom/app_button.dart';
 import '../../../../../widgets/general/app_field.dart';
+import 'fields/policy_num_field.dart';
 
 class InsuranceNumTab extends StatelessWidget {
-  const InsuranceNumTab({Key? key}) : super(key: key);
+  InsuranceNumTab({Key? key}) : super(key: key);
+  TextEditingController? policyController = TextEditingController();
+  TextEditingController? phonecontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: Paddings.paddingH16,
-      child: Column(
-        children: [
-          MySizedBox.h16,
-          AppField(
-            title: "FIN kod",
-            hint: "Daxil edin",
-          ),
-          AppField(
-            title: "Kart nömrəsini daxil edin",
-            hint: "Daxil edin",
-          ),
-          Row(
+      child: BlocProvider(
+        create: (context) => InsuranceCubit(),
+        child: BlocListener<InsuranceCubit, InsuranceState>(
+          listener: (context, state) {
+            if (state is AddInsuranceSuccess) {
+              print("Elave olundu");
+            }else if(state is InsuranceError){
+              print("Elave olunmadi");
+
+            }
+          },
+          child: ListView(
+            shrinkWrap: true,
             children: [
-              SizedBox(
-                height: 18.0.h,
-                width: 18.0.w,
-                child: Checkbox(
-                    side: MaterialStateBorderSide.resolveWith(
-                      (states) => BorderSide(width: 1, color: MyColors.grey188),
-                    ),
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                    value: false,
-                    // color of tick Mark
-                    activeColor: MyColors.darkRED,
-                    onChanged: (v) {}),
+              MySizedBox.h16,
+              PolicyField(
+                controller: policyController!,
               ),
-              MySizedBox.w8,
-              SizedBox(
-                width: 258,
-                child: RichText(
-                  text: TextSpan(
-                      text: MyText.asanInsuranceNumCheckbox,
-                      style: AppTextStyles.sfPro400s14
-                          .copyWith(color: MyColors.grey130, fontSize: 12.sp)),
-                ),
+              PhoneField(
+                controller: phonecontroller!,
               ),
+              Spacer(),
+              AppButton(
+                loading: context.watch<InsuranceCubit>().state is InsuranceLoading,
+                onTap: () {
+                  context.read<InsuranceCubit>().addInsurance(context);
+                },
+                text: MyText.save,
+              ),
+              MySizedBox.h24
             ],
           ),
-          Spacer(),
-          AppButton(
-            text: MyText.save,
-          ),
-          MySizedBox.h24
-        ],
+        ),
       ),
     );
   }
