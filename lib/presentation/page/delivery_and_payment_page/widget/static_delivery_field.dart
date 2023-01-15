@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uikit/presentation/page/delivery_and_payment_page/widget/fields/delivery_and_payment_phone_field.dart';
+import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/widgets/custom/text_title_big.dart';
+import 'package:uikit/widgets/general/small_section.dart';
 
 import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/colors.dart';
@@ -14,22 +19,18 @@ class StaticDeliveryWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Çatdırılma",
-          style: TextStyle(
-              fontSize: 14,
-              color: MyColors.grey158,
-              fontFamily: "San Francisco"),
+        SmallSection(
+          title: MyText.delivery,
         ),
         MySizedBox.h4,
         Container(
           height: 48,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12), color: MyColors.grey245),
-          child: Align(
+          child: const Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.only(left: 16.0),
+                padding: EdgeInsets.only(left: 16.0),
                 child: Text(
                   "1-3 saat ərzində",
                   style: AppTextStyles.sfPro400s16,
@@ -37,6 +38,7 @@ class StaticDeliveryWidget extends StatelessWidget {
               )),
         ),
         MySizedBox.h16,
+        const DeliveryAndPaymentPhoneField(),
       ],
     );
   }

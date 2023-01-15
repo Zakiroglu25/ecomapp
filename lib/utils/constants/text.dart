@@ -34,7 +34,6 @@ class MyText {
   static const String oldPassword = "Köhnə Şifrə";
   static const String enterOldPassword = "Köhnə şifrəni daxil edin";
 
-
   //PrivacyRegister
   static const String checkPrivacyAds =
       "Reklam və kampaniyalarla bağlı, fərdi təkliflərlə bağlı məlumatların əldə edilməsinə etiraz etmirəm";
@@ -104,7 +103,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   //bottomnavigation
   static const String product = "Məhsullar";
   static const String favorite = "Seçilmişlər";
-  static const String aptek = "Apteklər";
+  static const String pharmacies = "Apteklər";
   static const String cart = "Səbət";
   static const String other = "Digər";
 
@@ -144,6 +143,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String toCart = "Səbətə";
   static const String cancel = "Ləğv et";
   static const String addToCart = "Səbətə at";
+  static const String iWillTakeIt = "Özüm götürəcəm";
   static const String addedToCart = "Səbətə atıldı";
   static const String removedFromCart = "Səbətdən çıxarıldı";
   static const String orderRegistered = "Sifariş üçün sorğu göndərlidi";
@@ -156,6 +156,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String orders = "Sifarişlər";
   static const String in_waiting = "Gözləmə";
   static const String makeOrder = "Sifariş et";
+  static const String pharmacy = "Aptek";
+  static const String slideToConfirm = 'Təsdiq etmək üçün sürüşdürün';
   static const String deliveryPrice = "Çatdırılma haqqı";
   static const String cards = "KARTLAR";
   static const String delivery = "Çatdırılma";
@@ -222,8 +224,10 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String demo =
       "Swiss Energy Herbs Hot Balm Forte isidici balzam  75 ml Forte";
   static const String emptyText = "Bura boşdur";
-  static const String emptyWallet = "Ödəniş etdikdə, kartı yadda saxladığınız halda, ödəniş kartı burada görsənəcək";
-  static const String emptyMessenger = "Aptekə mesaj göndərdiyiniz halda, burada messaj görsənəcəkdir";
+  static const String emptyWallet =
+      "Ödəniş etdikdə, kartı yadda saxladığınız halda, ödəniş kartı burada görsənəcək";
+  static const String emptyMessenger =
+      "Aptekə mesaj göndərdiyiniz halda, burada messaj görsənəcəkdir";
   static const String emptyTextDesc =
       "Axtardığınız məhsulu tapmaq üçün, zəhmət olmasa məhsullar bölməsinə keçin";
 

@@ -4,12 +4,16 @@ class OrderDetails {
   num? price;
   num? totalPrice;
   num? totalDiscountedPrice;
+  num? deliveryPrice;
   String? paymentType;
   String? deliveryType;
   String? storeGuid;
   String? storeName;
   String? storePhone;
   String? status;
+  String? attachmentImageUrl;
+  bool? payingForNotCovered;
+  bool? insuranceRequested;
   String? createdAt;
   List<OrderedItems>? orderedItems;
 
@@ -19,11 +23,15 @@ class OrderDetails {
       this.price,
       this.totalPrice,
       this.totalDiscountedPrice,
+      this.deliveryPrice,
       this.paymentType,
       this.deliveryType,
       this.storeGuid,
       this.storeName,
       this.storePhone,
+      this.attachmentImageUrl,
+      this.payingForNotCovered,
+      this.insuranceRequested,
       this.status,
       this.createdAt,
       this.orderedItems});
@@ -31,14 +39,19 @@ class OrderDetails {
   OrderDetails.fromJson(Map<String, dynamic> json) {
     guid = json['guid'];
     orderNumber = json['orderNumber'];
-    price = json['price'];
-    totalPrice = json['totalPrice'];
+    price = json['price'] ?? 0;
+    totalPrice = json['totalPrice'] ?? 0;
     totalDiscountedPrice = json['totalDiscountedPrice'];
+    deliveryPrice = json['deliveryPrice'] ?? totalPrice! - price!;
     paymentType = json['paymentType'];
     deliveryType = json['deliveryType'];
     storeGuid = json['storeGuid'];
     storeName = json['storeName'];
     storePhone = json['storePhone'];
+    attachmentImageUrl = json['attachmentImageUrl'];
+    payingForNotCovered = json['payingForNotCovered'];
+    insuranceRequested = json['insuranceRequested'];
+
     status = json['status'];
     createdAt = json['createdAt'];
     if (json['orderedItems'] != null) {
@@ -58,8 +71,12 @@ class OrderDetails {
     data['totalDiscountedPrice'] = this.totalDiscountedPrice;
     data['paymentType'] = this.paymentType;
     data['deliveryType'] = this.deliveryType;
+    data['deliveryPrice'] = this.deliveryPrice;
     data['storeGuid'] = this.storeGuid;
     data['storeName'] = this.storeName;
+    data['attachmentImageUrl'] = this.attachmentImageUrl;
+    data['payingForNotCovered'] = this.payingForNotCovered;
+    data['insuranceRequested'] = this.insuranceRequested;
     data['storePhone'] = this.storePhone;
     data['status'] = this.status;
     data['createdAt'] = this.createdAt;
@@ -67,6 +84,11 @@ class OrderDetails {
       data['orderedItems'] = this.orderedItems!.map((v) => v.toJson()).toList();
     }
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'OrderDetails{guid: $guid, orderNumber: $orderNumber, deliveryPrice: $deliveryPrice, price: $price, totalPrice: $totalPrice, totalDiscountedPrice: $totalDiscountedPrice, paymentType: $paymentType, deliveryType: $deliveryType, storeGuid: $storeGuid, storeName: $storeName, storePhone: $storePhone, status: $status, attachmentImageUrl: $attachmentImageUrl, payingForNotCovered: $payingForNotCovered, insuranceRequested: $insuranceRequested, createdAt: $createdAt, orderedItems: $orderedItems}';
   }
 }
 
@@ -81,6 +103,7 @@ class OrderedItems {
   List<String>? images;
   String? rejectReason;
   bool? isCoveredByInsurance;
+  bool? isIncludedInOrder;
 
   OrderedItems(
       {this.productOptionGuid,
@@ -92,6 +115,7 @@ class OrderedItems {
       this.isRejected,
       this.images,
       this.rejectReason,
+      this.isIncludedInOrder,
       this.isCoveredByInsurance});
 
   OrderedItems.fromJson(Map<String, dynamic> json) {
@@ -101,6 +125,7 @@ class OrderedItems {
     price = json['price'];
     amount = json['amount'];
     discountedPrice = json['discountedPrice'];
+    isIncludedInOrder = json['isIncludedInOrder'];
     isRejected = json['isRejected'];
     images = json['images'].cast<String>();
     rejectReason = json['rejectReason'];
@@ -117,6 +142,7 @@ class OrderedItems {
     data['discountedPrice'] = this.discountedPrice;
     data['isRejected'] = this.isRejected;
     data['images'] = this.images;
+    data['isIncludedInOrder'] = this.isIncludedInOrder;
     data['rejectReason'] = this.rejectReason;
     data['isCoveredByInsurance'] = this.isCoveredByInsurance;
     return data;
@@ -124,6 +150,6 @@ class OrderedItems {
 
   @override
   String toString() {
-    return 'OrderedItems{productOptionGuid: $productOptionGuid, title: $title, slug: $slug, price: $price, amount: $amount, discountedPrice: $discountedPrice, isRejected: $isRejected, images: $images, rejectReason: $rejectReason, isCoveredByInsurance: $isCoveredByInsurance}';
+    return 'OrderedItems{productOptionGuid: $productOptionGuid, title: $title,  isIncludedInOrder: $isIncludedInOrder, slug: $slug, price: $price, amount: $amount, discountedPrice: $discountedPrice, isRejected: $isRejected, images: $images, rejectReason: $rejectReason, isCoveredByInsurance: $isCoveredByInsurance}';
   }
 }

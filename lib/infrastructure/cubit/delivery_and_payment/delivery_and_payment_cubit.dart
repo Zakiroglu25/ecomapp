@@ -27,17 +27,15 @@ import 'delivery_and_payment_state.dart';
 class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
   DeliveryAndPaymentCubit() : super(DeliveryAndPaymentInitial());
 
-  fetch([bool loading = true]) async {
+  fetch({bool loading = true, required String guid}) async {
     // updateProducts([]);
     if (loading) {
       emit(DeliveryAndPaymentInProgress());
     }
     try {
-      final result = await CartProvider.getCartItems();
-      if (result.statusCode.isSuccess) {
-        final cartItems = result.data;
-        // updateProducts(cartItems);
-        emit(DeliveryAndPaymentSuccess());
+      final result = await OrdersProvider.orderDetails(guid: guid);
+      if (result.isNotNull) {
+        emit(DeliveryAndPaymentSuccess(orderDetails: result!));
       } else {
         emit(DeliveryAndPaymentError());
       }
@@ -57,7 +55,7 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
       final result = await OrdersProvider.orderRegister(addressGuid: null);
       if (result.statusCode.isSuccess) {
         Snack.positive(message: MyText.orderRegistered);
-        fetch(false);
+        //fetch(false);
       } else {
         emit(DeliveryAndPaymentError());
       }
