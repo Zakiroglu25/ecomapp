@@ -4,7 +4,7 @@ import 'package:uikit/infrastructure/cubit/order_info/index.dart';
 import 'package:uikit/presentation/page/cart_order_details_page/widgets/delivery_call_and_messenger_b_uttons.dart';
 import 'package:uikit/presentation/page/cart_order_details_page/widgets/delivery_med_count.dart';
 import 'package:uikit/presentation/page/cart_order_details_page/widgets/delivery_order_date.dart';
-import 'package:uikit/presentation/page/cart_order_details_page/widgets/delivery_recipe.dart';
+import 'package:uikit/presentation/page/cart_order_details_page/widgets/delivery_attachment.dart';
 import 'package:uikit/presentation/page/cart_order_details_page/widgets/delivery_total_price.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
@@ -40,7 +40,7 @@ class DeliveryHeaders extends StatelessWidget {
                           DeliveryMedCount(count: orderedItems!.length),
                           DeliveryTotalPrice(price: order.totalPrice),
                           DeliveryOrderDate(date: order.createdAt),
-                          DeliveryRecipe(),
+                          DeliveryAttachment(image: order.attachmentImageUrl),
                           MySizedBox.h8,
                           DeliveryCallAndMessengerButtons(
                               storeGuid: order.storeGuid,

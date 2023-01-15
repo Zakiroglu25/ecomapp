@@ -20,6 +20,7 @@ class AppField extends StatelessWidget {
   final String? infoMessage;
   final String? initialValue;
   final int? maxLenght;
+  final Color? fillColor;
   final int? maxLines;
   final double? topMargin;
   final TextCapitalization? textCapitalization;
@@ -46,6 +47,7 @@ class AppField extends StatelessWidget {
     this.maxLines,
     this.obscure,
     this.readOnly,
+    this.fillColor = MyColors.grey245,
     this.onFieldSubmitted,
     this.upperCase,
     this.formatters,
@@ -130,7 +132,7 @@ class AppField extends StatelessWidget {
                     suffixText: suffixText ?? "",
                     filled: true,
                     prefixIcon: prefixIcon,
-                    fillColor: MyColors.grey245,
+                    fillColor: fillColor,
                     contentPadding: EdgeInsets.only(
                         left: 14.0,
                         bottom: 6.0,

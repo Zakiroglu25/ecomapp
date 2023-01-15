@@ -1,32 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:uikit/infrastructure/cubit/card_cubit/card_cubit.dart';
-import 'package:uikit/infrastructure/cubit/card_cubit/card_state.dart';
-import 'package:uikit/utils/constants/app_text_styles.dart';
-import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/infrastructure/cubit/delivery_and_payment/delivery_and_payment_cubit.dart';
+import 'package:uikit/presentation/page/delivery_and_payment_page/tabs/deliver_and_payment_page_delivery_tab/deliver_and_payment_page_delivery_tab.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/delegate/random.dart';
-import 'package:uikit/utils/screen/widget_or_empty.dart';
 import 'package:uikit/widgets/custom/app_tab.dart';
-import 'package:uikit/widgets/custom/column_with_space.dart';
-import 'package:uikit/widgets/custom/text_title_big.dart';
-import 'package:uikit/widgets/general/app_element_box.dart';
-import 'package:uikit/widgets/general/app_field.dart';
-import 'package:uikit/widgets/general/app_loading.dart';
 
 import '../../../infrastructure/services/hive_service.dart';
 import '../../../locator.dart';
-import '../../../utils/constants/paddings.dart';
-import '../../../widgets/custom/app_button.dart';
-import '../../../widgets/custom/sliver_app_bar_delegate.dart';
 import '../../../widgets/main/cuppertabs_wp/cupper_tab_wp.dart';
-import 'widget/static_delivery_field.dart';
+import 'tabs/i_will_take_tab/i_will_take_tab.dart';
+import 'widget/deliver_and_payment_tabbar_title.dart';
 
 class DeliveryAndPaymentPage extends StatelessWidget {
-  const DeliveryAndPaymentPage({Key? key}) : super(key: key);
-
-  HiveService get _prefs => locator<HiveService>();
+  const DeliveryAndPaymentPage({Key? key, required this.orderGuid})
+      : super(key: key);
+  final String orderGuid;
 
   @override
   Widget build(BuildContext context) {
@@ -36,124 +25,13 @@ class DeliveryAndPaymentPage extends StatelessWidget {
       showAppbarLittleText: true,
       child: Container(color: Rndm.color),
       title: MyText.deliveryAndPayment,
-      tabbarTitle: SliverAppDelegate(
-          child: Padding(
-            padding: Paddings.paddingH16 + Paddings.paddingV8,
-            child: const Text(
-              MyText.chooseDeliveryType,
-              style: AppTextStyles.sfPro600s16,
-            ),
-          ),
-          maxExtent_: 36),
-      tabPages: [
-        ///tab1
-        Container(
-          padding: Paddings.paddingA16,
-          child: ListView(children: [
-            const StaticDeliveryWidget(),
-            AppField(
-              title: MyText.contactNumber,
-              initialValue: _prefs.user.phone,
-              hint: MyText.contactNumber,
-            ),
-            BigSection(
-              title: MyText.address,
-              size: 16.sp,
-            ),
-            MySizedBox.h24,
-            AppField(
-              title: MyText.address,
-            ),
-            AppField(
-              title: MyText.note,
-            ),
-            BigSection(
-              title: MyText.paymentMetod,
-              size: 16.sp,
-            ),
-            MySizedBox.h24,
-            AppElementBox(
-              padding: Paddings.paddingA20,
-              child: SpacedColumn(
-                space: 20,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        MyText.orders,
-                        style: AppTextStyles.sfPro400s16,
-                      ),
-                      Text("142.20 ₼"),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        MyText.deliveryPrice,
-                        style: AppTextStyles.sfPro400s16,
-                      ),
-                      Text("16.10 ₼"),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Expanded(
-                        flex: 2,
-                        child: Text(
-                          MyText.total,
-                          style: AppTextStyles.sfPro400s16,
-                        ),
-                      ),
-                      Expanded(
-                        child: AppButton.black(
-                          h: 36,
-                          fitText: true,
-                          text: '1 223.20  ₼',
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            MySizedBox.h24,
-            BigSection(
-              title: MyText.cards,
-              size: 16.sp,
-            ),
-            MySizedBox.h24,
-            BlocBuilder<CardCubit, CardState>(builder: (_, state) {
-              if (state is CardInProgress) {
-                return const AppLoading();
-              } else if (state is CardSuccess) {
-                final cardList = state.cardList.data;
-                return WidgetOrEmpty(
-                  value: cardList.isNotEmpty,
-                  child: AppElementBox(
-                    child: Text('${cardList.last.pan}'),
-                  ),
-                );
-              } else {
-                return const SizedBox.shrink();
-              }
-            })
-          ]),
-        ),
-
-        ///tab2
-        const Text("Salam")
-      ],
-      tabs: [
-        AppTab(
-          text: "Çatdırılma",
-        ),
-        AppTab(
-          text: "Özüm götürəcəm",
-        ),
-      ],
+      onChange: (i) {
+        context.read<DeliveryAndPaymentCubit>().fetch(guid: orderGuid);
+        context.read<DeliveryAndPaymentCubit>().updateTab(index: i);
+      },
+      tabbarTitle: DeliverAndPaymentTabbarTitle(),
+      tabPages: const [DeliverAndPaymentPageDeliveryTab(), IWillTakeTab()],
+      tabs: [AppTab(text: MyText.delivery), AppTab(text: MyText.iWillTakeIt)],
     );
   }
 }

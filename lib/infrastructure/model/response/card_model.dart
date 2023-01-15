@@ -1,11 +1,11 @@
 class CardModel {
-  List<CardData> data = [];
+  List<CardData> list = [];
 
-  CardModel(this.data);
+  CardModel(this.list);
 
   CardModel.fromJson(List json) {
     for (int i = 0; i < json.length; i++) {
-      data.add(CardData.fromJson(json[i]));
+      list.add(CardData.fromJson(json[i]));
     }
   }
 }

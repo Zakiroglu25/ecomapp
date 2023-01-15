@@ -60,6 +60,7 @@ class Assets {
   ///otherpage
   static const String location3x = "assets/png/location.png";
   static const String pngMessenger3x = "assets/png/messenger.png";
+  static const String pngChat = "assets/png/chat.png";
   static const String pngPaymentMethod3x = "assets/png/payment.png";
   static const String pngInsurance3x = "assets/png/insurance.png";
   static const String pngLikeMedicine = "assets/png/likemedicine.png";
@@ -70,6 +71,7 @@ class Assets {
   static const String pngHomeAddress = "assets/png/home.png";
   static const String pngEmptyCart = "assets/png/empty_cart.png";
   static const String pngLocationIcon = "assets/png/location_icon.png";
+  static const String pngWallet = "assets/png/wallet.png";
 
   ///product page
   static const String pngVitamin3x = "assets/png/vitamin.png";
@@ -108,8 +110,11 @@ class Assets {
   static const String marker = "assets/png/marker.png";
   static const String notifyheart = "assets/png/notifyheart.png";
 
-  static const String masterCard = "assets/png/mastercard.png";
-  static const String visa = "assets/png/visa.png";
+  static const String pngMasterCard = "assets/png/mastercard.png";
+  static const String pngMaster = "assets/png/master.png";
+  static const String pngCash = "assets/png/cash.png";
+  static const String pngVisa = "assets/png/visa.png";
+  static const String pngTempCard = "assets/png/card_temp.png";
   static const String pngAzFlag = "assets/png/azflag.png";
 
   //other

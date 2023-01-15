@@ -63,14 +63,30 @@ class AccountProvider {
     StatusDynamic<MyUser> statusDynamic = StatusDynamic<MyUser>();
     var api = ApiKeys.changeNumber;
     final data = ApiKeys.changePhoneBody(phone: phone, password: password);
-    print(data);
     final response = await dioAuth.dio.post(api, data: data);
-    print(response.statusMessage);
-    print(response.statusCode);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
     } else {
       eeee("changePhone bad url :$api, response: ${response}");
+    }
+    return statusDynamic;
+  }
+
+//change password
+  static Future<StatusDynamic?> changePassword({
+    required String? oldPass,
+    required String? newPass,
+  }) async {
+    StatusDynamic<MyUser> statusDynamic = StatusDynamic<MyUser>();
+    var api = ApiKeys.changePass;
+    final data = ApiKeys.changePassword(oldPass: oldPass, newPass: newPass);
+    iiii(api);
+    iiii(data.toString());
+    final response = await dioAuth.dio.put(api, data: data);
+    statusDynamic.statusCode = response.statusCode;
+    if (response.statusCode == ResultKey.successCode) {
+    } else {
+      eeee("changePassword bad url :$api, response: ${response}");
     }
     return statusDynamic;
   }

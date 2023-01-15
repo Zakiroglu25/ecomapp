@@ -29,6 +29,10 @@ class MyText {
   static const String phone = "Mobil nömrə";
   static const String phone_hint = "+994 (__) ___-__-__";
   static const String password = "Şifrə";
+  static const String newPassword = "Yeni Şifrə";
+  static const String enterNewPassword = "Yeni şifrəni daxil edin";
+  static const String oldPassword = "Köhnə Şifrə";
+  static const String enterOldPassword = "Köhnə şifrəni daxil edin";
 
   //PrivacyRegister
   static const String checkPrivacyAds =
@@ -99,7 +103,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   //bottomnavigation
   static const String product = "Məhsullar";
   static const String favorite = "Seçilmişlər";
-  static const String aptek = "Apteklər";
+  static const String pharmacies = "Apteklər";
   static const String cart = "Səbət";
   static const String other = "Digər";
 
@@ -121,6 +125,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String logoutSub = "Təsdiqlədikdən sonra çıxış edəcəksiniz";
 
   static const String paymentMetod = "Ödəniş üsulu";
+  static const String saveCard = "Kartı yadda saxla";
+  static const String payment = "Ödəniş";
   static const String messenger = "Messenger";
   static const String insurance = "Sığorta";
   static const String likeMedicine = "Öxşar dərmanlar";
@@ -138,6 +144,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String toCart = "Səbətə";
   static const String cancel = "Ləğv et";
   static const String addToCart = "Səbətə at";
+  static const String iWillTakeIt = "Özüm götürəcəm";
   static const String addedToCart = "Səbətə atıldı";
   static const String removedFromCart = "Səbətdən çıxarıldı";
   static const String orderRegistered = "Sifariş üçün sorğu göndərlidi";
@@ -150,8 +157,12 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String orders = "Sifarişlər";
   static const String in_waiting = "Gözləmə";
   static const String makeOrder = "Sifariş et";
+  static const String pharmacy = "Aptek";
+  static const String slideToConfirm = 'Təsdiq etmək üçün sürüşdürün';
   static const String deliveryPrice = "Çatdırılma haqqı";
   static const String cards = "KARTLAR";
+  static const String addNewCard = "Yeni kart əlavə et";
+  static const String savedcardNotFound = "Əlavə edilmiş kart tapılmadı";
   static const String delivery = "Çatdırılma";
   static const String deliveryAddresses = "Çatdırılma ünvanları";
   static const String insuranceInfo =
@@ -168,6 +179,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String keepInTouch = "Əlaqə saxla️";
   static final String keepInTouchX = keepInTouch.withX("☎");
   static const String orderDelivery = "Çatdırılma sifariş et";
+  static const String cash = "Nağd";
+  static const String cashPayment = "Nağd ödəniş";
   static final String orderDeliveryX = orderDelivery.withX("🚚");
   static const String call = "Zəng et";
   static const String insuranceCover = "Sığorta qarşılayır";
@@ -214,6 +227,10 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String demo =
       "Swiss Energy Herbs Hot Balm Forte isidici balzam  75 ml Forte";
   static const String emptyText = "Bura boşdur";
+  static const String emptyWallet =
+      "Ödəniş etdikdə, kartı yadda saxladığınız halda, ödəniş kartı burada görsənəcək";
+  static const String emptyMessenger =
+      "Aptekə mesaj göndərdiyiniz halda, burada messaj görsənəcəkdir";
   static const String emptyTextDesc =
       "Axtardığınız məhsulu tapmaq üçün, zəhmət olmasa məhsullar bölməsinə keçin";
 

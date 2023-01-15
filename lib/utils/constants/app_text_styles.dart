@@ -1,18 +1,6 @@
 import 'package:flutter/widgets.dart';
 
 abstract class AppTextStyles {
-  static const sfPro600 = TextStyle(
-      fontFamily: 'SF Pro Display Semibold',
-      fontWeight: FontWeight.w600,
-      fontStyle: FontStyle.normal,
-      letterSpacing: 0.3);
-  static const sfPro600s16 = TextStyle(
-      fontFamily: 'SF Pro Display Semibold',
-      fontWeight: FontWeight.w600,
-      fontStyle: FontStyle.normal,
-      fontSize: 16,
-      letterSpacing: 0.3);
-
   static const sfPro700 = TextStyle(
       fontFamily: 'SF Pro Display Semibold',
       fontWeight: FontWeight.w700,
@@ -56,12 +44,24 @@ abstract class AppTextStyles {
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.normal,
       letterSpacing: 0.3);
-  static const sfPro600s17 = TextStyle(
-      fontFamily: 'sf',
-      fontSize: 17,
+  static const sfPro600 = TextStyle(
+      fontFamily: 'SF Pro Display Semibold',
       fontWeight: FontWeight.w600,
       fontStyle: FontStyle.normal,
       letterSpacing: 0.3);
+  static const sfPro600s16 = TextStyle(
+      fontFamily: 'SF Pro Display Semibold',
+      fontWeight: FontWeight.w600,
+      fontStyle: FontStyle.normal,
+      fontSize: 16,
+      letterSpacing: 0.3);
+  static const sfPro600s24 = TextStyle(
+      fontFamily: 'sf',
+      fontSize: 24,
+      fontWeight: FontWeight.w600,
+      fontStyle: FontStyle.normal,
+      letterSpacing: 0.3);
+
   static const sfPro600s30 = TextStyle(
       fontFamily: 'sf',
       fontSize: 30,

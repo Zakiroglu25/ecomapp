@@ -38,9 +38,9 @@ class AdsCheckbox extends StatelessWidget {
                       value: snapshot.data ?? false,
                       // color of tick Mark
                       activeColor: MyColors.darkRED,
-                      onChanged: (v) {
+                      onChanged: (value) {
                         BlocProvider.of<RegisterCubit>(context)
-                            .updateCheckBoxAds(v!);
+                            .updateCheckBoxAds(value!);
                       }),
                 ),
                 MySizedBox.w8,
