@@ -103,7 +103,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   //bottomnavigation
   static const String product = "Məhsullar";
   static const String favorite = "Seçilmişlər";
-  static const String aptek = "Apteklər";
+  static const String pharmacies = "Apteklər";
   static const String cart = "Səbət";
   static const String other = "Digər";
 
@@ -143,6 +143,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String toCart = "Səbətə";
   static const String cancel = "Ləğv et";
   static const String addToCart = "Səbətə at";
+  static const String iWillTakeIt = "Özüm götürəcəm";
   static const String addedToCart = "Səbətə atıldı";
   static const String removedFromCart = "Səbətdən çıxarıldı";
   static const String orderRegistered = "Sifariş üçün sorğu göndərlidi";
@@ -155,7 +156,10 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String orders = "Sifarişlər";
   static const String in_waiting = "Gözləmə";
   static const String makeOrder = "Sifariş et";
+  static const String pharmacy = "Aptek";
+  static const String slideToConfirm = 'Təsdiq etmək üçün sürüşdürün';
   static const String deliveryPrice = "Çatdırılma haqqı";
+  static const String cards = "KARTLAR";
   static const String delivery = "Çatdırılma";
   static const String deliveryAddresses = "Çatdırılma ünvanları";
   static const String insuranceInfo =
@@ -205,6 +209,10 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String webSite = "Veb sayta keç";
   static const String webSiteinfo = "PAŞA Sığorta ilə bağlı məlumatlar saytda";
 
+  //"Ödəniş və çatdırılma"
+
+  static const String deliveryAndPayment = "Ödəniş və çatdırılma";
+
   //product
   static const String manufacturedIn = 'İstehsal olduğu ölkə';
   static const String productCode = 'Məhsulun kodu';
@@ -241,10 +249,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   //contact
   static const String contactDesc =
       "Hörmətli müştəri, hər hansı bir problemlə raslaşdıqda qaynar xətt nömrəmiz müraciyyət edə bilərsiniz  *8833";
-
 //notification
   static const String notification = "Bildirişlər";
-
   //user
   static const String userInfo = "Şəxs haqqında haqqında məlumatlar";
   static const String name = "Ad";
@@ -290,16 +296,12 @@ In addition to laying out rules for proper use of your app, you should also clea
 
   //faq
   static const String faq = 'Sual-cavab';
-
   //card
   static const String yes = 'Bəli';
   static const String no = 'Xeyr';
   static const String deleteCardInfo = 'Kart məlumatlarınız, silinsin?';
-
   //notification
   static const String emptyNotification = 'Bildiriş yoxdur';
   static const String emptyNotiDetail =
       'Tətbiq daxilində bildiriş gəldikdə, burada əks olunacaqdır. Hal-hazırda heç bir bildiriş, mövcud deyil';
-  static const String cards = "KARTLAR";
-  static const String deliveryAndPayment = "Ödəniş və çatdırılma";
 }

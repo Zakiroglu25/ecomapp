@@ -52,7 +52,7 @@ class _LandingPageState extends State<LandingPage> {
             buildBottomNavigationBarItem(
                 icon: Assets.svgFav, label: MyText.favorite),
             buildBottomNavigationBarItem(
-                icon: Assets.svgAptek, label: MyText.aptek),
+                icon: Assets.svgAptek, label: MyText.pharmacies),
             buildBottomNavigationBarItem(
                 icon: Assets.svgCart, label: MyText.cart),
             buildBottomNavigationBarItem(
