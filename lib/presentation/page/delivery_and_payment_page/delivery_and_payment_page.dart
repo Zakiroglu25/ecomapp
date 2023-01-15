@@ -17,9 +17,6 @@ class DeliveryAndPaymentPage extends StatelessWidget {
   const DeliveryAndPaymentPage({Key? key, required this.orderGuid})
       : super(key: key);
   final String orderGuid;
-
-  HiveService get _prefs => locator<HiveService>();
-
   @override
   Widget build(BuildContext context) {
     return CupperTabWP(

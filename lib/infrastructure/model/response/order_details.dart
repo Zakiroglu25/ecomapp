@@ -54,8 +54,8 @@ class OrderDetails {
 
     status = json['status'];
     createdAt = json['createdAt'];
+    orderedItems = <OrderedItems>[];
     if (json['orderedItems'] != null) {
-      orderedItems = <OrderedItems>[];
       json['orderedItems'].forEach((v) {
         orderedItems!.add(new OrderedItems.fromJson(v));
       });
