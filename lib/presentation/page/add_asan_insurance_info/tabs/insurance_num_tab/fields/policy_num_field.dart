@@ -22,6 +22,7 @@ class PolicyField extends StatelessWidget {
         return AppField(
           title: "Sığorta nömrəsi",
           maxLines: 1,
+
           hint: "Sığorta nömrəsini daxil edin",
           upperCase: true,
           controller: controller,
