@@ -7,9 +7,12 @@ import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
 
 import '../../../infrastructure/cubit/insurance_cubit/insurance_cubit.dart';
 import '../../../utils/constants/assets.dart';
+import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../widgets/custom/app_button.dart';
 import '../../../widgets/general/app_loading.dart';
+import '../../../widgets/general/empty_widget.dart';
+import '../../../widgets/general/list_or_empty.dart';
 import '../add_asan_insurance_info/add_asan_insurance_info_page.dart';
 import 'widget/slidable_item_widget.dart';
 
@@ -28,28 +31,36 @@ class AddInsurancePage extends StatelessWidget {
         builder: (context, state) {
           if (state is InsuranceSuccess) {
             var insuranceList = state.InsuranceList;
+
             return Column(
               children: [
                 MySizedBox.h22,
-                ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: insuranceList.data.length,
-                    itemBuilder: (context, index) {
-                      return SlidableWidget(
-                        title: insuranceList.data[index].provider!.title,
-                        subTitle: insuranceList.data[index].provider!.description,
-                        insuranceIcon: Assets.pasha,
-                        status: insuranceList.data[index].isValidated,
-                        image: insuranceList.data[index].provider!.imageUrl,
-                      );
-                    }),
+                ListOrEmpty(
+                  list: insuranceList.data,
+                  image: Assets.pngHeart,
+                  text: MyText.emptyText,
+                  description: MyText.emptyTextDesc,
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: insuranceList.data.length,
+                      itemBuilder: (context, index) {
+                        return SlidableWidget(
+                          title: insuranceList.data[index].provider!.title,
+                          subTitle:
+                              insuranceList.data[index].provider!.description,
+                          insuranceIcon: Assets.pasha,
+                          status: insuranceList.data[index].isValidated,
+                          image: insuranceList.data[index].provider!.imageUrl,
+                        );
+                      }),
+                ),
                 MySizedBox.h70,
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: AppButton(
                     text: "Sığorta əlavə et",
                     onTap: () {
-                      Go.to(context, Pager.addInsuranceInfo);
+                      Go.to(context, Pager.addingInsurance);
                     },
                   ),
                 )
