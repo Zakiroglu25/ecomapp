@@ -57,9 +57,12 @@ class SlidableWidget extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "$title",
-                    style: AppTextStyles.sfPro600s16,
+                  SizedBox(
+                    width: 140.w,
+                    child: Text(
+                      "$title",
+                      style: AppTextStyles.sfPro600s16,
+                    ),
                   ),
                   MySizedBox.h4,
                   SizedBox(
@@ -70,30 +73,16 @@ class SlidableWidget extends StatelessWidget {
                 ],
               ),
               Spacer(),
-              if (status == true)
                 Container(
-                  width: 82.w,
-                  height: 32.h,
+                  height: 32,
+                  padding: Paddings.paddingH8 + Paddings.paddingV4,
                   decoration: BoxDecoration(
-                    color: MyColors.mainGreen85,
+                    color: status == true ? MyColors.mainGreen85:MyColors.darkRED,
                     borderRadius: BorderRadius.circular(24),
                   ),
                   child: Center(
-                      child: Text("Aktivdir",
-                          style: AppTextStyles.sfPro400s14
-                              .copyWith(color: MyColors.white))),
-                ),
-              if (status == false)
-                Container(
-                  width: 82.w,
-                  height: 32.h,
-                  decoration: BoxDecoration(
-                    color: MyColors.darkRED,
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: Center(
-                      child: Text("Tapılmadı",
-                          style: AppTextStyles.sfPro400s14
+                      child: Text(status == true ? "Aktivdir" : "Tapılmadı",
+                          style: AppTextStyles.sfPro400s12
                               .copyWith(color: MyColors.white))),
                 ),
             ],

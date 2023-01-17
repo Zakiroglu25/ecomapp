@@ -6,6 +6,7 @@ import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
 import '../../../infrastructure/cubit/insurance_cubit/insurance_cubit.dart';
 import '../../../infrastructure/cubit/insurance_cubit/insurance_state.dart';
 import '../../../utils/constants/assets.dart';
+import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/delegate/pager.dart';
@@ -35,19 +36,28 @@ class AddInsurancePage extends StatelessWidget {
             return Column(
               children: [
                 MySizedBox.h22,
-                ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: insuranceList.data.length,
-                    itemBuilder: (context, index) {
-                      return SlidableWidget(
-                        title: insuranceList.data[index].provider!.title,
-                        subTitle:
-                            insuranceList.data[index].provider!.description,
-                        insuranceIcon: Assets.pasha,
-                        status: insuranceList.data[index].isValidated,
-                        image: insuranceList.data[index].provider!.imageUrl,
-                      );
-                    }),
+                Container(
+                  height: MediaQuery.of(context).size.height / 2,
+                  child: ListOrEmpty(
+                    text: MyText.emptyText,
+                    image: Assets.pngInsurance3x,
+                    color: MyColors.green,
+                    list: insuranceList.data,
+                    child: ListView.builder(
+                        shrinkWrap: false,
+                        itemCount: insuranceList.data.length,
+                        itemBuilder: (context, index) {
+                          return SlidableWidget(
+                            title: insuranceList.data[index].provider!.title,
+                            subTitle:
+                                insuranceList.data[index].provider!.description,
+                            insuranceIcon: Assets.pasha,
+                            status: insuranceList.data[index].isValidated,
+                            image: insuranceList.data[index].provider!.imageUrl,
+                          );
+                        }),
+                  ),
+                ),
                 MySizedBox.h70,
                 Padding(
                   padding: const EdgeInsets.all(16.0),
