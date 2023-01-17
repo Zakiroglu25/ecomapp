@@ -249,8 +249,10 @@ In addition to laying out rules for proper use of your app, you should also clea
   //contact
   static const String contactDesc =
       "Hörmətli müştəri, hər hansı bir problemlə raslaşdıqda qaynar xətt nömrəmiz müraciyyət edə bilərsiniz  *8833";
+
 //notification
   static const String notification = "Bildirişlər";
+
   //user
   static const String userInfo = "Şəxs haqqında haqqında məlumatlar";
   static const String name = "Ad";
@@ -296,12 +298,18 @@ In addition to laying out rules for proper use of your app, you should also clea
 
   //faq
   static const String faq = 'Sual-cavab';
+
   //card
   static const String yes = 'Bəli';
   static const String no = 'Xeyr';
   static const String deleteCardInfo = 'Kart məlumatlarınız, silinsin?';
+
   //notification
   static const String emptyNotification = 'Bildiriş yoxdur';
   static const String emptyNotiDetail =
       'Tətbiq daxilində bildiriş gəldikdə, burada əks olunacaqdır. Hal-hazırda heç bir bildiriş, mövcud deyil';
+
+  //insurance
+  static const String insuranceNum = 'Sığorta nömrəsi';
+  static const String enterInsuranceNum = 'Sığorta nömrəsini daxil edin';
 }
