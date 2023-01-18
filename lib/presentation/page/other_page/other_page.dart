@@ -40,7 +40,7 @@ class OtherPage extends StatelessWidget {
                   w: 167.w,
                   imageUrl: Assets.pngChat,
                   title: MyText.messenger,
-                  desc: MyText.demoSubtitle,
+                  desc: MyText.chat,
                   onTap: () {
                     Go.to(context, MessengerPage());
                   },
@@ -52,7 +52,7 @@ class OtherPage extends StatelessWidget {
                   w: 167.w,
                   imageUrl: Assets.location3x,
                   title: MyText.myAddresses,
-                  desc: MyText.demoSubtitle,
+                  desc: MyText.addressOther,
                 ),
               ],
             ),
@@ -69,7 +69,7 @@ class OtherPage extends StatelessWidget {
                   w: 167.w,
                   imageUrl: Assets.pngPaymentMethod3x,
                   title: MyText.paymentMetod,
-                  desc: MyText.demoSubtitle,
+                  desc: MyText.paymentOther,
                 ),
                 ProductAndOtherWidget(
                   onTap: () {
@@ -80,7 +80,7 @@ class OtherPage extends StatelessWidget {
                   w: 167.w,
                   imageUrl: Assets.pngInsurance3x,
                   title: MyText.insurance,
-                  desc: MyText.demoSubtitle,
+                  desc: MyText.insuranceOther,
                 ),
               ],
             ),
@@ -98,16 +98,8 @@ class OtherPage extends StatelessWidget {
                   w: 167.w,
                   imageUrl: Assets.pngSetting,
                   title: MyText.settings,
-                  desc: MyText.demoSubtitle,
+                  desc: MyText.settingsOther,
                 ),
-                // ProductAndOtherWidget(
-                //   color: MyColors.green77,
-                //   h: 167.h,
-                //   w: 167.w,
-                //   imageUrl: Assets.pngLikeMedicine,
-                //   title: MyText.likeMedicine,
-                //   desc: MyText.demoSubtitle,
-                // ),
                 ProductAndOtherWidget(
                   onTap: () {
                     Go.to(context, Pager.contactPage);
@@ -117,7 +109,7 @@ class OtherPage extends StatelessWidget {
                   w: 167.w,
                   imageUrl: Assets.pngContact3x,
                   title: MyText.contact,
-                  desc: MyText.demoSubtitle,
+                  desc: MyText.contactOther,
                 ),
               ],
             ),
@@ -132,19 +124,8 @@ class OtherPage extends StatelessWidget {
                   w: 167.w,
                   imageUrl: Assets.pngQuestion3x,
                   title: MyText.questionAnswer,
-                  desc: MyText.demoSubtitle,
+                  desc: MyText.faqOther,
                 ),
-                // ProductAndOtherWidget(
-                //   onTap: () => context
-                //       .read<AuthenticationCubit>()
-                //       .showLogoutDialog(context),
-                //   color: MyColors.purple,
-                //   h: 167.h,
-                //   w: 167.w,
-                //   imageUrl: Assets.pngQuestion3x,
-                //   title: MyText.logout,
-                //   desc: MyText.logoutSub,
-                // ),
               ],
             ),
             MySizedBox.h100

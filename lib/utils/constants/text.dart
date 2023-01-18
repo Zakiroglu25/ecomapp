@@ -312,4 +312,14 @@ In addition to laying out rules for proper use of your app, you should also clea
   //insurance
   static const String insuranceNum = 'Sığorta nömrəsi';
   static const String enterInsuranceNum = 'Sığorta nömrəsini daxil edin';
+
+  //other text
+  static const String chat = 'Mesajlarını burada görə bilərsən';
+  static const String addressOther = 'Şablon ünvanlarını burada görə bilərsən';
+  static const String paymentOther = 'Ödəniş üsullarını burada görə bilərsən';
+  static const String insuranceOther = 'Məlumatlarını burada görə bilərsən';
+  static const String contactOther = 'Buradan bizimlə əlaqə yarada bilərsən';
+  static const String faqOther = 'Buradan suallarına cavab tapa bilərsən';
+  static const String settingsOther = 'Buradan tətbiqi özünə uyğun ayarla';
+
 }

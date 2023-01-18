@@ -52,10 +52,13 @@ class ProductAndOtherWidget extends StatelessWidget {
                   .copyWith(color: MyColors.black34, fontSize: 16.sp),
             ),
             MySizedBox.h4,
-            Text(
-              desc!,
-              style: AppTextStyles.sfPro400s14
-                  .copyWith(color: MyColors.black34, fontSize: 13.sp),
+            SizedBox(
+              height: 55.h,
+              child: Text(
+                desc!,
+                style: AppTextStyles.sfPro400s14
+                    .copyWith(color: MyColors.black34, fontSize: 13.sp),
+              ),
             )
           ],
         ),
