@@ -41,8 +41,9 @@ class AddInsurancePage extends StatelessWidget {
                   child: ListOrEmpty(
                     text: MyText.emptyText,
                     image: Assets.pngInsurance3x,
-                    color: MyColors.green,
+                    color: MyColors.purpleLight,
                     list: insuranceList.data,
+                    description: MyText.goToProductSectionToFindProducts,
                     child: ListView.builder(
                         shrinkWrap: false,
                         itemCount: insuranceList.data.length,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uikit/infrastructure/cubit/chat_messages_cubit/chat_messenger_cubit.dart';
 import 'package:uikit/infrastructure/cubit/chat_messages_cubit/chat_messenger_state.dart';
 import 'package:uikit/utils/constants/colors.dart';
@@ -45,17 +46,36 @@ class Chat extends StatelessWidget {
                           alignment: chatList[index].isByYou == true
                               ? Alignment.centerRight
                               : Alignment.centerLeft,
-                          child: Container(
-                            height: 36,
-                            decoration: BoxDecoration(
-                                color: MyColors.field_grey,
-                                borderRadius: BorderRadius.circular(12)),
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 16.0, right: 16.0, top: 6, bottom: 6),
-                              child: Text(chatList[index].message!),
+                          child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                            Container(
+                              height: 36,
+                              decoration: BoxDecoration(
+                                  color: MyColors.field_grey,
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 16.0, right: 16.0, top: 6, bottom: 6),
+                                child: Text(chatList[index].message!),
+                              ),
                             ),
-                          ),
+                            Container(
+                              width: 28.w,
+                              height: 28.h,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: MyColors.mainGrey
+                              ),
+                              child: SizedBox(
+                                width: 28.w,
+                                height: 28.h,
+                                child: Center(
+                                  child: Icon(Icons.person),
+                                ),
+                              ),
+                            ),
+                          ]),
                         );
                       },
                     ),
