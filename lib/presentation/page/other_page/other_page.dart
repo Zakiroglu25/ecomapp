@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:uikit/infrastructure/cubit/authentication/authentication_cubit.dart';
-import 'package:uikit/presentation/page/contact_page/contact_page.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/delegate/navigate_utils.dart';
@@ -14,9 +11,7 @@ import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/text.dart';
 import '../../../widgets/custom/product_and_other_widget.dart';
-import '../insurance_page/add_insurance_page.dart';
 import '../messenger_page/messenger_page.dart';
-import '../payment_method_page/payment_method_page.dart';
 import '../settings_page/settings_page.dart';
 
 class OtherPage extends StatelessWidget {
