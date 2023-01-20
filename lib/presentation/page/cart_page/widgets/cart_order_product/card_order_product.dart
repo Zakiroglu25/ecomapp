@@ -98,6 +98,7 @@ class CartOrderProduct extends StatelessWidget {
               ],
             ),
             MySizedBox.h8,
+            if(order.status != "REJECTED")
             COPOrderButton(orderGuid: order.guid!)
           ]),
     );

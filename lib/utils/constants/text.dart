@@ -145,7 +145,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String cancel = "Ləğv et";
   static const String addToCart = "Səbətə at";
   static const String iWillTakeIt = "Özüm götürəcəm";
-  static const String addedToCart = "Səbətə atıldı";
+  static const String addedToCart = "Səbətə əlavə olundu";
   static const String removedFromCart = "Səbətdən çıxarıldı";
   static const String orderRegistered = "Sifariş üçün sorğu göndərlidi";
   static const String cartPrescriptionRemoved = "Resept silindi";

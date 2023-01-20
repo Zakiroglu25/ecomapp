@@ -17,10 +17,6 @@ class MedicinesPage extends StatelessWidget {
         user: true,
         notification: true,
         filter: false,
-        // actions: [
-        //   ActionsButton(),
-        //   FilterWidget(),
-        // ],
       ),
       body:  MedicinesBody(),
     );

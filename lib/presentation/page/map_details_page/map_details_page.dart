@@ -24,7 +24,7 @@ class MapDetailsPage extends StatelessWidget {
         MapDetailsHeaders(
           maps: maps!,
         ),
-        DeliveryProducts()
+        // DeliveryProducts()
       ],
     );
   }
