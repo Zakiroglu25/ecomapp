@@ -96,14 +96,11 @@ class MapDetailsHeaders extends StatelessWidget {
                             svg: Assets.svgCall,
                             title: "Zəng et",
                           ),
-                          MySizedBox.w24,
-                          CartCircleButtonWithTitle(
-                            svg: Assets.svgMessage,
-                            title: "Messenger",
-                          ),
+
                         ],
                       ),
                       MySizedBox.h8,
+
                     ]),
               ),
             ),
@@ -111,6 +108,12 @@ class MapDetailsHeaders extends StatelessWidget {
   }
 
   Future<void> launch(Uri url) async {
+    await canLaunchUrl(url)
+        ? await launchUrl(url)
+        : Snack.display(message: "Xeta yarandi");
+  }
+
+  Future<void> call(Uri url) async {
     await canLaunchUrl(url)
         ? await launchUrl(url)
         : Snack.display(message: "Xeta yarandi");

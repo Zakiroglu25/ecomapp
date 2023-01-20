@@ -30,7 +30,11 @@ class DeliveryCallAndMessengerButtons extends StatelessWidget {
         CartCircleButtonWithTitle(
           svg: Assets.svgMessage,
           title: MyText.messenger,
-          onTap: () {},
+          onTap: () {
+            ///create chat elemek lazimdi. OrderGuid gonderilecek.
+            ///Men sorgunu ve Cubiti hell edecem
+            ///qalacaq bidene context.read<MessengerCubit>.createChat
+          },
         ),
       ],
     );

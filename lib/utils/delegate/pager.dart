@@ -44,7 +44,6 @@ import '../../presentation/page/change_number/change_number_page.dart';
 import '../../presentation/page/contact_page/contact_page.dart';
 import '../../presentation/page/delivery_and_payment_page/delivery_and_payment_page.dart';
 import '../../presentation/page/favorite_page/favorite_page.dart';
-import '../../presentation/page/home_page/home_page.dart';
 import '../../presentation/page/insurance_page/add_insurance_page.dart';
 import '../../presentation/page/medicines_page/medicines_page.dart';
 import '../../presentation/page/messenger_page/messenger_page.dart';
@@ -150,7 +149,6 @@ class Pager {
         child: ChangeNumberPage(),
       );
 
-  static get home => HomePage();
 
   static get messenger => BlocProvider(
         create: (context) => MessengerCubit(),
