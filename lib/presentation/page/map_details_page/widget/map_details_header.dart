@@ -89,6 +89,7 @@ class MapDetailsHeaders extends StatelessWidget {
                             title: "Unvan",
                             onTap: () {
                               launch(googleUrl);
+                              print(maps.guid);
                             },
                           ),
                           MySizedBox.w24,

@@ -2,10 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:focus_detector/focus_detector.dart';
 
 import '../../presentation/page/medicines_page/widgets/appbar_address_widget.dart';
 import '../../utils/constants/app_text_styles.dart';
+import '../../utils/constants/assets.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/paddings.dart';
 import '../../utils/constants/sized_box.dart';
@@ -23,8 +25,10 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
   final bool? exitButton;
   final bool? user;
   final bool? back;
+  final bool? share;
   final Function? onBack;
   final BuildContext? contextA;
+
   //final bool? actions;
   final Function? onTapActions;
   final bool? centerTitle;
@@ -40,6 +44,7 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
       this.exitButton,
       this.actions,
       this.color,
+      this.share,
       this.back = true,
       this.onBack,
       this.onTapActions,
@@ -99,7 +104,15 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
             ? NotificationWidget()
             : (actions == null ? MySizedBox.w20 : Container()),
         //...actions,
-
+        (share!)
+            ? Padding(
+          padding: Paddings.paddingT2 + Paddings.paddingR16,
+              child: SvgPicture.asset(
+                  Assets.svgShare,
+                  color: MyColors.black,
+                ),
+            )
+            : (share == null ? MySizedBox.w20 : Container()),
         ...?actions,
         // actions!=null? (...?actions) : Container(),
         // ActionsButton(
