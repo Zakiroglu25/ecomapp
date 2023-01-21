@@ -14,6 +14,10 @@ class ProductODetailsError extends ProductOptionDetailsState {
 }
 
 class ProductODetailsNetworkError extends ProductOptionDetailsState {}
+class ProductODetailsMapListSuccess extends ProductOptionDetailsState {
+
+
+}
 
 class ProductODetailsSuccess extends ProductOptionDetailsState {
   ProductODetailsSuccess(this.productDetails);

@@ -34,4 +34,28 @@ class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
       emit(ProductODetailsError());
     }
   }
+
+  fetchProductMapGuid(String guid) async {
+    emit(ProductODetailsInProgress());
+    try {
+      final result = await ProductOptionsProvider.getProductByGuid(guid: guid);
+      if (result.data != null) {
+        emit(ProductODetailsSuccess(result.data));
+      } else {
+        emit(ProductODetailsError());
+        eeee(
+          "contact result bad: ${ResponseMessage.fromJson(
+            jsonDecode(
+              result.toString(),
+            ),
+          ).message}",
+        );
+      }
+    } on SocketException catch (_) {
+      emit(ProductODetailsError());
+    } catch (e) {
+      eeee("Product Option Error" + e.toString());
+      emit(ProductODetailsError());
+    }
+  }
 }

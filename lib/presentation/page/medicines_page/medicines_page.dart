@@ -17,6 +17,7 @@ class MedicinesPage extends StatelessWidget {
         user: true,
         notification: true,
         filter: false,
+        share: false,
       ),
       body:  MedicinesBody(),
     );

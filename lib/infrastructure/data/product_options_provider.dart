@@ -47,21 +47,4 @@ class ProductOptionsProvider {
     return statusDynamic;
   }
 
-// static Future<ProductOptionDetailsModel?> getByGuid(String guid) async {
-//   ProductOptionDetailsModel? productOptionDetailsModel;
-//   const api = ApiKeys.productOptionsGuid;
-//   var headers = ApiKeys.header(token: _prefs.accessToken);
-//   var url = Uri.parse(api + '/$guid');
-//   final response = await http.get(url, headers: headers);
-//   wtf(response.body);
-//   if (response.statusCode == ResultKey.successCode) {
-//     final comeJson = jsonDecode(response.body);
-//     productOptionDetailsModel = ProductOptionDetailsModel.fromJson(comeJson);
-//     wtf(productOptionDetailsModel.guid.toString());
-//   } else {
-//     eeee("address List:  url: $api , response: ${response.body}");
-//   }
-//
-//   return productOptionDetailsModel;
-// }
 }

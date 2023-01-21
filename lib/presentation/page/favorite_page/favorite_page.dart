@@ -31,6 +31,7 @@ class _FavoritePageState extends State<FavoritePage> {
         contextA: context,
         title: MyText.favorite,
         filter: false,
+        share: false,
       ),
       body: BlocBuilder<FavoriteCubit, FavoriteState>(
         buildWhen: (prv, nxt) {
