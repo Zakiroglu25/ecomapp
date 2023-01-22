@@ -30,7 +30,6 @@ class _MapPageState extends State<MapPage> {
       CustomInfoWindowController();
   GoogleMapController? mapController;
 
-  LatLng? showLocation;
   Set<Marker> markers = Set();
    BitmapDescriptor? icon;
 
@@ -62,16 +61,18 @@ class _MapPageState extends State<MapPage> {
   //
   @override
   Widget build(BuildContext context) {
+          LatLng? showLocation;
     return BlocBuilder<MapStoreCubit, MapStoreState>(
       builder: (context, state) {
         if (state is MapStoreSuccess) {
           List<MapMedicine> maps = state.addressModel;
           maps.forEach((element) {
-            showLocation = LatLng(element.addressLat!, element.addressLong!);
+            LatLng? showLocation =
+            LatLng(element.addressLat!, element.addressLong!);
             markers.add(
               Marker(
                 markerId: MarkerId(element.guid.toString()),
-                position: showLocation!, //position of marker
+                position: showLocation, //position of marker
                 onTap: () {
                   _customInfoWindowController.addInfoWindow!(
                     Column(
@@ -103,7 +104,7 @@ class _MapPageState extends State<MapPage> {
                         ),
                       ],
                     ),
-                    showLocation!,
+                    showLocation,
                   );
                 },
                 // infoWindow: InfoWindow(
@@ -112,7 +113,7 @@ class _MapPageState extends State<MapPage> {
                 //   },
                 //   title: "Aptekə keçid elə",
                 // ),
-                icon: icon!, //Icon for Marker
+                icon: BitmapDescriptor.defaultMarker, //Icon for Marker
               ),
             );
           });
@@ -123,7 +124,7 @@ class _MapPageState extends State<MapPage> {
                 GoogleMap(
                   zoomGesturesEnabled: true,
                   initialCameraPosition: CameraPosition(
-                    target: showLocation!, //initial position
+                    target: LatLng(40.39427, 49.880143), //initial positi, //initial position
                     zoom: 13.0, //initial zoom level
                   ),
                   onTap: (position) {

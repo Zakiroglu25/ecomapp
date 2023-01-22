@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/delegate/navigate_utils.dart';
+import '../../../../utils/delegate/pager.dart';
 import '../../insurance_page/add_insurance_page.dart';
 
 class AddInsurance extends StatelessWidget {
@@ -23,7 +24,7 @@ class AddInsurance extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Go.to(context, AddInsurancePage());
+                    Go.to(context, Pager.addInsuranceInfo);
                   },
                   child: Container(
                     width: 64,

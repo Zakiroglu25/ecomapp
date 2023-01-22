@@ -65,4 +65,24 @@ class MessengerProvider {
 
     return statusDynamic;
   }
+
+  static Future<StatusDynamic> createChat(
+      String? orderGuid, String? storeGuid) async {
+    StatusDynamic statusDynamic = StatusDynamic();
+    const api = ApiKeys.getMessenger;
+    final body = {
+      "storeGuid": storeGuid,
+      "orderGuid": orderGuid,
+    };
+    final response = await dioAuth.dio.post(api, data: jsonEncode(body));
+    statusDynamic.statusCode = response.statusCode;
+    if (response.statusCode == ResultKey.successCode) {
+      iiii("Chat Otagi yaradildi");
+    } else {
+      eeee(
+          "sendMessage Messages error :${response.requestOptions.path},response: $response");
+    }
+
+    return statusDynamic;
+  }
 }

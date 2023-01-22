@@ -37,7 +37,12 @@ class ProductOptionDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DoctorAppbar(title: "", user: false, contextA: context),
+      appBar: DoctorAppbar(
+        title: "",
+        user: false,
+        contextA: context,
+        notification: false,
+      ),
       body: BlocBuilder<ProductOptionDetailsCubit, ProductOptionDetailsState>(
         builder: (context, state) {
           if (state is ProductODetailsSuccess) {

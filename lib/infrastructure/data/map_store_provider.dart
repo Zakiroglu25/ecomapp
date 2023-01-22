@@ -4,6 +4,7 @@
 import 'dart:developer';
 
 import 'package:uikit/infrastructure/model/response/map_medicine.dart';
+import 'package:uikit/infrastructure/model/response/status_dynamic.dart';
 
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
@@ -15,7 +16,6 @@ class MapStoreProvider {
   static Future<List<MapMedicine>> getMarkers() async {
     List<MapMedicine> statusDynamic = [];
     const api = ApiKeys.stores;
-    log("MapProvider");
     final response = await dioAuth.dio.get(api);
     try {
       if (response.statusCode == 200) {
@@ -24,12 +24,13 @@ class MapStoreProvider {
           statusDynamic.add(MapMedicine.fromJson(comeJson[i]));
         }
       } else {
-        eeee("address List:  url: $api , response: ${response.data}");
+        eeee("map marker List:  url: $api , response: ${response.data}");
       }
     } catch (e) {
-      eeee("address List:  url: $e , response: ${response.data}");
+      eeee("map marker List:  url: $e , response: ${response.data}");
     }
 
     return statusDynamic;
   }
+
 }

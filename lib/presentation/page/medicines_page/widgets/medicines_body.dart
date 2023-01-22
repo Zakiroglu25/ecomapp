@@ -9,6 +9,7 @@ import 'package:uikit/widgets/main/product_item/product_item.dart';
 
 import '../../../../infrastructure/cubit/product_option_cubit/product_option_cubit.dart';
 import '../../../../infrastructure/cubit/product_option_cubit/product_option_state.dart';
+import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/paddings.dart';
 import '../../../../utils/constants/text.dart';
@@ -35,7 +36,15 @@ class MedicinesBody extends StatelessWidget {
     BlocProvider.of<ProductOptionCubit>(context).loadMore();
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 16.0, top: 10),
+          child: Text(
+            "Doctoro",
+            style: AppTextStyles.sfPro700.copyWith(fontSize: 30),
+          ),
+        ),
         const MedSearchField(),
         BlocBuilder<ProductOptionCubit, ProductOptionState>(
           builder: (context, state) {
@@ -79,9 +88,6 @@ class MedicinesBody extends StatelessWidget {
             } else if (state is ProductOptionInProgress) {
               return Center(child: AppLoading.main());
             }
-            // else if (state is PostsLoading) {
-            //   return Center(child: AppLoading.main());
-            // }
             else {
               return Expanded(child: EmptyWidget.error());
             }

@@ -44,7 +44,6 @@ import '../../presentation/page/change_number/change_number_page.dart';
 import '../../presentation/page/contact_page/contact_page.dart';
 import '../../presentation/page/delivery_and_payment_page/delivery_and_payment_page.dart';
 import '../../presentation/page/favorite_page/favorite_page.dart';
-import '../../presentation/page/home_page/home_page.dart';
 import '../../presentation/page/insurance_page/add_insurance_page.dart';
 import '../../presentation/page/medicines_page/medicines_page.dart';
 import '../../presentation/page/messenger_page/messenger_page.dart';
@@ -52,7 +51,6 @@ import '../../presentation/page/messenger_page/widget/chat_details.dart';
 import '../../presentation/page/other_page/other_page.dart';
 import '../../presentation/page/payment_method_page/payment_method_page.dart';
 import '../../presentation/page/product_details_page/product_details_page.dart';
-import '../../presentation/page/product_page/product_page.dart';
 import '../../presentation/page/question_response_page/question_response_page.dart';
 import '../../presentation/page/settings_page/settings_page.dart';
 import '../../presentation/page/splash_page/splash_page.dart';
@@ -150,7 +148,6 @@ class Pager {
         child: ChangeNumberPage(),
       );
 
-  static get home => HomePage();
 
   static get messenger => BlocProvider(
         create: (context) => MessengerCubit(),
@@ -161,7 +158,6 @@ class Pager {
         BlocProvider(create: (context) => AddressCubit()),
       ], child: const LandingPage());
 
-  static get product => ProductPage();
 
   static chat({String? guid, String? storeName}) => BlocProvider(
         create: (context) => ChatMessengerCubit(),

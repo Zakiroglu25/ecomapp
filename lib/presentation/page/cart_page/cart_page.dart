@@ -38,7 +38,10 @@ class CartPage extends StatelessWidget {
             context.read<TabCountsCubit>().setCurrentTab(index);
             context.read<TabCountsCubit>().fetch(false);
           },
-          onRefresh: () => context.read<CartCubit>().fetch(),
+          onRefresh: () {
+            context.read<CartCubit>().fetch();
+            return context.read<TabCountsCubit>().fetch(false);
+          },
           tabPages: [
             OrdersTab(),
             WaitingTab(),
