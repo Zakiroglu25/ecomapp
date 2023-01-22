@@ -1,5 +1,6 @@
 // Flutter imports:
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
 import 'package:uikit/infrastructure/cubit/chat_messages_cubit/chat_messenger_cubit.dart';
@@ -14,6 +15,8 @@ import 'package:uikit/presentation/page/cart_order_details_page/cart_order_detai
 import 'package:uikit/presentation/page/landing_page/landing_page.dart';
 import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart';
 import 'package:uikit/presentation/page/notification_page/notifications_page.dart';
+import 'package:uikit/presentation/page/webview_page/webview_page.dart';
+import 'package:uikit/utils/delegate/index.dart';
 
 import '../../app.dart';
 import '../../infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
@@ -98,9 +101,9 @@ class Pager {
 
   static get splash => SplashPage();
   static get addingInsurance => BlocProvider(
-  create: (context) => InsuranceCubit(),
-  child: AddAsanInsuranceInfo(),
-);
+        create: (context) => InsuranceCubit(),
+        child: AddAsanInsuranceInfo(),
+      );
 
   static get mapPage => MultiBlocProvider(providers: [
         BlocProvider.value(value: MapStoreCubit()..fetch()),
@@ -148,7 +151,6 @@ class Pager {
         child: ChangeNumberPage(),
       );
 
-
   static get messenger => BlocProvider(
         create: (context) => MessengerCubit(),
         child: MessengerPage(),
@@ -157,7 +159,6 @@ class Pager {
   static get landing => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => AddressCubit()),
       ], child: const LandingPage());
-
 
   static chat({String? guid, String? storeName}) => BlocProvider(
         create: (context) => ChatMessengerCubit(),
@@ -211,6 +212,7 @@ class Pager {
       MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => AddressCubit()..fetchMainAddress()),
+          //BlocProvider(create: (context) => TabCountsCubit()),
           BlocProvider(
               create: (context) =>
                   DeliveryAndPaymentCubit()..fetch(guid: orderGuid)),
@@ -220,5 +222,17 @@ class Pager {
           BlocProvider(create: (context) => CardCubit()..getCard()),
         ],
         child: DeliveryAndPaymentPage(orderGuid: orderGuid),
+      );
+
+  static webviewPage(
+          {required String url,
+          required BuildContext context,
+          void Function()? whenSuccess,
+          void Function()? whenUnSuccess}) =>
+      WebviewPage(
+        url: url,
+        mainContext: context,
+        whenUnSuccess: whenUnSuccess,
+        whenSuccess: whenSuccess,
       );
 }

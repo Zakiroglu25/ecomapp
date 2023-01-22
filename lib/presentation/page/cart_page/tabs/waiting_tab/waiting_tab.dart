@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:focus_detector/focus_detector.dart';
 import 'package:uikit/infrastructure/cubit/waiting_orders/waiting_orders_cubit.dart';
 import 'package:uikit/infrastructure/cubit/waiting_orders/waiting_orders_state.dart';
 import 'package:uikit/presentation/page/cart_page/widgets/cart_order_product/card_order_product.dart';
@@ -28,56 +29,60 @@ class WaitingTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        BlocBuilder<WaitingOrdersCubit, WaitingOrdersState>(
-          builder: (context, state) {
-            if (state is WaitingOrdersSuccess) {
-              final orders = state.orders;
-              return ListOrEmpty(
-                list: orders,
-                onRefresh: () => onRefresh(context),
-                image: Assets.pngEmptyCart,
-                text: MyText.cartIsEmpty,
-                description: MyText.goToProductSectionToFindProducts,
-                child: ListViewSeparated(
-                  padding: Paddings.paddingH16 + Paddings.paddingB200,
-                  shrinkWrap: true,
-                  physics: Physics.never,
-                  itemBuilder: (context, index) =>
-                      CartOrderProduct(order: orders[index]),
-                  itemCount: orders.length,
-                ),
-              );
-            } else if (state is WaitingOrdersInProgress) {
-              return AppLoading();
-            } else {
-              return EmptyWidget(
-                onRefresh: () => onRefresh(context),
-              );
-            }
-          },
-        ),
-        // Positioned(
-        //     bottom: 20,
-        //     right: 20,
-        //     child: SpacedColumn(
-        //       crossAxisAlignment: CrossAxisAlignment.end,
-        //       space: 10,
-        //       children: [
-        //         AppButton.black(
-        //           w: context.dynamicW(.4),
-        //           text: MyText.keepInTouchX,
-        //         ),
-        //         AppButton.black(
-        //           w: context.dynamicW(.5),
-        //           text: MyText.orderDeliveryX,
-        //           // onTap: () => Go.to(context, Pager.cartDelivery),
-        //         ),
-        //       ],
-        //     ))
-      ],
+    return FocusDetector(
+      onFocusGained: () =>
+          context.read<WaitingOrdersCubit>().fetch(loading: false),
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          BlocBuilder<WaitingOrdersCubit, WaitingOrdersState>(
+            builder: (context, state) {
+              if (state is WaitingOrdersSuccess) {
+                final orders = state.orders;
+                return ListOrEmpty(
+                  list: orders,
+                  onRefresh: () => onRefresh(context),
+                  image: Assets.pngEmptyCart,
+                  text: MyText.cartIsEmpty,
+                  description: MyText.goToProductSectionToFindProducts,
+                  child: ListViewSeparated(
+                    padding: Paddings.paddingH16 + Paddings.paddingB200,
+                    shrinkWrap: true,
+                    physics: Physics.never,
+                    itemBuilder: (context, index) =>
+                        CartOrderProduct(order: orders[index]),
+                    itemCount: orders.length,
+                  ),
+                );
+              } else if (state is WaitingOrdersInProgress) {
+                return AppLoading();
+              } else {
+                return EmptyWidget(
+                  onRefresh: () => onRefresh(context),
+                );
+              }
+            },
+          ),
+          // Positioned(
+          //     bottom: 20,
+          //     right: 20,
+          //     child: SpacedColumn(
+          //       crossAxisAlignment: CrossAxisAlignment.end,
+          //       space: 10,
+          //       children: [
+          //         AppButton.black(
+          //           w: context.dynamicW(.4),
+          //           text: MyText.keepInTouchX,
+          //         ),
+          //         AppButton.black(
+          //           w: context.dynamicW(.5),
+          //           text: MyText.orderDeliveryX,
+          //           // onTap: () => Go.to(context, Pager.cartDelivery),
+          //         ),
+          //       ],
+          //     ))
+        ],
+      ),
     );
   }
 

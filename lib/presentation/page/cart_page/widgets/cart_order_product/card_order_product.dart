@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:uikit/infrastructure/model/response/orders_data.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/assets.dart';
+import 'package:uikit/utils/constants/order_status.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
@@ -98,8 +99,8 @@ class CartOrderProduct extends StatelessWidget {
               ],
             ),
             MySizedBox.h8,
-            if(order.status != "REJECTED")
-            COPOrderButton(orderGuid: order.guid!)
+            if (order.status != OrderStatus.REJECTED)
+              COPOrderButton(orderGuid: order.guid!)
           ]),
     );
   }

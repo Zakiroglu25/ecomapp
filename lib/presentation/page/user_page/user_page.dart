@@ -134,7 +134,7 @@ class EditContact extends StatelessWidget {
                   children: [
                     Text(
                       "Kontaktlar",
-                      style: AppTextStyles.sfPro600s17,
+                      style: AppTextStyles.sfPro600s16,
                     ),
                     InkWrapper(
                         onTap: () {

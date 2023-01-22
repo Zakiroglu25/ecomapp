@@ -50,7 +50,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       // final String? fcm = 'test fcm';
       configureFcm(context: context);
 
-      log("FCM token"+fcm.toString());
+      log("FCM token" + fcm.toString());
       //  _prefs.persistIsLoggedIn(true);
       final bool isLoggedIn = _prefs.isLoggedIn;
       final String? accessToken = _prefs.accessToken;

@@ -4,7 +4,9 @@ import 'package:uikit/presentation/page/delivery_and_payment_page/widget/payment
 import 'package:uikit/presentation/page/delivery_and_payment_page/widget/fields/delivery_address_field.dart';
 import 'package:uikit/presentation/page/delivery_and_payment_page/widget/order_slide_to_confirm_button.dart';
 import 'package:uikit/presentation/page/delivery_and_payment_page/widget/payment_details_section.dart';
+import 'package:uikit/presentation/page/delivery_and_payment_page/widget/save_card_check_box.dart';
 import 'package:uikit/presentation/page/delivery_and_payment_page/widget/static_delivery_field.dart';
+import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
@@ -26,7 +28,9 @@ class DeliverAndPaymentPageDeliveryTab extends StatelessWidget {
           const DeliveryAddressField(),
           const PaymentDetailsSection(),
           MySizedBox.h24,
-          const PaymentTypeSection(),
+          PaymentTypeSection(),
+          MySizedBox.h8,
+          SaveCardCheckBox(),
           MySizedBox.h24,
           const OrderSlideToConfirmButton()
         ]);

@@ -12,8 +12,7 @@ class SelectablePaymentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SelectablePayment(
         paymentType: PaymentType.card,
-        child: PaymentTypeCard(
-          card: card,
-        ));
+        card: card,
+        child: PaymentTypeCard(card: card));
   }
 }
