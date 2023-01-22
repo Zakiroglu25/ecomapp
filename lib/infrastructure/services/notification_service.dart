@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -25,14 +26,13 @@ void configureFcm({String? topic, required BuildContext context}) async {
     final Map<String, dynamic>? data = value?.data;
   });
 
-  FirebaseMessaging.onMessage.listen((event) {
-    final type = event.data['type'];
-
-    if (type != null && type == 'ready') {
-      // _refreshData(context);
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    if (kDebugMode) {
+      print('Handling a foreground message: ${message.messageId}');
+      print('Message data: ${message.data}');
+      print('Message notification: ${message.notification?.title}');
+      print('Message notification: ${message.notification?.body}');
     }
-
-    // ForegroundNotification.show(event);
   });
 
   FirebaseMessaging.onMessageOpenedApp.listen((event) {

@@ -34,6 +34,7 @@ class ProductOptionsProvider {
   static Future<StatusDynamic> getProductByGuid({required String guid}) async {
     StatusDynamic statusDynamic = StatusDynamic();
     final api = ApiKeys.stock + '/$guid';
+    wtf(api.toString());
     final response = await dioAuth.dio.get(api);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
@@ -47,4 +48,26 @@ class ProductOptionsProvider {
     return statusDynamic;
   }
 
+  static Future<StatusDynamic> getProductByGuidForMap({required String guid}) async {
+    StatusDynamic statusDynamic = StatusDynamic();
+    final api = ApiKeys.stock+"/search?StoreGuid=" + '$guid';
+    wtf(api.toString());
+    final response = await dioAuth.dio.get(api);
+    wtf("1");
+    statusDynamic.statusCode = response.statusCode;
+    if (response.statusCode == ResultKey.successCode) {
+      wtf("2");
+      final comeJson = response.data;
+      wtf("3");
+      SearchItems model = SearchItems.fromJson(comeJson);
+      wtf("4");
+      statusDynamic.data = model;
+      iiii(model.toString());
+    } else {
+      wtf("5");
+      eeee("address List:  url: $api , response: ${response.data}");
+    }
+
+    return statusDynamic;
+  }
 }
