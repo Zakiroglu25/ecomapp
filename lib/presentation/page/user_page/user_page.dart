@@ -64,7 +64,6 @@ class _PageViewExampleState extends State<PageViewExample> {
         contextA: context,
         notification: false,
         color: MyColors.transparent,
-        share:false
       ),
       backgroundColor: MyColors.red250,
       body: Column(

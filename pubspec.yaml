@@ -78,7 +78,6 @@ dependencies:
 
   #plugin
   image_picker: ^0.8.5+3
-  dash_chat: ^1.1.16
 
   #test:
   equatable:
