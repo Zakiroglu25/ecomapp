@@ -33,7 +33,7 @@ class CartPage extends StatelessWidget {
           title: MyText.cart,
           isScrollable: true,
           onChange: (index) {
-            context.read<CartCubit>().fetch();
+            context.read<CartCubit>().fetch(false);
             // context.read<WaitingOrdersCubit>().fetch();
             context.read<TabCountsCubit>().setCurrentTab(index);
             context.read<TabCountsCubit>().fetch(false);

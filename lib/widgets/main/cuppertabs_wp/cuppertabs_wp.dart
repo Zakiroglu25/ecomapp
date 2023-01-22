@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uikit/utils/constants/border_radius.dart';
 import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/extensions/object.dart';
 import 'package:uikit/widgets/main/cupperfold/widgets/custom_cupertino_sliver_navigation_bar.dart';
 
@@ -88,7 +89,10 @@ class _CupperTabsWithProviderState extends State<CupperTabsWithProvider>
           .round(); //_tabController.animation.value returns double
       Provider.of<CupperProvider>(context, listen: false)
           .changeTab(widget.tabs[_currentIndex]);
-      widget.onChange?.call(_currentIndex);
+
+      if (_tabController.indexIsChanging) {
+        widget.onChange?.call(_currentIndex);
+      }
       setState(() {});
     });
 
