@@ -30,7 +30,6 @@ class Chat extends StatelessWidget {
         notification: false,
         user: false,
         contextA: context,
-        share: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

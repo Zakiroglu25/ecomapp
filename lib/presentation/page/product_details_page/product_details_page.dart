@@ -42,7 +42,6 @@ class ProductOptionDetails extends StatelessWidget {
         user: false,
         contextA: context,
         notification: false,
-        share: true,
       ),
       body: BlocBuilder<ProductOptionDetailsCubit, ProductOptionDetailsState>(
         builder: (context, state) {
