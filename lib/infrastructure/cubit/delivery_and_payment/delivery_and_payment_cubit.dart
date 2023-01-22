@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
+import 'package:uikit/infrastructure/cubit/waiting_orders/waiting_orders_cubit.dart';
 import 'package:uikit/infrastructure/model/response/card_model.dart';
+import 'package:uikit/infrastructure/services/hive_service.dart';
+import 'package:uikit/locator.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/delegate/my_printer.dart';
+import 'package:uikit/utils/delegate/navigate_utils.dart';
+import 'package:uikit/utils/delegate/user_operations.dart';
 import 'package:uikit/utils/enums/payment_type.dart';
 import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/utils/screen/snack.dart';
@@ -17,6 +22,8 @@ import 'delivery_and_payment_state.dart';
 
 class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
   DeliveryAndPaymentCubit() : super(DeliveryAndPaymentInitial());
+
+  HiveService get _prefs => locator<HiveService>();
 
   String orderGuid = '';
   int tabIndex = 0;
@@ -57,8 +64,10 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
           orderGuid: orderGuid,
           saveCard: checkbox.valueOrNull,
           cardGuid: selectedCard.valueOrNull?.guid);
+      bbbb("resso: $result");
       if (result.isNotNull) {
-        Snack.positive(message: MyText.orderRegistered);
+        emit(DeliveryAndPaymentUrlFetched(url: result!.url!));
+        //  Snack.positive(message: MyText.orderRegistered);
         //fetch(false);
       } else {
         emit(DeliveryAndPaymentError());
@@ -69,6 +78,44 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
     }
     //context.read<TabCountsCubit>().fetch(false);
     Loader.hide();
+  }
+
+  void paymentSuccess(
+    BuildContext context, {
+    bool loading = true,
+  }) async {
+    if (loading) {
+      emit(DeliveryAndPaymentInProgress());
+    }
+    try {
+      await UserOperations.configUserDataWhenOpenApp(
+          accessToken: _prefs.accessToken, fcm: _prefs.fcmToken);
+      //emit(DeliveryAndPaymentSuccess(orderDetails: orderDetails));
+      Snack.positive(context: context, message: MyText.success);
+      Go.pop(context);
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+      emit(DeliveryAndPaymentError());
+    }
+  }
+
+  void paymentUnSuccess(
+    BuildContext context, {
+    bool loading = true,
+  }) async {
+    if (loading) {
+      emit(DeliveryAndPaymentInProgress());
+    }
+    try {
+      await UserOperations.configUserDataWhenOpenApp(
+          accessToken: _prefs.accessToken, fcm: _prefs.fcmToken);
+      //emit(DeliveryAndPaymentSuccess(orderDetails: orderDetails));
+      Snack.display(context: context, message: MyText.error);
+      Go.pop(context);
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+      emit(DeliveryAndPaymentError());
+    }
   }
 
   // void ordersRegister(

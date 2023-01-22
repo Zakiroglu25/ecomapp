@@ -17,3 +17,8 @@ class DeliveryAndPaymentSuccess extends DeliveryAndPaymentState {
 
   DeliveryAndPaymentSuccess({required this.orderDetails});
 }
+
+class DeliveryAndPaymentUrlFetched extends DeliveryAndPaymentState {
+  final String url;
+  DeliveryAndPaymentUrlFetched({required this.url});
+}

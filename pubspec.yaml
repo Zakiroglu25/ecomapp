@@ -79,6 +79,9 @@ dependencies:
   #plugin
   image_picker: ^0.8.5+3
 
+  #webview
+  flutter_inappwebview: ^5.4.3+7
+
   #test:
   equatable:
 #  uikit:

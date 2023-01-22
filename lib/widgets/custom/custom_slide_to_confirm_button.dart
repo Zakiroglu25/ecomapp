@@ -19,7 +19,7 @@ class CustomSlideToConfirmButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              MyText.makeOrder,
+              text,
               style: AppTextStyles.sfPro500.copyWith(color: MyColors.white),
             ),
             Text(
