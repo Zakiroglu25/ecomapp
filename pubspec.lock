@@ -50,6 +50,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.9.0"
+  awesome_notifications:
+    dependency: "direct main"
+    description:
+      name: awesome_notifications
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.7.4+1"
   bloc:
     dependency: transitive
     description:
@@ -176,6 +183,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.4"
+  dash_chat:
+    dependency: "direct main"
+    description:
+      name: dash_chat
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.16"
   dash_chat_2:
     dependency: "direct main"
     description:
@@ -1043,6 +1057,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.8.0"
+  transparent_image:
+    dependency: transitive
+    description:
+      name: transparent_image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   typed_data:
     dependency: transitive
     description:
