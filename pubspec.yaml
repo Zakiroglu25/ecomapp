@@ -130,3 +130,25 @@ flutter:
         - asset: assets/fonts/sf.ttf
           style: normal
           weight: 400
+    - family: ProximaNova-Regular
+      fonts:
+        - asset: assets/fonts/proximaregular.otf
+          style: normal
+          weight: 400
+    - family: ProximaNova-Medium
+      fonts:
+        - asset: assets/fonts/proximamedium.otf
+          style: normal
+          weight: 500
+    - family: ProximaNova-SemiBold
+      fonts:
+        - asset: assets/fonts/proximasemibold.otf
+          style: normal
+          weight: 600
+    - family: ProximaNova-Bold
+      fonts:
+        - asset: assets/fonts/proximabold.otf
+          style: normal
+          weight: 700
+
+
