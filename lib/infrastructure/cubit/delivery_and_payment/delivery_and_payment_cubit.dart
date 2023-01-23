@@ -12,6 +12,7 @@ import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/delegate/my_printer.dart';
 import 'package:uikit/utils/delegate/navigate_utils.dart';
 import 'package:uikit/utils/delegate/user_operations.dart';
+import 'package:uikit/utils/enums/delivery_type.dart';
 import 'package:uikit/utils/enums/payment_type.dart';
 import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/utils/screen/snack.dart';
@@ -50,31 +51,42 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
 
   updateTab({required int index}) async {
     tabIndex = index;
-    if (index == 0 && paymentType.valueOrNull == PaymentType.cash) {
+    if (index == 0 && paymentType.valueOrNull == PaymentType.CASH) {
       updatePaymentType(null);
     }
   }
 
   void createOrderPayment(
-      {bool loading = false, required BuildContext context}) async {
+      {bool loading = false,
+      required BuildContext context,
+      required DeliveryType deliveryType}) async {
     try {
       if (loading) emit(DeliveryAndPaymentInProgress());
       Loader.show(context);
       final result = await OrdersProvider.createPayment(
           orderGuid: orderGuid,
           saveCard: checkbox.valueOrNull,
+          paymentType: paymentType.valueOrNull == PaymentType.unselected
+              ? null
+              : paymentType.valueOrNull?.toText,
+          deliveryType: deliveryType.toText,
           cardGuid: selectedCard.valueOrNull?.guid);
       bbbb("resso: $result");
-      if (result.isNotNull) {
-        emit(DeliveryAndPaymentUrlFetched(url: result!.url!));
-        //  Snack.positive(message: MyText.orderRegistered);
-        //fetch(false);
+      //result?.url = null;
+      if (result.isNull) {
+        emit(DeliveryAndPaymentOperationError());
+        return;
+      }
+      if (result!.url.isNull) {
+        Go.pop(context);
+        Snack.positive(message: MyText.success);
+        return;
       } else {
-        emit(DeliveryAndPaymentError());
+        emit(DeliveryAndPaymentUrlFetched(url: result.url!));
       }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
-      emit(DeliveryAndPaymentError());
+      emit(DeliveryAndPaymentOperationError());
     }
     //context.read<TabCountsCubit>().fetch(false);
     Loader.hide();
@@ -149,6 +161,7 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
     if (value.isNull) {
       selectedCard.sink.addError(MyText.field_is_not_correct);
       selectedCard.sink.add(CardData());
+      return;
     }
     if (value == selectedCard.valueOrNull) {
       selectedCard.sink.add(CardData());

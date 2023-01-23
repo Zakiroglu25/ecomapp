@@ -24,7 +24,7 @@ class DeliveryAndPaymentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<DeliveryAndPaymentCubit, DeliveryAndPaymentState>(
       listener: (context, state) {
-        if (state is DeliveryAndPaymentError) {
+        if (state is DeliveryAndPaymentOperationError) {
           Snack.display(context: context, message: state.error ?? MyText.error);
         }
       },
@@ -47,7 +47,9 @@ class DeliveryAndPaymentPage extends StatelessWidget {
           child: Container(color: Rndm.color),
           title: MyText.deliveryAndPayment,
           onChange: (i) {
-            context.read<DeliveryAndPaymentCubit>().fetch(guid: orderGuid);
+            context
+                .read<DeliveryAndPaymentCubit>()
+                .fetch(guid: orderGuid, loading: false);
             context.read<DeliveryAndPaymentCubit>().updateTab(index: i);
           },
           tabbarTitle: DeliverAndPaymentTabbarTitle(),

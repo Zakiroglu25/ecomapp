@@ -12,6 +12,12 @@ class DeliveryAndPaymentError extends DeliveryAndPaymentState {
   DeliveryAndPaymentError({this.error});
 }
 
+class DeliveryAndPaymentOperationError extends DeliveryAndPaymentState {
+  String? error;
+
+  DeliveryAndPaymentOperationError({this.error});
+}
+
 class DeliveryAndPaymentSuccess extends DeliveryAndPaymentState {
   final OrderDetails orderDetails;
 

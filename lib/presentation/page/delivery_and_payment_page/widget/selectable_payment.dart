@@ -22,6 +22,9 @@ class SelectablePayment extends StatelessWidget {
             BlocProvider.of<DeliveryAndPaymentCubit>(context).paymentTypeStream,
         builder: (context, snapshot) {
           PaymentType type = PaymentType.unselected;
+          final selectedCard = BlocProvider.of<DeliveryAndPaymentCubit>(context)
+              .selectedCard
+              .valueOrNull;
           if (snapshot.hasData) type = snapshot.data!;
           return Stack(
             children: [

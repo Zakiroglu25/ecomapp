@@ -5,6 +5,7 @@ import 'package:uikit/presentation/page/delivery_and_payment_page/widget/payment
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/utils/enums/delivery_type.dart';
 
 import 'widgets/take_away_pharmacy_and_order_details.dart';
 
@@ -22,7 +23,7 @@ class IWillTakeTab extends StatelessWidget {
           MySizedBox.h24,
           PaymentTypeSection(),
           MySizedBox.h24,
-          OrderSlideToConfirmButton()
+          OrderSlideToConfirmButton(deliveryType: DeliveryType.IN_STORE_PICK_UP)
         ]);
   }
 }

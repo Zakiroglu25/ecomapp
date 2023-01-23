@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/card_cubit/card_cubit.dart';
 import 'package:uikit/infrastructure/cubit/card_cubit/card_state.dart';
 import 'package:uikit/infrastructure/model/response/card_model.dart';
+import 'package:uikit/utils/constants/dividers.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/delegate/index.dart';
+import 'package:uikit/widgets/custom/listview_separated.dart';
 import 'package:uikit/widgets/general/app_element_box.dart';
 import 'package:uikit/widgets/main/payment_type_card/payment_type_card.dart';
 import 'package:uikit/utils/screen/widget_or_empty.dart';
@@ -28,9 +30,20 @@ class CardsView extends StatelessWidget {
           value: cardList.isNotEmpty,
           elseChild: AppElementBox(
             onTap: () => Go.to(context, Pager.paymentMethodPage),
-            child: Center(child: Text(MyText.savedcardNotFound)),
+            child: const Center(child: Text(MyText.savedcardNotFound)),
           ),
-          child: SelectablePaymentCard(card: lastCard),
+          child: SelectablePaymentCard(card: lastCard)
+          // ListViewSeparated(
+          //   shrinkWrap: true,
+          //   separator: Dividers.h1grey,
+          //   itemCount: cardList.length,
+          //   itemBuilder: (BuildContext, int) {
+          //     final lastCard=cardList[int];
+          //     return SelectablePaymentCard(card: lastCard);
+          //   },
+          // )
+
+          ,
         );
       } else {
         return const SizedBox.shrink();

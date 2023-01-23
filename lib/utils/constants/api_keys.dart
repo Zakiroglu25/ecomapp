@@ -199,6 +199,7 @@ class ApiKeys {
         (key, value) => key == null || value == null || value == 'null');
     return map;
   }
+
   static addInsurance({
     required String? phoneNumber,
     required String? policyNumber,
@@ -209,7 +210,7 @@ class ApiKeys {
     };
 
     map.removeWhere(
-            (key, value) => key == null || value == null || value == 'null');
+        (key, value) => key == null || value == null || value == 'null');
     return map;
   }
 
@@ -323,13 +324,17 @@ class ApiKeys {
 
   static createPaymentBody(
       {required String? orderGuid,
+      required String? deliveryType,
+      required String? paymentType,
       required bool? saveCard,
       required String? cardGuid}) {
     //
     final map = {
       "orderGuid": orderGuid,
       "saveCard": saveCard,
-      "cardGuid": cardGuid
+      "cardGuid": cardGuid,
+      "deliveryType": deliveryType,
+      "paymentType": paymentType
     };
 
     map.removeWhere(

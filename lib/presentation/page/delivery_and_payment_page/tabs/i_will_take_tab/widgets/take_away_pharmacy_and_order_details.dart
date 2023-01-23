@@ -22,6 +22,12 @@ class TakeAwayPharmacyAndOrderDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomAnimatedSize(
       child: BlocBuilder<DeliveryAndPaymentCubit, DeliveryAndPaymentState>(
+        buildWhen: (p, n) {
+          if (n is DeliveryAndPaymentOperationError) {
+            return false;
+          } else
+            return true;
+        },
         builder: (context, state) {
           if (state is DeliveryAndPaymentSuccess) {
             final details = state.orderDetails;
