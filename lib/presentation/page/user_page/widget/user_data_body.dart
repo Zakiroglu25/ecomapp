@@ -35,7 +35,7 @@ class UserDataBody extends StatelessWidget {
               width: 166,
               child: Text(
                 MyText.userInfo,
-                style: AppTextStyles.sfPro600s17,
+                style: AppTextStyles.sfPro600s16,
               ),
             ),
             InkWrapper(

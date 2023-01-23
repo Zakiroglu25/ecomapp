@@ -126,6 +126,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String logoutSub = "Təsdiqlədikdən sonra çıxış edəcəksiniz";
 
   static const String paymentMetod = "Ödəniş üsulu";
+  static const String saveCard = "Kartı yadda saxla";
   static const String payment = "Ödəniş";
   static const String messenger = "Messenger";
   static const String insurance = "Sığorta";
@@ -161,6 +162,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String slideToConfirm = 'Təsdiq etmək üçün sürüşdürün';
   static const String deliveryPrice = "Çatdırılma haqqı";
   static const String cards = "KARTLAR";
+  static const String addNewCard = "Yeni kart əlavə et";
+  static const String savedcardNotFound = "Əlavə edilmiş kart tapılmadı";
   static const String delivery = "Çatdırılma";
   static const String deliveryAddresses = "Çatdırılma ünvanları";
   static const String insuranceInfo =

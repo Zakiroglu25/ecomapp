@@ -46,7 +46,7 @@ void configureFcm({String? topic, required BuildContext context}) async {
   FirebaseMessaging.onBackgroundMessage(onBackgroundMessage);
   messaging.subscribeToTopic('all');
   messaging.subscribeToTopic('1.0.0');
-  messaging.subscribeToTopic('test5');
+  messaging.subscribeToTopic('test1');
 }
 
 void _refreshData(BuildContext context) {

@@ -17,7 +17,7 @@ class CartOrderDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Cupperfold(
-      floatingActionButton: DeliveryPayTotalButton(),
+      // floatingActionButton: DeliveryPayTotalButton(),
       barColor: CartOrderUtils.cartOrderStatus(status).color,
       backColor: CartOrderUtils.cartOrderStatus(status).color,
       showAppbarLittleText: true,

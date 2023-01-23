@@ -8,7 +8,7 @@ import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sized_box.dart';
 import '../../../../widgets/custom/column_with_space.dart';
 import '../../cart_page/widgets/cart_product/widgets/cart_med_name.dart';
-import '../../cart_page/widgets/cart_product/widgets/med_photo.dart';
+import '../../../../widgets/special/med_photo.dart';
 
 class DeliveryProduct extends StatelessWidget {
   const DeliveryProduct({Key? key, required this.order}) : super(key: key);

@@ -1,6 +1,7 @@
 // Dart imports:
 // Package imports:
 
+import 'package:uikit/infrastructure/model/response/payment_url_model.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../locator.dart';
@@ -56,6 +57,20 @@ class OrdersProvider {
       return OrderDetails.fromJson(response.data);
     } else {
       eeee("orderDetails:  url: $api , response: ${response.data}");
+    }
+    return null;
+  }
+
+  static Future<PaymentUrlModel?> createPayment(
+      {required String orderGuid, bool? saveCard, String? cardGuid}) async {
+    const api = ApiKeys.createPayment;
+    final body = ApiKeys.createPaymentBody(
+        orderGuid: orderGuid, saveCard: saveCard, cardGuid: cardGuid);
+    final response = await dioAuth.dio.post(api, data: body);
+    if (response.statusCode.isSuccess) {
+      return PaymentUrlModel.fromJson(response.data);
+    } else {
+      eeee("createPayment:  url: $api , response: ${response.data}");
     }
     return null;
   }
