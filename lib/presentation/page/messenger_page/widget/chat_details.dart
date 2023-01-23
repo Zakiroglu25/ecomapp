@@ -51,6 +51,7 @@ class Chat extends StatelessWidget {
                                 ? Alignment.centerRight
                                 : Alignment.centerLeft,
                             child:
+
                                 Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     crossAxisAlignment: CrossAxisAlignment.end,
