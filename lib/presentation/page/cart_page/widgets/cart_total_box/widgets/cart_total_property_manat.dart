@@ -12,7 +12,7 @@ class CartTotalPropertyManat extends StatelessWidget {
     this.withBack = false,
   }) : super(key: key);
   final String title;
-  final String value;
+  final num? value;
   final bool withBack;
 
   @override
@@ -20,7 +20,7 @@ class CartTotalPropertyManat extends StatelessWidget {
     return CartTotalProperty(
       title: title,
       value: ManatPrice(
-          price: value,
+          price: value?.toStringAsFixed(2),
           mainColor: withBack ? MyColors.white : MyColors.black,
           fontWeight: FontWeight.w400,
           backColor: withBack ? MyColors.black : MyColors.transparent,

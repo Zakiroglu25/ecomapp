@@ -7,6 +7,7 @@ import 'package:uikit/presentation/page/cart_page/widgets/cart_order_product/car
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/widgets/custom/listview_separated.dart';
 
 import '../../../../../infrastructure/cubit/tab_counts/tab_counts_cubit.dart';
@@ -31,7 +32,7 @@ class WaitingTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return FocusDetector(
       onFocusGained: () =>
-          context.read<WaitingOrdersCubit>().fetch(loading: false),
+          context.read<WaitingOrdersCubit>().fetch(loading: true),
       child: Stack(
         fit: StackFit.expand,
         children: [

@@ -23,10 +23,10 @@ class WaitingOrdersCubit extends Cubit<WaitingOrdersState> {
   List<CartOrder> products = [];
 
   fetch({bool loading = true}) async {
-    clearCache();
     if (loading) {
       emit(WaitingOrdersInProgress());
     }
+    clearCache();
 
     try {
       final result = await OrdersProvider.pendingOrders(page: page);

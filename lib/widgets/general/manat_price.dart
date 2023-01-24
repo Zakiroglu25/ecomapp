@@ -6,7 +6,7 @@ import '../../utils/constants/colors.dart';
 import '../../utils/constants/sized_box.dart';
 
 class ManatPrice extends StatelessWidget {
-  final String price;
+  final String? price;
   final double? textSize;
   final double? manatSize;
   final Color? mainColor;
@@ -37,7 +37,7 @@ class ManatPrice extends StatelessWidget {
         //crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            price,
+            price ?? '',
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
               fontSize: textSize ?? 16,

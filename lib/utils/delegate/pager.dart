@@ -86,7 +86,7 @@ class Pager {
 
   static get cart => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => CartCubit()..fetch()),
-        BlocProvider(create: (context) => WaitingOrdersCubit()..fetch()),
+        BlocProvider(create: (context) => WaitingOrdersCubit()),
         BlocProvider(create: (context) => TabCountsCubit()..fetch()),
       ], child: CartPage());
 

@@ -52,7 +52,7 @@ dependencies:
   map_picker: ^0.0.3
   geocoding: ^2.0.5
   custom_info_window: ^1.0.1
-  permission_handler: ^10.0.1
+  permission_handler: ^10.2.0
 #  firebase
   firebase_core: ^2.1.1
   firebase_crashlytics: ^3.0.3

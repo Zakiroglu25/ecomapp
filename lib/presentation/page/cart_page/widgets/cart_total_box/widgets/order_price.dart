@@ -11,7 +11,7 @@ class CartOrdersPrice extends StatelessWidget {
   Widget build(BuildContext context) {
     return CartTotalPropertyManat(
       title: MyText.orders,
-      value: '$totalOrderPrice',
+      value: totalOrderPrice,
     );
   }
 }
