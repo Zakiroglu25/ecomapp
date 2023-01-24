@@ -2,8 +2,10 @@
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class DeviceInfoService {
+  FirebaseMessaging _fcm = FirebaseMessaging.instance;
   static DeviceInfoService? _instance;
 
   DeviceInfoService._internal();
@@ -41,9 +43,8 @@ class DeviceInfoService {
     return deviceName;
   }
 
-  String get fcmToken {
-    //final deviceCode = await _fcm.getToken();
-    final fcmToken = 'token';
-    return fcmToken;
+  Future<String> get fcmToken async {
+    final fcmToken = await _fcm.getToken();
+    return fcmToken!;
   }
 }

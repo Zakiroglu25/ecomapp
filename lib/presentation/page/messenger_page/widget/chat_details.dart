@@ -42,26 +42,28 @@ class Chat extends StatelessWidget {
                   children: [
                     SizedBox(
                       child: ListView.builder(
-                        reverse: false,
-                        shrinkWrap: true,
+                        padding: const EdgeInsets.only(bottom: 80),
+                        reverse: true,
+                        shrinkWrap: false,
                         itemCount: chatList.length,
                         itemBuilder: (context, index) {
                           return Align(
                             alignment: chatList[index].isByYou == true
                                 ? Alignment.centerRight
                                 : Alignment.centerLeft,
-                            child:
-
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    mainAxisSize: MainAxisSize.min, children: [
-                              if (chatList[index].isByYou == false)
-                                const DoctoroChatLogo(),
-                              MySizedBox.w12,
-                              ChatWordsWidget(message: chatList[index].message!),
-                              MySizedBox.w12,
-                            ]),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  if (chatList[index].isByYou == false)
+                                    const DoctoroChatLogo(),
+                                  MySizedBox.w12,
+                                  ChatWordsWidget(
+                                    date:chatList[index].sentAt.toString(),
+                                      message: chatList[index].message!),
+                                  MySizedBox.w12,
+                                ]),
                           );
                         },
                       ),
@@ -70,9 +72,9 @@ class Chat extends StatelessWidget {
                   ],
                 );
               } else if (state is ChatMessengerInProgress) {
-                return AppLoading();
+                return const AppLoading();
               }
-              return AppLoading();
+              return const AppLoading();
             },
           ),
         ),
@@ -80,6 +82,3 @@ class Chat extends StatelessWidget {
     );
   }
 }
-
-
-
