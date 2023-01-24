@@ -19,7 +19,6 @@ import 'widget/edit_field_widget.dart';
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return Cupperfold(
@@ -47,10 +46,12 @@ class SettingsPage extends StatelessWidget {
             //  MySizedBox.h16,
             EditFieldWidget(
               onTap: () {
-                Go.to(context, BlocProvider(
-                  create: (context) => UserCubit(),
-                  child: ChangePassword(),
-                ));
+                Go.to(
+                    context,
+                    BlocProvider(
+                      create: (context) => UserCubit(),
+                      child: ChangePassword(),
+                    ));
 
                 ///sifreni deyis
               },
@@ -89,6 +90,8 @@ class SettingsPage extends StatelessWidget {
             EditFieldWidget(
               headText: MyText.account,
               title: MyText.deleteAccount,
+              color: MyColors.mainRED,
+              textColor: MyColors.white,
               // sufixImageUrl: Assets.pngAzFlag,
               png: false,
               switchW: false,

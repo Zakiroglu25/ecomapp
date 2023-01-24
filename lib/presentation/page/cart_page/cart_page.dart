@@ -40,6 +40,7 @@ class CartPage extends StatelessWidget {
           },
           onRefresh: () {
             context.read<CartCubit>().fetch();
+            context.read<WaitingOrdersCubit>().fetch();
             return context.read<TabCountsCubit>().fetch(false);
           },
           tabPages: [

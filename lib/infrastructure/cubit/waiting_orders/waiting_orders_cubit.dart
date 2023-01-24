@@ -35,7 +35,6 @@ class WaitingOrdersCubit extends Cubit<WaitingOrdersState> {
         products.addAll(searchItems!);
         totalPages = result!.totalPages!;
         updateHaveElse();
-        bbbb("pr: ${products.length}");
         emit(WaitingOrdersSuccess(products));
       } else {
         emit(WaitingOrdersError());

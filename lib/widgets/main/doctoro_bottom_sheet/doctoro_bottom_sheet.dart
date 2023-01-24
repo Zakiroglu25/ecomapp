@@ -1,6 +1,7 @@
 // Flutter imports:
 
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/constants/physics.dart';
 
 import '../../../utils/constants/border_radius.dart';
 import 'widget/handle_line.dart';
@@ -33,12 +34,22 @@ class AppBottomSheet extends StatelessWidget {
       decoration: const BoxDecoration(
           color: Colors.white70, borderRadius: Radiuses.rt24),
       // height: 270,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          showHandle ? const HandleLine() : Container(),
-          child!,
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          // shrinkWrap: true,
+          // physics: Physics.never,
+          children: [
+            showHandle ? const HandleLine() : Container(),
+            ListView(
+              shrinkWrap: true,
+              physics: Physics.never,
+              // mainAxisSize: MainAxisSize.min,
+              children: [
+                child!,
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

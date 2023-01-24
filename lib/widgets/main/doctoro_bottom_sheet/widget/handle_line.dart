@@ -9,12 +9,14 @@ class HandleLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: Paddings.paddingV8,
-      padding: EdgeInsets.symmetric(horizontal: (context.sW / 2) - 100),
-      width: 33,
-      height: 4,
-      color: MyColors.grey288,
+    return Center(
+      child: Container(
+        margin: Paddings.paddingV8,
+        padding: EdgeInsets.symmetric(horizontal: (context.sW / 2) - 100),
+        width: 33,
+        height: 4,
+        color: MyColors.grey288,
+      ),
     );
   }
 }
