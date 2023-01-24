@@ -68,11 +68,11 @@ class PublicProvider {
   }
 
 //card
-  static Future<CardModel?> getCard() async {
+  static Future<CardListModel?> getCard() async {
     const api = ApiKeys.card;
     final response = await dioAuth.dio.get(api);
     if (response.statusCode.isSuccess) {
-      return CardModel.fromJson(response.data);
+      return CardListModel.fromJson(response.data);
     } else {
       eeee("card List:  url: $api , response: ${response.data}");
     }

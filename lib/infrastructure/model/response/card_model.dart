@@ -1,9 +1,9 @@
-class CardModel {
+class CardListModel {
   List<CardData> list = [];
 
-  CardModel(this.list);
+  CardListModel(this.list);
 
-  CardModel.fromJson(List json) {
+  CardListModel.fromJson(List json) {
     for (int i = 0; i < json.length; i++) {
       list.add(CardData.fromJson(json[i]));
     }

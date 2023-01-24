@@ -1,1 +1,7 @@
-enum PaymentType { card, cash, unselected }
+enum PaymentType {
+  ONLINE,
+  CASH,
+  unselected;
+
+  String get toText => name;
+}

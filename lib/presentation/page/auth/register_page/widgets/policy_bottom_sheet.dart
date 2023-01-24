@@ -26,29 +26,46 @@ class PolicyChechkBoxText extends StatelessWidget {
       onTap: () {
         Sheet.display(
             context: context,
-            child: Padding(
-              padding: Paddings.paddingH16,
+            child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Text(MyText.ruleText,
-                      style: AppTextStyles.sfPro700
-                          .copyWith(fontSize: 32.sp, color: MyColors.black)),
-                  MySizedBox.h32,
-                  Text(MyText.rules,
-                      style: AppTextStyles.sfPro600.copyWith(fontSize: 14.sp)),
-                  // Spacer(),
-                  MySizedBox.h16,
-                  AppButton(
-                    color: checkConfirmed
-                        ? MyColors.errorRED
-                        : MyColors.mainGreen85,
-                    text: checkConfirmed ? MyText.iAmDisAgree : MyText.iAmAgree,
-                    onTap: () {
-                      bloc.inverseCheckBox();
-                      return Go.pop(context);
-                    },
+                  Padding(
+                    padding: Paddings.paddingH16,
+                    child: Column(
+                      children: [
+                        Text(MyText.ruleText,
+                            style: AppTextStyles.sfPro700.copyWith(
+                                fontSize: 32.sp, color: MyColors.black)),
+                        MySizedBox.h32,
+                        Text(MyText.rules,
+                            style: AppTextStyles.sfPro600
+                                .copyWith(fontSize: 14.sp)),
+                        // Spacer(),
+                        MySizedBox.h16,
+                        // AppButton(
+                        //   color: checkConfirmed
+                        //       ? MyColors.errorRED
+                        //       : MyColors.mainGreen85,
+                        //   text: checkConfirmed
+                        //       ? MyText.iAmDisAgree
+                        //       : MyText.iAmAgree,
+                        //   onTap: () {
+                        //     bloc.inverseCheckBox();
+                        //     return Go.pop(context);
+                        //   },
+                        // ),
+                        AppButton(
+                          color: MyColors.mainGreen85,
+                          text: MyText.ok,
+                          onTap: () {
+                            // bloc.inverseCheckBox();
+                            return Go.pop(context);
+                          },
+                        ),
+                        MySizedBox.h32,
+                      ],
+                    ),
                   ),
-                  MySizedBox.h32,
                 ],
               ),
             ));

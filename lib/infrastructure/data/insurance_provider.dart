@@ -30,20 +30,15 @@ class InsuranceProvider {
 
   static Future<StatusDynamic> addInsurance(
       {required String? policyNumber, required String? phoneNumber}) async {
-    print("provider1");
     StatusDynamic statusDynamic = StatusDynamic();
     const api = ApiKeys.addInsuranceApi;
-    // final body = ApiKeys.addInsurance(
-    //     policyNumber: policyNumber, phoneNumber: phoneNumber);
-    final body = {"policyNumber": policyNumber, "phoneNumber": phoneNumber};
-    print("provider2");
+    final body = ApiKeys.addInsurance(
+        policyNumber: policyNumber, phoneNumber: phoneNumber);
     final response = await dioAuth.dio.post(api, data: body);
-    print("provider3");
     statusDynamic.statusCode = response.statusCode;
-    print("provider4");
+    statusDynamic.data = response.data;
     if (response.statusCode == ResultKey.successCode) {
-      print("provider5");
-
+      statusDynamic.data = response.data;
       // InsuranceModel model = InsuranceModel.fromJson(response.data);
       // statusDynamic.data = model;
     } else {

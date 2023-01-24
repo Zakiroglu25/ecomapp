@@ -27,9 +27,7 @@ class Sheet {
         barrierColor: Colors.black.withOpacity(.2),
 // barrierColor: Colors.red,
         isScrollControlled: true,
-        shape: RoundedRectangleBorder(
-          borderRadius: Radiuses.rt24,
-        ),
+        shape: RoundedRectangleBorder(borderRadius: Radiuses.rt24),
         context: context,
         builder: (contextZ) => AppBottomSheet(
               child: child!,

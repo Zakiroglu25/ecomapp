@@ -16,7 +16,7 @@ class SelectablePaymentCash extends StatelessWidget {
     return WidgetOrEmpty(
       value: context.watch<DeliveryAndPaymentCubit>().tabIndex == 1,
       child: const SelectablePayment(
-          child: CashPaymentBox(), paymentType: PaymentType.cash),
+          child: CashPaymentBox(), paymentType: PaymentType.CASH),
     );
   }
 }

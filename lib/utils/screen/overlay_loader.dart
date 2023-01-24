@@ -23,10 +23,10 @@ class Loader extends StatelessWidget {
       double? overlayFromTop,
       double? overlayFromBottom,
       bool isAppbarOverlay = false,
-      bool isBottomBarOverlay = true}) {
+      bool isBottomBarOverlay = true}) async {
     _overlayState = Overlay.of(context);
     if (_currentLoader == null) {
-      _currentLoader = new OverlayEntry(builder: (context) {
+      _currentLoader = await new OverlayEntry(builder: (context) {
         return Stack(
           children: <Widget>[
             Container(

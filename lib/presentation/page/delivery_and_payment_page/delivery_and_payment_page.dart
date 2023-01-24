@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/delivery_and_payment/delivery_and_payment_cubit.dart';
+import 'package:uikit/infrastructure/cubit/delivery_and_payment/delivery_and_payment_state.dart';
 import 'package:uikit/presentation/page/delivery_and_payment_page/tabs/deliver_and_payment_page_delivery_tab/deliver_and_payment_page_delivery_tab.dart';
 import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/delegate/random.dart';
+import 'package:uikit/utils/screen/snack.dart';
 import 'package:uikit/widgets/custom/app_tab.dart';
 
 import '../../../infrastructure/services/hive_service.dart';
@@ -19,19 +22,44 @@ class DeliveryAndPaymentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupperTabWP(
-      user: false,
-      notification: false,
-      showAppbarLittleText: true,
-      child: Container(color: Rndm.color),
-      title: MyText.deliveryAndPayment,
-      onChange: (i) {
-        context.read<DeliveryAndPaymentCubit>().fetch(guid: orderGuid);
-        context.read<DeliveryAndPaymentCubit>().updateTab(index: i);
+    return BlocConsumer<DeliveryAndPaymentCubit, DeliveryAndPaymentState>(
+      listener: (context, state) {
+        if (state is DeliveryAndPaymentOperationError) {
+          Snack.display(context: context, message: state.error ?? MyText.error);
+        }
       },
-      tabbarTitle: DeliverAndPaymentTabbarTitle(),
-      tabPages: const [DeliverAndPaymentPageDeliveryTab(), IWillTakeTab()],
-      tabs: [AppTab(text: MyText.delivery), AppTab(text: MyText.iWillTakeIt)],
+      builder: (context, state) {
+        if (state is DeliveryAndPaymentUrlFetched) {
+          return Pager.webviewPage(
+              url: state.url,
+              context: context,
+              whenSuccess: () => context
+                  .read<DeliveryAndPaymentCubit>()
+                  .paymentSuccess(context),
+              whenUnSuccess: () => context
+                  .read<DeliveryAndPaymentCubit>()
+                  .paymentUnSuccess(context));
+        }
+        return CupperTabWP(
+          user: false,
+          notification: false,
+          showAppbarLittleText: true,
+          child: Container(color: Rndm.color),
+          title: MyText.deliveryAndPayment,
+          onChange: (i) {
+            context
+                .read<DeliveryAndPaymentCubit>()
+                .fetch(guid: orderGuid, loading: false);
+            context.read<DeliveryAndPaymentCubit>().updateTab(index: i);
+          },
+          tabbarTitle: DeliverAndPaymentTabbarTitle(),
+          tabPages: const [DeliverAndPaymentPageDeliveryTab(), IWillTakeTab()],
+          tabs: [
+            AppTab(text: MyText.delivery),
+            AppTab(text: MyText.iWillTakeIt)
+          ],
+        );
+      },
     );
   }
 }

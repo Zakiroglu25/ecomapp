@@ -12,4 +12,9 @@ class PaymentUrlModel {
     data['url'] = this.url;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'PaymentUrlModel{url: $url}';
+  }
 }

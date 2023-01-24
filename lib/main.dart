@@ -30,6 +30,7 @@ Future<dynamic> onBackgroundMessageHandler(Map<String, dynamic> message) async {
   }
 }
 void main() async {
+  
   Adam a1 = Adam();
   Adam a2 = Adam();
   Adam a3 = Adam();

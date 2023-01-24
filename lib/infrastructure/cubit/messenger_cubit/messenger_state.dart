@@ -8,6 +8,7 @@ class MessengerInitial extends MessengerState {}
 class MessengerInProgress extends MessengerState {}
 
 class MessengerInAdding extends MessengerState {}
+class MessengerCrate extends MessengerState {}
 
 class MessengerError extends MessengerState {
   String? error;

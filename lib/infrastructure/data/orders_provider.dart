@@ -62,10 +62,18 @@ class OrdersProvider {
   }
 
   static Future<PaymentUrlModel?> createPayment(
-      {required String orderGuid, bool? saveCard, String? cardGuid}) async {
+      {required String orderGuid,
+      bool? saveCard,
+      String? cardGuid,
+      String? paymentType,
+      String? deliveryType}) async {
     const api = ApiKeys.createPayment;
     final body = ApiKeys.createPaymentBody(
-        orderGuid: orderGuid, saveCard: saveCard, cardGuid: cardGuid);
+        orderGuid: orderGuid,
+        saveCard: saveCard,
+        cardGuid: cardGuid,
+        deliveryType: deliveryType,
+        paymentType: paymentType);
     final response = await dioAuth.dio.post(api, data: body);
     if (response.statusCode.isSuccess) {
       return PaymentUrlModel.fromJson(response.data);

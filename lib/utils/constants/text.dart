@@ -25,6 +25,7 @@ class MyText {
 
   //register
   static const String email = "E-poçt və ya mobil";
+  static const String emailRegister = "E-poçt";
   static const String emailOrPassNotCorrect = "E-poçt və ya şifrə yanlışdır";
   static const String phone = "Mobil nömrə";
   static const String phone_hint = "+994 (__) ___-__-__";
@@ -145,7 +146,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String cancel = "Ləğv et";
   static const String addToCart = "Səbətə at";
   static const String iWillTakeIt = "Özüm götürəcəm";
-  static const String addedToCart = "Səbətə atıldı";
+  static const String addedToCart = "Səbətə əlavə olundu";
   static const String removedFromCart = "Səbətdən çıxarıldı";
   static const String orderRegistered = "Sifariş üçün sorğu göndərlidi";
   static const String cartPrescriptionRemoved = "Resept silindi";
@@ -252,8 +253,10 @@ In addition to laying out rules for proper use of your app, you should also clea
   //contact
   static const String contactDesc =
       "Hörmətli müştəri, hər hansı bir problemlə raslaşdıqda qaynar xətt nömrəmiz müraciyyət edə bilərsiniz  *8833";
+
 //notification
   static const String notification = "Bildirişlər";
+
   //user
   static const String userInfo = "Şəxs haqqında haqqında məlumatlar";
   static const String name = "Ad";
@@ -299,12 +302,28 @@ In addition to laying out rules for proper use of your app, you should also clea
 
   //faq
   static const String faq = 'Sual-cavab';
+
   //card
   static const String yes = 'Bəli';
   static const String no = 'Xeyr';
   static const String deleteCardInfo = 'Kart məlumatlarınız, silinsin?';
+
   //notification
   static const String emptyNotification = 'Bildiriş yoxdur';
   static const String emptyNotiDetail =
       'Tətbiq daxilində bildiriş gəldikdə, burada əks olunacaqdır. Hal-hazırda heç bir bildiriş, mövcud deyil';
+
+  //insurance
+  static const String insuranceNum = 'Sığorta nömrəsi';
+  static const String enterInsuranceNum = 'Sığorta nömrəsini daxil edin';
+
+  //other text
+  static const String chat = 'Mesajlarını burada görə bilərsən';
+  static const String addressOther = 'Şablon ünvanlarını burada görə bilərsən';
+  static const String paymentOther = 'Ödəniş üsullarını burada görə bilərsən';
+  static const String insuranceOther = 'Məlumatlarını burada görə bilərsən';
+  static const String contactOther = 'Buradan bizimlə əlaqə yarada bilərsən';
+  static const String faqOther = 'Buradan suallarına cavab tapa bilərsən';
+  static const String settingsOther = 'Buradan tətbiqi özünə uyğun ayarla';
+
 }

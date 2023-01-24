@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/infrastructure/data/public_provider.dart';
+import 'package:uikit/infrastructure/model/response/card_model.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/constants/text.dart';
@@ -12,7 +13,9 @@ class CardCubit extends Cubit<CardState> {
   getCard({bool loading = true, String? title}) async {
     if (loading) emit(CardInProgress());
     try {
-      final result = await PublicProvider.getCard();
+      CardListModel? result = await PublicProvider.getCard();
+      // result?.list.add(CardData(
+      //     guid: "dfsf", brand: "sdads", pan: "dsd", cardHolderName: "sdffd"));
       if (result.isNotNull) {
         emit(CardSuccess(result!));
       } else {

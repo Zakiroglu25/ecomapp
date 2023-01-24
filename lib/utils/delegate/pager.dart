@@ -1,5 +1,6 @@
 // Flutter imports:
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
 import 'package:uikit/infrastructure/cubit/chat_messages_cubit/chat_messenger_cubit.dart';
@@ -14,6 +15,8 @@ import 'package:uikit/presentation/page/cart_order_details_page/cart_order_detai
 import 'package:uikit/presentation/page/landing_page/landing_page.dart';
 import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart';
 import 'package:uikit/presentation/page/notification_page/notifications_page.dart';
+import 'package:uikit/presentation/page/webview_page/webview_page.dart';
+import 'package:uikit/utils/delegate/index.dart';
 
 import '../../app.dart';
 import '../../infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
@@ -44,7 +47,6 @@ import '../../presentation/page/change_number/change_number_page.dart';
 import '../../presentation/page/contact_page/contact_page.dart';
 import '../../presentation/page/delivery_and_payment_page/delivery_and_payment_page.dart';
 import '../../presentation/page/favorite_page/favorite_page.dart';
-import '../../presentation/page/home_page/home_page.dart';
 import '../../presentation/page/insurance_page/add_insurance_page.dart';
 import '../../presentation/page/medicines_page/medicines_page.dart';
 import '../../presentation/page/messenger_page/messenger_page.dart';
@@ -52,7 +54,6 @@ import '../../presentation/page/messenger_page/widget/chat_details.dart';
 import '../../presentation/page/other_page/other_page.dart';
 import '../../presentation/page/payment_method_page/payment_method_page.dart';
 import '../../presentation/page/product_details_page/product_details_page.dart';
-import '../../presentation/page/product_page/product_page.dart';
 import '../../presentation/page/question_response_page/question_response_page.dart';
 import '../../presentation/page/settings_page/settings_page.dart';
 import '../../presentation/page/splash_page/splash_page.dart';
@@ -85,7 +86,7 @@ class Pager {
 
   static get cart => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => CartCubit()..fetch()),
-        BlocProvider(create: (context) => WaitingOrdersCubit()..fetch()),
+        BlocProvider(create: (context) => WaitingOrdersCubit()),
         BlocProvider(create: (context) => TabCountsCubit()..fetch()),
       ], child: CartPage());
 
@@ -150,8 +151,6 @@ class Pager {
         child: ChangeNumberPage(),
       );
 
-  static get home => HomePage();
-
   static get messenger => BlocProvider(
         create: (context) => MessengerCubit(),
         child: MessengerPage(),
@@ -160,8 +159,6 @@ class Pager {
   static get landing => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => AddressCubit()),
       ], child: const LandingPage());
-
-  static get product => ProductPage();
 
   static chat({String? guid, String? storeName}) => BlocProvider(
         create: (context) => ChatMessengerCubit(),
@@ -225,5 +222,17 @@ class Pager {
           BlocProvider(create: (context) => CardCubit()..getCard()),
         ],
         child: DeliveryAndPaymentPage(orderGuid: orderGuid),
+      );
+
+  static webviewPage(
+          {required String url,
+          required BuildContext context,
+          void Function()? whenSuccess,
+          void Function()? whenUnSuccess}) =>
+      WebviewPage(
+        url: url,
+        mainContext: context,
+        whenUnSuccess: whenUnSuccess,
+        whenSuccess: whenSuccess,
       );
 }

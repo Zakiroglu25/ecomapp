@@ -2,15 +2,18 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/delegate/my_printer.dart';
 import '../../data/product_options_provider.dart';
 import '../../model/remote/general/MyMessage.dart';
+import '../../model/response/search_items.dart';
 import 'product_details_state.dart';
 
 class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
   ProductOptionDetailsCubit() : super(ProductODetailsInitial());
 
+  List<SimpleProduct> products = [];
   fetchProduct(String guid) async {
     emit(ProductODetailsInProgress());
     try {
@@ -29,6 +32,39 @@ class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
       }
     } on SocketException catch (_) {
       emit(ProductODetailsError());
+    } catch (e) {
+      eeee("Product Option Error" + e.toString());
+      emit(ProductODetailsError());
+    }
+  }
+
+  fetchProductMapGuid(String guid) async {
+    emit(ProductODetailsInProgress());
+    wtf("6");
+
+    try {
+      final result = await ProductOptionsProvider.getProductByGuidForMap(guid: guid);
+      wtf("7");
+      if (result.statusCode.isSuccess) {
+        print(result.statusCode ==200);
+        final searchItems = result.data;
+        products.addAll(searchItems!.products!);
+        emit(ProductODetailsMapListSuccess(products));
+        wtf("8");
+      } else {
+        wtf("9");
+        emit(ProductODetailsError());
+        eeee(
+          "contact result bad: ${ResponseMessage.fromJson(
+            jsonDecode(
+              result.toString(),
+            ),
+          ).message}",
+        );
+      }
+    } on SocketException catch (_) {
+      emit(ProductODetailsError());
+
     } catch (e) {
       eeee("Product Option Error" + e.toString());
       emit(ProductODetailsError());

@@ -177,7 +177,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     if (!isEmailIncorrect &&
         !isMainPassInCorrect &&
         !isCheckBoxIncorrect &&
-        !isCheckBoxAdsIncorrect &&
+        //!isCheckBoxAdsIncorrect &&
         !isEmailIncorrect &&
         !isPhoneIncorrect) {
       //  emit(RegisterButtonActive());

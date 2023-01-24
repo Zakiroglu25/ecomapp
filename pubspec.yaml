@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+2
+version: 1.0.0+3
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -45,13 +45,14 @@ dependencies:
   custom_pop_up_menu: ^1.2.4
   expandable: ^5.0.1
   flutter_slidable: ^2.0.0
+  dash_chat_2: ^0.0.15
 
   #map
   google_maps_flutter: ^2.2.0
   map_picker: ^0.0.3
   geocoding: ^2.0.5
   custom_info_window: ^1.0.1
-  permission_handler: ^10.0.1
+  permission_handler: ^10.2.0
 #  firebase
   firebase_core: ^2.1.1
   firebase_crashlytics: ^3.0.3
@@ -59,6 +60,7 @@ dependencies:
 #  notification
   flutter_local_notifications: ^9.5.3+1
   bot_toast: ^4.0.3
+  awesome_notifications: ^0.7.4
   #awesome_notifications: ^0.7.4+1
 
   #device info and permissions
@@ -76,6 +78,9 @@ dependencies:
 
   #plugin
   image_picker: ^0.8.5+3
+
+  #webview
+  flutter_inappwebview: ^5.4.3+7
 
   #test:
   equatable:

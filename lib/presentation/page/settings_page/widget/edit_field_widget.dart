@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:uikit/utils/constants/border_radius.dart';
 
 import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/colors.dart';
@@ -12,6 +13,8 @@ class EditFieldWidget extends StatelessWidget {
   final String? subTitle;
   final Widget? prefixImageUrl;
   final String? sufixImageUrl;
+  final Color? color;
+  final Color? textColor;
   final bool? png;
   final bool? switchW;
   final Function? onTap;
@@ -23,6 +26,8 @@ class EditFieldWidget extends StatelessWidget {
       this.prefixImageUrl,
       this.sufixImageUrl,
       this.headText,
+      this.color,
+      this.textColor,
       this.png,
       this.switchW,
       this.onTap})
@@ -43,8 +48,8 @@ class EditFieldWidget extends StatelessWidget {
           onTap: () => onTap!.call(),
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: MyColors.grey245,
+              borderRadius: Radiuses.r12,
+              color: color ?? MyColors.grey245,
             ),
             child: Column(
               children: [
@@ -64,7 +69,8 @@ class EditFieldWidget extends StatelessWidget {
                       children: [
                         Text(
                           title!,
-                          style: AppTextStyles.sfPro400s16.copyWith(),
+                          style: AppTextStyles.sfPro400s16
+                              .copyWith(color: textColor),
                         ),
                         if (subTitle != null)
                           Text(

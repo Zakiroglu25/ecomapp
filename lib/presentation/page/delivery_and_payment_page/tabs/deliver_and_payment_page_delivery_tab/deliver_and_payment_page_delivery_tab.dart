@@ -11,6 +11,7 @@ import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/enums/delivery_type.dart';
 import 'package:uikit/widgets/custom/text_title_big.dart';
 
 class DeliverAndPaymentPageDeliveryTab extends StatelessWidget {
@@ -32,7 +33,7 @@ class DeliverAndPaymentPageDeliveryTab extends StatelessWidget {
           MySizedBox.h8,
           SaveCardCheckBox(),
           MySizedBox.h24,
-          const OrderSlideToConfirmButton()
+          const OrderSlideToConfirmButton(deliveryType: DeliveryType.COURIER)
         ]);
   }
 }

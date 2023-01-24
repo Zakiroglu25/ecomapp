@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:uikit/infrastructure/cubit/chat_messages_cubit/chat_messenger_cubit.dart';
 import 'package:uikit/infrastructure/cubit/chat_messages_cubit/chat_messenger_state.dart';
 import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
 
+import '../../../../utils/constants/assets.dart';
 import '../../../../widgets/doctoro_appbar/doctoro_appbar.dart';
 import '../../../../widgets/general/app_loading.dart';
 import '../../../../widgets/main/cupperfold/cupperfold.dart';
@@ -16,6 +20,8 @@ class Chat extends StatelessWidget {
 
   TextEditingController controller = TextEditingController();
 
+  final int messageCount = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,96 +31,146 @@ class Chat extends StatelessWidget {
         user: false,
         contextA: context,
       ),
-      body: BlocProvider(
-        create: (context) =>
-            ChatMessengerCubit()..fetch(context: context, guid: guid!),
-        child: BlocBuilder<ChatMessengerCubit, ChatMessengerState>(
-          builder: (context, state) {
-            if (state is ChatMessengerSuccess) {
-              var chatList = state.contactList;
-              return Stack(
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height,
-                    child: ListView.builder(
-                      reverse: false,
-                      shrinkWrap: true,
-                      itemCount: chatList.length,
-                      itemBuilder: (context, index) {
-                        return Align(
-                          alignment: chatList[index].isByYou == true
-                              ? Alignment.centerRight
-                              : Alignment.centerLeft,
-                          child: Container(
-                            height: 36,
-                            decoration: BoxDecoration(
-                                color: MyColors.field_grey,
-                                borderRadius: BorderRadius.circular(12)),
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 16.0, right: 16.0, top: 6, bottom: 6),
-                              child: Text(chatList[index].message!),
-                            ),
-                          ),
-                        );
-                      },
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: BlocProvider(
+          create: (context) =>
+              ChatMessengerCubit()..fetch(context: context, guid: guid!),
+          child: BlocBuilder<ChatMessengerCubit, ChatMessengerState>(
+            builder: (context, state) {
+              if (state is ChatMessengerSuccess) {
+                var chatList = state.contactList;
+                return Stack(
+                  children: [
+                    Container(
+                      height: MediaQuery.of(context).size.height,
+                      child: ListView.builder(
+                        reverse: false,
+                        shrinkWrap: true,
+                        itemCount: chatList.length,
+                        itemBuilder: (context, index) {
+                          return Align(
+                            alignment: chatList[index].isByYou == true
+                                ? Alignment.centerRight
+                                : Alignment.centerLeft,
+                            child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+
+                                  if(chatList[index].isByYou == false)
+
+                                    Container(
+                                    width: 28.w,
+                                    height: 28.h,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(100),
+                                        color: MyColors.mainGrey
+                                    ),
+
+                                      child: SizedBox(
+                                      width: 28.w,
+                                      height: 28.h,
+                                      child: Center(
+                                        child: Icon(Icons.person),
+                                      ),
+                                    ),
+                                  ),
+                                  MySizedBox.w12,
+
+                                  Padding(
+                                    padding: const EdgeInsets.all(2.0),
+                                    child: Container(
+                                height: 36,
+                                decoration: BoxDecoration(
+                                      color: MyColors.field_grey,
+                                      borderRadius: BorderRadius.circular(12)),
+                                child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 16.0, right: 16.0, top: 6, bottom: 6),
+                                    child: Text(chatList[index].message!.length.toString()),
+                                ),
+                              ),
+                                  ),
+                                  MySizedBox.w12,
+
+                                  if(chatList[index].isByYou == true)
+
+                                  Container(
+                                width: 28.w,
+                                height: 28.h,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  color: MyColors.mainGrey
+                                ),
+                                child: SizedBox(
+                                  width: 20.w,
+                                  height: 20.h,
+                                  child: Center(
+                                    child: SvgPicture.asset(Assets.svgLogo),
+                                  ),
+                                ),
+                              ),
+                            ]),
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                  Container(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 16),
-                      color: Colors.white,
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: MyColors.field_grey,
-                                  borderRadius: BorderRadius.circular(99)),
-                              child: TextField(
-                                controller: controller,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: new EdgeInsets.symmetric(
-                                      vertical: 7, horizontal: 15),
+                    Container(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 16),
+                        color: Colors.white,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: MyColors.field_grey,
+                                    borderRadius: BorderRadius.circular(99)),
+                                child: TextField(
+                                  controller: controller,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: new EdgeInsets.symmetric(
+                                        vertical: 7, horizontal: 15),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              context.read<ChatMessengerCubit>().sendMessage(
-                                  message: controller.text,
-                                  guid: guid,
-                                  context: context);
-                            },
-                            child: BlocListener<ChatMessengerCubit,
-                                ChatMessengerState>(
-                              listener: (context, state) {
-                                if (state is ChatMessengerInProgress) {
-                                  AppLoading();
-                                }
+                            GestureDetector(
+                              onTap: () {
+                                context.read<ChatMessengerCubit>().sendMessage(
+                                    message: controller.text,
+                                    guid: guid,
+                                    context: context);
                               },
-                              child: Icon(
-                                Icons.send,
-                                color: Colors.black,
-                                size: 25,
+                              child: BlocListener<ChatMessengerCubit,
+                                  ChatMessengerState>(
+                                listener: (context, state) {
+                                  if (state is ChatMessengerInProgress) {
+                                    AppLoading();
+                                  }
+                                },
+                                child: Icon(
+                                  Icons.send,
+                                  color: Colors.black,
+                                  size: 25,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  )
-                ],
-              );
-            } else if (state is ChatMessengerInProgress) {
+                    )
+                  ],
+                );
+              } else if (state is ChatMessengerInProgress) {
+                return AppLoading();
+              }
               return AppLoading();
-            }
-            return AppLoading();
-          },
+            },
+          ),
         ),
       ),
     );
