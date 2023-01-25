@@ -17,7 +17,7 @@ class AddAddressCubit extends Cubit<AddAddressState> {
   AddAddressCubit() : super(AddAddressInitial());
 
   HiveService get _prefs => locator<HiveService>();
-  final titleCnt = TextEditingController();
+  final titleCnt = TextEditingController()..addListener(() {});
   final countryController = TextEditingController();
   final houseNumberController = TextEditingController();
   final cityController = TextEditingController();

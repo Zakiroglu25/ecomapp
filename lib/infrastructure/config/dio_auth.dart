@@ -1,10 +1,14 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/infrastructure/data/auth_provider.dart';
 import 'package:uikit/infrastructure/services/navigation_service.dart';
 import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/extensions/index.dart';
+import 'package:uikit/utils/screen/snack.dart';
 
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
@@ -191,6 +195,15 @@ class CustomInterceptors extends Interceptor {
     //     'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}');
     // Recorder.recordDioError(err);
     //return
+    bbbb("tyyype:  ${err.type}");
+    if (_isServerDown(err)) {
+      Snack.display(message: MyText.networkError);
+    }
     super.onError(err, handler);
+  }
+
+  bool _isServerDown(DioError error) {
+    return (error.error is SocketException) ||
+        (error.type == DioErrorType.connectTimeout);
   }
 }
