@@ -48,15 +48,15 @@ class ProductAndOtherWidget extends StatelessWidget {
             MySizedBox.h4,
             Text(
               title!,
-              style: AppTextStyles.sfPro600
-                  .copyWith(color: MyColors.black34, fontSize: 16.sp),
+              style: AppTextStyles.sfPro600s16
+                  .copyWith(color: MyColors.black34),
             ),
             MySizedBox.h4,
             SizedBox(
               height: 55.h,
               child: Text(
                 desc!,
-                style: AppTextStyles.sfPro400s14
+                style: AppTextStyles.sfPro400s12
                     .copyWith(color: MyColors.black34, fontSize: 13.sp),
               ),
             )

@@ -31,7 +31,7 @@ class UserOperations {
       await _prefs.persistIsLoggedIn(true);
       if (path != null) await _prefs.persistPath(path);
 
-      final deviceFcmToken = _devInfo.fcmToken;
+      final deviceFcmToken = await _devInfo.fcmToken;
       final devicePlatformId = _devInfo.platformId;
       final deviceName = await _devInfo.deviceName;
 
