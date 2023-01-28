@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/delivery_and_payment/delivery_and_payment_cubit.dart';
 import 'package:uikit/infrastructure/cubit/delivery_and_payment/delivery_and_payment_state.dart';
 import 'package:uikit/presentation/page/delivery_and_payment_page/tabs/deliver_and_payment_page_delivery_tab/deliver_and_payment_page_delivery_tab.dart';
+import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/delegate/random.dart';
@@ -52,6 +53,7 @@ class DeliveryAndPaymentPage extends StatelessWidget {
                 .fetch(guid: orderGuid, loading: false);
             context.read<DeliveryAndPaymentCubit>().updateTab(index: i);
           },
+          physics: Physics.never,
           tabbarTitle: DeliverAndPaymentTabbarTitle(),
           tabPages: const [DeliverAndPaymentPageDeliveryTab(), IWillTakeTab()],
           tabs: [

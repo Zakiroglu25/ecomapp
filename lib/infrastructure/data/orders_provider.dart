@@ -50,6 +50,25 @@ class OrdersProvider {
     return null;
   }
 
+  static Future<CartOrdersData?> deliveryOrders({int? page}) async {
+    final List<String> waitingTabStatusList = [
+      OrderStatus.PACKAGING,
+      OrderStatus.DELIVERED,
+      OrderStatus.PICKED_UP,
+      OrderStatus.READY_TO_PICK_UP,
+      OrderStatus.RETURNED
+    ];
+    final api =
+        ApiKeys.orders + '?status=${waitingTabStatusList.join(',')}&page=$page';
+    final response = await dioAuth.dio.get(api);
+    if (response.statusCode.isSuccess) {
+      return CartOrdersData.fromJson(response.data);
+    } else {
+      eeee("deliveryOrders:  url: $api , response: ${response.data}");
+    }
+    return null;
+  }
+
   static Future<OrderDetails?> orderDetails({required String guid}) async {
     final api = ApiKeys.orders + '/$guid';
     final response = await dioAuth.dio.get(api);

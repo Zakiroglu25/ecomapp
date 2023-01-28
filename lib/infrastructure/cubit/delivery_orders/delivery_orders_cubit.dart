@@ -1,22 +1,15 @@
-import 'dart:io';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/utils/extensions/object.dart';
-
 import '../../../utils/delegate/my_printer.dart';
-import '../../../utils/enums/transaction_type.dart';
-import '../../data/favorites_provider.dart';
 import '../../data/orders_provider.dart';
 import '../../model/response/orders_data.dart';
-import '../../model/response/product_option_model.dart';
-import '../../model/response/search_items.dart';
-import 'waiting_orders_state.dart';
+import 'index.dart';
 
-class WaitingOrdersCubit extends Cubit<WaitingOrdersState> {
-  WaitingOrdersCubit() : super(WaitingOrdersInitial());
+class DeliveryOrdersCubit extends Cubit<DeliveryOrdersState> {
+  DeliveryOrdersCubit() : super(DeliveryOrdersInitial());
 
   int page = 1;
   int totalPages = 0;
@@ -24,24 +17,24 @@ class WaitingOrdersCubit extends Cubit<WaitingOrdersState> {
 
   fetch({bool loading = true}) async {
     if (loading) {
-      emit(WaitingOrdersInProgress());
+      emit(DeliveryOrdersInProgress());
     }
     clearCache();
 
     try {
-      final result = await OrdersProvider.pendingOrders(page: page);
+      final result = await OrdersProvider.deliveryOrders(page: page);
       if (result.isNotNull && result!.data.isNotEmptyOrNull) {
         final searchItems = result.data;
         products.addAll(searchItems!);
         totalPages = result.totalPages!;
         updateHaveElse();
-        emit(WaitingOrdersSuccess(products));
+        emit(DeliveryOrdersSuccess(products));
       } else {
-        emit(WaitingOrdersError());
+        emit(DeliveryOrdersError());
       }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
-      emit(WaitingOrdersError());
+      emit(DeliveryOrdersError());
     }
   }
 
@@ -56,7 +49,7 @@ class WaitingOrdersCubit extends Cubit<WaitingOrdersState> {
     final result = await OrdersProvider.pendingOrders(page: page + 1);
     if (result.isNotNull) {
       products.addAll(result!.data!);
-      emit(WaitingOrdersSuccess(products));
+      emit(DeliveryOrdersSuccess(products));
       page++;
     }
     updateHaveElse();
@@ -76,7 +69,7 @@ class WaitingOrdersCubit extends Cubit<WaitingOrdersState> {
   }
 
   @override
-  emit(WaitingOrdersState state) {
+  emit(DeliveryOrdersState state) {
     if (!isClosed) return super.emit(state);
   }
 }

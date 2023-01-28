@@ -21,6 +21,7 @@ class CupperTabsWithProvider extends StatefulWidget {
     this.trailings,
     this.back = true,
     this.onBack,
+    this.physics = Physics.alwaysBounce,
     this.tabController,
     this.headers,
     this.isScrollable = false,
@@ -64,6 +65,7 @@ class CupperTabsWithProvider extends StatefulWidget {
   final SliverPersistentHeaderDelegate? tabbarTitle;
   final Color? barColor;
   final RefreshCallback? onRefresh;
+  final ScrollPhysics physics;
   final Function(int)? tabController;
 
   @override
@@ -190,7 +192,7 @@ class _CupperTabsWithProviderState extends State<CupperTabsWithProvider>
                     ];
                   },
                   body: TabBarView(
-                    physics: Physics.alwaysBounce,
+                    physics: widget.physics,
                     controller: _tabController,
                     children: widget.tabPages.map((Widget child) {
                       return RefreshIndicator(

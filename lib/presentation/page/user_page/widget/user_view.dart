@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../infrastructure/services/hive_service.dart';
 import '../../../../locator.dart';
@@ -19,7 +20,7 @@ class UserView extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12), color: MyColors.white),
           width: 311,
-          height: 420,
+          height: 425,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: UserDataBody(prefs: _prefs),

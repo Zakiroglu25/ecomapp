@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>831917852046-l247kcoomb20d9ees7l29ovsoqnaem48.apps.googleusercontent.com</string>
+	<string>831917852046-mjvc6aj8556nfhelieg0t9ke5h7lhkke.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.831917852046-l247kcoomb20d9ees7l29ovsoqnaem48</string>
+	<string>com.googleusercontent.apps.831917852046-mjvc6aj8556nfhelieg0t9ke5h7lhkke</string>
 	<key>API_KEY</key>
 	<string>AIzaSyA42c_D4avpv-dRPtqDrFDh5LlisIWwM-Q</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>az.doctoro</string>
+	<string>az.doctoro.doctoro</string>
 	<key>PROJECT_ID</key>
 	<string>doctoro-5ce1d</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:831917852046:ios:506216731df8833ed490df</string>
+	<string>1:831917852046:ios:826f8da55ac6f07fd490df</string>
 </dict>
 </plist>

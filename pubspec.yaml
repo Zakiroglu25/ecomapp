@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+3
+version: 1.0.3+3
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -52,7 +52,7 @@ dependencies:
   map_picker: ^0.0.3
   geocoding: ^2.0.5
   custom_info_window: ^1.0.1
-  permission_handler: ^10.2.0
+  permission_handler: ^10.0.1
 #  firebase
   firebase_core: ^2.1.1
   firebase_crashlytics: ^3.0.3
@@ -130,3 +130,25 @@ flutter:
         - asset: assets/fonts/sf.ttf
           style: normal
           weight: 400
+    - family: ProximaNova-Regular
+      fonts:
+        - asset: assets/fonts/proximaregular.otf
+          style: normal
+          weight: 400
+    - family: ProximaNova-Medium
+      fonts:
+        - asset: assets/fonts/proximamedium.otf
+          style: normal
+          weight: 500
+    - family: ProximaNova-SemiBold
+      fonts:
+        - asset: assets/fonts/proximasemibold.otf
+          style: normal
+          weight: 600
+    - family: ProximaNova-Bold
+      fonts:
+        - asset: assets/fonts/proximabold.otf
+          style: normal
+          weight: 700
+
+
