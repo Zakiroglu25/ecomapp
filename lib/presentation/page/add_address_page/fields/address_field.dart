@@ -15,7 +15,6 @@ class AddressField extends StatelessWidget {
       title: MyText.address,
       maxLines: 1,
       hint: MyText.addressAdd,
-      upperCase: false,
       textInputType: TextInputType.name,
       textCapitalization: TextCapitalization.sentences,
       controller: controller,

@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uikit/infrastructure/cubit/map/map_store_cubit.dart';
+import 'package:uikit/infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/delegate/navigate_utils.dart';
@@ -27,11 +28,11 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   final CustomInfoWindowController _customInfoWindowController =
-      CustomInfoWindowController();
+  CustomInfoWindowController();
   GoogleMapController? mapController;
 
   Set<Marker> markers = Set();
-   BitmapDescriptor? icon;
+  BitmapDescriptor? icon;
 
   @override
   void initState() {
@@ -43,11 +44,10 @@ class _MapPageState extends State<MapPage> {
     var icon = await BitmapDescriptor.fromAssetImage(
         const ImageConfiguration(devicePixelRatio: 3.3), Assets.marker);
     setState(() {
-      if(icon == null){
+      if (icon == null) {
         BitmapDescriptor.defaultMarker;
-      }else{
-      this.icon = icon;
-
+      } else {
+        this.icon = icon;
       }
     });
   }
@@ -61,7 +61,7 @@ class _MapPageState extends State<MapPage> {
   //
   @override
   Widget build(BuildContext context) {
-          LatLng? showLocation;
+    LatLng? showLocation;
     return BlocBuilder<MapStoreCubit, MapStoreState>(
       builder: (context, state) {
         if (state is MapStoreSuccess) {
@@ -80,7 +80,10 @@ class _MapPageState extends State<MapPage> {
                         Expanded(
                           child: InkWell(
                             onTap: () {
-                              Go.to(context, MapDetailsPage(element));
+                              Go.to(context, BlocProvider(
+                                create: (context) => ProductOptionDetailsCubit()..fetchProductMapGuid(element.guid!),
+                                child: MapDetailsPage(element),
+                              ));
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -124,7 +127,8 @@ class _MapPageState extends State<MapPage> {
                 GoogleMap(
                   zoomGesturesEnabled: true,
                   initialCameraPosition: CameraPosition(
-                    target: LatLng(40.39427, 49.880143), //initial positi, //initial position
+                    target: LatLng(40.39427, 49.880143),
+                    //initial positi, //initial position
                     zoom: 13.0, //initial zoom level
                   ),
                   onTap: (position) {
