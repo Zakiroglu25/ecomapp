@@ -13,7 +13,6 @@ class RegionField extends StatelessWidget {
       title: MyText.region,
       maxLines: 1,
       hint: MyText.region,
-      upperCase: false,
       textInputType: TextInputType.name,
       textCapitalization: TextCapitalization.sentences,
       controller: controller,
