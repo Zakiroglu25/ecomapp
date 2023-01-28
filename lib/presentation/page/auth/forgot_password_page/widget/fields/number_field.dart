@@ -19,20 +19,23 @@ class PhoneFieldForgot extends StatelessWidget {
       stream: BlocProvider.of<ForgotPassCubit>(context).phoneStream,
       builder: (context, snapshot) {
         return AppField(
-          title: MyText.phone,
-          maxLines: 1,
-          hint: MyText.phone,
-          upperCase: true,
-          textInputType: TextInputType.phone,
-          formatters: [PhoneNumberFormatter()],
-          maxLenght: 14,
-          prefixIcon: Plus994(),
-          textCapitalization: TextCapitalization.none,
-          errorMessage: snapshot.error == null ? null : '${snapshot.error}',
-          //  controller: controller,
-          onChanged: (value) =>
-              BlocProvider.of<ForgotPassCubit>(context).updatePhone(value),
-        );
+            title: MyText.phone,
+            maxLines: 1,
+            hint: MyText.phone,
+            upperCase: true,
+            textInputType: TextInputType.phone,
+            formatters: [PhoneNumberFormatter()],
+            maxLenght: 14,
+            prefixIcon: Plus994(),
+            textCapitalization: TextCapitalization.none,
+            errorMessage: snapshot.error == null ? null : '${snapshot.error}',
+            //  controller: controller,
+            onChanged: (value) {
+              if (value.length == 14) {
+                FocusScope.of(context).unfocus();
+              }
+              BlocProvider.of<ForgotPassCubit>(context).updatePhone(value);
+            });
       },
     );
   }
