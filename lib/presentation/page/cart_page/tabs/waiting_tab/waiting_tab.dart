@@ -32,57 +32,28 @@ class WaitingTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return FocusDetector(
       onFocusGained: () =>
-          context.read<WaitingOrdersCubit>().fetch(loading: true),
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          BlocBuilder<WaitingOrdersCubit, WaitingOrdersState>(
-            builder: (context, state) {
-              if (state is WaitingOrdersSuccess) {
-                final orders = state.orders;
-                return ListOrEmpty(
-                  list: orders,
-                  onRefresh: () => onRefresh(context),
-                  image: Assets.pngEmptyCart,
-                  text: MyText.cartIsEmpty,
-                  description: MyText.goToProductSectionToFindProducts,
-                  child: ListViewSeparated(
-                    padding: Paddings.paddingH16 + Paddings.paddingB200,
-                    shrinkWrap: true,
-                    physics: Physics.never,
-                    itemBuilder: (context, index) =>
-                        CartOrderProduct(order: orders[index]),
-                    itemCount: orders.length,
-                  ),
-                );
-              } else if (state is WaitingOrdersInProgress) {
-                return AppLoading();
-              } else {
-                return EmptyWidget(
-                  onRefresh: () => onRefresh(context),
-                );
-              }
-            },
-          ),
-          // Positioned(
-          //     bottom: 20,
-          //     right: 20,
-          //     child: SpacedColumn(
-          //       crossAxisAlignment: CrossAxisAlignment.end,
-          //       space: 10,
-          //       children: [
-          //         AppButton.black(
-          //           w: context.dynamicW(.4),
-          //           text: MyText.keepInTouchX,
-          //         ),
-          //         AppButton.black(
-          //           w: context.dynamicW(.5),
-          //           text: MyText.orderDeliveryX,
-          //           // onTap: () => Go.to(context, Pager.cartDelivery),
-          //         ),
-          //       ],
-          //     ))
-        ],
+          context.read<WaitingOrdersCubit>().fetch(loading: false),
+      child: BlocBuilder<WaitingOrdersCubit, WaitingOrdersState>(
+        builder: (context, state) {
+          bbbb("stateee:   $state");
+          if (state is WaitingOrdersSuccess) {
+            final orders = state.orders;
+            return ListViewSeparated(
+              padding: Paddings.paddingH16 + Paddings.paddingB200,
+              shrinkWrap: true,
+              physics: Physics.never,
+              itemBuilder: (context, index) =>
+                  CartOrderProduct(order: orders[index]),
+              itemCount: orders.length,
+            );
+          } else if (state is WaitingOrdersError) {
+            return EmptyWidget(
+              onRefresh: () => onRefresh(context),
+            );
+          } else {
+            return AppLoading();
+          }
+        },
       ),
     );
   }

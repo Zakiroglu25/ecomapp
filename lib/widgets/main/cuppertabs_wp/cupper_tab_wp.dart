@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/widgets/custom/app_tab.dart';
 
 import 'cuppertabs_provider.dart';
@@ -31,6 +32,7 @@ class CupperTabWP extends StatelessWidget {
     this.unSelectedLabelColor,
     this.headers,
     this.onRefresh,
+    this.physics = Physics.alwaysBounce,
     this.user = true,
     this.notification = true,
   }) : super(key: key);
@@ -57,6 +59,7 @@ class CupperTabWP extends StatelessWidget {
   final Color? selectedLabelColor;
   final Color? unSelectedLabelColor;
   final RefreshCallback? onRefresh;
+  final ScrollPhysics physics;
   final Function(int)? tabController;
 
   @override
@@ -74,6 +77,7 @@ class CupperTabWP extends StatelessWidget {
           child: child,
           first: first,
           onChange: onChange,
+          physics: physics,
           tabbarTitle: tabbarTitle,
           leadings: leadings,
           trailings: trailings,

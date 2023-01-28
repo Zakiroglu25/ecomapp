@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
 import 'package:uikit/infrastructure/cubit/chat_messages_cubit/chat_messenger_cubit.dart';
+import 'package:uikit/infrastructure/cubit/delivery_orders/index.dart';
 import 'package:uikit/infrastructure/cubit/faq_cubit/faq_cubit.dart';
 import 'package:uikit/infrastructure/cubit/forgot_pass/forgot_pass_cubit.dart';
 import 'package:uikit/infrastructure/cubit/map/map_store_cubit.dart';
@@ -87,6 +88,7 @@ class Pager {
   static get cart => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => CartCubit()..fetch()),
         BlocProvider(create: (context) => WaitingOrdersCubit()),
+        BlocProvider(create: (context) => DeliveryOrdersCubit()),
         BlocProvider(create: (context) => TabCountsCubit()..fetch()),
       ], child: CartPage());
 

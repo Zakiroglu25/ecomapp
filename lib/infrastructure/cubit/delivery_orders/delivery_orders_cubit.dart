@@ -23,10 +23,10 @@ class DeliveryOrdersCubit extends Cubit<DeliveryOrdersState> {
 
     try {
       final result = await OrdersProvider.deliveryOrders(page: page);
-      if (result.isNotNull) {
-        final searchItems = result?.data;
+      if (result.isNotNull && result!.data.isNotEmptyOrNull) {
+        final searchItems = result.data;
         products.addAll(searchItems!);
-        totalPages = result!.totalPages!;
+        totalPages = result.totalPages!;
         updateHaveElse();
         emit(DeliveryOrdersSuccess(products));
       } else {

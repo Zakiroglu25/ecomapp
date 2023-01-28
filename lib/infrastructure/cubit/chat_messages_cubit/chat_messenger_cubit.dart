@@ -1,16 +1,23 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/delegate/request_control.dart';
 import '../../data/messenger_provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/utils/delegate/index.dart';
 
+import '../../model/response/messenger_chats.dart';
 import 'chat_messenger_state.dart';
 
 class ChatMessengerCubit extends Cubit<ChatMessengerState> {
   ChatMessengerCubit() : super(ChatMessengerInitial());
+
+  int page = 1;
+  int totalPages = 0;
+  List<Data> messages = [];
 
   void fetch(
       {required BuildContext context,
@@ -21,9 +28,9 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
     }
 
     try {
-      final result = await MessengerProvider.getChatMessage(guid);
+      final result = await MessengerProvider.getChatMessage(guid,page);
       if (isSuccess(result.statusCode)) {
-        emit(ChatMessengerSuccess(result.data));
+        emit(ChatMessengerSuccess(result.data!.data!));
       } else {
         emit(ChatMessengerError());
       }
@@ -84,6 +91,16 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
     } catch (e, s) {
       eeee("ChatMessengerCubit fetch catch: $e");
       emit(ChatCreateError(error: e.toString()));
+    }
+  }
+
+  void loadMore(String guid) async {
+    eeee("current page:  $page");
+    final result = await MessengerProvider.getChatMessage(guid,page + 1);
+    if (result.statusCode.isSuccess) {
+      messages.addAll(result.data!.data!);
+      emit(ChatMessengerSuccess(messages));
+      page++;
     }
   }
 }

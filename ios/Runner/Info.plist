@@ -42,6 +42,10 @@
 		<string>processing</string>
 		<string>remote-notification</string>
 	</array>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+    <array>
+        <string>az.doctoro.doctoro</string>
+    </array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

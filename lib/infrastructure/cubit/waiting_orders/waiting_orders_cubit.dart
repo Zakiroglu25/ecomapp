@@ -30,10 +30,10 @@ class WaitingOrdersCubit extends Cubit<WaitingOrdersState> {
 
     try {
       final result = await OrdersProvider.pendingOrders(page: page);
-      if (result.isNotNull) {
-        final searchItems = result?.data;
+      if (result.isNotNull && result!.data.isNotEmptyOrNull) {
+        final searchItems = result.data;
         products.addAll(searchItems!);
-        totalPages = result!.totalPages!;
+        totalPages = result.totalPages!;
         updateHaveElse();
         emit(WaitingOrdersSuccess(products));
       } else {

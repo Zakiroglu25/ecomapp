@@ -37,9 +37,9 @@ class MainBuild {
                   // ),
                 },
               ),
-              fontFamily: 'sf',
+              fontFamily: 'ProximaNova-Medium',
               textTheme: Theme.of(context).textTheme.apply(
-                    fontFamily: 'sf',
+                    fontFamily: 'ProximaNova-Medium',
                   ),
               scaffoldBackgroundColor: MyColors.white),
           builder: (context, widget) {

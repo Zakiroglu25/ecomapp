@@ -75,6 +75,7 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
       //result?.url = null;
       if (result.isNull) {
         emit(DeliveryAndPaymentOperationError());
+        Loader.hide();
         return;
       }
       if (result!.url.isNull) {

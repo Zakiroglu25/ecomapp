@@ -28,21 +28,6 @@ class AddressWidget extends StatelessWidget {
           extentRatio: 0.20,
           motion: const ScrollMotion(),
           children: [
-            // SizedBox(
-            //   width: 55,
-            //   height: 48,
-            //   child: Center(
-            //     child: SlidableAction(
-            //       onPressed: (context) => context
-            //           .read<AddressCubit>()
-            //           .delete(address.guid!, loading: false, context: context),
-            //       backgroundColor: MyColors.darkRED,
-            //       foregroundColor: Colors.white,
-            //       icon: Icons.delete,
-            //       borderRadius: BorderRadius.circular(12),
-            //     ),
-            //   ),
-            // ),
             InkWrapper(
               onTap: () => context
                   .read<AddressCubit>()
