@@ -27,8 +27,23 @@ class MapDetailsPage extends StatelessWidget {
 
   MapDetailsPage(this.maps, {Key? key}) : super(key: key);
 
+
+  final scrollController = ScrollController();
+
+  void setupScrollController(context) {
+    scrollController.addListener(() {
+      if (scrollController.position.atEdge) {
+        if (scrollController.position.pixels != 10) {
+          BlocProvider.of<ProductOptionDetailsCubit>(context).loadMore(maps!.guid!);
+        }
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    setupScrollController(context);
+    BlocProvider.of<ProductOptionDetailsCubit>(context).loadMore(maps!.guid!);
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -65,6 +80,7 @@ class MapDetailsPage extends StatelessWidget {
                           if (state is ProductODetailsMapListSuccess) {
                             final productList = state.productList;
                             return ListViewSeparated(
+                              controller: scrollController,
                                 shrinkWrap: true,
                                 physics: Physics.never,
                                 itemCount: productList!.length,

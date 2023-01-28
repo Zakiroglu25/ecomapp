@@ -36,7 +36,7 @@ class AddInsurancePage extends StatelessWidget {
             return Column(
               children: [
                 MySizedBox.h22,
-                Container(
+                SizedBox(
                   height: MediaQuery.of(context).size.height / 2,
                   child: ListOrEmpty(
                     text: MyText.emptyText,

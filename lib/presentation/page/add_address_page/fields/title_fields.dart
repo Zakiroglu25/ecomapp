@@ -13,7 +13,6 @@ class TitleField extends StatelessWidget {
       title: MyText.city,
       maxLines: 1,
       hint: MyText.cityAdd,
-      upperCase: false,
       textInputType: TextInputType.name,
       textCapitalization: TextCapitalization.sentences,
       // errorMessage: snapshot.error == null ? null : '${snapshot.error}',

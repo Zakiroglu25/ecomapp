@@ -42,6 +42,7 @@ class AnswerQuestionPageState extends State<AnswerQuestionPage> {
                 list: state.faqList.data,
                 child: ListView.builder(
                     shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
                     padding: Paddings.paddingH16,
                     itemCount: state.faqList.data.length,
                     itemBuilder: (context, index) {
