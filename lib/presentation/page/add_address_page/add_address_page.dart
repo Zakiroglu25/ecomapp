@@ -30,18 +30,19 @@ class AddAddressPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final addAttorneysCubit = context.watch<AddAddressCubit>();
+    final addAddressCubit = context.watch<AddAddressCubit>();
 
     if (addressModel != null && first) {
-      addAttorneysCubit.cityController.text = addressModel!.city!;
-      addAttorneysCubit.houseNumberController.text = addressModel!.houseNumber!;
-      addAttorneysCubit.phoneController.text = addressModel!.phone!;
-      addAttorneysCubit.countryController.text = addressModel!.country!;
-      addAttorneysCubit.latitudeController.text = addressModel!.latitude!;
-      addAttorneysCubit.longitudeController.text = addressModel!.longitude!;
-      addAttorneysCubit.descriptionController.text = addressModel!.description!;
+      addAddressCubit.cityController.text = addressModel!.city!;
+      addAddressCubit.houseNumberController.text = addressModel!.houseNumber!;
+      addAddressCubit.phoneController.text = addressModel!.phone!;
+      addAddressCubit.countryController.text = addressModel!.country!;
+      addAddressCubit.latitudeController.text = addressModel!.latitude!;
+      addAddressCubit.longitudeController.text = addressModel!.longitude!;
+      addAddressCubit.descriptionController.text = addressModel!.description!;
       first = false;
     }
+
     return Cupperfold(
       title: MyText.addNewAddress,
       showAppbarLittleText: true,
@@ -71,16 +72,16 @@ class AddAddressPage extends StatelessWidget {
               controller: textController ?? textController,
             ),
             NameAddressField(
-              controller: addAttorneysCubit.titleCnt,
+              controller: addAddressCubit.titleCnt,
             ),
             TitleField(
-              controller: addAttorneysCubit.cityController,
+              controller: addAddressCubit.cityController,
             ),
             RegionField(
-              controller: addAttorneysCubit.countryController,
+              controller: addAddressCubit.countryController,
             ),
             CourierDescField(
-              controller: addAttorneysCubit.descriptionController,
+              controller: addAddressCubit.descriptionController,
             ),
 
             MySizedBox.h50,

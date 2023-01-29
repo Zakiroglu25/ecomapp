@@ -15,9 +15,13 @@ class AddressField extends StatelessWidget {
       title: MyText.address,
       maxLines: 1,
       hint: MyText.addressAdd,
+      readOnly: true,
       textInputType: TextInputType.name,
       textCapitalization: TextCapitalization.sentences,
       controller: controller,
+      onTap: () async{
+        Go.to(context, MapSample());
+      },
       suffixIcon: InkWell(
           onTap: () async{
             Go.to(context, MapSample());
