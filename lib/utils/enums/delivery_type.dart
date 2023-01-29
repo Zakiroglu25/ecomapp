@@ -11,6 +11,6 @@ enum DeliveryType {
   static String toAzText(String? type) =>
       type == COURIER.toText ? MyText.delivery : MyText.iWillTakeIt;
   static String toIconPath(String? type) =>
-      type == DeliveryType.COURIER ? Assets.svgShoppingCart : Assets.svgUserTag;
+      type == COURIER.toText ? Assets.svgShoppingCart : Assets.svgUserTag;
 }
 //trn =>: transaction
