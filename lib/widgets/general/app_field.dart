@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:uikit/utils/constants/durations.dart';
 
 import '../../utils/constants/app_text_styles.dart';
 import '../../utils/constants/assets.dart';
@@ -70,8 +71,8 @@ class AppField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 200),
-      height: (errorMessage == null ? 90 : 110) +
+      duration: Durations.ms200,
+      height: (errorMessage == null ? 95 : 110) +
           (infoMessage != null ? 18.0 : 0.0),
       // color: MyColors.mainRED,
       child: Column(

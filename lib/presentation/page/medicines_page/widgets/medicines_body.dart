@@ -69,6 +69,7 @@ class MedicinesBody extends StatelessWidget {
                               ? productList.length + 1
                               : productList.length,
                           shrinkWrap: true,
+                          addAutomaticKeepAlives: true,
                           itemBuilder: (context, index) {
                             return index == productList.length
                                 ? AppLoading.main()
@@ -87,8 +88,7 @@ class MedicinesBody extends StatelessWidget {
               );
             } else if (state is ProductOptionInProgress) {
               return Center(child: AppLoading.main());
-            }
-            else {
+            } else {
               return Expanded(child: EmptyWidget.error());
             }
           },

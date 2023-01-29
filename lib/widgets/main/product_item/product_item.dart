@@ -17,7 +17,7 @@ import '../../../utils/delegate/pager.dart';
 import '../../../utils/screen/ink_wrapper.dart';
 import 'widgets/product_details_and_buttons.dart';
 
-class ProductItem extends StatelessWidget {
+class ProductItem extends StatefulWidget {
   const ProductItem({Key? key, required this.product, this.inFav = false})
       : super(key: key);
   final SimpleProduct product;
@@ -25,12 +25,18 @@ class ProductItem extends StatelessWidget {
   final bool inFav;
 
   @override
+  State<ProductItem> createState() => _ProductItemState();
+}
+
+class _ProductItemState extends State<ProductItem>
+    with AutomaticKeepAliveClientMixin {
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         GestureDetector(
           onTap: () {
-            Go.to(context, Pager.productDetails(guid: product.guid!));
+            Go.to(context, Pager.productDetails(guid: widget.product.guid!));
           },
           child: Container(
             height: 126,
@@ -41,21 +47,25 @@ class ProductItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ProductImage(imageUrl: product.imageUrl),
+                ProductImage(imageUrl: widget.product.imageUrl),
                 MySizedBox.w12,
                 ProductDetailsAndButtons(
-                  product: product,
+                  product: widget.product,
                 )
               ],
             ),
           ),
         ),
         ProductFavButton(
-          product: product,
-          inFav: inFav,
+          product: widget.product,
+          inFav: widget.inFav,
         ),
         //  ProductCartButton()
       ],
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
