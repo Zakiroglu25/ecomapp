@@ -102,6 +102,7 @@ class AppField extends StatelessWidget {
                 child: TextFormField(
                   autocorrect: false,
                   controller: controller,
+
                   onFieldSubmitted: onFieldSubmitted,
                   textInputAction: textInputAction ?? TextInputAction.done,
                   obscureText: obscure ?? false,
