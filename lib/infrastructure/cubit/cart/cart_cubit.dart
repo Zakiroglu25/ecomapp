@@ -18,7 +18,6 @@ import '../../../utils/screen/overlay_loader.dart';
 import '../../data/cart_provider.dart';
 import '../../data/images_provider.dart';
 import '../../data/orders_provider.dart';
-import '../../model/response/cart_items.dart';
 import '../tab_counts/tab_counts_cubit.dart';
 import 'cart_state.dart';
 
@@ -52,7 +51,7 @@ class CartCubit extends Cubit<CartState> {
     try {
       final result = await CartProvider.addCart(itemGuid: guid, amount: 1);
       if (result.statusCode.isSuccess) {
-         Snack.positive(message: MyText.addedToCart);
+        Snack.positive(message: MyText.addedToCart);
         fetch(false);
       } else {
         emit(CartOperationError());

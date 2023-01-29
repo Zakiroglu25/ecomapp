@@ -1,7 +1,4 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uikit/infrastructure/cubit/map/map_store_cubit.dart';
@@ -28,7 +25,7 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   final CustomInfoWindowController _customInfoWindowController =
-  CustomInfoWindowController();
+      CustomInfoWindowController();
   GoogleMapController? mapController;
 
   Set<Marker> markers = Set();
@@ -68,7 +65,7 @@ class _MapPageState extends State<MapPage> {
           List<MapMedicine> maps = state.addressModel;
           maps.forEach((element) {
             LatLng? showLocation =
-            LatLng(element.addressLat!, element.addressLong!);
+                LatLng(element.addressLat!, element.addressLong!);
             markers.add(
               Marker(
                 markerId: MarkerId(element.guid.toString()),
@@ -80,10 +77,14 @@ class _MapPageState extends State<MapPage> {
                         Expanded(
                           child: InkWell(
                             onTap: () {
-                              Go.to(context, BlocProvider(
-                                create: (context) => ProductOptionDetailsCubit()..fetchProductMapGuid(element.guid!),
-                                child: MapDetailsPage(element),
-                              ));
+                              Go.to(
+                                  context,
+                                  BlocProvider(
+                                    create: (context) =>
+                                        ProductOptionDetailsCubit()
+                                          ..fetchProductMapGuid(element.guid!),
+                                    child: MapDetailsPage(element),
+                                  ));
                             },
                             child: Container(
                               decoration: BoxDecoration(

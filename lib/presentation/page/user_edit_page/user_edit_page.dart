@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../infrastructure/services/hive_service.dart';
 import '../../../locator.dart';
-import '../../../utils/constants/colors.dart';
 import '../../../utils/delegate/string_operations.dart';
-import '../../../widgets/custom/app_button.dart';
 import '../../../widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'widget/fields/birthday_field.dart';
 import 'widget/fields/email_field.dart';

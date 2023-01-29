@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:uikit/utils/constants/colors.dart';
-
-import '../../utils/constants/assets.dart';
 
 class UncheckIcon extends StatelessWidget {
   @override

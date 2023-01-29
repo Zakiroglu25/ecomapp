@@ -2,12 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:focus_detector/focus_detector.dart';
 
 import '../../presentation/page/medicines_page/widgets/appbar_address_widget.dart';
 import '../../utils/constants/app_text_styles.dart';
-import '../../utils/constants/assets.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/paddings.dart';
 import '../../utils/constants/sized_box.dart';

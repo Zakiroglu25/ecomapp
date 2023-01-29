@@ -77,7 +77,7 @@ class ForgotPassStepper extends StatelessWidget {
                       margin: Paddings.paddingH4,
                       width: 24,
                       height: 2,
-                      color: MyColors.green,
+                      color: MyColors.green85,
                     ),
                   ),
                 ),

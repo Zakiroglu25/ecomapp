@@ -3,9 +3,6 @@ import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/infrastructure/data/content_provider.dart';
 import 'package:uikit/utils/extensions/object.dart';
 
-import '../../../utils/constants/assets.dart';
-import '../../../utils/constants/text.dart';
-import '../../../widgets/custom/app_tab.dart';
 import 'tab_counts_state.dart';
 
 class TabCountsCubit extends Cubit<TabCountsState> {

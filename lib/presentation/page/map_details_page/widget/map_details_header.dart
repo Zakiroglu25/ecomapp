@@ -12,7 +12,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../infrastructure/model/response/map_medicine.dart';
 import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/paddings.dart';
-import '../../cart_order_details_page/widgets/cart_circle_button_with_title.dart';
 
 class MapDetailsHeaders extends StatelessWidget {
   final MapMedicine maps;
@@ -97,11 +96,9 @@ class MapDetailsHeaders extends StatelessWidget {
                             svg: Assets.svgCall,
                             title: "Zəng et",
                           ),
-
                         ],
                       ),
                       MySizedBox.h8,
-
                     ]),
               ),
             ),

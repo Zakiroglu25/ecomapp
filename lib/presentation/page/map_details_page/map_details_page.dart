@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/model/response/map_medicine.dart';
-import 'package:uikit/presentation/page/cart_order_details_page/widgets/delivery_products.dart';
-import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../infrastructure/cubit/cart/cart_cubit.dart';
 import '../../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
@@ -12,14 +10,11 @@ import '../../../utils/constants/border_radius.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/paddings.dart';
 import '../../../utils/constants/physics.dart';
-import '../../../utils/constants/sized_box.dart';
-import '../../../widgets/custom/column_with_space.dart';
 import '../../../widgets/custom/listview_separated.dart';
 import '../../../widgets/general/app_loading.dart';
 import '../../../widgets/main/cupperfold/cupperfold.dart';
 import '../../../widgets/main/doctoro_bottom_sheet/widget/handle_line.dart';
 import '../../../widgets/main/product_item/product_item.dart';
-import '../cart_order_details_page/widgets/delivery_product.dart';
 import 'widget/map_details_header.dart';
 
 class MapDetailsPage extends StatelessWidget {
@@ -27,14 +22,14 @@ class MapDetailsPage extends StatelessWidget {
 
   MapDetailsPage(this.maps, {Key? key}) : super(key: key);
 
-
   final scrollController = ScrollController();
 
   void setupScrollController(context) {
     scrollController.addListener(() {
       if (scrollController.position.atEdge) {
         if (scrollController.position.pixels != 10) {
-          BlocProvider.of<ProductOptionDetailsCubit>(context).loadMore(maps!.guid!);
+          BlocProvider.of<ProductOptionDetailsCubit>(context)
+              .loadMore(maps!.guid!);
         }
       }
     });
@@ -80,7 +75,7 @@ class MapDetailsPage extends StatelessWidget {
                           if (state is ProductODetailsMapListSuccess) {
                             final productList = state.productList;
                             return ListViewSeparated(
-                              controller: scrollController,
+                                controller: scrollController,
                                 shrinkWrap: true,
                                 physics: Physics.never,
                                 itemCount: productList!.length,

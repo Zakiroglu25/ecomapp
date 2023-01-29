@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
-import 'package:uikit/infrastructure/cubit/add_address/add_and_updtae_address_state.dart';
 import 'package:uikit/infrastructure/cubit/user/user_cubit.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/delegate/index.dart';
@@ -16,7 +15,6 @@ import '../../../utils/delegate/pager.dart';
 import '../../../utils/delegate/string_operations.dart';
 import '../../../widgets/custom/app_button.dart';
 import '../../../widgets/doctoro_appbar/doctoro_appbar.dart';
-import '../../../widgets/general/app_field.dart';
 import '../settings_page/widget/edit_field_widget.dart';
 import 'widget/field/number_field.dart';
 import 'widget/field/password_field.dart';
@@ -44,7 +42,6 @@ class ChangeNumberPage extends StatelessWidget {
             if (state is UserSuccess) {
               Go.to(context, Pager.otp());
               wtf("Deyishiklik oldu");
-
             } else if (state is UserFailed) {
               wtf("Deyishiklik olmadi");
             }

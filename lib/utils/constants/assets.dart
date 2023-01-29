@@ -42,6 +42,7 @@ class Assets {
   static const String svgCart = "assets/svg/svgcart.svg";
   static const String svgBagCross = "assets/svg/bag-cross.svg";
   static const String svgShoppingCart = "assets/svg/shopping-cart.svg";
+  static const String svgUserTag = "assets/svg/user-tag.svg";
   static const String svgMore = "assets/svg/svgmore.svg";
   static const String svgBigLogo = "assets/svg/big-logo.svg";
 
@@ -57,6 +58,7 @@ class Assets {
   static const String svgLocation = "assets/svg/location.svg";
   static const String svgAddress = "assets/svg/address.svg";
   static const String svgTickCircle = "assets/svg/tick-circle.svg";
+  static const String svgWarning = "assets/svg/warning.svg";
 
   ///otherpage
   static const String location3x = "assets/png/location.png";

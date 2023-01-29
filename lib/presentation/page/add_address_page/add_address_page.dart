@@ -11,7 +11,6 @@ import '../../../utils/constants/paddings.dart';
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/screen/snack.dart';
-import '../../../widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'fields/address_field.dart';
 import 'fields/courier_desc_field.dart';
 import 'fields/name_address_field.dart';

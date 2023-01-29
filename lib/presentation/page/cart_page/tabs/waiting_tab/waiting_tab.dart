@@ -6,27 +6,14 @@ import 'package:uikit/infrastructure/cubit/waiting_orders/waiting_orders_state.d
 import 'package:uikit/presentation/page/cart_page/widgets/cart_order_product/card_order_product.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/physics.dart';
-import 'package:uikit/utils/constants/text.dart';
-import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/widgets/custom/listview_separated.dart';
 
 import '../../../../../infrastructure/cubit/tab_counts/tab_counts_cubit.dart';
-import '../../../../../utils/constants/assets.dart';
 import '../../../../../widgets/general/app_loading.dart';
 import '../../../../../widgets/general/empty_widget.dart';
-import '../../../../../widgets/general/list_or_empty.dart';
 
 class WaitingTab extends StatelessWidget {
   const WaitingTab({Key? key}) : super(key: key);
-
-  // static const _elementList = [
-  //   CartOrderProduct(
-  //     cartOrderType: CartOrderType.waiting,
-  //   ),
-  //   CartOrderProduct(
-  //     cartOrderType: CartOrderType.waitingPayment,
-  //   ),
-  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +22,6 @@ class WaitingTab extends StatelessWidget {
           context.read<WaitingOrdersCubit>().fetch(loading: false),
       child: BlocBuilder<WaitingOrdersCubit, WaitingOrdersState>(
         builder: (context, state) {
-          bbbb("stateee:   $state");
           if (state is WaitingOrdersSuccess) {
             final orders = state.orders;
             return ListViewSeparated(

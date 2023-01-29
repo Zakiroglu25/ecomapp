@@ -3,7 +3,6 @@ import 'package:uikit/utils/constants/assets.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
-import 'package:uikit/widgets/icons/check_icon.dart';
 
 class CashPaymentBox extends StatelessWidget {
   const CashPaymentBox({Key? key}) : super(key: key);

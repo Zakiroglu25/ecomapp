@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/screen/widget_or_empty.dart';
 
 import 'empty_widget.dart';
@@ -23,7 +22,7 @@ class ListOrEmpty extends StatelessWidget {
       this.description,
       this.onRefresh,
       this.image,
-        this.color,
+      this.color,
       this.elseChild});
 
   @override

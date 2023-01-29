@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -11,7 +10,6 @@ import 'package:uikit/infrastructure/config/recorder.dart';
 import '../constants/text.dart';
 import '../screen/alert.dart';
 import '../screen/snack.dart';
-import 'my_printer.dart';
 
 class FileOperations {
   FileOperations._();

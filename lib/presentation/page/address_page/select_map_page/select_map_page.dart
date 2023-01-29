@@ -1,14 +1,12 @@
 import 'dart:async';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter/material.dart';
-import 'package:map_picker/map_picker.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:uikit/infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
-import 'package:uikit/utils/constants/colors.dart';
 
-import '../../../../utils/constants/assets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:map_picker/map_picker.dart';
+import 'package:uikit/infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
+
 import '../../../../utils/delegate/navigate_utils.dart';
 import '../../../../widgets/custom/app_button.dart';
 import '../../add_address_page/add_address_page.dart';
@@ -24,7 +22,7 @@ class _MapSampleState extends State<MapSample> {
   final _controller = Completer<GoogleMapController>();
   MapPickerController mapPickerController = MapPickerController();
 
-  CameraPosition cameraPosition =  CameraPosition(
+  CameraPosition cameraPosition = CameraPosition(
     target: LatLng(40.409264, 49.867092),
     zoom: 14.4746,
   );
@@ -39,7 +37,10 @@ class _MapSampleState extends State<MapSample> {
         children: [
           MapPicker(
             // pass icon widget
-            iconWidget: Icon(Icons.location_on_sharp,size: 30,),
+            iconWidget: Icon(
+              Icons.location_on_sharp,
+              size: 30,
+            ),
             //add map picker controller
             mapPickerController: mapPickerController,
             child: GoogleMap(
@@ -90,22 +91,21 @@ class _MapSampleState extends State<MapSample> {
             right: 24,
             child: AppButton(
               text: "Addresi tesdiq et",
-              onTap: (){
+              onTap: () {
                 // Navigator.of(context).pop(textController.text);
                 Go.pop(context);
                 Go.replace(
-                          context,
-                          BlocProvider(
-                            create: (context) => AddAddressCubit(),
-                            child: AddAddressPage(
-                              textController: textController,
-                              lat: cameraPosition.target.latitude,
-                              lng: cameraPosition.target.longitude,
-                            ),
-                          ));
+                    context,
+                    BlocProvider(
+                      create: (context) => AddAddressCubit(),
+                      child: AddAddressPage(
+                        textController: textController,
+                        lat: cameraPosition.target.latitude,
+                        lng: cameraPosition.target.longitude,
+                      ),
+                    ));
               },
             ),
-
           )
         ],
       ),

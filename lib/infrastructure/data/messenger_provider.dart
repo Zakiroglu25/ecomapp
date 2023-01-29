@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:uikit/infrastructure/model/response/messenger_users.dart';
 import 'package:uikit/infrastructure/model/response/status_dynamic.dart';
 import 'package:uikit/utils/constants/result_keys.dart';
@@ -32,10 +31,12 @@ class MessengerProvider {
     return statusDynamic;
   }
 
-  static Future<StatusDynamic<ChatMessagesModel>> getChatMessage(String? guid,int page) async {
+  static Future<StatusDynamic<ChatMessagesModel>> getChatMessage(
+      String? guid, int page) async {
     StatusDynamic<ChatMessagesModel> statusDynamic = StatusDynamic();
     final api = ApiKeys.getMessenger + "/$guid";
-    final response = await dioAuth.dio.get(api,queryParameters: {"page": page});
+    final response =
+        await dioAuth.dio.get(api, queryParameters: {"page": page});
     wtf(page.toString());
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {

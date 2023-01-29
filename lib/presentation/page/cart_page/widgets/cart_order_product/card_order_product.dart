@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:uikit/infrastructure/model/response/orders_data.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
-import 'package:uikit/utils/constants/assets.dart';
 import 'package:uikit/utils/constants/order_status.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/delegate/cart_order_utils.dart';
+import 'package:uikit/utils/enums/delivery_type.dart';
 import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/widgets/custom/column_with_space.dart';
 import 'package:uikit/widgets/custom/row_with_space.dart';
 import 'package:uikit/widgets/general/app_element_box.dart';
+import 'package:uikit/widgets/general/black_box.dart';
 
 import '../../../../../utils/delegate/navigate_utils.dart';
 import '../../../../../utils/delegate/pager.dart';
@@ -24,23 +25,26 @@ class CartOrderProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final status = CartOrderUtils.cartOrderStatus(order.status!);
     return AppElementBox(
       onTap: () => Go.to(
           context,
           Pager.cartOrderDetails(order.guid!,
               orderNumber: order.orderNumber!, status: order.status!)),
-      color: CartOrderUtils.cartOrderStatus(order.status!).color,
+      color: status.color,
       child: SpacedColumn(
           space: 6,
           padding: Paddings.paddingA8,
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Row(
+            SpacedRow(
+              space: 8,
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SvgPicture.asset(Assets.svgShoppingCart),
+                SvgPicture.asset(DeliveryType.toIconPath(order.deliveryType)),
+                BlackBox(DeliveryType.toAzText(order.deliveryType))
                 // DotsButton(
                 //     controller: CustomPopupMenuController(),
                 //     menuBuilder: () {
@@ -85,12 +89,16 @@ class CartOrderProduct extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        SvgPicture.asset(Assets.svgClock),
+                        SvgPicture.asset(
+                          status.statusIcon,
+                          color: status.statusIconColor,
+                        ),
                         MySizedBox.w8,
                         Flexible(
                           child: Text(
-                            CartOrderUtils.cartOrderStatus(order.status!).text,
-                            style: AppTextStyles.sfPro500,
+                            status.text,
+                            style: AppTextStyles.sfPro500
+                                .copyWith(color: status.color.toTextColor),
                             //  overflow: TextOverflow.ellipsis,
                           ),
                         )
@@ -99,7 +107,8 @@ class CartOrderProduct extends StatelessWidget {
               ],
             ),
             MySizedBox.h8,
-            if (order.status != OrderStatus.REJECTED)
+            if (order.status == OrderStatus.PENDING_PAYMENT ||
+                order.status == OrderStatus.APPROVED)
               COPOrderButton(orderGuid: order.guid!)
           ]),
     );

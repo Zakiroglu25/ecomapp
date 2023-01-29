@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
-import 'package:uikit/infrastructure/cubit/waiting_orders/waiting_orders_cubit.dart';
 import 'package:uikit/infrastructure/model/response/card_model.dart';
 import 'package:uikit/infrastructure/services/hive_service.dart';
 import 'package:uikit/locator.dart';

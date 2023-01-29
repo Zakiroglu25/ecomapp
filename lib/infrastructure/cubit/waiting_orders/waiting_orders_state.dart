@@ -19,3 +19,8 @@ class WaitingOrdersSuccess extends WaitingOrdersState {
   WaitingOrdersSuccess(this.orders);
   final List<CartOrder> orders;
 }
+
+class WaitingOrdersSuccessTemp extends WaitingOrdersSuccess {
+  WaitingOrdersSuccessTemp(this.orders) : super(orders);
+  final List<CartOrder> orders;
+}

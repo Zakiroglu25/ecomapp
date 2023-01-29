@@ -6,7 +6,7 @@ import '../../../utils/constants/text.dart';
 
 class CupperProvider extends ChangeNotifier {
   late AppTab _selected;
-  late Color _color = MyColors.green;
+  late Color _color = MyColors.green85;
 
   AppTab get selected => _selected;
 

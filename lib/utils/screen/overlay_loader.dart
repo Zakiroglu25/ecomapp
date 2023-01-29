@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:uikit/utils/constants/colors.dart';
 
 import '../../widgets/general/app_loading.dart';
 

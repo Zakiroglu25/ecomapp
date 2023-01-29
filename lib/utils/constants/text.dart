@@ -174,6 +174,14 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String recipeInReview =
       "Resept aptek tərəfindən dəyərləndirilir";
   static const String recipePartialyAccepted = "Resept qismən qarşılanır";
+  static const String packageReadyForPickUp =
+      "Paketiniz hazırdı, aptekə yaxınlaşa bilərsiz";
+  static const String packagePickedUp = "Paket təhvil alındı";
+  static const String packageReturned = "Paket geri qaytarıldı";
+  static const String recipeAcceptedAndDelivered =
+      "Resept təsdiqləndi, çatdırılma bitmişdir";
+  static const String recipeConfirmedAndDelivering =
+      "Resept təsdiqləndi, çatdırılma yoldadır";
   static const String recipeConfirmed =
       "Resept təsdiqləndi, çatdırılma edə bilərsiniz";
   static const String payWithInsurance = "Sığorta ilə ödə";
@@ -325,5 +333,4 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String contactOther = 'Buradan bizimlə əlaqə yarada bilərsən';
   static const String faqOther = 'Buradan suallarına cavab tapa bilərsən';
   static const String settingsOther = 'Buradan tətbiqi özünə uyğun ayarla';
-
 }

@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../utils/constants/assets.dart';
-import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/paddings.dart';
-import '../../../../utils/constants/sized_box.dart';
 import '../../../../utils/constants/text.dart';
-import '../../../../utils/delegate/navigate_utils.dart';
-import '../../../../utils/delegate/pager.dart';
-import '../../../../widgets/custom/product_and_other_widget.dart';
 import '../../../../widgets/custom/text_title_big.dart';
-import 'bad_and_vitamin.dart';
 import 'pasha_item.dart';
 import 'search_field.dart';
 
@@ -50,9 +42,7 @@ class ProductBody extends StatelessWidget {
           //   desc: MyText.otherSub,
           // ),
           // MySizedBox.h20,
-          Positioned(
-              bottom: 0,
-              child:  PashaItem()),
+          Positioned(bottom: 0, child: PashaItem()),
         ],
       ),
     );

@@ -21,13 +21,18 @@ class WaitingOrdersCubit extends Cubit<WaitingOrdersState> {
   int page = 1;
   int totalPages = 0;
   List<CartOrder> products = [];
+  List<CartOrder> tempProducts = [];
+
+  // List<CartOrder> get products =>
+  //     _products.isNotEmpty ? _products : tempProducts;
 
   fetch({bool loading = true}) async {
     if (loading) {
       emit(WaitingOrdersInProgress());
     }
+    tempProducts = List.from(products);
+    if (tempProducts.isNotEmpty) emit(WaitingOrdersSuccessTemp(tempProducts));
     clearCache();
-
     try {
       final result = await OrdersProvider.pendingOrders(page: page);
       if (result.isNotNull && result!.data.isNotEmptyOrNull) {

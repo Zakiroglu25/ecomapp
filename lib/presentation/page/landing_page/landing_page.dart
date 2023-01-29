@@ -69,7 +69,7 @@ class _LandingPageState extends State<LandingPage> {
     return BottomNavigationBarItem(
         backgroundColor: Colors.white,
         activeIcon: SvgPicture.asset(icon,
-            color: index == 2 ? MyColors.green : MyColors.darkRED),
+            color: index == 2 ? MyColors.green85 : MyColors.darkRED),
         icon: SvgPicture.asset(icon),
         label: label);
   }

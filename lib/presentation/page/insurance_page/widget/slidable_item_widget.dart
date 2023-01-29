@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 
 import '../../../../utils/constants/app_text_styles.dart';
-import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/paddings.dart';
 import '../../../../utils/constants/sized_box.dart';
@@ -52,18 +50,18 @@ class SlidableWidget extends StatelessWidget {
               ],
             ),
             Spacer(),
-              Container(
-                height: 32,
-                padding: Paddings.paddingH8 + Paddings.paddingV4,
-                decoration: BoxDecoration(
-                  color: status == true ? MyColors.mainGreen85:MyColors.darkRED,
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: Center(
-                    child: Text(status == true ? "Aktivdir" : "Tapılmadı",
-                        style: AppTextStyles.sfPro400s12
-                            .copyWith(color: MyColors.white))),
+            Container(
+              height: 32,
+              padding: Paddings.paddingH8 + Paddings.paddingV4,
+              decoration: BoxDecoration(
+                color: status == true ? MyColors.mainGreen85 : MyColors.darkRED,
+                borderRadius: BorderRadius.circular(24),
               ),
+              child: Center(
+                  child: Text(status == true ? "Aktivdir" : "Tapılmadı",
+                      style: AppTextStyles.sfPro400s12
+                          .copyWith(color: MyColors.white))),
+            ),
           ],
         ),
       ),

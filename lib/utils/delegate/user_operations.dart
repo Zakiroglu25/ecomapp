@@ -1,4 +1,3 @@
-import 'package:uikit/utils/delegate/request_control.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../infrastructure/config/dio_auth.dart';

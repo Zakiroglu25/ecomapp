@@ -12,8 +12,6 @@ import 'package:uikit/utils/screen/snack.dart';
 
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
-import '../../utils/delegate/navigate_utils.dart';
-import '../../utils/delegate/pager.dart';
 import '../../utils/screen/alert.dart';
 import '../model/response/detailed_error.dart';
 import '../model/response/error_response.dart';

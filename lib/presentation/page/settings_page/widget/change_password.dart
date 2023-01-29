@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/user/user_cubit.dart';
 import 'package:uikit/utils/constants/text.dart';
-import 'package:uikit/utils/screen/snack.dart';
 
 import '../../../../utils/constants/paddings.dart';
 import '../../../../widgets/custom/app_button.dart';
 import '../../../../widgets/doctoro_appbar/doctoro_appbar.dart';
-import '../../../../widgets/general/app_field.dart';
 import 'new_pass_field.dart';
 import 'old_pass_field.dart';
 

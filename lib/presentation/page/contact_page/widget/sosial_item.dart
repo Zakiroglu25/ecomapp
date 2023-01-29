@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../infrastructure/model/response/contact_model.dart';
 import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/colors.dart';
-import '../../../../utils/constants/paddings.dart';
 import '../../../../utils/constants/sized_box.dart';
 import '../../../../utils/constants/text.dart';
 import '../../../../utils/enums/contact.dart';
 import '../../../../utils/screen/ink_wrapper.dart';
-import '../../../../utils/screen/widget_or_empty.dart';
 import '../../../../widgets/custom/product_and_other_widget.dart';
 
 class SocialItem extends StatelessWidget {
@@ -50,8 +47,9 @@ class SocialItem extends StatelessWidget {
                       } else if (contact![index].channel == "TELEGRAM") {
                         launch(
                             "https://telegram.me/${contact![index].contact}");
-                      }else if(contact![index].channel == "INSTAGRAM"){
-                        launch('https://www.instagram.com/_u/${contact![index].contact}');
+                      } else if (contact![index].channel == "INSTAGRAM") {
+                        launch(
+                            'https://www.instagram.com/_u/${contact![index].contact}');
                       }
                     },
                     child: Row(

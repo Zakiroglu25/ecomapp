@@ -1,14 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/delegate/request_control.dart';
 import '../../data/messenger_provider.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:uikit/utils/delegate/index.dart';
-
 import '../../model/response/messenger_chats.dart';
 import 'chat_messenger_state.dart';
 
@@ -28,7 +27,7 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
     }
 
     try {
-      final result = await MessengerProvider.getChatMessage(guid,page);
+      final result = await MessengerProvider.getChatMessage(guid, page);
       if (isSuccess(result.statusCode)) {
         emit(ChatMessengerSuccess(result.data!.data!));
       } else {
@@ -71,9 +70,9 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
 
   void createMessenger(
       {required BuildContext context,
-        bool? isLoading = false,
-        String? storeGuid,
-        String? orderGuid}) async {
+      bool? isLoading = false,
+      String? storeGuid,
+      String? orderGuid}) async {
     if (isLoading!) {
       emit(ChatMessengerInProgress());
     }
@@ -96,7 +95,7 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
 
   void loadMore(String guid) async {
     eeee("current page:  $page");
-    final result = await MessengerProvider.getChatMessage(guid,page + 1);
+    final result = await MessengerProvider.getChatMessage(guid, page + 1);
     if (result.statusCode.isSuccess) {
       messages.addAll(result.data!.data!);
       emit(ChatMessengerSuccess(messages));

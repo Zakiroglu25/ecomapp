@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:uikit/infrastructure/cubit/cart/cart_cubit.dart';
 import 'package:uikit/presentation/page/product_details_page/widget/product_detail_property.dart';
 import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/utils/constants/text.dart';
@@ -164,7 +163,7 @@ class ProductOptionDetails extends StatelessWidget {
                 ),
               ],
             ),
-            color: MyColors.green,
+            color: MyColors.green85,
           )
         ],
       ),

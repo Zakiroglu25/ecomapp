@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/faq_cubit/faq_cubit.dart';
 import 'package:uikit/infrastructure/cubit/faq_cubit/faq_state.dart';
-import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/widgets/general/empty_widget.dart';
 import 'package:uikit/widgets/general/list_or_empty.dart';
 import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
 
-import '../../../infrastructure/model/response/faq_model.dart';
 import '../../../utils/constants/paddings.dart';
 import '../../../widgets/general/app_loading.dart';
 import 'widgets/faq_card.dart';

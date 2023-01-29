@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:uikit/infrastructure/data/notification_provider.dart';
 
-import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/delegate/request_control.dart';
 import '../../../utils/screen/snack.dart';

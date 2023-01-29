@@ -7,9 +7,7 @@ import 'package:uikit/utils/constants/assets.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/text.dart';
-import 'package:uikit/utils/delegate/navigate_utils.dart';
 import 'package:uikit/utils/screen/ink_wrapper.dart';
-import 'package:uikit/widgets/custom/app_button.dart';
 
 import '../../../../utils/screen/alert.dart';
 import '../../../../widgets/main/payment_type_card/payment_type_card.dart';

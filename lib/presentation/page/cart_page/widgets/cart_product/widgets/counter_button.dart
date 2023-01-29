@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart';
 import 'package:uikit/infrastructure/cubit/cart/cart_cubit.dart';
-import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/screen/ink_wrapper.dart';
 
 import '../../../../../../utils/constants/border_radius.dart';

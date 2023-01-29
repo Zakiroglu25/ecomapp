@@ -4,14 +4,12 @@ import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
 import 'package:uikit/infrastructure/cubit/address/address_state.dart';
 import 'package:uikit/presentation/page/medicines_page/widgets/main_address_box.dart';
 import 'package:uikit/utils/constants/sheets.dart';
-import 'package:uikit/utils/delegate/my_printer.dart';
 import 'package:uikit/utils/screen/ink_wrapper.dart';
 import 'package:uikit/widgets/custom/app_linear_loading.dart';
 
 import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/paddings.dart';
-import '../../../../utils/constants/sized_box.dart';
 import '../../../../utils/constants/text.dart';
 
 class AppBarAddressWidget extends StatelessWidget {
@@ -31,7 +29,8 @@ class AppBarAddressWidget extends StatelessWidget {
               final isAddressNull = address == null;
               final secondColor =
                   isAddressNull ? MyColors.secondary : MyColors.green235;
-              final mainColor = isAddressNull ? MyColors.brand : MyColors.green;
+              final mainColor =
+                  isAddressNull ? MyColors.brand : MyColors.green85;
               return MainAddressBox(
                 color: secondColor,
                 child: Row(

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
 import 'package:uikit/infrastructure/cubit/delivery_address_current/delivery_address_current_cubit.dart';
-import 'package:uikit/infrastructure/model/response/address_model.dart';
 import 'package:uikit/presentation/page/medicines_page/widgets/items/savable_delivery_address_item.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/text.dart';
