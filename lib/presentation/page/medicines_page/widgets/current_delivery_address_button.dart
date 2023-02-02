@@ -29,9 +29,7 @@ class CurrentDeliveryAddressButton extends StatelessWidget {
             final address = state.address;
             //final location = state.location;
             return CurrentDeliveryAddressItem(
-              address: address,
-              context: context,
-            );
+                address: address, context: context);
           }
           if (state is DeliveryAdressCurrentInProgress) {
             return const AppLinearLoading();

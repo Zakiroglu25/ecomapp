@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/infrastructure/config/configs.dart';
 import 'package:uikit/presentation/page/medicines_page/widgets/med_search_field.dart';
+import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/widgets/custom/listview_separated.dart';
 import 'package:uikit/widgets/general/empty_widget.dart';
@@ -35,66 +37,72 @@ class MedicinesBody extends StatelessWidget {
     setupScrollController(context);
     BlocProvider.of<ProductOptionCubit>(context).loadMore();
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 16.0, top: 10),
-          child: Text(
-            "Doctoro",
-            style: AppTextStyles.sfPro700.copyWith(fontSize: 30),
-          ),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+      child: Container(
+        color: MyColors.transparent,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: Paddings.paddingH16 + Paddings.paddingT10,
+              child: Text(
+                Configs.appName,
+                style: AppTextStyles.sfPro700.copyWith(fontSize: 30),
+              ),
+            ),
+            const MedSearchField(),
+            BlocBuilder<ProductOptionCubit, ProductOptionState>(
+              builder: (context, state) {
+                if (state is ProductOptionSuccess) {
+                  final productList = state.productList;
+                  //final productList = [];
+                  return Expanded(
+                    child: ListOrEmpty(
+                      list: productList,
+                      image: Assets.pngMed,
+                      text: MyText.medicines,
+                      description: MyText.mediciniesDesc,
+                      child: StreamBuilder<bool>(
+                          stream: BlocProvider.of<ProductOptionCubit>(context)
+                              .haveElseStream,
+                          builder: (context, snapshot) {
+                            return ListViewSeparated(
+                              padding:
+                                  Paddings.paddingA16 + Paddings.paddingB60,
+                              controller: scrollController,
+                              itemCount: snapshot.data ?? false
+                                  ? productList.length + 1
+                                  : productList.length,
+                              shrinkWrap: true,
+                              addAutomaticKeepAlives: true,
+                              itemBuilder: (context, index) {
+                                return index == productList.length
+                                    ? AppLoading.main()
+                                    : ProductItem(
+                                        product: productList[index],
+                                        inFav: false,
+                                      );
+                                // Timer(Durations.s1, () {
+                                //   scrollController.jumpTo(
+                                //       scrollController.position.maxScrollExtent);
+                                // });
+                              },
+                            );
+                          }),
+                    ),
+                  );
+                } else if (state is ProductOptionInProgress) {
+                  return Center(child: AppLoading.main());
+                } else {
+                  return Expanded(child: EmptyWidget.error());
+                }
+              },
+            ),
+            //  Spacer(),
+          ],
         ),
-        const MedSearchField(),
-        BlocBuilder<ProductOptionCubit, ProductOptionState>(
-          builder: (context, state) {
-            bbbb("steee: $state");
-            if (state is ProductOptionSuccess) {
-              final productList = state.productList;
-              //final productList = [];
-              return Expanded(
-                child: ListOrEmpty(
-                  list: productList,
-                  image: Assets.pngMed,
-                  text: MyText.medicines,
-                  description: MyText.mediciniesDesc,
-                  child: StreamBuilder<bool>(
-                      stream: BlocProvider.of<ProductOptionCubit>(context)
-                          .haveElseStream,
-                      builder: (context, snapshot) {
-                        return ListViewSeparated(
-                          padding: Paddings.paddingA16 + Paddings.paddingB60,
-                          controller: scrollController,
-                          itemCount: snapshot.data ?? false
-                              ? productList.length + 1
-                              : productList.length,
-                          shrinkWrap: true,
-                          addAutomaticKeepAlives: true,
-                          itemBuilder: (context, index) {
-                            return index == productList.length
-                                ? AppLoading.main()
-                                : ProductItem(
-                                    product: productList[index],
-                                    inFav: false,
-                                  );
-                            // Timer(Durations.s1, () {
-                            //   scrollController.jumpTo(
-                            //       scrollController.position.maxScrollExtent);
-                            // });
-                          },
-                        );
-                      }),
-                ),
-              );
-            } else if (state is ProductOptionInProgress) {
-              return Center(child: AppLoading.main());
-            } else {
-              return Expanded(child: EmptyWidget.error());
-            }
-          },
-        ),
-        //  Spacer(),
-      ],
+      ),
     );
   }
 }

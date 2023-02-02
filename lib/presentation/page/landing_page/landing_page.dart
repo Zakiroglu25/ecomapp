@@ -9,6 +9,7 @@ import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/pager.dart';
 
 final globalPageController = PageController(initialPage: 1);
+GlobalKey globalKey = new GlobalKey(debugLabel: 'btm_app_bar');
 
 class LandingPage extends StatefulWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -36,6 +37,7 @@ class _LandingPageState extends State<LandingPage> {
         extendBody: true,
         body: pages[index],
         bottomNavigationBar: BottomNavigationBar(
+          key: globalKey,
           // activeColor: MyColors.mainColor,
           backgroundColor: Colors.white,
           //elevation: 10,

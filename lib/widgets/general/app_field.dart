@@ -36,6 +36,7 @@ class AppField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final ValueChanged<String>? onFieldSubmitted;
   final double radius;
+  final FocusNode? focusNode;
   final String? suffixText;
   final TextInputType? textInputType;
 
@@ -48,6 +49,7 @@ class AppField extends StatelessWidget {
     this.maxLines,
     this.obscure,
     this.readOnly,
+    this.focusNode,
     this.fillColor = MyColors.grey245,
     this.onFieldSubmitted,
     this.upperCase,
@@ -102,7 +104,7 @@ class AppField extends StatelessWidget {
                 child: TextFormField(
                   autocorrect: false,
                   controller: controller,
-
+                  focusNode: focusNode,
                   onFieldSubmitted: onFieldSubmitted,
                   textInputAction: textInputAction ?? TextInputAction.done,
                   obscureText: obscure ?? false,

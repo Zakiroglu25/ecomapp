@@ -5,6 +5,7 @@ import 'package:uikit/infrastructure/cubit/delivery_address_current/delivery_add
 import 'package:uikit/infrastructure/services/navigation_service.dart';
 import 'package:uikit/presentation/page/medicines_page/widgets/saved_address_list.dart';
 import 'package:uikit/utils/constants/paddings.dart';
+import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/screen/sheet.dart';
@@ -29,27 +30,25 @@ class Sheets {
               create: (context) => DeliveryAddressCurrentCubit()..get()),
         ],
         child: Builder(builder: (context) {
-          return Flexible(
-            child: FocusDetector(
-              onFocusLost: () =>
-                  prevContext.read<AddressCubit>().fetchMainAddress(),
-              child: AnimatedSize(
-                duration: Durations.ms200,
-                child: Container(
-                  padding: Paddings.paddingA16,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        BigSection(title: MyText.deliveryAddresses),
-                        MySizedBox.h16,
-                        const CurrentDeliveryAddressButton(),
-                        const SavedAddressList(),
-                        MySizedBox.h16,
-                        SheetAddNewAddressButton()
-                      ],
-                    ),
-                  ),
+          return FocusDetector(
+            onFocusLost: () =>
+                prevContext.read<AddressCubit>().fetchMainAddress(),
+            child: AnimatedSize(
+              duration: Durations.ms200,
+              child: Container(
+                padding: Paddings.paddingA16,
+                child: ListView(
+                  shrinkWrap: true,
+                  // physics: Physics.never,
+                  //    crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    BigSection(title: MyText.deliveryAddresses),
+                    MySizedBox.h16,
+                    const CurrentDeliveryAddressButton(),
+                    const SavedAddressList(),
+                    MySizedBox.h16,
+                    SheetAddNewAddressButton()
+                  ],
                 ),
               ),
             ),

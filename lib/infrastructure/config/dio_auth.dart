@@ -74,8 +74,8 @@ class JwtInterceptor extends Interceptor {
     switch (response.statusCode) {
       case 401:
       case 403:
-        await refreshToken(handler: handler, response: response);
-        _retry(response.requestOptions);
+        refreshToken(handler: handler, response: response)
+            .then((value) => _retry(response.requestOptions));
         break;
       default:
         break;
@@ -121,14 +121,14 @@ class JwtInterceptor extends Interceptor {
     }
   }
 
-  Future<void> refreshToken2(
-      {required ResponseInterceptorHandler handler,
-      required Response? response}) async {
-    final res = await AuthProvider.refreshToken();
-    if (res.statusCode.isSuccess && response != null) {
-      handler.resolve(response);
-    }
-  }
+  // Future<void> refreshToken2(
+  //     {required ResponseInterceptorHandler handler,
+  //     required Response? response}) async {
+  //   final res = await AuthProvider.refreshToken();
+  //   if (res.statusCode.isSuccess && response != null) {
+  //     handler.resolve(response);
+  //   }
+  // }
 
   Future<Response<dynamic>> _retry(RequestOptions requestOptions) async {
     final options = Options(
