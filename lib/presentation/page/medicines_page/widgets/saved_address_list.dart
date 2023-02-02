@@ -18,17 +18,14 @@ class SavedAddressList extends StatelessWidget {
       builder: (context, state) {
         if (state is AddressSuccess) {
           final addressList = state.addressList;
-          return ListOrEmpty(
-            list: addressList,
-            child: ListView.builder(
-              shrinkWrap: true,
-              physics: Physics.never,
-              itemBuilder: (context, index) => SavedDeliveryAddressItem(
-                address: addressList[index],
-                context: context,
-              ),
-              itemCount: addressList.length,
+          return ListView.builder(
+            shrinkWrap: true,
+            physics: Physics.never,
+            itemBuilder: (context, index) => SavedDeliveryAddressItem(
+              address: addressList[index],
+              context: context,
             ),
+            itemCount: addressList.length,
           );
         }
         if (state is AddressError) {

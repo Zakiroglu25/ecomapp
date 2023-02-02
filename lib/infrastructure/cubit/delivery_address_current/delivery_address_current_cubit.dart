@@ -11,6 +11,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:uikit/infrastructure/data/public_provider.dart';
 import 'package:uikit/infrastructure/model/response/big_data_info.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../locator.dart';
@@ -270,9 +271,13 @@ class DeliveryAddressCurrentCubit extends Cubit<DeliveryAddressCurrentState> {
   Future<void> showAccessAlert(BuildContext context) async {
     Alert.show(context,
         title: MyText.we_need_access_to_locatoin,
+        titleAlign: TextAlign.center,
         content: MyText.we_will_redirect_to_settings_locatoin,
         buttonText: MyText.goOn,
-        onTap: () async => await openAppSettings());
+        cancelButton: true, onTap: () async {
+      await Go.pop(context);
+      return await openAppSettings();
+    });
   }
 
   //--------------------values:-----------------

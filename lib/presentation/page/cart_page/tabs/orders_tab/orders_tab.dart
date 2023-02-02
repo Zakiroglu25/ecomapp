@@ -38,7 +38,7 @@ class OrdersTab extends StatelessWidget {
           return ListOrEmpty(
             list: items,
             onRefresh: () {
-              final dynamic navigationBar = globalKey.currentWidget;
+              final dynamic navigationBar = bottomNavKey.currentWidget;
               navigationBar.onTap(0);
               context.read<ProductOptionCubit>().searchFocus.requestFocus();
             },

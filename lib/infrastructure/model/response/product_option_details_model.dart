@@ -14,9 +14,10 @@ class ProductDetails {
   String? packagingAmount;
   String? pharmaceuticalForm;
   String? registrationDate;
+  num? price;
   Manufacturer? manufacturer;
   List<Categories>? categories;
-  List<Images>? images;
+  List<String>? images;
   List<StockItems>? stockItems;
 
   ProductDetails(
@@ -30,6 +31,7 @@ class ProductDetails {
       this.substances,
       this.excipients,
       this.dosage,
+      this.price,
       this.packaging,
       this.packagingAmount,
       this.pharmaceuticalForm,
@@ -47,6 +49,7 @@ class ProductDetails {
     prescriptionRequired = json['prescriptionRequired'] ?? false;
     manufacturedIn = json['manufacturedIn'] ?? '';
     description = json['description'] ?? '';
+    price = json['price'] ?? 0;
     substances = json['substances'];
     excipients = json['excipients'];
     dosage = json['dosage'];
@@ -56,63 +59,57 @@ class ProductDetails {
     pharmaceuticalForm = json['pharmaceuticalForm'];
     registrationDate = json['registrationDate'];
     manufacturer = json['manufacturer'] != null
-        ? new Manufacturer.fromJson(json['manufacturer'])
+        ? Manufacturer.fromJson(json['manufacturer'])
         : null;
     if (json['categories'] != null) {
       categories = <Categories>[];
       json['categories'].forEach((v) {
-        categories!.add(new Categories.fromJson(v));
+        categories!.add(Categories.fromJson(v));
       });
     }
-    if (json['images'] != null) {
-      images = <Images>[];
-      json['images'].forEach((v) {
-        images!.add(new Images.fromJson(v));
-      });
-    }
+    images = json['images'].cast<String>();
     if (json['stockItems'] != null) {
       stockItems = <StockItems>[];
       json['stockItems'].forEach((v) {
-        stockItems!.add(new StockItems.fromJson(v));
+        stockItems!.add(StockItems.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['guid'] = this.guid;
-    data['publicId'] = this.publicId;
-    data['title'] = this.title;
-    data['slug'] = this.slug;
-    data['isInCart'] = this.isInCart;
-    data['prescriptionRequired'] = this.prescriptionRequired;
-    data['manufacturedIn'] = this.manufacturedIn;
-    data['description'] = this.description;
-    data['substances'] = this.substances;
-    data['excipients'] = this.excipients;
-    data['dosage'] = this.dosage;
-    data['packaging'] = this.packaging;
-    data['packagingAmount'] = this.packagingAmount;
-    data['pharmaceuticalForm'] = this.pharmaceuticalForm;
-    data['registrationDate'] = this.registrationDate;
-    if (this.manufacturer != null) {
-      data['manufacturer'] = this.manufacturer!.toJson();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['guid'] = guid;
+    data['publicId'] = publicId;
+    data['title'] = title;
+    data['slug'] = slug;
+    data['isInCart'] = isInCart;
+    data['prescriptionRequired'] = prescriptionRequired;
+    data['manufacturedIn'] = manufacturedIn;
+    data['description'] = description;
+    data['substances'] = substances;
+    data['excipients'] = excipients;
+    data['dosage'] = dosage;
+    data['price'] = price;
+    data['packaging'] = packaging;
+    data['packagingAmount'] = packagingAmount;
+    data['pharmaceuticalForm'] = pharmaceuticalForm;
+    data['registrationDate'] = registrationDate;
+    if (manufacturer != null) {
+      data['manufacturer'] = manufacturer!.toJson();
     }
-    if (this.categories != null) {
-      data['categories'] = this.categories!.map((v) => v.toJson()).toList();
+    if (categories != null) {
+      data['categories'] = categories!.map((v) => v.toJson()).toList();
     }
-    if (this.images != null) {
-      data['images'] = this.images!.map((v) => v.toJson()).toList();
-    }
-    if (this.stockItems != null) {
-      data['stockItems'] = this.stockItems!.map((v) => v.toJson()).toList();
+    data['images'] = images;
+    if (stockItems != null) {
+      data['stockItems'] = stockItems!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 
   @override
   String toString() {
-    return 'ProductDetails{guid: $guid, publicId: $publicId, title: $title, slug: $slug, prescriptionRequired: $prescriptionRequired, isInCart: $isInCart, manufacturedIn: $manufacturedIn, description: $description, substances: $substances, excipients: $excipients, dosage: $dosage, packaging: $packaging, packagingAmount: $packagingAmount, pharmaceuticalForm: $pharmaceuticalForm, registrationDate: $registrationDate, manufacturer: $manufacturer, categories: $categories, images: $images, stockItems: $stockItems}';
+    return 'ProductDetails{guid: $guid, publicId: $publicId,price: $price, title: $title, slug: $slug, prescriptionRequired: $prescriptionRequired, isInCart: $isInCart, manufacturedIn: $manufacturedIn, description: $description, substances: $substances, excipients: $excipients, dosage: $dosage, packaging: $packaging, packagingAmount: $packagingAmount, pharmaceuticalForm: $pharmaceuticalForm, registrationDate: $registrationDate, manufacturer: $manufacturer, categories: $categories, images: $images, stockItems: $stockItems}';
   }
 }
 
@@ -124,13 +121,13 @@ class Manufacturer {
 
   Manufacturer.fromJson(Map<String, dynamic> json) {
     guid = json['guid'];
-    name = json['name'];
+    name = json['name'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['guid'] = this.guid;
-    data['name'] = this.name;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['guid'] = guid;
+    data['name'] = name;
     return data;
   }
 
@@ -149,15 +146,15 @@ class Categories {
 
   Categories.fromJson(Map<String, dynamic> json) {
     guid = json['guid'];
-    name = json['name'];
+    name = json['name'] ?? '';
     slug = json['slug'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['guid'] = this.guid;
-    data['name'] = this.name;
-    data['slug'] = this.slug;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['guid'] = guid;
+    data['name'] = name;
+    data['slug'] = slug;
     return data;
   }
 
@@ -179,16 +176,16 @@ class StockItems {
     guid = json['guid'];
     price = json['price'];
     discountedPrice = json['discountedPrice'];
-    store = json['store'] != null ? new Store.fromJson(json['store']) : null;
+    store = json['store'] != null ? Store.fromJson(json['store']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['guid'] = this.guid;
-    data['price'] = this.price;
-    data['discountedPrice'] = this.discountedPrice;
-    if (this.store != null) {
-      data['store'] = this.store!.toJson();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['guid'] = guid;
+    data['price'] = price;
+    data['discountedPrice'] = discountedPrice;
+    if (store != null) {
+      data['store'] = store!.toJson();
     }
     return data;
   }
@@ -232,17 +229,17 @@ class Store {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['guid'] = this.guid;
-    data['name'] = this.name;
-    data['slug'] = this.slug;
-    data['website'] = this.website;
-    data['worksWithInsurance'] = this.worksWithInsurance;
-    data['opensAtHour'] = this.opensAtHour;
-    data['closesAtHour'] = this.closesAtHour;
-    data['opensAtMinutes'] = this.opensAtMinutes;
-    data['closesAtMinutes'] = this.closesAtMinutes;
-    data['open'] = this.open;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['guid'] = guid;
+    data['name'] = name;
+    data['slug'] = slug;
+    data['website'] = website;
+    data['worksWithInsurance'] = worksWithInsurance;
+    data['opensAtHour'] = opensAtHour;
+    data['closesAtHour'] = closesAtHour;
+    data['opensAtMinutes'] = opensAtMinutes;
+    data['closesAtMinutes'] = closesAtMinutes;
+    data['open'] = open;
     return data;
   }
 }
@@ -257,8 +254,8 @@ class Images {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['url'] = this.url;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['url'] = url;
     return data;
   }
 }

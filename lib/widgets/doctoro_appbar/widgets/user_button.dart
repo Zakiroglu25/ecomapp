@@ -17,8 +17,8 @@ class UserButton extends StatelessWidget {
     return InkWrapper(
       onTap: () {
         Go.to(context, PageViewExample());
-        globalPageController.animateTo(0,
-            duration: Durations.ms300, curve: Curves.linear);
+        // globalPageController.animateTo(0,
+        //     duration: Durations.ms300, curve: Curves.linear);
       },
       child: Material(
         color: Colors.transparent,

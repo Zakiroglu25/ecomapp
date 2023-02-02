@@ -49,11 +49,7 @@ class ProductOptionDetails extends StatelessWidget {
             return ListView(
               children: [
                 ProductImgSlider(
-                  imgList: [
-                    'https://5.imimg.com/data5/ZV/ZQ/EZ/SELLER-43657152/domperidone-parcetamol-tablets-500x500.jpg',
-                    'https://5.imimg.com/data5/SELLER/Default/2022/6/PQ/MO/DT/2068994/domperidone-and-paracetamol-tablet-500x500.jpg',
-                    'https://5.imimg.com/data5/CR/VG/DA/SELLER-3251912/paracetamol-and-domperidone-tablets-500x500.jpg'
-                  ],
+                  imgList: product?.images ?? [],
                 ),
                 ListView(
                   shrinkWrap: true,
@@ -61,7 +57,7 @@ class ProductOptionDetails extends StatelessWidget {
                   padding: Paddings.paddingH16 + Paddings.paddingV12,
                   children: [
                     ManatPrice(
-                      price: "${product?.stockItems?.first.price}",
+                      price: "${product?.price}",
                       textSize: 25,
                       manatSize: 25,
                     ),

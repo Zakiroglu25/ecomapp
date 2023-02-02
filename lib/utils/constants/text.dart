@@ -294,7 +294,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String we_will_redirect_to_settings_gallery =
       "Sizi tətbiq icazələrinə yönləndirəcəyik. Fotolar --> Bütün fotolar yolunu izləyin. Daha sonra geri qayıdın.";
   static const String we_will_redirect_to_settings_locatoin =
-      "Sizi tətbiq icazələrinə yönləndirəcəyik. Location --> While Using the App. Daha sonra geri qayıdın.";
+      "\nSizi tətbiq icazələrinə yönləndirəcəyik:\nLocation --> While Using the App\nDaha sonra geri qayıdın.";
   static const String we_need_access_to_gallery =
       "Fotolara əlçatanlıq üçün icazə lazımdır";
   static const String we_need_access_to_locatoin =

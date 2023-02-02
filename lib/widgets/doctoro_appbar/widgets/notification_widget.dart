@@ -16,8 +16,8 @@ class NotificationWidget extends StatelessWidget {
     return InkWrapper(
       onTap: () {
         Go.to(context, Pager.notificationPage);
-        globalPageController.animateTo(0,
-            duration: Durations.ms300, curve: Curves.linear);
+        // globalPageController.animateTo(0,
+        //     duration: Durations.ms300, curve: Curves.linear);
       },
       child: Container(
         height: 56,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/assets.dart';
 import 'package:uikit/utils/constants/dividers.dart';
+import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/screen/ink_wrapper.dart';
@@ -68,6 +69,7 @@ class _SavableDeliveryAddressItemState
       child: ListView(
         shrinkWrap: true,
         physics: Physics.never,
+        padding: Paddings.paddingV4,
         children: [
           Container(
             color: MyColors.white,
@@ -105,7 +107,8 @@ class _SavableDeliveryAddressItemState
               ),
             ),
           ),
-          Dividers.h1grey
+          MySizedBox.h4,
+          Dividers.h1grey,
         ],
       ),
     );

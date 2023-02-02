@@ -8,8 +8,8 @@ import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/pager.dart';
 
-final globalPageController = PageController(initialPage: 1);
-GlobalKey globalKey = new GlobalKey(debugLabel: 'btm_app_bar');
+//final globalPageController = PageController(initialPage: 1);
+GlobalKey bottomNavKey = GlobalKey(debugLabel: 'btm_app_bar');
 
 class LandingPage extends StatefulWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -37,7 +37,7 @@ class _LandingPageState extends State<LandingPage> {
         extendBody: true,
         body: pages[index],
         bottomNavigationBar: BottomNavigationBar(
-          key: globalKey,
+          key: bottomNavKey,
           // activeColor: MyColors.mainColor,
           backgroundColor: Colors.white,
           //elevation: 10,
@@ -79,5 +79,8 @@ class _LandingPageState extends State<LandingPage> {
   void onChangedTab(int selected) {
     index = selected;
     setState(() {});
+
+    // // final dynamic navigationBar = bottomNavKey.currentWidget as BottomNavigationBar;
+    // (bottomNavKey.currentWidget as BottomNavigationBar).onTap!(0);
   }
 }
