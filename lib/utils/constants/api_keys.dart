@@ -311,11 +311,13 @@ class ApiKeys {
     return map;
   }
 
-  static ordersRegisterBody({String? addressGuid}) {
+  static ordersRegisterBody(
+      {String? addressGuid, required bool? insuranceCoverRequested}) {
     //
     final map = {
       "paymentType": "ONLINE",
       "deliveryType": "COURIER",
+      "insuranceCoverRequested": insuranceCoverRequested,
       "addressGuid": addressGuid
     };
 

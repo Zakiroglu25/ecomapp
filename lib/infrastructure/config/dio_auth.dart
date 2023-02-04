@@ -131,10 +131,8 @@ class JwtInterceptor extends Interceptor {
   // }
 
   Future<Response<dynamic>> _retry(RequestOptions requestOptions) async {
-    final options = Options(
-      method: requestOptions.method,
-      headers: requestOptions.headers,
-    );
+    final options =
+        Options(method: requestOptions.method, headers: requestOptions.headers);
 
     options.headers!['x-mask-jwt'] = _prefs.accessToken;
 

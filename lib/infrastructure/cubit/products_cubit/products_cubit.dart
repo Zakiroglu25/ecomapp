@@ -1,18 +1,16 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
+import 'package:uikit/infrastructure/cubit/products_cubit/index.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/delegate/my_printer.dart';
 import '../../data/product_options_provider.dart';
 import '../../model/response/search_items.dart';
-import 'product_option_state.dart';
 
-class ProductOptionCubit extends Cubit<ProductOptionState> {
-  ProductOptionCubit() : super(ProductOptionInitial()) {
+class ProductsCubit extends Cubit<ProductsState> {
+  ProductsCubit() : super(ProductsInitial()) {
     medSearchController = TextEditingController();
   }
 
@@ -26,7 +24,7 @@ class ProductOptionCubit extends Cubit<ProductOptionState> {
   fetchProduct({bool loading = true, String? title}) async {
     clearCache();
     if (loading) {
-      emit(ProductOptionInProgress());
+      emit(ProductsInProgress());
     }
 
     try {
@@ -37,13 +35,13 @@ class ProductOptionCubit extends Cubit<ProductOptionState> {
         products.addAll(searchItems!.products!);
         totalPages = searchItems.totalPages!;
         updateHaveElse();
-        emit(ProductOptionSuccess(products));
+        emit(ProductsSuccess(products));
       } else {
-        emit(ProductOptionError());
+        emit(ProductsError());
       }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
-      emit(ProductOptionError());
+      emit(ProductsError());
     }
   }
 
@@ -52,45 +50,6 @@ class ProductOptionCubit extends Cubit<ProductOptionState> {
     page = 1;
   }
 
-  // fetchByGuid({required String guid, bool loading = true}) async {
-  //   _loadMoreActivated = false;
-  //   if (loading) {
-  //     emit(ProductOptionInProgress());
-  //   }
-  //   try {
-  //     final result = await ProductOptionsProvider.getProductByGuid(guid: guid);
-  //     if (result.statusCode.isSuccess) {
-  //       emit(ProductOptionSuccess(result.data));
-  //     } else {
-  //       emit(ProductOptionError());
-  //     }
-  //   } on SocketException catch (_) {
-  //     emit(ProductOptionError());
-  //   } catch (e) {
-  //     eeee("Product Option Error" + e.toString());
-  //     emit(ProductOptionError());
-  //   }
-  // }
-
-  // void loadMore() async {
-  //   if (state is PostsLoading) return;
-  //
-  //   final currentState = state;
-  //
-  //   var oldPosts = <SimpleProduct>[];
-  //   if (currentState is ProductOptionSuccess) {
-  //     oldPosts = currentState.productList;
-  //   }
-  //   emit(PostsLoading(oldPosts, isFirstFetch: page == 1));
-  //   final result = await ProductOptionsProvider.getProduct(page++);
-  //   final posts = (state as PostsLoading).oldList;
-  //   if (result.data != null) {
-  //     posts.addAll(result.data);
-  //   }
-  //
-  //   emit(ProductOptionSuccess(posts));
-  // }
-
   void loadMore() async {
     eeee("current page:  $page");
     if (page >= totalPages) return;
@@ -98,7 +57,7 @@ class ProductOptionCubit extends Cubit<ProductOptionState> {
         title: medSearchController.text);
     if (result.statusCode.isSuccess) {
       products.addAll(result.data!.products!);
-      emit(ProductOptionSuccess(products));
+      emit(ProductsSuccess(products));
       page++;
     }
     updateHaveElse();

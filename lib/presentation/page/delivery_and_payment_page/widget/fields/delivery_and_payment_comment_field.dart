@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/delivery_and_payment/delivery_and_payment_cubit.dart';
-import '../../../../../infrastructure/cubit/user/user_cubit.dart';
+
 import '../../../../../utils/constants/text.dart';
 import '../../../../../widgets/general/app_field.dart';
 

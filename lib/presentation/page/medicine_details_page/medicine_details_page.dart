@@ -3,8 +3,8 @@
 // import 'package:uikit/infrastructure/cubit/category_cubit/category_cubit.dart';
 // import 'package:uikit/utils/constants/text.dart';
 //
-// import '../../../infrastructure/cubit/product_option_cubit/product_option_cubit.dart';
-// import '../../../infrastructure/cubit/product_option_cubit/product_option_state.dart';
+// import '../../../infrastructure/cubit/product_option_cubit/products_cubit.dart';
+// import '../../../infrastructure/cubit/product_option_cubit/products_state.dart';
 // import '../../../widgets/custom/app_tab.dart';
 // import '../../../widgets/general/app_loading.dart';
 // import '../../../widgets/main/cuppertabs_wp/cupper_tab_wp.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
 import 'package:uikit/infrastructure/cubit/address/address_state.dart';
-import 'package:uikit/presentation/page/medicines_page/widgets/main_address_box.dart';
+import 'package:uikit/presentation/page/products_page/widgets/main_address_box.dart';
 import 'package:uikit/utils/constants/sheets.dart';
 import 'package:uikit/utils/screen/ink_wrapper.dart';
 import 'package:uikit/widgets/custom/app_linear_loading.dart';

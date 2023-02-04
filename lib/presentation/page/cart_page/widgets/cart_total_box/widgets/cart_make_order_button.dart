@@ -12,7 +12,7 @@ class CartMakeOrderButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppButton(
       text: MyText.makeOrder,
-      onTap: () => context.read<CartCubit>().ordersRegister(context: context),
+      onTap: () => context.read<CartCubit>().registerOrder(context: context),
     );
   }
 }

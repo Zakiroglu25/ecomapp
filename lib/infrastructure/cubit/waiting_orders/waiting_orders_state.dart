@@ -1,7 +1,4 @@
-import 'package:uikit/infrastructure/model/response/search_items.dart';
-
 import '../../model/response/orders_data.dart';
-import '../../model/response/product_option_model.dart';
 
 abstract class WaitingOrdersState {}
 

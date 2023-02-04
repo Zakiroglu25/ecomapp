@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uikit/presentation/page/delivery_and_payment_page/widget/fields/delivery_and_payment_phone_field.dart';
 import 'package:uikit/utils/constants/text.dart';
-import 'package:uikit/widgets/custom/text_title_big.dart';
 import 'package:uikit/widgets/general/small_section.dart';
 
 import '../../../../utils/constants/app_text_styles.dart';
