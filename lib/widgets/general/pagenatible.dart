@@ -9,8 +9,8 @@ import 'package:uikit/utils/typedefs/scrolly_builder.dart';
 //   }
 // }
 
-class Pagenitable extends StatelessWidget {
-  Pagenitable({Key? key, required this.child, this.onBottom}) : super(key: key);
+class Paginatible extends StatelessWidget {
+  Paginatible({Key? key, required this.child, this.onBottom}) : super(key: key);
   Function? onBottom;
   ScrollyBuilder child;
 

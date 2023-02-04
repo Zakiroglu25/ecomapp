@@ -20,7 +20,7 @@ class MedicinesBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Pagenitable(
+    return Paginatible(
       onBottom: () => BlocProvider.of<ProductsCubit>(context).loadMore(),
       child: (scrollController) => GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
