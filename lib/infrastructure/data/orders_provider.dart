@@ -84,12 +84,14 @@ class OrdersProvider {
       {required String orderGuid,
       bool? saveCard,
       String? cardGuid,
+      String? comment,
       String? paymentType,
       String? deliveryType}) async {
     const api = ApiKeys.createPayment;
     final body = ApiKeys.createPaymentBody(
         orderGuid: orderGuid,
         saveCard: saveCard,
+        comment: comment,
         cardGuid: cardGuid,
         deliveryType: deliveryType,
         paymentType: paymentType);

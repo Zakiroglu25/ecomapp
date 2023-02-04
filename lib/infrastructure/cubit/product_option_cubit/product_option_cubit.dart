@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/delegate/my_printer.dart';
@@ -40,10 +41,8 @@ class ProductOptionCubit extends Cubit<ProductOptionState> {
       } else {
         emit(ProductOptionError());
       }
-    } on SocketException catch (_) {
-      emit(ProductOptionError());
-    } catch (e) {
-      eeee("Product Option Error" + e.toString());
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
       emit(ProductOptionError());
     }
   }

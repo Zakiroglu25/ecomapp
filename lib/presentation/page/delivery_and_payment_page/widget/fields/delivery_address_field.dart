@@ -78,14 +78,14 @@ class DeliveryAddressField extends StatelessWidget {
                           ],
                         ),
                       ),
-                      MySizedBox.h16,
-                      AppField(
-                        title: MyText.note,
-                        initialValue:
-                            address?.description?.removeNewLineOperators,
-                        maxLines: 1,
-                        readOnly: true,
-                      ),
+                      // MySizedBox.h16,
+                      // AppField(
+                      //   title: MyText.note,
+                      //   initialValue:
+                      //       address?.description?.removeNewLineOperators,
+                      //   maxLines: 1,
+                      //   readOnly: true,
+                      // ),
                     ],
                   );
                 } else if (state is AddressInProgress) {

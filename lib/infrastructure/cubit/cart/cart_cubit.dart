@@ -240,4 +240,9 @@ class CartCubit extends Cubit<CartState> {
   }
 
   bool get isImageIncorrect => (!image.hasValue || image.value == null);
+
+  @override
+  emit(CartState state) {
+    if (!isClosed) return super.emit(state);
+  }
 }

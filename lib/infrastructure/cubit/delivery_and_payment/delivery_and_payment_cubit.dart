@@ -69,8 +69,8 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
               ? null
               : paymentType.valueOrNull?.toText,
           deliveryType: deliveryType.toText,
-          cardGuid: selectedCard.valueOrNull?.guid);
-      bbbb("resso: $result");
+          cardGuid: selectedCard.valueOrNull?.guid,
+          comment: comment.valueOrNull);
       //result?.url = null;
       if (result.isNull) {
         emit(DeliveryAndPaymentOperationError());
@@ -196,6 +196,23 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
   }
 
   bool get isPaymentTypeIncorrect => (!paymentType.hasValue);
+
+  //name
+  final BehaviorSubject<String> comment = BehaviorSubject<String>();
+
+  Stream<String> get commentStream => comment.stream;
+
+  updateComment(String value) {
+    if (value.isEmpty) {
+      comment.value = '';
+      comment.sink.addError("Xana doldurulmalıdır");
+    } else {
+      comment.sink.add(value);
+    }
+    //  isUserInfoValid();
+  }
+
+  bool get isCommentIncorrect => (!comment.hasValue || comment.value.isEmpty);
 
   //checkbox card
   final BehaviorSubject<bool> checkbox = BehaviorSubject<bool>.seeded(false);

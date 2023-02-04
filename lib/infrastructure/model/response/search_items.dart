@@ -50,7 +50,7 @@ class SimpleProduct {
   String? productOptionGuid;
   String? title;
   double? price;
-  Null? imageUrl;
+  String? imageUrl;
   bool? isFavorite;
   bool? isInCart;
 

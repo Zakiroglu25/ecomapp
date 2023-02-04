@@ -325,6 +325,7 @@ class ApiKeys {
   static createPaymentBody(
       {required String? orderGuid,
       required String? deliveryType,
+      required String? comment,
       required String? paymentType,
       required bool? saveCard,
       required String? cardGuid}) {
@@ -333,6 +334,7 @@ class ApiKeys {
       "orderGuid": orderGuid,
       "saveCard": saveCard,
       "cardGuid": cardGuid,
+      "comment": comment,
       "deliveryType": deliveryType,
       "paymentType": paymentType
     };

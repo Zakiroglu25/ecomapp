@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/delegate/my_printer.dart';
@@ -34,8 +35,8 @@ class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
       }
     } on SocketException catch (_) {
       emit(ProductODetailsError());
-    } catch (e) {
-      eeee("Product Option Error" + e.toString());
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
       emit(ProductODetailsError());
     }
   }
@@ -44,8 +45,8 @@ class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
     emit(ProductODetailsInProgress());
 
     try {
-      final result =
-          await ProductOptionsProvider.getProductByGuidForMap(guid: guid, page: page);
+      final result = await ProductOptionsProvider.getProductByGuidForMap(
+          guid: guid, page: page);
       if (result.statusCode.isSuccess) {
         final searchItems = result.data;
         products.addAll(searchItems!.products!);
@@ -61,10 +62,8 @@ class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
           ).message}",
         );
       }
-    } on SocketException catch (_) {
-      emit(ProductODetailsError());
-    } catch (e) {
-      eeee("Product Option Error" + e.toString());
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
       emit(ProductODetailsError());
     }
   }
