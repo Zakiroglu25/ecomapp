@@ -24,11 +24,13 @@ class InsuranceProvider {
   }
 
   static Future<StatusDynamic> addInsurance(
-      {required String? policyNumber, required String? phoneNumber}) async {
+      {required String? policyNumber,
+      required String? phoneNumber,
+      required String finCode}) async {
     StatusDynamic statusDynamic = StatusDynamic();
     const api = ApiKeys.addInsuranceApi;
     final body = ApiKeys.addInsurance(
-        policyNumber: policyNumber, phoneNumber: phoneNumber);
+        policyNumber: policyNumber, phoneNumber: phoneNumber, finCode: finCode);
     final response = await dioAuth.dio.post(api, data: body);
     statusDynamic.statusCode = response.statusCode;
     statusDynamic.data = response.data;

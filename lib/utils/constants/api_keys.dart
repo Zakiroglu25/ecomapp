@@ -203,10 +203,12 @@ class ApiKeys {
   static addInsurance({
     required String? phoneNumber,
     required String? policyNumber,
+    required String? finCode,
   }) {
     final map = {
       "policyNumber": policyNumber,
       "phoneNumber": phoneNumber,
+      "finCode": finCode,
     };
 
     map.removeWhere(

@@ -11,7 +11,7 @@ class AddAsanInsuranceInfo extends StatelessWidget {
     return Cupperfold(
       notification: false,
       user: false,
-      title: "Sigorta elave et",
+      title: "Sığorta əlavə et",
       child: InsuranceNumTab(),
     );
   }
