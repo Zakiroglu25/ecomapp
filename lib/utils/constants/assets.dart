@@ -5,6 +5,7 @@ class Assets {
   static const String bag_happyC = "assets/svg/bag-happy";
 
   //svg
+
   static const String red_logo = "assets/svg/logo_red.svg";
   static const String bag_happy = "assets/svg/bag-happy.svg";
   static const String bag_happy_xx = "assets/svg/bag-happy-xx.svg";
