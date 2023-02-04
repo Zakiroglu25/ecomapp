@@ -17,10 +17,13 @@ import '../model/response/status_dynamic.dart';
 class OrdersProvider {
   static DioAuth get dioAuth => locator<DioAuth>();
 
-  static Future<StatusDynamic> orderRegister({String? addressGuid}) async {
+  static Future<StatusDynamic> registerOrder(
+      {String? addressGuid, required bool? insuranceCoverRequested}) async {
     StatusDynamic statusDynamic = StatusDynamic();
     const api = ApiKeys.ordersRegister;
-    final body = ApiKeys.ordersRegisterBody(addressGuid: addressGuid);
+    final body = ApiKeys.ordersRegisterBody(
+        addressGuid: addressGuid,
+        insuranceCoverRequested: insuranceCoverRequested);
     final response = await dioAuth.dio.post(api, data: body);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {

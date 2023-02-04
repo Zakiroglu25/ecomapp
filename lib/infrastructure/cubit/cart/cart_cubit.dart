@@ -102,21 +102,24 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  void ordersRegister(
+  void registerOrder(
       {bool loading = false, required BuildContext context}) async {
     try {
       if (loading) emit(CartInProgress());
       Loader.show(context);
-      final result = await OrdersProvider.orderRegister(addressGuid: null);
+      final result = await OrdersProvider.registerOrder(
+          addressGuid: null,
+          insuranceCoverRequested: insuranceCoverRequested.valueOrNull);
       if (result.statusCode.isSuccess) {
         Snack.positive(message: MyText.orderRegistered);
-        fetch(false);
       } else {
         emit(CartOperationError());
       }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
-      emit(CartError());
+      emit(CartOperationError());
+    } finally {
+      fetch(false);
     }
     context.read<TabCountsCubit>().fetch(false);
     Loader.hide();
@@ -240,6 +243,28 @@ class CartCubit extends Cubit<CartState> {
   }
 
   bool get isImageIncorrect => (!image.hasValue || image.value == null);
+
+  //checkbox security
+  final BehaviorSubject<bool> insuranceCoverRequested =
+      BehaviorSubject<bool>.seeded(false);
+
+  Stream<bool> get insuranceCoverRequestedStream =>
+      insuranceCoverRequested.stream;
+
+  updateInsuranceCover(bool value) {
+    insuranceCoverRequested.sink.add(value);
+    //}
+  }
+
+  inverseCheckBox() {
+    insuranceCoverRequested.sink.add(!insuranceCoverRequested.value);
+    //}
+  }
+
+  bool get isInsuranceCoverRequestedIncorrect =>
+      (!insuranceCoverRequested.hasValue ||
+          insuranceCoverRequested.value == null ||
+          insuranceCoverRequested.value == false);
 
   @override
   emit(CartState state) {
