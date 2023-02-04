@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
@@ -18,6 +19,7 @@ class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
   List<SimpleProduct> products = [];
 
   fetchProduct(String guid) async {
+
     emit(ProductODetailsInProgress());
     try {
       final result = await ProductOptionsProvider.getProductByGuid(guid: guid);
@@ -42,15 +44,15 @@ class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
   }
 
   fetchProductMapGuid(String guid) async {
+    clearCache();
     emit(ProductODetailsInProgress());
 
     try {
       final result = await ProductOptionsProvider.getProductByGuidForMap(
           guid: guid, page: page);
       if (result.statusCode.isSuccess) {
-        final searchItems = result.data;
-        products.addAll(searchItems!.products!);
-        totalPages = searchItems.totalPages!;
+
+        updateHaveElse();
         emit(ProductODetailsMapListSuccess(products));
       } else {
         emit(ProductODetailsError());
@@ -68,8 +70,14 @@ class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
     }
   }
 
+  void clearCache() {
+    products.clear();
+    page = 1;
+  }
+
   void loadMore(String guid) async {
     eeee("current page:  $page");
+    if (page >= totalPages) return;
     final result = await ProductOptionsProvider.getProductByGuidForMap(
         page: page + 1, guid: guid);
     if (result.statusCode.isSuccess) {
@@ -77,5 +85,17 @@ class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
       emit(ProductODetailsMapListSuccess(products));
       page++;
     }
+     updateHaveElse();
   }
-}
+    final BehaviorSubject<bool> haveElse = BehaviorSubject<bool>.seeded(false);
+
+    Stream<bool> get haveElseStream => haveElse.stream;
+
+    updateHaveElse() {
+      if (page < totalPages) {
+        haveElse.sink.add(true);
+        return;
+      }
+      haveElse.sink.add(false);
+    }
+  }

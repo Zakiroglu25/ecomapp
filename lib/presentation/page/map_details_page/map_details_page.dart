@@ -12,6 +12,7 @@ import '../../../utils/constants/paddings.dart';
 import '../../../utils/constants/physics.dart';
 import '../../../widgets/custom/listview_separated.dart';
 import '../../../widgets/general/app_loading.dart';
+import '../../../widgets/general/pagenatible.dart';
 import '../../../widgets/main/cupperfold/cupperfold.dart';
 import '../../../widgets/main/doctoro_bottom_sheet/widget/handle_line.dart';
 import '../../../widgets/main/product_item/product_item.dart';
@@ -22,87 +23,94 @@ class MapDetailsPage extends StatelessWidget {
 
   MapDetailsPage(this.maps, {Key? key}) : super(key: key);
 
-  final scrollController = ScrollController();
-
-  void setupScrollController(context) {
-    scrollController.addListener(() {
-      if (scrollController.position.atEdge) {
-        if (scrollController.position.pixels != 10) {
-          BlocProvider.of<ProductOptionDetailsCubit>(context)
-              .loadMore(maps!.guid!);
-        }
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    setupScrollController(context);
-    BlocProvider.of<ProductOptionDetailsCubit>(context).loadMore(maps!.guid!);
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => FavoriteCubit(),
-        ),
-        BlocProvider(
-          create: (context) => CartCubit(),
-        ),
-      ],
-      child: Cupperfold(
-        barColor: MyColors.green235,
-        backColor: MyColors.green235,
-        showAppbarLittleText: true,
-        user: false,
-        notification: false,
-        slivers: [
-          MapDetailsHeaders(
-            maps: maps!,
-          ),
-          SliverFillRemaining(
-            child: Container(
-              padding: Paddings.paddingH16,
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Center(child: const HandleLine()),
-                    BlocProvider(
-                      create: (context) => ProductOptionDetailsCubit()
-                        ..fetchProductMapGuid(maps!.guid!),
-                      child: BlocBuilder<ProductOptionDetailsCubit,
-                          ProductOptionDetailsState>(
-                        builder: (context, state) {
-                          if (state is ProductODetailsMapListSuccess) {
-                            final productList = state.productList;
-                            return ListViewSeparated(
-                                controller: scrollController,
-                                shrinkWrap: true,
-                                physics: Physics.never,
-                                itemCount: productList!.length,
-                                itemBuilder: (context, index) {
-                                  return ProductItem(
-                                    product: productList[index],
-                                    inFav: false,
-                                  );
-                                });
-                          } else if (state is ProductODetailsError) {
-                            return Container();
-                          } else {
-                            return const AppLoading();
-                          }
-                        },
-                      ),
-                    )
-                  ],
+    // setupScrollController(context);
+    // BlocProvider.of<ProductOptionDetailsCubit>(context).loadMore(maps!.guid!);
+    return Paginatible(
+      onBottom: () => BlocProvider.of<ProductOptionDetailsCubit>(context).loadMore(maps!.guid!),
+      child: (scrollController) => GestureDetector(
+        onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+        child:MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => FavoriteCubit(),
+            ),
+            BlocProvider(
+              create: (context) => CartCubit(),
+            ),
+          ],
+          child: Cupperfold(
+            barColor: MyColors.green235,
+            backColor: MyColors.green235,
+            showAppbarLittleText: true,
+            user: false,
+            notification: false,
+            slivers: [
+              MapDetailsHeaders(
+                maps: maps!,
+              ),
+              SliverFillRemaining(
+                child: Container(
+                  padding: Paddings.paddingH16,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Center(child: const HandleLine()),
+                        BlocProvider(
+                          create: (context) => ProductOptionDetailsCubit()
+                            ..fetchProductMapGuid(maps!.guid!),
+                          child: BlocBuilder<ProductOptionDetailsCubit,
+                              ProductOptionDetailsState>(
+                            builder: (context, state) {
+                              if (state is ProductODetailsMapListSuccess) {
+                                final productList = state.productList;
+                                return StreamBuilder<bool>(
+                                    stream: BlocProvider.of<ProductOptionDetailsCubit>(context)
+                                        .haveElseStream,
+                                    builder: (context, snapshot) {
+                                    return ListViewSeparated(
+                                        padding:
+                                        Paddings.paddingA16 + Paddings.paddingB60,
+                                        controller: scrollController,
+                                        itemCount: snapshot.data ?? false
+                                            ? productList!.length + 1
+                                            : productList!.length,
+                                        shrinkWrap: true,
+                                        addAutomaticKeepAlives: true,
+                                        itemBuilder: (context, index) {
+
+                                          return index == productList.length
+                                              ? AppLoading.main()
+                                              : ProductItem(
+                                            product: productList[index],
+                                            inFav: false,
+                                          );
+
+                                        });
+                                  }
+                                );
+                              } else if (state is ProductODetailsError) {
+                                return Container();
+                              } else {
+                                return const AppLoading();
+                              }
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  decoration: const BoxDecoration(
+                    borderRadius: Radiuses.rt24,
+                    color: MyColors.white,
+                  ),
                 ),
               ),
-              decoration: const BoxDecoration(
-                borderRadius: Radiuses.rt24,
-                color: MyColors.white,
-              ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
