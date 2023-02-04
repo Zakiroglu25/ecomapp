@@ -50,45 +50,6 @@ class ProductsCubit extends Cubit<ProductsState> {
     page = 1;
   }
 
-  // fetchByGuid({required String guid, bool loading = true}) async {
-  //   _loadMoreActivated = false;
-  //   if (loading) {
-  //     emit(ProductOptionInProgress());
-  //   }
-  //   try {
-  //     final result = await ProductOptionsProvider.getProductByGuid(guid: guid);
-  //     if (result.statusCode.isSuccess) {
-  //       emit(ProductOptionSuccess(result.data));
-  //     } else {
-  //       emit(ProductOptionError());
-  //     }
-  //   } on SocketException catch (_) {
-  //     emit(ProductOptionError());
-  //   } catch (e) {
-  //     eeee("Product Option Error" + e.toString());
-  //     emit(ProductOptionError());
-  //   }
-  // }
-
-  // void loadMore() async {
-  //   if (state is PostsLoading) return;
-  //
-  //   final currentState = state;
-  //
-  //   var oldPosts = <SimpleProduct>[];
-  //   if (currentState is ProductOptionSuccess) {
-  //     oldPosts = currentState.productList;
-  //   }
-  //   emit(PostsLoading(oldPosts, isFirstFetch: page == 1));
-  //   final result = await ProductOptionsProvider.getProduct(page++);
-  //   final posts = (state as PostsLoading).oldList;
-  //   if (result.data != null) {
-  //     posts.addAll(result.data);
-  //   }
-  //
-  //   emit(ProductOptionSuccess(posts));
-  // }
-
   void loadMore() async {
     eeee("current page:  $page");
     if (page >= totalPages) return;
