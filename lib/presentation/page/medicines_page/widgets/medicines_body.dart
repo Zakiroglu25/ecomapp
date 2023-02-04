@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/config/configs.dart';
 import 'package:uikit/presentation/page/medicines_page/widgets/med_search_field.dart';
 import 'package:uikit/utils/constants/colors.dart';
-import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/widgets/custom/listview_separated.dart';
 import 'package:uikit/widgets/general/empty_widget.dart';
 import 'package:uikit/widgets/general/list_or_empty.dart';

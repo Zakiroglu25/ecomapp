@@ -5,7 +5,6 @@ import 'package:uikit/infrastructure/cubit/delivery_address_current/delivery_add
 import 'package:uikit/infrastructure/services/navigation_service.dart';
 import 'package:uikit/presentation/page/medicines_page/widgets/saved_address_list.dart';
 import 'package:uikit/utils/constants/paddings.dart';
-import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/screen/sheet.dart';

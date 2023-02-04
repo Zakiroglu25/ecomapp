@@ -13,7 +13,6 @@ import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/enums/delivery_type.dart';
 import 'package:uikit/widgets/custom/text_title_big.dart';
-import 'package:uikit/widgets/general/app_field.dart';
 
 class DeliverAndPaymentPageDeliveryTab extends StatelessWidget {
   const DeliverAndPaymentPageDeliveryTab({Key? key}) : super(key: key);

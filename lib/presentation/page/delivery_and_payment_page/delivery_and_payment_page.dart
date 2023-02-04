@@ -10,8 +10,6 @@ import 'package:uikit/utils/delegate/random.dart';
 import 'package:uikit/utils/screen/snack.dart';
 import 'package:uikit/widgets/custom/app_tab.dart';
 
-import '../../../infrastructure/services/hive_service.dart';
-import '../../../locator.dart';
 import '../../../widgets/main/cuppertabs_wp/cupper_tab_wp.dart';
 import 'tabs/i_will_take_tab/i_will_take_tab.dart';
 import 'widget/deliver_and_payment_tabbar_title.dart';

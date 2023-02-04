@@ -23,7 +23,7 @@ class CartTotalBox extends StatelessWidget {
           CartDeliveryPrice(cartInfo?.totalDeliveryPrice),
           CartTotalPrice(cartInfo?.totalPrice),
           // CartInsuranceInfo(),
-          CartInsuranceSwitch(),
+          const CartInsuranceSwitch(),
           // CartTotalRecipe(
           //   url: '',
           //   cartGuid: '',

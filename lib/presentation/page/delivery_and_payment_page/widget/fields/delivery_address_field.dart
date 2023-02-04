@@ -6,14 +6,11 @@ import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/durations.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sheets.dart';
-import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
-import 'package:uikit/utils/extensions/word.dart';
 import 'package:uikit/utils/screen/ink_wrapper.dart';
 import 'package:uikit/widgets/custom/app_linear_loading.dart';
 import 'package:uikit/widgets/custom/column_with_space.dart';
 import 'package:uikit/widgets/general/app_element_box.dart';
-import 'package:uikit/widgets/general/app_field.dart';
 import 'package:uikit/widgets/general/small_section.dart';
 
 class DeliveryAddressField extends StatelessWidget {

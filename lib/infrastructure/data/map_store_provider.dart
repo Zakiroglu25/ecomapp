@@ -1,10 +1,7 @@
 // Dart imports:
 // Package imports:
 
-import 'dart:developer';
-
 import 'package:uikit/infrastructure/model/response/map_medicine.dart';
-import 'package:uikit/infrastructure/model/response/status_dynamic.dart';
 
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
@@ -32,5 +29,4 @@ class MapStoreProvider {
 
     return statusDynamic;
   }
-
 }

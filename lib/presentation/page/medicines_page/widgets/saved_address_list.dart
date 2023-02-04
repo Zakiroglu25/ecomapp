@@ -7,7 +7,6 @@ import '../../../../infrastructure/cubit/address/address_state.dart';
 import '../../../../utils/constants/physics.dart';
 import '../../../../widgets/general/app_loading.dart';
 import '../../../../widgets/general/empty_widget.dart';
-import '../../../../widgets/general/list_or_empty.dart';
 
 class SavedAddressList extends StatelessWidget {
   const SavedAddressList({Key? key}) : super(key: key);
