@@ -58,7 +58,6 @@ class _MapPageState extends State<MapPage> {
   //
   @override
   Widget build(BuildContext context) {
-    LatLng? showLocation;
     return BlocBuilder<MapStoreCubit, MapStoreState>(
       builder: (context, state) {
         if (state is MapStoreSuccess) {
@@ -127,10 +126,9 @@ class _MapPageState extends State<MapPage> {
               children: [
                 GoogleMap(
                   zoomGesturesEnabled: true,
-                  initialCameraPosition: CameraPosition(
+                  initialCameraPosition: const CameraPosition(
                     target: LatLng(40.39427, 49.880143),
-                    //initial positi, //initial position
-                    zoom: 13.0, //initial zoom level
+                    zoom: 12.0, //initial zoom level
                   ),
                   onTap: (position) {
                     _customInfoWindowController.hideInfoWindow!();
@@ -139,9 +137,7 @@ class _MapPageState extends State<MapPage> {
                     _customInfoWindowController.onCameraMove!();
                   },
                   markers: markers,
-                  //markers to show on map
                   mapType: MapType.normal,
-                  //map type
                   onMapCreated: (GoogleMapController controller) async {
                     _customInfoWindowController.googleMapController =
                         controller;
@@ -152,12 +148,7 @@ class _MapPageState extends State<MapPage> {
                   height: 48,
                   width: 133,
                 ),
-                // CustomInfoWindow(
-                //   controller: ,
-                //   height: MediaQuery.of(context).size.width * 0.12,
-                //   width: MediaQuery.of(context).size.width * 0.4,
-                //   offset: 50,
-                // ),
+
               ],
             ),
           );
