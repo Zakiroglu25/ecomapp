@@ -101,6 +101,7 @@ class Pager {
       ], child: CartOrderDetailsPage(orderNumber: orderNumber, status: status));
 
   static get splash => SplashPage();
+
   static get addingInsurance => BlocProvider(
         create: (context) => InsuranceCubit(),
         child: AddAsanInsuranceInfo(),
@@ -167,9 +168,12 @@ class Pager {
         child: Chat(guid, storeName),
       );
 
-  static addAddress({Address? address}) => BlocProvider(
+  static addAddress({Address? address, context, lat, long, title}) =>
+      BlocProvider(
         create: (context) => AddAddressCubit(),
-        child: AddAddressPage(),
+        child: AddAddressPage(
+          addressModel: address,
+        ),
       );
 
   static get otherPage => OtherPage();

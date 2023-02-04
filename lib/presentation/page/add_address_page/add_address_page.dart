@@ -23,7 +23,7 @@ class AddAddressPage extends StatelessWidget {
   double? lng;
   TextEditingController? textController = TextEditingController();
 
-  AddAddressPage({this.addressModel, this.lat, this.lng, this.textController});
+  AddAddressPage({this.addressModel, this.lat, this.lng, this.textController,});
 
   bool first = true;
 
@@ -59,7 +59,7 @@ class AddAddressPage extends StatelessWidget {
             // Go.pop(context);
             Snack.display(
               context: context,
-              message: MyText.error,
+              message: state.error.toString(),
             );
           }
         },
@@ -82,15 +82,19 @@ class AddAddressPage extends StatelessWidget {
             CourierDescField(
               controller: addAddressCubit.descriptionController,
             ),
-
             MySizedBox.h50,
             AppButton(
-              isButtonActive: lng == null ? false : true,
+              isButtonActive: first ? true : false,
               loading:
                   context.read<AddAddressCubit>().state is AddAddressInProgress,
               onTap: () {
                 addressModel != null
-                    ? context.read<AddAddressCubit>().editAddress(addressModel!)
+                    ? context.read<AddAddressCubit>().editAddress(
+                        address: addressModel!,
+                        context: context,
+                        lat: lat,
+                        lng: lng,
+                        streetNameController: textController)
                     : context.read<AddAddressCubit>().addAddress(
                         context: context,
                         lat: lat,

@@ -33,13 +33,8 @@ class AddAddressCubit extends Cubit<AddAddressState> {
       BuildContext? context,
       TextEditingController? streetNameController}) async {
     try {
-      print("Cubit1");
       emit(AddAddressInProgress());
-      print("Cubit2");
 
-      if (lng.toString() == null) {
-        emit(AddAddressError(error: "Addres Secilmeyib"));
-      }
 
       final result = await AddressProvider.addAddress(
           city: cityController.text,
@@ -54,12 +49,9 @@ class AddAddressCubit extends Cubit<AddAddressState> {
           isMain: false);
       print("Cubit3");
 
-      bbbb("resoooo: " + result.toString());
       if (result.statusCode.isSuccess) {
-        print("Cubit4");
         emit(AddAddressSuccess());
       } else {
-        print("Cubit5");
         emit(AddAddressError(error: MyText.error + " ${result.statusCode}"));
       }
       emit(AddAddressInProgress());
@@ -71,20 +63,21 @@ class AddAddressCubit extends Cubit<AddAddressState> {
     }
   }
 
-  void editAddress(Address address) async {
+  void editAddress({Address? address,double? lat,
+      double? lng,
+      BuildContext? context,
+      TextEditingController? streetNameController}) async {
     try {
-      print("Cubit1");
       emit(AddAddressInProgress());
-      print("Cubit2");
       final result = await AddressProvider.addAddress(
           city: cityController.text,
           country: countryController.text,
-          title: "titleCnttext",
-          houseNumber: "houseNumberControllertext",
-          streetName: "streetNameController.text",
+          title: titleCnt.text,
+          houseNumber: "12",
+          streetName: streetNameController!.text,
           phone: _prefs.user.phone,
-          latitude: "43.000",
-          longitude: "45.00",
+          latitude: lat.toString(),
+          longitude: lng.toString(),
           description: descriptionController.text,
           isMain: false);
       print("Cubit3");
