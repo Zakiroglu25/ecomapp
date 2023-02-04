@@ -19,6 +19,7 @@ class AddressField extends StatelessWidget {
       textInputType: TextInputType.name,
       textCapitalization: TextCapitalization.sentences,
       controller: controller,
+
       onTap: () async{
         Go.to(context, MapSample());
       },

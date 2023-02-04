@@ -15,6 +15,7 @@ import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
 import '../../../infrastructure/services/hive_service.dart';
 import '../../../locator.dart';
 import '../../../utils/constants/app_text_styles.dart';
+import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/dividers.dart';
 import '../../../utils/constants/durations.dart';
@@ -24,6 +25,7 @@ import '../../../utils/constants/sized_box.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/delegate/pager.dart';
 import '../../../widgets/custom/app_button.dart';
+import '../../../widgets/general/list_or_empty.dart';
 
 class AddressPage extends StatelessWidget {
   AddressPage({Key? key}) : super(key: key);
@@ -41,10 +43,12 @@ class AddressPage extends StatelessWidget {
             BlocBuilder<AddressCubit, AddressState>(builder: (context, state) {
           if (state is AddressSuccess) {
             List<Address> addressList = state.addressList;
+
             return Padding(
               padding: Paddings.paddingH16,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     MyText.addresses.toUpperCase(),
@@ -55,20 +59,30 @@ class AddressPage extends StatelessWidget {
                   ClipRRect(
                     borderRadius: Radiuses.r12,
                     child: Container(
+                      height: addressList.isEmpty
+                          ? MediaQuery.of(context).size.height / 2
+                          : null,
                       decoration: BoxDecoration(
                         borderRadius: Radiuses.r12,
-                        color: MyColors.grey245,
+                        color: addressList.isEmpty ? null : MyColors.grey245,
                       ),
                       child: AnimatedSize(
                         duration: Durations.ms100,
-                        child: ListViewSeparated(
-                          physics: Physics.never,
-                          shrinkWrap: true,
-                          padding: Paddings.paddingV16,
-                          itemCount: addressList.length,
-                          itemBuilder: (context, index) =>
-                              AddressWidget(address: addressList[index]),
-                          separator: Dividers.h16grey,
+                        child: ListOrEmpty(
+                          list: addressList,
+                          image: Assets.location3x,
+                          color: MyColors.orange253,
+                          text: MyText.emptyText,
+                          description: MyText.emptyTextDesc,
+                          child: ListViewSeparated(
+                            physics: Physics.never,
+                            shrinkWrap: true,
+                            padding: Paddings.paddingV16,
+                            itemCount: addressList.length,
+                            itemBuilder: (context, index) =>
+                                AddressWidget(address: addressList[index]),
+                            separator: Dividers.h16grey,
+                          ),
                         ),
                       ),
                     ),
@@ -85,7 +99,9 @@ class AddressPage extends StatelessWidget {
           } else if (state is AddressInProgress) {
             return const AppLoading();
           }
-          return EmptyWidget();
+          return EmptyWidget(
+            imageUrl: Assets.location3x,
+          );
         }),
       ),
     );

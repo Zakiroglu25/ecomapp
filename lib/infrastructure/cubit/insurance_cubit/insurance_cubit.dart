@@ -15,6 +15,8 @@ class InsuranceCubit extends Cubit<InsuranceState> {
   InsuranceCubit() : super(InsuranceInitial());
   final phoneNum = TextEditingController();
   final policy = TextEditingController();
+  final finCode = TextEditingController();
+
   getInsurance({bool loading = true}) async {
     if (loading) {
       emit(InsuranceProgress());
@@ -41,7 +43,9 @@ class InsuranceCubit extends Cubit<InsuranceState> {
     }
     try {
       final response = await InsuranceProvider.addInsurance(
-          policyNumber: policy.text, phoneNumber: phoneNum.text);
+          policyNumber: policy.text,
+          phoneNumber: phoneNum.text,
+          finCode: finCode.text);
       final errors = response.data;
       if (isSuccess(response.statusCode)) {
         emit(AddInsuranceSuccess());

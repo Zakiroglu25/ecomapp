@@ -21,7 +21,14 @@ class AddressWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Go.to(context, Pager.addAddress(address: address)),
+      onTap: () => Go.to(
+          context,
+          Pager.addAddress(
+              address: address,
+              context: context,
+              lat: address.latitude,
+              long: address.longitude,
+              title: address.title)),
       child: Slidable(
         key: UniqueKey(),
         endActionPane: ActionPane(
@@ -53,34 +60,29 @@ class AddressWidget extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "${address.title}",
-                      style: AppTextStyles.sfPro600s16,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                    MySizedBox.h4,
-                    Text(
-                      address.streetName!.length > 30
-                          ? address.streetName!.substring(0, 30)
-                          : address.streetName!,
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      style: AppTextStyles.sfPro400s14
-                          .copyWith(color: MyColors.grey158),
-                    ),
-                  ],
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "${address.title}",
+                    style: AppTextStyles.sfPro600s16,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                  MySizedBox.h4,
+                  Text(
+                    address.streetName!.length > 30
+                        ? address.streetName!.substring(0, 30)
+                        : address.streetName!,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    style: AppTextStyles.sfPro400s14
+                        .copyWith(color: MyColors.grey158),
+                  ),
+                ],
               ),
               Spacer(),
-              InkWrapper(
-                  onTap: () =>
-                      Go.to(context, Pager.addAddress(address: address)),
-                  child: SvgPicture.asset(Assets.svgEdit))
+              SvgPicture.asset(Assets.svgEdit)
             ],
           ),
         ),

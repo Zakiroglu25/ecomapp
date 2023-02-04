@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/insurance_cubit/insurance_cubit.dart';
 
 import '../../../../../infrastructure/cubit/insurance_cubit/insurance_state.dart';
+import '../../../../../infrastructure/services/hive_service.dart';
+import '../../../../../locator.dart';
 import '../../../../../utils/constants/paddings.dart';
 import '../../../../../utils/constants/sized_box.dart';
 import '../../../../../utils/constants/text.dart';
@@ -13,6 +15,7 @@ import '../../../../../widgets/general/app_field.dart';
 class InsuranceNumTab extends StatelessWidget {
   InsuranceNumTab({Key? key}) : super(key: key);
 
+  HiveService get _prefs => locator<HiveService>();
   @override
   Widget build(BuildContext context) {
     final addInsuranceCubit = context.watch<InsuranceCubit>();
@@ -48,7 +51,18 @@ class InsuranceNumTab extends StatelessWidget {
                 maxLenght: 16,
                 textCapitalization: TextCapitalization.none,
               ),
-              AppButton(
+              if(_prefs.user.finCode!.isEmpty)
+                AppField(
+                  controller: addInsuranceCubit.finCode,
+                  title: MyText.fin,
+                  maxLines: 1,
+                  hint: MyText.fin,
+                  textInputType: TextInputType.text,
+                  maxLenght: 7,
+                  upperCase: true,
+                  textCapitalization: TextCapitalization.none,
+                ),
+                AppButton(
                 loading:
                 context
                     .watch<InsuranceCubit>()
