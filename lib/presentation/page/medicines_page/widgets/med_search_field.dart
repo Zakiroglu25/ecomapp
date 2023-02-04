@@ -16,6 +16,7 @@ class MedSearchField extends StatelessWidget {
     return Padding(
       padding: Paddings.paddingH16,
       child: AppField(
+        focusNode: cubit.searchFocus,
         hint: MyText.nameOrProducedCountry,
         suffixIcon: SvgPicture.asset(Assets.svgSearch),
         textInputAction: TextInputAction.search,

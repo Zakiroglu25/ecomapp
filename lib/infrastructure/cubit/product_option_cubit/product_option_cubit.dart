@@ -20,6 +20,7 @@ class ProductOptionCubit extends Cubit<ProductOptionState> {
   List<SimpleProduct> products = [];
 
   late final TextEditingController medSearchController;
+  late final FocusNode searchFocus = FocusNode();
 
   fetchProduct({bool loading = true, String? title}) async {
     clearCache();

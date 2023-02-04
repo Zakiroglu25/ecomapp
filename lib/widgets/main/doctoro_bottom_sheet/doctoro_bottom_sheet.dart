@@ -35,6 +35,8 @@ class AppBottomSheet extends StatelessWidget {
           color: Colors.white70, borderRadius: Radiuses.rt24),
       // height: 270,
       child: SingleChildScrollView(
+        //shrinkWrap: true,
+        physics: Physics.never,
         child: Column(
           // shrinkWrap: true,
           // physics: Physics.never,

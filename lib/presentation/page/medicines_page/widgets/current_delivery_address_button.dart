@@ -23,15 +23,18 @@ class CurrentDeliveryAddressButton extends StatelessWidget {
           if (state is DeliveryAdressCurrentAdded) {
             context.read<AddressCubit>().fetch();
           }
+          if (state is DeliveryAdressCurrentDisabled) {
+            context
+                .read<DeliveryAddressCurrentCubit>()
+                .showAccessAlert(context);
+          }
         },
         builder: (context, state) {
           if (state is DeliveryAdressCurrentSuccess) {
             final address = state.address;
             //final location = state.location;
             return CurrentDeliveryAddressItem(
-              address: address,
-              context: context,
-            );
+                address: address, context: context);
           }
           if (state is DeliveryAdressCurrentInProgress) {
             return const AppLinearLoading();

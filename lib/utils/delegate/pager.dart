@@ -78,7 +78,7 @@ class Pager {
       ], child: const LoginPage());
 
   static get medicines => MultiBlocProvider(providers: [
-        BlocProvider(create: (context) => ProductOptionCubit()..fetchProduct()),
+        // BlocProvider(create: (context) => ProductOptionCubit()..fetchProduct()),
         BlocProvider(create: (context) => FavoriteCubit()),
         BlocProvider(create: (context) => CartCubit()),
         BlocProvider(create: (context) => AddressCubit()..fetchMainAddress()),
@@ -159,6 +159,7 @@ class Pager {
 
   static get landing => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => AddressCubit()),
+        BlocProvider(create: (context) => ProductOptionCubit()..fetchProduct()),
       ], child: const LandingPage());
 
   static chat({String? guid, String? storeName}) => BlocProvider(

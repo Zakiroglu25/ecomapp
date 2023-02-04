@@ -23,6 +23,7 @@ class Alert {
       String? title,
       String? buttonText,
       String? content,
+      TextAlign? titleAlign,
       Function? onTapCancel,
       bool cancelButton = false,
       Function? onTap}) {
@@ -63,18 +64,19 @@ class Alert {
                         ),
                   ),
                   MySizedBox.h4,
-                  Text(
-                    title ?? MyText.info,
-                    style: AppTextStyles.sfPro600.copyWith(fontSize: 18.sm),
-                  ),
-                  MySizedBox.h4,
                   Padding(
                     padding: Paddings.paddingH16,
                     child: Text(
-                      content ?? '',
-                      // style: AppTextStyles.sanF400
-                      //     .copyWith(fontSize: 16.sm, color: MyColors.grey163),
+                      title ?? MyText.info,
+                      textAlign: titleAlign,
+                      style: AppTextStyles.sfPro600.copyWith(fontSize: 18.sm),
                     ),
+                  ),
+                  MySizedBox.h4,
+                  Text(
+                    content ?? '',
+                    // style: AppTextStyles.sanF400
+                    //     .copyWith(fontSize: 16.sm, color: MyColors.grey163),
                   ),
                   WidgetOrEmpty(
                     value: content != null,
