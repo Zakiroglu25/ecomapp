@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:uikit/presentation/page/medicines_page/widgets/items/saved_delivery_address_item.dart';
+import 'package:uikit/presentation/page/products_page/widgets/items/saved_delivery_address_item.dart';
 
 import '../../../../infrastructure/cubit/address/address_cubit.dart';
 import '../../../../infrastructure/cubit/address/address_state.dart';

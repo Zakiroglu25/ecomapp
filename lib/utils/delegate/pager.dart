@@ -31,7 +31,7 @@ import '../../infrastructure/cubit/login/login_cubit.dart';
 import '../../infrastructure/cubit/messenger_cubit/messenger_cubit.dart';
 import '../../infrastructure/cubit/notification_cubit/notification_cubit.dart';
 import '../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
-import '../../infrastructure/cubit/product_option_cubit/product_option_cubit.dart';
+import '../../infrastructure/cubit/products_cubit/index.dart';
 import '../../infrastructure/cubit/register/register_cubit.dart';
 import '../../infrastructure/cubit/tab_counts/tab_counts_cubit.dart';
 import '../../infrastructure/cubit/user/user_cubit.dart';
@@ -48,7 +48,7 @@ import '../../presentation/page/contact_page/contact_page.dart';
 import '../../presentation/page/delivery_and_payment_page/delivery_and_payment_page.dart';
 import '../../presentation/page/favorite_page/favorite_page.dart';
 import '../../presentation/page/insurance_page/add_insurance_page.dart';
-import '../../presentation/page/medicines_page/medicines_page.dart';
+import '../../presentation/page/products_page/products_page.dart';
 import '../../presentation/page/messenger_page/messenger_page.dart';
 import '../../presentation/page/messenger_page/widget/chat_details.dart';
 import '../../presentation/page/other_page/other_page.dart';
@@ -67,6 +67,11 @@ class Pager {
         ..startApp(context, showSplash: showSplash ?? true),
       child: const App());
 
+  static get landing => MultiBlocProvider(providers: [
+        BlocProvider(create: (context) => AddressCubit()),
+        BlocProvider(create: (context) => ProductsCubit()..fetchProduct()),
+      ], child: const LandingPage());
+
   static get register => MultiBlocProvider(providers: [
         BlocProvider(
           create: (context) => RegisterCubit(),
@@ -77,12 +82,12 @@ class Pager {
         BlocProvider(create: (context) => LoginCubit()),
       ], child: const LoginPage());
 
-  static get medicines => MultiBlocProvider(providers: [
+  static get products => MultiBlocProvider(providers: [
         // BlocProvider(create: (context) => ProductOptionCubit()..fetchProduct()),
         BlocProvider(create: (context) => FavoriteCubit()),
         BlocProvider(create: (context) => CartCubit()),
         BlocProvider(create: (context) => AddressCubit()..fetchMainAddress()),
-      ], child: const MedicinesPage());
+      ], child: const ProductsPage());
 
   static get cart => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => CartCubit()..fetch()),
@@ -157,11 +162,6 @@ class Pager {
         create: (context) => MessengerCubit(),
         child: MessengerPage(),
       );
-
-  static get landing => MultiBlocProvider(providers: [
-        BlocProvider(create: (context) => AddressCubit()),
-        BlocProvider(create: (context) => ProductOptionCubit()..fetchProduct()),
-      ], child: const LandingPage());
 
   static chat({String? guid, String? storeName}) => BlocProvider(
         create: (context) => ChatMessengerCubit(),

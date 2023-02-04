@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/config/configs.dart';
-import 'package:uikit/presentation/page/medicines_page/widgets/med_search_field.dart';
+import 'package:uikit/presentation/page/products_page/widgets/med_search_field.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/widgets/custom/listview_separated.dart';
 import 'package:uikit/widgets/general/empty_widget.dart';
 import 'package:uikit/widgets/general/list_or_empty.dart';
 import 'package:uikit/widgets/main/product_item/product_item.dart';
-
-import '../../../../infrastructure/cubit/product_option_cubit/product_option_cubit.dart';
-import '../../../../infrastructure/cubit/product_option_cubit/product_option_state.dart';
+import '../../../../infrastructure/cubit/products_cubit/index.dart';
 import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/paddings.dart';
@@ -25,7 +23,7 @@ class MedicinesBody extends StatelessWidget {
     scrollController.addListener(() {
       if (scrollController.position.atEdge) {
         if (scrollController.position.pixels != 10) {
-          BlocProvider.of<ProductOptionCubit>(context).loadMore();
+          BlocProvider.of<ProductsCubit>(context).loadMore();
         }
       }
     });
@@ -34,7 +32,7 @@ class MedicinesBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     setupScrollController(context);
-    BlocProvider.of<ProductOptionCubit>(context).loadMore();
+    //  BlocProvider.of<ProductOptionCubit>(context).loadMore();
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
@@ -51,9 +49,9 @@ class MedicinesBody extends StatelessWidget {
               ),
             ),
             const MedSearchField(),
-            BlocBuilder<ProductOptionCubit, ProductOptionState>(
+            BlocBuilder<ProductsCubit, ProductsState>(
               builder: (context, state) {
-                if (state is ProductOptionSuccess) {
+                if (state is ProductsSuccess) {
                   final productList = state.productList;
                   //final productList = [];
                   return Expanded(
@@ -63,7 +61,7 @@ class MedicinesBody extends StatelessWidget {
                       text: MyText.medicines,
                       description: MyText.mediciniesDesc,
                       child: StreamBuilder<bool>(
-                          stream: BlocProvider.of<ProductOptionCubit>(context)
+                          stream: BlocProvider.of<ProductsCubit>(context)
                               .haveElseStream,
                           builder: (context, snapshot) {
                             return ListViewSeparated(
@@ -91,7 +89,7 @@ class MedicinesBody extends StatelessWidget {
                           }),
                     ),
                   );
-                } else if (state is ProductOptionInProgress) {
+                } else if (state is ProductsInProgress) {
                   return Center(child: AppLoading.main());
                 } else {
                   return Expanded(child: EmptyWidget.error());
