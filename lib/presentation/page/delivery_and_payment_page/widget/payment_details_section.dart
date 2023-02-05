@@ -6,6 +6,7 @@ import 'package:uikit/infrastructure/cubit/delivery_and_payment/delivery_and_pay
 import 'package:uikit/infrastructure/cubit/delivery_and_payment/delivery_and_payment_state.dart';
 import 'package:uikit/presentation/page/cart_page/widgets/cart_total_box/widgets/cart_delivery_price.dart';
 import 'package:uikit/presentation/page/cart_page/widgets/cart_total_box/widgets/cart_total_price.dart';
+import 'package:uikit/presentation/page/cart_page/widgets/cart_total_box/widgets/cart_total_property.dart';
 import 'package:uikit/presentation/page/cart_page/widgets/cart_total_box/widgets/order_price.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/text.dart';
@@ -46,6 +47,19 @@ class PaymentDetailsSection extends StatelessWidget {
                     children: [
                       CartOrdersPrice(details.price),
                       CartDeliveryPrice(details.deliveryPrice),
+                      // CartTotalProperty(
+                      //     title: MyText.payWithInsurance,
+                      //     value: StreamBuilder<bool>(
+                      //       stream: BlocProvider.of<CartCubit>(context)
+                      //           .insuranceCoverRequestedStream,
+                      //       builder: (context, snapshot) {
+                      //         return Switch.adaptive(
+                      //             value: snapshot.data ?? false,
+                      //             onChanged: (v) =>
+                      //                 BlocProvider.of<CartCubit>(context)
+                      //                     .updateInsuranceCover(v));
+                      //       },
+                      //     )),
                       CartTotalPrice(details.totalPrice)
                     ],
                   ),
