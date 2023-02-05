@@ -8,6 +8,7 @@ import '../../../infrastructure/cubit/product_details_details/product_options_de
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/paddings.dart';
 import '../../../utils/constants/physics.dart';
+import '../../../widgets/custom/focusable_app_loading.dart';
 import '../../../widgets/custom/listview_separated.dart';
 import '../../../widgets/general/app_loading.dart';
 import '../../../widgets/main/cupperfold/cupperfold.dart';
@@ -23,6 +24,7 @@ class MapDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<ProductOptionDetailsCubit>(context);
     return Cupperfold(
       barColor: MyColors.green235,
       backColor: MyColors.green235,
@@ -41,9 +43,7 @@ class MapDetailsPage extends StatelessWidget {
                   padding: Paddings.paddingH16,
                   color: MyColors.white,
                   child: StreamBuilder<bool>(
-                      stream:
-                          BlocProvider.of<ProductOptionDetailsCubit>(context)
-                              .haveElseStream,
+                      stream: cubit.haveElseStream,
                       builder: (context, snapshot) {
                         return ListViewSeparated(
                             padding: Paddings.paddingA16 + Paddings.paddingB60,
@@ -55,16 +55,12 @@ class MapDetailsPage extends StatelessWidget {
                             addAutomaticKeepAlives: true,
                             itemBuilder: (context, index) {
                               return index == productList.length
-                                  ? FocusDetector(
-                                      onFocusGained: () => BlocProvider.of<
-                                                  ProductOptionDetailsCubit>(
-                                              context)
-                                          .loadMore(maps!.guid!),
-                                      child: const AppLoading.main())
+                                  ? FocusableAppLoading(
+                                      onFocus: () =>
+                                          cubit.loadMore(maps!.guid!))
                                   : ProductItem(
                                       product: productList[index],
-                                      inFav: false,
-                                    );
+                                      inFav: false);
                             });
                       }),
                 ),

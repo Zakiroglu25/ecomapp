@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/utils/delegate/index.dart';
+import 'package:uikit/utils/screen/ink_wrapper.dart';
 import 'package:uikit/widgets/main/product_item/widgets/product_fav_button.dart';
 import 'package:uikit/widgets/main/product_item/widgets/product_image.dart';
 
@@ -24,14 +26,39 @@ class ProductItem extends StatefulWidget {
 
 class _ProductItemState extends State<ProductItem>
     with AutomaticKeepAliveClientMixin {
+  late SimpleProduct product;
+  //inFav mean that this widget is in Favorite page
+  late bool inFav;
+
+  Color color = Colors.black87;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    startLogic();
+  }
+
+  @override
+  void didUpdateWidget(covariant ProductItem oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+    startLogic();
+  }
+
+  void startLogic() {
+    product = widget.product;
+    inFav = widget.inFav;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         GestureDetector(
-          onTap: () {
-            Go.to(context, Pager.productDetails(guid: widget.product.guid!));
-          },
+          onTap: () =>
+              Go.to(context, Pager.productDetails(guid: product.guid!)),
           child: Container(
             height: 126,
             padding: Paddings.paddingA12,
@@ -41,19 +68,30 @@ class _ProductItemState extends State<ProductItem>
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ProductImage(imageUrl: widget.product.imageUrl),
+                ProductImage(imageUrl: product.imageUrl),
                 MySizedBox.w12,
-                ProductDetailsAndButtons(
-                  product: widget.product,
-                )
+                ProductDetailsAndButtons(product: product)
               ],
             ),
           ),
         ),
         ProductFavButton(
-          product: widget.product,
-          inFav: widget.inFav,
+          product: product,
+          inFav: inFav,
         ),
+
+        // InkWrapper(
+        //   child: Container(
+        //     width: 20,
+        //     height: 20,
+        //     color: product.isInCart! ? MyColors.red250 : MyColors.blue55,
+        //   ),
+        //   onTap: () {
+        //     //  color = Rndm.color;
+        //     product.isInCart = !product.isInCart!;
+        //     setState(() {});
+        //   },
+        // )
         //  ProductCartButton()
       ],
     );
