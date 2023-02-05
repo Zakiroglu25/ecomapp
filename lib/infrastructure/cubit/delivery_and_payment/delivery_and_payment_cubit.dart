@@ -48,6 +48,27 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
     }
   }
 
+  updateInsuranceCheckedIn({bool loading = true, required bool value}) async {
+    if (loading) {
+      emit(DeliveryAndPaymentInProgress());
+    }
+    try {
+      final result = await OrdersProvider.changeNotCovered(
+          guid: orderGuid, include: value);
+      if (result.isNotNull) {
+        //orderGuid = guid;
+        emit(DeliveryAndPaymentSuccess(orderDetails: result!));
+      } else {
+        emit(DeliveryAndPaymentError());
+      }
+    } on SocketException catch (_) {
+      emit(DeliveryAndPaymentError());
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+      emit(DeliveryAndPaymentError());
+    }
+  }
+
   updateTab({required int index}) async {
     tabIndex = index;
     if (index == 0 && paymentType.valueOrNull == PaymentType.CASH) {
@@ -130,28 +151,6 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
     }
   }
 
-  // void ordersRegister(
-  //     {bool loading = false, required BuildContext context}) async {
-  //   try {
-  //     if (loading) emit(DeliveryAndPaymentInProgress());
-  //     Loader.show(context);
-  //     final result = await OrdersProvider.orderRegister(addressGuid: null);
-  //     if (result.statusCode.isSuccess) {
-  //       Snack.positive(message: MyText.orderRegistered);
-  //       //fetch(false);
-  //     } else {
-  //       emit(DeliveryAndPaymentError());
-  //     }
-  //   } catch (e, s) {
-  //     Recorder.recordCatchError(e, s);
-  //     emit(DeliveryAndPaymentError());
-  //   }
-  //   context.read<TabCountsCubit>().fetch(false);
-  //   Loader.hide();
-  // }
-
-  //values
-  //selectedCard
   final BehaviorSubject<CardData> selectedCard = BehaviorSubject<CardData>();
 
   Stream<CardData> get selectedCardStream => selectedCard.stream;

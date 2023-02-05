@@ -160,6 +160,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String pharmacy = "Aptek";
   static const String slideToConfirm = 'Təsdiq etmək üçün sürüşdürün';
   static const String deliveryPrice = "Çatdırılma haqqı";
+  static const String priceNotCovered = "Qarşılanmayan hissə";
+
   static const String cards = "KARTLAR";
   static const String addNewCard = "Yeni kart əlavə et";
   static const String savedcardNotFound = "Əlavə edilmiş kart tapılmadı";
@@ -332,4 +334,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String contactOther = 'Buradan bizimlə əlaqə yarada bilərsən';
   static const String faqOther = 'Buradan suallarına cavab tapa bilərsən';
   static const String settingsOther = 'Buradan tətbiqi özünə uyğun ayarla';
+
+  //text
+  static const String priceNotCoveredInfoText =
+      "Dərmanların qiyməti qarşılanmadığı halda öz hesabınızdan ödəyə və ya siyahıdan çıxara bilərsiniz";
 }

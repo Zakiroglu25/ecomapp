@@ -83,6 +83,19 @@ class OrdersProvider {
     return null;
   }
 
+  static Future<OrderDetails?> changeNotCovered(
+      {required String guid, required bool include}) async {
+    final tail = include ? 'include' : 'exclude';
+    final api = ApiKeys.orders + '/$guid/$tail-not-covered';
+    final response = await dioAuth.dio.post(api);
+    if (response.statusCode.isSuccess) {
+      return OrderDetails.fromJson(response.data);
+    } else {
+      eeee("orderDetails:  url: $api , response: ${response.data}");
+    }
+    return null;
+  }
+
   static Future<PaymentUrlModel?> createPayment(
       {required String orderGuid,
       bool? saveCard,
