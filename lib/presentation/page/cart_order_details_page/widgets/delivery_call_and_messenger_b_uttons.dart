@@ -39,7 +39,7 @@ class DeliveryCallAndMessengerButtons extends StatelessWidget {
             Go.to(
                 context,
                 Pager.chat2(
-                    guid: storeGuid!,
+                    storeGuid: storeGuid!,
                     storeName: storeName!,
                     orderGuid: orderGuid!));
           },

@@ -71,6 +71,19 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
     }
   }
 
+  void configMessenger(
+      {bool? isLoading = false,
+      String? storeGuid,
+      String? orderGuid,
+      String? guid}) async {
+    if (guid.isNotNull) {
+      fetch(guid: guid);
+    } else {
+      createMessenger(
+          isLoading: true, storeGuid: storeGuid, orderGuid: orderGuid);
+    }
+  }
+
   void createMessenger(
       {bool? isLoading = false, String? storeGuid, String? orderGuid}) async {
     if (isLoading!) {
@@ -99,10 +112,10 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
     page = 1;
   }
 
-  void loadMore(String guid) async {
+  void loadMore() async {
     eeee("current page:  $page");
     if (page >= totalPages) return;
-    final result = await MessengerProvider.getChatMessage(guid, page + 1);
+    final result = await MessengerProvider.getChatMessage(chatGuid, page + 1);
     if (result.statusCode.isSuccess) {
       messages.addAll(result.data!.data!);
       emit(ChatMessengerSuccess(messages));

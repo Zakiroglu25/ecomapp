@@ -64,7 +64,7 @@ class ChatPage extends StatelessWidget {
                                       onFocusGained: () =>
                                           BlocProvider.of<ChatMessengerCubit>(
                                                   context)
-                                              .loadMore(guid!),
+                                              .loadMore(),
                                       child: const AppLoading())
                                   : Align(
                                       alignment: chatList[index].isByYou == true

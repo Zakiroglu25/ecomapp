@@ -179,12 +179,14 @@ class Pager {
       );
 
   static chat2(
-          {required String guid,
-          required String storeName,
-          required String orderGuid}) =>
+          {String? storeGuid,
+          String? storeName,
+          String? guid,
+          String? orderGuid}) =>
       BlocProvider.value(
         value: ChatMessengerCubit()
-          ..createMessenger(storeGuid: guid, orderGuid: orderGuid),
+          ..configMessenger(
+              storeGuid: storeGuid, orderGuid: orderGuid, guid: guid),
         child: ChatPage(storeName: storeName),
       );
 
