@@ -13,7 +13,9 @@ import 'package:uikit/widgets/custom/text_title_big.dart';
 import 'package:uikit/widgets/general/app_element_box.dart';
 import 'package:uikit/widgets/general/app_loading.dart';
 
+import '../../../widget/cart_insurance_properties.dart';
 import 'pharmacy_section.dart';
+import 'take_away_payment_section.dart';
 
 class TakeAwayPharmacyAndOrderDetails extends StatelessWidget {
   const TakeAwayPharmacyAndOrderDetails({Key? key}) : super(key: key);
@@ -31,15 +33,14 @@ class TakeAwayPharmacyAndOrderDetails extends StatelessWidget {
         builder: (context, state) {
           if (state is DeliveryAndPaymentSuccess) {
             final details = state.orderDetails;
+
             return SpacedColumn(
               space: 16,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 PharmacySection(orderDetails: details),
                 BigSection(title: MyText.payment, size: 16.sp),
-                AppElementBox(
-                    padding: Paddings.paddingA16 + Paddings.paddingV8,
-                    child: CartTotalPrice(details.totalPrice)),
+                TakeAwayPaymentSection(details: details),
               ],
             );
             ;
