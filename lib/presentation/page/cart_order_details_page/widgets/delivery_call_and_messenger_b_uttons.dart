@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uikit/utils/constants/assets.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'cart_circle_button_with_title.dart';
@@ -11,9 +12,10 @@ class DeliveryCallAndMessengerButtons extends StatelessWidget {
     Key? key,
     required this.storeGuid,
     required this.storeName,
+    required this.orderGuid,
     required this.storePhone,
   }) : super(key: key);
-  final String? storePhone, storeName, storeGuid;
+  final String? storePhone, storeName, storeGuid, orderGuid;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,12 @@ class DeliveryCallAndMessengerButtons extends StatelessWidget {
             ///create chat elemek lazimdi. OrderGuid gonderilecek.
             ///Men sorgunu ve Cubiti hell edecem
             ///qalacaq bidene context.read<MessengerCubit>.createChat
+            Go.to(
+                context,
+                Pager.chat2(
+                    guid: storeGuid!,
+                    storeName: storeName!,
+                    orderGuid: orderGuid!));
           },
         ),
       ],

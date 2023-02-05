@@ -19,18 +19,18 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
   int totalPages = 0;
   List<Data> messages = [];
   late final FocusNode searchFocus = FocusNode();
+  String? chatGuid;
 
-  void fetch(
-      {required BuildContext context,
-      bool? isLoading = false,
-      required String guid}) async {
+  void fetch({bool? isLoading = false, String? guid}) async {
+    if (guid.isNotNull) chatGuid = guid!;
+
     clearCache();
     if (isLoading!) {
       emit(ChatMessengerInProgress());
     }
 
     try {
-      final result = await MessengerProvider.getChatMessage(guid, page);
+      final result = await MessengerProvider.getChatMessage(chatGuid, page);
       if (isSuccess(result.statusCode)) {
         final searchItems = result.data;
         messages.addAll(searchItems!.data!);
@@ -49,20 +49,16 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
     }
   }
 
-  void sendMessage(
-      {required BuildContext context,
-      bool? isLoading = false,
-      String? message,
-      String? guid}) async {
+  void sendMessage({bool? isLoading = false, String? message}) async {
     if (isLoading!) {
       emit(ChatMessengerInProgress());
     }
 
     try {
-      final result = await MessengerProvider.sendMessage(guid, message);
+      final result = await MessengerProvider.sendMessage(chatGuid, message);
       if (isSuccess(result.statusCode)) {
         emit(SendChatMessage());
-        fetch(context: context, guid: guid!);
+        fetch();
       } else {
         emit(SendChatMessageError());
       }
@@ -76,18 +72,16 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
   }
 
   void createMessenger(
-      {required BuildContext context,
-      bool? isLoading = false,
-      String? storeGuid,
-      String? orderGuid}) async {
+      {bool? isLoading = false, String? storeGuid, String? orderGuid}) async {
     if (isLoading!) {
       emit(ChatMessengerInProgress());
     }
     try {
-      final result = await MessengerProvider.createChat(storeGuid, orderGuid);
-      if (isSuccess(result.statusCode)) {
+      final result = await MessengerProvider.createChat(orderGuid, storeGuid);
+      if (result.isNotNull) {
         emit(ChatCreate());
-        // fetch(context: context, guid: guid!);
+        chatGuid = result!;
+        fetch(guid: result);
       } else {
         emit(ChatCreateError());
       }
@@ -130,4 +124,3 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
     haveElse.sink.add(false);
   }
 }
-

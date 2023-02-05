@@ -45,6 +45,7 @@ class DeliveryHeaders extends StatelessWidget {
                           MySizedBox.h8,
                           DeliveryCallAndMessengerButtons(
                               storeGuid: order.storeGuid,
+                              orderGuid: order.guid,
                               storeName: order.storeName,
                               storePhone: order.storePhone),
                           MySizedBox.h8,
