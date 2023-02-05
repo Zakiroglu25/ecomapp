@@ -87,7 +87,7 @@ class MapDetailsHeaders extends StatelessWidget {
                             svg: Assets.svgLoaction,
                             title: "Unvan",
                             onTap: () {
-                              launch(googleUrl);
+                              launch1(googleUrl);
                               print(maps.guid);
                             },
                           ),
@@ -95,6 +95,7 @@ class MapDetailsHeaders extends StatelessWidget {
                           CartCircleButtonWithTitle(
                             svg: Assets.svgCall,
                             title: "Zəng et",
+                            onTap: () => launch(("tel://"+maps.phone.toString())),
                           ),
                         ],
                       ),
@@ -105,7 +106,7 @@ class MapDetailsHeaders extends StatelessWidget {
             maxExtent_: 290));
   }
 
-  Future<void> launch(Uri url) async {
+  Future<void> launch1(Uri url) async {
     await canLaunchUrl(url)
         ? await launchUrl(url)
         : Snack.display(message: "Xeta yarandi");
