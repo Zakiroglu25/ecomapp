@@ -10,6 +10,7 @@ import 'package:uikit/utils/delegate/navigate_utils.dart';
 import '../../../infrastructure/cubit/map/map_store_state.dart';
 import '../../../infrastructure/model/response/map_medicine.dart';
 import '../../../utils/constants/assets.dart';
+import '../../../utils/delegate/index.dart';
 import '../../../widgets/custom/info_window.dart';
 import '../../../widgets/general/app_loading.dart';
 import '../map_details_page/map_details_page.dart';
@@ -75,16 +76,8 @@ class _MapPageState extends State<MapPage> {
                       children: [
                         Expanded(
                           child: InkWell(
-                            onTap: () {
-                              Go.to(
-                                  context,
-                                  BlocProvider(
-                                    create: (context) =>
-                                        ProductOptionDetailsCubit()
-                                          ..fetchProductMapGuid(element.guid!),
-                                    child: MapDetailsPage(element),
-                                  ));
-                            },
+                            onTap: () =>
+                                Go.to(context, Pager.pharmacy(element)),
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Colors.black,
@@ -148,7 +141,6 @@ class _MapPageState extends State<MapPage> {
                   height: 48,
                   width: 133,
                 ),
-
               ],
             ),
           );

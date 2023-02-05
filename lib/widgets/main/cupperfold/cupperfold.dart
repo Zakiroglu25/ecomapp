@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/widgets/main/cupperfold/widgets/app_sliver_persistent_cupertino_appbar.dart';
 
 import 'widgets/custom_cupertino_sliver_navigation_bar.dart';
@@ -48,6 +49,7 @@ class Cupperfold extends StatelessWidget {
         child: CustomScrollView(
           clipBehavior: Clip.antiAlias,
           // A list of sliver widgets.
+          physics: Physics.alwaysClamp,
           slivers: <Widget>[
             if (showAppbarLittleText)
               AppSliverPersistentCupertinoAppbar(

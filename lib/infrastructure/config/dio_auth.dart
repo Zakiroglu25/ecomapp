@@ -130,13 +130,13 @@ class JwtInterceptor extends Interceptor {
   //   }
   // }
 
-  Future<Response<dynamic>> _retry(RequestOptions requestOptions) async {
+  void _retry(RequestOptions requestOptions) async {
     final options =
         Options(method: requestOptions.method, headers: requestOptions.headers);
 
     options.headers!['x-mask-jwt'] = _prefs.accessToken;
 
-    return await dioG.dio.request<dynamic>(requestOptions.path,
+    await dioG.dio.request<dynamic>(requestOptions.path,
         data: requestOptions.data,
         queryParameters: requestOptions.queryParameters,
         options: options);
@@ -148,7 +148,8 @@ class CustomInterceptors extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    print('REQUEST[${options.method}] => PATH: ${options.path}');
+    print(
+        'REQUEST[${options.method}] => PATH: ${options.path} => queryParameters: ${options.queryParameters}');
     return super.onRequest(options, handler);
   }
 

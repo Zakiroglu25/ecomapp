@@ -19,7 +19,6 @@ class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
   List<SimpleProduct> products = [];
 
   fetchProduct(String guid) async {
-
     emit(ProductODetailsInProgress());
     try {
       final result = await ProductOptionsProvider.getProductByGuid(guid: guid);
@@ -35,8 +34,6 @@ class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
           ).message}",
         );
       }
-    } on SocketException catch (_) {
-      emit(ProductODetailsError());
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
       emit(ProductODetailsError());
@@ -51,18 +48,13 @@ class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
       final result = await ProductOptionsProvider.getProductByGuidForMap(
           guid: guid, page: page);
       if (result.statusCode.isSuccess) {
-
+        final searchItems = result.data;
+        products.addAll(searchItems!.products!);
+        totalPages = searchItems.totalPages!;
         updateHaveElse();
         emit(ProductODetailsMapListSuccess(products));
       } else {
         emit(ProductODetailsError());
-        eeee(
-          "contact result bad: ${ResponseMessage.fromJson(
-            jsonDecode(
-              result.toString(),
-            ),
-          ).message}",
-        );
       }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
@@ -85,17 +77,18 @@ class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
       emit(ProductODetailsMapListSuccess(products));
       page++;
     }
-     updateHaveElse();
+    updateHaveElse();
   }
-    final BehaviorSubject<bool> haveElse = BehaviorSubject<bool>.seeded(false);
 
-    Stream<bool> get haveElseStream => haveElse.stream;
+  final BehaviorSubject<bool> haveElse = BehaviorSubject<bool>.seeded(false);
 
-    updateHaveElse() {
-      if (page < totalPages) {
-        haveElse.sink.add(true);
-        return;
-      }
-      haveElse.sink.add(false);
+  Stream<bool> get haveElseStream => haveElse.stream;
+
+  updateHaveElse() {
+    if (page < totalPages) {
+      haveElse.sink.add(true);
+      return;
     }
+    haveElse.sink.add(false);
   }
+}
