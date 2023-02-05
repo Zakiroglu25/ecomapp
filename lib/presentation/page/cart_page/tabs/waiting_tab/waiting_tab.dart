@@ -13,6 +13,7 @@ import 'package:uikit/widgets/general/pagenatible.dart';
 import '../../../../../infrastructure/cubit/tab_counts/tab_counts_cubit.dart';
 import '../../../../../widgets/general/app_loading.dart';
 import '../../../../../widgets/general/empty_widget.dart';
+import 'widgets/orders_stream_view.dart';
 
 class WaitingTab extends StatelessWidget {
   const WaitingTab({Key? key}) : super(key: key);
@@ -23,36 +24,23 @@ class WaitingTab extends StatelessWidget {
     return FocusDetector(
       onFocusGained: () =>
           context.read<WaitingOrdersCubit>().fetch(loading: false),
-      child: Paginatible(
-        onBottom: () => context.read<WaitingOrdersCubit>().loadMore(),
-        child: (scroll) => BlocBuilder<WaitingOrdersCubit, WaitingOrdersState>(
-          builder: (context, state) {
-            if (state is WaitingOrdersSuccess) {
-              final orders = state.orders;
-              return StreamBuilder<bool>(
-                  stream: cubit.haveElseStream,
-                  builder: (context, snapshot) {
-                    return ListViewSeparated(
-                        padding: Paddings.paddingH16 + Paddings.paddingB200,
-                        shrinkWrap: true,
-                        physics: Physics.never,
-                        itemBuilder: (context, index) => index == orders.length
-                            ? FocusableAppLoading(
-                                onFocus: () => cubit.loadMore())
-                            : CartOrderProduct(order: orders[index]),
-                        itemCount: snapshot.data ?? false
-                            ? orders.length + 1
-                            : orders.length);
-                  });
-            } else if (state is WaitingOrdersError) {
-              return EmptyWidget(
-                onRefresh: () => onRefresh(context),
-              );
-            } else {
-              return AppLoading();
-            }
-          },
-        ),
+      child: BlocBuilder<WaitingOrdersCubit, WaitingOrdersState>(
+        builder: (context, state) {
+          if (state is WaitingOrdersSuccess) {
+            final orders = state.orders;
+            return OrdersStreamView(
+              orders: orders,
+              cubit: cubit,
+              key: Key("waitings"),
+            );
+          } else if (state is WaitingOrdersError) {
+            return EmptyWidget(
+              onRefresh: () => onRefresh(context),
+            );
+          } else {
+            return AppLoading();
+          }
+        },
       ),
     );
   }
