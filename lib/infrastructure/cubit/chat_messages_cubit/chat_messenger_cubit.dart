@@ -21,9 +21,7 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
   late final FocusNode searchFocus = FocusNode();
   String? chatGuid;
 
-  void fetch({bool? isLoading = false, String? guid}) async {
-    if (guid.isNotNull) chatGuid = guid!;
-
+  void fetch({bool? isLoading = false}) async {
     clearCache();
     if (isLoading!) {
       emit(ChatMessengerInProgress());
@@ -77,7 +75,8 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
       String? orderGuid,
       String? guid}) async {
     if (guid.isNotNull) {
-      fetch(guid: guid);
+      chatGuid = guid;
+      fetch();
     } else {
       createMessenger(
           isLoading: true, storeGuid: storeGuid, orderGuid: orderGuid);
@@ -94,7 +93,7 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
       if (result.isNotNull) {
         emit(ChatCreate());
         chatGuid = result!;
-        fetch(guid: result);
+        fetch();
       } else {
         emit(ChatCreateError());
       }

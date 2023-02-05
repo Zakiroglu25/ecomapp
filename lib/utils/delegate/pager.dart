@@ -173,12 +173,7 @@ class Pager {
         child: MessengerPage(),
       );
 
-  static chat({String? guid, String? storeName}) => BlocProvider(
-        create: (context) => ChatMessengerCubit()..fetch(guid: guid),
-        child: ChatPage(guid: guid, storeName: storeName),
-      );
-
-  static chat2(
+  static chat(
           {String? storeGuid,
           String? storeName,
           String? guid,

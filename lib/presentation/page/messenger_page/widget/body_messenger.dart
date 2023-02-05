@@ -27,7 +27,7 @@ class BodyMessenger extends StatelessWidget {
             onTap: () {
               Go.to(
                   context,
-                  Pager.chat2(
+                  Pager.chat(
                       guid: list[index].guid,
                       storeName: list[index].storeName!));
             },
