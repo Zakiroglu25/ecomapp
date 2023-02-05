@@ -16,8 +16,7 @@ class MapStoreCubit extends Cubit<MapStoreState> {
     }
     try {
       final List<MapMedicine> result =
-          (await MapStoreProvider.getMarkers()) as List<MapMedicine>;
-      iiii("map cubit result " + result.toString());
+          (await MapStoreProvider.getMarkers());
       if (result.isNotEmpty) {
         emit(MapStoreSuccess(result));
       } else {
