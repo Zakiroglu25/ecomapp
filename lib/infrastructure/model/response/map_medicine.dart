@@ -8,6 +8,7 @@ class MapMedicine {
   int? opensAtHour;
   int? closesAtHour;
   int? opensAtMinutes;
+  String? phone;
   int? closesAtMinutes;
   String? addressGuid;
   String? addressStreetName;
@@ -34,6 +35,7 @@ class MapMedicine {
         this.addressCity,
         this.addressCountry,
         this.addressLat,
+        this.phone,
         this.addressLong});
 
   MapMedicine.fromJson(Map<String, dynamic> json) {
@@ -43,6 +45,7 @@ class MapMedicine {
     website = json['website'];
     worksWithInsurance = json['worksWithInsurance'];
     isOpen = json['isOpen'];
+    phone = json['phone'];
     opensAtHour = json['opensAtHour'];
     closesAtHour = json['closesAtHour'];
     opensAtMinutes = json['opensAtMinutes'];
@@ -62,6 +65,7 @@ class MapMedicine {
     data['name'] = this.name;
     data['slug'] = this.slug;
     data['website'] = this.website;
+    data['phone'] = this.phone;
     data['worksWithInsurance'] = this.worksWithInsurance;
     data['isOpen'] = this.isOpen;
     data['opensAtHour'] = this.opensAtHour;

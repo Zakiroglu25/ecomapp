@@ -2,11 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:focus_detector/focus_detector.dart';
 import 'package:uikit/infrastructure/model/response/map_medicine.dart';
-import 'package:uikit/utils/delegate/index.dart';
-import 'package:uikit/widgets/custom/sliver_app_bar_delegate.dart';
-
-import '../../../infrastructure/cubit/cart/cart_cubit.dart';
-import '../../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../../infrastructure/cubit/product_details_details/product_details_state.dart';
 import '../../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
 import '../../../utils/constants/border_radius.dart';
@@ -53,26 +48,26 @@ class MapDetailsPage extends StatelessWidget {
                               .haveElseStream,
                       builder: (context, snapshot) {
                         return ListViewSeparated(
-                            padding: Paddings.paddingA16 + Paddings.paddingB60,
-                            physics: Physics.never,
-                            itemCount: snapshot.data ?? false
-                                ? productList!.length + 1
-                                : productList!.length,
-                            shrinkWrap: true,
-                            addAutomaticKeepAlives: true,
-                            itemBuilder: (context, index) {
-                              return index == productList.length
-                                  ? FocusDetector(
-                                      onFocusGained: () => BlocProvider.of<
-                                                  ProductOptionDetailsCubit>(
-                                              context)
-                                          .loadMore(maps!.guid!),
-                                      child: const AppLoading.main())
-                                  : ProductItem(
-                                      product: productList[index],
-                                      inFav: false,
-                                    );
-                            });
+                          padding: Paddings.paddingA16 + Paddings.paddingB60,
+                          physics: Physics.never,
+                          itemCount: snapshot.data ?? false
+                              ? productList!.length + 1
+                              : productList!.length,
+                          shrinkWrap: true,
+                          addAutomaticKeepAlives: true,
+                          itemBuilder: (context, index) {
+                            return index == productList.length
+                                ? FocusDetector(
+                                    onFocusGained: () => BlocProvider.of<
+                                            ProductOptionDetailsCubit>(context)
+                                        .loadMore(maps!.guid!),
+                                    child: const AppLoading.main())
+                                : ProductItem(
+                                    product: productList[index],
+                                    inFav: false,
+                                  );
+                          },
+                        );
                       }),
                 ),
               );
