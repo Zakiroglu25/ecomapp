@@ -26,10 +26,9 @@ class CartInsuranceProperties extends StatelessWidget {
             title: MyText.priceNotCovered,
             value: details.notCoveredByInsuranceAmount,
           ),
-          Text(
-            MyText.priceNotCoveredInfoText,
-            style: AppTextStyles.sfPro400s16.copyWith(color: MyColors.grey158),
-          ),
+          Text(MyText.priceNotCoveredInfoText,
+              style:
+                  AppTextStyles.sfPro400s16.copyWith(color: MyColors.grey158)),
           CartTotalProperty(
               title: MyText.payWithInsurance,
               value: Switch.adaptive(

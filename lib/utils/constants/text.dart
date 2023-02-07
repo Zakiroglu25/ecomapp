@@ -186,6 +186,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String recipeConfirmed =
       "Resept təsdiqləndi, çatdırılma edə bilərsiniz";
   static const String payWithInsurance = "Sığorta ilə ödə";
+  static const String removeFromList = "Siyahıdan çıxart";
   static const String keepInTouch = "Əlaqə saxla️";
   static final String keepInTouchX = keepInTouch.withX("☎");
   static const String orderDelivery = "Çatdırılma sifariş et";
