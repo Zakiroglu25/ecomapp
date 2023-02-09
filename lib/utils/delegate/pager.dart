@@ -19,6 +19,8 @@ import 'package:uikit/presentation/page/map_details_page/map_details_page.dart';
 import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart';
 import 'package:uikit/presentation/page/notification_page/notifications_page.dart';
 import 'package:uikit/presentation/page/webview_page/webview_page.dart';
+import 'package:uikit/test/test2.dart';
+import 'package:uikit/test/test_for_cubit.dart';
 
 import '../../app.dart';
 import '../../infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
@@ -171,6 +173,16 @@ class Pager {
   static get messenger => BlocProvider(
         create: (context) => MessengerCubit(),
         child: MessengerPage(),
+      );
+
+  static get testFor => BlocProvider(
+        create: (context) => TestForCubit(),
+        child: TestForPage(),
+      );
+
+  static testFor2(BuildContext context, Cubit bloc) => BlocProvider.value(
+        value: BlocProvider.of<TestForCubit>(context),
+        child: TestFor2Page(bloc: bloc),
       );
 
   static chat(
