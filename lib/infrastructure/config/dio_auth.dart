@@ -9,7 +9,6 @@ import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/utils/screen/snack.dart';
-
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/screen/alert.dart';
