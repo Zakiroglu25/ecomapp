@@ -108,24 +108,26 @@ class TestFor2Page extends StatelessWidget {
   final dynamic bloc;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: InkWell(
-        onTap: () {
-          //   context.read<TestForCubit>().test();
-          //bloc2.test();
-          bloc.test();
-          Go.pop(context);
-        },
-        child: Center(
-          child: Container(
-            width: 190,
-            height: 190,
-            child: const Text("${true}"),
-            //color: context.watch<TestForCubit>().color,
-            color: Colors.amber,
+    return Builder(builder: (context) {
+      return Scaffold(
+        body: InkWell(
+          onTap: () {
+            //   context.read<TestForCubit>().test();
+            //bloc2.test();
+            bloc.test();
+            Go.pop(context);
+          },
+          child: Center(
+            child: Container(
+              width: 190,
+              height: 190,
+              child: const Text("${true}"),
+              //color: context.watch<TestForCubit>().color,
+              color: Colors.amber,
+            ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
