@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:uikit/utils/constants/assets.dart';
+import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/delegate/index.dart';
 
 import 'infrastructure/cubit/authentication/authentication_cubit.dart';
@@ -25,7 +26,7 @@ class App extends StatelessWidget {
         return const SafeArea(
           child: Scaffold(
               body: Center(
-            child: Text("error"),
+            child: Text(MyText.error),
             // refreshButton: () =>
             //   context.read<AuthenticationCubit>()
             //     ..startApp(context, showSplash: false),

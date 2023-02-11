@@ -57,7 +57,7 @@ class ProductOptionDetails extends StatelessWidget {
                   padding: Paddings.paddingH16 + Paddings.paddingV12,
                   children: [
                     ManatPrice(
-                      price: "${product?.price}",
+                      price: product?.price,
                       textSize: 25,
                       manatSize: 25,
                     ),

@@ -74,6 +74,8 @@ class Pager {
   static get landing => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => AddressCubit()),
         BlocProvider(create: (context) => ProductsCubit()..fetchProduct()),
+        BlocProvider(
+            create: (context) => AddressCubit()..fetchMainAddress(true)),
       ], child: const LandingPage());
 
   static get register => MultiBlocProvider(providers: [
@@ -90,7 +92,6 @@ class Pager {
         // BlocProvider(create: (context) => ProductOptionCubit()..fetchProduct()),
         BlocProvider(create: (context) => FavoriteCubit()),
         BlocProvider(create: (context) => CartCubit()),
-        BlocProvider(create: (context) => AddressCubit()..fetchMainAddress()),
       ], child: const ProductsPage());
 
   static pharmacy(MapMedicine map) => MultiBlocProvider(providers: [
