@@ -8,6 +8,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/utils/screen/snack.dart';
 
@@ -53,7 +54,7 @@ class CartCubit extends Cubit<CartState> {
       final result = await CartProvider.addCart(itemGuid: guid, amount: 1);
       if (result.statusCode.isSuccess) {
         Snack.positive(message: MyText.addedToCart);
-        fetch(false);
+        //fetch(false);
         return true;
       } else {
         emit(CartOperationError());
@@ -93,12 +94,13 @@ class CartCubit extends Cubit<CartState> {
 
   Future<bool?> delete(BuildContext context,
       {bool isCart = false, bool inCart = false, required String? guid}) async {
+    //isCart meaning that, now in CartPage or not
     Loader.show(context);
     try {
       final result = await CartProvider.deleteCart(guid: guid!);
       if (result.statusCode.isSuccess) {
         Snack.display(message: MyText.removedFromCart, color: MyColors.brand);
-        fetch(false);
+        // fetch(false);
         return true;
       } else {
         emit(CartOperationError());
@@ -159,14 +161,18 @@ class CartCubit extends Cubit<CartState> {
       {required ImageSource imageSource, required String? cartGuid}) async {
     Loader.show(context);
     try {
-      await updateImage(await FileOperations.checkAndPickImage(
-          context: context, imageSource: imageSource));
-      await addPrescription(cartGuid: cartGuid!, context: context);
+      final image = await FileOperations.checkAndPickImage(
+          context: context, imageSource: imageSource);
+      if (image.isNotNull) {
+        await updateImage(image);
+        await addPrescription(cartGuid: cartGuid!, context: context);
+      }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
       Snack.display(context: context, message: e.toString());
+    } finally {
+      Loader.hide();
     }
-    Loader.hide();
   }
 
   Future<void> showGalleryAccessAlert(BuildContext context) async {
@@ -245,6 +251,7 @@ class CartCubit extends Cubit<CartState> {
   updateImage(File? value) {
     if (value == null || value.path == null) {
       image.sink.addError(MyText.field_is_not_correct);
+      bbbb("nnnuldue");
     } else {
       image.sink.add(value);
     }
