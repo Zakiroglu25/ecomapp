@@ -296,8 +296,10 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String addNewAddress = "Yeni ünvan yarat";
   static const String we_will_redirect_to_settings_gallery =
       "Sizi tətbiq icazələrinə yönləndirəcəyik. Fotolar --> Bütün fotolar yolunu izləyin. Daha sonra geri qayıdın.";
-  static const String we_will_redirect_to_settings_locatoin =
+  static const String we_will_redirect_to_settings_location =
       "\nSizi tətbiq icazələrinə yönləndirəcəyik:\nLocation --> While Using the App\nDaha sonra geri qayıdın.";
+  static const String we_will_redirect_to_settings_location_gps =
+      "\nSizi tətbiq icazələrinə yönləndirəcəyik:\nLocation --> Enable location access\nDaha sonra geri qayıdın.";
   static const String we_need_access_to_gallery =
       "Fotolara əlçatanlıq üçün icazə lazımdır";
   static const String we_need_access_to_locatoin =
