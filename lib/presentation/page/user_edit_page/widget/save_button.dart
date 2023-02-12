@@ -11,14 +11,10 @@ class SaveButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-        bottom: 30,
-        left: 14,
-        right: 14,
-        child: AppButton(
-          text: MyText.save,
-          loading: context.watch<UserCubit>().state is UserLoading,
-          onTap: () => context.read<UserCubit>().update(context),
-        ));
+    return AppButton(
+      text: MyText.save,
+      loading: context.watch<UserCubit>().state is UserLoading,
+      onTap: () => context.read<UserCubit>().update(context),
+    );
   }
 }
