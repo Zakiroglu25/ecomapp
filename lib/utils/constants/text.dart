@@ -114,7 +114,6 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String tryAgain = 'Yenidən cəhd et';
   static const String carts = "Səbətim";
   static const String nameDoctoro = "Doctoro";
-  static const String searchHint = "Ad və ya istehsal olduğu ölkə";
   static const String pashaTitleProduct = "Paşa Sığorta məhsulları burada!";
   static const String medicineSubtitle =
       "Reseptli və reseptsiz satışda olan dərmanları buradan əldə edib qiymətlərini müqaisə edə bilərsiniz.";
@@ -161,6 +160,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String pharmacy = "Aptek";
   static const String slideToConfirm = 'Təsdiq etmək üçün sürüşdürün';
   static const String deliveryPrice = "Çatdırılma haqqı";
+  static const String priceNotCovered = "Qarşılanmayan hissə";
+
   static const String cards = "KARTLAR";
   static const String addNewCard = "Yeni kart əlavə et";
   static const String savedcardNotFound = "Əlavə edilmiş kart tapılmadı";
@@ -174,9 +175,18 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String recipeInReview =
       "Resept aptek tərəfindən dəyərləndirilir";
   static const String recipePartialyAccepted = "Resept qismən qarşılanır";
+  static const String packageReadyForPickUp =
+      "Paketiniz hazırdı, aptekə yaxınlaşa bilərsiz";
+  static const String packagePickedUp = "Paket təhvil alındı";
+  static const String packageReturned = "Paket geri qaytarıldı";
+  static const String recipeAcceptedAndDelivered =
+      "Resept təsdiqləndi, çatdırılma bitmişdir";
+  static const String recipeConfirmedAndDelivering =
+      "Resept təsdiqləndi, çatdırılma yoldadır";
   static const String recipeConfirmed =
       "Resept təsdiqləndi, çatdırılma edə bilərsiniz";
   static const String payWithInsurance = "Sığorta ilə ödə";
+  static const String removeFromList = "Siyahıdan çıxart";
   static const String keepInTouch = "Əlaqə saxla️";
   static final String keepInTouchX = keepInTouch.withX("☎");
   static const String orderDelivery = "Çatdırılma sifariş et";
@@ -286,8 +296,10 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String addNewAddress = "Yeni ünvan yarat";
   static const String we_will_redirect_to_settings_gallery =
       "Sizi tətbiq icazələrinə yönləndirəcəyik. Fotolar --> Bütün fotolar yolunu izləyin. Daha sonra geri qayıdın.";
-  static const String we_will_redirect_to_settings_locatoin =
-      "Sizi tətbiq icazələrinə yönləndirəcəyik. Location --> While Using the App. Daha sonra geri qayıdın.";
+  static const String we_will_redirect_to_settings_location =
+      "\nSizi tətbiq icazələrinə yönləndirəcəyik:\nLocation --> While Using the App\nDaha sonra geri qayıdın.";
+  static const String we_will_redirect_to_settings_location_gps =
+      "\nSizi tətbiq icazələrinə yönləndirəcəyik:\nLocation --> Enable location access\nDaha sonra geri qayıdın.";
   static const String we_need_access_to_gallery =
       "Fotolara əlçatanlıq üçün icazə lazımdır";
   static const String we_need_access_to_locatoin =
@@ -326,4 +338,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String faqOther = 'Buradan suallarına cavab tapa bilərsən';
   static const String settingsOther = 'Buradan tətbiqi özünə uyğun ayarla';
 
+  //text
+  static const String priceNotCoveredInfoText =
+      "Dərmanların qiyməti qarşılanmadığı halda öz hesabınızdan ödəyə və ya siyahıdan çıxara bilərsiniz";
 }

@@ -12,7 +12,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../infrastructure/model/response/map_medicine.dart';
 import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/paddings.dart';
-import '../../cart_order_details_page/widgets/cart_circle_button_with_title.dart';
 
 class MapDetailsHeaders extends StatelessWidget {
   final MapMedicine maps;
@@ -88,7 +87,7 @@ class MapDetailsHeaders extends StatelessWidget {
                             svg: Assets.svgLoaction,
                             title: "Unvan",
                             onTap: () {
-                              launch(googleUrl);
+                              launch1(googleUrl);
                               print(maps.guid);
                             },
                           ),
@@ -96,19 +95,18 @@ class MapDetailsHeaders extends StatelessWidget {
                           CartCircleButtonWithTitle(
                             svg: Assets.svgCall,
                             title: "Zəng et",
+                            onTap: () => launch(("tel://"+maps.phone.toString())),
                           ),
-
                         ],
                       ),
                       MySizedBox.h8,
-
                     ]),
               ),
             ),
             maxExtent_: 290));
   }
 
-  Future<void> launch(Uri url) async {
+  Future<void> launch1(Uri url) async {
     await canLaunchUrl(url)
         ? await launchUrl(url)
         : Snack.display(message: "Xeta yarandi");

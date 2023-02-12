@@ -7,11 +7,9 @@ import 'package:uikit/utils/constants/colors.dart';
 import '../../../infrastructure/cubit/notification_cubit/notification_cubit.dart';
 import '../../../infrastructure/cubit/notification_cubit/notification_state.dart';
 import '../../../utils/constants/text.dart';
-import '../../../utils/delegate/navigate_utils.dart';
 import '../../../widgets/doctoro_appbar/doctoro_appbar.dart';
 import '../../../widgets/general/app_loading.dart';
 import '../../../widgets/general/empty_widget.dart';
-import '../notification_details_page/notification_details_page.dart';
 import 'widget/notification_element.dart';
 
 class NotificationsPage extends StatelessWidget {
@@ -45,8 +43,7 @@ class NotificationsPage extends StatelessWidget {
                   itemCount: notificationList.length,
                   itemBuilder: (context, index) {
                     return NotificationElement(
-                      onXTap: () {
-                      },
+                      onXTap: () {},
                       list: notificationList[index],
                     );
                   });
@@ -60,7 +57,6 @@ class NotificationsPage extends StatelessWidget {
               );
             }
           },
-        )
-        );
+        ));
   }
 }

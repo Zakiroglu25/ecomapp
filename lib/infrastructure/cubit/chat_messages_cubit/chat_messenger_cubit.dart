@@ -1,14 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rxdart/rxdart.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/delegate/request_control.dart';
 import '../../data/messenger_provider.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:uikit/utils/delegate/index.dart';
-
 import '../../model/response/messenger_chats.dart';
 import 'chat_messenger_state.dart';
 
@@ -18,18 +18,22 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
   int page = 1;
   int totalPages = 0;
   List<Data> messages = [];
+  late final FocusNode searchFocus = FocusNode();
+  String? chatGuid;
 
-  void fetch(
-      {required BuildContext context,
-      bool? isLoading = false,
-      required String guid}) async {
+  void fetch({bool? isLoading = false}) async {
+    clearCache();
     if (isLoading!) {
       emit(ChatMessengerInProgress());
     }
 
     try {
-      final result = await MessengerProvider.getChatMessage(guid,page);
+      final result = await MessengerProvider.getChatMessage(chatGuid, page);
       if (isSuccess(result.statusCode)) {
+        final searchItems = result.data;
+        messages.addAll(searchItems!.data!);
+        totalPages = searchItems.totalPages!;
+        updateHaveElse();
         emit(ChatMessengerSuccess(result.data!.data!));
       } else {
         emit(ChatMessengerError());
@@ -43,20 +47,16 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
     }
   }
 
-  void sendMessage(
-      {required BuildContext context,
-      bool? isLoading = false,
-      String? message,
-      String? guid}) async {
+  void sendMessage({bool? isLoading = false, String? message}) async {
     if (isLoading!) {
       emit(ChatMessengerInProgress());
     }
 
     try {
-      final result = await MessengerProvider.sendMessage(guid, message);
+      final result = await MessengerProvider.sendMessage(chatGuid, message);
       if (isSuccess(result.statusCode)) {
         emit(SendChatMessage());
-        fetch(context: context, guid: guid!);
+        fetch();
       } else {
         emit(SendChatMessageError());
       }
@@ -69,19 +69,31 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
     }
   }
 
+  void configMessenger(
+      {bool? isLoading = false,
+      String? storeGuid,
+      String? orderGuid,
+      String? guid}) async {
+    if (guid.isNotNull) {
+      chatGuid = guid;
+      fetch();
+    } else {
+      createMessenger(
+          isLoading: true, storeGuid: storeGuid, orderGuid: orderGuid);
+    }
+  }
+
   void createMessenger(
-      {required BuildContext context,
-        bool? isLoading = false,
-        String? storeGuid,
-        String? orderGuid}) async {
+      {bool? isLoading = false, String? storeGuid, String? orderGuid}) async {
     if (isLoading!) {
       emit(ChatMessengerInProgress());
     }
     try {
-      final result = await MessengerProvider.createChat(storeGuid, orderGuid);
-      if (isSuccess(result.statusCode)) {
+      final result = await MessengerProvider.createChat(orderGuid, storeGuid);
+      if (result.isNotNull) {
         emit(ChatCreate());
-        // fetch(context: context, guid: guid!);
+        chatGuid = result!;
+        fetch();
       } else {
         emit(ChatCreateError());
       }
@@ -94,13 +106,33 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
     }
   }
 
-  void loadMore(String guid) async {
+  void clearCache() {
+    messages.clear();
+    page = 1;
+  }
+
+  void loadMore() async {
     eeee("current page:  $page");
-    final result = await MessengerProvider.getChatMessage(guid,page + 1);
+    if (page >= totalPages) return;
+    final result = await MessengerProvider.getChatMessage(chatGuid, page + 1);
     if (result.statusCode.isSuccess) {
       messages.addAll(result.data!.data!);
       emit(ChatMessengerSuccess(messages));
       page++;
     }
+    updateHaveElse();
+  }
+
+//have else products checker
+  final BehaviorSubject<bool> haveElse = BehaviorSubject<bool>.seeded(false);
+
+  Stream<bool> get haveElseStream => haveElse.stream;
+
+  updateHaveElse() {
+    if (page < totalPages) {
+      haveElse.sink.add(true);
+      return;
+    }
+    haveElse.sink.add(false);
   }
 }

@@ -203,10 +203,12 @@ class ApiKeys {
   static addInsurance({
     required String? phoneNumber,
     required String? policyNumber,
+    required String? finCode,
   }) {
     final map = {
       "policyNumber": policyNumber,
       "phoneNumber": phoneNumber,
+      "finCode": finCode,
     };
 
     map.removeWhere(
@@ -309,11 +311,13 @@ class ApiKeys {
     return map;
   }
 
-  static ordersRegisterBody({String? addressGuid}) {
+  static ordersRegisterBody(
+      {String? addressGuid, required bool? insuranceCoverRequested}) {
     //
     final map = {
       "paymentType": "ONLINE",
       "deliveryType": "COURIER",
+      "insuranceCoverRequested": insuranceCoverRequested,
       "addressGuid": addressGuid
     };
 
@@ -325,6 +329,7 @@ class ApiKeys {
   static createPaymentBody(
       {required String? orderGuid,
       required String? deliveryType,
+      required String? comment,
       required String? paymentType,
       required bool? saveCard,
       required String? cardGuid}) {
@@ -333,6 +338,7 @@ class ApiKeys {
       "orderGuid": orderGuid,
       "saveCard": saveCard,
       "cardGuid": cardGuid,
+      "comment": comment,
       "deliveryType": deliveryType,
       "paymentType": paymentType
     };

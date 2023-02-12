@@ -5,6 +5,7 @@ import 'package:uikit/infrastructure/cubit/cart/cart_state.dart';
 import 'package:uikit/infrastructure/cubit/tab_counts/tab_counts_cubit.dart';
 import 'package:uikit/presentation/page/cart_page/widgets/cart_product/cart_product.dart';
 import 'package:uikit/presentation/page/cart_page/widgets/cart_total_box/cart_total_box.dart';
+import 'package:uikit/presentation/page/landing_page/landing_page.dart';
 import 'package:uikit/utils/constants/assets.dart';
 import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
@@ -14,6 +15,7 @@ import 'package:uikit/widgets/general/app_loading.dart';
 import 'package:uikit/widgets/general/empty_widget.dart';
 import 'package:uikit/widgets/general/list_or_empty.dart';
 
+import '../../../../../infrastructure/cubit/products_cubit/index.dart';
 import '../../../../../widgets/custom/listview_separated.dart';
 
 class OrdersTab extends StatelessWidget {
@@ -35,7 +37,11 @@ class OrdersTab extends StatelessWidget {
           final items = state.cartInfo!.items!.reversed.toList();
           return ListOrEmpty(
             list: items,
-            onRefresh: () => onRefresh(context),
+            onRefresh: () {
+              final dynamic navigationBar = bottomNavKey.currentWidget;
+              navigationBar.onTap(0);
+              context.read<ProductsCubit>().searchFocus.requestFocus();
+            },
             image: Assets.pngEmptyCart,
             text: MyText.cartIsEmpty,
             description: MyText.goToProductSectionToFindProducts,

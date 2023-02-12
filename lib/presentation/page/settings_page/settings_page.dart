@@ -5,14 +5,10 @@ import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/widgets/custom/column_with_space.dart';
 
 import '../../../infrastructure/cubit/authentication/authentication_cubit.dart';
-import '../../../infrastructure/services/hive_service.dart';
-import '../../../locator.dart';
-import '../../../utils/constants/assets.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/paddings.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../widgets/main/cupperfold/cupperfold.dart';
-import '../language_page/change_launguage_page.dart';
 import 'widget/change_password.dart';
 import 'widget/edit_field_widget.dart';
 

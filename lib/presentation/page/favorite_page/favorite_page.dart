@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:uikit/infrastructure/model/response/product_option_model.dart';
 import 'package:uikit/utils/constants/text.dart';
-import 'package:uikit/utils/delegate/my_printer.dart';
 import 'package:uikit/widgets/custom/listview_separated.dart';
 import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'package:uikit/widgets/general/app_loading.dart';

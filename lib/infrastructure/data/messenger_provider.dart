@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:uikit/infrastructure/model/response/messenger_users.dart';
 import 'package:uikit/infrastructure/model/response/status_dynamic.dart';
 import 'package:uikit/utils/constants/result_keys.dart';
@@ -32,10 +31,12 @@ class MessengerProvider {
     return statusDynamic;
   }
 
-  static Future<StatusDynamic<ChatMessagesModel>> getChatMessage(String? guid,int page) async {
+  static Future<StatusDynamic<ChatMessagesModel>> getChatMessage(
+      String? guid, int page) async {
     StatusDynamic<ChatMessagesModel> statusDynamic = StatusDynamic();
     final api = ApiKeys.getMessenger + "/$guid";
-    final response = await dioAuth.dio.get(api,queryParameters: {"page": page});
+    final response =
+        await dioAuth.dio.get(api, queryParameters: {"page": page});
     wtf(page.toString());
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
@@ -66,23 +67,20 @@ class MessengerProvider {
     return statusDynamic;
   }
 
-  static Future<StatusDynamic> createChat(
+  static Future<String?> createChat(
       String? orderGuid, String? storeGuid) async {
-    StatusDynamic statusDynamic = StatusDynamic();
     const api = ApiKeys.getMessenger;
-    final body = {
-      "storeGuid": storeGuid,
-      "orderGuid": orderGuid,
-    };
+    final body = {"storeGuid": storeGuid, "orderGuid": orderGuid};
     final response = await dioAuth.dio.post(api, data: jsonEncode(body));
-    statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
-      iiii("Chat Otagi yaradildi");
+      iiii("Chat Otagi yaradildi: ${response.data['guid']}");
+      iiii("Chat Otagi yaradildi: ${response.data}");
+      return response.data['guid'];
     } else {
       eeee(
           "sendMessage Messages error :${response.requestOptions.path},response: $response");
     }
 
-    return statusDynamic;
+    return null;
   }
 }

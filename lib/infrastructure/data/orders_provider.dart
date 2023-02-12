@@ -17,10 +17,13 @@ import '../model/response/status_dynamic.dart';
 class OrdersProvider {
   static DioAuth get dioAuth => locator<DioAuth>();
 
-  static Future<StatusDynamic> orderRegister({String? addressGuid}) async {
+  static Future<StatusDynamic> registerOrder(
+      {String? addressGuid, required bool? insuranceCoverRequested}) async {
     StatusDynamic statusDynamic = StatusDynamic();
     const api = ApiKeys.ordersRegister;
-    final body = ApiKeys.ordersRegisterBody(addressGuid: addressGuid);
+    final body = ApiKeys.ordersRegisterBody(
+        addressGuid: addressGuid,
+        insuranceCoverRequested: insuranceCoverRequested);
     final response = await dioAuth.dio.post(api, data: body);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
@@ -80,16 +83,31 @@ class OrdersProvider {
     return null;
   }
 
+  static Future<OrderDetails?> changeNotCovered(
+      {required String guid, required bool include}) async {
+    final tail = include ? 'include' : 'exclude';
+    final api = ApiKeys.orders + '/$guid/$tail-not-covered';
+    final response = await dioAuth.dio.post(api);
+    if (response.statusCode.isSuccess) {
+      return OrderDetails.fromJson(response.data);
+    } else {
+      eeee("orderDetails:  url: $api , response: ${response.data}");
+    }
+    return null;
+  }
+
   static Future<PaymentUrlModel?> createPayment(
       {required String orderGuid,
       bool? saveCard,
       String? cardGuid,
+      String? comment,
       String? paymentType,
       String? deliveryType}) async {
     const api = ApiKeys.createPayment;
     final body = ApiKeys.createPaymentBody(
         orderGuid: orderGuid,
         saveCard: saveCard,
+        comment: comment,
         cardGuid: cardGuid,
         deliveryType: deliveryType,
         paymentType: paymentType);

@@ -2,16 +2,12 @@
 // Package imports:
 
 import 'package:uikit/infrastructure/model/response/cart_counts.dart';
-import 'package:uikit/infrastructure/model/response/search_items.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
-import '../../utils/constants/result_keys.dart';
 import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
-import '../model/response/cart_items.dart';
-import '../model/response/status_dynamic.dart';
 
 class ContentProvider {
   static DioAuth get dioAuth => locator<DioAuth>();

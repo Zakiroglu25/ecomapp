@@ -25,6 +25,7 @@ class CupperTabWP extends StatelessWidget {
     this.tabbarPadding,
     this.tabbarTitle,
     this.onChange,
+    this.onIndexCompletelyChanged,
     this.selectedLabelColor,
     this.selectedTabColor,
     this.showAppbarLittleText = false,
@@ -50,7 +51,10 @@ class CupperTabWP extends StatelessWidget {
   final bool showAppbarLittleText;
   final SliverPersistentHeader? headers;
   final Function? onBack;
+  //onChange olduqda sorgular tekraralana biler
+  //ona gore onIndexCompletylChanged istifade olunmalidir
   final OnTabChanged? onChange;
+  final OnTabChanged? onIndexCompletelyChanged;
   final List<AppTab> tabs;
   final List<Widget> tabPages;
   final SliverPersistentHeaderDelegate? tabbarTitle;
@@ -76,6 +80,7 @@ class CupperTabWP extends StatelessWidget {
           tabs: tabs,
           child: child,
           first: first,
+          onIndexCompletelyChanged: onIndexCompletelyChanged,
           onChange: onChange,
           physics: physics,
           tabbarTitle: tabbarTitle,

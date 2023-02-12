@@ -3,10 +3,8 @@ import '../../utils/constants/api_keys.dart';
 import '../../utils/constants/result_keys.dart';
 import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
-import '../model/response/product_option_model.dart';
 import '../model/response/search_items.dart';
 import '../model/response/status_dynamic.dart';
-import '../services/hive_service.dart';
 
 class CardProvider {
   static DioAuth get dioAuth => locator<DioAuth>();

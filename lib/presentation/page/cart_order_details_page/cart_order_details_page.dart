@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uikit/presentation/page/cart_order_details_page/widgets/delivery_pay_total_button.dart';
 import 'package:uikit/presentation/page/cart_order_details_page/widgets/delivery_products.dart';
-import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/delegate/cart_order_utils.dart';
 import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
 

@@ -21,7 +21,14 @@ class AddressWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Go.to(context, Pager.addAddress(address: address)),
+      onTap: () => Go.to(
+          context,
+          Pager.addAddress(
+              address: address,
+              context: context,
+              lat: address.latitude,
+              long: address.longitude,
+              title: address.title)),
       child: Slidable(
         key: UniqueKey(),
         endActionPane: ActionPane(
@@ -77,10 +84,7 @@ class AddressWidget extends StatelessWidget {
                 ),
               ),
               Spacer(),
-              InkWrapper(
-                  onTap: () =>
-                      Go.to(context, Pager.addAddress(address: address)),
-                  child: SvgPicture.asset(Assets.svgEdit))
+              SvgPicture.asset(Assets.svgEdit)
             ],
           ),
         ),

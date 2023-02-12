@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/utils/delegate/index.dart';
 
 import '../../../../infrastructure/cubit/cart/cart_cubit.dart';
 import '../../../../utils/constants/colors.dart';
@@ -44,14 +45,20 @@ class _ProductAddToCartButtonState extends State<ProductAddToCartButton> {
     return AppButton(
       text: inCart ? MyText.cancel : MyText.addToCart,
       color: inCart ? MyColors.brand : MyColors.mainGreen85,
-      onTap: () {
+      onTap: () async {
+        bool? res = false;
         if (inCart) {
-          context.read<CartCubit>().delete(widget.guid);
+          res = await context
+              .read<CartCubit>()
+              .delete(context, guid: widget.guid, isCart: false);
         } else {
-          context.read<CartCubit>().add(widget.guid);
+          res = await context.read<CartCubit>().add(context, guid: widget.guid);
         }
-        inCart = !inCart;
-        setState(() {});
+        bbbb("ressss of cart:  $res");
+        if (res == true) {
+          inCart = !inCart;
+          setState(() {});
+        }
       },
     );
   }

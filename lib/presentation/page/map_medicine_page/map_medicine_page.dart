@@ -1,7 +1,4 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uikit/infrastructure/cubit/map/map_store_cubit.dart';
@@ -12,9 +9,9 @@ import 'package:uikit/utils/delegate/navigate_utils.dart';
 import '../../../infrastructure/cubit/map/map_store_state.dart';
 import '../../../infrastructure/model/response/map_medicine.dart';
 import '../../../utils/constants/assets.dart';
+import '../../../utils/delegate/index.dart';
 import '../../../widgets/custom/info_window.dart';
 import '../../../widgets/general/app_loading.dart';
-import '../map_details_page/map_details_page.dart';
 
 class MapPage extends StatefulWidget {
   MapPage({Key? key, this.title}) : super(key: key);
@@ -31,7 +28,7 @@ class _MapPageState extends State<MapPage> {
   GoogleMapController? mapController;
 
   Set<Marker> markers = Set();
-   BitmapDescriptor? icon;
+  BitmapDescriptor? icon;
 
   @override
   void initState() {
@@ -43,11 +40,10 @@ class _MapPageState extends State<MapPage> {
     var icon = await BitmapDescriptor.fromAssetImage(
         const ImageConfiguration(devicePixelRatio: 3.3), Assets.marker);
     setState(() {
-      if(icon == null){
+      if (icon == null) {
         BitmapDescriptor.defaultMarker;
-      }else{
-      this.icon = icon;
-
+      } else {
+        this.icon = icon;
       }
     });
   }
@@ -61,14 +57,13 @@ class _MapPageState extends State<MapPage> {
   //
   @override
   Widget build(BuildContext context) {
-          LatLng? showLocation;
     return BlocBuilder<MapStoreCubit, MapStoreState>(
       builder: (context, state) {
         if (state is MapStoreSuccess) {
           List<MapMedicine> maps = state.addressModel;
           maps.forEach((element) {
             LatLng? showLocation =
-            LatLng(element.addressLat!, element.addressLong!);
+                LatLng(element.addressLat!, element.addressLong!);
             markers.add(
               Marker(
                 markerId: MarkerId(element.guid.toString()),
@@ -79,9 +74,8 @@ class _MapPageState extends State<MapPage> {
                       children: [
                         Expanded(
                           child: InkWell(
-                            onTap: () {
-                              Go.to(context, MapDetailsPage(element));
-                            },
+                            onTap: () =>
+                                Go.to(context, Pager.pharmacy(element)),
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Colors.black,
@@ -123,9 +117,9 @@ class _MapPageState extends State<MapPage> {
               children: [
                 GoogleMap(
                   zoomGesturesEnabled: true,
-                  initialCameraPosition: CameraPosition(
-                    target: LatLng(40.39427, 49.880143), //initial positi, //initial position
-                    zoom: 13.0, //initial zoom level
+                  initialCameraPosition: const CameraPosition(
+                    target: LatLng(40.39427, 49.880143),
+                    zoom: 12.0, //initial zoom level
                   ),
                   onTap: (position) {
                     _customInfoWindowController.hideInfoWindow!();
@@ -134,9 +128,7 @@ class _MapPageState extends State<MapPage> {
                     _customInfoWindowController.onCameraMove!();
                   },
                   markers: markers,
-                  //markers to show on map
                   mapType: MapType.normal,
-                  //map type
                   onMapCreated: (GoogleMapController controller) async {
                     _customInfoWindowController.googleMapController =
                         controller;
@@ -147,12 +139,6 @@ class _MapPageState extends State<MapPage> {
                   height: 48,
                   width: 133,
                 ),
-                // CustomInfoWindow(
-                //   controller: ,
-                //   height: MediaQuery.of(context).size.width * 0.12,
-                //   width: MediaQuery.of(context).size.width * 0.4,
-                //   offset: 50,
-                // ),
               ],
             ),
           );

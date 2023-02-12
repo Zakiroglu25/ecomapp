@@ -9,11 +9,8 @@ import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/utils/screen/snack.dart';
-
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
-import '../../utils/delegate/navigate_utils.dart';
-import '../../utils/delegate/pager.dart';
 import '../../utils/screen/alert.dart';
 import '../model/response/detailed_error.dart';
 import '../model/response/error_response.dart';
@@ -65,23 +62,25 @@ class JwtInterceptor extends Interceptor {
       options.headers['x-mask-jwt'] = '$accessToken';
     }
 
-    return handler.next(options);
+    super.onRequest(options, handler);
+    //return handler.next(options);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) async {
     // TODO: implement onResponse
-    super.onResponse(response, handler);
+
     if (response.statusCode == null) return;
     switch (response.statusCode) {
       case 401:
       case 403:
-        await refreshToken(handler: handler, response: response);
-        _retry(response.requestOptions);
+        refreshToken(handler: handler, response: response)
+            .then((value) => _retry(response.requestOptions));
         break;
       default:
         break;
     }
+    super.onResponse(response, handler);
   }
 
   @override
@@ -119,28 +118,26 @@ class JwtInterceptor extends Interceptor {
     if (res.statusCode.isSuccess && response != null) {
       final accessToken = res.data['accessToken'];
       await _prefs.persistAccessToken(accessToken: accessToken);
-      handler.resolve(response);
+      return handler.resolve(response);
     }
   }
 
-  Future<void> refreshToken2(
-      {required ResponseInterceptorHandler handler,
-      required Response? response}) async {
-    final res = await AuthProvider.refreshToken();
-    if (res.statusCode.isSuccess && response != null) {
-      handler.resolve(response);
-    }
-  }
+  // Future<void> refreshToken2(
+  //     {required ResponseInterceptorHandler handler,
+  //     required Response? response}) async {
+  //   final res = await AuthProvider.refreshToken();
+  //   if (res.statusCode.isSuccess && response != null) {
+  //     handler.resolve(response);
+  //   }
+  // }
 
-  Future<Response<dynamic>> _retry(RequestOptions requestOptions) async {
-    final options = Options(
-      method: requestOptions.method,
-      headers: requestOptions.headers,
-    );
+  void _retry(RequestOptions requestOptions) async {
+    final options =
+        Options(method: requestOptions.method, headers: requestOptions.headers);
 
     options.headers!['x-mask-jwt'] = _prefs.accessToken;
 
-    return await dioG.dio.request<dynamic>(requestOptions.path,
+    await dioG.dio.request<dynamic>(requestOptions.path,
         data: requestOptions.data,
         queryParameters: requestOptions.queryParameters,
         options: options);
@@ -152,7 +149,8 @@ class CustomInterceptors extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    print('REQUEST[${options.method}] => PATH: ${options.path}');
+    print(
+        'REQUEST[${options.method}] => PATH: ${options.path} => queryParameters: ${options.queryParameters}');
     return super.onRequest(options, handler);
   }
 

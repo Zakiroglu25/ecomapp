@@ -13,7 +13,6 @@ class NameAddressField extends StatelessWidget {
       title: MyText.nameAddress,
       maxLines: 1,
       hint: MyText.exampleName,
-      upperCase: false,
       textInputType: TextInputType.name,
       textCapitalization: TextCapitalization.sentences,
       controller: controller,

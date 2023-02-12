@@ -3,17 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:focus_detector/focus_detector.dart';
 import 'package:uikit/infrastructure/cubit/delivery_address_current/delivery_address_current_cubit.dart';
 import 'package:uikit/infrastructure/services/navigation_service.dart';
-import 'package:uikit/presentation/page/medicines_page/widgets/saved_address_list.dart';
+import 'package:uikit/presentation/page/products_page/widgets/saved_address_list.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/screen/sheet.dart';
-import 'package:uikit/widgets/custom/app_button.dart';
 import 'package:uikit/widgets/custom/text_title_big.dart';
 
 import '../../infrastructure/cubit/address/address_cubit.dart';
-import '../../presentation/page/medicines_page/widgets/current_delivery_address_button.dart';
-import '../../presentation/page/medicines_page/widgets/sheet_add_new_address_button.dart';
+import '../../presentation/page/products_page/widgets/current_delivery_address_button.dart';
+import '../../presentation/page/products_page/widgets/sheet_add_new_address_button.dart';
 import 'durations.dart';
 
 class Sheets {
@@ -30,27 +29,25 @@ class Sheets {
               create: (context) => DeliveryAddressCurrentCubit()..get()),
         ],
         child: Builder(builder: (context) {
-          return Flexible(
-            child: FocusDetector(
-              onFocusLost: () =>
-                  prevContext.read<AddressCubit>().fetchMainAddress(),
-              child: AnimatedSize(
-                duration: Durations.ms200,
-                child: Container(
-                  padding: Paddings.paddingA16,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        BigSection(title: MyText.deliveryAddresses),
-                        MySizedBox.h16,
-                        const CurrentDeliveryAddressButton(),
-                        const SavedAddressList(),
-                        MySizedBox.h16,
-                        SheetAddNewAddressButton()
-                      ],
-                    ),
-                  ),
+          return FocusDetector(
+            onFocusLost: () =>
+                prevContext.read<AddressCubit>().fetchMainAddress(),
+            child: AnimatedSize(
+              duration: Durations.ms200,
+              child: Container(
+                padding: Paddings.paddingA16,
+                child: ListView(
+                  shrinkWrap: true,
+                  // physics: Physics.never,
+                  //    crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    BigSection(title: MyText.deliveryAddresses),
+                    MySizedBox.h16,
+                    const CurrentDeliveryAddressButton(),
+                    const SavedAddressList(),
+                    MySizedBox.h16,
+                    SheetAddNewAddressButton()
+                  ],
                 ),
               ),
             ),

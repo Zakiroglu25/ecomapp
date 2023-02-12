@@ -3,6 +3,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/utils/extensions/object.dart';
+
 import '../../../utils/delegate/my_printer.dart';
 import '../../data/orders_provider.dart';
 import '../../model/response/orders_data.dart';
@@ -14,13 +15,15 @@ class DeliveryOrdersCubit extends Cubit<DeliveryOrdersState> {
   int page = 1;
   int totalPages = 0;
   List<CartOrder> products = [];
+  List<CartOrder> tempProducts = [];
 
   fetch({bool loading = true}) async {
     if (loading) {
       emit(DeliveryOrdersInProgress());
     }
+    tempProducts = List.from(products);
+    if (tempProducts.isNotEmpty) emit(DeliveryOrdersSuccessTemp(tempProducts));
     clearCache();
-
     try {
       final result = await OrdersProvider.deliveryOrders(page: page);
       if (result.isNotNull && result!.data.isNotEmptyOrNull) {
@@ -46,7 +49,7 @@ class DeliveryOrdersCubit extends Cubit<DeliveryOrdersState> {
   void loadMore() async {
     eeee("current page:  $page");
     if (page >= totalPages) return;
-    final result = await OrdersProvider.pendingOrders(page: page + 1);
+    final result = await await OrdersProvider.deliveryOrders(page: page + 1);
     if (result.isNotNull) {
       products.addAll(result!.data!);
       emit(DeliveryOrdersSuccess(products));

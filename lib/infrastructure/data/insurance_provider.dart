@@ -1,15 +1,10 @@
-import 'dart:developer';
-
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/constants/result_keys.dart';
 import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
 import '../model/response/insurance_model.dart';
-import '../model/response/product_option_model.dart';
-import '../model/response/search_items.dart';
 import '../model/response/status_dynamic.dart';
-import '../services/hive_service.dart';
 
 class InsuranceProvider {
   static DioAuth get dioAuth => locator<DioAuth>();
@@ -29,11 +24,13 @@ class InsuranceProvider {
   }
 
   static Future<StatusDynamic> addInsurance(
-      {required String? policyNumber, required String? phoneNumber}) async {
+      {required String? policyNumber,
+      required String? phoneNumber,
+      required String finCode}) async {
     StatusDynamic statusDynamic = StatusDynamic();
     const api = ApiKeys.addInsuranceApi;
     final body = ApiKeys.addInsurance(
-        policyNumber: policyNumber, phoneNumber: phoneNumber);
+        policyNumber: policyNumber, phoneNumber: phoneNumber, finCode: finCode);
     final response = await dioAuth.dio.post(api, data: body);
     statusDynamic.statusCode = response.statusCode;
     statusDynamic.data = response.data;

@@ -2,8 +2,8 @@
 library custom_info_window;
 
 import 'dart:io';
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 /// Controller to add, update and control the custom info window.
@@ -85,7 +85,7 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
         .controller.googleMapController!
         .getScreenCoordinate(_latLng!);
     double devicePixelRatio =
-    Platform.isAndroid ? MediaQuery.of(context).devicePixelRatio : 1.0;
+        Platform.isAndroid ? MediaQuery.of(context).devicePixelRatio : 1.0;
     double left =
         (screenCoordinate.x.toDouble() / devicePixelRatio) - (widget.width / 2);
     double top = (screenCoordinate.y.toDouble() / devicePixelRatio) -
@@ -126,9 +126,9 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
       top: _topMargin,
       child: Visibility(
         visible: (_showNow == false ||
-            (_leftMargin == 0 && _topMargin == 0) ||
-            _child == null ||
-            _latLng == null)
+                (_leftMargin == 0 && _topMargin == 0) ||
+                _child == null ||
+                _latLng == null)
             ? false
             : true,
         child: Container(

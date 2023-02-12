@@ -1,17 +1,17 @@
 // Flutter imports:
-import 'dart:convert';
 import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
+import 'package:uikit/utils/delegate/index.dart';
 
 import '../constants/text.dart';
 import '../screen/alert.dart';
 import '../screen/snack.dart';
-import 'my_printer.dart';
 
 class FileOperations {
   FileOperations._();
@@ -19,15 +19,14 @@ class FileOperations {
   static Future<File?> checkAndPickImage(
       {required BuildContext context, required ImageSource imageSource}) async {
     try {
-      var galleryAccessStatus = await Permission.photos.status;
+      bool isAndroidAndSdkOld = Platform.isAndroid &&
+          (await DeviceInfoPlugin().androidInfo).version.sdkInt <= 32;
+      var galleryAccessStatus;
       var cameraAccessStatus = await Permission.camera.status;
-      await Permission.photos.request();
-      await Permission.camera.request();
+      galleryAccessStatus = await _checkGalleryStatus(isAndroidAndSdkOld);
       if (galleryAccessStatus != PermissionStatus.granted ||
           cameraAccessStatus != PermissionStatus.granted) {
-        var statusPhotos = await Permission.photos.request();
-        var statusCamera = await Permission.camera.request();
-        // var status = await Permission.photos.request();
+        var statusPhotos = await _checkGalleryStatus(isAndroidAndSdkOld);
         if (statusPhotos != PermissionStatus.granted) {
           await showGalleryAccessAlert(context);
         } else {
@@ -41,6 +40,17 @@ class FileOperations {
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
       Snack.display(context: context, message: e.toString());
+    }
+  }
+
+  static Future<dynamic> _checkGalleryStatus(bool isAndroidAndSdkOld) async {
+    await Permission.camera.request();
+    if (isAndroidAndSdkOld) {
+      await Permission.storage.request();
+      return await Permission.storage.status;
+    } else {
+      await Permission.photos.request();
+      return await Permission.photos.status;
     }
   }
 

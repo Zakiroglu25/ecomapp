@@ -1,16 +1,16 @@
 import 'dart:async';
 import 'dart:io';
-
+import 'package:android_intent_plus/android_intent.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:location/location.dart' as loc;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:uikit/infrastructure/data/public_provider.dart';
 import 'package:uikit/infrastructure/model/response/big_data_info.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../locator.dart';
@@ -78,9 +78,6 @@ class DeliveryAddressCurrentCubit extends Cubit<DeliveryAddressCurrentState> {
       } else {
         emit(DeliveryAdressCurrentError(error: MyText.error));
       }
-    } on SocketException catch (_) {
-      //network olacaq
-      emit(DeliveryAdressCurrentError(error: MyText.networkError));
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
       // emit(DeliveryAdressCurrentError());
@@ -211,10 +208,9 @@ class DeliveryAddressCurrentCubit extends Cubit<DeliveryAddressCurrentState> {
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
-    loc.Location location = loc.Location();
+    Geolocator location = Geolocator();
     bool _serviceEnabled;
     PermissionStatus _permissionGranted;
-    loc.LocationData _locationData;
 
     // await location.requestService();
     // _serviceEnabled = await location.serviceEnabled();
@@ -231,13 +227,15 @@ class DeliveryAddressCurrentCubit extends Cubit<DeliveryAddressCurrentState> {
     // }
 
     // Test if location services are enabled.
-    serviceEnabled = await location.requestService();
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
 
     if (!serviceEnabled) {
       // Location services are not enabled don't continue
       // accessing the position and request users of the
       // App to enable the location services.
-      emit(DeliveryAdressCurrentDenied());
+      await Geolocator.requestPermission();
+
+      emit(DeliveryAdressCurrentServiceDisabled());
       return Future.error('Location services are disabled.');
     }
 
@@ -250,6 +248,8 @@ class DeliveryAddressCurrentCubit extends Cubit<DeliveryAddressCurrentState> {
         // Android's shouldShowRequestPermissionRationale
         // returned true. According to Android guidelines
         // your App should show an explanatory UI now.
+        permission = await Geolocator.requestPermission();
+
         emit(DeliveryAdressCurrentDenied());
         return Future.error('Location permissions are denied');
       }
@@ -267,12 +267,36 @@ class DeliveryAddressCurrentCubit extends Cubit<DeliveryAddressCurrentState> {
     return await Geolocator.getCurrentPosition();
   }
 
-  Future<void> showAccessAlert(BuildContext context) async {
+  Future<void> showAccessAlertForPermission(BuildContext context) async {
     Alert.show(context,
         title: MyText.we_need_access_to_locatoin,
-        content: MyText.we_will_redirect_to_settings_locatoin,
+        titleAlign: TextAlign.center,
+        content: MyText.we_will_redirect_to_settings_location,
         buttonText: MyText.goOn,
-        onTap: () async => await openAppSettings());
+        cancelButton: true, onTap: () async {
+      await Go.pop(context);
+      return await openAppSettings();
+    });
+  }
+
+  Future<void> showAccessAlertForServiceEnabe(BuildContext context) async {
+    Alert.show(context,
+        title: MyText.we_need_access_to_locatoin,
+        titleAlign: TextAlign.center,
+        content: MyText.we_will_redirect_to_settings_location_gps,
+        buttonText: MyText.goOn,
+        cancelButton: true, onTap: () async {
+      await Go.pop(context);
+      if (Platform.isAndroid) {
+        openLocationSetting();
+      }
+    });
+  }
+
+  void openLocationSetting() async {
+    final AndroidIntent intent =
+        AndroidIntent(action: 'android.settings.LOCATION_SOURCE_SETTINGS');
+    await intent.launch();
   }
 
   //--------------------values:-----------------
@@ -342,5 +366,10 @@ class DeliveryAddressCurrentCubit extends Cubit<DeliveryAddressCurrentState> {
     note.close();
     details.close();
     return super.close();
+  }
+
+  @override
+  emit(DeliveryAddressCurrentState state) {
+    if (!isClosed) return super.emit(state);
   }
 }

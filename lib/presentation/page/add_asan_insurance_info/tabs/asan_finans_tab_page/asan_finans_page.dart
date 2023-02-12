@@ -20,6 +20,7 @@ class AsanFinanceTab extends StatelessWidget {
         children: [
           MySizedBox.h16,
           AppField(
+
             title: "FIN kod",
             hint: "Daxil edin",
           ),
@@ -29,6 +30,7 @@ class AsanFinanceTab extends StatelessWidget {
                 height: 18.0.h,
                 width: 18.0.w,
                 child: Checkbox(
+
                     side: MaterialStateBorderSide.resolveWith(
                       (states) => BorderSide(width: 1, color: MyColors.grey188),
                     ),

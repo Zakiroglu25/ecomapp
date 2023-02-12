@@ -12,7 +12,7 @@ class AppLinearLoading extends StatelessWidget {
   final double? w;
 
   const AppLinearLoading.green(
-      {Key? key, this.color = MyColors.green, this.h = 4, this.w})
+      {Key? key, this.color = MyColors.green85, this.h = 4, this.w})
       : super(key: key);
 
   @override

@@ -1,7 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uikit/infrastructure/cubit/register/register_cubit.dart';
+import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/utils/delegate/navigate_utils.dart';
 
 import '../../../../../utils/constants/app_text_styles.dart';
@@ -22,71 +24,66 @@ class PolicyChechkBoxText extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<RegisterCubit>(context);
     final checkConfirmed = bloc.checkbox.value;
-    return InkWrapper(
-      onTap: () {
-        Sheet.display(
-            context: context,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: Paddings.paddingH16,
-                    child: Column(
+    return RichText(
+      textAlign: TextAlign.justify,
+      text: TextSpan(
+          children: [
+            TextSpan(text: 'Məxfilik siyasəti və '),
+            TextSpan(
+              text: 'istifadə qaydaları',
+              recognizer: TapGestureRecognizer()
+                ..onTap = () => Sheet.display(
+                    context: context,
+                    child: ListView(
+                      shrinkWrap: true,
+                      physics: Physics.never,
                       children: [
-                        Text(MyText.ruleText,
-                            style: AppTextStyles.sfPro700.copyWith(
-                                fontSize: 32.sp, color: MyColors.black)),
-                        MySizedBox.h32,
-                        Text(MyText.rules,
-                            style: AppTextStyles.sfPro600
-                                .copyWith(fontSize: 14.sp)),
-                        // Spacer(),
-                        MySizedBox.h16,
+                        Padding(
+                          padding: Paddings.paddingH16,
+                          child: Column(
+                            children: [
+                              Text(MyText.ruleText,
+                                  style: AppTextStyles.sfPro700.copyWith(
+                                      fontSize: 32.sp, color: MyColors.black)),
+                              MySizedBox.h32,
+                              Text(MyText.rules,
+                                  style: AppTextStyles.sfPro600
+                                      .copyWith(fontSize: 14.sp)),
+                              // Spacer(),
+                              MySizedBox.h16,
+                              // AppButton(
+                              //   color: checkConfirmed
+                              //       ? MyColors.errorRED
+                              //       : MyColors.mainGreen85,
+                              //   text: checkConfirmed
+                              //       ? MyText.iAmDisAgree
+                              //       : MyText.iAmAgree,
+                              //   onTap: () {
+                              //     bloc.inverseCheckBox();
+                              //     return Go.pop(context);
+                              //   },
+                              // ),
+                            ],
+                          ),
+                        ),
                         // AppButton(
-                        //   color: checkConfirmed
-                        //       ? MyColors.errorRED
-                        //       : MyColors.mainGreen85,
-                        //   text: checkConfirmed
-                        //       ? MyText.iAmDisAgree
-                        //       : MyText.iAmAgree,
+                        //   color: MyColors.mainGreen85,
+                        //   text: MyText.ok,
                         //   onTap: () {
-                        //     bloc.inverseCheckBox();
+                        //     // bloc.inverseCheckBox();
                         //     return Go.pop(context);
                         //   },
                         // ),
-                        AppButton(
-                          color: MyColors.mainGreen85,
-                          text: MyText.ok,
-                          onTap: () {
-                            // bloc.inverseCheckBox();
-                            return Go.pop(context);
-                          },
-                        ),
                         MySizedBox.h32,
                       ],
-                    ),
-                  ),
-                ],
+                    )),
+              style: TextStyle(
+                decoration: TextDecoration.underline,
               ),
-            ));
-      },
-      child: RichText(
-        textAlign: TextAlign.justify,
-        text: TextSpan(
-            children: [
-              TextSpan(text: 'Məxfilik siyasəti və '),
-              TextSpan(
-                text: 'istifadə qaydaları',
-                // recognizer: TapGestureRecognizer()
-                //   ..onTap = () => print('Tap Here onTap'),
-                style: TextStyle(
-                  decoration: TextDecoration.underline,
-                ),
-              ),
-            ],
-            style: AppTextStyles.sfPro400s14
-                .copyWith(color: MyColors.grey130, fontSize: 12.sp)),
-      ),
+            ),
+          ],
+          style: AppTextStyles.sfPro400s14
+              .copyWith(color: MyColors.grey130, fontSize: 12.sp)),
     );
   }
 }

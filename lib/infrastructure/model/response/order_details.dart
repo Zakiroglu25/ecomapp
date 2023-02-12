@@ -4,6 +4,7 @@ class OrderDetails {
   num? price;
   num? totalPrice;
   num? totalDiscountedPrice;
+  num? notCoveredByInsuranceAmount;
   num? deliveryPrice;
   String? paymentType;
   String? deliveryType;
@@ -26,6 +27,7 @@ class OrderDetails {
       this.deliveryPrice,
       this.paymentType,
       this.deliveryType,
+      this.notCoveredByInsuranceAmount,
       this.storeGuid,
       this.storeName,
       this.storePhone,
@@ -41,6 +43,7 @@ class OrderDetails {
     orderNumber = json['orderNumber'];
     price = json['price'] ?? 0;
     totalPrice = json['totalPrice'] ?? 0;
+    notCoveredByInsuranceAmount = json['notCoveredByInsuranceAmount'] ?? 0;
     totalDiscountedPrice = json['totalDiscountedPrice'];
     deliveryPrice = json['deliveryPrice'] ?? totalPrice! - price!;
     paymentType = json['paymentType'];
@@ -49,7 +52,7 @@ class OrderDetails {
     storeName = json['storeName'];
     storePhone = json['storePhone'];
     attachmentImageUrl = json['attachmentImageUrl'];
-    payingForNotCovered = json['payingForNotCovered'];
+    payingForNotCovered = json['payingForNotCovered'] ?? false;
     insuranceRequested = json['insuranceRequested'];
 
     status = json['status'];
@@ -75,6 +78,7 @@ class OrderDetails {
     data['storeGuid'] = this.storeGuid;
     data['storeName'] = this.storeName;
     data['attachmentImageUrl'] = this.attachmentImageUrl;
+    data['notCoveredByInsuranceAmount'] = this.notCoveredByInsuranceAmount;
     data['payingForNotCovered'] = this.payingForNotCovered;
     data['insuranceRequested'] = this.insuranceRequested;
     data['storePhone'] = this.storePhone;
@@ -88,7 +92,7 @@ class OrderDetails {
 
   @override
   String toString() {
-    return 'OrderDetails{guid: $guid, orderNumber: $orderNumber, deliveryPrice: $deliveryPrice, price: $price, totalPrice: $totalPrice, totalDiscountedPrice: $totalDiscountedPrice, paymentType: $paymentType, deliveryType: $deliveryType, storeGuid: $storeGuid, storeName: $storeName, storePhone: $storePhone, status: $status, attachmentImageUrl: $attachmentImageUrl, payingForNotCovered: $payingForNotCovered, insuranceRequested: $insuranceRequested, createdAt: $createdAt, orderedItems: $orderedItems}';
+    return 'OrderDetails{guid: $guid, notCoveredByInsuranceAmount: $notCoveredByInsuranceAmount, orderNumber: $orderNumber, deliveryPrice: $deliveryPrice, price: $price, totalPrice: $totalPrice, totalDiscountedPrice: $totalDiscountedPrice, paymentType: $paymentType, deliveryType: $deliveryType, storeGuid: $storeGuid, storeName: $storeName, storePhone: $storePhone, status: $status, attachmentImageUrl: $attachmentImageUrl, payingForNotCovered: $payingForNotCovered, insuranceRequested: $insuranceRequested, createdAt: $createdAt, orderedItems: $orderedItems}';
   }
 }
 

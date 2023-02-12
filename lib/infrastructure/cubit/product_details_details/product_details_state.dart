@@ -1,5 +1,4 @@
 import '../../model/response/product_option_details_model.dart';
-import '../../model/response/product_option_model.dart';
 import '../../model/response/search_items.dart';
 
 abstract class ProductOptionDetailsState {}

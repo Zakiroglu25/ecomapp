@@ -1,7 +1,8 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rxdart/rxdart.dart';
+import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/delegate/my_printer.dart';
@@ -12,8 +13,10 @@ import 'product_details_state.dart';
 
 class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
   ProductOptionDetailsCubit() : super(ProductODetailsInitial());
-
+  int page = 1;
+  int totalPages = 0;
   List<SimpleProduct> products = [];
+
   fetchProduct(String guid) async {
     emit(ProductODetailsInProgress());
     try {
@@ -30,44 +33,61 @@ class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
           ).message}",
         );
       }
-    } on SocketException catch (_) {
-      emit(ProductODetailsError());
-    } catch (e) {
-      eeee("Product Option Error" + e.toString());
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
       emit(ProductODetailsError());
     }
   }
 
   fetchProductMapGuid(String guid) async {
+    clearCache();
     emit(ProductODetailsInProgress());
-    wtf("6");
 
     try {
-      final result = await ProductOptionsProvider.getProductByGuidForMap(guid: guid);
-      wtf("7");
+      final result = await ProductOptionsProvider.getProductByGuidForMap(
+          guid: guid, page: page);
       if (result.statusCode.isSuccess) {
-        print(result.statusCode ==200);
         final searchItems = result.data;
         products.addAll(searchItems!.products!);
+        totalPages = searchItems.totalPages!;
+        updateHaveElse();
         emit(ProductODetailsMapListSuccess(products));
-        wtf("8");
       } else {
-        wtf("9");
         emit(ProductODetailsError());
-        eeee(
-          "contact result bad: ${ResponseMessage.fromJson(
-            jsonDecode(
-              result.toString(),
-            ),
-          ).message}",
-        );
       }
-    } on SocketException catch (_) {
-      emit(ProductODetailsError());
-
-    } catch (e) {
-      eeee("Product Option Error" + e.toString());
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
       emit(ProductODetailsError());
     }
+  }
+
+  void clearCache() {
+    products.clear();
+    page = 1;
+  }
+
+  void loadMore(String guid) async {
+    eeee("current page:  $page");
+    if (page >= totalPages) return;
+    final result = await ProductOptionsProvider.getProductByGuidForMap(
+        page: page + 1, guid: guid);
+    if (result.statusCode.isSuccess) {
+      products.addAll(result.data!.products!);
+      emit(ProductODetailsMapListSuccess(products));
+      page++;
+    }
+    updateHaveElse();
+  }
+
+  final BehaviorSubject<bool> haveElse = BehaviorSubject<bool>.seeded(false);
+
+  Stream<bool> get haveElseStream => haveElse.stream;
+
+  updateHaveElse() {
+    if (page < totalPages) {
+      haveElse.sink.add(true);
+      return;
+    }
+    haveElse.sink.add(false);
   }
 }

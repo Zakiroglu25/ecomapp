@@ -6,16 +6,13 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
-import 'package:uikit/infrastructure/model/response/search_items.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
-import '../../utils/constants/result_keys.dart';
 import '../../utils/constants/text.dart';
 import '../../utils/delegate/my_printer.dart';
 import '../config/dio_auth.dart';
-import '../model/response/cart_items.dart';
 import '../model/response/status_dynamic.dart';
 
 class ImagesProvider {

@@ -13,7 +13,6 @@ class CourierDescField extends StatelessWidget {
       title: MyText.courierDesc,
       maxLines: 1,
       hint: MyText.enterDesc,
-      upperCase: false,
       textInputType: TextInputType.name,
       textCapitalization: TextCapitalization.sentences,
       controller: controller,

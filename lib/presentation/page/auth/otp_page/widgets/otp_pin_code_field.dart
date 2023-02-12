@@ -21,7 +21,7 @@ class OtpPinCodeField extends StatelessWidget {
         fieldHeight: 48,
         fieldWidth: 48,
         activeColor: MyColors.black,
-        selectedColor: MyColors.green,
+        selectedColor: MyColors.green85,
         inactiveColor: MyColors.transparent,
         disabledColor: MyColors.transparent,
         selectedFillColor: MyColors.grey245,

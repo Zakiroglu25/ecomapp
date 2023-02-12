@@ -1,10 +1,7 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:rxdart/rxdart.dart';
-import 'package:uikit/infrastructure/data/public_provider.dart';
 
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/my_printer.dart';
@@ -18,6 +15,8 @@ class InsuranceCubit extends Cubit<InsuranceState> {
   InsuranceCubit() : super(InsuranceInitial());
   final phoneNum = TextEditingController();
   final policy = TextEditingController();
+  final finCode = TextEditingController();
+
   getInsurance({bool loading = true}) async {
     if (loading) {
       emit(InsuranceProgress());
@@ -37,14 +36,16 @@ class InsuranceCubit extends Cubit<InsuranceState> {
     }
   }
 
-  void addInsurance({bool loading = true,required BuildContext context}) async {
+  void addInsurance(
+      {bool loading = true, required BuildContext context}) async {
     if (loading) {
       emit(InsuranceLoading());
     }
     try {
       final response = await InsuranceProvider.addInsurance(
           policyNumber: policy.text,
-          phoneNumber: phoneNum.text);
+          phoneNumber: phoneNum.text,
+          finCode: finCode.text);
       final errors = response.data;
       if (isSuccess(response.statusCode)) {
         emit(AddInsuranceSuccess());

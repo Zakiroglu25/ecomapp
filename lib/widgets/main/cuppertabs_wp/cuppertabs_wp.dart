@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uikit/utils/constants/border_radius.dart';
 import 'package:uikit/utils/constants/colors.dart';
-import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/extensions/object.dart';
 import 'package:uikit/widgets/main/cupperfold/widgets/custom_cupertino_sliver_navigation_bar.dart';
 
@@ -30,6 +29,7 @@ class CupperTabsWithProvider extends StatefulWidget {
     required this.tabPages,
     this.tabbarPadding,
     this.onChange,
+    this.onIndexCompletelyChanged,
     this.selectedLabelColor,
     this.selectedTabColor,
     this.barColor,
@@ -51,7 +51,10 @@ class CupperTabsWithProvider extends StatefulWidget {
   final bool? notification;
   final bool? back;
   final bool showAppbarLittleText;
+  //onChange olduqda sorgular tekraralana biler
+  //ona gore onIndexCompletylChanged istifade olunmalidir
   final OnTabChanged? onChange;
+  final OnTabChanged? onIndexCompletelyChanged;
   final bool withCupertinoAppbar;
   final bool isScrollable;
   final Function? onBack;
@@ -77,7 +80,7 @@ class _CupperTabsWithProviderState extends State<CupperTabsWithProvider>
   // late List<AppTab> tabs;
 
   late TabController _tabController;
-
+  int index = 0;
   @override
   void initState() {
     // TODO: implement initState
@@ -95,11 +98,16 @@ class _CupperTabsWithProviderState extends State<CupperTabsWithProvider>
       if (_tabController.indexIsChanging) {
         widget.onChange?.call(_currentIndex);
       }
+      if (_tabController.index != index) {
+        widget.onIndexCompletelyChanged?.call(_currentIndex);
+        index = _tabController.index;
+      }
       setState(() {});
     });
 
     if (widget.first.isNotNull && widget.first != -1) {
       _tabController.animateTo(widget.first!);
+      index = widget.first!;
     }
   }
 

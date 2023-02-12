@@ -12,16 +12,13 @@ import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/delegate/pager.dart';
 import '../../../widgets/custom/app_button.dart';
 import '../../../widgets/general/app_loading.dart';
-import '../../../widgets/general/empty_widget.dart';
 import '../../../widgets/general/list_or_empty.dart';
-import '../add_asan_insurance_info/add_asan_insurance_info_page.dart';
 import 'widget/slidable_item_widget.dart';
 
 class AddInsurancePage extends StatelessWidget {
   const AddInsurancePage({
     Key? key,
   }) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +33,7 @@ class AddInsurancePage extends StatelessWidget {
             return Column(
               children: [
                 MySizedBox.h22,
-                Container(
+                SizedBox(
                   height: MediaQuery.of(context).size.height / 2,
                   child: ListOrEmpty(
                     text: MyText.emptyText,

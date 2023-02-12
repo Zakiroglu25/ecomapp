@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
-import 'package:uikit/widgets/main/product_item/widgets/product_cart_button.dart';
+import 'package:uikit/utils/delegate/index.dart';
+import 'package:uikit/utils/screen/ink_wrapper.dart';
 import 'package:uikit/widgets/main/product_item/widgets/product_fav_button.dart';
 import 'package:uikit/widgets/main/product_item/widgets/product_image.dart';
 
 import '../../../../utils/constants/border_radius.dart';
-import '../../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
-import '../../../infrastructure/model/response/product_option_model.dart';
 import '../../../infrastructure/model/response/search_items.dart';
-import '../../../presentation/page/product_details_page/product_details_page.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/delegate/pager.dart';
-import '../../../utils/screen/ink_wrapper.dart';
 import 'widgets/product_details_and_buttons.dart';
 
-class ProductItem extends StatelessWidget {
+class ProductItem extends StatefulWidget {
   const ProductItem({Key? key, required this.product, this.inFav = false})
       : super(key: key);
   final SimpleProduct product;
@@ -25,13 +21,44 @@ class ProductItem extends StatelessWidget {
   final bool inFav;
 
   @override
+  State<ProductItem> createState() => _ProductItemState();
+}
+
+class _ProductItemState extends State<ProductItem>
+    with AutomaticKeepAliveClientMixin {
+  late SimpleProduct product;
+  //inFav mean that this widget is in Favorite page
+  late bool inFav;
+
+  Color color = Colors.black87;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    startLogic();
+  }
+
+  @override
+  void didUpdateWidget(covariant ProductItem oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+    startLogic();
+  }
+
+  void startLogic() {
+    product = widget.product;
+    inFav = widget.inFav;
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         GestureDetector(
-          onTap: () {
-            Go.to(context, Pager.productDetails(guid: product.guid!));
-          },
+          onTap: () =>
+              Go.to(context, Pager.productDetails(guid: product.guid!)),
           child: Container(
             height: 126,
             padding: Paddings.paddingA12,
@@ -43,9 +70,7 @@ class ProductItem extends StatelessWidget {
               children: [
                 ProductImage(imageUrl: product.imageUrl),
                 MySizedBox.w12,
-                ProductDetailsAndButtons(
-                  product: product,
-                )
+                ProductDetailsAndButtons(product: product)
               ],
             ),
           ),
@@ -54,8 +79,25 @@ class ProductItem extends StatelessWidget {
           product: product,
           inFav: inFav,
         ),
+
+        // InkWrapper(
+        //   child: Container(
+        //     width: 20,
+        //     height: 20,
+        //     color: product.isInCart! ? MyColors.red250 : MyColors.blue55,
+        //   ),
+        //   onTap: () {
+        //     //  color = Rndm.color;
+        //     product.isInCart = !product.isInCart!;
+        //     setState(() {});
+        //   },
+        // )
         //  ProductCartButton()
       ],
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

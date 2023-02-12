@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:uikit/infrastructure/model/response/card_model.dart';
-import 'package:uikit/utils/constants/colors.dart';
-import 'package:uikit/widgets/icons/check_icon.dart';
-import 'package:uikit/widgets/icons/uncheck_icon.dart';
 
 import '../../../utils/constants/assets.dart';
-import '../../../utils/constants/dividers.dart';
 import '../../../utils/constants/paddings.dart';
 import '../../../utils/constants/sized_box.dart';
-import '../../general/app_element_box.dart';
 
 class PaymentTypeCard extends StatelessWidget {
   const PaymentTypeCard({Key? key, required this.card}) : super(key: key);

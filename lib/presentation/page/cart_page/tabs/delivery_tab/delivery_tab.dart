@@ -3,17 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:focus_detector/focus_detector.dart';
 import 'package:uikit/infrastructure/cubit/delivery_orders/index.dart';
 import 'package:uikit/infrastructure/cubit/tab_counts/index.dart';
-import 'package:uikit/infrastructure/cubit/waiting_orders/index.dart';
 import 'package:uikit/presentation/page/cart_page/widgets/cart_order_product/card_order_product.dart';
-import 'package:uikit/utils/constants/assets.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/physics.dart';
-import 'package:uikit/utils/constants/text.dart';
-import 'package:uikit/utils/enums/cart_order_type.dart';
+import 'package:uikit/widgets/custom/focusable_app_loading.dart';
 import 'package:uikit/widgets/custom/listview_separated.dart';
 import 'package:uikit/widgets/general/app_loading.dart';
 import 'package:uikit/widgets/general/empty_widget.dart';
-import 'package:uikit/widgets/general/list_or_empty.dart';
+
+import '../waiting_tab/widgets/orders_stream_view.dart';
 
 class DeliveryTab extends StatelessWidget {
   const DeliveryTab({Key? key}) : super(key: key);
@@ -24,6 +22,7 @@ class DeliveryTab extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<DeliveryOrdersCubit>(context);
     return FocusDetector(
       onFocusGained: () =>
           context.read<DeliveryOrdersCubit>().fetch(loading: false),
@@ -31,13 +30,10 @@ class DeliveryTab extends StatelessWidget {
         builder: (context, state) {
           if (state is DeliveryOrdersSuccess) {
             final orders = state.orders;
-            return ListViewSeparated(
-              padding: Paddings.paddingH16 + Paddings.paddingB200,
-              shrinkWrap: true,
-              physics: Physics.never,
-              itemBuilder: (context, index) =>
-                  CartOrderProduct(order: orders[index]),
-              itemCount: orders.length,
+            return OrdersStreamView(
+              orders: orders,
+              cubit: cubit,
+              key: Key("waitings"),
             );
           } else if (state is DeliveryOrdersError) {
             return EmptyWidget(

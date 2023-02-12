@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:uikit/infrastructure/model/response/order_details.dart';
 import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/extensions/num.dart';
 import 'package:uikit/utils/extensions/word.dart';
 
 import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sized_box.dart';
 import '../../../../widgets/custom/column_with_space.dart';
-import '../../cart_page/widgets/cart_product/widgets/cart_med_name.dart';
 import '../../../../widgets/special/med_photo.dart';
+import '../../cart_page/widgets/cart_product/widgets/cart_med_name.dart';
 
 class DeliveryProduct extends StatelessWidget {
   const DeliveryProduct({Key? key, required this.order}) : super(key: key);
@@ -41,7 +42,7 @@ class DeliveryProduct extends StatelessWidget {
                           ? MyColors.mainGreen85
                           : MyColors.darkRED),
                 ),
-                Text('${order.price}'.withManat)
+                order.price.toManat13(),
               ]),
         )
       ],

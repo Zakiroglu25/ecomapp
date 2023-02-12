@@ -4,7 +4,6 @@ import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/delegate/navigate_utils.dart';
 import '../../../../utils/delegate/pager.dart';
-import '../../insurance_page/add_insurance_page.dart';
 
 class AddInsurance extends StatelessWidget {
   const AddInsurance({Key? key}) : super(key: key);
@@ -40,7 +39,7 @@ class AddInsurance extends StatelessWidget {
                 ),
                 Padding(
                   padding:
-                  const EdgeInsets.only(left: 49.0, right: 49, top: 16),
+                      const EdgeInsets.only(left: 49.0, right: 49, top: 16),
                   child: Text("Daha bir sığorta əlavə et",
                       textAlign: TextAlign.center,
                       style: AppTextStyles.sfPro700s24

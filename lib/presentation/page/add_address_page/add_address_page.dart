@@ -11,7 +11,6 @@ import '../../../utils/constants/paddings.dart';
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/screen/snack.dart';
-import '../../../widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'fields/address_field.dart';
 import 'fields/courier_desc_field.dart';
 import 'fields/name_address_field.dart';
@@ -24,24 +23,25 @@ class AddAddressPage extends StatelessWidget {
   double? lng;
   TextEditingController? textController = TextEditingController();
 
-  AddAddressPage({this.addressModel, this.lat, this.lng, this.textController});
+  AddAddressPage({this.addressModel, this.lat, this.lng, this.textController,});
 
   bool first = true;
 
   @override
   Widget build(BuildContext context) {
-    final addAttorneysCubit = context.watch<AddAddressCubit>();
+    final addAddressCubit = context.watch<AddAddressCubit>();
 
     if (addressModel != null && first) {
-      addAttorneysCubit.cityController.text = addressModel!.city!;
-      addAttorneysCubit.houseNumberController.text = addressModel!.houseNumber!;
-      addAttorneysCubit.phoneController.text = addressModel!.phone!;
-      addAttorneysCubit.countryController.text = addressModel!.country!;
-      addAttorneysCubit.latitudeController.text = addressModel!.latitude!;
-      addAttorneysCubit.longitudeController.text = addressModel!.longitude!;
-      addAttorneysCubit.descriptionController.text = addressModel!.description!;
+      addAddressCubit.cityController.text = addressModel!.city!;
+      addAddressCubit.houseNumberController.text = addressModel!.houseNumber!;
+      addAddressCubit.phoneController.text = addressModel!.phone!;
+      addAddressCubit.countryController.text = addressModel!.country!;
+      addAddressCubit.latitudeController.text = addressModel!.latitude!;
+      addAddressCubit.longitudeController.text = addressModel!.longitude!;
+      addAddressCubit.descriptionController.text = addressModel!.description!;
       first = false;
     }
+
     return Cupperfold(
       title: MyText.addNewAddress,
       showAppbarLittleText: true,
@@ -59,7 +59,7 @@ class AddAddressPage extends StatelessWidget {
             // Go.pop(context);
             Snack.display(
               context: context,
-              message: MyText.error,
+              message: state.error.toString(),
             );
           }
         },
@@ -71,26 +71,30 @@ class AddAddressPage extends StatelessWidget {
               controller: textController ?? textController,
             ),
             NameAddressField(
-              controller: addAttorneysCubit.titleCnt,
+              controller: addAddressCubit.titleCnt,
             ),
             TitleField(
-              controller: addAttorneysCubit.cityController,
+              controller: addAddressCubit.cityController,
             ),
             RegionField(
-              controller: addAttorneysCubit.countryController,
+              controller: addAddressCubit.countryController,
             ),
             CourierDescField(
-              controller: addAttorneysCubit.descriptionController,
+              controller: addAddressCubit.descriptionController,
             ),
-
             MySizedBox.h50,
             AppButton(
-              isButtonActive: lng == null ? false : true,
+              isButtonActive: first ? true : false,
               loading:
                   context.read<AddAddressCubit>().state is AddAddressInProgress,
               onTap: () {
                 addressModel != null
-                    ? context.read<AddAddressCubit>().editAddress(addressModel!)
+                    ? context.read<AddAddressCubit>().editAddress(
+                        address: addressModel!,
+                        context: context,
+                        lat: lat,
+                        lng: lng,
+                        streetNameController: textController)
                     : context.read<AddAddressCubit>().addAddress(
                         context: context,
                         lat: lat,

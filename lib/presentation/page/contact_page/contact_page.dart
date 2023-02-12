@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uikit/presentation/page/contact_page/widget/sosial_item.dart';
-import 'package:uikit/utils/constants/colors.dart';
 
 import '../../../infrastructure/cubit/contact_cubit/contact_cubit.dart';
 import '../../../infrastructure/cubit/contact_cubit/contact_state.dart';
 import '../../../infrastructure/model/response/contact_model.dart';
-import '../../../utils/constants/assets.dart';
-import '../../../utils/constants/text.dart';
-import '../../../widgets/custom/product_and_other_widget.dart';
 import '../../../widgets/general/app_loading.dart';
 import '../../../widgets/general/empty_widget.dart';
 import '../../../widgets/main/cupperfold/cupperfold.dart';
@@ -28,11 +23,11 @@ class ContactPage extends StatelessWidget {
           if (state is ContactSuccess) {
             final List<Contacts> contactList = state.contact;
             return SocialItem(contact: contactList
-              // name: contact.data[index].channel,
-              // path: Assets.pngWhatsapp,
-              // onTap: () {},
-              // isPng: true,
-            );
+                // name: contact.data[index].channel,
+                // path: Assets.pngWhatsapp,
+                // onTap: () {},
+                // isPng: true,
+                );
             // return Padding(
             //   padding: const EdgeInsets.all(16.0),
             //   child: Column(

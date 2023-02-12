@@ -8,7 +8,6 @@ import 'package:uikit/utils/extensions/index.dart';
 import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/enums/transaction_type.dart';
 import '../../data/favorites_provider.dart';
-import '../../model/response/product_option_model.dart';
 import '../../model/response/search_items.dart';
 import 'favorite_state.dart';
 

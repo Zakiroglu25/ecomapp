@@ -3,14 +3,10 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:uikit/utils/delegate/index.dart';
 
 import '../../../../infrastructure/model/response/messenger_users.dart';
-import '../../../../utils/constants/app_text_styles.dart';
-import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sized_box.dart';
 import '../../../../utils/delegate/navigate_utils.dart';
-import 'chat_details.dart';
 import 'delete_item.dart';
 import 'image_message.dart';
-import 'message_item_widget.dart';
 import 'title_message.dart';
 
 class BodyMessenger extends StatelessWidget {
@@ -33,7 +29,7 @@ class BodyMessenger extends StatelessWidget {
                   context,
                   Pager.chat(
                       guid: list[index].guid,
-                      storeName: list[index].storeName));
+                      storeName: list[index].storeName!));
             },
             child: Slidable(
               key: UniqueKey(),

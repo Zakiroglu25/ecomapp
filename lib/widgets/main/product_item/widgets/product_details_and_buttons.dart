@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../infrastructure/model/response/product_option_model.dart';
 import '../../../../infrastructure/model/response/search_items.dart';
 import '../../../../utils/constants/sized_box.dart';
 import 'product_price_and_cart_button.dart';
@@ -21,9 +20,7 @@ class ProductDetailsAndButtons extends StatelessWidget {
             product: product,
           ),
           MySizedBox.h8,
-          ProductPriceAndCartButton(
-            product: product,
-          )
+          ProductPriceAndCartButton(product: product)
         ],
       ),
     );

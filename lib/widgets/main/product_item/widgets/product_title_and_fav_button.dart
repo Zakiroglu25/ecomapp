@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../infrastructure/model/response/product_option_model.dart';
 import '../../../../infrastructure/model/response/search_items.dart';
-import 'product_fav_button.dart';
 import 'product_title.dart';
 
 class ProductTitleAndFavButton extends StatelessWidget {

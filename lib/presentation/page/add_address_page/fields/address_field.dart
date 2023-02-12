@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uikit/utils/delegate/index.dart';
+
 import '../../../../../utils/constants/text.dart';
 import '../../../../../widgets/general/app_field.dart';
 import '../../address_page/select_map_page/select_map_page.dart';
@@ -15,12 +16,15 @@ class AddressField extends StatelessWidget {
       title: MyText.address,
       maxLines: 1,
       hint: MyText.addressAdd,
-      upperCase: false,
+      readOnly: true,
       textInputType: TextInputType.name,
       textCapitalization: TextCapitalization.sentences,
       controller: controller,
+      onTap: () async {
+        Go.to(context, MapSample());
+      },
       suffixIcon: InkWell(
-          onTap: () async{
+          onTap: () async {
             Go.to(context, MapSample());
           },
           child: Icon(Icons.my_location_sharp)),

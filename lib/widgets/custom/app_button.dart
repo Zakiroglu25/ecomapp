@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:uikit/utils/constants/paddings.dart';
-import 'package:uikit/utils/extensions/index.dart';
 
 import '../../utils/constants/app_text_styles.dart';
 import '../../utils/constants/colors.dart';

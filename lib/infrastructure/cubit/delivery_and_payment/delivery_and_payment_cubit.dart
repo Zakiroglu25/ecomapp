@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
-import 'package:uikit/infrastructure/cubit/waiting_orders/waiting_orders_cubit.dart';
 import 'package:uikit/infrastructure/model/response/card_model.dart';
 import 'package:uikit/infrastructure/services/hive_service.dart';
 import 'package:uikit/locator.dart';
@@ -49,6 +48,27 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
     }
   }
 
+  updateInsuranceCheckedIn({bool loading = true, required bool value}) async {
+    if (loading) {
+      emit(DeliveryAndPaymentInProgress());
+    }
+    try {
+      final result = await OrdersProvider.changeNotCovered(
+          guid: orderGuid, include: value);
+      // if (result.isNotNull) {
+      //   //orderGuid = guid;
+      //   emit(DeliveryAndPaymentSuccess(orderDetails: result!));
+      // } else {
+      //   emit(DeliveryAndPaymentError());
+      // }
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+      //   emit(DeliveryAndPaymentError());
+    } finally {
+      fetch(guid: orderGuid);
+    }
+  }
+
   updateTab({required int index}) async {
     tabIndex = index;
     if (index == 0 && paymentType.valueOrNull == PaymentType.CASH) {
@@ -70,8 +90,8 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
               ? null
               : paymentType.valueOrNull?.toText,
           deliveryType: deliveryType.toText,
-          cardGuid: selectedCard.valueOrNull?.guid);
-      bbbb("resso: $result");
+          cardGuid: selectedCard.valueOrNull?.guid,
+          comment: comment.valueOrNull);
       //result?.url = null;
       if (result.isNull) {
         emit(DeliveryAndPaymentOperationError());
@@ -131,28 +151,6 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
     }
   }
 
-  // void ordersRegister(
-  //     {bool loading = false, required BuildContext context}) async {
-  //   try {
-  //     if (loading) emit(DeliveryAndPaymentInProgress());
-  //     Loader.show(context);
-  //     final result = await OrdersProvider.orderRegister(addressGuid: null);
-  //     if (result.statusCode.isSuccess) {
-  //       Snack.positive(message: MyText.orderRegistered);
-  //       //fetch(false);
-  //     } else {
-  //       emit(DeliveryAndPaymentError());
-  //     }
-  //   } catch (e, s) {
-  //     Recorder.recordCatchError(e, s);
-  //     emit(DeliveryAndPaymentError());
-  //   }
-  //   context.read<TabCountsCubit>().fetch(false);
-  //   Loader.hide();
-  // }
-
-  //values
-  //selectedCard
   final BehaviorSubject<CardData> selectedCard = BehaviorSubject<CardData>();
 
   Stream<CardData> get selectedCardStream => selectedCard.stream;
@@ -197,6 +195,23 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
   }
 
   bool get isPaymentTypeIncorrect => (!paymentType.hasValue);
+
+  //name
+  final BehaviorSubject<String> comment = BehaviorSubject<String>();
+
+  Stream<String> get commentStream => comment.stream;
+
+  updateComment(String value) {
+    if (value.isEmpty) {
+      comment.value = '';
+      comment.sink.addError("Xana doldurulmalıdır");
+    } else {
+      comment.sink.add(value);
+    }
+    //  isUserInfoValid();
+  }
+
+  bool get isCommentIncorrect => (!comment.hasValue || comment.value.isEmpty);
 
   //checkbox card
   final BehaviorSubject<bool> checkbox = BehaviorSubject<bool>.seeded(false);

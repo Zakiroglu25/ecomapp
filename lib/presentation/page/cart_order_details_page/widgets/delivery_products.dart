@@ -32,7 +32,7 @@ class DeliveryProducts extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            const Center(child: const HandleLine()),
+            const Center(child: HandleLine()),
             BlocBuilder<OrderInfoCubit, OrderInfoState>(
               builder: (context, state) {
                 if (state is OrderInfoSuccess) {

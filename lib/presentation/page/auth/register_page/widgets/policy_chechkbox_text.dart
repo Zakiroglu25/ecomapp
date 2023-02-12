@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
-import 'package:uikit/utils/delegate/my_printer.dart';
 
 import '../../../../../../utils/constants/colors.dart';
 import '../../../../../infrastructure/cubit/register/register_cubit.dart';
 import '../../../../../utils/constants/paddings.dart';
-import '../../../../../utils/screen/ink_wrapper.dart';
 import 'policy_bottom_sheet.dart';
 
 class PolicyCheckbox extends StatelessWidget {

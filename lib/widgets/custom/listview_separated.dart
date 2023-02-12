@@ -11,12 +11,15 @@ class ListViewSeparated extends StatelessWidget {
       this.padding = Paddings.paddingH16,
       this.shrinkWrap = false,
       this.physics,
-      this.separator,  this.controller})
+      this.addAutomaticKeepAlives = true,
+      this.separator,
+      this.controller})
       : super(key: key);
 
   final EdgeInsets padding;
   final Widget Function(BuildContext, int) itemBuilder;
   final int itemCount;
+  final bool addAutomaticKeepAlives;
   final Widget? separator;
   final ScrollPhysics? physics;
   final bool shrinkWrap;
@@ -29,6 +32,7 @@ class ListViewSeparated extends StatelessWidget {
       shrinkWrap: shrinkWrap,
       padding: padding,
       physics: physics,
+      addAutomaticKeepAlives: addAutomaticKeepAlives,
       itemBuilder: itemBuilder,
       itemCount: itemCount,
       separatorBuilder: (context, index) {

@@ -10,14 +10,17 @@ import 'package:uikit/infrastructure/cubit/forgot_pass/forgot_pass_cubit.dart';
 import 'package:uikit/infrastructure/cubit/map/map_store_cubit.dart';
 import 'package:uikit/infrastructure/cubit/order_info/index.dart';
 import 'package:uikit/infrastructure/cubit/otp/otp_cubit.dart';
+import 'package:uikit/infrastructure/model/response/map_medicine.dart';
 import 'package:uikit/presentation/page/auth/forgot_password_page/forgot_pass_page.dart';
 import 'package:uikit/presentation/page/auth/otp_page/otp_page.dart';
 import 'package:uikit/presentation/page/cart_order_details_page/cart_order_details_page.dart';
 import 'package:uikit/presentation/page/landing_page/landing_page.dart';
+import 'package:uikit/presentation/page/map_details_page/map_details_page.dart';
 import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart';
 import 'package:uikit/presentation/page/notification_page/notifications_page.dart';
 import 'package:uikit/presentation/page/webview_page/webview_page.dart';
-import 'package:uikit/utils/delegate/index.dart';
+import 'package:uikit/test/test2.dart';
+import 'package:uikit/test/test_for_cubit.dart';
 
 import '../../app.dart';
 import '../../infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
@@ -32,7 +35,7 @@ import '../../infrastructure/cubit/login/login_cubit.dart';
 import '../../infrastructure/cubit/messenger_cubit/messenger_cubit.dart';
 import '../../infrastructure/cubit/notification_cubit/notification_cubit.dart';
 import '../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
-import '../../infrastructure/cubit/product_option_cubit/product_option_cubit.dart';
+import '../../infrastructure/cubit/products_cubit/index.dart';
 import '../../infrastructure/cubit/register/register_cubit.dart';
 import '../../infrastructure/cubit/tab_counts/tab_counts_cubit.dart';
 import '../../infrastructure/cubit/user/user_cubit.dart';
@@ -49,12 +52,12 @@ import '../../presentation/page/contact_page/contact_page.dart';
 import '../../presentation/page/delivery_and_payment_page/delivery_and_payment_page.dart';
 import '../../presentation/page/favorite_page/favorite_page.dart';
 import '../../presentation/page/insurance_page/add_insurance_page.dart';
-import '../../presentation/page/medicines_page/medicines_page.dart';
 import '../../presentation/page/messenger_page/messenger_page.dart';
 import '../../presentation/page/messenger_page/widget/chat_details.dart';
 import '../../presentation/page/other_page/other_page.dart';
 import '../../presentation/page/payment_method_page/payment_method_page.dart';
 import '../../presentation/page/product_details_page/product_details_page.dart';
+import '../../presentation/page/products_page/products_page.dart';
 import '../../presentation/page/question_response_page/question_response_page.dart';
 import '../../presentation/page/settings_page/settings_page.dart';
 import '../../presentation/page/splash_page/splash_page.dart';
@@ -68,6 +71,13 @@ class Pager {
         ..startApp(context, showSplash: showSplash ?? true),
       child: const App());
 
+  static get landing => MultiBlocProvider(providers: [
+        BlocProvider(create: (context) => AddressCubit()),
+        BlocProvider(create: (context) => ProductsCubit()..fetchProduct()),
+        BlocProvider(
+            create: (context) => AddressCubit()..fetchMainAddress(true)),
+      ], child: const LandingPage());
+
   static get register => MultiBlocProvider(providers: [
         BlocProvider(
           create: (context) => RegisterCubit(),
@@ -78,12 +88,19 @@ class Pager {
         BlocProvider(create: (context) => LoginCubit()),
       ], child: const LoginPage());
 
-  static get medicines => MultiBlocProvider(providers: [
-        BlocProvider(create: (context) => ProductOptionCubit()..fetchProduct()),
+  static get products => MultiBlocProvider(providers: [
+        // BlocProvider(create: (context) => ProductOptionCubit()..fetchProduct()),
         BlocProvider(create: (context) => FavoriteCubit()),
         BlocProvider(create: (context) => CartCubit()),
-        BlocProvider(create: (context) => AddressCubit()..fetchMainAddress()),
-      ], child: const MedicinesPage());
+      ], child: const ProductsPage());
+
+  static pharmacy(MapMedicine map) => MultiBlocProvider(providers: [
+        BlocProvider(create: (context) => FavoriteCubit()),
+        BlocProvider(create: (context) => CartCubit()),
+        BlocProvider(
+            create: (context) =>
+                ProductOptionDetailsCubit()..fetchProductMapGuid(map.guid!)),
+      ], child: MapDetailsPage(map));
 
   static get cart => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => CartCubit()..fetch()),
@@ -102,6 +119,7 @@ class Pager {
       ], child: CartOrderDetailsPage(orderNumber: orderNumber, status: status));
 
   static get splash => SplashPage();
+
   static get addingInsurance => BlocProvider(
         create: (context) => InsuranceCubit(),
         child: AddAsanInsuranceInfo(),
@@ -158,18 +176,34 @@ class Pager {
         child: MessengerPage(),
       );
 
-  static get landing => MultiBlocProvider(providers: [
-        BlocProvider(create: (context) => AddressCubit()),
-      ], child: const LandingPage());
-
-  static chat({String? guid, String? storeName}) => BlocProvider(
-        create: (context) => ChatMessengerCubit(),
-        child: Chat(guid, storeName),
+  static get testFor => BlocProvider(
+        create: (context) => TestForCubit(),
+        child: TestForPage(),
       );
 
-  static addAddress({Address? address}) => BlocProvider(
+  static testFor2(BuildContext context, Cubit bloc) => BlocProvider.value(
+        value: BlocProvider.of<TestForCubit>(context),
+        child: TestFor2Page(bloc: bloc),
+      );
+
+  static chat(
+          {String? storeGuid,
+          String? storeName,
+          String? guid,
+          String? orderGuid}) =>
+      BlocProvider.value(
+        value: ChatMessengerCubit()
+          ..configMessenger(
+              storeGuid: storeGuid, orderGuid: orderGuid, guid: guid),
+        child: ChatPage(storeName: storeName),
+      );
+
+  static addAddress({Address? address, context, lat, long, title}) =>
+      BlocProvider(
         create: (context) => AddAddressCubit(),
-        child: AddAddressPage(),
+        child: AddAddressPage(
+          addressModel: address,
+        ),
       );
 
   static get otherPage => OtherPage();

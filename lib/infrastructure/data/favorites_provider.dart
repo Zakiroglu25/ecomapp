@@ -4,10 +4,8 @@ import '../../utils/constants/result_keys.dart';
 import '../../utils/delegate/my_printer.dart';
 import '../../utils/enums/transaction_type.dart';
 import '../config/dio_auth.dart';
-import '../model/response/product_option_model.dart';
 import '../model/response/search_items.dart';
 import '../model/response/status_dynamic.dart';
-import '../services/hive_service.dart';
 
 class FavoritesProvider {
   static DioAuth get dioAuth => locator<DioAuth>();
