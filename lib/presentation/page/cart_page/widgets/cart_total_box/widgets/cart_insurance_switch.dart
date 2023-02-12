@@ -11,7 +11,7 @@ class CartInsuranceSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CartTotalProperty(
-        title: MyText.payWithInsurance,
+        title: MyText.removeFromList,
         value: StreamBuilder<bool>(
           stream:
               BlocProvider.of<CartCubit>(context).insuranceCoverRequestedStream,

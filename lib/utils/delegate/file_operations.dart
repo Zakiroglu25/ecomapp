@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -19,8 +20,21 @@ class FileOperations {
     try {
       var galleryAccessStatus = await Permission.photos.status;
       var cameraAccessStatus = await Permission.camera.status;
-      await Permission.photos.request();
-      await Permission.camera.request();
+
+      if (Platform.isAndroid) {
+        final androidInfo = await DeviceInfoPlugin().androidInfo;
+        if (androidInfo.version.sdkInt <= 32) {
+          /// use [Permissions.storage.status]
+          await Permission.storage.request();
+        } else {
+          /// use [Permissions.photos.status]
+          await Permission.photos.request();
+          await Permission.camera.request();
+        }
+      } else {
+        await Permission.photos.request();
+        await Permission.camera.request();
+      }
       if (galleryAccessStatus != PermissionStatus.granted ||
           cameraAccessStatus != PermissionStatus.granted) {
         var statusPhotos = await Permission.photos.request();

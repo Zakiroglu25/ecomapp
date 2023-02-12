@@ -9,6 +9,8 @@ import 'package:uikit/presentation/page/cart_page/tabs/waiting_tab/waiting_tab.d
 import 'package:uikit/utils/constants/assets.dart';
 import 'package:uikit/utils/constants/text.dart';
 
+import '../../../infrastructure/cubit/delivery_orders/index.dart';
+import '../../../infrastructure/cubit/waiting_orders/index.dart';
 import '../../../widgets/custom/app_tab.dart';
 import '../../../widgets/main/cuppertabs_wp/cupper_tab_wp.dart';
 
@@ -41,7 +43,8 @@ class CartPage extends StatelessWidget {
           },
           onRefresh: () {
             context.read<CartCubit>().fetch();
-            // context.read<WaitingOrdersCubit>().fetch();
+            context.read<WaitingOrdersCubit>().fetch();
+            context.read<DeliveryOrdersCubit>().fetch();
             return context.read<TabCountsCubit>().fetch(false);
           },
           tabPages: [

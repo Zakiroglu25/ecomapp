@@ -84,7 +84,7 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
                             .copyWith(fontSize: 16.sp, color: MyColors.black),
                       ),
                     )
-                  : AppBarAddressWidget(),
+                  : const AppBarAddressWidget(),
               rightButtonsRow(context),
             ],
           ),

@@ -7,6 +7,7 @@ import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/delegate/index.dart';
 
 import '../../../../utils/constants/assets.dart';
 import '../../../custom/app_button.dart';
@@ -33,7 +34,7 @@ class _ProductCartButtonState extends State<ProductCartButton> {
   void didUpdateWidget(covariant ProductCartButton oldWidget) {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
-    starLogic();
+    // starLogic();
   }
 
   void starLogic() {
@@ -46,15 +47,22 @@ class _ProductCartButtonState extends State<ProductCartButton> {
     //final inCart = true;
     return Expanded(
       child: AppButton(
-        color: inCart ? MyColors.brand : MyColors.mainGreen85,
-        onTap: () {
-          if (inCart) {
-            context.read<CartCubit>().delete(widget.product.guid);
+        color: widget.product.isInCart! ? MyColors.brand : MyColors.mainGreen85,
+        onTap: () async {
+          bool? res;
+          if (widget.product.isInCart!) {
+            res = await context
+                .read<CartCubit>()
+                .delete(context, guid: widget.product.guid);
           } else {
-            context.read<CartCubit>().add(widget.product.guid);
+            res = await context
+                .read<CartCubit>()
+                .add(context, guid: widget.product.guid);
           }
-          inCart = !inCart;
-          setState(() {});
+          if (res == true) {
+            widget.product.isInCart = !widget.product.isInCart!;
+            setState(() {});
+          }
         },
         // w: 90,
         child: Row(
@@ -63,7 +71,7 @@ class _ProductCartButtonState extends State<ProductCartButton> {
           children: [
             SizedBox(
                 height: 30,
-                child: inCart
+                child: widget.product.isInCart!
                     ? SvgPicture.asset(Assets.svgBagCross)
                     : SvgPicture.asset(Assets.svgCart)),
             MySizedBox.w4,
@@ -71,7 +79,7 @@ class _ProductCartButtonState extends State<ProductCartButton> {
               height: 20,
               child: Center(
                 child: Text(
-                  inCart ? MyText.cancel : MyText.toCart,
+                  widget.product.isInCart! ? MyText.cancel : MyText.toCart,
                   textAlign: TextAlign.start,
                   style:
                       AppTextStyles.sfPro400h2.copyWith(color: MyColors.white),

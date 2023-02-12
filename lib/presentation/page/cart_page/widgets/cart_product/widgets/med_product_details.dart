@@ -19,7 +19,6 @@ class MedProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bbbb("itemitemitem: $item");
     return Flexible(
       child: SpacedColumn(
         mainAxisSize: MainAxisSize.min,
@@ -38,9 +37,7 @@ class MedProductDetails extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ManatPrice(
-                  price:
-                      "${calculate(item?.amount, item?.price).toStringAsFixed(2)}"),
+              ManatPrice(price: calculate(item?.amount, item?.price)),
               CartCounter(item: item)
             ],
           ),

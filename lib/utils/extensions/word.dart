@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:uikit/widgets/general/manat_price.dart';
+
 extension Word on String {
   String get first => split(' ').first;
 
@@ -11,7 +14,7 @@ extension Word on String {
   String get withManat => "$this ₼";
   String get removeNewLineOperators => replaceAll('\n      ', '');
 
-  String withPrice(double price) => "$this: $price ₼";
+  //String withPrice(double price) => "$this: $price ₼";
 
   String withX(String x) => "$this $x";
 }

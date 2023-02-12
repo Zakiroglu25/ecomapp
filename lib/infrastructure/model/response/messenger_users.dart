@@ -43,17 +43,17 @@ class Data {
 
   Data(
       {this.guid,
-        this.storeGuid,
-        this.storeName,
-        this.lastMessage,
-        this.lastMessageSentAt});
+      this.storeGuid,
+      this.storeName,
+      this.lastMessage,
+      this.lastMessageSentAt});
 
   Data.fromJson(Map<String, dynamic> json) {
     guid = json['guid'];
     storeGuid = json['storeGuid'];
-    storeName = json['storeName'];
-    lastMessage = json['lastMessage'];
-    lastMessageSentAt = json['lastMessageSentAt'];
+    storeName = json['storeName'] ?? '';
+    lastMessage = json['lastMessage'] ?? '';
+    lastMessageSentAt = json['lastMessageSentAt'] ?? 's';
   }
 
   Map<String, dynamic> toJson() {
