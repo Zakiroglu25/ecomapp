@@ -60,26 +60,28 @@ class AddressWidget extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "${address.title}",
-                    style: AppTextStyles.sfPro600s16,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
-                  MySizedBox.h4,
-                  Text(
-                    address.streetName!.length > 30
-                        ? address.streetName!.substring(0, 30)
-                        : address.streetName!,
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    style: AppTextStyles.sfPro400s14
-                        .copyWith(color: MyColors.grey158),
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "${address.title}",
+                      style: AppTextStyles.sfPro600s16,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                    MySizedBox.h4,
+                    Text(
+                      address.streetName!.length > 30
+                          ? address.streetName!.substring(0, 30)
+                          : address.streetName!,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      style: AppTextStyles.sfPro400s14
+                          .copyWith(color: MyColors.grey158),
+                    ),
+                  ],
+                ),
               ),
               Spacer(),
               SvgPicture.asset(Assets.svgEdit)

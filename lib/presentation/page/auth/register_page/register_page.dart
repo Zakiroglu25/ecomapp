@@ -27,7 +27,7 @@ class Register extends StatelessWidget {
         backgroundColor: MyColors.white,
         elevation: 0,
         title: Text(
-          "Hesab yarat",
+          MyText.register,
           style: AppTextStyles.sfPro500
               .copyWith(color: MyColors.black, fontSize: 16.sp),
         ),

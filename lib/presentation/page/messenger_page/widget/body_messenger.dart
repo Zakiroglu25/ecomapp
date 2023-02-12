@@ -29,7 +29,7 @@ class BodyMessenger extends StatelessWidget {
                   context,
                   Pager.chat(
                       guid: list[index].guid,
-                      storeName: list[index].storeName));
+                      storeName: list[index].storeName!));
             },
             child: Slidable(
               key: UniqueKey(),

@@ -40,8 +40,6 @@ class _ProductCartButtonState extends State<ProductCartButton> {
   void starLogic() {
     inCart = widget.product.isInCart!;
     setState(() {});
-    bbbb("inCart:  ${widget.product.isInCart}");
-    bbbb("inCart2:  ${inCart}");
   }
 
   @override

@@ -42,7 +42,6 @@ class ProductsBody extends StatelessWidget {
               builder: (context, state) {
                 if (state is ProductsSuccess) {
                   final productList = state.productList;
-                  bbbb("pppp: ${productList.first.isInCart}");
                   //final productList = [];
                   return Expanded(
                     child: ListOrEmpty(

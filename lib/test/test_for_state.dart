@@ -15,6 +15,14 @@ class TestForInitial extends TestForState {
   List<Object?> get props => [];
 }
 
+class TestForLoading extends TestForState {
+  TestForLoading(super.number);
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}
+
 class TestForInitial2 extends TestForState {
   TestForInitial2(super.number);
 
