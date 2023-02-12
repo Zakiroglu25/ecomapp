@@ -21,7 +21,6 @@ class LastNameFieldUser extends StatelessWidget {
           title: MyText.lastName,
           maxLines: 1,
           hint: MyText.lastName,
-          upperCase: false,
           textInputType: TextInputType.name,
           textCapitalization: TextCapitalization.sentences,
           controller: controller,

@@ -21,7 +21,6 @@ class SeriaFieldUser extends StatelessWidget {
           title: MyText.seriaNum,
           maxLines: 1,
           hint: MyText.seriaNum,
-          upperCase: true,
           suffixIcon: Tooltip(message: 'burda fin kod olacay'),
           textInputType: TextInputType.name,
           textCapitalization: TextCapitalization.characters,

@@ -9,6 +9,7 @@ import '../../../../../utils/constants/paddings.dart';
 import '../../../../../utils/constants/sized_box.dart';
 import '../../../../../utils/constants/text.dart';
 import '../../../../../utils/delegate/navigate_utils.dart';
+import '../../../../../utils/delegate/string_operations.dart';
 import '../../../../../widgets/custom/app_button.dart';
 import '../../../../../widgets/general/app_field.dart';
 
@@ -16,6 +17,7 @@ class InsuranceNumTab extends StatelessWidget {
   InsuranceNumTab({Key? key}) : super(key: key);
 
   HiveService get _prefs => locator<HiveService>();
+
   @override
   Widget build(BuildContext context) {
     final addInsuranceCubit = context.watch<InsuranceCubit>();
@@ -25,7 +27,7 @@ class InsuranceNumTab extends StatelessWidget {
         create: (context) => InsuranceCubit(),
         child: BlocListener<InsuranceCubit, InsuranceState>(
           listener: (context, state) {
-            if(state is AddInsuranceSuccess){
+            if (state is AddInsuranceSuccess) {
               Go.pop(context);
             }
           },
@@ -51,22 +53,24 @@ class InsuranceNumTab extends StatelessWidget {
                 maxLenght: 16,
                 textCapitalization: TextCapitalization.none,
               ),
-              if(_prefs.user.finCode!.isEmpty)
-                AppField(
-                  controller: addInsuranceCubit.finCode,
-                  title: MyText.fin,
-                  maxLines: 1,
-                  hint: MyText.fin,
-                  textInputType: TextInputType.text,
-                  maxLenght: 7,
-                  upperCase: true,
-                  textCapitalization: TextCapitalization.none,
-                ),
-                AppButton(
+              AppField(
+                controller: _prefs.user.finCode!.isEmpty
+                    ? addInsuranceCubit.finCode
+                    : StringOperations.stringToController(
+                        _prefs.user.finCode),
+                title: MyText.fin,
+                maxLines: 1,
+                hint: _prefs.user.finCode!.isEmpty
+                    ? MyText.fin
+                    : _prefs.user.finCode,
+                textInputType: TextInputType.text,
+                maxLenght: 7,
+                upperCase: true,
+                textCapitalization: TextCapitalization.none,
+              ),
+              AppButton(
                 loading:
-                context
-                    .watch<InsuranceCubit>()
-                    .state is InsuranceLoading,
+                    context.watch<InsuranceCubit>().state is InsuranceLoading,
                 onTap: () {
                   context.read<InsuranceCubit>().addInsurance(context: context);
                 },
