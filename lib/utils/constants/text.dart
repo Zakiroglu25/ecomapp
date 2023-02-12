@@ -309,6 +309,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String locationAccessDenied = "İcazə rədd edildi";
   static const String locationAccessDisabled =
       "İcazə qalıcı olaraq rədd edilib";
+  static const String locationServiceDisabled = "GPS aktivləşdirilməyib";
   static const String emptyDeliveryAddressDesc =
       "Hal-hazırda sənin çatdırılacaq ünvanların qeyd olunmayıb. Yeni ünvan əlavə et.";
 

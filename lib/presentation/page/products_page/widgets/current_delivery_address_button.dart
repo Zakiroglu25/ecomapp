@@ -28,6 +28,11 @@ class CurrentDeliveryAddressButton extends StatelessWidget {
                 .read<DeliveryAddressCurrentCubit>()
                 .showAccessAlertForPermission(context);
           }
+          if (state is DeliveryAdressCurrentServiceDisabled) {
+            context
+                .read<DeliveryAddressCurrentCubit>()
+                .showAccessAlertForServiceEnable(context);
+          }
         },
         builder: (context, state) {
           if (state is DeliveryAdressCurrentSuccess) {
@@ -42,6 +47,12 @@ class CurrentDeliveryAddressButton extends StatelessWidget {
           if (state is DeliveryAdressCurrentDenied) {
             return CurrentDeliveryAddressItem(
               address: MyText.locationAccessDenied,
+              context: context,
+            );
+          }
+          if (state is DeliveryAdressCurrentServiceDisabled) {
+            return CurrentDeliveryAddressItem(
+              address: MyText.locationServiceDisabled,
               context: context,
             );
           }

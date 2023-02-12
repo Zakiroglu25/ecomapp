@@ -279,7 +279,7 @@ class DeliveryAddressCurrentCubit extends Cubit<DeliveryAddressCurrentState> {
     });
   }
 
-  Future<void> showAccessAlertForServiceEnabe(BuildContext context) async {
+  Future<void> showAccessAlertForServiceEnable(BuildContext context) async {
     Alert.show(context,
         title: MyText.we_need_access_to_locatoin,
         titleAlign: TextAlign.center,
