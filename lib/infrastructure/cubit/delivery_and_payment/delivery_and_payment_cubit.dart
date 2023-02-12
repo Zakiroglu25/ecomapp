@@ -55,17 +55,17 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
     try {
       final result = await OrdersProvider.changeNotCovered(
           guid: orderGuid, include: value);
-      if (result.isNotNull) {
-        //orderGuid = guid;
-        emit(DeliveryAndPaymentSuccess(orderDetails: result!));
-      } else {
-        emit(DeliveryAndPaymentError());
-      }
-    } on SocketException catch (_) {
-      emit(DeliveryAndPaymentError());
+      // if (result.isNotNull) {
+      //   //orderGuid = guid;
+      //   emit(DeliveryAndPaymentSuccess(orderDetails: result!));
+      // } else {
+      //   emit(DeliveryAndPaymentError());
+      // }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
-      emit(DeliveryAndPaymentError());
+      //   emit(DeliveryAndPaymentError());
+    } finally {
+      fetch(guid: orderGuid);
     }
   }
 
