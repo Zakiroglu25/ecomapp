@@ -20,9 +20,7 @@ class ProductDetailsAndButtons extends StatelessWidget {
             product: product,
           ),
           MySizedBox.h8,
-          ProductPriceAndCartButton(
-            product: product,
-          )
+          ProductPriceAndCartButton(product: product)
         ],
       ),
     );

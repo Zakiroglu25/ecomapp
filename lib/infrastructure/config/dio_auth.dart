@@ -62,13 +62,14 @@ class JwtInterceptor extends Interceptor {
       options.headers['x-mask-jwt'] = '$accessToken';
     }
 
-    return handler.next(options);
+    super.onRequest(options, handler);
+    //return handler.next(options);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) async {
     // TODO: implement onResponse
-    super.onResponse(response, handler);
+
     if (response.statusCode == null) return;
     switch (response.statusCode) {
       case 401:
@@ -79,6 +80,7 @@ class JwtInterceptor extends Interceptor {
       default:
         break;
     }
+    super.onResponse(response, handler);
   }
 
   @override
@@ -116,7 +118,7 @@ class JwtInterceptor extends Interceptor {
     if (res.statusCode.isSuccess && response != null) {
       final accessToken = res.data['accessToken'];
       await _prefs.persistAccessToken(accessToken: accessToken);
-      handler.resolve(response);
+      return handler.resolve(response);
     }
   }
 

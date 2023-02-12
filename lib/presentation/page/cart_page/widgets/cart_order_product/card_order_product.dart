@@ -72,10 +72,7 @@ class CartOrderProduct extends StatelessWidget {
             SpacedRow(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    '${MyText.price}: ${order.totalPrice} ₼',
-                    style: AppTextStyles.sfPro500s13,
-                  ),
+                  order.totalPrice.toManat13(title: MyText.price),
                 ]),
             MySizedBox.h14,
             Row(

@@ -49,7 +49,7 @@ class DeliveryOrdersCubit extends Cubit<DeliveryOrdersState> {
   void loadMore() async {
     eeee("current page:  $page");
     if (page >= totalPages) return;
-    final result = await OrdersProvider.pendingOrders(page: page + 1);
+    final result = await await OrdersProvider.deliveryOrders(page: page + 1);
     if (result.isNotNull) {
       products.addAll(result!.data!);
       emit(DeliveryOrdersSuccess(products));

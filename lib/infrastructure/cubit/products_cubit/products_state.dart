@@ -15,3 +15,8 @@ class ProductsSuccess extends ProductsState {
   ProductsSuccess(this.productList);
   final List<SimpleProduct> productList;
 }
+
+class ProductsSuccess2 extends ProductsSuccess {
+  ProductsSuccess2(this.productList) : super(productList);
+  final List<SimpleProduct> productList;
+}

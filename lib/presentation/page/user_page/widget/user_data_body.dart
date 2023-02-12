@@ -31,7 +31,7 @@ class UserDataBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               width: 166,
               child: Text(
                 MyText.userInfo,
@@ -54,7 +54,7 @@ class UserDataBody extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: MyColors.grey288),
-              child: Center(
+              child: const Center(
                 child: Icon(Icons.person),
               ),
             ),
@@ -105,11 +105,16 @@ class UserDataBody extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            if (_prefs.user.finCode != null)
+              Text(
+                _prefs.user.finCode.toString(),
+                style: AppTextStyles.sfPro600s30,
+              ),
             Text(
-              _prefs.user.idSerialNumber.toString(),
-              style: AppTextStyles.sfPro600s30,
+              "Fin kod yoxdur",
+              style: AppTextStyles.sfPro600s24,
             ),
-            Icon(Icons.copy)
+            const Icon(Icons.copy)
           ],
         ),
       ],

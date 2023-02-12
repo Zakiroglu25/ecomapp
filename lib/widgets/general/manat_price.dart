@@ -1,12 +1,13 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/sized_box.dart';
 
 class ManatPrice extends StatelessWidget {
-  final String? price;
+  final num? price;
   final double? textSize;
   final double? manatSize;
   final Color? mainColor;
@@ -35,23 +36,24 @@ class ManatPrice extends StatelessWidget {
           borderRadius: BorderRadius.circular(r)),
       child: Row(
         //crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            price ?? '',
+            price?.toStringAsFixed(2) ?? "0",
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            style: AppTextStyles.sfPro500.copyWith(
               fontSize: textSize ?? 16,
-              fontFamily: 'sf',
+              // fontFamily: 'sf',
               color: mainColor ?? MyColors.black,
               fontWeight: fontWeight ?? FontWeight.w700,
             ),
           ),
-          MySizedBox.w5,
+          MySizedBox.w4,
           Text(
             '₼',
             style: TextStyle(
                 fontSize: manatSize ?? 16,
-                fontFamily: 'sf',
+                // fontFamily: 'sf',
                 color: mainColor ?? MyColors.black,
                 fontWeight: fontWeight ?? FontWeight.w700),
           ),

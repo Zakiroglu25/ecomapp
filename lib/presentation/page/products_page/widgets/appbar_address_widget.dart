@@ -4,6 +4,7 @@ import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
 import 'package:uikit/infrastructure/cubit/address/address_state.dart';
 import 'package:uikit/presentation/page/products_page/widgets/main_address_box.dart';
 import 'package:uikit/utils/constants/sheets.dart';
+import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/utils/screen/ink_wrapper.dart';
 import 'package:uikit/widgets/custom/app_linear_loading.dart';
 
@@ -26,7 +27,7 @@ class AppBarAddressWidget extends StatelessWidget {
           builder: (context, state) {
             if (state is AddressMainSuccess) {
               final address = state.address;
-              final isAddressNull = address == null;
+              final isAddressNull = address.isNull;
               final secondColor =
                   isAddressNull ? MyColors.secondary : MyColors.green235;
               final mainColor =
@@ -49,7 +50,7 @@ class AppBarAddressWidget extends StatelessWidget {
                       child: Text(
                         isAddressNull
                             ? MyText.addressNotSelected
-                            : "${address.title}",
+                            : "${address?.title}",
                         style: AppTextStyles.sfPro400s14
                             .copyWith(color: mainColor),
                         overflow: TextOverflow.ellipsis,
@@ -66,7 +67,7 @@ class AppBarAddressWidget extends StatelessWidget {
               return MainAddressBox(
                 child: Container(
                     padding: Paddings.paddingV4,
-                    child: Center(child: AppLinearLoading.green())),
+                    child: const Center(child: AppLinearLoading.green())),
               );
             } else {
               return Container();

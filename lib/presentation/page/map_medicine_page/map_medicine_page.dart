@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uikit/infrastructure/cubit/map/map_store_cubit.dart';
-import 'package:uikit/infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/delegate/navigate_utils.dart';
@@ -13,7 +12,6 @@ import '../../../utils/constants/assets.dart';
 import '../../../utils/delegate/index.dart';
 import '../../../widgets/custom/info_window.dart';
 import '../../../widgets/general/app_loading.dart';
-import '../map_details_page/map_details_page.dart';
 
 class MapPage extends StatefulWidget {
   MapPage({Key? key, this.title}) : super(key: key);

@@ -48,10 +48,11 @@ class ChatSendTextField extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 if (controller.text.length > 4) {
-                  context.read<ChatMessengerCubit>().sendMessage(
-                      message: controller.text, guid: guid, context: context);
+                  context
+                      .read<ChatMessengerCubit>()
+                      .sendMessage(message: controller.text);
                   controller.clear();
-                }else{
+                } else {
                   Snack.display(message: "Xarakter sayi 5den boyuk olmalidir.");
                 }
               },

@@ -15,9 +15,7 @@ class ProductPriceAndCartButton extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          ProductPrice(
-            price: product.price,
-          ),
+          ProductPrice(price: product.price),
           ProductCartButton(product: product)
         ],
       ),

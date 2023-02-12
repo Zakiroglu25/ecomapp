@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:focus_detector/focus_detector.dart';
 import 'package:uikit/infrastructure/model/response/map_medicine.dart';
+
 import '../../../infrastructure/cubit/product_details_details/product_details_state.dart';
 import '../../../infrastructure/cubit/product_details_details/product_options_details_cubit.dart';
-import '../../../utils/constants/border_radius.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/paddings.dart';
 import '../../../utils/constants/physics.dart';
+import '../../../widgets/custom/focusable_app_loading.dart';
 import '../../../widgets/custom/listview_separated.dart';
 import '../../../widgets/general/app_loading.dart';
-import '../../../widgets/general/pagenatible.dart';
 import '../../../widgets/main/cupperfold/cupperfold.dart';
-import '../../../widgets/main/doctoro_bottom_sheet/widget/handle_line.dart';
 import '../../../widgets/main/product_item/product_item.dart';
 import 'widget/map_details_header.dart';
 import 'widget/sliver_handler.dart';
@@ -25,6 +24,7 @@ class MapDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<ProductOptionDetailsCubit>(context);
     return Cupperfold(
       barColor: MyColors.green235,
       backColor: MyColors.green235,
@@ -43,31 +43,25 @@ class MapDetailsPage extends StatelessWidget {
                   padding: Paddings.paddingH16,
                   color: MyColors.white,
                   child: StreamBuilder<bool>(
-                      stream:
-                          BlocProvider.of<ProductOptionDetailsCubit>(context)
-                              .haveElseStream,
+                      stream: cubit.haveElseStream,
                       builder: (context, snapshot) {
                         return ListViewSeparated(
-                          padding: Paddings.paddingA16 + Paddings.paddingB60,
-                          physics: Physics.never,
-                          itemCount: snapshot.data ?? false
-                              ? productList!.length + 1
-                              : productList!.length,
-                          shrinkWrap: true,
-                          addAutomaticKeepAlives: true,
-                          itemBuilder: (context, index) {
-                            return index == productList.length
-                                ? FocusDetector(
-                                    onFocusGained: () => BlocProvider.of<
-                                            ProductOptionDetailsCubit>(context)
-                                        .loadMore(maps!.guid!),
-                                    child: const AppLoading.main())
-                                : ProductItem(
-                                    product: productList[index],
-                                    inFav: false,
-                                  );
-                          },
-                        );
+                            padding: Paddings.paddingA16 + Paddings.paddingB60,
+                            physics: Physics.never,
+                            itemCount: snapshot.data ?? false
+                                ? productList!.length + 1
+                                : productList!.length,
+                            shrinkWrap: true,
+                            addAutomaticKeepAlives: true,
+                            itemBuilder: (context, index) {
+                              return index == productList.length
+                                  ? FocusableAppLoading(
+                                      onFocus: () =>
+                                          cubit.loadMore(maps!.guid!))
+                                  : ProductItem(
+                                      product: productList[index],
+                                      inFav: false);
+                            });
                       }),
                 ),
               );

@@ -37,10 +37,10 @@ class MainBuild {
                   // ),
                 },
               ),
-              fontFamily: 'ProximaNova-Medium',
-              textTheme: Theme.of(context).textTheme.apply(
-                    fontFamily: 'ProximaNova-Medium',
-                  ),
+              //   fontFamily: 'ProximaNova-Medium',
+              // textTheme: Theme.of(context).textTheme.apply(
+              //       fontFamily: 'ProximaNova-Medium',
+              //     ),
               scaffoldBackgroundColor: MyColors.white),
           builder: (context, widget) {
             // ScreenUtil.setContext(context);

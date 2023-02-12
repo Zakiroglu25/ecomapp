@@ -6,17 +6,21 @@ import 'package:uikit/infrastructure/cubit/waiting_orders/waiting_orders_state.d
 import 'package:uikit/presentation/page/cart_page/widgets/cart_order_product/card_order_product.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/physics.dart';
+import 'package:uikit/widgets/custom/focusable_app_loading.dart';
 import 'package:uikit/widgets/custom/listview_separated.dart';
+import 'package:uikit/widgets/general/pagenatible.dart';
 
 import '../../../../../infrastructure/cubit/tab_counts/tab_counts_cubit.dart';
 import '../../../../../widgets/general/app_loading.dart';
 import '../../../../../widgets/general/empty_widget.dart';
+import 'widgets/orders_stream_view.dart';
 
 class WaitingTab extends StatelessWidget {
   const WaitingTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<WaitingOrdersCubit>(context);
     return FocusDetector(
       onFocusGained: () =>
           context.read<WaitingOrdersCubit>().fetch(loading: false),
@@ -24,13 +28,10 @@ class WaitingTab extends StatelessWidget {
         builder: (context, state) {
           if (state is WaitingOrdersSuccess) {
             final orders = state.orders;
-            return ListViewSeparated(
-              padding: Paddings.paddingH16 + Paddings.paddingB200,
-              shrinkWrap: true,
-              physics: Physics.never,
-              itemBuilder: (context, index) =>
-                  CartOrderProduct(order: orders[index]),
-              itemCount: orders.length,
+            return OrdersStreamView(
+              orders: orders,
+              cubit: cubit,
+              key: Key("waitings"),
             );
           } else if (state is WaitingOrdersError) {
             return EmptyWidget(

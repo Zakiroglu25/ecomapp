@@ -46,9 +46,9 @@ class _ProductAddToCartButtonState extends State<ProductAddToCartButton> {
       color: inCart ? MyColors.brand : MyColors.mainGreen85,
       onTap: () {
         if (inCart) {
-          context.read<CartCubit>().delete(widget.guid);
+          context.read<CartCubit>().delete(context, guid: widget.guid);
         } else {
-          context.read<CartCubit>().add(widget.guid);
+          context.read<CartCubit>().add(context, guid: widget.guid);
         }
         inCart = !inCart;
         setState(() {});

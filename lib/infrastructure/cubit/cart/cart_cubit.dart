@@ -47,18 +47,22 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  void add(String? guid) async {
+  Future<bool?> add(BuildContext context, {required String? guid}) async {
+    Loader.show(context);
     try {
       final result = await CartProvider.addCart(itemGuid: guid, amount: 1);
       if (result.statusCode.isSuccess) {
         Snack.positive(message: MyText.addedToCart);
         fetch(false);
+        return true;
       } else {
         emit(CartOperationError());
       }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
       emit(CartError());
+    } finally {
+      Loader.hide();
     }
   }
 
@@ -82,23 +86,28 @@ class CartCubit extends Cubit<CartState> {
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
       emit(CartError());
+    } finally {
+      Loader.hide();
     }
-    Loader.hide();
   }
 
-  void delete(String? stockGuid,
-      {bool isCart = false, bool inCart = false}) async {
+  Future<bool?> delete(BuildContext context,
+      {bool isCart = false, bool inCart = false, required String? guid}) async {
+    Loader.show(context);
     try {
-      final result = await CartProvider.deleteCart(guid: stockGuid!);
+      final result = await CartProvider.deleteCart(guid: guid!);
       if (result.statusCode.isSuccess) {
         Snack.display(message: MyText.removedFromCart, color: MyColors.brand);
         fetch(false);
+        return true;
       } else {
         emit(CartOperationError());
       }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
       emit(CartError());
+    } finally {
+      Loader.hide();
     }
   }
 

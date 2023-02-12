@@ -20,7 +20,7 @@ class CartTotalPropertyManat extends StatelessWidget {
     return CartTotalProperty(
       title: title,
       value: ManatPrice(
-          price: value?.toStringAsFixed(2),
+          price: value,
           mainColor: withBack ? MyColors.white : MyColors.black,
           fontWeight: FontWeight.w400,
           backColor: withBack ? MyColors.black : MyColors.transparent,
