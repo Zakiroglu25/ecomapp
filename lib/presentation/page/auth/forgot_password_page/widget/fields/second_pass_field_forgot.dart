@@ -30,7 +30,6 @@ class _SecondPassFieldForgotState extends State<SecondPassFieldForgot> {
           title: MyText.password,
           maxLines: 1,
           hint: MyText.enter_new_pass_again,
-          textInputType: TextInputType.phone,
           textCapitalization: TextCapitalization.none,
           obscure: obscure,
           suffixIcon: Material(

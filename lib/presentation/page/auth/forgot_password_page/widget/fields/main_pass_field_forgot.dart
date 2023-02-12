@@ -40,11 +40,8 @@ class _MainPassFieldForgotState extends State<MainPassFieldForgot> {
             ),
           ),
           obscure: obscure,
-          textInputType: TextInputType.phone,
           textCapitalization: TextCapitalization.none,
           errorMessage: snapshot.error == null ? null : '${snapshot.error}',
-          //infoMessage: MyText.confirm_your_email,
-          //controller: widget.controller,
           onChanged: (value) =>
               BlocProvider.of<ForgotPassCubit>(context).updateMainPass(value),
         );
