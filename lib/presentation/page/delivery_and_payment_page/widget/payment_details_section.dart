@@ -49,7 +49,8 @@ class PaymentDetailsSection extends StatelessWidget {
                       MySizedBox.h20,
                       CartInsuranceProperties(details: details),
                       CartTotalPrice(insuranceRequested
-                          ? details.notCoveredByInsuranceAmount
+                          ? details.notCoveredByInsuranceAmount! +
+                              details.deliveryPrice!
                           : details.totalPrice)
                     ],
                   ),

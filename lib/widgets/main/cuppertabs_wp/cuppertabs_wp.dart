@@ -99,8 +99,8 @@ class _CupperTabsWithProviderState extends State<CupperTabsWithProvider>
         widget.onChange?.call(_currentIndex);
       }
       if (_tabController.index != index) {
-        widget.onIndexCompletelyChanged?.call(_currentIndex);
         index = _tabController.index;
+        widget.onIndexCompletelyChanged?.call(index);
       }
       setState(() {});
     });

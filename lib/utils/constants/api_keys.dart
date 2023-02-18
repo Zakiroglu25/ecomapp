@@ -326,6 +326,22 @@ class ApiKeys {
     return map;
   }
 
+  static updateOrderBody(
+      {String? addressGuid,
+      required String? paymentType,
+      required String? deliveryType}) {
+    //
+    final map = {
+      "paymentType": paymentType,
+      "deliveryType": deliveryType,
+      "addressGuid": addressGuid
+    };
+
+    map.removeWhere(
+        (key, value) => key == null || value == null || value == 'null');
+    return map;
+  }
+
   static createPaymentBody(
       {required String? orderGuid,
       required String? deliveryType,

@@ -17,7 +17,9 @@ import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/utils/screen/snack.dart';
 
 import '../../../utils/screen/overlay_loader.dart';
+import '../../data/address_provider.dart';
 import '../../data/orders_provider.dart';
+import '../../model/response/address_model.dart';
 import 'delivery_and_payment_state.dart';
 
 class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
@@ -26,22 +28,74 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
   HiveService get _prefs => locator<HiveService>();
 
   String orderGuid = '';
+  String? addressGuid;
   int tabIndex = 0;
 
-  fetch({bool loading = true, required String guid}) async {
+  fetch({bool loading = true, String? guid}) async {
+    bbbb("tesssss");
     if (loading) {
       emit(DeliveryAndPaymentInProgress());
     }
+    if (guid.isNotNull) orderGuid = guid!;
     try {
-      final result = await OrdersProvider.orderDetails(guid: guid);
+      await fetchMainAddress();
+      final result = await OrdersProvider.orderDetails(guid: orderGuid);
       if (result.isNotNull) {
-        orderGuid = guid;
         emit(DeliveryAndPaymentSuccess(orderDetails: result!));
       } else {
         emit(DeliveryAndPaymentError());
       }
     } on SocketException catch (_) {
       emit(DeliveryAndPaymentError());
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+      emit(DeliveryAndPaymentError());
+    }
+  }
+
+  updateDeliveryType({bool loading = true, required int index}) async {
+    if (loading) {
+      emit(DeliveryAndPaymentInProgress());
+    }
+    try {
+      if (addressGuid.isNull) return;
+      final result = await OrdersProvider.updateOrderDetails(
+        guid: orderGuid,
+        addressGuid: addressGuid,
+        paymentType: paymentType.valueOrNull?.toValue,
+        deliveryType: DeliveryType.fromIndex(index),
+      );
+      if (result.isSuccess) {
+        //orderGuid = guid;
+        // emit(DeliveryAndPaymentSuccess(orderDetails: result!));
+        fetch(guid: orderGuid);
+      } else {
+        emit(DeliveryAndPaymentError());
+      }
+    } on SocketException catch (_) {
+      emit(DeliveryAndPaymentError());
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+      emit(DeliveryAndPaymentError());
+    }
+  }
+
+  Future<void> fetchMainAddress(
+      {bool andUpdate = false, bool loading = true}) async {
+    if (loading) emit(DeliveryAndPaymentInProgress());
+    try {
+      List<Address> result = await AddressProvider.getAddresses();
+      final Address? address =
+          result.where((element) => element.isMain == true).firstOrNull;
+      if (address.isNull) {
+        emit(DeliveryAndPaymentError(error: MyText.emptyDeliveryAddressDesc));
+        return;
+      }
+      addressGuid = address!.guid!;
+      if (andUpdate) {
+        updateDeliveryType(index: tabIndex);
+      }
+      return;
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
       emit(DeliveryAndPaymentError());
@@ -71,25 +125,22 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
 
   updateTab({required int index}) async {
     tabIndex = index;
+    updateDeliveryType(index: index);
     if (index == 0 && paymentType.valueOrNull == PaymentType.CASH) {
       updatePaymentType(null);
     }
   }
 
   void createOrderPayment(
-      {bool loading = false,
-      required BuildContext context,
-      required DeliveryType deliveryType}) async {
+      {bool loading = false, required BuildContext context}) async {
     try {
       if (loading) emit(DeliveryAndPaymentInProgress());
       Loader.show(context);
       final result = await OrdersProvider.createPayment(
           orderGuid: orderGuid,
           saveCard: checkbox.valueOrNull,
-          paymentType: paymentType.valueOrNull == PaymentType.unselected
-              ? null
-              : paymentType.valueOrNull?.toText,
-          deliveryType: deliveryType.toText,
+          // paymentType: paymentType.valueOrNull?.toValue,
+          // deliveryType: deliveryType.toText,
           cardGuid: selectedCard.valueOrNull?.guid,
           comment: comment.valueOrNull);
       //result?.url = null;

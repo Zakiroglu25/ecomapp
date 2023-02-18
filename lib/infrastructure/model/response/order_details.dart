@@ -45,7 +45,7 @@ class OrderDetails {
     totalPrice = json['totalPrice'] ?? 0;
     notCoveredByInsuranceAmount = json['notCoveredByInsuranceAmount'] ?? 0;
     totalDiscountedPrice = json['totalDiscountedPrice'];
-    deliveryPrice = json['deliveryPrice'] ?? totalPrice! - price!;
+    deliveryPrice = json['deliveryPrice'] ?? 0;
     paymentType = json['paymentType'];
     deliveryType = json['deliveryType'];
     storeGuid = json['storeGuid'];

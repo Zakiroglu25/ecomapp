@@ -244,7 +244,8 @@ class Pager {
         child: AddressPage(),
       );
 
-  static deliveryAndPaymentPage({required String orderGuid}) =>
+  static deliveryAndPaymentPage(
+          {required String orderGuid, required String deliveryType}) =>
       MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => AddressCubit()..fetchMainAddress()),
@@ -257,7 +258,8 @@ class Pager {
           // ),
           BlocProvider(create: (context) => CardCubit()..getCard()),
         ],
-        child: DeliveryAndPaymentPage(orderGuid: orderGuid),
+        child: DeliveryAndPaymentPage(
+            orderGuid: orderGuid, deliveryType: deliveryType),
       );
 
   static webviewPage(

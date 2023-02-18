@@ -120,7 +120,6 @@ class DeliveryAddressCurrentCubit extends Cubit<DeliveryAddressCurrentState> {
   // }
 
   void add(BuildContext context, {bool loading = true}) async {
-    bbbb("jhhkjjk");
     try {
       if (loading) {
         emit(DeliveryAdressCurrentInProgress());

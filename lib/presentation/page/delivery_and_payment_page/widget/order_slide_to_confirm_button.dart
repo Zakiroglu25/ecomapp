@@ -18,7 +18,7 @@ class OrderSlideToConfirmButton extends StatelessWidget {
           await Future.delayed(const Duration(seconds: 3));
           context
               .read<DeliveryAndPaymentCubit>()
-              .createOrderPayment(context: context, deliveryType: deliveryType);
+              .createOrderPayment(context: context);
           controller.success(); //starts success animation
         });
   }

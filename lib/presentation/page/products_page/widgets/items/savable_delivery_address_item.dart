@@ -11,6 +11,8 @@ import 'package:uikit/widgets/custom/custom_radio.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/delegate/navigate_utils.dart';
 
+typedef OnAddressChanged = void Function();
+
 class SavableDeliveryAddressItem extends StatefulWidget {
   const SavableDeliveryAddressItem(
       {Key? key,

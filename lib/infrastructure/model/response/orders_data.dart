@@ -71,7 +71,7 @@ class CartOrder {
     totalPrice = json['totalPrice'];
     discountedPrice = json['discountedPrice'];
     paymentType = json['paymentType'];
-    deliveryType = json['deliveryType'];
+    deliveryType = json['deliveryType'] ?? 'COURIER';
     status = json['status'];
     createdAt = json['createdAt'];
   }

@@ -10,8 +10,9 @@ import '../../../../infrastructure/cubit/address/address_cubit.dart';
 import '../../../../widgets/custom/app_linear_loading.dart';
 
 class CurrentDeliveryAddressButton extends StatelessWidget {
-  const CurrentDeliveryAddressButton({Key? key}) : super(key: key);
-
+  const CurrentDeliveryAddressButton({Key? key, required this.onChange})
+      : super(key: key);
+  final Function? onChange;
   @override
   Widget build(BuildContext context) {
     return FocusDetector(
@@ -39,33 +40,33 @@ class CurrentDeliveryAddressButton extends StatelessWidget {
             final address = state.address;
             //final location = state.location;
             return CurrentDeliveryAddressItem(
-                address: address, context: context);
+                address: address, context: context, onChange: onChange);
           }
           if (state is DeliveryAdressCurrentInProgress) {
             return const AppLinearLoading();
           }
           if (state is DeliveryAdressCurrentDenied) {
             return CurrentDeliveryAddressItem(
-              address: MyText.locationAccessDenied,
-              context: context,
-            );
+                address: MyText.locationAccessDenied,
+                context: context,
+                onChange: onChange);
           }
           if (state is DeliveryAdressCurrentServiceDisabled) {
             return CurrentDeliveryAddressItem(
-              address: MyText.locationServiceDisabled,
-              context: context,
-            );
+                address: MyText.locationServiceDisabled,
+                context: context,
+                onChange: onChange);
           }
           if (state is DeliveryAdressCurrentDisabled) {
             return CurrentDeliveryAddressItem(
-              address: MyText.locationAccessDisabled,
-              context: context,
-            );
+                address: MyText.locationAccessDisabled,
+                context: context,
+                onChange: onChange);
           } else {
             return CurrentDeliveryAddressItem(
-              address: MyText.locationAccessDisabled,
-              context: context,
-            );
+                address: MyText.locationAccessDisabled,
+                context: context,
+                onChange: onChange);
           }
         },
       ),

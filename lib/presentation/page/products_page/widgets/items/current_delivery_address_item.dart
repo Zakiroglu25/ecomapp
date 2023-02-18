@@ -10,7 +10,7 @@ import '../../../../../utils/constants/assets.dart';
 
 class CurrentDeliveryAddressItem extends SavableDeliveryAddressItem {
   CurrentDeliveryAddressItem(
-      {Key? key, required this.address, required this.context})
+      {Key? key, required this.address, required this.context, this.onChange})
       : super(
             subTitle: address,
             key: key,
@@ -36,8 +36,10 @@ class CurrentDeliveryAddressItem extends SavableDeliveryAddressItem {
               }
               context.read<DeliveryAddressCurrentCubit>().add(context);
               // context.read<AddressCubit>().fetchMainAddress();
+              onChange?.call();
             });
 
   final String address;
   final BuildContext context;
+  final Function? onChange;
 }
