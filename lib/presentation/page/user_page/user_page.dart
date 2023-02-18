@@ -60,14 +60,13 @@ class _PageViewExampleState extends State<PageViewExample> {
       ),
       backgroundColor: MyColors.red250,
       body: SafeArea(
+
         child: Column(
           children: [
             Expanded(
               child: PageView.builder(
                   controller: _pageViewController,
                   itemCount: cards.length,
-                  physics: const BouncingScrollPhysics(
-                      parent: AlwaysScrollableScrollPhysics()),
                   onPageChanged: (index) {
                     setState(() {
                       _currentIndex = index;
@@ -75,17 +74,7 @@ class _PageViewExampleState extends State<PageViewExample> {
                   },
                   itemBuilder: (context, index) {
                     final images = cards[index];
-                    var _scale = _currentIndex == index ? 1.0 : 0.92;
-                    return TweenAnimationBuilder(
-                        tween: Tween(begin: _scale, end: _scale),
-                        duration: const Duration(milliseconds: 350),
-                        child: images,
-                        builder: (context, double value, child) {
-                          return Transform.scale(
-                            scale: value,
-                            child: child,
-                          );
-                        });
+                    return images;
                   }),
             ),
             Column(
