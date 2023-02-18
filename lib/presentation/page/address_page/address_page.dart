@@ -37,6 +37,7 @@ class AddressPage extends StatelessWidget {
     return Cupperfold(
       title: MyText.myAddresses,
       user: false,
+      notification: false,
       child: FocusDetector(
         onFocusGained: () => context.read<AddressCubit>().fetch(false),
         child:

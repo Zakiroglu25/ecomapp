@@ -1,4 +1,3 @@
-// Flutter imports:
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../infrastructure/services/navigation_service.dart';
 import '../constants/colors.dart';
 import 'widget_or_empty.dart';
-// Project imports:
 
 class Snack {
   static display({

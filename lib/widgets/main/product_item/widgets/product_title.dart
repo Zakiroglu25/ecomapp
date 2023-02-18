@@ -14,8 +14,8 @@ class ProductTitle extends StatelessWidget {
         height: 48,
         child: Text(
           title ?? '',
-          style: AppTextStyles.sfPro400s14
-              .copyWith(color: MyColors.black34, height: 1.8),
+          style: AppTextStyles.sfPro400s16
+              .copyWith(color: MyColors.black34, height: 1.8,fontSize: 18,letterSpacing: -0.2),
           //overflow: TextOverflow.ellipsis,
         ),
       ),

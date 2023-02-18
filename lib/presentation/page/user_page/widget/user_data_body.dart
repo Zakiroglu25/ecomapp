@@ -103,17 +103,19 @@ class UserDataBody extends StatelessWidget {
         ),
         MySizedBox.h2,
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             if (_prefs.user.finCode != null)
               Text(
                 _prefs.user.finCode.toString(),
                 style: AppTextStyles.sfPro600s30,
               ),
-            Text(
+            if (_prefs.user.finCode!.isEmpty)
+              Text(
               "Fin kod yoxdur",
               style: AppTextStyles.sfPro600s24,
             ),
+            Spacer(),
             const Icon(Icons.copy)
           ],
         ),
