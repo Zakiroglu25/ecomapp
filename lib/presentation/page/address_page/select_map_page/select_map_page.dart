@@ -7,12 +7,15 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:map_picker/map_picker.dart';
 import 'package:uikit/infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
 
+import '../../../../infrastructure/model/response/address_model.dart';
 import '../../../../utils/delegate/navigate_utils.dart';
 import '../../../../widgets/custom/app_button.dart';
 import '../../add_address_page/add_address_page.dart';
 
 class MapSample extends StatefulWidget {
-  const MapSample({Key? key}) : super(key: key);
+  const MapSample({Key? key, this.addressModel}) : super(key: key);
+  final Address? addressModel;
+
 
   @override
   _MapSampleState createState() => _MapSampleState();
@@ -102,6 +105,7 @@ class _MapSampleState extends State<MapSample> {
                         textController: textController,
                         lat: cameraPosition.target.latitude,
                         lng: cameraPosition.target.longitude,
+                        addressModel: widget.addressModel,
                       ),
                     ));
               },
