@@ -26,7 +26,7 @@ class CurrentDeliveryAddressButton extends StatelessWidget {
           if (state is DeliveryAdressCurrentDisabled) {
             context
                 .read<DeliveryAddressCurrentCubit>()
-                .showAccessAlert(context);
+                .showAccessAlertForPermission(context);
           }
         },
         builder: (context, state) {
