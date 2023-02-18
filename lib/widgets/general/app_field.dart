@@ -39,6 +39,7 @@ class AppField extends StatelessWidget {
   final FocusNode? focusNode;
   final String? suffixText;
   final TextInputType? textInputType;
+  final double? paddingAll;
 
   AppField({
     this.controller,
@@ -66,7 +67,7 @@ class AppField extends StatelessWidget {
     this.onTap,
     this.prefixIcon,
     this.suffixText,
-    this.textInputType,
+    this.textInputType,  this.paddingAll,
   }) : assert(controller == null || initialValue == null,
             "her ikisi teyin ola bilmez");
 
@@ -83,18 +84,14 @@ class AppField extends StatelessWidget {
           // SizedBox(height:topMargin?? 6,),
           Text(
             title ?? "",
-            style: TextStyle(
-                fontSize: 14,
-                color: MyColors.grey158,
-                fontFamily: "San Francisco"),
-          ),
+            style: AppTextStyles.sfPro400s14.copyWith(letterSpacing: 0)),
           MySizedBox.h3,
           Stack(
             alignment: Alignment.center,
             children: [
               AnimatedContainer(
-                height: 50,
-                duration: Duration(milliseconds: 200),
+                height: 49,
+                duration: const Duration(milliseconds: 200),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(radius),
                     border: Border.all(
@@ -102,6 +99,7 @@ class AppField extends StatelessWidget {
                             ? MyColors.transparent
                             : MyColors.errorRED)),
                 child: TextFormField(
+                  style: AppTextStyles.sfPro400s16,
                   autocorrect: false,
                   controller: controller,
                   focusNode: focusNode,
@@ -123,24 +121,24 @@ class AppField extends StatelessWidget {
                   inputFormatters: [...?customInputFormat(), ...?formatters],
                   decoration: InputDecoration(
                     counterText: '',
+
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(radius),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         width: 0,
                         style: BorderStyle.none,
                       ),
                     ),
                     hintText: hint ?? "",
-                    hintStyle: AppTextStyles.sfPro400s14
-                        .copyWith(fontSize: 15, color: MyColors.grey153),
+
+                    hintStyle: AppTextStyles.sfPro400s16
+                        .copyWith( color: MyColors.grey153),
                     suffixText: suffixText ?? "",
                     filled: true,
                     prefixIcon: prefixIcon,
                     fillColor: fillColor,
                     contentPadding: EdgeInsets.only(
-                        left: 14.0,
-                        bottom: 6.0,
-                        top: 8.0,
+                        left: 16.0,
                         right: (suffixIcon != null) ? 40 : 0),
                   ),
                 ),
@@ -155,7 +153,7 @@ class AppField extends StatelessWidget {
                     message: errorMessage ?? "",
                     child: Center(
                       child: Container(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             //  vertical: errorMessage == null ? 18 : 17,
                             horizontal: 2),
                         child: suffixIcon ??
@@ -176,7 +174,7 @@ class AppField extends StatelessWidget {
           WidgetOrEmpty(
             value: errorMessage != null,
             child: FadeIn(
-              key: Key("b"),
+              key: const Key("b"),
               child: Text(
                 errorMessage ?? "",
                 style: AppTextStyles.sfPro400s14
@@ -184,7 +182,7 @@ class AppField extends StatelessWidget {
               ),
             ),
             elseChild: FadeIn(
-              key: Key("a"),
+              key: const Key("a"),
               child: Text(
                 (infoMessage ?? ""),
                 style: AppTextStyles.sfPro400s14

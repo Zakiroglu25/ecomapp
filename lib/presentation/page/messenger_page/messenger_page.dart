@@ -18,7 +18,7 @@ class MessengerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Cupperfold(
       user: false,
-      notification: true,
+      notification: false,
       title: MyText.messenger,
       child: BlocProvider(
         create: (context) => MessengerCubit()..fetch(),

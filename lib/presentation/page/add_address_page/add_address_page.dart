@@ -21,26 +21,16 @@ class AddAddressPage extends StatelessWidget {
   final Address? addressModel;
   double? lat;
   double? lng;
+  String? title;
+
   TextEditingController? textController = TextEditingController();
 
-  AddAddressPage({this.addressModel, this.lat, this.lng, this.textController,});
-
-  bool first = true;
+  AddAddressPage(
+      {this.addressModel, this.lat, this.lng, this.textController, this.title});
 
   @override
   Widget build(BuildContext context) {
     final addAddressCubit = context.watch<AddAddressCubit>();
-
-    if (addressModel != null && first) {
-      addAddressCubit.cityController.text = addressModel!.city!;
-      addAddressCubit.houseNumberController.text = addressModel!.houseNumber!;
-      addAddressCubit.phoneController.text = addressModel!.phone!;
-      addAddressCubit.countryController.text = addressModel!.country!;
-      addAddressCubit.latitudeController.text = addressModel!.latitude!;
-      addAddressCubit.longitudeController.text = addressModel!.longitude!;
-      addAddressCubit.descriptionController.text = addressModel!.description!;
-      first = false;
-    }
 
     return Cupperfold(
       title: MyText.addNewAddress,
@@ -71,20 +61,23 @@ class AddAddressPage extends StatelessWidget {
               controller: textController ?? textController,
             ),
             NameAddressField(
-              controller: addAddressCubit.titleCnt,
+              controller:
+                  TextEditingController(text: addressModel?.title ?? ''),
             ),
             TitleField(
-              controller: addAddressCubit.cityController,
+              controller: TextEditingController(text: addressModel?.city ?? ''),
             ),
             RegionField(
-              controller: addAddressCubit.countryController,
+              controller:
+                  TextEditingController(text: addressModel?.country ?? ''),
             ),
             CourierDescField(
-              controller: addAddressCubit.descriptionController,
+              controller:
+                  TextEditingController(text: addressModel?.description ?? ''),
             ),
             MySizedBox.h50,
             AppButton(
-              isButtonActive: first ? true : false,
+              // isButtonActive: isEnabled.value,
               loading:
                   context.read<AddAddressCubit>().state is AddAddressInProgress,
               onTap: () {
@@ -94,6 +87,7 @@ class AddAddressPage extends StatelessWidget {
                         context: context,
                         lat: lat,
                         lng: lng,
+                        guid: addressModel!.guid,
                         streetNameController: textController)
                     : context.read<AddAddressCubit>().addAddress(
                         context: context,
@@ -102,7 +96,8 @@ class AddAddressPage extends StatelessWidget {
                         streetNameController: textController);
               },
               text: MyText.save,
-            )
+            ),
+
             // AddressField()
           ],
         ),
