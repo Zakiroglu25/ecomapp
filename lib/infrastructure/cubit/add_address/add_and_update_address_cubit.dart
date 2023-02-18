@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../locator.dart';
@@ -17,15 +18,6 @@ class AddAddressCubit extends Cubit<AddAddressState> {
   AddAddressCubit() : super(AddAddressInitial());
 
   HiveService get _prefs => locator<HiveService>();
-  final titleCnt = TextEditingController()..addListener(() {});
-  final countryController = TextEditingController();
-  final houseNumberController = TextEditingController();
-  final cityController = TextEditingController();
-  final phoneController = TextEditingController();
-  final latitudeController = TextEditingController();
-  final longitudeController = TextEditingController();
-  final descriptionController = TextEditingController();
-  final isMain = TextEditingController();
 
   void addAddress(
       {double? lat,
@@ -35,19 +27,17 @@ class AddAddressCubit extends Cubit<AddAddressState> {
     try {
       emit(AddAddressInProgress());
 
-
       final result = await AddressProvider.addAddress(
-          city: cityController.text,
-          country: "Azərbaycan",
-          title: titleCnt.text,
+          city: city.valueOrNull,
+          country: country.valueOrNull,
+          title: title.valueOrNull,
           houseNumber: "12",
           streetName: streetNameController!.text,
           phone: _prefs.user.phone,
           latitude: lat.toString(),
           longitude: lng.toString(),
-          description: descriptionController.text,
+          description: desc.valueOrNull,
           isMain: false);
-      print("Cubit3");
 
       if (result.statusCode.isSuccess) {
         emit(AddAddressSuccess());
@@ -63,31 +53,31 @@ class AddAddressCubit extends Cubit<AddAddressState> {
     }
   }
 
-  void editAddress({Address? address,double? lat,
+  void editAddress(
+      {Address? address,
+      double? lat,
+      String? guid,
       double? lng,
       BuildContext? context,
       TextEditingController? streetNameController}) async {
     try {
       emit(AddAddressInProgress());
-      final result = await AddressProvider.addAddress(
-          city: cityController.text,
-          country: countryController.text,
-          title: titleCnt.text,
+      final result = await AddressProvider.editAddress(
+          city: city.valueOrNull,
+          country: "Azərbaycan",
+          title: title.valueOrNull,
           houseNumber: "12",
           streetName: streetNameController!.text,
           phone: _prefs.user.phone,
           latitude: lat.toString(),
           longitude: lng.toString(),
-          description: descriptionController.text,
-          isMain: false);
-      print("Cubit3");
+          description: desc.valueOrNull,
+          isMain: false,
+          guid: guid.toString());
 
-      bbbb("resoooo: " + result.toString());
       if (isSuccess(result.statusCode)) {
-        print("Cubit4");
         emit(AddAddressEditSuccess());
       } else {
-        print("Cubit5");
         emit(AddAddressError(error: MyText.error + " ${result.statusCode}"));
       }
       emit(AddAddressInProgress());
@@ -99,8 +89,76 @@ class AddAddressCubit extends Cubit<AddAddressState> {
     }
   }
 
-  @override
-  emit(AddAddressState state) {
-    if (!isClosed) return super.emit(state);
+//values
+//title
+  final BehaviorSubject<String> title = BehaviorSubject<String>();
+
+  Stream<String> get titleStream => title.stream;
+
+  updateTitle(String value) {
+    if (value == null || value.isEmpty) {
+      title.value = '';
+      title.sink.addError(MyText.field_is_not_correct);
+    } else {
+      title.sink.add(value);
+    }
+    // isUserInfoValid(registerType: _registerType);
   }
+
+  bool get isTitleIncorrect =>
+      (!title.hasValue || title.value == null || title.value.isEmpty);
+
+//desc
+  final BehaviorSubject<String> desc = BehaviorSubject<String>();
+
+  Stream<String> get descStream => desc.stream;
+
+  updateDesc(String value) {
+    if (value == null || value.isEmpty) {
+      desc.value = '';
+      desc.sink.addError(MyText.field_is_not_correct);
+    } else {
+      desc.sink.add(value);
+    }
+    // isUserInfoValid(registerType: _registerType);
+  }
+
+  bool get isDescIncorrect =>
+      (!desc.hasValue || desc.value == null || desc.value.isEmpty);
+
+//city
+  final BehaviorSubject<String> city = BehaviorSubject<String>();
+
+  Stream<String> get cityStream => city.stream;
+
+  updateCityc(String value) {
+    if (value == null || value.isEmpty) {
+      city.value = '';
+      city.sink.addError(MyText.field_is_not_correct);
+    } else {
+      city.sink.add(value);
+    }
+    // isUserInfoValid(registerType: _registerType);
+  }
+
+  bool get isCityIncorrect =>
+      (!city.hasValue || city.value == null || city.value.isEmpty);
+
+//country
+  final BehaviorSubject<String> country = BehaviorSubject<String>();
+
+  Stream<String> get countryStream => country.stream;
+
+  updateCountry(String value) {
+    if (value == null || value.isEmpty) {
+      country.value = '';
+      country.sink.addError(MyText.field_is_not_correct);
+    } else {
+      country.sink.add(value);
+    }
+    // isUserInfoValid(registerType: _registerType);
+  }
+
+  bool get isCountryIncorrect =>
+      (!country.hasValue || country.value == null || country.value.isEmpty);
 }

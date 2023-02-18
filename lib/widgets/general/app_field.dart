@@ -90,7 +90,7 @@ class AppField extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               AnimatedContainer(
-                height: 50,
+                height: 49,
                 duration: const Duration(milliseconds: 200),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(radius),

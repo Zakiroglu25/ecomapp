@@ -61,6 +61,43 @@ class AddressProvider {
     return statusDynamic;
   }
 
+
+  static Future<StatusDynamic> editAddress({
+    required String guid,
+    required String? title,
+    required String? streetName,
+    required String? houseNumber,
+    required String? city,
+    required String? country,
+    required String? phone,
+    required String? latitude,
+    required String? longitude,
+    required String? description,
+    required bool? isMain,
+  }) async {
+    StatusDynamic statusDynamic = StatusDynamic();
+    var api = ApiKeys.getAddress+"/$guid";
+    var body = ApiKeys.addressBody(
+        title: title,
+        streetName: streetName,
+        houseNumber: houseNumber,
+        city: city,
+        country: country,
+        phone: phone,
+        latitude: latitude,
+        longitude: longitude,
+        description: description,
+        isMain: isMain);
+    final response = await dioAuth.dio.post(api, data: body);
+    statusDynamic.statusCode = response.statusCode;
+    if (response.statusCode == ResultKey.successCode) {
+      statusDynamic.data = response.data;
+    } else {
+      eeee("add or edit adress bad url :$api ,response: ${response}");
+    }
+    return statusDynamic;
+  }
+
   static Future<StatusDynamic?> delete({required String guid}) async {
     StatusDynamic statusDynamic = StatusDynamic();
     var api = ApiKeys.getAddress + "/$guid";
