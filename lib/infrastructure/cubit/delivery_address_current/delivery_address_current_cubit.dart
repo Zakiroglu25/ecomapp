@@ -78,9 +78,6 @@ class DeliveryAddressCurrentCubit extends Cubit<DeliveryAddressCurrentState> {
       } else {
         emit(DeliveryAdressCurrentError(error: MyText.error));
       }
-    } on SocketException catch (_) {
-      //network olacaq
-      emit(DeliveryAdressCurrentError(error: MyText.networkError));
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
       // emit(DeliveryAdressCurrentError());
@@ -237,10 +234,8 @@ class DeliveryAddressCurrentCubit extends Cubit<DeliveryAddressCurrentState> {
       // accessing the position and request users of the
       // App to enable the location services.
       await Geolocator.requestPermission();
-      if (Platform.isAndroid) {
-        openLocationSetting();
-      }
-      emit(DeliveryAdressCurrentDenied());
+
+      emit(DeliveryAdressCurrentServiceDisabled());
       return Future.error('Location services are disabled.');
     }
 
@@ -272,15 +267,29 @@ class DeliveryAddressCurrentCubit extends Cubit<DeliveryAddressCurrentState> {
     return await Geolocator.getCurrentPosition();
   }
 
-  Future<void> showAccessAlert(BuildContext context) async {
+  Future<void> showAccessAlertForPermission(BuildContext context) async {
     Alert.show(context,
         title: MyText.we_need_access_to_locatoin,
         titleAlign: TextAlign.center,
-        content: MyText.we_will_redirect_to_settings_locatoin,
+        content: MyText.we_will_redirect_to_settings_location,
         buttonText: MyText.goOn,
         cancelButton: true, onTap: () async {
       await Go.pop(context);
       return await openAppSettings();
+    });
+  }
+
+  Future<void> showAccessAlertForServiceEnabe(BuildContext context) async {
+    Alert.show(context,
+        title: MyText.we_need_access_to_locatoin,
+        titleAlign: TextAlign.center,
+        content: MyText.we_will_redirect_to_settings_location_gps,
+        buttonText: MyText.goOn,
+        cancelButton: true, onTap: () async {
+      await Go.pop(context);
+      if (Platform.isAndroid) {
+        openLocationSetting();
+      }
     });
   }
 

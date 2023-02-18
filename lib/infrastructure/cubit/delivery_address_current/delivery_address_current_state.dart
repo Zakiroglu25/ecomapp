@@ -13,6 +13,8 @@ class DeliveryAdressCurrentDisabled
 
 class DeliveryAdressCurrentDenied
     implements DeliveryAddressCurrentError, DeliveryAddressCurrentState {}
+class DeliveryAdressCurrentServiceDisabled
+    implements DeliveryAddressCurrentError, DeliveryAddressCurrentState {}
 
 class DeliveryAdressCurrentError
     implements DeliveryAddressCurrentError, DeliveryAddressCurrentState {
