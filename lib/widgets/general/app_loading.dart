@@ -25,7 +25,8 @@ class AppLoading extends StatelessWidget {
 
   // const AppLoading.big({this.color = MyColors.main, this.s = 120});
 
-  const AppLoading.white({this.color = MyColors.white, this.s = 120});
+  const AppLoading.white(
+      {super.key, this.color = MyColors.white, this.s = 120});
 
   @override
   Widget build(BuildContext context) {

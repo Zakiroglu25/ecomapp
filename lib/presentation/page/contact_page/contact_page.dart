@@ -68,7 +68,7 @@ class ContactPage extends StatelessWidget {
             //   ),
             // );
           } else if (state is ContactInProgress) {
-            return AppLoading();
+            return const AppLoading();
           } else if (state is ContactError) {
             return EmptyWidget();
           } else {
