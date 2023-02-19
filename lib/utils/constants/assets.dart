@@ -41,6 +41,7 @@ class Assets {
   static const String svgFav = "assets/svg/iconheart.svg";
   static const String svgAptek = "assets/svg/svgaptek.svg";
   static const String svgCart = "assets/svg/shopping_bag.svg";
+  static const String svgCartNav = "assets/svg/shopping_bag_nav.svg";
   static const String svgBagCross = "assets/svg/bag-cross.svg";
   static const String svgShoppingCart = "assets/svg/shopping-cart.svg";
   static const String svgUserTag = "assets/svg/user-tag.svg";
