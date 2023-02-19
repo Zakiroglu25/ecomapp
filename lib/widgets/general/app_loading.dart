@@ -21,11 +21,11 @@ class AppLoading extends StatelessWidget {
       {Key? key, this.color = MyColors.btnGreen, this.s = 120})
       : super(key: key);
 
-  const AppLoading.main({this.color = MyColors.main, this.s = 120});
+  // const AppLoading.main({this.color = MyColors.main, this.s = 120});
 
-  const AppLoading.big({this.color = MyColors.main, this.s = 120});
+  // const AppLoading.big({this.color = MyColors.main, this.s = 120});
 
-  const AppLoading.white({this.color = MyColors.white, this.s});
+  const AppLoading.white({this.color = MyColors.white, this.s = 120});
 
   @override
   Widget build(BuildContext context) {
@@ -41,15 +41,18 @@ class AppLoading extends StatelessWidget {
             child: WidgetOrEmpty(
               value: color == null,
               elseChild: CircularProgressIndicator(
-                color: color,
+                // color: color,
                 valueColor: AlwaysStoppedAnimation<Color>(
                     color ?? MyColors.mainGreen85),
               ),
-              child: Container(
+              child: SizedBox(
                 height: s,
                 width: s,
                 // color: Colors.green,
-                child: Lottie.asset(Assets.loading, width: 1),
+                child: CircularProgressIndicator.adaptive(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                      color ?? MyColors.mainGreen85),
+                ),
               ),
             ),
           )),

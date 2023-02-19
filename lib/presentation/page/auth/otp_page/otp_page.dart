@@ -27,7 +27,7 @@ class OTPPage extends StatelessWidget {
           },
           builder: (context, state) {
             if (state is OtpInProgress) {
-              return AppLoading.main();
+              return AppLoading();
             }
             return Stack(
               fit: StackFit.expand,

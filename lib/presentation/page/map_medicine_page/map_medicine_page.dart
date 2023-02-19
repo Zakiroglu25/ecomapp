@@ -143,9 +143,9 @@ class _MapPageState extends State<MapPage> {
             ),
           );
         } else if (state is MapStoreInProgress) {
-          return AppLoading.main();
+          return AppLoading();
         } else if (state is MapStoreError) {
-          return AppLoading.main();
+          return AppLoading();
         }
         return Center(child: Text("Hec bir Aptek Movcud deyil"));
       },

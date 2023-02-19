@@ -28,7 +28,7 @@ class CardBody extends StatelessWidget {
                 return CardItemWidget(cardList: state.cardData.list);
               } else if (state is CardInProgress) {
                 return const Center(
-                  child: AppLoading.main(),
+                  child: AppLoading(),
                 );
               }
               return EmptyWidget(

@@ -9,7 +9,6 @@ class FocusableAppLoading extends StatelessWidget {
   final VoidCallback? onFocus;
   @override
   Widget build(BuildContext context) {
-    return FocusDetector(
-        onFocusGained: onFocus, child: const AppLoading.main());
+    return FocusDetector(onFocusGained: onFocus, child: const AppLoading());
   }
 }

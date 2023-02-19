@@ -30,7 +30,7 @@ class SavedAddressList extends StatelessWidget {
         if (state is AddressError) {
           return EmptyWidget();
         }
-        return AppLoading.big();
+        return AppLoading();
       },
     );
   }

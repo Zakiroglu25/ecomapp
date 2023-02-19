@@ -81,7 +81,7 @@ class ProductsBody extends StatelessWidget {
                     ),
                   );
                 } else if (state is ProductsInProgress) {
-                  return Center(child: AppLoading.main());
+                  return Center(child: AppLoading());
                 } else {
                   return Expanded(child: EmptyWidget.error());
                 }

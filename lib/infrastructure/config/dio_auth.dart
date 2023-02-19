@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/infrastructure/data/auth_provider.dart';
 import 'package:uikit/infrastructure/services/navigation_service.dart';
+import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/extensions/index.dart';
@@ -177,12 +178,14 @@ class CustomInterceptors extends Interceptor {
         break;
       case 413:
         Alert.show(NavigationService.instance.navigationKey!.currentContext!,
-            title: MyText.unknownError);
+            title: MyText.unknownError, mainButtonColor: MyColors.main);
         break;
       default:
         final error = DetailedError.fromJson(response.data);
         Alert.show(NavigationService.instance.navigationKey!.currentContext!,
-            content: error.details ?? '', title: MyText.error);
+            content: error.details ?? '',
+            title: MyText.error,
+            mainButtonColor: MyColors.main);
         break;
     }
   }
