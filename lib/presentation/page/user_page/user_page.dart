@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 
@@ -60,7 +61,6 @@ class _PageViewExampleState extends State<PageViewExample> {
       ),
       backgroundColor: MyColors.red250,
       body: SafeArea(
-
         child: Column(
           children: [
             Expanded(
@@ -106,7 +106,7 @@ class EditContact extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12), color: MyColors.white),
           width: 311,
-          height: 420,
+          height: 425.h,
           child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Column(
