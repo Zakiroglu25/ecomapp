@@ -23,7 +23,6 @@ class MedSearchField extends StatelessWidget {
         textInputAction: TextInputAction.search,
         controller: cubit.medSearchController,
         onFieldSubmitted: (v) {
-          print("object");
           cubit.fetchProduct(title: v);
         },
         radius: 36,

@@ -63,7 +63,7 @@ class OtherPage extends StatelessWidget {
                   h: 167.h,
                   w: 167.w,
                   imageUrl: Assets.pngPaymentMethod3x,
-                  title: MyText.paymentMetod,
+                  title: MyText.paymentType,
                   desc: MyText.paymentOther,
                 ),
                 ProductAndOtherWidget(

@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nil/nil.dart';
 import 'package:uikit/utils/constants/durations.dart';
 
 import '../../utils/constants/app_text_styles.dart';
@@ -67,7 +68,8 @@ class AppField extends StatelessWidget {
     this.onTap,
     this.prefixIcon,
     this.suffixText,
-    this.textInputType,  this.paddingAll,
+    this.textInputType,
+    this.paddingAll,
   }) : assert(controller == null || initialValue == null,
             "her ikisi teyin ola bilmez");
 
@@ -75,16 +77,15 @@ class AppField extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: Durations.ms200,
-      height: (errorMessage == null ? 95 : 110) +
+      height: (errorMessage == null ? 80 : 110) +
           (infoMessage != null ? 18.0 : 0.0),
       // color: MyColors.mainRED,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // SizedBox(height:topMargin?? 6,),
-          Text(
-            title ?? "",
-            style: AppTextStyles.sfPro400s14.copyWith(letterSpacing: 0)),
+          Text(title ?? "",
+              style: AppTextStyles.sfPro400s14.copyWith(letterSpacing: 0)),
           MySizedBox.h3,
           Stack(
             alignment: Alignment.center,
@@ -121,7 +122,6 @@ class AppField extends StatelessWidget {
                   inputFormatters: [...?customInputFormat(), ...?formatters],
                   decoration: InputDecoration(
                     counterText: '',
-
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(radius),
                       borderSide: const BorderSide(
@@ -130,16 +130,14 @@ class AppField extends StatelessWidget {
                       ),
                     ),
                     hintText: hint ?? "",
-
                     hintStyle: AppTextStyles.sfPro400s16
-                        .copyWith( color: MyColors.grey153),
+                        .copyWith(color: MyColors.grey153),
                     suffixText: suffixText ?? "",
                     filled: true,
                     prefixIcon: prefixIcon,
                     fillColor: fillColor,
                     contentPadding: EdgeInsets.only(
-                        left: 16.0,
-                        right: (suffixIcon != null) ? 40 : 0),
+                        left: 16.0, right: (suffixIcon != null) ? 40 : 0),
                   ),
                 ),
               ),
@@ -171,25 +169,25 @@ class AppField extends StatelessWidget {
             ],
           ),
           MySizedBox.h3,
-          WidgetOrEmpty(
-            value: errorMessage != null,
-            child: FadeIn(
-              key: const Key("b"),
-              child: Text(
-                errorMessage ?? "",
-                style: AppTextStyles.sfPro400s14
-                    .copyWith(color: MyColors.errorRED),
-              ),
-            ),
-            elseChild: FadeIn(
-              key: const Key("a"),
-              child: Text(
-                (infoMessage ?? ""),
-                style: AppTextStyles.sfPro400s14
-                    .copyWith(color: MyColors.error_red),
-              ),
-            ),
-          ),
+          errorMessage != null
+              ? FadeIn(
+                  key: const Key("b"),
+                  child: Text(
+                    errorMessage ?? "",
+                    style: AppTextStyles.sfPro400s14
+                        .copyWith(color: MyColors.errorRED),
+                  ),
+                )
+              : (infoMessage != null
+                  ? FadeIn(
+                      key: const Key("a"),
+                      child: Text(
+                        (infoMessage ?? ""),
+                        style: AppTextStyles.sfPro400s14
+                            .copyWith(color: MyColors.error_red),
+                      ),
+                    )
+                  : SizedBox.shrink()),
         ],
       ),
     );

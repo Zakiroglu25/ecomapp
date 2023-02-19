@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/presentation/page/contact_page/widget/sosial_item.dart';
+import 'package:uikit/utils/constants/text.dart';
 
 import '../../../infrastructure/cubit/contact_cubit/contact_cubit.dart';
 import '../../../infrastructure/cubit/contact_cubit/contact_state.dart';
 import '../../../infrastructure/model/response/contact_model.dart';
+import '../../../widgets/custom/half_empty_widget.dart';
 import '../../../widgets/general/app_loading.dart';
 import '../../../widgets/general/empty_widget.dart';
 import '../../../widgets/main/cupperfold/cupperfold.dart';
@@ -15,7 +17,7 @@ class ContactPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Cupperfold(
-      title: "Əlaqə",
+      title: MyText.contact,
       user: false,
       notification: false,
       child: BlocBuilder<ContactCubit, ContactState>(
@@ -69,10 +71,8 @@ class ContactPage extends StatelessWidget {
             // );
           } else if (state is ContactInProgress) {
             return const AppLoading();
-          } else if (state is ContactError) {
-            return EmptyWidget();
           } else {
-            return EmptyWidget();
+            return HalfEmptyWidget();
           }
         },
       ),

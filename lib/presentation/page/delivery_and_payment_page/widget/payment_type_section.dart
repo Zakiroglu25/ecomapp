@@ -18,7 +18,7 @@ class PaymentTypeSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(MyText.paymentMetod.toUpperCase(),
+        Text(MyText.paymentType.toUpperCase(),
             style: AppTextStyles.sfPro400s12.copyWith(color: MyColors.grey158)),
         MySizedBox.h4,
         const AppElementBox(

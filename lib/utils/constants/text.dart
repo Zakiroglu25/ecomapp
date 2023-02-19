@@ -124,7 +124,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String otherSub = "Axtardığınız məhsulu tapmaq üçün";
   static const String logoutSub = "Təsdiqlədikdən sonra çıxış edəcəksiniz";
 
-  static const String paymentMetod = "Ödəniş üsulu";
+  static const String paymentType = "Ödəniş üsulu";
   static const String saveCard = "Kartı yadda saxla";
   static const String payment = "Ödəniş";
   static const String messenger = "Messenger";
