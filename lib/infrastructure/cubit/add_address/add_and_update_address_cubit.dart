@@ -19,11 +19,11 @@ class AddAddressCubit extends Cubit<AddAddressState> {
 
   HiveService get _prefs => locator<HiveService>();
 
-  void addAddress(
-      {double? lat,
-      double? lng,
-      BuildContext? context,
-      TextEditingController? streetNameController}) async {
+  void addAddress({
+    double? lat,
+    double? lng,
+    BuildContext? context,
+  }) async {
     try {
       emit(AddAddressInProgress());
 
@@ -32,7 +32,7 @@ class AddAddressCubit extends Cubit<AddAddressState> {
           country: country.valueOrNull,
           title: title.valueOrNull,
           houseNumber: "12",
-          streetName: streetNameController!.text,
+          streetName: street.valueOrNull,
           phone: _prefs.user.phone,
           latitude: lat.toString(),
           longitude: lng.toString(),
@@ -67,7 +67,7 @@ class AddAddressCubit extends Cubit<AddAddressState> {
           country: "Azərbaycan",
           title: title.valueOrNull,
           houseNumber: "12",
-          streetName: streetNameController!.text,
+          streetName: street.valueOrNull,
           phone: _prefs.user.phone,
           latitude: lat.toString(),
           longitude: lng.toString(),
@@ -102,7 +102,7 @@ class AddAddressCubit extends Cubit<AddAddressState> {
     } else {
       title.sink.add(value);
     }
-    // isUserInfoValid(registerType: _registerType);
+    isAddressValid();
   }
 
   bool get isTitleIncorrect =>
@@ -120,7 +120,7 @@ class AddAddressCubit extends Cubit<AddAddressState> {
     } else {
       desc.sink.add(value);
     }
-    // isUserInfoValid(registerType: _registerType);
+    isAddressValid();
   }
 
   bool get isDescIncorrect =>
@@ -138,7 +138,7 @@ class AddAddressCubit extends Cubit<AddAddressState> {
     } else {
       city.sink.add(value);
     }
-    // isUserInfoValid(registerType: _registerType);
+    isAddressValid();
   }
 
   bool get isCityIncorrect =>
@@ -156,9 +156,54 @@ class AddAddressCubit extends Cubit<AddAddressState> {
     } else {
       country.sink.add(value);
     }
-    // isUserInfoValid(registerType: _registerType);
+    isAddressValid();
   }
 
   bool get isCountryIncorrect =>
       (!country.hasValue || country.value == null || country.value.isEmpty);
+
+  //street name
+  final BehaviorSubject<String> street = BehaviorSubject<String>();
+
+  Stream<String> get streetStream => country.stream;
+
+  updateStreet(String value) {
+    if (value == null || value.isEmpty) {
+      street.value = '';
+      street.sink.addError(MyText.field_is_not_correct);
+    } else {
+      street.sink.add(value);
+    }
+    isAddressValid();
+  }
+
+  bool get isStreetIncorrect =>
+      (!street.hasValue || street.value == null || street.value.isEmpty);
+
+  final BehaviorSubject<bool> addressActive =
+      BehaviorSubject<bool>.seeded(false);
+
+  Stream<bool> get addressActiveStream => addressActive.stream;
+
+  updateActive(bool value) {
+    addressActive.sink.add(value);
+  }
+
+  bool isAddressValid() {
+    if (!isCountryIncorrect &&
+        !isCityIncorrect &&
+        !isTitleIncorrect &&
+        !isDescIncorrect) {
+      updateActive(true);
+      emit(UserButtonActive());
+
+      //bbbb("---- true");
+      return true;
+    } else {
+      updateActive(false);
+
+      //bbbb("---- false");
+      return false;
+    }
+  }
 }

@@ -88,6 +88,7 @@ class AddressProvider {
         longitude: longitude,
         description: description,
         isMain: isMain);
+    eeee(body);
     final response = await dioAuth.dio.post(api, data: body);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {

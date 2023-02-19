@@ -10,6 +10,7 @@ class AddAddressError extends AddAddressState {
   AddAddressError({this.error});
 }
 
+class UserButtonActive extends AddAddressState {}
 class AddAddressNetworkError extends AddAddressState {}
 
 class AddAddressSuccess extends AddAddressState {}

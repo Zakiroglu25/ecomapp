@@ -30,8 +30,6 @@ class AddAddressPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final addAddressCubit = context.watch<AddAddressCubit>();
-
     return Cupperfold(
       title: MyText.addNewAddress,
       showAppbarLittleText: true,
@@ -58,7 +56,8 @@ class AddAddressPage extends StatelessWidget {
           shrinkWrap: true,
           children: [
             AddressField(
-              controller: textController ?? textController,
+              controller:
+                  TextEditingController(text: addressModel?.streetName ?? ''),
             ),
             NameAddressField(
               controller:
@@ -76,26 +75,31 @@ class AddAddressPage extends StatelessWidget {
                   TextEditingController(text: addressModel?.description ?? ''),
             ),
             MySizedBox.h50,
-            AppButton(
-              // isButtonActive: isEnabled.value,
-              loading:
-                  context.read<AddAddressCubit>().state is AddAddressInProgress,
-              onTap: () {
-                addressModel != null
-                    ? context.read<AddAddressCubit>().editAddress(
-                        address: addressModel!,
-                        context: context,
-                        lat: lat,
-                        lng: lng,
-                        guid: addressModel!.guid,
-                        streetNameController: textController)
-                    : context.read<AddAddressCubit>().addAddress(
-                        context: context,
-                        lat: lat,
-                        lng: lng,
-                        streetNameController: textController);
-              },
-              text: MyText.save,
+            StreamBuilder(
+                stream: BlocProvider.of<AddAddressCubit>(context).addressActive,
+              builder: (context, snapshot) {
+                return AppButton(
+                  isButtonActive: context.read<AddAddressCubit>().isAddressValid(),
+                  loading:
+                      context.read<AddAddressCubit>().state is AddAddressInProgress,
+                  onTap: () {
+                    addressModel != null
+                        ? context.read<AddAddressCubit>().editAddress(
+                              address: addressModel!,
+                              context: context,
+                              lat: lat,
+                              lng: lng,
+                              guid: addressModel!.guid,
+                            )
+                        : context.read<AddAddressCubit>().addAddress(
+                              context: context,
+                              lat: lat,
+                              lng: lng,
+                            );
+                  },
+                  text: MyText.save,
+                );
+              }
             ),
 
             // AddressField()
