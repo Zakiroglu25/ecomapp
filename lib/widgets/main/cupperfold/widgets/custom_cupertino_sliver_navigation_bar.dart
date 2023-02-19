@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 
+import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/screen/widget_or_empty.dart';
 import '../../../custom/nav_bar.dart';
@@ -65,6 +66,7 @@ class CustomCupertinoSliverNavigationBar extends StatelessWidget {
         padding: Paddings.paddingT10,
         child: Text(
           title ?? '',
+          style: AppTextStyles.sfPro700.copyWith(fontSize: 30),
         ),
       ),
       trailing: SpacedRow(
