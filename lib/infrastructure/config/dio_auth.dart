@@ -196,7 +196,6 @@ class CustomInterceptors extends Interceptor {
     //     'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}');
     // Recorder.recordDioError(err);
     //return
-    bbbb("tyyype:  ${err.type}");
     if (_isServerDown(err)) {
       Snack.display(message: MyText.networkError);
     }
