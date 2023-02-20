@@ -12,6 +12,12 @@ abstract class AppTextStyles {
       fontWeight: FontWeight.w700,
       fontStyle: FontStyle.normal,
       letterSpacing: 0.3);
+  static const sfPro700s30 = TextStyle(
+      fontFamily: 'ProximaNova-Regular',
+      fontSize: 30,
+      fontWeight: FontWeight.w700,
+      fontStyle: FontStyle.normal,
+      letterSpacing: 0.3);
 
   static const sfPro500 = TextStyle(
       fontFamily: 'ProximaNova-Regular',

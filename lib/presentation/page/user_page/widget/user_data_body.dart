@@ -110,7 +110,7 @@ class UserDataBody extends StatelessWidget {
                 _prefs.user.finCode.toString(),
                 style: AppTextStyles.sfPro600s30,
               ),
-            if (_prefs.user.finCode!.isEmpty)
+            if (_prefs.user.finCode == null)
               Text(
               "Fin kod yoxdur",
               style: AppTextStyles.sfPro600s24,

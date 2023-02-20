@@ -11,7 +11,11 @@ class AppBigLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: size ?? context.sW / 2,
-        child: SvgPicture.asset(Assets.svgBigLogo));
+        width: size ?? context.sW / 4,
+        height: size ?? context.sH / 4,
+        child: SvgPicture.asset(
+          Assets.svgLogo,
+          color: Colors.white,
+        ));
   }
 }
