@@ -188,7 +188,7 @@ class _WebviewPageState extends State<WebviewPage> {
               //     return NavigationActionPolicy.CANCEL;
               //   }
               // }
-              if (('$uri').contains('orderApprove')) {
+              if (('$uri').contains('doctoro-dev.ml/public/a2p3r4v5p6m7n8t')) {
                 eeee("url containe");
                 widget.whenSuccess?.call();
               }

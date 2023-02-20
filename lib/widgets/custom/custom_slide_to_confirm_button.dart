@@ -15,6 +15,7 @@ class CustomSlideToConfirmButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: ActionSlider.standard(
+        boxShadow: [],
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
