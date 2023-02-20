@@ -14,6 +14,7 @@ import 'package:uikit/widgets/custom/text_title_big.dart';
 import '../../infrastructure/cubit/address/address_cubit.dart';
 import '../../presentation/page/products_page/widgets/current_delivery_address_button.dart';
 import '../../presentation/page/products_page/widgets/sheet_add_new_address_button.dart';
+import '../../widgets/general/small_section.dart';
 import 'durations.dart';
 
 class Sheets {
@@ -43,7 +44,8 @@ class Sheets {
                       // physics: Physics.never,
                       //    crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        BigSection(title: MyText.deliveryAddresses),
+                        SmallSection(
+                            title: MyText.deliveryAddresses.toUpperCase()),
                         MySizedBox.h16,
                         CurrentDeliveryAddressButton(onChange: onChange),
                         SavedAddressList(onChange: onChange),

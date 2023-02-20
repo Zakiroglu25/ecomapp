@@ -58,7 +58,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         emit(RegisterFailed(message: response.details));
       }
     } catch (e, s) {
-      emit(RegisterFailed(message: e.toString()));
+      //emit(RegisterFailed(message: e.toString()));
       Recorder.recordCatchError(e, s);
     }
   }

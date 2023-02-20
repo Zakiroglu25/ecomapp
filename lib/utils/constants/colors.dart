@@ -4,7 +4,7 @@ class MyColors {
   MyColors._();
 
   //main colors
-  static const Color main = Color.fromRGBO(255, 0, 55, 1);
+  //static const Color brand = Color.fromRGBO(255, 0, 55, 1);
   static const Color brand = Color.fromRGBO(234, 76, 104, 1);
   static const Color secondary = Color.fromRGBO(241, 82, 116, 0.1);
 

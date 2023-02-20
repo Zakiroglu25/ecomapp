@@ -56,10 +56,10 @@ class CarouselIndicator extends StatelessWidget {
   Container currentTick(double sW) {
     return Container(
       margin: Paddings.paddingA4,
-      width: sW / (imageNumber * 1.75) > 16 ? 16 : sW / (imageNumber * 1.75),
+      width: sW / (imageNumber * 1.75) > 8 ? 8 : sW / (imageNumber * 1.75),
       height: sW / (imageNumber * 3.5) > 8 ? 8 : sW / (imageNumber * 3.5),
       decoration: BoxDecoration(
-          color: MyColors.main, borderRadius: BorderRadius.circular(5)),
+          color: MyColors.black, borderRadius: BorderRadius.circular(5)),
     );
   }
 }

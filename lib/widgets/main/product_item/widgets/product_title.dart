@@ -11,11 +11,15 @@ class ProductTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: SizedBox(
-        height: 48,
+        //  height: 50,
         child: Text(
           title ?? '',
-          style: AppTextStyles.sfPro400s16
-              .copyWith(color: MyColors.black34, height: 1.8,fontSize: 18,letterSpacing: -0.2),
+          style: AppTextStyles.sfPro400s16.copyWith(
+              color: MyColors.black34,
+              height: 1.8,
+              fontSize: 18,
+              letterSpacing: -0.2),
+          maxLines: 2,
           //overflow: TextOverflow.ellipsis,
         ),
       ),

@@ -12,6 +12,7 @@ import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/paddings.dart';
 import '../../../../utils/constants/text.dart';
+import '../../../../widgets/general/app_loading.dart';
 
 class AppBarAddressWidget extends StatelessWidget {
   const AppBarAddressWidget({
@@ -64,11 +65,9 @@ class AppBarAddressWidget extends StatelessWidget {
                 ),
               );
             } else if (state is AddressInProgress) {
-              return MainAddressBox(
-                child: Container(
-                    padding: Paddings.paddingV4,
-                    child: const Center(child: AppLinearLoading.green())),
-              );
+              return Container(
+                  padding: Paddings.paddingV4,
+                  child: const Center(child: AppLoading()));
             } else {
               return Container();
             }

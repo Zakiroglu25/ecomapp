@@ -42,7 +42,7 @@ class AppTab extends Tab {
                 duration: Durations.ms200,
                 firstChild: SvgPicture.asset(
                   svg!,
-                  color: MyColors.main,
+                  color: MyColors.brand,
                 ),
                 secondChild: SvgPicture.asset(
                   svg!,
@@ -63,7 +63,7 @@ class AppTab extends Tab {
             padding: Paddings.paddingA2,
             decoration: BoxDecoration(
                 borderRadius: Radiuses.r99,
-                color: selected ? MyColors.main : MyColors.black34),
+                color: selected ? MyColors.brand : MyColors.black34),
             child: FittedBox(
               child: Text(
                 "$count",

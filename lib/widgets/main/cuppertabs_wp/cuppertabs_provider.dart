@@ -48,7 +48,7 @@ class CupperProvider extends ChangeNotifier {
     selected = tab;
     tabs = tabs.map<AppTab>((AppTab e) {
       e.text == selected.text
-          ? e.color = MyColors.main
+          ? e.color = MyColors.brand
           : e.color = MyColors.black34;
       return e;
     }).toList();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nil/nil.dart';
 import 'package:uikit/presentation/page/products_page/widgets/items/saved_delivery_address_item.dart';
 
 import '../../../../infrastructure/cubit/address/address_cubit.dart';
@@ -30,7 +31,7 @@ class SavedAddressList extends StatelessWidget {
         if (state is AddressError) {
           return EmptyWidget();
         }
-        return AppLoading();
+        return nil;
       },
     );
   }

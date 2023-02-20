@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:focus_detector/focus_detector.dart';
+import 'package:nil/nil.dart';
 import 'package:uikit/infrastructure/cubit/delivery_address_current/delivery_address_current_cubit.dart';
 import 'package:uikit/infrastructure/cubit/delivery_address_current/delivery_address_current_state.dart';
 import 'package:uikit/presentation/page/products_page/widgets/items/current_delivery_address_item.dart';
@@ -8,6 +9,7 @@ import 'package:uikit/utils/constants/text.dart';
 
 import '../../../../infrastructure/cubit/address/address_cubit.dart';
 import '../../../../widgets/custom/app_linear_loading.dart';
+import '../../../../widgets/general/app_loading.dart';
 
 class CurrentDeliveryAddressButton extends StatelessWidget {
   const CurrentDeliveryAddressButton({Key? key, required this.onChange})
@@ -43,7 +45,7 @@ class CurrentDeliveryAddressButton extends StatelessWidget {
                 address: address, context: context, onChange: onChange);
           }
           if (state is DeliveryAdressCurrentInProgress) {
-            return const AppLinearLoading();
+            return nil;
           }
           if (state is DeliveryAdressCurrentDenied) {
             return CurrentDeliveryAddressItem(

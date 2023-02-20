@@ -49,7 +49,11 @@ class ProductOptionDetails extends StatelessWidget {
             return ListView(
               children: [
                 ProductImgSlider(
-                  imgList: product?.images ?? [],
+                  imgList: [
+                    'https://egehospital.az/wp-content/uploads/2022/08/psixiatrik-dermanlar-asililiq-yaradirmi-1200x675.jpeg',
+                    'https://egehospital.az/wp-content/uploads/2022/08/psixiatrik-dermanlar-asililiq-yaradirmi-1200x675.jpeg',
+                    'https://cdn.aqrobazar.com/14113/conversions/9262f2a385549a3e9a596a8dfb17f375-lg.jpg'
+                  ],
                 ),
                 ListView(
                   shrinkWrap: true,
@@ -58,13 +62,13 @@ class ProductOptionDetails extends StatelessWidget {
                   children: [
                     ManatPrice(
                       price: product?.price,
-                      textSize: 25,
-                      manatSize: 25,
+                      textSize: 28,
+                      manatSize: 28,
                     ),
                     MySizedBox.h16,
                     Text(
                       "${product?.title!}",
-                      style: AppTextStyles.sfPro600s16,
+                      style: AppTextStyles.sfPro600s24,
                     ),
                     MySizedBox.h16,
                     ProductDetailProperty(

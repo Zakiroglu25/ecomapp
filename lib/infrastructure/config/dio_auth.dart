@@ -178,14 +178,14 @@ class CustomInterceptors extends Interceptor {
         break;
       case 413:
         Alert.show(NavigationService.instance.navigationKey!.currentContext!,
-            title: MyText.unknownError, mainButtonColor: MyColors.main);
+            title: MyText.unknownError, mainButtonColor: MyColors.brand);
         break;
       default:
         final error = DetailedError.fromJson(response.data);
         Alert.show(NavigationService.instance.navigationKey!.currentContext!,
             content: error.details ?? '',
             title: MyText.error,
-            mainButtonColor: MyColors.main);
+            mainButtonColor: MyColors.brand);
         break;
     }
   }

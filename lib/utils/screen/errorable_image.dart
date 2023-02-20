@@ -39,11 +39,11 @@ class ErrorableImage extends StatelessWidget {
           child: imageUrl != null
               ? CachedNetworkImage(
                   imageUrl: imageUrl!,
-                  fit: fit ?? BoxFit.contain,
+                  fit: BoxFit.cover,
                   width: w,
                   height: h,
-                  memCacheHeight: 300,
-                  memCacheWidth: 300,
+                  // memCacheHeight: 300,
+                  // memCacheWidth: 300,
                   placeholder: (context, url) => Center(
                       child: SizedBox(
                           height: 10,

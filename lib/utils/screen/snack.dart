@@ -18,9 +18,9 @@ class Snack {
     //Scaffold.of(context).hideCurrentSnackBar();
     //positive ?? false;
     final SnackBar snackbar = SnackBar(
-      key: Key('a'),
+      key: const Key('a'),
       elevation: 0,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10))),
       dismissDirection: DismissDirection.horizontal,
       backgroundColor: Colors.white,
@@ -123,7 +123,7 @@ class Snack {
     //positive ?? false;
     final snackbar = SnackBar(
       elevation: 0,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10))),
       dismissDirection: DismissDirection.horizontal,
       backgroundColor: Colors.transparent,

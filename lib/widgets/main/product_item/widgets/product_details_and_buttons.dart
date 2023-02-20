@@ -14,7 +14,7 @@ class ProductDetailsAndButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
-        //  space: 8,
+        //  space: 8,`
         children: [
           ProductTitleAndFavButton(
             product: product,

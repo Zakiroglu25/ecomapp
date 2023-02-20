@@ -71,7 +71,7 @@ class _SavableDeliveryAddressItemState
       child: ListView(
         shrinkWrap: true,
         physics: Physics.never,
-        padding: Paddings.paddingV4,
+        padding: Paddings.paddingV10,
         children: [
           Container(
             color: MyColors.white,

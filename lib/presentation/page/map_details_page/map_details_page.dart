@@ -40,7 +40,7 @@ class MapDetailsPage extends StatelessWidget {
               final productList = state.productList;
               return SliverToBoxAdapter(
                 child: Container(
-                  padding: Paddings.paddingH16,
+                  // padding: Paddings.paddingH16,
                   color: MyColors.white,
                   child: StreamBuilder<bool>(
                       stream: cubit.haveElseStream,

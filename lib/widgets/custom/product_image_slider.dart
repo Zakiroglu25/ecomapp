@@ -2,6 +2,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/delegate/my_printer.dart';
 import 'package:uikit/utils/screen/errorable_image.dart';
 import 'package:uikit/widgets/general/app_loading.dart';
@@ -31,11 +33,10 @@ class _ProductImgSliderState extends State<ProductImgSlider> {
         .map((item) => GestureDetector(
               onTap: () {
                 open(context, currentImg);
-                bbbb("ytyukjk");
               },
               child: ErrorableImage(
                 imageUrl: item,
-                fit: BoxFit.contain,
+                fit: BoxFit.fill,
                 // width: 244,
                 //height: 344,
               ),
@@ -64,12 +65,12 @@ class _ProductImgSliderState extends State<ProductImgSlider> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Stack(
+      child: Column(
         children: [
           CarouselSlider(
             options: CarouselOptions(
                 autoPlay: false,
-                aspectRatio: 414.sp / 278.sp,
+                aspectRatio: 16 / 9,
                 pageSnapping: true,
                 viewportFraction: 1.0,
                 //   enlargeCenterPage: true,
@@ -84,14 +85,12 @@ class _ProductImgSliderState extends State<ProductImgSlider> {
             items: imageSliders,
             carouselController: CarouselController(),
           ),
-          Positioned.fill(
-            bottom: 7,
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: CarouselIndicator(
-                imageNumber: imageSliders.length,
-                currentImageIndex: currentImg,
-              ),
+          MySizedBox.h8,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: CarouselIndicator(
+              imageNumber: imageSliders.length,
+              currentImageIndex: currentImg,
             ),
           ),
         ],

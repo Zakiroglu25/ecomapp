@@ -100,7 +100,7 @@ class _SliverCaspaBarState extends State<SliverCaspaBar>
                 controller: _tabController,
                 children: widget.tabPages!.map((Widget child) {
                   return RefreshIndicator(
-                      color: MyColors.main,
+                      color: MyColors.brand,
                       onRefresh: () async => widget.onRefresh?.call(),
                       child: child);
                 }).toList(),

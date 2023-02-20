@@ -11,7 +11,7 @@ class SliverHandler extends StatelessWidget {
     return SliverAppBar(
       elevation: 0,
       automaticallyImplyLeading: false,
-      toolbarHeight: 20,
+      toolbarHeight: 24,
       titleSpacing: 0,
       backgroundColor: Colors.transparent,
       title: Container(

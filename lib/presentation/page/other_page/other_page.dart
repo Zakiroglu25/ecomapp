@@ -25,7 +25,7 @@ class OtherPage extends StatelessWidget {
         padding: Paddings.paddingH16,
         child: Column(
           children: [
-            MySizedBox.h24,
+            //MySizedBox.h24,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
