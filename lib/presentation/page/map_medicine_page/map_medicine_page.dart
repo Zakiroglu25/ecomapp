@@ -38,7 +38,10 @@ class _MapPageState extends State<MapPage> {
 
   getIcons() async {
     var icon = await BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(devicePixelRatio: 3.3), Assets.marker);
+        const ImageConfiguration(
+          devicePixelRatio: 3.3,
+        ),
+        Assets.marker);
     setState(() {
       if (icon == null) {
         BitmapDescriptor.defaultMarker;
@@ -107,7 +110,9 @@ class _MapPageState extends State<MapPage> {
                 //   },
                 //   title: "Aptekə keçid elə",
                 // ),
-                icon: BitmapDescriptor.defaultMarker, //Icon for Marker
+                icon: icon == null
+                    ? BitmapDescriptor.defaultMarker
+                    : icon!, //Icon for Marker
               ),
             );
           });

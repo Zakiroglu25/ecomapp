@@ -14,6 +14,7 @@ class SavedDeliveryAddressItem extends SavableDeliveryAddressItem {
             subTitle: address.description,
             key: key,
             title: address.title,
+
             onTap: () {
               onChange?.call();
               return context.read<AddressCubit>()

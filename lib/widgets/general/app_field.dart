@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nil/nil.dart';
 import 'package:uikit/utils/constants/durations.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../utils/constants/app_text_styles.dart';
 import '../../utils/constants/assets.dart';
@@ -77,16 +78,23 @@ class AppField extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: Durations.ms200,
-      height: (errorMessage == null ? 80 : 110) +
+      height: (errorMessage == null ? 66 : 96) +
+          (title != null ? 14 : 0)+
           (infoMessage != null ? 18.0 : 0.0),
       // color: MyColors.mainRED,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // SizedBox(height:topMargin?? 6,),
-          Text(title ?? "",
-              style: AppTextStyles.sfPro400s14.copyWith(letterSpacing: 0)),
-          MySizedBox.h3,
+
+          title.isNotNull?Column(
+            children: [
+              Text(title ?? "",
+                  style: AppTextStyles.sfPro400s14.copyWith(letterSpacing: 0)),
+              MySizedBox.h3,
+            ],
+          ):Container(),
+
           Stack(
             alignment: Alignment.center,
             children: [

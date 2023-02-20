@@ -55,7 +55,7 @@ class ProductsBody extends StatelessWidget {
                           builder: (context, snapshot) {
                             return ListViewSeparated(
                               padding:
-                                  Paddings.paddingA16 + Paddings.paddingB60,
+                                  Paddings.paddingH16 + Paddings.paddingB60,
                               itemCount: snapshot.data ?? false
                                   ? productList.length + 1
                                   : productList.length,

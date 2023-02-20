@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
@@ -60,7 +61,7 @@ class _ProductItemState extends State<ProductItem>
           onTap: () =>
               Go.to(context, Pager.productDetails(guid: product.guid!)),
           child: Container(
-            height: 126,
+            height: 115.h,
             padding: Paddings.paddingA12,
             decoration: BoxDecoration(
                 borderRadius: Radiuses.r12, color: MyColors.grey245),
