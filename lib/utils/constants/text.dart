@@ -60,6 +60,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String are_u_sure_exit = "Çıxış etmək istədiyinizdən əminsiniz?";
   static const String are_u_sure_delete_account =
       "Hesabı silmək istədiyinizdən əminsiniz?";
+  static const String are_u_sure_delete = "Silmək istədiyinizdən əminsiniz?";
   static const String new_pass = 'Yeni şifrə';
   static const String info = 'Məlumat';
   static const String set_new_pass = 'Yeni şifrəni təyin et';
