@@ -46,6 +46,7 @@ class Assets {
   static const String svgBagCross = "assets/svg/bag-cross.svg";
   static const String svgShoppingCart = "assets/svg/shopping-cart.svg";
   static const String svgUserTag = "assets/svg/user-tag.svg";
+  static const String svgoOnlineCard = "assets/svg/online_card.svg";
   static const String svgMore = "assets/svg/svgmore.svg";
   static const String svgBigLogo = "assets/svg/big-logo.svg";
 

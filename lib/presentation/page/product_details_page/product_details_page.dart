@@ -22,10 +22,10 @@ import '../../../widgets/custom/app_button.dart';
 import '../../../widgets/general/app_loading.dart';
 import 'widget/product_add_to_cart_button.dart';
 
-class ProductOptionDetails extends StatelessWidget {
+class ProductDetailsDetails extends StatelessWidget {
   final SimpleProduct? product;
 
-  ProductOptionDetails({Key? key, this.product}) : super(key: key);
+  ProductDetailsDetails({Key? key, this.product}) : super(key: key);
 
   List<String> offerImage = [
     Assets.demo1,

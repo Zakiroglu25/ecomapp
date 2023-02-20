@@ -225,7 +225,7 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
 
   //paymentType
   final BehaviorSubject<PaymentType> paymentType =
-      BehaviorSubject<PaymentType>.seeded(PaymentType.unselected);
+      BehaviorSubject<PaymentType>.seeded(PaymentType.ONLINE);
 
   Stream<PaymentType> get paymentTypeStream => paymentType.stream;
 
@@ -234,9 +234,10 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
     if (value.isNull) {
       paymentType.sink.addError(MyText.field_is_not_correct);
     }
-    if (value == paymentType.value) {
-      paymentType.sink.add(PaymentType.unselected);
-    } else {
+    // if (value == paymentType.value) {
+    //   paymentType.sink.add(PaymentType.unselected);
+    // }
+    else {
       paymentType.sink.add(value!);
     }
     // if (value == PaymentType.cash) {

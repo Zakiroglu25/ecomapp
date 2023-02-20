@@ -192,6 +192,9 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String orderDelivery = "Çatdırılma sifariş et";
   static const String cash = "Nağd";
   static const String cashPayment = "Nağd ödəniş";
+  static const String onlinePayment = "Onlayn ödəniş";
+  static const String makeOnlinePayment = "Online ödəniş et";
+  static const String willAddDuringOrder = "Sifariş zamanı əlavə edəcəm";
   static final String orderDeliveryX = orderDelivery.withX("🚚");
   static const String call = "Zəng et";
   static const String insuranceCover = "Sığorta qarşılayır";

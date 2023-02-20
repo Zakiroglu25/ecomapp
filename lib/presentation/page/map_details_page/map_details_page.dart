@@ -41,6 +41,7 @@ class MapDetailsPage extends StatelessWidget {
               return SliverToBoxAdapter(
                 child: Container(
                   // padding: Paddings.paddingH16,
+                  //margin: Paddings.paddingB24,
                   color: MyColors.white,
                   child: StreamBuilder<bool>(
                       stream: cubit.haveElseStream,

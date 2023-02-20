@@ -1,6 +1,7 @@
 enum PaymentType {
   ONLINE,
   CASH,
+  card,
   unselected;
 
   String get toText => name;

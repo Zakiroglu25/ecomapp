@@ -232,7 +232,7 @@ class Pager {
             create: (context) =>
                 ProductOptionDetailsCubit()..fetchProduct(guid)),
         BlocProvider(create: (context) => CartCubit())
-      ], child: ProductOptionDetails());
+      ], child: ProductDetailsDetails());
 
   static get addressPage => BlocProvider(
         create: (context) => AddressCubit()..fetch(),

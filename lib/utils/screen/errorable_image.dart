@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/screen/ink_wrapper.dart';
 
 import '../../widgets/custom/gallery_photo_view_wrapper.dart';
@@ -65,19 +66,18 @@ class ErrorableImage extends StatelessWidget {
       );
 
   void open(BuildContext context, final int index) {
-    Navigator.push(
+    Go.to2(
         context,
-        MaterialPageRoute(
-            builder: (context) => GalleryPhotoViewWrapper(
-                  galleryItems: [imageUrl!],
-                  loadingBuilder: (a, b) {
-                    return Center(child: AppLoading());
-                  },
-                  backgroundDecoration: const BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  initialIndex: index,
-                  scrollDirection: Axis.horizontal,
-                )));
+        GalleryPhotoViewWrapper(
+          galleryItems: [imageUrl!],
+          loadingBuilder: (a, b) {
+            return Center(child: AppLoading());
+          },
+          backgroundDecoration: const BoxDecoration(
+            color: Colors.white,
+          ),
+          initialIndex: index,
+          scrollDirection: Axis.horizontal,
+        ));
   }
 }

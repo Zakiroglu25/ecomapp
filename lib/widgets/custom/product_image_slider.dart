@@ -30,15 +30,18 @@ class _ProductImgSliderState extends State<ProductImgSlider> {
     super.initState();
 
     imageSliders = widget.imgList
-        .map((item) => GestureDetector(
-              onTap: () {
-                open(context, currentImg);
-              },
-              child: ErrorableImage(
-                imageUrl: item,
-                fit: BoxFit.fill,
-                // width: 244,
-                //height: 344,
+        .map((item) => Hero(
+              tag: "ImageTag" + item.toString(),
+              child: GestureDetector(
+                onTap: () {
+                  open(context, currentImg);
+                },
+                child: ErrorableImage(
+                  imageUrl: item,
+                  fit: BoxFit.fill,
+                  // width: 244,
+                  //height: 344,
+                ),
               ),
             ))
         .toList();
