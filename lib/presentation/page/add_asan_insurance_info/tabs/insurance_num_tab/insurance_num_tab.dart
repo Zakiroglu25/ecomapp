@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/insurance_cubit/insurance_cubit.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../../../infrastructure/cubit/insurance_cubit/insurance_state.dart';
 import '../../../../../infrastructure/services/hive_service.dart';
@@ -31,8 +32,8 @@ class InsuranceNumTab extends StatelessWidget {
               Go.pop(context);
             }
           },
-          child: ListView(
-            shrinkWrap: true,
+          child: Column(
+            //shrinkWrap: true,
             children: [
               MySizedBox.h16,
               AppField(
@@ -54,13 +55,13 @@ class InsuranceNumTab extends StatelessWidget {
                 textCapitalization: TextCapitalization.none,
               ),
               AppField(
-                controller: _prefs.user.finCode!.isEmpty
+                controller: _prefs.user.finCode.isNull
                     ? addInsuranceCubit.finCode
                     : StringOperations.stringToController(
                         _prefs.user.finCode),
                 title: MyText.fin,
                 maxLines: 1,
-                hint: _prefs.user.finCode!.isEmpty
+                hint: _prefs.user.finCode.isNull
                     ? MyText.fin
                     : _prefs.user.finCode,
                 textInputType: TextInputType.text,

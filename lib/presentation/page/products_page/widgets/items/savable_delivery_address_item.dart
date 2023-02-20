@@ -89,6 +89,7 @@ class _SavableDeliveryAddressItemState
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
+                          overflow: TextOverflow.ellipsis,
                           "${widget.title}",
                           style: AppTextStyles.sfPro600s16
                               .copyWith(color: widget.titleColor),

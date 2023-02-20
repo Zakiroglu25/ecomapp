@@ -20,9 +20,10 @@ class Snack {
     final SnackBar snackbar = SnackBar(
       key: Key('a'),
       elevation: 0,
+
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10))),
-      dismissDirection: DismissDirection.horizontal,
+      dismissDirection: DismissDirection.endToStart,
       backgroundColor: Colors.white,
       behavior: SnackBarBehavior.floating,
       padding: const EdgeInsets.only(right: 0),

@@ -57,36 +57,34 @@ class _PageViewExampleState extends State<PageViewExample> {
         user: false,
         contextA: context,
         notification: false,
-        color: MyColors.transparent,
+        color: MyColors.red250,
       ),
       backgroundColor: MyColors.red250,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: PageView.builder(
-                  controller: _pageViewController,
-                  itemCount: cards.length,
-                  onPageChanged: (index) {
-                    setState(() {
-                      _currentIndex = index;
-                    });
-                  },
-                  itemBuilder: (context, index) {
-                    final images = cards[index];
-                    return images;
-                  }),
-            ),
-            Column(
-              children: [
-                Indicator(curr: currentPageValue.round()),
-                MySizedBox.h32,
-                UserLogOutButton(),
-                MySizedBox.h32,
-              ],
-            )
-          ],
-        ),
+      body: Column(
+        children: [
+          Expanded(
+            child: PageView.builder(
+                controller: _pageViewController,
+                itemCount: cards.length,
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+                itemBuilder: (context, index) {
+                  final images = cards[index];
+                  return images;
+                }),
+          ),
+          Column(
+            children: [
+              Indicator(curr: currentPageValue.round()),
+              MySizedBox.h32,
+              UserLogOutButton(),
+              MySizedBox.h32,
+            ],
+          )
+        ],
       ),
     );
   }

@@ -34,6 +34,7 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
 
   DoctorAppbar(
+
       {required this.title,
       required this.user,
       this.notification = true,

@@ -64,7 +64,7 @@ class Alert {
                           ),
                         ),
                   ),
-                  MySizedBox.h4,
+                  MySizedBox.h24,
                   Padding(
                     padding: Paddings.paddingH16,
                     child: Text(
