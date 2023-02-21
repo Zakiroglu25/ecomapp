@@ -31,14 +31,19 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
   String? addressGuid;
   int tabIndex = 0;
 
-  fetch({bool loading = true, String? guid}) async {
-    bbbb("tesssss");
-    if (loading) {
-      emit(DeliveryAndPaymentInProgress());
-    }
+  fetch({bool loading = true, String? guid, String? deliveryType}) async {
+    if (loading) emit(DeliveryAndPaymentInProgress());
     if (guid.isNotNull) orderGuid = guid!;
+    if (deliveryType.isNotNull) tabIndex = DeliveryType.toIndex(deliveryType!);
     try {
       await fetchMainAddress();
+
+      //ilk defe girdikde Pagerden cagirilir, onda deliveryType null olmuyacaq
+      //buna gore de her girdikde PUT-la odenish tipi ONLINE olaraq update olunacaq
+      //eger evvel card secib cixibsa yaranacaq problemin qarsini almaq ucundur bu
+      //if-in meqsedi sehife ilk yuklendikde , yoxsa diger hallarda fetch-in
+      //cagirlidigini yoxlamaqdir
+      if (deliveryType.isNotNull) await updateDeliveryPaymentType();
       final result = await OrdersProvider.orderDetails(guid: orderGuid);
       if (result.isNotNull) {
         emit(DeliveryAndPaymentSuccess(orderDetails: result!));
@@ -53,17 +58,20 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
     }
   }
 
-  updateDeliveryType({bool loading = true, required int index}) async {
+  updateDeliveryPaymentType({bool loading = true, int? index}) async {
     if (loading) {
       emit(DeliveryAndPaymentInProgress());
     }
+
     try {
+      if (index.isNotNull) tabIndex = index!;
+
       if (addressGuid.isNull) return;
       final result = await OrdersProvider.updateOrderDetails(
         guid: orderGuid,
         addressGuid: addressGuid,
         paymentType: paymentType.valueOrNull?.toValue,
-        deliveryType: DeliveryType.fromIndex(index),
+        deliveryType: DeliveryType.fromIndex(tabIndex),
       );
       if (result.isSuccess) {
         //orderGuid = guid;
@@ -93,7 +101,7 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
       }
       addressGuid = address!.guid!;
       if (andUpdate) {
-        updateDeliveryType(index: tabIndex);
+        updateDeliveryPaymentType(index: tabIndex);
       }
       return;
     } catch (e, s) {
@@ -125,7 +133,7 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
 
   updateTab({required int index}) async {
     tabIndex = index;
-    updateDeliveryType(index: index);
+    updateDeliveryPaymentType(index: index);
     if (index == 0 && paymentType.valueOrNull == PaymentType.CASH) {
       updatePaymentType(null);
     }
@@ -136,6 +144,8 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
     try {
       if (loading) emit(DeliveryAndPaymentInProgress());
       Loader.show(context);
+      bbbb(
+          "paymentType.valueOrNull?.toValue:  ${paymentType.valueOrNull?.toValue}");
       final result = await OrdersProvider.createPayment(
           orderGuid: orderGuid,
           saveCard: checkbox.valueOrNull,
@@ -234,11 +244,11 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
     if (value.isNull) {
       paymentType.sink.addError(MyText.field_is_not_correct);
     }
-    // if (value == paymentType.value) {
-    //   paymentType.sink.add(PaymentType.unselected);
-    // }
-    else {
+    if (value == paymentType.value) {
+      //paymentType.sink.add(PaymentType.unselected);
+    } else {
       paymentType.sink.add(value!);
+      updateDeliveryPaymentType();
     }
     // if (value == PaymentType.cash) {
     //   updateSelectedCard(null);

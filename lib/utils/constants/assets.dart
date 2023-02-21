@@ -108,6 +108,7 @@ class Assets {
   static const String courier_png = "assets/png/on_board_courier.png";
   static const String capsule_png = "assets/png/on_board_capsule.png";
   static const String keyChild = "assets/png/keychild.png";
+
   static const String medicine = "assets/png/medicine.png";
   static const String pngBad = "assets/png/bad.png";
   static const String pngCourier = "assets/png/courier.png";

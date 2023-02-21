@@ -62,6 +62,7 @@ import '../../presentation/page/question_response_page/question_response_page.da
 import '../../presentation/page/settings_page/settings_page.dart';
 import '../../presentation/page/splash_page/splash_page.dart';
 import '../../presentation/page/user_edit_page/user_edit_page.dart';
+import '../enums/delivery_type.dart';
 
 class Pager {
   Pager._();
@@ -251,8 +252,8 @@ class Pager {
           BlocProvider(create: (context) => AddressCubit()..fetchMainAddress()),
           //BlocProvider(create: (context) => TabCountsCubit()),
           BlocProvider(
-              create: (context) =>
-                  DeliveryAndPaymentCubit()..fetch(guid: orderGuid)),
+              create: (context) => DeliveryAndPaymentCubit()
+                ..fetch(guid: orderGuid, deliveryType: deliveryType)),
           // BlocProvider(
           //   create: (context) => AddressCubit()..fetch(),
           // ),
