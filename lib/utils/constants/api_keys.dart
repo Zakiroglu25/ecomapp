@@ -170,11 +170,15 @@ class ApiKeys {
     required String? email,
     required String? password,
     required String? phone,
+    required String? firstName,
+    required String? lastName,
     required bool? ads,
   }) {
     final map = {
       "email": email,
       "password": password,
+      "firstName": firstName,
+      "lastName": lastName,
       "phone": phone,
       "newsletterSubscription": ads,
     };

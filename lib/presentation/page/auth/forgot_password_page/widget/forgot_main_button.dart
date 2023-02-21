@@ -13,8 +13,8 @@ class ForgotMainButton extends StatelessWidget {
     final forgotCubit = context.watch<ForgotPassCubit>();
     return Positioned(
       bottom: 20,
-      left: 0,
-      right: 0,
+      left: 20,
+      right: 20,
       child: StreamBuilder<String>(
           stream: BlocProvider.of<ForgotPassCubit>(context).phoneStream,
           builder: (context, snapshot) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -13,7 +14,11 @@ class OtpPinCodeField extends StatelessWidget {
     return PinCodeTextField(
       length: 6,
       obscureText: false,
+      keyboardType: TextInputType.phone,
       animationType: AnimationType.fade,
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly,
+      ],
       pinTheme: PinTheme(
         shape: PinCodeFieldShape.box,
         borderRadius: BorderRadius.circular(12),

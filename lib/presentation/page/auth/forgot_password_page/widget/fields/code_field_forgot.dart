@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/widgets/general/app_field.dart';
 
@@ -19,9 +20,12 @@ class CodeFieldForgot extends StatelessWidget {
           maxLines: 1,
           hint: MyText.password,
           upperCase: false,
+          formatters: [
+            FilteringTextInputFormatter.digitsOnly,
+          ],
           maxLenght: 6,
           obscure: true,
-          textInputType: TextInputType.name,
+          textInputType: TextInputType.phone,
           textCapitalization: TextCapitalization.words,
           errorMessage: snapshot.error == null ? null : '${snapshot.error}',
           //infoMessage: MyText.confirm_your_email,

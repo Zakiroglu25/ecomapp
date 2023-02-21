@@ -34,6 +34,8 @@ class RegisterCubit extends Cubit<RegisterState> {
           AppOperations.formatNumberWith994(phone.valueOrNull!);
       final response = await AuthProvider.registration(
         email: uEmail.valueOrNull,
+        firstName: uName.valueOrNull,
+        lastName: surName.valueOrNull,
         phone: formattedPhone,
         password: uPassMain.value,
         ads: checkbox.valueOrNull,
@@ -63,6 +65,48 @@ class RegisterCubit extends Cubit<RegisterState> {
     }
   }
 
+  /////////////////////////////////////////////////////////////
+  /////////////////  v a l u e s /////////////////////////////
+  ///////////////////////////////////////////////////////////
+
+  //name
+  //name
+  final BehaviorSubject<String> uName = BehaviorSubject<String>();
+
+  Stream<String> get nameStream => uName.stream;
+
+  updateName(String value) {
+    if (value == null || value.isEmpty) {
+      uName.value = '';
+      uName.sink.addError(MyText.field_is_not_correct);
+    } else {
+      uName.sink.add(value);
+    }
+    isUserInfoValid();
+  }
+
+  bool get isNameIncorrect =>
+      (!uName.hasValue || uName.value == null || uName.value.isEmpty);
+
+  //surname
+  final BehaviorSubject<String> surName = BehaviorSubject<String>();
+
+  Stream<String> get surnameStream => surName.stream;
+
+  updateSurName(String value) {
+    if (value == null || value.isEmpty) {
+      surName.value = '';
+      surName.sink.addError(MyText.field_is_not_correct);
+    } else {
+      surName.sink.add(value);
+    }
+    isUserInfoValid();
+  }
+
+  bool get isSurNameIncorrect =>
+      (!surName.hasValue || surName.value == null || surName.value.isEmpty);
+
+  //registerActive
   final BehaviorSubject<bool> registerActive =
       BehaviorSubject<bool>.seeded(false);
 

@@ -122,12 +122,16 @@ class AuthProvider {
   static Future<RegisterResponse?> registration({
     required String? email,
     required String? phone,
+    required String? firstName,
+    required String? lastName,
     required String? password,
     required bool? ads,
   }) async {
     RegisterResponse registerResponse = RegisterResponse();
     var api = ApiKeys.registerPersonal;
     var body = ApiKeys.registrationPersonalBody(
+      lastName: lastName,
+      firstName: firstName,
       email: email,
       password: password,
       phone: phone,

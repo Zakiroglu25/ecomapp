@@ -83,7 +83,7 @@ class Pager {
         BlocProvider(
           create: (context) => RegisterCubit(),
         ),
-      ], child: Register());
+      ], child: RegisterPage());
 
   static get login => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => LoginCubit()),
