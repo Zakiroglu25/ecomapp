@@ -32,7 +32,6 @@ class NotificationsPage extends StatelessWidget {
           if (state is NotificationSuccess) {
             List<Notificationse>? notificationList =
                 state.notificationList.data;
-
             return ListOrEmpty(
               image: Assets.notifyheart,
               text: MyText.emptyNotification,

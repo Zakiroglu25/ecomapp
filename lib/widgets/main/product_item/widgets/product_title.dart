@@ -20,7 +20,7 @@ class ProductTitle extends StatelessWidget {
               height: 1.8,
               fontSize: 18,
               letterSpacing: -0.2),
-          maxLines: 2,
+          maxLines: 1,
           //overflow: TextOverflow.ellipsis,
         ),
       ),

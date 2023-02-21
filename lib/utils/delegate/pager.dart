@@ -101,7 +101,7 @@ class Pager {
         BlocProvider(
             create: (context) =>
                 ProductOptionDetailsCubit()..fetchProductMapGuid(map.guid!)),
-      ], child: MapDetailsPage(map));
+      ], child: MapDetailsPage(maps: map));
 
   static get cart => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => CartCubit()..fetch()),

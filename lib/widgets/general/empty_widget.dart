@@ -102,6 +102,7 @@ class EmptyWidget extends StatelessWidget {
                           onTap: () => onRefresh?.call(),
                         ),
                       )),
+                  MySizedBox.h100
                 ],
               ),
             ),
