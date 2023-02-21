@@ -29,7 +29,7 @@ class MapDetailsHeaders extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              MySizedBox.h100,
+              MySizedBox.h30,
               Text(
                 maps.name!,
                 style: AppTextStyles.sfPro600s16,
