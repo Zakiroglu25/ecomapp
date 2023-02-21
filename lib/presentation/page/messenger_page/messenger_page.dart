@@ -27,7 +27,7 @@ class MessengerPage extends StatelessWidget {
             if (state is MessengerSuccess) {
               if (state.contactList.isEmpty) {
                 return SizedBox(
-                  height: MediaQuery.of(context).size.height / 2,
+                  height: MediaQuery.of(context).size.height / 1.5,
                   child: EmptyWidget(
                     imageUrl: Assets.pngChat,
                     color: MyColors.blue157,
