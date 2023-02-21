@@ -16,6 +16,7 @@ import '../../presentation/page/products_page/widgets/current_delivery_address_b
 import '../../presentation/page/products_page/widgets/sheet_add_new_address_button.dart';
 import '../../widgets/general/small_section.dart';
 import 'durations.dart';
+import 'physics.dart';
 
 class Sheets {
   Sheets._();
@@ -41,7 +42,7 @@ class Sheets {
                     padding: Paddings.paddingA16,
                     child: ListView(
                       shrinkWrap: true,
-                      // physics: Physics.never,
+                      physics: Physics.never,
                       //    crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         SmallSection(
