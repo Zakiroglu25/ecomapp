@@ -184,25 +184,28 @@ class AppField extends StatelessWidget {
             ],
           ),
           MySizedBox.h3,
-          errorMessage != null
-              ? FadeIn(
-                  key: const Key("b"),
-                  child: Text(
-                    errorMessage ?? "",
-                    style: AppTextStyles.sfPro400s14
-                        .copyWith(color: MyColors.errorRED),
-                  ),
-                )
-              : (infoMessage != null
-                  ? FadeIn(
-                      key: const Key("a"),
-                      child: Text(
-                        (infoMessage ?? ""),
-                        style: AppTextStyles.sfPro400s14
-                            .copyWith(color: MyColors.error_red),
-                      ),
-                    )
-                  : SizedBox.shrink()),
+          AnimatedSize(
+            duration: Durations.ms100,
+            child: errorMessage != null
+                ? FadeIn(
+                    key: const Key("b"),
+                    child: Text(
+                      errorMessage ?? "",
+                      style: AppTextStyles.sfPro400s14
+                          .copyWith(color: MyColors.errorRED),
+                    ),
+                  )
+                : (infoMessage != null
+                    ? FadeIn(
+                        key: const Key("a"),
+                        child: Text(
+                          (infoMessage ?? ""),
+                          style: AppTextStyles.sfPro400s14
+                              .copyWith(color: MyColors.error_red),
+                        ),
+                      )
+                    : SizedBox.shrink()),
+          ),
         ],
       ),
     );
