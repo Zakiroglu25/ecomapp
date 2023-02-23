@@ -86,17 +86,12 @@ class AddAddressPage extends StatelessWidget {
                     onTap: () {
                       addressModel != null
                           ? context.read<AddAddressCubit>().editAddress(
-                                address: addressModel!,
                                 context: context,
-                                lat: lat,
-                                lng: lng,
-                                guid: addressModel!.guid,
+                                guid: addressModel!.guid!,
                               )
-                          : context.read<AddAddressCubit>().addAddress(
-                                context: context,
-                                lat: lat,
-                                lng: lng,
-                              );
+                          : context
+                              .read<AddAddressCubit>()
+                              .addAddress(context: context);
                     },
                     text: MyText.save,
                   );

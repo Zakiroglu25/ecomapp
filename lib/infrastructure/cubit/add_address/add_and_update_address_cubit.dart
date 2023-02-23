@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../locator.dart';
@@ -18,10 +19,29 @@ class AddAddressCubit extends Cubit<AddAddressState> {
   AddAddressCubit() : super(AddAddressInitial());
 
   HiveService get _prefs => locator<HiveService>();
+  double? lat;
+  double? long;
+
+  void setAddress({BuildContext? context, Address? address}) async {
+    try {
+      emit(AddAddressInProgress());
+
+      if (address.isNotNull) {
+        updateStreet(address?.streetName);
+        updateDesc(address?.description);
+        updateCity(address?.city);
+        updateCountry(address?.country);
+        updateLatLong(double.tryParse(address?.latitude ?? '0'),
+            double.tryParse(address?.longitude ?? '0'));
+        updateTitle(address?.title);
+      }
+    } catch (e, s) {
+      emit(AddAddressError());
+      Recorder.recordCatchError(e, s);
+    }
+  }
 
   void addAddress({
-    double? lat,
-    double? lng,
     BuildContext? context,
   }) async {
     try {
@@ -32,10 +52,10 @@ class AddAddressCubit extends Cubit<AddAddressState> {
           country: country.valueOrNull,
           title: title.valueOrNull,
           houseNumber: "12",
-          streetName: street.valueOrNull,
+          streetName: street.valueOrNull ?? '',
           phone: _prefs.user.phone,
           latitude: lat.toString(),
-          longitude: lng.toString(),
+          longitude: long.toString(),
           description: desc.valueOrNull,
           isMain: false);
 
@@ -45,21 +65,13 @@ class AddAddressCubit extends Cubit<AddAddressState> {
         emit(AddAddressError(error: MyText.error + " ${result.statusCode}"));
       }
       emit(AddAddressInProgress());
-    } on SocketException catch (_) {
-      //network olacaq
-      emit(AddAddressError(error: MyText.demo));
-    } catch (e) {
+    } catch (e, s) {
       emit(AddAddressError());
+      Recorder.recordCatchError(e, s);
     }
   }
 
-  void editAddress(
-      {Address? address,
-      double? lat,
-      String? guid,
-      double? lng,
-      BuildContext? context,
-      TextEditingController? streetNameController}) async {
+  void editAddress({required String guid, BuildContext? context}) async {
     try {
       emit(AddAddressInProgress());
       final result = await AddressProvider.editAddress(
@@ -69,23 +81,21 @@ class AddAddressCubit extends Cubit<AddAddressState> {
           houseNumber: "12",
           streetName: street.valueOrNull,
           phone: _prefs.user.phone,
-          latitude: lat.toString(),
-          longitude: lng.toString(),
+          latitude: "$lat" ?? '',
+          longitude: "$long" ?? '',
           description: desc.valueOrNull,
           isMain: false,
-          guid: guid.toString());
+          guid: guid);
 
-      if (isSuccess(result.statusCode)) {
+      if (result.statusCode.isSuccess) {
         emit(AddAddressEditSuccess());
       } else {
         emit(AddAddressError(error: MyText.error + " ${result.statusCode}"));
       }
       emit(AddAddressInProgress());
-    } on SocketException catch (_) {
-      //network olacaq
-      emit(AddAddressError(error: MyText.demo));
-    } catch (e) {
+    } catch (e, s) {
       emit(AddAddressError());
+      Recorder.recordCatchError(e, s);
     }
   }
 
@@ -95,7 +105,7 @@ class AddAddressCubit extends Cubit<AddAddressState> {
 
   Stream<String> get titleStream => title.stream;
 
-  updateTitle(String value) {
+  updateTitle(String? value) {
     if (value == null || value.isEmpty) {
       title.value = '';
       title.sink.addError(MyText.field_is_not_correct);
@@ -113,7 +123,7 @@ class AddAddressCubit extends Cubit<AddAddressState> {
 
   Stream<String> get descStream => desc.stream;
 
-  updateDesc(String value) {
+  updateDesc(String? value) {
     if (value == null || value.isEmpty) {
       desc.value = '';
       desc.sink.addError(MyText.field_is_not_correct);
@@ -131,7 +141,7 @@ class AddAddressCubit extends Cubit<AddAddressState> {
 
   Stream<String> get cityStream => city.stream;
 
-  updateCityc(String value) {
+  updateCity(String? value) {
     if (value == null || value.isEmpty) {
       city.value = '';
       city.sink.addError(MyText.field_is_not_correct);
@@ -149,7 +159,7 @@ class AddAddressCubit extends Cubit<AddAddressState> {
 
   Stream<String> get countryStream => country.stream;
 
-  updateCountry(String value) {
+  updateCountry(String? value) {
     if (value == null || value.isEmpty) {
       country.value = '';
       country.sink.addError(MyText.field_is_not_correct);
@@ -162,12 +172,22 @@ class AddAddressCubit extends Cubit<AddAddressState> {
   bool get isCountryIncorrect =>
       (!country.hasValue || country.value == null || country.value.isEmpty);
 
+  // lat - long
+  updateLatLong(double? lat, double? long) {
+    if (lat.isNull || long.isNull) {
+    } else {
+      this.lat = lat;
+      this.long = long;
+    }
+    // isAddressValid();
+  }
+
   //street name
   final BehaviorSubject<String> street = BehaviorSubject<String>();
 
-  Stream<String> get streetStream => country.stream;
+  Stream<String> get streetStream => street.stream;
 
-  updateStreet(String value) {
+  updateStreet(String? value) {
     if (value == null || value.isEmpty) {
       street.value = '';
       street.sink.addError(MyText.field_is_not_correct);

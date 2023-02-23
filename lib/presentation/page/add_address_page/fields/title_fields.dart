@@ -12,22 +12,21 @@ class TitleField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (controller!.text != '' && controller!.text != 'null')
-      BlocProvider.of<AddAddressCubit>(context).updateCityc(controller!.text);
+      BlocProvider.of<AddAddressCubit>(context).updateCity(controller!.text);
     return StreamBuilder<String>(
         stream: BlocProvider.of<AddAddressCubit>(context).cityStream,
-      builder: (context, snapshot) {
-        return AppField(
-          title: MyText.city,
-          maxLines: 1,
-          hint: MyText.cityAdd,
-          textInputType: TextInputType.name,
-          textCapitalization: TextCapitalization.sentences,
-          // errorMessage: snapshot.error == null ? null : '${snapshot.error}',
-          controller: controller,
-          onChanged: (value) =>
-              BlocProvider.of<AddAddressCubit>(context).updateCityc(value),
-        );
-      }
-    );
+        builder: (context, snapshot) {
+          return AppField(
+            title: MyText.city,
+            maxLines: 1,
+            hint: MyText.cityAdd,
+            textInputType: TextInputType.name,
+            textCapitalization: TextCapitalization.sentences,
+            // errorMessage: snapshot.error == null ? null : '${snapshot.error}',
+            controller: controller,
+            onChanged: (value) =>
+                BlocProvider.of<AddAddressCubit>(context).updateCity(value),
+          );
+        });
   }
 }

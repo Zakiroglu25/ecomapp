@@ -76,10 +76,13 @@ class AppField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lineH = 16;
     return AnimatedContainer(
       duration: Durations.ms200,
       height: (errorMessage == null ? 66 : 96) +
           (title != null ? 14 : 0) +
+          ((maxLines ?? 1) * lineH) -
+          (lineH) +
           (infoMessage != null ? 18.0 : 0.0),
       // color: MyColors.mainRED,
       child: Column(
@@ -102,7 +105,7 @@ class AppField extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               AnimatedContainer(
-                height: 49,
+                height: (49.0 - lineH) + ((maxLines ?? 1) * lineH),
                 duration: const Duration(milliseconds: 200),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(radius),

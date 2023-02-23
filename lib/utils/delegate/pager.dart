@@ -44,6 +44,7 @@ import '../../infrastructure/model/response/address_model.dart';
 import '../../presentation/page/add_address_page/add_address_page.dart';
 import '../../presentation/page/add_asan_insurance_info/add_asan_insurance_info_page.dart';
 import '../../presentation/page/address_page/address_page.dart';
+import '../../presentation/page/address_page/select_map_page/select_map_page.dart';
 import '../../presentation/page/auth/login_page/login_page.dart';
 import '../../presentation/page/auth/register_page/register_page.dart';
 import '../../presentation/page/cart_page/cart_page.dart';
@@ -88,6 +89,10 @@ class Pager {
   static get login => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => LoginCubit()),
       ], child: const LoginPage());
+
+  static selectMapPage(BuildContext context) => MultiBlocProvider(providers: [
+        BlocProvider.value(value: BlocProvider.of<AddAddressCubit>(context)),
+      ], child: const SelectMapPage());
 
   static get products => MultiBlocProvider(providers: [
         // BlocProvider(create: (context) => ProductOptionCubit()..fetchProduct()),
@@ -202,9 +207,7 @@ class Pager {
   static addAddress({Address? address, context, lat, long, title}) =>
       BlocProvider(
         create: (context) => AddAddressCubit(),
-        child: AddAddressPage(
-          addressModel: address,
-        ),
+        child: AddAddressPage(addressModel: address),
       );
 
   static get otherPage => OtherPage();

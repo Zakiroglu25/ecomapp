@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:focus_detector/focus_detector.dart';
 import 'package:uikit/utils/delegate/index.dart';
 
 import '../../../../../utils/constants/text.dart';
@@ -14,28 +15,38 @@ class AddressField extends StatelessWidget {
   AddressField({this.controller, this.name}); //= new TextEditingController();
   @override
   Widget build(BuildContext context) {
-    if (controller!.text != '' && controller!.text != 'null')
-      BlocProvider.of<AddAddressCubit>(context).updateStreet(controller!.text);
-    return StreamBuilder<String>(
-        stream: BlocProvider.of<AddAddressCubit>(context).streetStream,
-        builder: (context, snapshot) {
-          return AppField(
-            title: MyText.address,
-            maxLines: 1,
-            hint: MyText.addressAdd,
-            readOnly: true,
-            textInputType: TextInputType.name,
-            textCapitalization: TextCapitalization.sentences,
-            controller: controller,
-            onTap: () async {
-              Go.to(context, MapSample());
-            },
-            suffixIcon: InkWell(
-                onTap: () async {
-                  Go.to(context, MapSample());
-                },
-                child: Icon(Icons.my_location_sharp)),
-          );
-        });
+    // if (controller!.text != '' && controller!.text != 'null')
+    //   BlocProvider.of<AddAddressCubit>(context).updateStreet(controller!.text);
+    return FocusDetector(
+      onFocusGained: () {
+        // BlocProvider.of<AddAddressCubit>(context)
+        //     .updateStreet("textController.text");
+      },
+      child: StreamBuilder<String>(
+          stream: BlocProvider.of<AddAddressCubit>(context).streetStream,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              controller?.text = snapshot.data ?? '';
+            }
+            return AppField(
+              title: MyText.address,
+              maxLines: 1,
+              hint: MyText.addressAdd,
+              readOnly: true,
+              //initialValue: snapshot.data,
+              textInputType: TextInputType.name,
+              textCapitalization: TextCapitalization.sentences,
+              controller: controller,
+              onTap: () async {
+                Go.to(context, Pager.selectMapPage(context));
+              },
+              suffixIcon: InkWell(
+                  onTap: () async {
+                    Go.to(context, Pager.selectMapPage(context));
+                  },
+                  child: Icon(Icons.my_location_sharp)),
+            );
+          }),
+    );
   }
 }
