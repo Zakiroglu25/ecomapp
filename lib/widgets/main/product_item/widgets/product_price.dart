@@ -11,7 +11,10 @@ class ProductPrice extends StatelessWidget {
     return Expanded(
         child: Row(
       children: [
-        ManatPrice(price: price,textSize: 20,),
+        ManatPrice(
+          price: price,
+          textSize: 20,
+        ),
         Text(
           "-dan",
           style: AppTextStyles.sfPro700.copyWith(fontSize: 20),

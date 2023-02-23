@@ -19,8 +19,8 @@ class EnterPasswordBody extends StatelessWidget {
     return FadeInRight(
       duration: Duration(milliseconds: 500),
       key: Key("b"),
-      child: ListView(
-        shrinkWrap: true,
+      child: Column(
+        // shrinkWrap: true,
         children: [
           MySizedBox.h30,
           ForgotMainText(MyText.set_new_pass),

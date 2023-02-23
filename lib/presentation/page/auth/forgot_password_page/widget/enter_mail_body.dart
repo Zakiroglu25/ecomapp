@@ -13,16 +13,18 @@ class EnterMailBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FadeIn(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          MySizedBox.h30,
-          ForgotMainText(MyText.are_you_forgot_pass),
-          MySizedBox.h16,
-          ForgotSecondText(MyText.smsCodeWillSend),
-          MySizedBox.h16,
-          PhoneFieldForgot(),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            MySizedBox.h30,
+            ForgotMainText(MyText.are_you_forgot_pass),
+            MySizedBox.h16,
+            ForgotSecondText(MyText.smsCodeWillSend),
+            MySizedBox.h16,
+            PhoneFieldForgot(),
+          ],
+        ),
       ),
     );
   }

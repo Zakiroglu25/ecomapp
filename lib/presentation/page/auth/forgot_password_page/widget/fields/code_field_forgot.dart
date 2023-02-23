@@ -30,8 +30,13 @@ class CodeFieldForgot extends StatelessWidget {
           errorMessage: snapshot.error == null ? null : '${snapshot.error}',
           //infoMessage: MyText.confirm_your_email,
           // controller: passController,
-          onChanged: (value) =>
-              BlocProvider.of<ForgotPassCubit>(context).updateCode(value),
+          onChanged: (value) {
+            BlocProvider.of<ForgotPassCubit>(context).updateCode(value);
+            if (value.length == 6) {
+              FocusScope.of(context).unfocus();
+              context.read<ForgotPassCubit>().changeState(context: context);
+            }
+          },
         );
       },
     );

@@ -21,7 +21,7 @@ class UserView extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12), color: MyColors.white),
           width: 311,
-          height: 425.h,
+          height: 430.h,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: UserDataBody(prefs: _prefs),

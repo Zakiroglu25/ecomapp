@@ -47,50 +47,53 @@ class _ProductCartButtonState extends State<ProductCartButton> {
   Widget build(BuildContext context) {
     //final inCart = true;
     return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(0.0)+EdgeInsets.symmetric(horizontal: 15),
-        child: AppButton(
-
-          color: widget.product.isInCart! ? MyColors.brand : MyColors.mainGreen85,
-          onTap: () async {
-            bool? res;
-            if (widget.product.isInCart!) {
-              res = await context
-                  .read<CartCubit>()
-                  .delete(context, guid: widget.product.guid);
-            } else {
-              res = await context
-                  .read<CartCubit>()
-                  .add(context, guid: widget.product.guid);
-            }
-            if (res == true) {
-              widget.product.isInCart = !widget.product.isInCart!;
-              setState(() {});
-            }
-          },
-          // w: 90,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-
-            children: [
-              SizedBox(
-                  child: widget.product.isInCart!
-                      ? SvgPicture.asset(Assets.svgBagCross)
-                      : SvgPicture.asset(Assets.svgCart)),
-              MySizedBox.w4,
-              SizedBox(
-                height: 20,
-                child: Center(
-                  child: Text(
-                    widget.product.isInCart! ? MyText.cancel : MyText.toCart,
-                    textAlign: TextAlign.start,
-                    style:
-                        AppTextStyles.sfPro400h2.copyWith(color: MyColors.white),
+      child: Container(
+        // color: MyColors.blue55,
+        child: Padding(
+          padding: const EdgeInsets.all(0.0) + EdgeInsets.only(left: 20),
+          child: AppButton(
+            color: widget.product.isInCart!
+                ? MyColors.brand
+                : MyColors.mainGreen85,
+            onTap: () async {
+              bool? res;
+              if (widget.product.isInCart!) {
+                res = await context
+                    .read<CartCubit>()
+                    .delete(context, guid: widget.product.guid);
+              } else {
+                res = await context
+                    .read<CartCubit>()
+                    .add(context, guid: widget.product.guid);
+              }
+              if (res == true) {
+                widget.product.isInCart = !widget.product.isInCart!;
+                setState(() {});
+              }
+            },
+            // w: 90,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                    child: widget.product.isInCart!
+                        ? SvgPicture.asset(Assets.svgBagCross)
+                        : SvgPicture.asset(Assets.svgCart)),
+                MySizedBox.w4,
+                SizedBox(
+                  height: 22,
+                  child: Center(
+                    child: Text(
+                      widget.product.isInCart! ? MyText.cancel : MyText.toCart,
+                      textAlign: TextAlign.start,
+                      style: AppTextStyles.sfPro400h2
+                          .copyWith(color: MyColors.white),
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),

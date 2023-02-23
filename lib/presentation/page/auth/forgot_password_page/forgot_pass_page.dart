@@ -27,63 +27,68 @@ class ForgetPasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final forgotCubit = context.watch<ForgotPassCubit>();
     return AppSafeArea(
-      child: Scaffold(
-        //resizeToAvoidBottomInset: false,
-        // appBar: CaspaAppbar(
-        //   contextA: context,
-        //   title: '',
-        //   user: false,
-        //   notification: false,
-        // ),
-        body: Stack(
-          fit: StackFit.expand,
-          children: [
-            const ForgotBackButton(),
-            Padding(
-              padding: Paddings.paddingH20,
-              child: Column(
-                children: [
-                  MySizedBox.h40,
-                  KeyWidget(),
-                  MySizedBox.h10,
-                  ForgotPassStepper(
-                    stepCount: 3,
-                    //current: 2,
-                    current: forgotCubit.currentIndex,
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+        child: Scaffold(
+          //resizeToAvoidBottomInset: false,
+          // appBar: CaspaAppbar(
+          //   contextA: context,
+          //   title: '',
+          //   user: false,
+          //   notification: false,
+          // ),
+          body: Stack(
+            fit: StackFit.expand,
+            children: [
+              Padding(
+                padding: Paddings.paddingH20,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      MySizedBox.h40,
+                      KeyWidget(),
+                      MySizedBox.h10,
+                      ForgotPassStepper(
+                        stepCount: 3,
+                        //current: 2,
+                        current: forgotCubit.currentIndex,
+                      ),
+                      BlocConsumer<ForgotPassCubit, ForgotPassState>(
+                          listener: (context, state) {
+                        if (state is ForgotPassSuccess) {
+                          Snack.positive2(context, message: MyText.success);
+                          Go.andRemove(context, Pager.login);
+                        }
+                      }, buildWhen: (context, state) {
+                        if (state is ForgotPassInProgress) {
+                          return false;
+                        }
+                        if (state is ForgotPassError) {
+                          return false;
+                        } else
+                          return true;
+                      }, builder: (context, state) {
+                        if (state is ForgotPassEnterMail) {
+                          return EnterMailBody();
+                        }
+                        if (state is ForgotPassEnterCode) {
+                          return EnterCodeBody();
+                        }
+                        if (state is ForgotPassChange) {
+                          return EnterPasswordBody();
+                        } else {
+                          return AppLoading.blue();
+                        }
+                      })
+                    ],
                   ),
-                  BlocConsumer<ForgotPassCubit, ForgotPassState>(
-                      listener: (context, state) {
-                    if (state is ForgotPassSuccess) {
-                      Snack.positive2(context, message: MyText.success);
-                      Go.andRemove(context, Pager.login);
-                    }
-                  }, buildWhen: (context, state) {
-                    if (state is ForgotPassInProgress) {
-                      return false;
-                    }
-                    if (state is ForgotPassError) {
-                      return false;
-                    } else
-                      return true;
-                  }, builder: (context, state) {
-                    if (state is ForgotPassEnterMail) {
-                      return EnterMailBody();
-                    }
-                    if (state is ForgotPassEnterCode) {
-                      return EnterCodeBody();
-                    }
-                    if (state is ForgotPassChange) {
-                      return EnterPasswordBody();
-                    } else {
-                      return AppLoading.blue();
-                    }
-                  })
-                ],
+                ),
               ),
-            ),
-            //  Boxx(),
-            const ForgotMainButton()
-          ],
+              //  Boxx(),
+              const ForgotMainButton(),
+              const ForgotBackButton(),
+            ],
+          ),
         ),
       ),
     );

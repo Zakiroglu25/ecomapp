@@ -79,7 +79,7 @@ class AppField extends StatelessWidget {
     return AnimatedContainer(
       duration: Durations.ms200,
       height: (errorMessage == null ? 66 : 96) +
-          (title != null ? 14 : 0)+
+          (title != null ? 14 : 0) +
           (infoMessage != null ? 18.0 : 0.0),
       // color: MyColors.mainRED,
       child: Column(
@@ -87,13 +87,16 @@ class AppField extends StatelessWidget {
         children: [
           // SizedBox(height:topMargin?? 6,),
 
-          title.isNotNull?Column(
-            children: [
-              Text(title ?? "",
-                  style: AppTextStyles.sfPro400s14.copyWith(letterSpacing: 0)),
-              MySizedBox.h3,
-            ],
-          ):Container(),
+          title.isNotNull
+              ? Column(
+                  children: [
+                    Text(title ?? "",
+                        style: AppTextStyles.sfPro400s14
+                            .copyWith(letterSpacing: 0)),
+                    MySizedBox.h3,
+                  ],
+                )
+              : Container(),
 
           Stack(
             alignment: Alignment.center,
@@ -108,6 +111,10 @@ class AppField extends StatelessWidget {
                             ? MyColors.transparent
                             : MyColors.errorRED)),
                 child: TextFormField(
+                  scrollPadding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom +
+                          16 * 4 +
+                          90),
                   style: AppTextStyles.sfPro400s16,
                   autocorrect: false,
                   controller: controller,

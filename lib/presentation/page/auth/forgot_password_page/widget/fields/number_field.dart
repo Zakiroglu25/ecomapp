@@ -31,10 +31,11 @@ class PhoneFieldForgot extends StatelessWidget {
             errorMessage: snapshot.error == null ? null : '${snapshot.error}',
             //  controller: controller,
             onChanged: (value) {
+              BlocProvider.of<ForgotPassCubit>(context).updatePhone(value);
               if (value.length == 14) {
                 FocusScope.of(context).unfocus();
+                context.read<ForgotPassCubit>().changeState(context: context);
               }
-              BlocProvider.of<ForgotPassCubit>(context).updatePhone(value);
             });
       },
     );

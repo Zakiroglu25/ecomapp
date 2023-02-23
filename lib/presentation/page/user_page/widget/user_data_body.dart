@@ -112,9 +112,9 @@ class UserDataBody extends StatelessWidget {
               ),
             if (_prefs.user.finCode == null)
               Text(
-              "Fin kod yoxdur",
-              style: AppTextStyles.sfPro600s24,
-            ),
+                "Fin kod yoxdur",
+                style: AppTextStyles.sfPro600s24,
+              ),
             Spacer(),
             const Icon(Icons.copy)
           ],
