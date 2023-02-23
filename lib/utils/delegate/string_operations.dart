@@ -21,7 +21,7 @@ class StringOperations {
   //
   // static copy(String? data, BuildContext context, {String? copyText}) {
   //   Clipboard.setData(ClipboardData(text: data ?? "")).then((_) {
-  //     Snack.display(
+  //     Snack.showOverlay(
   //         context: context,
   //         message: copyText ?? MyText.coppied,
   //         showSuccessIcon: true,

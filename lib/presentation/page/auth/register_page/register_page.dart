@@ -8,6 +8,7 @@ import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
 
 import '../../../../infrastructure/cubit/register/register_cubit.dart';
+import '../../../../utils/constants/paddings.dart';
 import '../../../../utils/screen/snack.dart';
 import 'widgets/checkbox_ads.dart';
 import 'widgets/email_field_register.dart';
@@ -44,12 +45,12 @@ class RegisterPage extends StatelessWidget {
           }
         },
         listener: (context, state) {
-          if (state is RegisterFailed) {
-            Snack.display(message: state.message ?? MyText.error);
-          }
+          // if (state is RegisterFailed) {
+          //   Snack.showOverlay(message: state.message ?? MyText.error);
+          // }
         },
         child: Padding(
-          padding: const EdgeInsets.only(left: 16.0, right: 16),
+          padding: Paddings.paddingA16,
           child: SingleChildScrollView(
             child: Column(
               children: [

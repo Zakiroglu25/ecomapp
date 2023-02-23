@@ -29,7 +29,8 @@ class DeliveryAndPaymentPage extends StatelessWidget {
     return BlocConsumer<DeliveryAndPaymentCubit, DeliveryAndPaymentState>(
       listener: (context, state) {
         if (state is DeliveryAndPaymentOperationError) {
-          Snack.display(context: context, message: state.error ?? MyText.error);
+          Snack.showOverlay(
+              context: context, message: state.error ?? MyText.error);
         }
       },
       builder: (context, state) {

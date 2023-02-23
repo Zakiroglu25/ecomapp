@@ -10,8 +10,11 @@ import 'package:uikit/widgets/custom/sliver_app_bar_delegate.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../infrastructure/model/response/map_medicine.dart';
+import '../../../../infrastructure/services/navigation_service.dart';
 import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/paddings.dart';
+import '../../../../utils/constants/text.dart';
+import '../../../../utils/screen/alert.dart';
 
 class MapDetailsHeaders extends StatelessWidget {
   final MapMedicine maps;
@@ -65,15 +68,14 @@ class MapDetailsHeaders extends StatelessWidget {
                 height: 32.h,
                 width: 90.w,
                 decoration: BoxDecoration(
-                  color:
-                      maps.isOpen! ? MyColors.mainGreen85 : MyColors.mainRED,
+                  color: maps.isOpen! ? MyColors.mainGreen85 : MyColors.mainRED,
                   borderRadius: BorderRadius.circular(24),
                 ),
                 child: Center(
                     child: Text(
                   maps.isOpen! ? "Açıqdır" : "Bağlıdır",
-                  style: AppTextStyles.sfPro400s16
-                      .copyWith(color: MyColors.white),
+                  style:
+                      AppTextStyles.sfPro400s16.copyWith(color: MyColors.white),
                 )),
               ),
               MySizedBox.h8,
@@ -103,12 +105,19 @@ class MapDetailsHeaders extends StatelessWidget {
   Future<void> launch1(Uri url) async {
     await canLaunchUrl(url)
         ? await launchUrl(url)
-        : Snack.display(message: "Xeta yarandi");
+        : Alert.show(NavigationService.instance.navigationKey!.currentContext!,
+            //content: MyText.networkError,
+            title: MyText.error,
+            mainButtonColor: MyColors.brand);
+    ;
   }
 
   Future<void> call(Uri url) async {
     await canLaunchUrl(url)
         ? await launchUrl(url)
-        : Snack.display(message: "Xeta yarandi");
+        : Alert.show(NavigationService.instance.navigationKey!.currentContext!,
+            //content: MyText.networkError,
+            title: MyText.error,
+            mainButtonColor: MyColors.brand);
   }
 }

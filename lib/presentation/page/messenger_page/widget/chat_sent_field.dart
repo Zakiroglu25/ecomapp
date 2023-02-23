@@ -53,7 +53,9 @@ class ChatSendTextField extends StatelessWidget {
                       .sendMessage(message: controller.text);
                   controller.clear();
                 } else {
-                  Snack.display(message: "Xarakter sayi 5den boyuk olmalidir.");
+                  Snack.showOverlay(
+                      context: context,
+                      message: "Xarakter sayi 5den boyuk olmalidir.");
                 }
               },
               child: BlocListener<ChatMessengerCubit, ChatMessengerState>(

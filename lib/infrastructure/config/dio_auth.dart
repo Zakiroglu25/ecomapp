@@ -197,7 +197,10 @@ class CustomInterceptors extends Interceptor {
     // Recorder.recordDioError(err);
     //return
     if (_isServerDown(err)) {
-      Snack.display(message: MyText.networkError);
+      Alert.show(NavigationService.instance.navigationKey!.currentContext!,
+          content: MyText.networkError,
+          title: MyText.error,
+          mainButtonColor: MyColors.brand);
     }
     super.onError(err, handler);
   }

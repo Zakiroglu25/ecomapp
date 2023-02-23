@@ -38,14 +38,14 @@ class AddAddressPage extends StatelessWidget {
         listener: (context, state) {
           if (state is AddAddressSuccess) {
             Go.pop(context);
-            Snack.display(
+            Snack.showOverlay(
                 context: context,
                 message: MyText.success,
                 positive: true,
                 showSuccessIcon: true);
           } else if (state is AddAddressError) {
             // Go.pop(context);
-            Snack.display(
+            Snack.showOverlay(
               context: context,
               message: state.error.toString(),
             );
@@ -77,30 +77,30 @@ class AddAddressPage extends StatelessWidget {
             MySizedBox.h50,
             StreamBuilder(
                 stream: BlocProvider.of<AddAddressCubit>(context).addressActive,
-              builder: (context, snapshot) {
-                return AppButton(
-                  isButtonActive: context.read<AddAddressCubit>().isAddressValid(),
-                  loading:
-                      context.read<AddAddressCubit>().state is AddAddressInProgress,
-                  onTap: () {
-                    addressModel != null
-                        ? context.read<AddAddressCubit>().editAddress(
-                              address: addressModel!,
-                              context: context,
-                              lat: lat,
-                              lng: lng,
-                              guid: addressModel!.guid,
-                            )
-                        : context.read<AddAddressCubit>().addAddress(
-                              context: context,
-                              lat: lat,
-                              lng: lng,
-                            );
-                  },
-                  text: MyText.save,
-                );
-              }
-            ),
+                builder: (context, snapshot) {
+                  return AppButton(
+                    isButtonActive:
+                        context.read<AddAddressCubit>().isAddressValid(),
+                    loading: context.read<AddAddressCubit>().state
+                        is AddAddressInProgress,
+                    onTap: () {
+                      addressModel != null
+                          ? context.read<AddAddressCubit>().editAddress(
+                                address: addressModel!,
+                                context: context,
+                                lat: lat,
+                                lng: lng,
+                                guid: addressModel!.guid,
+                              )
+                          : context.read<AddAddressCubit>().addAddress(
+                                context: context,
+                                lat: lat,
+                                lng: lng,
+                              );
+                    },
+                    text: MyText.save,
+                  );
+                }),
 
             // AddressField()
           ],

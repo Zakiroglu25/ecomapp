@@ -74,7 +74,7 @@ class CartItem {
     price = json['price'];
     amount = json['amount'];
     discountedPrice = json['discountedPrice'];
-    prescriptionRequired = json['prescriptionRequired'];
+    prescriptionRequired = json['prescriptionRequired'] ?? false;
     prescriptionImageGuid = json['prescriptionImageGuid'];
     prescriptionImage = json['prescriptionImage'];
     productOptionImages = json['productOptionImages'].cast<String>();

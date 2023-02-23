@@ -53,7 +53,7 @@ class CartCubit extends Cubit<CartState> {
     try {
       final result = await CartProvider.addCart(itemGuid: guid, amount: 1);
       if (result.statusCode.isSuccess) {
-        Snack.positive(message: MyText.addedToCart);
+        Snack.positive2(context, message: MyText.addedToCart);
         //fetch(false);
         return true;
       } else {
@@ -79,7 +79,7 @@ class CartCubit extends Cubit<CartState> {
           await CartProvider.addCart(itemGuid: guid, amount: netAmount);
       if (result.statusCode.isSuccess) {
         // emit(CartAdding());
-        Snack.positive(message: MyText.success);
+        Snack.positive2(context, message: MyText.success);
         fetch(false);
       } else {
         emit(CartOperationError());
@@ -99,7 +99,10 @@ class CartCubit extends Cubit<CartState> {
     try {
       final result = await CartProvider.deleteCart(guid: guid!);
       if (result.statusCode.isSuccess) {
-        Snack.display(message: MyText.removedFromCart, color: MyColors.brand);
+        Snack.showOverlay(
+            message: MyText.removedFromCart,
+            color: MyColors.brand,
+            context: context);
         // fetch(false);
         return true;
       } else {
@@ -122,7 +125,7 @@ class CartCubit extends Cubit<CartState> {
           addressGuid: null,
           insuranceCoverRequested: insuranceCoverRequested.valueOrNull);
       if (result.statusCode.isSuccess) {
-        Snack.positive(message: MyText.orderRegistered);
+        Snack.positive2(context, message: MyText.orderRegistered);
       } else {
         emit(CartOperationError());
       }
@@ -144,11 +147,14 @@ class CartCubit extends Cubit<CartState> {
       final result = await CartProvider.deleteCartPrescription(guid: cartGuid);
       if (result.statusCode.isSuccess) {
         // emit(CartDeleted());
-        Snack.display(
-            message: MyText.cartPrescriptionRemoved, color: MyColors.brand);
+        Snack.showOverlay(
+            message: MyText.cartPrescriptionRemoved,
+            color: MyColors.brand,
+            context: context);
         fetch(false);
       } else {
-        Snack.display(message: MyText.error, color: MyColors.brand);
+        Snack.showOverlay(
+            message: MyText.error, color: MyColors.brand, context: context);
       }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
@@ -169,7 +175,7 @@ class CartCubit extends Cubit<CartState> {
       }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
-      Snack.display(context: context, message: e.toString());
+      Snack.showOverlay(context: context, message: e.toString());
     } finally {
       Loader.hide();
     }
@@ -192,7 +198,7 @@ class CartCubit extends Cubit<CartState> {
       emit(CartInProgress());
     }
     try {
-      final guid = await addImage(isLoading: false);
+      final guid = await addImage(context, isLoading: false);
       if (guid == null) {
         //emit(CartError());
 
@@ -202,12 +208,12 @@ class CartCubit extends Cubit<CartState> {
             cartGuid: cartGuid, prescriptionGuid: guid);
 
         if (response.statusCode.isSuccess) {
-          Snack.positive(message: MyText.success);
+          Snack.positive2(context, message: MyText.success);
           //emit(CartPrescriptionAdded());
 
           fetch(false);
         } else {
-          Snack.display(message: MyText.error);
+          Snack.showOverlay(message: MyText.error, context: context);
           emit(CartOperationError());
         }
       }
@@ -217,7 +223,8 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  Future<String?> addImage({bool isLoading = true}) async {
+  Future<String?> addImage(BuildContext context,
+      {bool isLoading = true}) async {
     if (isLoading) {
       emit(CartInProgress());
     }
@@ -229,7 +236,7 @@ class CartCubit extends Cubit<CartState> {
         if (response!.statusCode.isSuccess)
           return response.data;
         else {
-          Snack.display(message: MyText.error);
+          Snack.error(context: context);
           emit(CartOperationError());
         }
       } else {

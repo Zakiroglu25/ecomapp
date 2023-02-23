@@ -53,7 +53,7 @@ class ForgotPassCubit extends Cubit<ForgotPassState> {
     } else {
       emit(ForgotPassError());
       if (result.data.toString().contains('message')) {
-        Snack.display(message: result.data['message']);
+        Snack.showOverlay(context: context, message: result.data['message']);
       }
 
       return false;
@@ -73,12 +73,12 @@ class ForgotPassCubit extends Cubit<ForgotPassState> {
       return true;
     } else {
       emit(ForgotPassError());
-      Snack.display(message: MyText.error);
+      Snack.showOverlay(context: context, message: MyText.error);
       return false;
     }
   }
 
-  Future<bool> confirmPass({bool loading = true}) async {
+  Future<bool> confirmPass(BuildContext context, {bool loading = true}) async {
     if (loading) {
       emit(ForgotPassInProgress());
     }
@@ -94,7 +94,7 @@ class ForgotPassCubit extends Cubit<ForgotPassState> {
       return true;
     } else {
       emit(ForgotPassError());
-      Snack.display(message: MyText.error);
+      Snack.error(context: context);
       return false;
     }
     currentIndex = 2;
@@ -116,7 +116,7 @@ class ForgotPassCubit extends Cubit<ForgotPassState> {
         return res;
       //break;
       case 2:
-        res = await confirmPass();
+        res = await confirmPass(context);
         buttonText = MyText.login;
         break;
       case 3:

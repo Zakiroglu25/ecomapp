@@ -54,7 +54,7 @@ class ForgetPasswordPage extends StatelessWidget {
                   BlocConsumer<ForgotPassCubit, ForgotPassState>(
                       listener: (context, state) {
                     if (state is ForgotPassSuccess) {
-                      Snack.positive(message: MyText.success);
+                      Snack.positive2(context, message: MyText.success);
                       Go.andRemove(context, Pager.login);
                     }
                   }, buildWhen: (context, state) {

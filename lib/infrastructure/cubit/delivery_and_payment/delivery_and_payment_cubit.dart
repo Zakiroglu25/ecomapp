@@ -161,7 +161,7 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
       }
       if (result!.url.isNull) {
         Go.pop(context);
-        Snack.positive(message: MyText.success);
+        Snack.positive2(context, message: MyText.success);
         return;
       } else {
         emit(DeliveryAndPaymentUrlFetched(url: result.url!));
@@ -185,7 +185,7 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
       await UserOperations.configUserDataWhenOpenApp(
           accessToken: _prefs.accessToken, fcm: _prefs.fcmToken);
       //emit(DeliveryAndPaymentSuccess(orderDetails: orderDetails));
-      Snack.positive(context: context, message: MyText.success);
+      Snack.positive2(context, message: MyText.success);
       Go.pop(context);
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
@@ -204,7 +204,7 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
       await UserOperations.configUserDataWhenOpenApp(
           accessToken: _prefs.accessToken, fcm: _prefs.fcmToken);
       //emit(DeliveryAndPaymentSuccess(orderDetails: orderDetails));
-      Snack.display(context: context, message: MyText.error);
+      Snack.showOverlay(context: context, message: MyText.error);
       Go.pop(context);
     } catch (e, s) {
       Recorder.recordCatchError(e, s);

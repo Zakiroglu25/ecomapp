@@ -46,9 +46,9 @@ class UserCubit extends Cubit<UserState> {
       final errors = response!.data;
       if (isSuccess(response.statusCode)) {
         emit(UserSuccess(response.data!));
-        Snack.positive(context: context, message: MyText.success);
+        Snack.positive2(context, message: MyText.success);
       } else {
-        Snack.display(message: errors);
+        Snack.showOverlay(context: context, message: errors);
         emit(UserFailed(response.statusCode.toString()));
       }
     } catch (e) {
@@ -81,11 +81,11 @@ class UserCubit extends Cubit<UserState> {
           accessToken: _prefs.accessToken!, fcm: _prefs.fcmToken,
           //  path: _prefs.userPath
         );
-        Snack.positive(context: context, message: MyText.success);
+        Snack.positive2(context, message: MyText.success);
         emit(UserSuccess(response.data!));
       } else {
         final errors = response.data;
-        Snack.display(message: errors);
+        Snack.showOverlay(context: context, message: errors);
         emit(UserFailed(response.statusCode.toString()));
       }
     } catch (e, s) {
@@ -102,9 +102,9 @@ class UserCubit extends Cubit<UserState> {
 
       if (isSuccess(response.statusCode)) {
         emit(ChangeUserPassword());
-        Snack.positive(context: context, message: MyText.success);
+        Snack.positive2(context, message: MyText.success);
       } else {
-        Snack.display(message: "Yanlış şifrə");
+        Snack.showOverlay(context: context, message: "Yanlış şifrə");
         emit(ErrorChangeUserPassword(response.statusCode.toString()));
       }
     } catch (e, s) {

@@ -26,7 +26,8 @@ class OrdersTab extends StatelessWidget {
     return Center(
         child: BlocConsumer<CartCubit, CartState>(
       listener: (_, state) {
-        if (state is CartOperationError) Snack.display(message: MyText.error);
+        if (state is CartOperationError)
+          Snack.showOverlay(context: context, message: MyText.error);
       },
       buildWhen: (_, state) {
         if (state is CartOperationError) return false;

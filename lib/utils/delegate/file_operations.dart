@@ -39,7 +39,7 @@ class FileOperations {
       await showGalleryAccessAlert(context);
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
-      Snack.display(context: context, message: e.toString());
+      Snack.showOverlay(context: context, message: e.toString());
     }
   }
 
