@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:focus_detector/focus_detector.dart';
 import 'package:uikit/infrastructure/cubit/chat_messages_cubit/chat_messenger_cubit.dart';
@@ -22,12 +23,19 @@ class ChatPage extends StatelessWidget {
 
   TextEditingController controller = TextEditingController();
   final ScrollController _sc = ScrollController();
+
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback(
-        (_) => {_sc.jumpTo(_sc.position.maxScrollExtent)});
-    Timer(Duration(milliseconds: 500),
-        () => _sc.jumpTo(_sc.position.maxScrollExtent));
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      _sc.animateTo(
+        _sc.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 10),
+        curve: Curves.easeOut,);
+    });
+    // WidgetsBinding.instance.addPostFrameCallback(
+    //     (_) => {_sc.jumpTo(_sc.position.maxScrollExtent)});
+    // Timer(Duration(milliseconds: 500),
+    //     () => _sc.jumpTo(_sc.position.maxScrollExtent));
     // BlocProvider.of<ChatMessengerCubit>(context).loadMore(guid!);
     return Scaffold(
       appBar: DoctorAppbar(
@@ -52,7 +60,6 @@ class ChatPage extends StatelessWidget {
                         builder: (context, snapshot) {
                           return ListView.builder(
                             padding: const EdgeInsets.only(bottom: 80),
-                            reverse: false,
                             shrinkWrap: false,
                             controller: _sc,
                             itemCount: snapshot.data ?? false
