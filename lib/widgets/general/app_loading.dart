@@ -34,8 +34,8 @@ class AppLoading extends StatelessWidget {
       child: Padding(
         padding: Paddings.paddingA2,
         child: SizedBox(
-          height: s,
-          width: s,
+          // height: s,
+          // width: s,
           child: Center(
               child: FadeIn(
             duration: const Duration(milliseconds: 800),
@@ -47,8 +47,8 @@ class AppLoading extends StatelessWidget {
                     color ?? MyColors.mainGreen85),
               ),
               child: SizedBox(
-                height: s,
-                width: s,
+                // height: s,
+                // width: s,
                 // color: Colors.green,
                 child: CircularProgressIndicator.adaptive(
                   valueColor: AlwaysStoppedAnimation<Color>(
