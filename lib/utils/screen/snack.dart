@@ -76,7 +76,7 @@ class Snack {
 
   static positive2(
     BuildContext context, {
-    required String? message,
+    String? message,
     bool positive = true,
     bool showSuccessIcon = true,
     Color color = MyColors.mainGreen85,

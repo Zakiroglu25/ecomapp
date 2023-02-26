@@ -204,9 +204,11 @@ class Pager {
         child: ChatPage(storeName: storeName),
       );
 
-  static addAddress({Address? address, context, lat, long, title}) =>
+  static addAddress(
+          {Address? address, BuildContext? context, lat, long, title}) =>
       BlocProvider(
-        create: (context) => AddAddressCubit(),
+        create: (context) =>
+            AddAddressCubit()..setAddress(context: context, address: address),
         child: AddAddressPage(addressModel: address),
       );
 

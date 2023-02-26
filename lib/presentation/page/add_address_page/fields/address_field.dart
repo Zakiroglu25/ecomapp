@@ -15,38 +15,24 @@ class AddressField extends StatelessWidget {
   AddressField({this.controller, this.name}); //= new TextEditingController();
   @override
   Widget build(BuildContext context) {
-    // if (controller!.text != '' && controller!.text != 'null')
-    //   BlocProvider.of<AddAddressCubit>(context).updateStreet(controller!.text);
-    return FocusDetector(
-      onFocusGained: () {
-        // BlocProvider.of<AddAddressCubit>(context)
-        //     .updateStreet("textController.text");
-      },
-      child: StreamBuilder<String>(
-          stream: BlocProvider.of<AddAddressCubit>(context).streetStream,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              controller?.text = snapshot.data ?? '';
-            }
-            return AppField(
-              title: MyText.address,
-              maxLines: 1,
-              hint: MyText.addressAdd,
-              readOnly: true,
-              //initialValue: snapshot.data,
-              textInputType: TextInputType.name,
-              textCapitalization: TextCapitalization.sentences,
-              controller: controller,
-              onTap: () async {
-                Go.to(context, Pager.selectMapPage(context));
-              },
-              suffixIcon: InkWell(
-                  onTap: () async {
-                    Go.to(context, Pager.selectMapPage(context));
-                  },
-                  child: Icon(Icons.my_location_sharp)),
-            );
-          }),
-    );
+    return StreamBuilder<String>(
+        stream: BlocProvider.of<AddAddressCubit>(context).streetStream,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            controller?.text = snapshot.data ?? '';
+          }
+          return AppField(
+            title: MyText.address,
+            maxLines: 1,
+            hint: MyText.addressAdd,
+            readOnly: true,
+            //initialValue: snapshot.data,
+            textInputType: TextInputType.name,
+            textCapitalization: TextCapitalization.sentences,
+            controller: controller,
+            onTap: () async => Go.to(context, Pager.selectMapPage(context)),
+            suffixIcon: Icon(Icons.my_location_sharp),
+          );
+        });
   }
 }

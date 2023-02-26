@@ -25,10 +25,22 @@ class _SelectMapPageState extends State<SelectMapPage> {
   final _controller = Completer<GoogleMapController>();
   MapPickerController mapPickerController = MapPickerController();
 
-  CameraPosition cameraPosition = CameraPosition(
-    target: LatLng(40.409264, 49.867092),
-    zoom: 14.4746,
-  );
+  late CameraPosition cameraPosition;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final cubit = context.read<AddAddressCubit>();
+
+    bbbb("cubit.lat:  ${cubit.lat}");
+    bbbb("cubit.lat:  ${cubit.long}");
+    cameraPosition = CameraPosition(
+      target: LatLng(cubit.lat ?? 40.409264, cubit.long ?? 49.867092),
+      zoom: 14.4746,
+    );
+    setState(() {});
+  }
 
   var textController = TextEditingController();
 
@@ -40,7 +52,7 @@ class _SelectMapPageState extends State<SelectMapPage> {
         children: [
           MapPicker(
             // pass icon widget
-            iconWidget: Icon(
+            iconWidget: const Icon(
               Icons.location_on_sharp,
               size: 30,
             ),

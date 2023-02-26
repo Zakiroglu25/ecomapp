@@ -53,17 +53,18 @@ class AddressCubit extends Cubit<AddressState> {
     try {
       final result = await AddressProvider.delete(guid: "$id");
 
-      if (isSuccess(result!.statusCode)) {
+      if (result!.statusCode.isSuccess) {
         //emit(AddressDelete());
         fetch(false);
       } else {
-        emit(AddressError(error: MyText.error));
+        //emit(AddressError(error: MyText.error));
       }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
-      emit(AddressError(error: MyText.error + " " + e.toString()));
+      //emit(AddressError(error: MyText.error + " " + e.toString()));
+    } finally {
+      Loader.hide();
     }
-    Loader.hide();
   }
 
   void update(String? id,
