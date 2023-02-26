@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'dart:io';
 import 'dart:math' as math;
 import 'dart:ui' show ImageFilter;
 
@@ -878,6 +879,20 @@ class _LargeTitleNavigationBarSliverDelegate
       return navBar;
     }
 
+    int _iosSpecificLargeTitleResizer = 0;
+
+    if (Platform.isIOS) {
+      final _iosVersion = int.tryParse(
+          Platform.operatingSystemVersion.split(' ')[1].split('.').first);
+      _iosSpecificLargeTitleResizer = ((_iosVersion ?? 15) < 14 ? 0 : 4);
+    }
+
+    TextStyle _transitionableNavigationBarTextStyle =
+        CupertinoTheme.of(context).textTheme.navLargeTitleTextStyle;
+    _transitionableNavigationBarTextStyle =
+        _transitionableNavigationBarTextStyle.copyWith(
+            fontSize: _transitionableNavigationBarTextStyle.fontSize! + 4);
+
     return Hero(
       tag: heroTag == _defaultHeroTag
           ? _HeroTag(Navigator.of(context))
@@ -896,8 +911,7 @@ class _LargeTitleNavigationBarSliverDelegate
         backButtonTextStyle:
             CupertinoTheme.of(context).textTheme.navActionTextStyle,
         titleTextStyle: CupertinoTheme.of(context).textTheme.navTitleTextStyle,
-        largeTitleTextStyle:
-            CupertinoTheme.of(context).textTheme.navLargeTitleTextStyle,
+        largeTitleTextStyle: _transitionableNavigationBarTextStyle,
         border: border,
         hasUserMiddle: userMiddle != null,
         largeExpanded: showLargeTitle,

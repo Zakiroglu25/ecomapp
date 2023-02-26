@@ -49,7 +49,7 @@ class ErrorableImage extends StatelessWidget {
                       child: SizedBox(
                           height: 10,
                           width: 10,
-                          child: placeHolder ?? AppLoading.blue())),
+                          child: placeHolder ?? const AppLoading.blue())),
                   errorWidget: (context, url, error) => errorImage(),
                 )
               : errorImage(),
@@ -71,7 +71,7 @@ class ErrorableImage extends StatelessWidget {
         GalleryPhotoViewWrapper(
           galleryItems: [imageUrl!],
           loadingBuilder: (a, b) {
-            return Center(child: AppLoading());
+            return const Center(child: AppLoading());
           },
           backgroundDecoration: const BoxDecoration(
             color: Colors.white,

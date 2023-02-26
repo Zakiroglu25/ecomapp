@@ -2,6 +2,7 @@ class Durations {
   Durations._();
 
   //milliseconds
+  static const Duration ms50 = Duration(milliseconds: 50);
   static const Duration ms100 = Duration(milliseconds: 100);
   static const Duration ms200 = Duration(milliseconds: 200);
   static const Duration ms300 = Duration(milliseconds: 300);

@@ -13,7 +13,7 @@ class ForgotMainButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final forgotCubit = context.watch<ForgotPassCubit>();
     return Positioned(
-      bottom: 20,
+      bottom: 20 + MediaQuery.of(context).viewInsets.bottom,
       left: 20,
       right: 20,
       child: StreamBuilder<String>(

@@ -20,7 +20,7 @@ class OtherPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Cupperfold(
-      title: "Digər",
+      title: MyText.other,
       child: Padding(
         padding: Paddings.paddingH16,
         child: Column(
