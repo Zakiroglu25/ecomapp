@@ -133,10 +133,11 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
 
   updateTab({required int index}) async {
     tabIndex = index;
-    updateDeliveryPaymentType(index: index);
+
     if (index == 0 && paymentType.valueOrNull == PaymentType.CASH) {
-      updatePaymentType(null);
+      updatePaymentType(PaymentType.ONLINE);
     }
+    updateDeliveryPaymentType(index: index);
   }
 
   void createOrderPayment(
@@ -243,8 +244,7 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
     bbbb("update: $value");
     if (value.isNull) {
       paymentType.sink.addError(MyText.field_is_not_correct);
-    }
-    if (value == paymentType.value) {
+    } else if (value == paymentType.value) {
       //paymentType.sink.add(PaymentType.unselected);
     } else {
       paymentType.sink.add(value!);
