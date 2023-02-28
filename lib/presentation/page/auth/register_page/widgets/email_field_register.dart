@@ -15,10 +15,10 @@ class EmailFieldRegister extends StatelessWidget {
       stream: BlocProvider.of<RegisterCubit>(context).emailStream,
       builder: (context, snapshot) {
         return AppField(
-          title: MyText.emailRegister,
-          label: MyText.emailRegister,
+          title: MyText.email,
+          label: MyText.email,
           maxLines: 1,
-          hint: MyText.email,
+          hint: MyText.emailOrPhone,
           upperCase: false,
           textInputType: TextInputType.emailAddress,
           textCapitalization: TextCapitalization.none,

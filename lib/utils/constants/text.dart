@@ -24,8 +24,8 @@ class MyText {
   static const String successfullyRegistered = "Qeydiyyat Uğurla tamamlandı";
 
   //register
-  static const String email = "E-poçt və ya mobil";
-  static const String emailRegister = "E-poçt";
+  static const String emailOrPhone = "E-poçt və ya mobil";
+  static const String email = "E-poçt";
   static const String emailOrPassNotCorrect = "E-poçt və ya şifrə yanlışdır";
   static const String phone = "Mobil nömrə";
   static const String phone_hint = "+994 (__) ___-__-__";
