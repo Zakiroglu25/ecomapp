@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/delegate/index.dart';
 
 import '../../infrastructure/services/navigation_service.dart';
 import '../constants/border_radius.dart';
@@ -74,6 +75,8 @@ class Snack {
   //     ..showSnackBar(snackBar);
   // }
 
+  static List<Key> listOfKeys = [];
+
   static positive2(
     BuildContext context, {
     String? message,
@@ -122,44 +125,51 @@ class Snack {
     // Declaring and Initializing OverlayState
     // and OverlayEntry objects
     OverlayState? overlayState = Overlay.of(context);
-    OverlayEntry overlayEntry;
+    OverlayEntry? overlayEntry;
 
     overlayEntry = OverlayEntry(builder: (context) {
       // You can return any widget you like here
       // to be displayed on the Overlay
 
       return Positioned(
-        // left: MediaQuery.of(context).size.width * 0.2,
         top: 45,
         left: 0,
         right: 0,
         child: FadeInDown(
           duration: Durations.ms200,
           key: const Key('a'),
-          child: FadeOutUp(
-            duration: Durations.ms300,
-            key: const Key('a'),
-            animate: true,
-            // duration: Durations.s1,
-            delay: settedDuration,
-            child: Center(
-              child: Container(
-                margin: Paddings.paddingA16,
-                decoration: BoxDecoration(
-                  borderRadius: borderRadius,
-                  color: backColor,
-                ),
-                width: MediaQuery.of(context).size.width,
-                // height: 30,
-                child: Material(
-                  color: backColor,
-                  borderRadius: borderRadius,
-                  elevation: 2,
-                  child: SnackBody(
-                      message: message,
-                      color: color,
-                      positive: positive,
-                      showSuccessIcon: showSuccessIcon),
+          child: Dismissible(
+            key: UniqueKey(),
+            onDismissed: (f) {
+              overlayEntry?.remove();
+              overlayEntry = null;
+              // overlayEntry?.remove();
+            },
+            child: FadeOutUp(
+              duration: Durations.ms300,
+              key: const Key('a'),
+              animate: true,
+              // duration: Durations.s1,
+              delay: settedDuration,
+              child: Center(
+                child: Container(
+                  margin: Paddings.paddingA16,
+                  decoration: BoxDecoration(
+                    borderRadius: borderRadius,
+                    color: backColor,
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                  // height: 30,
+                  child: Material(
+                    color: backColor,
+                    borderRadius: borderRadius,
+                    elevation: 2,
+                    child: SnackBody(
+                        message: message,
+                        color: color,
+                        positive: positive,
+                        showSuccessIcon: showSuccessIcon),
+                  ),
                 ),
               ),
             ),
@@ -170,19 +180,24 @@ class Snack {
 
     // Inserting the OverlayEntry into the Overlay
     if (!isShowing) {
-      overlayState?.insert(overlayEntry);
+      overlayState?.insert(overlayEntry!);
       isShowing = true;
       await Future.delayed(settedDuration + Durations.s1);
 
-      overlayEntry.remove();
+      overlayEntry?.remove();
       isShowing = false;
     } else {
       isShowing = false;
-      overlayState?.insert(overlayEntry);
+      if (overlayEntry != null) {
+        overlayState?.insert(overlayEntry!);
+      }
       isShowing = true;
       await Future.delayed(settedDuration + Durations.s1);
 
-      overlayEntry.remove();
+      //  if (overlayState != null) {
+      overlayEntry?.remove();
+      //  }
+
       isShowing = false;
     }
   }

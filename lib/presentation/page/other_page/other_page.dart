@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:uikit/utils/constants/paddings.dart';
+import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/delegate/navigate_utils.dart';
 import 'package:uikit/utils/delegate/pager.dart';
@@ -21,6 +22,7 @@ class OtherPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Cupperfold(
       title: MyText.other,
+      physics: Physics.alwaysBounce,
       child: Padding(
         padding: Paddings.paddingH16,
         child: Column(
