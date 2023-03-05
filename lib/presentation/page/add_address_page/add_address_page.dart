@@ -57,22 +57,22 @@ class AddAddressPage extends StatelessWidget {
           children: [
             AddressField(
               controller:
-                  TextEditingController(text: addressModel?.streetName ?? ''),
+              TextEditingController(text: addressModel?.streetName ?? ''),
             ),
             NameAddressField(
               controller:
-                  TextEditingController(text: addressModel?.title ?? ''),
+              TextEditingController(text: addressModel?.title ?? ''),
             ),
             TitleField(
               controller: TextEditingController(text: addressModel?.city ?? ''),
             ),
             RegionField(
               controller:
-                  TextEditingController(text: addressModel?.country ?? ''),
+              TextEditingController(text: addressModel?.country ?? ''),
             ),
             CourierDescField(
               controller:
-                  TextEditingController(text: addressModel?.description ?? ''),
+              TextEditingController(text: addressModel?.description ?? ''),
             ),
             MySizedBox.h50,
             StreamBuilder(
@@ -80,18 +80,17 @@ class AddAddressPage extends StatelessWidget {
                 builder: (context, snapshot) {
                   return AppButton(
                     isButtonActive:
-                        context.read<AddAddressCubit>().isAddressValid(),
-                    loading: context.read<AddAddressCubit>().state
-                        is AddAddressInProgress,
+                    context.read<AddAddressCubit>().isAddressValid(),
+                    loading: context.read<AddAddressCubit>().state is AddAddressInProgress,
                     onTap: () {
                       addressModel != null
                           ? context.read<AddAddressCubit>().editAddress(
-                                context: context,
-                                guid: addressModel!.guid!,
-                              )
+                        context: context,
+                        guid: addressModel!.guid!,
+                      )
                           : context
-                              .read<AddAddressCubit>()
-                              .addAddress(context: context);
+                          .read<AddAddressCubit>()
+                          .addAddress(context: context);
                     },
                     text: MyText.save,
                   );

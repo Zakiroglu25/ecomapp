@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/constants/colors.dart';
 
 import '../../../../../utils/constants/sized_box.dart';
 import '../../../../../utils/constants/text.dart';
@@ -13,18 +14,16 @@ class EnterMailBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FadeIn(
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            MySizedBox.h30,
-            ForgotMainText(MyText.are_you_forgot_pass),
-            MySizedBox.h16,
-            ForgotSecondText(MyText.smsCodeWillSend),
-            MySizedBox.h16,
-            PhoneFieldForgot(),
-          ],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          MySizedBox.h30,
+          ForgotMainText(MyText.are_you_forgot_pass),
+          MySizedBox.h16,
+          ForgotSecondText(MyText.smsCodeWillSend),
+          MySizedBox.h16,
+          PhoneFieldForgot(),
+        ],
       ),
     );
   }

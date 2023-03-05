@@ -19,6 +19,7 @@ class Cupperfold extends StatelessWidget {
     this.onBack,
     this.floatingActionButton,
     this.slivers,
+    this.physics,
     this.showAppbarLittleText = false,
     this.user = true,
     this.notification = true,
@@ -37,6 +38,7 @@ class Cupperfold extends StatelessWidget {
   final bool showAppbarLittleText;
   final Widget? floatingActionButton;
   final Function? onBack;
+  final ScrollPhysics? physics;
   final List<Widget>? slivers;
 
   @override
@@ -49,7 +51,7 @@ class Cupperfold extends StatelessWidget {
         child: CustomScrollView(
           clipBehavior: Clip.antiAlias,
           // A list of sliver widgets.
-          physics: Physics.alwaysClamp,
+          physics: physics ?? Physics.alwaysClamp,
           slivers: <Widget>[
             if (showAppbarLittleText)
               AppSliverPersistentCupertinoAppbar(

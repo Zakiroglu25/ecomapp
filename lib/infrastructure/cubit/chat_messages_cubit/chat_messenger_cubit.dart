@@ -35,7 +35,7 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
         // messages.addAll(searchItems!.data!);
         // totalPages = searchItems.totalPages!;
         updateHaveElse();
-        emit(ChatMessengerSuccess(result.data!.list!));
+        emit(ChatMessengerSuccess(result.data!.list));
       } else {
         emit(ChatMessengerError());
       }

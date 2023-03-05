@@ -33,8 +33,8 @@ class AddressProvider {
     required String? city,
     required String? country,
     required String? phone,
-    required String? latitude,
-    required String? longitude,
+    required double? latitude,
+    required double? longitude,
     required String? description,
     required bool? isMain,
   }) async {
@@ -69,8 +69,8 @@ class AddressProvider {
     required String? city,
     required String? country,
     required String? phone,
-    required String? latitude,
-    required String? longitude,
+    required double? latitude,
+    required double? longitude,
     required String? description,
     required bool? isMain,
   }) async {
@@ -88,7 +88,7 @@ class AddressProvider {
         description: description,
         isMain: isMain);
     //eeee(body);
-    final response = await dioAuth.dio.post(api, data: body);
+    final response = await dioAuth.dio.put(api, data: body);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
       statusDynamic.data = response.data;

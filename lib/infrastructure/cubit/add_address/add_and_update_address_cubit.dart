@@ -9,7 +9,9 @@ import 'package:uikit/utils/extensions/index.dart';
 import '../../../locator.dart';
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/my_printer.dart';
+import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/delegate/request_control.dart';
+import '../../../utils/screen/snack.dart';
 import '../../data/address_provider.dart';
 import '../../model/response/address_model.dart';
 import '../../services/hive_service.dart';
@@ -22,10 +24,12 @@ class AddAddressCubit extends Cubit<AddAddressState> {
   double? lat;
   double? long;
 
-  void setAddress({BuildContext? context, Address? address}) async {
+  void setAddress(
+      {bool loading = true, BuildContext? context, Address? address}) async {
     try {
-      emit(AddAddressInProgress());
-
+      if (loading) {
+        emit(AddAddressInProgress());
+      }
       if (address.isNotNull) {
         updateStreet(address?.streetName);
         updateDesc(address?.description);
@@ -41,12 +45,11 @@ class AddAddressCubit extends Cubit<AddAddressState> {
     }
   }
 
-  void addAddress({
-    BuildContext? context,
-  }) async {
+  void addAddress({BuildContext? context, bool loading = true}) async {
     try {
-      emit(AddAddressInProgress());
-
+      if (loading) {
+        emit(AddAddressInProgress());
+      }
       final result = await AddressProvider.addAddress(
           city: city.valueOrNull,
           country: country.valueOrNull,
@@ -54,8 +57,8 @@ class AddAddressCubit extends Cubit<AddAddressState> {
           houseNumber: "12",
           streetName: street.valueOrNull ?? '',
           phone: _prefs.user.phone,
-          latitude: lat.toString(),
-          longitude: long.toString(),
+          latitude: lat,
+          longitude: long,
           description: desc.valueOrNull,
           isMain: false);
 
@@ -71,28 +74,31 @@ class AddAddressCubit extends Cubit<AddAddressState> {
     }
   }
 
-  void editAddress({required String guid, BuildContext? context}) async {
+  void editAddress(
+      {required String guid, required BuildContext context}) async {
     try {
       emit(AddAddressInProgress());
       final result = await AddressProvider.editAddress(
           city: city.valueOrNull,
-          country: "Azərbaycan",
+          country: country.valueOrNull,
           title: title.valueOrNull,
           houseNumber: "12",
           streetName: street.valueOrNull,
           phone: _prefs.user.phone,
-          latitude: "$lat" ?? '',
-          longitude: "$long" ?? '',
+          latitude: lat,
+          longitude: long,
           description: desc.valueOrNull,
           isMain: false,
           guid: guid);
 
       if (result.statusCode.isSuccess) {
         emit(AddAddressEditSuccess());
+        Go.pop(context);
+        Snack.positive2(context);
       } else {
-        emit(AddAddressError(error: MyText.error + " ${result.statusCode}"));
+        //emit(AddAddressError(error: MyText.error + " ${result.statusCode}"));
       }
-      emit(AddAddressInProgress());
+      //  emit(AddAddressInProgress());
     } catch (e, s) {
       emit(AddAddressError());
       Recorder.recordCatchError(e, s);

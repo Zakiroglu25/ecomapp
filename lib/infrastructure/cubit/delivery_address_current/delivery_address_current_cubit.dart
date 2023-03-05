@@ -135,8 +135,8 @@ class DeliveryAddressCurrentCubit extends Cubit<DeliveryAddressCurrentState> {
           houseNumber: null,
           streetName: placemark.street,
           phone: _prefs.user.phone,
-          latitude: "${position.latitude}",
-          longitude: "${position.longitude}",
+          latitude: position.latitude,
+          longitude: position.longitude,
           description: "$placemark".trim(),
           isMain: true);
       //

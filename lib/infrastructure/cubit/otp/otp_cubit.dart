@@ -20,6 +20,7 @@ import '../../services/hive_service.dart';
 import '../../services/navigation_service.dart';
 import 'otp_state.dart';
 
+import '../../../utils/screen/overlay_loader.dart';
 // Project imports:
 
 class OTPCubit extends Cubit<OtpState> {
@@ -44,10 +45,14 @@ class OTPCubit extends Cubit<OtpState> {
   final BehaviorSubject<String> otp = BehaviorSubject<String>();
 
   Stream<String> get otpStream => otp.stream;
+  TextEditingController otpController = TextEditingController();
+  FocusNode otpFocus = FocusNode();
 
   updateOtp(String value) {
-    if (value == null || value.isEmpty) {
+    if (value.isEmpty) {
       otp.value = '';
+      otpController.text = '';
+      otpFocus.requestFocus();
       otp.sink.addError(MyText.field_is_not_correct);
     } else {
       otp.sink.add(value);
@@ -70,8 +75,6 @@ class OTPCubit extends Cubit<OtpState> {
       }
       final res = await AuthProvider.requestOtp(phone: phone, email: email);
       if (res.statusCode.isSuccess) emit(OtpRequested());
-    } on SocketException catch (_) {
-      emit(OtpError(error: 'network_error'));
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
       emit(OtpError(error: e.toString()));
@@ -79,8 +82,9 @@ class OTPCubit extends Cubit<OtpState> {
   }
 
   void validateOtp(BuildContext context, {bool? loading}) async {
+    Loader.show(context);
     try {
-      if (loading ?? true) {
+      if (loading ?? false) {
         emit(OtpInProgress());
       }
       final formattedPhone = AppOperations.formatNumberWith994(phone);
@@ -88,7 +92,8 @@ class OTPCubit extends Cubit<OtpState> {
           email: email, phone: formattedPhone, otp: otp.valueOrNull);
       if (!response.statusCode.isSuccess) {
         updateOtp('');
-        emit(OtpError());
+
+        //emit(OtpError());
         return;
       }
       final tokens = response.data;
@@ -102,11 +107,11 @@ class OTPCubit extends Cubit<OtpState> {
       emit(OtpSuccess(''));
       //
       //
-    } on SocketException catch (_) {
-      emit(OtpError(error: MyText.networkError));
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
       emit(OtpError(error: e.toString()));
+    } finally {
+      Loader.hide();
     }
   }
 
