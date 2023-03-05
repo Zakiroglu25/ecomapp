@@ -17,7 +17,7 @@ class ProductOptionsProvider {
   static Future<StatusDynamic<SearchItems>> getProduct(int page,
       {String? title}) async {
     StatusDynamic<SearchItems> statusDynamic = StatusDynamic();
-    final api = ApiKeys.stockSearch; //+ '?page=$page&title=$title';
+    const api = ApiKeys.stockSearch; //+ '?page=$page&title=$title';
     final response = await dioAuth.dio
         .get(api, queryParameters: {"page": page, "title": title});
     statusDynamic.statusCode = response.statusCode;
@@ -51,7 +51,7 @@ class ProductOptionsProvider {
   static Future<StatusDynamic<SearchItems>> getProductByGuidForMap(
       {required String guid, required int page}) async {
     StatusDynamic<SearchItems> statusDynamic = StatusDynamic();
-    final api = ApiKeys.stockSearch;
+    const api = ApiKeys.stockSearch;
     final response = await dioAuth.dio
         .get(api, queryParameters: {"StoreGuid": guid, "page": page});
     statusDynamic.statusCode = response.statusCode;
