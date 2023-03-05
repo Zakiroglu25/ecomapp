@@ -53,7 +53,7 @@ class ProductOptionsProvider {
     StatusDynamic<SearchItems> statusDynamic = StatusDynamic();
     const api = ApiKeys.stockSearch;
     final response = await dioAuth.dio
-        .get(api, queryParameters: {"StoreGuid": guid, "page": page});
+        .get(api, queryParameters: {"storeGuid": guid, "page": page});
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
       final comeJson = response.data;
