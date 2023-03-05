@@ -42,7 +42,8 @@ class ProductOptionsProvider {
       ProductDetails model = ProductDetails.fromJson(comeJson);
       statusDynamic.data = model;
     } else {
-      eeee("address List:  url: $api , response: ${response.data}");
+      eeee("address List:  url: "
+          "$api , response: ${response.data}");
     }
 
     return statusDynamic;
