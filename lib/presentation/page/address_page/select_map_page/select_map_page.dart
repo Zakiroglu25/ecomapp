@@ -7,6 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:map_picker/map_picker.dart';
 import 'package:uikit/infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
 import 'package:uikit/utils/delegate/index.dart';
+import 'package:uikit/utils/screen/snack.dart';
 
 import '../../../../infrastructure/model/response/address_model.dart';
 import '../../../../utils/delegate/navigate_utils.dart';
@@ -69,7 +70,9 @@ class _SelectMapPageState extends State<SelectMapPage> {
               },
               onCameraMoveStarted: () {
                 mapPickerController.mapMoving!();
-                textController.text = "Axtarilir....";
+                if(textController.text == null){
+                  Snack.isShowing;
+                }
               },
               onCameraMove: (cameraPosition) {
                 this.cameraPosition = cameraPosition;

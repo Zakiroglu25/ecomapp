@@ -83,8 +83,9 @@ class ForgotPassCubit extends Cubit<ForgotPassState> {
       emit(ForgotPassInProgress());
     }
 
-    if (loading) {
-      emit(ForgotPassInProgress());
+    if (uPassMain.valueOrNull != uPassSecond.valueOrNull) {
+      Snack.error(context: context, message: MyText.bothOfPassMustBeSame);
+      return false;
     }
     final result = await ForgotProvider.resetPass(
         token: tempToken, newPass: uPassMain.valueOrNull);
@@ -103,7 +104,6 @@ class ForgotPassCubit extends Cubit<ForgotPassState> {
 
   Future<bool> operate(int currentIndex, BuildContext context) async {
     bool res = false;
-    bbbb("crrent: " + currentIndex.toString());
     switch (currentIndex) {
       case 0:
         buttonText = MyText.send;

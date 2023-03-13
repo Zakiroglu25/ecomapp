@@ -28,7 +28,7 @@ class MyText {
   static const String email = "E-poçt";
   static const String emailOrPassNotCorrect = "E-poçt və ya şifrə yanlışdır";
   static const String phone = "Mobil nömrə";
-  static const String phone_hint = "+994 (__) ___-__-__";
+  static const String phone_hint = "(__) ___-__-__";
   static const String password = "Şifrə";
   static const String newPassword = "Yeni Şifrə";
   static const String enterNewPassword = "Yeni şifrəni daxil edin";
@@ -75,6 +75,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   //forgot pass
   static const String enter_new_pass = 'Yeni şifrəni daxil edin';
   static const String enter_new_pass_again = 'Yeni şifrəni təkrar daxil edin';
+  static const String bothOfPassMustBeSame = 'Hər iki şifrə eyni olmalıdır';
   static const String enterNewPassAndTapGoOnButton =
       'Təyin etmək istədiyini şifrəni daxil edin, təsdiqləyin və "Davam et" butonuna toxunun';
   static const String we_have_sent_new_pass_email =
@@ -255,6 +256,7 @@ In addition to laying out rules for proper use of your app, you should also clea
 
   //asan finance
   static const String save = "Yadda saxla";
+  static const String add = "Əlavə et";
   static const String gallery = "Qalerya";
   static const String camera = "Kamera";
   static const String avatarNotAdded = 'Foto əlavə edilmədi!';

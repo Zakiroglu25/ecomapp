@@ -80,20 +80,6 @@ class _ProductItemState extends State<ProductItem>
           product: product,
           inFav: inFav,
         ),
-
-        // InkWrapper(
-        //   child: Container(
-        //     width: 20,
-        //     height: 20,
-        //     color: product.isInCart! ? MyColors.red250 : MyColors.blue55,
-        //   ),
-        //   onTap: () {
-        //     //  color = Rndm.color;
-        //     product.isInCart = !product.isInCart!;
-        //     setState(() {});
-        //   },
-        // )
-        //  ProductCartButton()
       ],
     );
   }
