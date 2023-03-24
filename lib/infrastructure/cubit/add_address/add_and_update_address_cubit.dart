@@ -24,10 +24,12 @@ class AddAddressCubit extends Cubit<AddAddressState> {
   double? lat;
   double? long;
 
-  void setAddress({BuildContext? context, Address? address}) async {
+  void setAddress(
+      {bool loading = true, BuildContext? context, Address? address}) async {
     try {
-      emit(AddAddressInProgress());
-
+      if (loading) {
+        emit(AddAddressInProgress());
+      }
       if (address.isNotNull) {
         updateStreet(address?.streetName);
         updateDesc(address?.description);
@@ -43,12 +45,11 @@ class AddAddressCubit extends Cubit<AddAddressState> {
     }
   }
 
-  void addAddress({
-    BuildContext? context,
-  }) async {
+  void addAddress({BuildContext? context, bool loading = true}) async {
     try {
-      emit(AddAddressInProgress());
-
+      if (loading) {
+        emit(AddAddressInProgress());
+      }
       final result = await AddressProvider.addAddress(
           city: city.valueOrNull,
           country: country.valueOrNull,
