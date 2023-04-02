@@ -76,6 +76,7 @@ class Alert {
                   MySizedBox.h4,
                   Text(
                     content ?? '',
+                    textAlign: TextAlign.center,
                     // style: AppTextStyles.sanF400
                     //     .copyWith(fontSize: 16.sm, color: MyColors.grey163),
                   ),

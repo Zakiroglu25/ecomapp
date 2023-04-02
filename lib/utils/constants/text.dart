@@ -3,6 +3,9 @@ import 'package:uikit/utils/extensions/word.dart';
 class MyText {
   MyText._();
 
+  //general
+  static const String coppied = "Kopyalandı";
+
   //onboard
   static const String on_boardOneBig = "Family health  and wellness";
   static const String on_boardOneLittle =

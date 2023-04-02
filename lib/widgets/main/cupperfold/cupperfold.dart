@@ -20,7 +20,7 @@ class Cupperfold extends StatelessWidget {
     this.floatingActionButton,
     this.slivers,
     this.physics,
-    this.showAppbarLittleText = false,
+    this.showAppbarLittleText = true,
     this.user = true,
     this.notification = true,
   }) : //assert(child != null || slivers != null),

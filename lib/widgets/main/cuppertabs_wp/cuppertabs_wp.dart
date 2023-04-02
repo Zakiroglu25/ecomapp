@@ -33,7 +33,7 @@ class CupperTabsWithProvider extends StatefulWidget {
     this.selectedLabelColor,
     this.selectedTabColor,
     this.barColor,
-    this.showAppbarLittleText = false,
+    this.showAppbarLittleText = true,
     this.withCupertinoAppbar = true,
     this.unSelectedLabelColor,
     this.onRefresh,

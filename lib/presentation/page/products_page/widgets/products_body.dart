@@ -62,11 +62,14 @@ class ProductsBody extends StatelessWidget {
                               shrinkWrap: true,
                               addAutomaticKeepAlives: true,
                               itemBuilder: (context, index) {
-                                return index == productList.length
+                                return productList.isEmpty ||
+                                        index == productList.length
                                     ? FocusableAppLoading(
-                                        onFocus: () => context
-                                            .read<ProductsCubit>()
-                                            .loadMore())
+                                        onFocus: () => productList.isEmpty
+                                            ? null
+                                            : context
+                                                .read<ProductsCubit>()
+                                                .loadMore())
                                     : ProductItem(
                                         product: productList[index],
                                         inFav: false,
