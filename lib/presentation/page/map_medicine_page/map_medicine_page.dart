@@ -38,7 +38,10 @@ class _MapPageState extends State<MapPage> {
 
   getIcons() async {
     var icon = await BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(devicePixelRatio: 3.3), Assets.marker);
+        const ImageConfiguration(
+          devicePixelRatio: 3.3,
+        ),
+        Assets.marker);
     setState(() {
       if (icon == null) {
         BitmapDescriptor.defaultMarker;
@@ -107,7 +110,9 @@ class _MapPageState extends State<MapPage> {
                 //   },
                 //   title: "Aptekə keçid elə",
                 // ),
-                icon: BitmapDescriptor.defaultMarker, //Icon for Marker
+                icon: icon == null
+                    ? BitmapDescriptor.defaultMarker
+                    : icon!, //Icon for Marker
               ),
             );
           });
@@ -143,11 +148,11 @@ class _MapPageState extends State<MapPage> {
             ),
           );
         } else if (state is MapStoreInProgress) {
-          return AppLoading.main();
+          return const AppLoading();
         } else if (state is MapStoreError) {
-          return AppLoading.main();
+          return const AppLoading();
         }
-        return Center(child: Text("Hec bir Aptek Movcud deyil"));
+        return const Center(child: Text("Hec bir Aptek Movcud deyil"));
       },
     );
   }

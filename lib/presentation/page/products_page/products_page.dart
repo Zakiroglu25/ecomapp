@@ -14,17 +14,19 @@ class ProductsPage extends StatelessWidget {
     return FocusDetector(
       onVisibilityGained: () =>
           context.read<ProductsCubit>().fetchProduct(loading: false),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: DoctorAppbar(
-          addressDropdown: true,
-          contextA: context,
-          title: '',
-          user: true,
-          notification: true,
-          filter: false,
+      child: SafeArea(
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          appBar: DoctorAppbar(
+            addressDropdown: true,
+            contextA: context,
+            title: '',
+            user: true,
+            notification: true,
+            filter: false,
+          ),
+          body: ProductsBody(),
         ),
-        body: ProductsBody(),
       ),
     );
   }

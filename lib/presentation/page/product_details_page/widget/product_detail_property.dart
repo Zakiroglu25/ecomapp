@@ -23,12 +23,12 @@ class ProductDetailProperty extends StatelessWidget {
             children: [
               Text(
                 "$title",
-                style: AppTextStyles.sfPro400s14,
+                style: AppTextStyles.sfPro400s16,
               ),
               Text(
                 "$value",
                 style:
-                    AppTextStyles.sfPro400s14.copyWith(color: MyColors.grey130),
+                    AppTextStyles.sfPro400s16.copyWith(color: MyColors.grey130),
               ),
             ],
           ),

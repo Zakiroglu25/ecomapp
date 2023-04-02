@@ -29,7 +29,7 @@ class Loader extends StatelessWidget {
         return Stack(
           children: <Widget>[
             Container(
-              color: overlayColor ?? Color(0x99ffffff),
+              color: overlayColor ?? const Color(0x99ffffff),
               margin: EdgeInsets.only(
                   top: !isAppbarOverlay ? overlayFromTop ?? defaultValue : 0.0,
                   bottom: isBottomBarOverlay
@@ -38,7 +38,7 @@ class Loader extends StatelessWidget {
             ),
             Center(
                 child: Loader._(
-              progressIndicator ?? AppLoading.green(),
+              progressIndicator ?? const AppLoading.green(),
               // themeData ??
               //     Theme.of(context).copyWith(accentColor: MyColors.mainGrey),
             )),
@@ -66,6 +66,6 @@ class Loader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: AppLoading.green());
+    return const Center(child: AppLoading.green());
   }
 }

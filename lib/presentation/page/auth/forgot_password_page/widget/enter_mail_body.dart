@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/constants/colors.dart';
 
 import '../../../../../utils/constants/sized_box.dart';
 import '../../../../../utils/constants/text.dart';

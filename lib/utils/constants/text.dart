@@ -3,6 +3,9 @@ import 'package:uikit/utils/extensions/word.dart';
 class MyText {
   MyText._();
 
+  //general
+  static const String coppied = "Kopyalandı";
+
   //onboard
   static const String on_boardOneBig = "Family health  and wellness";
   static const String on_boardOneLittle =
@@ -24,11 +27,11 @@ class MyText {
   static const String successfullyRegistered = "Qeydiyyat Uğurla tamamlandı";
 
   //register
-  static const String email = "E-poçt və ya mobil";
-  static const String emailRegister = "E-poçt";
+  static const String emailOrPhone = "E-poçt və ya mobil";
+  static const String email = "E-poçt";
   static const String emailOrPassNotCorrect = "E-poçt və ya şifrə yanlışdır";
   static const String phone = "Mobil nömrə";
-  static const String phone_hint = "+994 (__) ___-__-__";
+  static const String phone_hint = "(__) ___-__-__";
   static const String password = "Şifrə";
   static const String newPassword = "Yeni Şifrə";
   static const String enterNewPassword = "Yeni şifrəni daxil edin";
@@ -60,6 +63,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String are_u_sure_exit = "Çıxış etmək istədiyinizdən əminsiniz?";
   static const String are_u_sure_delete_account =
       "Hesabı silmək istədiyinizdən əminsiniz?";
+  static const String are_u_sure_delete = "Silmək istədiyinizdən əminsiniz?";
   static const String new_pass = 'Yeni şifrə';
   static const String info = 'Məlumat';
   static const String set_new_pass = 'Yeni şifrəni təyin et';
@@ -74,6 +78,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   //forgot pass
   static const String enter_new_pass = 'Yeni şifrəni daxil edin';
   static const String enter_new_pass_again = 'Yeni şifrəni təkrar daxil edin';
+  static const String bothOfPassMustBeSame = 'Hər iki şifrə eyni olmalıdır';
   static const String enterNewPassAndTapGoOnButton =
       'Təyin etmək istədiyini şifrəni daxil edin, təsdiqləyin və "Davam et" butonuna toxunun';
   static const String we_have_sent_new_pass_email =
@@ -124,14 +129,14 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String otherSub = "Axtardığınız məhsulu tapmaq üçün";
   static const String logoutSub = "Təsdiqlədikdən sonra çıxış edəcəksiniz";
 
-  static const String paymentMetod = "Ödəniş üsulu";
+  static const String paymentType = "Ödəniş üsulu";
   static const String saveCard = "Kartı yadda saxla";
   static const String payment = "Ödəniş";
   static const String messenger = "Messenger";
   static const String insurance = "Sığorta";
   static const String likeMedicine = "Öxşar dərmanlar";
   static const String questionAnswer = "Sual-cavab";
-  static const String myAddresses = "Ünvalarım";
+  static const String myAddresses = "Ünvanlarım";
   static const String address = "Ünvan";
   static const String addresses = "Ünvanlar";
   static const String contact = "Əlaqə";
@@ -192,6 +197,9 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String orderDelivery = "Çatdırılma sifariş et";
   static const String cash = "Nağd";
   static const String cashPayment = "Nağd ödəniş";
+  static const String onlinePayment = "Onlayn ödəniş";
+  static const String makeOnlinePayment = "Online ödəniş et";
+  static const String willAddDuringOrder = "Sifariş zamanı əlavə edəcəm";
   static final String orderDeliveryX = orderDelivery.withX("🚚");
   static const String call = "Zəng et";
   static const String insuranceCover = "Sığorta qarşılayır";
@@ -251,6 +259,7 @@ In addition to laying out rules for proper use of your app, you should also clea
 
   //asan finance
   static const String save = "Yadda saxla";
+  static const String add = "Əlavə et";
   static const String gallery = "Qalerya";
   static const String camera = "Kamera";
   static const String avatarNotAdded = 'Foto əlavə edilmədi!';
@@ -277,7 +286,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String emailAddressIsNotCorrect = "E-poçt düzgün deyil";
   static const String success = "Əməliyyat uğurlu oldu!";
   static const String patronomic = "Ata adı";
-  static const String lastName = "Soyadı";
+  static const String lastName = "Soyad";
   static const String num = "Nömrə";
   static const String mail = "Email";
 
@@ -309,6 +318,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String locationAccessDenied = "İcazə rədd edildi";
   static const String locationAccessDisabled =
       "İcazə qalıcı olaraq rədd edilib";
+  static const String locationServiceDisabled = "GPS aktivləşdirilməyib";
   static const String emptyDeliveryAddressDesc =
       "Hal-hazırda sənin çatdırılacaq ünvanların qeyd olunmayıb. Yeni ünvan əlavə et.";
 

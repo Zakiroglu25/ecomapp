@@ -6,6 +6,10 @@ class NavigationService {
   static NavigationService instance = NavigationService();
 
   NavigationService() {
-    navigationKey = GlobalKey<NavigatorState>();
+    navigationKey ??= GlobalKey<NavigatorState>();
   }
+
+  BuildContext get context => navigationKey!.currentState!.context;
+
+  NavigationService._();
 }

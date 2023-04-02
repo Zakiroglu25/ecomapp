@@ -47,7 +47,7 @@ class TakeAwayPharmacyAndOrderDetails extends StatelessWidget {
           } else if (state is DeliveryAndPaymentError) {
             return nil;
           } else {
-            return AppLoading();
+            return const AppLoading();
           }
         },
       ),

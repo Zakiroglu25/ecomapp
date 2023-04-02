@@ -33,7 +33,7 @@ class CupperTabsWithProvider extends StatefulWidget {
     this.selectedLabelColor,
     this.selectedTabColor,
     this.barColor,
-    this.showAppbarLittleText = false,
+    this.showAppbarLittleText = true,
     this.withCupertinoAppbar = true,
     this.unSelectedLabelColor,
     this.onRefresh,
@@ -99,8 +99,8 @@ class _CupperTabsWithProviderState extends State<CupperTabsWithProvider>
         widget.onChange?.call(_currentIndex);
       }
       if (_tabController.index != index) {
-        widget.onIndexCompletelyChanged?.call(_currentIndex);
         index = _tabController.index;
+        widget.onIndexCompletelyChanged?.call(index);
       }
       setState(() {});
     });
@@ -187,7 +187,7 @@ class _CupperTabsWithProviderState extends State<CupperTabsWithProvider>
                             ),
 
                             labelColor:
-                                widget.selectedLabelColor ?? MyColors.main,
+                                widget.selectedLabelColor ?? MyColors.brand,
                             unselectedLabelColor:
                                 widget.unSelectedLabelColor ?? MyColors.grey158,
                             physics: Physics.alwaysBounce,
@@ -204,7 +204,7 @@ class _CupperTabsWithProviderState extends State<CupperTabsWithProvider>
                     controller: _tabController,
                     children: widget.tabPages.map((Widget child) {
                       return RefreshIndicator(
-                          color: MyColors.main,
+                          color: MyColors.brand,
                           onRefresh: () async => widget.onRefresh?.call(),
                           child: child);
                     }).toList(),

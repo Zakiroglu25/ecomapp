@@ -1,7 +1,8 @@
 enum PaymentType {
   ONLINE,
   CASH,
-  unselected;
+  card;
 
   String get toText => name;
+  String? get toValue => this == PaymentType.card ? ONLINE.toText : toText;
 }

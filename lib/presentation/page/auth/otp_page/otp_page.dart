@@ -23,11 +23,12 @@ class OTPPage extends StatelessWidget {
       child: Scaffold(
         body: BlocConsumer<OTPCubit, OtpState>(
           listener: (context, state) {
-            if (state is OtpError) Snack.display(message: state.error);
+            if (state is OtpError)
+              Snack.showOverlay(context: context, message: state.error);
           },
           builder: (context, state) {
             if (state is OtpInProgress) {
-              return AppLoading.main();
+              return AppLoading();
             }
             return Stack(
               fit: StackFit.expand,

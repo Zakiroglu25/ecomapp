@@ -83,6 +83,26 @@ class OrdersProvider {
     return null;
   }
 
+  static Future<int?> updateOrderDetails({
+    required String guid,
+    String? addressGuid,
+    required String? paymentType,
+    required String? deliveryType,
+  }) async {
+    final api = ApiKeys.orders + '/$guid';
+    final body = ApiKeys.updateOrderBody(
+        addressGuid: addressGuid,
+        paymentType: paymentType,
+        deliveryType: deliveryType);
+    final response = await dioAuth.dio.put(api, data: body);
+    if (response.statusCode.isSuccess) {
+      return response.statusCode;
+    } else {
+      eeee("orderDetails:  url: $api , response: ${response.data}");
+    }
+    return null;
+  }
+
   static Future<OrderDetails?> changeNotCovered(
       {required String guid, required bool include}) async {
     final tail = include ? 'include' : 'exclude';

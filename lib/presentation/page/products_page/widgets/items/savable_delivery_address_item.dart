@@ -11,6 +11,8 @@ import 'package:uikit/widgets/custom/custom_radio.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/delegate/navigate_utils.dart';
 
+typedef OnAddressChanged = void Function();
+
 class SavableDeliveryAddressItem extends StatefulWidget {
   const SavableDeliveryAddressItem(
       {Key? key,
@@ -69,7 +71,7 @@ class _SavableDeliveryAddressItemState
       child: ListView(
         shrinkWrap: true,
         physics: Physics.never,
-        padding: Paddings.paddingV4,
+        padding: Paddings.paddingV10,
         children: [
           Container(
             color: MyColors.white,
@@ -87,6 +89,7 @@ class _SavableDeliveryAddressItemState
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
+                          overflow: TextOverflow.ellipsis,
                           "${widget.title}",
                           style: AppTextStyles.sfPro600s16
                               .copyWith(color: widget.titleColor),

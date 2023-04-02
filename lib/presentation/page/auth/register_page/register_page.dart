@@ -8,22 +8,25 @@ import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
 
 import '../../../../infrastructure/cubit/register/register_cubit.dart';
+import '../../../../utils/constants/paddings.dart';
 import '../../../../utils/screen/snack.dart';
 import 'widgets/checkbox_ads.dart';
 import 'widgets/email_field_register.dart';
+import 'widgets/name_field_register.dart';
 import 'widgets/phone_field_register.dart';
 import 'widgets/policy_chechkbox_text.dart';
 import 'widgets/register_button.dart';
+import 'widgets/surname_field_register.dart';
 
-class Register extends StatelessWidget {
-  const Register({Key? key}) : super(key: key);
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.white,
       appBar: AppBar(
-        iconTheme: IconThemeData(color: MyColors.black),
+        iconTheme: const IconThemeData(color: MyColors.black),
         backgroundColor: MyColors.white,
         elevation: 0,
         title: Text(
@@ -34,32 +37,35 @@ class Register extends StatelessWidget {
         centerTitle: true,
       ),
       body: BlocListener<RegisterCubit, RegisterState>(
-        listenWhen: (contet, state) {
-          if (state is RegisterButtonActive)
+        listenWhen: (context, state) {
+          if (state is RegisterButtonActive) {
             return false;
-          else
+          } else {
             return true;
-        },
-        listener: (context, state) {
-          if (state is RegisterFailed) {
-            Snack.display(message: state.message ?? MyText.error);
           }
         },
+        listener: (context, state) {
+          // if (state is RegisterFailed) {
+          //   Snack.showOverlay(message: state.message ?? MyText.error);
+          // }
+        },
         child: Padding(
-          padding: const EdgeInsets.only(left: 16.0, right: 16),
+          padding: Paddings.paddingA16,
           child: SingleChildScrollView(
             child: Column(
               children: [
                 MySizedBox.h16,
+                NameFieldRegister(),
+                SurNameFieldRegister(),
                 PhoneFieldRegister(),
                 EmailFieldRegister(),
                 MainPassFieldRegister(),
                 MySizedBox.h26,
-                PolicyCheckbox(),
+                const PolicyCheckbox(),
                 //MySizedBox.h20,
-                AdsCheckbox(),
+                const AdsCheckbox(),
                 MySizedBox.h50,
-                RegisterButton()
+                const RegisterButton()
               ],
             ),
           ),

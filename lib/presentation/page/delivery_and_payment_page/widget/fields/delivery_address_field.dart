@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/address/address_cubit.dart';
 import 'package:uikit/infrastructure/cubit/address/address_state.dart';
+import 'package:uikit/infrastructure/cubit/delivery_address_current/index.dart';
+import 'package:uikit/infrastructure/cubit/delivery_and_payment/delivery_and_payment_cubit.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/durations.dart';
 import 'package:uikit/utils/constants/paddings.dart';
@@ -19,14 +21,15 @@ class DeliveryAddressField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWrapper(
-      onTap: () => Sheets.homeAddresses(context),
+      onTap: () => Sheets.homeAddresses(context,
+          onChange: () => context
+              .read<DeliveryAndPaymentCubit>()
+              .fetchMainAddress(andUpdate: true)),
       child: SpacedColumn(
         crossAxisAlignment: CrossAxisAlignment.start,
         space: 4,
         children: [
-          SmallSection(
-            title: MyText.address,
-          ),
+          const SmallSection(title: MyText.address),
           AnimatedSize(
             duration: Durations.ms300,
             child: BlocBuilder<AddressCubit, AddressState>(

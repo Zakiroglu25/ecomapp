@@ -124,7 +124,7 @@ class _CupperTabsState extends State<CupperTabs>
                           ),
 
                           labelColor:
-                              widget.selectedLabelColor ?? MyColors.main,
+                              widget.selectedLabelColor ?? MyColors.brand,
                           unselectedLabelColor:
                               widget.unSelectedLabelColor ?? MyColors.grey158,
                           physics: Physics.alwaysBounce,
@@ -139,7 +139,7 @@ class _CupperTabsState extends State<CupperTabs>
                   controller: _tabController,
                   children: widget.tabPages.map((Widget child) {
                     return RefreshIndicator(
-                        color: MyColors.main,
+                        color: MyColors.brand,
                         onRefresh: () async => widget.onRefresh?.call(),
                         child: child);
                   }).toList(),

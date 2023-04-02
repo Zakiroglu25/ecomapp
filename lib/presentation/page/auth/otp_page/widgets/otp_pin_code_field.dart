@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -10,10 +11,15 @@ class OtpPinCodeField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<OTPCubit>();
     return PinCodeTextField(
       length: 6,
       obscureText: false,
+      keyboardType: TextInputType.phone,
       animationType: AnimationType.fade,
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly,
+      ],
       pinTheme: PinTheme(
         shape: PinCodeFieldShape.box,
         borderRadius: BorderRadius.circular(12),
@@ -32,9 +38,10 @@ class OtpPinCodeField extends StatelessWidget {
       //backgroundColor: Colors.blue.shade50,
       enableActiveFill: true,
       //errorAnimationController: errorController,
-      //  controller: textEditingController,
-      onCompleted: (v) => context.read<OTPCubit>().validateOtp(context),
-      onChanged: (value) => context.read<OTPCubit>().updateOtp(value),
+      focusNode: cubit.otpFocus,
+      controller: cubit.otpController,
+      onCompleted: (v) => cubit.validateOtp(context),
+      onChanged: (value) => cubit.updateOtp(value),
       beforeTextPaste: (text) {
         print("Allowing to paste $text");
         //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.

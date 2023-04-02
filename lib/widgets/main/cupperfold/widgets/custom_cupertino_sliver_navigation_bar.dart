@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uikit/utils/constants/boxx.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 
+import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/screen/widget_or_empty.dart';
 import '../../../custom/nav_bar.dart';
@@ -34,48 +36,60 @@ class CustomCupertinoSliverNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MyCustomCupertinoSliverNavigationBar(
-      backgroundColor: barColor ?? MyColors.white,
-      padding: EdgeInsetsDirectional.zero,
-
-      border: const Border(bottom: BorderSide(color: Colors.transparent)),
-      leading: SpacedRow(
-        padding: Paddings.paddingT11,
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          WidgetOrEmpty(
-            value: user,
-            child: UserButton(),
-            elseChild: WidgetOrEmpty(
-              value: back,
-              child: BackIOS(
-                onBack: onBack,
+    return CupertinoTheme(
+        data: CupertinoThemeData(
+          textTheme: CupertinoTextThemeData(
+            navLargeTitleTextStyle:
+                AppTextStyles.sfPro700s30.copyWith(color: MyColors.black),
+            navTitleTextStyle: TextStyle(fontSize: 18, color: Colors.black),
+          ),
+          barBackgroundColor: Colors.white,
+        ),
+        child: MyCustomCupertinoSliverNavigationBar(
+          backgroundColor: barColor ?? MyColors.white,
+          padding: EdgeInsetsDirectional.zero,
+          automaticallyImplyLeading: true,
+          automaticallyImplyTitle: true,
+          stretch: true,
+          border: const Border(bottom: BorderSide(color: Colors.transparent)),
+          leading: SpacedRow(
+            padding: Paddings.paddingT11,
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              WidgetOrEmpty(
+                value: user,
+                child: UserButton(),
+                elseChild: WidgetOrEmpty(
+                  value: back,
+                  child: BackIOS(
+                    onBack: onBack,
+                  ),
+                ),
               ),
+              ...leadings ?? [],
+            ],
+          ),
+          // This title is visible in both collapsed and expanded states.
+          // When the "middle" parameter is omitted, the widget provided
+          // in the "largeTitle" parameter is used instead in the collapsed state.
+
+          largeTitle: Padding(
+            padding: Paddings.paddingT10,
+            child: Text(
+              title ?? '',
+              //  style: AppTextStyles.sfPro700.copyWith(fontSize: 30),
             ),
           ),
-          ...leadings ?? [],
-        ],
-      ),
-      // This title is visible in both collapsed and expanded states.
-      // When the "middle" parameter is omitted, the widget provided
-      // in the "largeTitle" parameter is used instead in the collapsed state.
-
-      largeTitle: Padding(
-        padding: Paddings.paddingT10,
-        child: Text(
-          title ?? '',
-        ),
-      ),
-      trailing: SpacedRow(
-        padding: Paddings.paddingT10,
-        mainAxisAlignment: MainAxisAlignment.end,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ...trailings ?? [],
-          WidgetOrEmpty(value: notification, child: NotificationWidget()),
-        ],
-      ),
-    );
+          trailing: SpacedRow(
+            padding: Paddings.paddingT10,
+            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ...trailings ?? [],
+              WidgetOrEmpty(value: notification, child: NotificationWidget()),
+            ],
+          ),
+        ));
   }
 }

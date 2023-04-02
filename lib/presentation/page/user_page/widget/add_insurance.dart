@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/colors.dart';
@@ -14,10 +15,11 @@ class AddInsurance extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
+            margin: const EdgeInsets.only(right: 16),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12), color: MyColors.white),
             width: 311,
-            height: 420,
+            height: 425.h,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

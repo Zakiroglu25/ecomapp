@@ -9,7 +9,8 @@ class Assets {
   static const String red_logo = "assets/svg/logo_red.svg";
   static const String bag_happy = "assets/svg/bag-happy.svg";
   static const String bag_happy_xx = "assets/svg/bag-happy-xx.svg";
-  static const String svgClock = "assets/svg/clock.svg";
+  // static const String svgClock = "assets/svg/clock.svg";
+  static const String svgClock = "assets/svg/clocktwo.svg";
   static const String truck_fast = "assets/svg/truck-fast.svg";
   static const String svgEyeOff = "assets/svg/eye-off.svg";
   static const String svgEyeOn = "assets/svg/eye-on.svg";
@@ -40,10 +41,12 @@ class Assets {
   static const String svgLogo = "assets/svg/logogrey.svg";
   static const String svgFav = "assets/svg/iconheart.svg";
   static const String svgAptek = "assets/svg/svgaptek.svg";
-  static const String svgCart = "assets/svg/svgcart.svg";
+  static const String svgCart = "assets/svg/shopping_bag.svg";
+  static const String svgCartNav = "assets/svg/shopping_bag_nav.svg";
   static const String svgBagCross = "assets/svg/bag-cross.svg";
   static const String svgShoppingCart = "assets/svg/shopping-cart.svg";
   static const String svgUserTag = "assets/svg/user-tag.svg";
+  static const String svgoOnlineCard = "assets/svg/online_card.svg";
   static const String svgMore = "assets/svg/svgmore.svg";
   static const String svgBigLogo = "assets/svg/big-logo.svg";
 
@@ -72,7 +75,7 @@ class Assets {
   static const String pngQuestion3x = "assets/png/question.png";
   static const String pngSetting = "assets/png/setting.png";
   static const String pngFireIsoColor = "assets/png/fire-iso-color.png";
-  static const String pngHomeAddress = "assets/png/home.png";
+  static const String pngHomeAddress = "assets/png/homeone.png";
   static const String pngEmptyCart = "assets/png/empty_cart.png";
   static const String pngLocationIcon = "assets/png/location_icon.png";
   static const String pngWallet = "assets/png/wallet.png";
@@ -105,6 +108,7 @@ class Assets {
   static const String courier_png = "assets/png/on_board_courier.png";
   static const String capsule_png = "assets/png/on_board_capsule.png";
   static const String keyChild = "assets/png/keychild.png";
+
   static const String medicine = "assets/png/medicine.png";
   static const String pngBad = "assets/png/bad.png";
   static const String pngCourier = "assets/png/courier.png";

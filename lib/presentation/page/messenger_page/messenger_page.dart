@@ -18,7 +18,7 @@ class MessengerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Cupperfold(
       user: false,
-      notification: true,
+      notification: false,
       title: MyText.messenger,
       child: BlocProvider(
         create: (context) => MessengerCubit()..fetch(),
@@ -27,7 +27,7 @@ class MessengerPage extends StatelessWidget {
             if (state is MessengerSuccess) {
               if (state.contactList.isEmpty) {
                 return SizedBox(
-                  height: MediaQuery.of(context).size.height / 2,
+                  height: MediaQuery.of(context).size.height / 1.5,
                   child: EmptyWidget(
                     imageUrl: Assets.pngChat,
                     color: MyColors.blue157,

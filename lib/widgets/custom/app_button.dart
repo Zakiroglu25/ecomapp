@@ -96,9 +96,7 @@ class AppButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
           child: Center(
             child: (loading ?? false)
-                ? const AppLoading.white(
-                    s: 16,
-                  )
+                ? const AppLoading.white()
                 : Padding(
                     padding: Paddings.paddingH8,
                     child: SizedBox(

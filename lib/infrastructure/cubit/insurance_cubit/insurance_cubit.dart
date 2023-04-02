@@ -49,9 +49,9 @@ class InsuranceCubit extends Cubit<InsuranceState> {
       final errors = response.data;
       if (isSuccess(response.statusCode)) {
         emit(AddInsuranceSuccess());
-        Snack.positive(context: context, message: MyText.success);
+        Snack.positive2(context, message: MyText.success);
       } else {
-        Snack.display(message: errors);
+        Snack.showOverlay(context: context, message: errors);
         emit(InsuranceError(error: response.statusCode.toString()));
       }
     } catch (e, s) {

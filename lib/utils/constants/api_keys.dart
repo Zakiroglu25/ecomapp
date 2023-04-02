@@ -170,11 +170,15 @@ class ApiKeys {
     required String? email,
     required String? password,
     required String? phone,
+    required String? firstName,
+    required String? lastName,
     required bool? ads,
   }) {
     final map = {
       "email": email,
       "password": password,
+      "firstName": firstName,
+      "lastName": lastName,
       "phone": phone,
       "newsletterSubscription": ads,
     };
@@ -272,8 +276,8 @@ class ApiKeys {
     required String? city,
     required String? country,
     required String? phone,
-    required String? latitude,
-    required String? longitude,
+    required double? latitude,
+    required double? longitude,
     required String? description,
     required bool? isMain,
   }) {
@@ -281,18 +285,35 @@ class ApiKeys {
     final map = {
       "title": title,
       "streetName": streetName,
+      "streetNumber": null,
       "houseNumber": houseNumber,
+      "postCode": null,
       "city": city,
       "country": country,
       "phone": phone,
+      "region": null,
       "latitude": latitude,
       "longitude": longitude,
       "description": description,
       "isMain": isMain,
     };
-
-    map.removeWhere(
-        (key, value) => key == null || value == null || value == 'null');
+    // {
+    //   "title": "Close to Ganjlik Mall",
+    // "streetName": "Mohsun Sanani 45/55",
+    // "streetNumber": null,
+    // "houseNumber": null,
+    // "postCode": null,
+    // "phone": null,
+    // "country": "Azerbaijan",
+    // "city": "Baku",
+    // "region": null,
+    // "latitude": "40.399379",
+    // "longitude": "49.839502",
+    // "description": null,
+    // "isMain": true
+    // }
+    // map.removeWhere(
+    //     (key, value) => key == null || value == null || value == 'null');
     return map;
   }
 
@@ -318,6 +339,22 @@ class ApiKeys {
       "paymentType": "ONLINE",
       "deliveryType": "COURIER",
       "insuranceCoverRequested": insuranceCoverRequested,
+      "addressGuid": addressGuid
+    };
+
+    map.removeWhere(
+        (key, value) => key == null || value == null || value == 'null');
+    return map;
+  }
+
+  static updateOrderBody(
+      {String? addressGuid,
+      required String? paymentType,
+      required String? deliveryType}) {
+    //
+    final map = {
+      "paymentType": paymentType,
+      "deliveryType": deliveryType,
       "addressGuid": addressGuid
     };
 

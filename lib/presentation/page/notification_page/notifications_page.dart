@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/model/response/notification_model.dart';
 import 'package:uikit/utils/constants/assets.dart';
 import 'package:uikit/utils/constants/colors.dart';
+import 'package:uikit/widgets/general/list_or_empty.dart';
 
 import '../../../infrastructure/cubit/notification_cubit/notification_cubit.dart';
 import '../../../infrastructure/cubit/notification_cubit/notification_state.dart';
@@ -18,45 +19,44 @@ class NotificationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: DoctorAppbar(
-          title: MyText.notification,
-          notification: false,
-          filter: false,
-          addressDropdown: false,
-          user: false,
-          contextA: context,
-        ),
-        body: BlocBuilder<NotificationCubit, NotificationState>(
-          builder: (context, state) {
-            if (state is NotificationSuccess) {
-              List<Notificationse>? notificationList =
-                  state.notificationList.data;
-              if (notificationList.isEmpty) {
-                return EmptyWidget(
-                  imageUrl: Assets.notifyheart,
-                  text: MyText.emptyNotification,
-                  description: MyText.emptyNotiDetail,
-                  color: MyColors.orange254,
-                );
-              }
-              return ListView.builder(
+      appBar: DoctorAppbar(
+        title: MyText.notification,
+        notification: false,
+        filter: false,
+        addressDropdown: false,
+        user: false,
+        contextA: context,
+      ),
+      body: BlocBuilder<NotificationCubit, NotificationState>(
+        builder: (context, state) {
+          if (state is NotificationSuccess) {
+            List<Notificationse>? notificationList =
+                state.notificationList.data;
+            return ListOrEmpty(
+              image: Assets.notifyheart,
+              text: MyText.emptyNotification,
+              description: MyText.emptyNotiDetail,
+              list: notificationList,
+              child: ListView.builder(
                   itemCount: notificationList.length,
                   itemBuilder: (context, index) {
                     return NotificationElement(
                       onXTap: () {},
                       list: notificationList[index],
                     );
-                  });
-            } else if (state is NotificationProgress) {
-              return AppLoading();
-            } else {
-              return EmptyWidget(
-                imageUrl: Assets.notifyheart,
-                text: MyText.emptyNotification,
-                description: MyText.emptyNotiDetail,
-              );
-            }
-          },
-        ));
+                  }),
+            );
+          } else if (state is NotificationProgress) {
+            return AppLoading();
+          } else {
+            return EmptyWidget(
+              imageUrl: Assets.notifyheart,
+              text: MyText.emptyNotification,
+              description: MyText.emptyNotiDetail,
+            );
+          }
+        },
+      ),
+    );
   }
 }

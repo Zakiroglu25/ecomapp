@@ -2,7 +2,9 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nil/nil.dart';
 import 'package:uikit/utils/constants/durations.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../utils/constants/app_text_styles.dart';
 import '../../utils/constants/assets.dart';
@@ -39,6 +41,7 @@ class AppField extends StatelessWidget {
   final FocusNode? focusNode;
   final String? suffixText;
   final TextInputType? textInputType;
+  final double? paddingAll;
 
   AppField({
     this.controller,
@@ -67,34 +70,43 @@ class AppField extends StatelessWidget {
     this.prefixIcon,
     this.suffixText,
     this.textInputType,
+    this.paddingAll,
   }) : assert(controller == null || initialValue == null,
             "her ikisi teyin ola bilmez");
 
   @override
   Widget build(BuildContext context) {
+    final lineH = 16;
     return AnimatedContainer(
       duration: Durations.ms200,
-      height: (errorMessage == null ? 95 : 110) +
+      height: (errorMessage == null ? 66 : 96) +
+          (title != null ? 14 : 0) +
+          ((maxLines ?? 1) * lineH) -
+          (lineH) +
           (infoMessage != null ? 18.0 : 0.0),
       // color: MyColors.mainRED,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // SizedBox(height:topMargin?? 6,),
-          Text(
-            title ?? "",
-            style: TextStyle(
-                fontSize: 14,
-                color: MyColors.grey158,
-                fontFamily: "San Francisco"),
-          ),
-          MySizedBox.h3,
+
+          title.isNotNull
+              ? Column(
+                  children: [
+                    Text(title ?? "",
+                        style: AppTextStyles.sfPro400s14
+                            .copyWith(letterSpacing: 0)),
+                    MySizedBox.h3,
+                  ],
+                )
+              : Container(),
+
           Stack(
             alignment: Alignment.center,
             children: [
               AnimatedContainer(
-                height: 50,
-                duration: Duration(milliseconds: 200),
+                height: (49.0 - lineH) + ((maxLines ?? 1) * lineH),
+                duration: const Duration(milliseconds: 200),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(radius),
                     border: Border.all(
@@ -102,6 +114,11 @@ class AppField extends StatelessWidget {
                             ? MyColors.transparent
                             : MyColors.errorRED)),
                 child: TextFormField(
+                  scrollPadding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom +
+                          16 * 4 +
+                          90),
+                  style: AppTextStyles.sfPro400s16,
                   autocorrect: false,
                   controller: controller,
                   focusNode: focusNode,
@@ -125,23 +142,20 @@ class AppField extends StatelessWidget {
                     counterText: '',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(radius),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         width: 0,
                         style: BorderStyle.none,
                       ),
                     ),
                     hintText: hint ?? "",
-                    hintStyle: AppTextStyles.sfPro400s14
-                        .copyWith(fontSize: 15, color: MyColors.grey153),
+                    hintStyle: AppTextStyles.sfPro400s16
+                        .copyWith(color: MyColors.grey153),
                     suffixText: suffixText ?? "",
                     filled: true,
                     prefixIcon: prefixIcon,
                     fillColor: fillColor,
                     contentPadding: EdgeInsets.only(
-                        left: 14.0,
-                        bottom: 6.0,
-                        top: 8.0,
-                        right: (suffixIcon != null) ? 40 : 0),
+                        left: 16.0, right: (suffixIcon != null) ? 40 : 0),
                   ),
                 ),
               ),
@@ -155,7 +169,7 @@ class AppField extends StatelessWidget {
                     message: errorMessage ?? "",
                     child: Center(
                       child: Container(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             //  vertical: errorMessage == null ? 18 : 17,
                             horizontal: 2),
                         child: suffixIcon ??
@@ -173,24 +187,27 @@ class AppField extends StatelessWidget {
             ],
           ),
           MySizedBox.h3,
-          WidgetOrEmpty(
-            value: errorMessage != null,
-            child: FadeIn(
-              key: Key("b"),
-              child: Text(
-                errorMessage ?? "",
-                style: AppTextStyles.sfPro400s14
-                    .copyWith(color: MyColors.errorRED),
-              ),
-            ),
-            elseChild: FadeIn(
-              key: Key("a"),
-              child: Text(
-                (infoMessage ?? ""),
-                style: AppTextStyles.sfPro400s14
-                    .copyWith(color: MyColors.error_red),
-              ),
-            ),
+          AnimatedSize(
+            duration: Durations.ms100,
+            child: errorMessage != null
+                ? FadeIn(
+                    key: const Key("b"),
+                    child: Text(
+                      errorMessage ?? "",
+                      style: AppTextStyles.sfPro400s14
+                          .copyWith(color: MyColors.errorRED),
+                    ),
+                  )
+                : (infoMessage != null
+                    ? FadeIn(
+                        key: const Key("a"),
+                        child: Text(
+                          (infoMessage ?? ""),
+                          style: AppTextStyles.sfPro400s14
+                              .copyWith(color: MyColors.error_red),
+                        ),
+                      )
+                    : SizedBox.shrink()),
           ),
         ],
       ),

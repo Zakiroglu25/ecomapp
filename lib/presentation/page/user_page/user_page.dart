@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 
@@ -56,48 +57,34 @@ class _PageViewExampleState extends State<PageViewExample> {
         user: false,
         contextA: context,
         notification: false,
-        color: MyColors.transparent,
+        color: MyColors.red250,
       ),
       backgroundColor: MyColors.red250,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: PageView.builder(
-                  controller: _pageViewController,
-                  itemCount: cards.length,
-                  physics: const BouncingScrollPhysics(
-                      parent: AlwaysScrollableScrollPhysics()),
-                  onPageChanged: (index) {
-                    setState(() {
-                      _currentIndex = index;
-                    });
-                  },
-                  itemBuilder: (context, index) {
-                    final images = cards[index];
-                    var _scale = _currentIndex == index ? 1.0 : 0.92;
-                    return TweenAnimationBuilder(
-                        tween: Tween(begin: _scale, end: _scale),
-                        duration: const Duration(milliseconds: 350),
-                        child: images,
-                        builder: (context, double value, child) {
-                          return Transform.scale(
-                            scale: value,
-                            child: child,
-                          );
-                        });
-                  }),
-            ),
-            Column(
-              children: [
-                Indicator(curr: currentPageValue.round()),
-                MySizedBox.h32,
-                UserLogOutButton(),
-                MySizedBox.h32,
-              ],
-            )
-          ],
-        ),
+      body: Column(
+        children: [
+          Expanded(
+            child: PageView.builder(
+                controller: _pageViewController,
+                itemCount: cards.length,
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+                itemBuilder: (context, index) {
+                  final images = cards[index];
+                  return images;
+                }),
+          ),
+          Column(
+            children: [
+              Indicator(curr: currentPageValue.round()),
+              MySizedBox.h32,
+              UserLogOutButton(),
+              MySizedBox.h32,
+            ],
+          )
+        ],
       ),
     );
   }
@@ -117,7 +104,7 @@ class EditContact extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12), color: MyColors.white),
           width: 311,
-          height: 420,
+          height: 425.h,
           child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Column(

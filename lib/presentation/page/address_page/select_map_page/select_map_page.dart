@@ -6,26 +6,42 @@ import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:map_picker/map_picker.dart';
 import 'package:uikit/infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
+import 'package:uikit/utils/delegate/index.dart';
+import 'package:uikit/utils/screen/snack.dart';
 
+import '../../../../infrastructure/model/response/address_model.dart';
 import '../../../../utils/delegate/navigate_utils.dart';
 import '../../../../widgets/custom/app_button.dart';
 import '../../add_address_page/add_address_page.dart';
 
-class MapSample extends StatefulWidget {
-  const MapSample({Key? key}) : super(key: key);
+class SelectMapPage extends StatefulWidget {
+  const SelectMapPage({Key? key, this.addressModel}) : super(key: key);
+  final Address? addressModel;
 
   @override
-  _MapSampleState createState() => _MapSampleState();
+  _SelectMapPageState createState() => _SelectMapPageState();
 }
 
-class _MapSampleState extends State<MapSample> {
+class _SelectMapPageState extends State<SelectMapPage> {
   final _controller = Completer<GoogleMapController>();
   MapPickerController mapPickerController = MapPickerController();
 
-  CameraPosition cameraPosition = CameraPosition(
-    target: LatLng(40.409264, 49.867092),
-    zoom: 14.4746,
-  );
+  late CameraPosition cameraPosition;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final cubit = context.read<AddAddressCubit>();
+
+    bbbb("cubit.lat:  ${cubit.lat}");
+    bbbb("cubit.lat:  ${cubit.long}");
+    cameraPosition = CameraPosition(
+      target: LatLng(cubit.lat ?? 40.409264, cubit.long ?? 49.867092),
+      zoom: 14.4746,
+    );
+    setState(() {});
+  }
 
   var textController = TextEditingController();
 
@@ -37,7 +53,7 @@ class _MapSampleState extends State<MapSample> {
         children: [
           MapPicker(
             // pass icon widget
-            iconWidget: Icon(
+            iconWidget: const Icon(
               Icons.location_on_sharp,
               size: 30,
             ),
@@ -54,7 +70,9 @@ class _MapSampleState extends State<MapSample> {
               },
               onCameraMoveStarted: () {
                 mapPickerController.mapMoving!();
-                textController.text = "Axtarilir....";
+                if(textController.text == null){
+                  Snack.isShowing;
+                }
               },
               onCameraMove: (cameraPosition) {
                 this.cameraPosition = cameraPosition;
@@ -65,10 +83,9 @@ class _MapSampleState extends State<MapSample> {
                   cameraPosition.target.latitude,
                   cameraPosition.target.longitude,
                 );
-
                 // update the ui with the address
                 textController.text =
-                    '${placemarks.first.name}, ${placemarks.first.administrativeArea}, ${placemarks.first.country}';
+                    '${placemarks.first.name?.replaceAll('\n', '').trim()}, ${placemarks.first.locality?.replaceAll('\n', '')}, ${placemarks.first.country?.replaceAll('\n', '').trim()}';
               },
             ),
           ),
@@ -93,17 +110,29 @@ class _MapSampleState extends State<MapSample> {
               text: "Addresi tesdiq et",
               onTap: () {
                 // Navigator.of(context).pop(textController.text);
+                // context
+                //     .read<AddAddressCubit>()
+                //     .updateStreet(textController.text);
+                BlocProvider.of<AddAddressCubit>(context)
+                    .updateStreet(textController.text);
+                bbbb("textController.text: ${textController.text.trim()}");
+                BlocProvider.of<AddAddressCubit>(context).updateLatLong(
+                  cameraPosition.target.latitude,
+                  cameraPosition.target.longitude,
+                );
                 Go.pop(context);
-                Go.replace(
-                    context,
-                    BlocProvider(
-                      create: (context) => AddAddressCubit(),
-                      child: AddAddressPage(
-                        textController: textController,
-                        lat: cameraPosition.target.latitude,
-                        lng: cameraPosition.target.longitude,
-                      ),
-                    ));
+
+                // Go.replace(
+                //     context,
+                //     BlocProvider(
+                //       create: (context) => AddAddressCubit(),
+                //       child: AddAddressPage(
+                //         textController: textController,
+                //         lat: cameraPosition.target.latitude,
+                //         lng: cameraPosition.target.longitude,
+                //         addressModel: widget.addressModel,
+                //       ),
+                //     ));
               },
             ),
           )

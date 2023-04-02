@@ -14,6 +14,7 @@ import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sized_box.dart';
 import '../../../../utils/constants/text.dart';
+import '../../../../widgets/custom/half_empty_widget.dart';
 import '../../../../widgets/general/empty_widget.dart';
 
 class CardItemWidget extends StatelessWidget {
@@ -28,14 +29,11 @@ class CardItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return WidgetOrEmpty(
       value: cardList.isNotEmpty,
-      elseChild: SizedBox(
-        height: MediaQuery.of(context).size.height / 2,
-        child: EmptyWidget(
-          imageUrl: Assets.pngWallet,
-          color: MyColors.green235,
-          text: MyText.emptyText,
-          description: MyText.emptyWallet,
-        ),
+      elseChild: const HalfEmptyWidget(
+        imageUrl: Assets.pngWallet,
+        color: MyColors.green235,
+        text: MyText.emptyText,
+        description: MyText.emptyWallet,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

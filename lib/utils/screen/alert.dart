@@ -25,6 +25,7 @@ class Alert {
       String? content,
       TextAlign? titleAlign,
       Function? onTapCancel,
+      Color? mainButtonColor,
       bool cancelButton = false,
       Function? onTap}) {
     showDialog(
@@ -63,7 +64,7 @@ class Alert {
                           ),
                         ),
                   ),
-                  MySizedBox.h4,
+                  MySizedBox.h24,
                   Padding(
                     padding: Paddings.paddingH16,
                     child: Text(
@@ -75,6 +76,7 @@ class Alert {
                   MySizedBox.h4,
                   Text(
                     content ?? '',
+                    textAlign: TextAlign.center,
                     // style: AppTextStyles.sanF400
                     //     .copyWith(fontSize: 16.sm, color: MyColors.grey163),
                   ),
@@ -84,44 +86,41 @@ class Alert {
                       height: 18.sm,
                     ),
                   ),
-                  Container(
-                    // width: 100,
-                    //height: 80,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        WidgetOrEmpty(
-                          value: secondButton != null,
-                          child: SizedBox(
-                            width: buttonSize,
-                            child: secondButton,
-                          ),
-                          elseChild: WidgetOrEmpty(
-                              value: cancelButton || onTapCancel != null,
-                              child: AppButton(
-                                  w: buttonSize,
-                                  color: MyColors.grey245,
-                                  text: MyText.reject,
-                                  textColor: MyColors.black,
-                                  onTap: () =>
-                                      (onTapCancel?.call() ?? Go.pop(context))
-                                  //  color: ,
-                                  )),
-                        ),
-                        SizedBox(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      WidgetOrEmpty(
+                        value: secondButton != null,
+                        child: SizedBox(
                           width: buttonSize,
-                          child: AppButton(
-                            text: buttonText ?? MyText.ok,
-                            onTap: () {
-                              Go.pop(context);
-                              if (onTap != null) {
-                                onTap.call();
-                              }
-                            },
-                          ),
+                          child: secondButton,
                         ),
-                      ],
-                    ),
+                        elseChild: WidgetOrEmpty(
+                            value: cancelButton || onTapCancel != null,
+                            child: AppButton(
+                                w: buttonSize,
+                                color: MyColors.grey245,
+                                text: MyText.reject,
+                                textColor: MyColors.black,
+                                onTap: () =>
+                                    (onTapCancel?.call() ?? Go.pop(context))
+                                //  color: ,
+                                )),
+                      ),
+                      SizedBox(
+                        width: buttonSize,
+                        child: AppButton(
+                          color: mainButtonColor,
+                          text: buttonText ?? MyText.ok,
+                          onTap: () {
+                            Go.pop(context);
+                            if (onTap != null) {
+                              onTap.call();
+                            }
+                          },
+                        ),
+                      ),
+                    ],
                   )
                 ],
               ),
@@ -137,6 +136,7 @@ class Alert {
       String? buttonText,
       Widget? content,
       TextAlign? textAlign,
+      Color? mainButtonColor,
       Function? onTapCancel,
       bool cancelButton = false,
       Function? onTap}) {
@@ -210,7 +210,8 @@ class Alert {
                         SizedBox(
                           width: buttonSize,
                           child: AppButton(
-                            text: buttonText ?? "OK",
+                            color: mainButtonColor,
+                            text: buttonText ?? MyText.ok,
                             onTap: () {
                               Go.pop(context);
                               if (onTap != null) {

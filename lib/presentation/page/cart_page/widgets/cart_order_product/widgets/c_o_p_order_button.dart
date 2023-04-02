@@ -6,8 +6,13 @@ import 'package:uikit/widgets/custom/app_button.dart';
 import '../../../../../../utils/constants/text.dart';
 
 class COPOrderButton extends StatelessWidget {
-  const COPOrderButton({Key? key, required this.orderGuid}) : super(key: key);
+  const COPOrderButton({
+    Key? key,
+    required this.orderGuid,
+    required this.deliveryType,
+  }) : super(key: key);
   final String orderGuid;
+  final String deliveryType;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +23,10 @@ class COPOrderButton extends StatelessWidget {
         w: 122,
         text: MyText.makeOrder,
         textSize: 14,
-        onTap: () =>
-            Go.to(context, Pager.deliveryAndPaymentPage(orderGuid: orderGuid)),
+        onTap: () => Go.to(
+            context,
+            Pager.deliveryAndPaymentPage(
+                orderGuid: orderGuid, deliveryType: deliveryType)),
       ),
     );
   }

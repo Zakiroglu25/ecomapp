@@ -25,6 +25,7 @@ import '../../../utils/constants/sized_box.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/delegate/pager.dart';
 import '../../../widgets/custom/app_button.dart';
+import '../../../widgets/custom/half_empty_widget.dart';
 import '../../../widgets/general/list_or_empty.dart';
 
 class AddressPage extends StatelessWidget {
@@ -37,6 +38,7 @@ class AddressPage extends StatelessWidget {
     return Cupperfold(
       title: MyText.myAddresses,
       user: false,
+      notification: false,
       child: FocusDetector(
         onFocusGained: () => context.read<AddressCubit>().fetch(false),
         child:
@@ -99,8 +101,9 @@ class AddressPage extends StatelessWidget {
           } else if (state is AddressInProgress) {
             return const AppLoading();
           }
-          return EmptyWidget(
+          return HalfEmptyWidget(
             imageUrl: Assets.location3x,
+            color: MyColors.orange253,
           );
         }),
       ),

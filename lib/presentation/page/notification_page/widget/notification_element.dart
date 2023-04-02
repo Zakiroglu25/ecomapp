@@ -53,7 +53,7 @@ class NotificationElement extends StatelessWidget {
       confirmDismiss: (DismissDirection direction) async {
         return Alert.show(
           context,
-          title: "MyText.are_u_sure_delete",
+          title: MyText.are_u_sure_delete,
           buttonText: MyText.yes,
           cancelButton: true,
           onTap: () => context.read<NotificationCubit>().removeNotificion(
@@ -68,9 +68,8 @@ class NotificationElement extends StatelessWidget {
       child: Column(
         children: [
           InkWell(
-            onTap: (){
-              Go.to(context, NotificationDetailsPage(list:list));
-
+            onTap: () {
+              Go.to(context, NotificationDetailsPage(list: list));
             },
             child: Container(
               padding: Paddings.paddingA16,

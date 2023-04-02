@@ -11,7 +11,7 @@ class SelectablePaymentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SelectablePayment(
-        paymentType: PaymentType.ONLINE,
+        paymentType: PaymentType.card,
         card: card,
         child: PaymentTypeCard(card: card));
   }

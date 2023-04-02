@@ -6,9 +6,11 @@ import '../../../../infrastructure/cubit/card_cubit/card_cubit.dart';
 import '../../../../infrastructure/cubit/card_cubit/card_state.dart';
 import '../../../../utils/constants/sized_box.dart';
 import '../../../../utils/constants/text.dart';
+import '../../../../widgets/custom/half_empty_widget.dart';
 import '../../../../widgets/general/app_loading.dart';
 import '../../../../widgets/general/empty_widget.dart';
 import 'card_item_widget.dart';
+import 'payment_type_empty_widget.dart';
 
 class CardBody extends StatelessWidget {
   const CardBody({
@@ -17,28 +19,20 @@ class CardBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: Paddings.paddingA16,
-          child: BlocBuilder<CardCubit, CardState>(
-            builder: (context, state) {
-              if (state is CardSuccess) {
-                return CardItemWidget(cardList: state.cardData.list);
-              } else if (state is CardInProgress) {
-                return const Center(
-                  child: AppLoading.main(),
-                );
-              }
-              return EmptyWidget(
-                text: MyText.emptyText,
-              );
-            },
-          ),
-        ),
-        MySizedBox.h32,
-      ],
+    return Padding(
+      padding: Paddings.paddingA16,
+      child: BlocBuilder<CardCubit, CardState>(
+        builder: (context, state) {
+          if (state is CardSuccess) {
+            return CardItemWidget(cardList: state.cardData.list);
+          } else if (state is CardInProgress) {
+            return const Center(
+              child: AppLoading(),
+            );
+          }
+          return const PaymentTypeEmptyWidget(text: MyText.error);
+        },
+      ),
     );
   }
 }

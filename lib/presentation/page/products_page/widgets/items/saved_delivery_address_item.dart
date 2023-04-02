@@ -6,15 +6,23 @@ import 'package:uikit/presentation/page/products_page/widgets/items/savable_deli
 
 class SavedDeliveryAddressItem extends SavableDeliveryAddressItem {
   SavedDeliveryAddressItem(
-      {Key? key, required this.address, required this.context})
+      {Key? key,
+      required this.address,
+      required this.context,
+      required this.onChange})
       : super(
             subTitle: address.description,
             key: key,
             title: address.title,
-            onTap: () => context.read<AddressCubit>()
-              ..update(address.guid!, address: address..isMain = true),
+
+            onTap: () {
+              onChange?.call();
+              return context.read<AddressCubit>()
+                ..update(address.guid!, address: address..isMain = true);
+            },
             selected: address.isMain ?? false);
 
   final Address address;
   final BuildContext context;
+  final Function? onChange;
 }

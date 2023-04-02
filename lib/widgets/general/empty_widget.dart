@@ -39,6 +39,15 @@ class EmptyWidget extends StatelessWidget {
       this.color,
       this.w,
       this.imageUrl});
+  EmptyWidget.half(
+      {this.text = MyText.error,
+      this.description,
+      this.elseChild,
+      this.onRefresh,
+      this.h,
+      this.color,
+      this.w,
+      this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +102,7 @@ class EmptyWidget extends StatelessWidget {
                           onTap: () => onRefresh?.call(),
                         ),
                       )),
+                  MySizedBox.h100
                 ],
               ),
             ),

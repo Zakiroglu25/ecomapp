@@ -106,7 +106,8 @@ class CartOrderProduct extends StatelessWidget {
             MySizedBox.h8,
             if (order.status == OrderStatus.PENDING_PAYMENT ||
                 order.status == OrderStatus.APPROVED)
-              COPOrderButton(orderGuid: order.guid!)
+              COPOrderButton(
+                  orderGuid: order.guid!, deliveryType: order.deliveryType!)
           ]),
     );
   }

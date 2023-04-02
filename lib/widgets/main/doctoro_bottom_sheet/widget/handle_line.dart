@@ -11,7 +11,7 @@ class HandleLine extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: Paddings.paddingV8,
+        margin: Paddings.paddingV10,
         padding: EdgeInsets.symmetric(horizontal: (context.sW / 2) - 100),
         width: 33,
         height: 4,

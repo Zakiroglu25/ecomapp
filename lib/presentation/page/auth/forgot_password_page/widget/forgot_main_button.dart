@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../infrastructure/cubit/forgot_pass/forgot_pass_cubit.dart';
 import '../../../../../infrastructure/cubit/forgot_pass/forgot_pass_state.dart';
+import '../../../../../utils/constants/paddings.dart';
 import '../../../../../widgets/custom/app_button.dart';
 
 class ForgotMainButton extends StatelessWidget {
@@ -12,9 +13,9 @@ class ForgotMainButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final forgotCubit = context.watch<ForgotPassCubit>();
     return Positioned(
-      bottom: 20,
-      left: 0,
-      right: 0,
+      bottom: 20 + MediaQuery.of(context).viewInsets.bottom,
+      left: 20,
+      right: 20,
       child: StreamBuilder<String>(
           stream: BlocProvider.of<ForgotPassCubit>(context).phoneStream,
           builder: (context, snapshot) {

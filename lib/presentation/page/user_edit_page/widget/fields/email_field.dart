@@ -19,9 +19,9 @@ class EmailFieldUser extends StatelessWidget {
       stream: BlocProvider.of<UserCubit>(context).emailStream,
       builder: (context, snapshot) {
         return AppField(
-          title: MyText.email,
+          title: MyText.emailOrPhone,
           maxLines: 1,
-          hint: MyText.email,
+          hint: MyText.emailOrPhone,
           upperCase: false,
           textInputType: TextInputType.emailAddress,
           textCapitalization: TextCapitalization.none,

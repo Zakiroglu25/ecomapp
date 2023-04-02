@@ -56,7 +56,7 @@ class _LandingPageState extends State<LandingPage> {
             buildBottomNavigationBarItem(
                 icon: Assets.svgAptek, label: MyText.pharmacies),
             buildBottomNavigationBarItem(
-                icon: Assets.svgCart, label: MyText.cart),
+                icon: Assets.svgCartNav, label: MyText.cart),
             buildBottomNavigationBarItem(
                 icon: Assets.svgMore, label: MyText.other),
           ],
@@ -71,7 +71,7 @@ class _LandingPageState extends State<LandingPage> {
     return BottomNavigationBarItem(
         backgroundColor: Colors.white,
         activeIcon: SvgPicture.asset(icon,
-            color: index == 2 ? MyColors.green85 : MyColors.darkRED),
+            color: index == 2 ? MyColors.green85 : MyColors.brand),
         icon: SvgPicture.asset(icon),
         label: label);
   }

@@ -5,10 +5,9 @@ import 'package:flutter/foundation.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/infrastructure/data/auth_provider.dart';
 import 'package:uikit/infrastructure/services/navigation_service.dart';
+import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/text.dart';
-import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/extensions/index.dart';
-import 'package:uikit/utils/screen/snack.dart';
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/screen/alert.dart';
@@ -177,12 +176,14 @@ class CustomInterceptors extends Interceptor {
         break;
       case 413:
         Alert.show(NavigationService.instance.navigationKey!.currentContext!,
-            title: MyText.unknownError);
+            title: MyText.unknownError, mainButtonColor: MyColors.brand);
         break;
       default:
         final error = DetailedError.fromJson(response.data);
         Alert.show(NavigationService.instance.navigationKey!.currentContext!,
-            content: error.details ?? '', title: MyText.error);
+            content: error.details ?? '',
+            title: MyText.error,
+            mainButtonColor: MyColors.brand);
         break;
     }
   }
@@ -193,9 +194,11 @@ class CustomInterceptors extends Interceptor {
     //     'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}');
     // Recorder.recordDioError(err);
     //return
-    bbbb("tyyype:  ${err.type}");
     if (_isServerDown(err)) {
-      Snack.display(message: MyText.networkError);
+      Alert.show(NavigationService.instance.navigationKey!.currentContext!,
+          content: MyText.networkError,
+          title: MyText.error,
+          mainButtonColor: MyColors.brand);
     }
     super.onError(err, handler);
   }

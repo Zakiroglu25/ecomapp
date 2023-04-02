@@ -53,7 +53,6 @@ class BirthdayFieldUser extends StatelessWidget {
       TextEditingController? birtController, String? initial) async {
     if (birtController?.text == null) {
       initial = DateFormat("yyy-MM-dd")
-
           .format(DateTime(DateTime.now().year - 18, 12, 31))
           .toString();
       birtController?.text = initial;
@@ -73,7 +72,7 @@ class BirthdayFieldUser extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Container(
-                      color: MyColors.main,
+                      color: MyColors.brand,
                       child: IconButton(
                         icon: Icon(Icons.done, color: MyColors.newGREEN),
                         onPressed: () => Navigator.of(context).pop(),
@@ -83,7 +82,7 @@ class BirthdayFieldUser extends StatelessWidget {
                   Container(
                     color: Colors.transparent,
                     child: IconButton(
-                        icon: Icon(Icons.close, color: MyColors.main),
+                        icon: Icon(Icons.close, color: MyColors.brand),
                         onPressed: () {
                           // BlocProvider.of<RegCubit>(context).updateBirthday("~");
                           Navigator.pop(context);

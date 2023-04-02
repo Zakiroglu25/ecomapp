@@ -11,11 +11,11 @@ class PaymentMethodPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Cupperfold(
+    return const Cupperfold(
       //onBack: () => Go.pop(context),
       notification: false,
       user: false,
-      title: MyText.paymentMetod,
+      title: MyText.paymentType,
       child: CardBody(),
     );
   }

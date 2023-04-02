@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:uikit/utils/constants/colors.dart';
 
 abstract class AppTextStyles {
   static const sfPro700 = TextStyle(
@@ -9,6 +10,13 @@ abstract class AppTextStyles {
   static const sfPro700s24 = TextStyle(
       fontFamily: 'ProximaNova-Bold',
       fontSize: 24,
+      fontWeight: FontWeight.w700,
+      fontStyle: FontStyle.normal,
+      letterSpacing: 0.3);
+  static const sfPro700s30 = TextStyle(
+      fontFamily: 'ProximaNova-Regular',
+      fontSize: 30,
+      color: MyColors.black,
       fontWeight: FontWeight.w700,
       fontStyle: FontStyle.normal,
       letterSpacing: 0.3);

@@ -44,6 +44,7 @@ import '../../infrastructure/model/response/address_model.dart';
 import '../../presentation/page/add_address_page/add_address_page.dart';
 import '../../presentation/page/add_asan_insurance_info/add_asan_insurance_info_page.dart';
 import '../../presentation/page/address_page/address_page.dart';
+import '../../presentation/page/address_page/select_map_page/select_map_page.dart';
 import '../../presentation/page/auth/login_page/login_page.dart';
 import '../../presentation/page/auth/register_page/register_page.dart';
 import '../../presentation/page/cart_page/cart_page.dart';
@@ -62,6 +63,7 @@ import '../../presentation/page/question_response_page/question_response_page.da
 import '../../presentation/page/settings_page/settings_page.dart';
 import '../../presentation/page/splash_page/splash_page.dart';
 import '../../presentation/page/user_edit_page/user_edit_page.dart';
+import '../enums/delivery_type.dart';
 
 class Pager {
   Pager._();
@@ -82,11 +84,15 @@ class Pager {
         BlocProvider(
           create: (context) => RegisterCubit(),
         ),
-      ], child: Register());
+      ], child: RegisterPage());
 
   static get login => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => LoginCubit()),
       ], child: const LoginPage());
+
+  static selectMapPage(BuildContext context) => MultiBlocProvider(providers: [
+        BlocProvider.value(value: BlocProvider.of<AddAddressCubit>(context)),
+      ], child: const SelectMapPage());
 
   static get products => MultiBlocProvider(providers: [
         // BlocProvider(create: (context) => ProductOptionCubit()..fetchProduct()),
@@ -100,7 +106,7 @@ class Pager {
         BlocProvider(
             create: (context) =>
                 ProductOptionDetailsCubit()..fetchProductMapGuid(map.guid!)),
-      ], child: MapDetailsPage(map));
+      ], child: MapDetailsPage(maps: map));
 
   static get cart => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => CartCubit()..fetch()),
@@ -198,12 +204,12 @@ class Pager {
         child: ChatPage(storeName: storeName),
       );
 
-  static addAddress({Address? address, context, lat, long, title}) =>
+  static addAddress(
+          {Address? address, BuildContext? context, lat, long, title}) =>
       BlocProvider(
-        create: (context) => AddAddressCubit(),
-        child: AddAddressPage(
-          addressModel: address,
-        ),
+        create: (context) =>
+            AddAddressCubit()..setAddress(context: context, address: address),
+        child: AddAddressPage(addressModel: address),
       );
 
   static get otherPage => OtherPage();
@@ -232,7 +238,7 @@ class Pager {
             create: (context) =>
                 ProductOptionDetailsCubit()..fetchProduct(guid)),
         BlocProvider(create: (context) => CartCubit())
-      ], child: ProductOptionDetails());
+      ], child: ProductDetailsDetails());
 
   static get addressPage => BlocProvider(
         create: (context) => AddressCubit()..fetch(),
@@ -244,20 +250,22 @@ class Pager {
         child: AddressPage(),
       );
 
-  static deliveryAndPaymentPage({required String orderGuid}) =>
+  static deliveryAndPaymentPage(
+          {required String orderGuid, required String deliveryType}) =>
       MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => AddressCubit()..fetchMainAddress()),
           //BlocProvider(create: (context) => TabCountsCubit()),
           BlocProvider(
-              create: (context) =>
-                  DeliveryAndPaymentCubit()..fetch(guid: orderGuid)),
+              create: (context) => DeliveryAndPaymentCubit()
+                ..fetch(guid: orderGuid, deliveryType: deliveryType)),
           // BlocProvider(
           //   create: (context) => AddressCubit()..fetch(),
           // ),
           BlocProvider(create: (context) => CardCubit()..getCard()),
         ],
-        child: DeliveryAndPaymentPage(orderGuid: orderGuid),
+        child: DeliveryAndPaymentPage(
+            orderGuid: orderGuid, deliveryType: deliveryType),
       );
 
   static webviewPage(

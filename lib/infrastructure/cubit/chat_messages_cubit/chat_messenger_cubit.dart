@@ -28,13 +28,14 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
     }
 
     try {
-      final result = await MessengerProvider.getChatMessage(chatGuid, page);
+      final result = await MessengerProvider.getChatMessage(chatGuid);
+      iiii(result.data.toString());
       if (isSuccess(result.statusCode)) {
         final searchItems = result.data;
-        messages.addAll(searchItems!.data!);
-        totalPages = searchItems.totalPages!;
+        // messages.addAll(searchItems!.data!);
+        // totalPages = searchItems.totalPages!;
         updateHaveElse();
-        emit(ChatMessengerSuccess(result.data!.data!));
+        emit(ChatMessengerSuccess(result.data!.list));
       } else {
         emit(ChatMessengerError());
       }
@@ -114,9 +115,9 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
   void loadMore() async {
     eeee("current page:  $page");
     if (page >= totalPages) return;
-    final result = await MessengerProvider.getChatMessage(chatGuid, page + 1);
+    final result = await MessengerProvider.getChatMessage(chatGuid);
     if (result.statusCode.isSuccess) {
-      messages.addAll(result.data!.data!);
+      messages.addAll(result.data!.list);
       emit(ChatMessengerSuccess(messages));
       page++;
     }

@@ -2,8 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/presentation/page/product_details_page/widget/product_detail_property.dart';
+import 'package:uikit/presentation/page/product_details_page/widget/store_details.dart';
 import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/extensions/index.dart';
+import 'package:uikit/utils/screen/errorable_image.dart';
 import 'package:uikit/widgets/custom/product_image_slider.dart';
 import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'package:uikit/widgets/general/empty_widget.dart';
@@ -19,13 +22,15 @@ import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/paddings.dart';
 import '../../../utils/constants/sized_box.dart';
 import '../../../widgets/custom/app_button.dart';
+import '../../../widgets/custom/row_with_space.dart';
+import '../../../widgets/general/app_element_box.dart';
 import '../../../widgets/general/app_loading.dart';
 import 'widget/product_add_to_cart_button.dart';
 
-class ProductOptionDetails extends StatelessWidget {
+class ProductDetailsDetails extends StatelessWidget {
   final SimpleProduct? product;
 
-  ProductOptionDetails({Key? key, this.product}) : super(key: key);
+  ProductDetailsDetails({Key? key, this.product}) : super(key: key);
 
   List<String> offerImage = [
     Assets.demo1,
@@ -49,7 +54,13 @@ class ProductOptionDetails extends StatelessWidget {
             return ListView(
               children: [
                 ProductImgSlider(
-                  imgList: product?.images ?? [],
+                  imgList: product?.images ?? []
+                  // [
+                  //   'https://egehospital.az/wp-content/uploads/2022/08/psixiatrik-dermanlar-asililiq-yaradirmi-1200x675.jpeg',
+                  //   'https://egehospital.az/wp-content/uploads/2022/08/psixiatrik-dermanlar-asililiq-yaradirmi-1200x675.jpeg',
+                  //   'https://cdn.aqrobazar.com/14113/conversions/9262f2a385549a3e9a596a8dfb17f375-lg.jpg'
+                  // ]
+                  ,
                 ),
                 ListView(
                   shrinkWrap: true,
@@ -58,15 +69,19 @@ class ProductOptionDetails extends StatelessWidget {
                   children: [
                     ManatPrice(
                       price: product?.price,
-                      textSize: 25,
-                      manatSize: 25,
+                      textSize: 28,
+                      manatSize: 28,
                     ),
                     MySizedBox.h16,
                     Text(
                       "${product?.title!}",
-                      style: AppTextStyles.sfPro600s16,
+                      style: AppTextStyles.sfPro600s24,
                     ),
                     MySizedBox.h16,
+                    StoreDetails(
+                        imageUrl: product?.store?.image,
+                        storeName: product?.store?.name),
+                    MySizedBox.h6,
                     ProductDetailProperty(
                       title: MyText.manufacturedIn,
                       value: '${product?.manufacturedIn}',

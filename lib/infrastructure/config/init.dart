@@ -44,7 +44,7 @@ Future<void> init() async {
         Platform.isAndroid ? Brightness.light : Brightness.dark,
     systemNavigationBarColor: MyColors.white,
     statusBarIconBrightness: Brightness.light,
-    statusBarColor: MyColors.main, // status bar color
+    statusBarColor: MyColors.brand, // status bar color
   ));
 
   // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

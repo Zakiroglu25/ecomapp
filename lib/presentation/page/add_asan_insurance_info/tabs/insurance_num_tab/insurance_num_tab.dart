@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/insurance_cubit/insurance_cubit.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../../../infrastructure/cubit/insurance_cubit/insurance_state.dart';
 import '../../../../../infrastructure/services/hive_service.dart';
@@ -10,8 +11,10 @@ import '../../../../../utils/constants/sized_box.dart';
 import '../../../../../utils/constants/text.dart';
 import '../../../../../utils/delegate/navigate_utils.dart';
 import '../../../../../utils/delegate/string_operations.dart';
+import '../../../../../utils/formatter/phone_formatter.dart';
 import '../../../../../widgets/custom/app_button.dart';
 import '../../../../../widgets/general/app_field.dart';
+import '../../../../../widgets/general/plus994.dart';
 
 class InsuranceNumTab extends StatelessWidget {
   InsuranceNumTab({Key? key}) : super(key: key);
@@ -31,36 +34,38 @@ class InsuranceNumTab extends StatelessWidget {
               Go.pop(context);
             }
           },
-          child: ListView(
-            shrinkWrap: true,
+          child: Column(
+            //shrinkWrap: true,
             children: [
               MySizedBox.h16,
               AppField(
                 controller: addInsuranceCubit.policy,
                 title: MyText.insuranceNum,
                 maxLines: 1,
-                hint: MyText.enterInsuranceNum,
-                textInputType: TextInputType.text,
-                maxLenght: 16,
+                textInputType: TextInputType.emailAddress,
                 textCapitalization: TextCapitalization.none,
+                hint: MyText.enterInsuranceNum,
+                maxLenght: 16,
               ),
               AppField(
                 controller: addInsuranceCubit.phoneNum,
                 title: MyText.phone,
                 maxLines: 1,
                 hint: MyText.phone_hint,
+                prefixIcon: Plus994(),
+                formatters: [PhoneNumberFormatter()],
                 textInputType: TextInputType.phone,
                 maxLenght: 16,
                 textCapitalization: TextCapitalization.none,
               ),
               AppField(
-                controller: _prefs.user.finCode!.isEmpty
+                controller: _prefs.user.finCode.isNull
                     ? addInsuranceCubit.finCode
                     : StringOperations.stringToController(
                         _prefs.user.finCode),
                 title: MyText.fin,
                 maxLines: 1,
-                hint: _prefs.user.finCode!.isEmpty
+                hint: _prefs.user.finCode.isNull
                     ? MyText.fin
                     : _prefs.user.finCode,
                 textInputType: TextInputType.text,
@@ -74,7 +79,7 @@ class InsuranceNumTab extends StatelessWidget {
                 onTap: () {
                   context.read<InsuranceCubit>().addInsurance(context: context);
                 },
-                text: MyText.save,
+                text: MyText.add,
               ),
               MySizedBox.h24
             ],

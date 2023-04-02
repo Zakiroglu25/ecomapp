@@ -32,7 +32,6 @@ class FavoritesProvider {
     final response = trnType == TrnType.delete
         ? await dioAuth.dio.delete(api + "/$guid")
         : await dioAuth.dio.post(api + "/$guid");
-    print("provider 1" + response.toString());
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
     } else {

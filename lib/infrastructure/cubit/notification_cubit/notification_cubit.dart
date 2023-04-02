@@ -38,7 +38,7 @@ class NotificationCubit extends Cubit<NotificationState> {
   Future<bool?> removeNotificion(
       {required String notificationId,
       bool? loading,
-      required BuildContext? context}) async {
+      required BuildContext context}) async {
     if (loading ?? true) {
       emit(NotificationProgress());
     }
@@ -47,7 +47,7 @@ class NotificationCubit extends Cubit<NotificationState> {
       final result = await NotificationProvider.removeNotification(
           notificationId: notificationId);
       if (isSuccess(result!.statusCode)) {
-        Snack.positive(message: "Pozuldu");
+        Snack.positive2(context, message: "Pozuldu");
         getNotification(loading: false);
       } else {
         emit(NotificationError());

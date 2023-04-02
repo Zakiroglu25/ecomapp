@@ -17,7 +17,9 @@ import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/utils/screen/snack.dart';
 
 import '../../../utils/screen/overlay_loader.dart';
+import '../../data/address_provider.dart';
 import '../../data/orders_provider.dart';
+import '../../model/response/address_model.dart';
 import 'delivery_and_payment_state.dart';
 
 class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
@@ -26,22 +28,82 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
   HiveService get _prefs => locator<HiveService>();
 
   String orderGuid = '';
+  String? addressGuid;
   int tabIndex = 0;
 
-  fetch({bool loading = true, required String guid}) async {
-    if (loading) {
-      emit(DeliveryAndPaymentInProgress());
-    }
+  fetch({bool loading = true, String? guid, String? deliveryType}) async {
+    if (loading) emit(DeliveryAndPaymentInProgress());
+    if (guid.isNotNull) orderGuid = guid!;
+    if (deliveryType.isNotNull) tabIndex = DeliveryType.toIndex(deliveryType!);
     try {
-      final result = await OrdersProvider.orderDetails(guid: guid);
+      await fetchMainAddress();
+
+      //ilk defe girdikde Pagerden cagirilir, onda deliveryType null olmuyacaq
+      //buna gore de her girdikde PUT-la odenish tipi ONLINE olaraq update olunacaq
+      //eger evvel card secib cixibsa yaranacaq problemin qarsini almaq ucundur bu
+      //if-in meqsedi sehife ilk yuklendikde , yoxsa diger hallarda fetch-in
+      //cagirlidigini yoxlamaqdir
+      if (deliveryType.isNotNull) await updateDeliveryPaymentType();
+      final result = await OrdersProvider.orderDetails(guid: orderGuid);
       if (result.isNotNull) {
-        orderGuid = guid;
         emit(DeliveryAndPaymentSuccess(orderDetails: result!));
       } else {
         emit(DeliveryAndPaymentError());
       }
     } on SocketException catch (_) {
       emit(DeliveryAndPaymentError());
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+      emit(DeliveryAndPaymentError());
+    }
+  }
+
+  updateDeliveryPaymentType({bool loading = true, int? index}) async {
+    if (loading) {
+      emit(DeliveryAndPaymentInProgress());
+    }
+
+    try {
+      if (index.isNotNull) tabIndex = index!;
+
+      if (addressGuid.isNull) return;
+      final result = await OrdersProvider.updateOrderDetails(
+        guid: orderGuid,
+        addressGuid: addressGuid,
+        paymentType: paymentType.valueOrNull?.toValue,
+        deliveryType: DeliveryType.fromIndex(tabIndex),
+      );
+      if (result.isSuccess) {
+        //orderGuid = guid;
+        // emit(DeliveryAndPaymentSuccess(orderDetails: result!));
+        fetch(guid: orderGuid);
+      } else {
+        emit(DeliveryAndPaymentError());
+      }
+    } on SocketException catch (_) {
+      emit(DeliveryAndPaymentError());
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+      emit(DeliveryAndPaymentError());
+    }
+  }
+
+  Future<void> fetchMainAddress(
+      {bool andUpdate = false, bool loading = true}) async {
+    if (loading) emit(DeliveryAndPaymentInProgress());
+    try {
+      List<Address> result = await AddressProvider.getAddresses();
+      final Address? address =
+          result.where((element) => element.isMain == true).firstOrNull;
+      if (address.isNull) {
+        emit(DeliveryAndPaymentError(error: MyText.emptyDeliveryAddressDesc));
+        return;
+      }
+      addressGuid = address!.guid!;
+      if (andUpdate) {
+        updateDeliveryPaymentType(index: tabIndex);
+      }
+      return;
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
       emit(DeliveryAndPaymentError());
@@ -71,25 +133,25 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
 
   updateTab({required int index}) async {
     tabIndex = index;
+
     if (index == 0 && paymentType.valueOrNull == PaymentType.CASH) {
-      updatePaymentType(null);
+      updatePaymentType(PaymentType.ONLINE);
     }
+    updateDeliveryPaymentType(index: index);
   }
 
   void createOrderPayment(
-      {bool loading = false,
-      required BuildContext context,
-      required DeliveryType deliveryType}) async {
+      {bool loading = false, required BuildContext context}) async {
     try {
       if (loading) emit(DeliveryAndPaymentInProgress());
       Loader.show(context);
+      bbbb(
+          "paymentType.valueOrNull?.toValue:  ${paymentType.valueOrNull?.toValue}");
       final result = await OrdersProvider.createPayment(
           orderGuid: orderGuid,
           saveCard: checkbox.valueOrNull,
-          paymentType: paymentType.valueOrNull == PaymentType.unselected
-              ? null
-              : paymentType.valueOrNull?.toText,
-          deliveryType: deliveryType.toText,
+          // paymentType: paymentType.valueOrNull?.toValue,
+          // deliveryType: deliveryType.toText,
           cardGuid: selectedCard.valueOrNull?.guid,
           comment: comment.valueOrNull);
       //result?.url = null;
@@ -100,7 +162,7 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
       }
       if (result!.url.isNull) {
         Go.pop(context);
-        Snack.positive(message: MyText.success);
+        Snack.positive2(context, message: MyText.success);
         return;
       } else {
         emit(DeliveryAndPaymentUrlFetched(url: result.url!));
@@ -124,7 +186,7 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
       await UserOperations.configUserDataWhenOpenApp(
           accessToken: _prefs.accessToken, fcm: _prefs.fcmToken);
       //emit(DeliveryAndPaymentSuccess(orderDetails: orderDetails));
-      Snack.positive(context: context, message: MyText.success);
+      Snack.positive2(context, message: MyText.success);
       Go.pop(context);
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
@@ -143,7 +205,7 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
       await UserOperations.configUserDataWhenOpenApp(
           accessToken: _prefs.accessToken, fcm: _prefs.fcmToken);
       //emit(DeliveryAndPaymentSuccess(orderDetails: orderDetails));
-      Snack.display(context: context, message: MyText.error);
+      Snack.showOverlay(context: context, message: MyText.error);
       Go.pop(context);
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
@@ -174,7 +236,7 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
 
   //paymentType
   final BehaviorSubject<PaymentType> paymentType =
-      BehaviorSubject<PaymentType>.seeded(PaymentType.unselected);
+      BehaviorSubject<PaymentType>.seeded(PaymentType.ONLINE);
 
   Stream<PaymentType> get paymentTypeStream => paymentType.stream;
 
@@ -182,11 +244,11 @@ class DeliveryAndPaymentCubit extends Cubit<DeliveryAndPaymentState> {
     bbbb("update: $value");
     if (value.isNull) {
       paymentType.sink.addError(MyText.field_is_not_correct);
-    }
-    if (value == paymentType.value) {
-      paymentType.sink.add(PaymentType.unselected);
+    } else if (value == paymentType.value) {
+      //paymentType.sink.add(PaymentType.unselected);
     } else {
       paymentType.sink.add(value!);
+      updateDeliveryPaymentType();
     }
     // if (value == PaymentType.cash) {
     //   updateSelectedCard(null);

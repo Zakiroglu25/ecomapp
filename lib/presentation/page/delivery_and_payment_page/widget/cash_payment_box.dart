@@ -4,6 +4,8 @@ import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
 
+import '../../../../utils/constants/app_text_styles.dart';
+
 class CashPaymentBox extends StatelessWidget {
   const CashPaymentBox({Key? key}) : super(key: key);
 
@@ -20,7 +22,10 @@ class CashPaymentBox extends StatelessWidget {
             child: Image.asset(Assets.pngCash),
           ),
           MySizedBox.w12,
-          Text(MyText.cashPayment),
+          Text(
+            MyText.cashPayment,
+            style: AppTextStyles.sfPro600,
+          ),
         ],
       ),
     );

@@ -20,14 +20,15 @@ class Sheet {
   }) {
     //Scaffold.of(context).hideCurrentSnackBar();
 
-    bs.showModalBottomSheet(
+    //bs.
+    showModalBottomSheet(
         useRootNavigator: false,
         enableDrag: true,
         isDismissible: true,
         barrierColor: Colors.black.withOpacity(.2),
 // barrierColor: Colors.red,
         isScrollControlled: true,
-        shape: RoundedRectangleBorder(borderRadius: Radiuses.rt24),
+        shape: const RoundedRectangleBorder(borderRadius: Radiuses.rt24),
         context: context,
         builder: (contextZ) => AppBottomSheet(
               child: child!,

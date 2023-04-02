@@ -120,7 +120,6 @@ class DeliveryAddressCurrentCubit extends Cubit<DeliveryAddressCurrentState> {
   // }
 
   void add(BuildContext context, {bool loading = true}) async {
-    bbbb("jhhkjjk");
     try {
       if (loading) {
         emit(DeliveryAdressCurrentInProgress());
@@ -136,8 +135,8 @@ class DeliveryAddressCurrentCubit extends Cubit<DeliveryAddressCurrentState> {
           houseNumber: null,
           streetName: placemark.street,
           phone: _prefs.user.phone,
-          latitude: "${position.latitude}",
-          longitude: "${position.longitude}",
+          latitude: position.latitude,
+          longitude: position.longitude,
           description: "$placemark".trim(),
           isMain: true);
       //
@@ -279,7 +278,7 @@ class DeliveryAddressCurrentCubit extends Cubit<DeliveryAddressCurrentState> {
     });
   }
 
-  Future<void> showAccessAlertForServiceEnabe(BuildContext context) async {
+  Future<void> showAccessAlertForServiceEnable(BuildContext context) async {
     Alert.show(context,
         title: MyText.we_need_access_to_locatoin,
         titleAlign: TextAlign.center,

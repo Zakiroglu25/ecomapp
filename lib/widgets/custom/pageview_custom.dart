@@ -34,7 +34,7 @@ class PageviewElement extends StatelessWidget {
                   width: 223,
                   child: Text(littleText!,
                       style: AppTextStyles.sfPro400s14
-                          .copyWith(fontSize: 14, color: MyColors.little_text)),
+                          .copyWith(fontSize: 14, color: MyColors.grey130)),
                 ),
                 MySizedBox.h32,
                 Padding(

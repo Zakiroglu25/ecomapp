@@ -55,18 +55,21 @@ class ProductsBody extends StatelessWidget {
                           builder: (context, snapshot) {
                             return ListViewSeparated(
                               padding:
-                                  Paddings.paddingA16 + Paddings.paddingB60,
+                                  Paddings.paddingH16 + Paddings.paddingB60,
                               itemCount: snapshot.data ?? false
                                   ? productList.length + 1
                                   : productList.length,
                               shrinkWrap: true,
                               addAutomaticKeepAlives: true,
                               itemBuilder: (context, index) {
-                                return index == productList.length
+                                return productList.isEmpty ||
+                                        index == productList.length
                                     ? FocusableAppLoading(
-                                        onFocus: () => context
-                                            .read<ProductsCubit>()
-                                            .loadMore())
+                                        onFocus: () => productList.isEmpty
+                                            ? null
+                                            : context
+                                                .read<ProductsCubit>()
+                                                .loadMore())
                                     : ProductItem(
                                         product: productList[index],
                                         inFav: false,
@@ -81,7 +84,7 @@ class ProductsBody extends StatelessWidget {
                     ),
                   );
                 } else if (state is ProductsInProgress) {
-                  return Center(child: AppLoading.main());
+                  return Center(child: AppLoading());
                 } else {
                   return Expanded(child: EmptyWidget.error());
                 }

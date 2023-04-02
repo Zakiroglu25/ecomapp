@@ -34,6 +34,8 @@ class RegisterCubit extends Cubit<RegisterState> {
           AppOperations.formatNumberWith994(phone.valueOrNull!);
       final response = await AuthProvider.registration(
         email: uEmail.valueOrNull,
+        firstName: uName.valueOrNull,
+        lastName: surName.valueOrNull,
         phone: formattedPhone,
         password: uPassMain.value,
         ads: checkbox.valueOrNull,
@@ -47,22 +49,63 @@ class RegisterCubit extends Cubit<RegisterState> {
         //   path: uPassMain.valueOrNull,
         // );
         emit(RegisterSuccess(""));
-        Snack.positive(message: MyText.otpSent);
+        Snack.positive2(context, message: MyText.otpSent);
         Go.to(context, Pager.otp());
       } else {
         // String error = '';
         // response?.validation?.toJson().entries.map((e) {
         //   error = "${error} ," + '${e.key} : ${e.value}';
         // });
-        bbbb("error: ${response.details}");
         emit(RegisterFailed(message: response.details));
       }
     } catch (e, s) {
-      emit(RegisterFailed(message: e.toString()));
+      //emit(RegisterFailed(message: e.toString()));
       Recorder.recordCatchError(e, s);
     }
   }
 
+  /////////////////////////////////////////////////////////////
+  /////////////////  v a l u e s /////////////////////////////
+  ///////////////////////////////////////////////////////////
+
+  //name
+  //name
+  final BehaviorSubject<String> uName = BehaviorSubject<String>();
+
+  Stream<String> get nameStream => uName.stream;
+
+  updateName(String value) {
+    if (value == null || value.isEmpty) {
+      uName.value = '';
+      uName.sink.addError(MyText.field_is_not_correct);
+    } else {
+      uName.sink.add(value);
+    }
+    isUserInfoValid();
+  }
+
+  bool get isNameIncorrect =>
+      (!uName.hasValue || uName.value == null || uName.value.isEmpty);
+
+  //surname
+  final BehaviorSubject<String> surName = BehaviorSubject<String>();
+
+  Stream<String> get surnameStream => surName.stream;
+
+  updateSurName(String value) {
+    if (value == null || value.isEmpty) {
+      surName.value = '';
+      surName.sink.addError(MyText.field_is_not_correct);
+    } else {
+      surName.sink.add(value);
+    }
+    isUserInfoValid();
+  }
+
+  bool get isSurNameIncorrect =>
+      (!surName.hasValue || surName.value == null || surName.value.isEmpty);
+
+  //registerActive
   final BehaviorSubject<bool> registerActive =
       BehaviorSubject<bool>.seeded(false);
 
