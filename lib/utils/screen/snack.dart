@@ -139,6 +139,7 @@ class Snack {
           duration: Durations.ms200,
           key: const Key('a'),
           child: Dismissible(
+            direction: DismissDirection.vertical,
             key: UniqueKey(),
             onDismissed: (f) {
               overlayEntry?.remove();

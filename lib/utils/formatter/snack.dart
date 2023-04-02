@@ -277,7 +277,7 @@ class Snack2 {
                 child: Material(
                   color: backColor,
                   borderRadius: borderRadius,
-                  elevation: 2,
+                  elevation: 0,
                   child: Center(
                     child: Container(
                       decoration: BoxDecoration(

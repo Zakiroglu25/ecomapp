@@ -75,6 +75,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   //forgot pass
   static const String enter_new_pass = 'Yeni şifrəni daxil edin';
   static const String enter_new_pass_again = 'Yeni şifrəni təkrar daxil edin';
+  static const String bothOfPassMustBeSame = 'Hər iki şifrə eyni olmalıdır';
   static const String enterNewPassAndTapGoOnButton =
       'Təyin etmək istədiyini şifrəni daxil edin, təsdiqləyin və "Davam et" butonuna toxunun';
   static const String we_have_sent_new_pass_email =
