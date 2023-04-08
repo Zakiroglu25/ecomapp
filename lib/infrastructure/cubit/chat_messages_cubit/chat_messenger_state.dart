@@ -33,5 +33,5 @@ class ChatMessengerNetworkError extends ChatMessengerState {}
 class ChatMessengerSuccess extends ChatMessengerState {
   ChatMessengerSuccess(this.contactList);
 
-  final List<Data> contactList;
+  final ChatMessagesModel contactList;
 }

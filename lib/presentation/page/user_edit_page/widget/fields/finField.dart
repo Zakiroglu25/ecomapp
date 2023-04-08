@@ -20,6 +20,7 @@ class FinFieldUser extends StatelessWidget {
         return AppField(
           title: MyText.fin,
           maxLines: 1,
+          maxLenght: 7,
           hint: MyText.fin,
           suffixIcon: Tooltip(message: 'burda fin kod olacay'),
           textInputType: TextInputType.name,

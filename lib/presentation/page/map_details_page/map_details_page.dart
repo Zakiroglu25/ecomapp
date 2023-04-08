@@ -11,7 +11,6 @@ import '../../../infrastructure/model/response/map_medicine.dart';
 import '../../../widgets/custom/focusable_app_loading.dart';
 import '../../../widgets/main/product_item/product_item.dart';
 import 'widget/map_details_header.dart';
-import 'widget/sliver_handler.dart';
 
 class MapDetailsPage extends StatelessWidget {
   const MapDetailsPage({Key? key, this.maps}) : super(key: key);

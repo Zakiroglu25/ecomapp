@@ -46,7 +46,7 @@ class AppTab extends Tab {
                 ),
                 secondChild: SvgPicture.asset(
                   svg!,
-                  color: MyColors.black34,
+                  color: MyColors.grey158,
                 ),
                 crossFadeState: selected
                     ? CrossFadeState.showFirst
@@ -63,7 +63,7 @@ class AppTab extends Tab {
             padding: Paddings.paddingA2,
             decoration: BoxDecoration(
                 borderRadius: Radiuses.r99,
-                color: selected ? MyColors.brand : MyColors.black34),
+                color: selected ? MyColors.brand : MyColors.grey158),
             child: FittedBox(
               child: Text(
                 "$count",

@@ -10,7 +10,6 @@ import '../../../../utils/constants/sized_box.dart';
 import '../../../../utils/constants/text.dart';
 import '../../../../utils/delegate/navigate_utils.dart';
 import '../../../../utils/delegate/pager.dart';
-import '../../../../utils/delegate/string_operations.dart';
 import '../../../../utils/screen/ink_wrapper.dart';
 import 'user_data_item_widget.dart';
 
@@ -103,25 +102,22 @@ class UserDataBody extends StatelessWidget {
           style: AppTextStyles.sfPro500s13.copyWith(color: MyColors.grey158),
         ),
         MySizedBox.h2,
-        GestureDetector(
-          onTap: () => StringOperations.copy(_prefs.user.finCode, context),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              if (_prefs.user.finCode != null)
-                Text(
-                  _prefs.user.finCode.toString(),
-                  style: AppTextStyles.sfPro600s30,
-                ),
-              if (_prefs.user.finCode == null)
-                Text(
-                  "Fin kod yoxdur",
-                  style: AppTextStyles.sfPro600s24,
-                ),
-              Spacer(),
-              const Icon(Icons.copy)
-            ],
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            if (_prefs.user.finCode != null)
+              Text(
+                _prefs.user.finCode.toString(),
+                style: AppTextStyles.sfPro600s30,
+              ),
+            if (_prefs.user.finCode == null)
+              Text(
+                "Fin kod yoxdur",
+                style: AppTextStyles.sfPro600s24,
+              ),
+            Spacer(),
+            const Icon(Icons.copy)
+          ],
         ),
       ],
     );
