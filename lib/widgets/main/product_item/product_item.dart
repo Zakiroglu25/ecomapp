@@ -17,7 +17,7 @@ import 'widgets/product_details_and_buttons.dart';
 class ProductItem extends StatefulWidget {
   const ProductItem({Key? key, required this.product, this.inFav = false})
       : super(key: key);
-  final SimpleProduct product;
+  final SimpleProduct? product;
   //inFav mean that this widget is in Favorite page
   final bool inFav;
 
@@ -27,7 +27,7 @@ class ProductItem extends StatefulWidget {
 
 class _ProductItemState extends State<ProductItem>
     with AutomaticKeepAliveClientMixin {
-  late SimpleProduct product;
+  SimpleProduct? product;
   //inFav mean that this widget is in Favorite page
   late bool inFav;
 
@@ -55,33 +55,35 @@ class _ProductItemState extends State<ProductItem>
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        GestureDetector(
-          onTap: () =>
-              Go.to(context, Pager.productDetails(guid: product.guid!)),
-          child: Container(
-            height: 115,
-            padding: Paddings.paddingA12,
-            decoration: BoxDecoration(
-                borderRadius: Radiuses.r12, color: MyColors.grey245),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ProductImage(imageUrl: product.imageUrl),
-                MySizedBox.w12,
-                ProductDetailsAndButtons(product: product)
-              ],
-            ),
-          ),
-        ),
-        ProductFavButton(
-          product: product,
-          inFav: inFav,
-        ),
-      ],
-    );
+    return product != null
+        ? Stack(
+            children: [
+              GestureDetector(
+                onTap: () =>
+                    Go.to(context, Pager.productDetails(guid: product!.guid!)),
+                child: Container(
+                  height: 115,
+                  padding: Paddings.paddingA12,
+                  decoration: BoxDecoration(
+                      borderRadius: Radiuses.r12, color: MyColors.grey245),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ProductImage(imageUrl: product?.imageUrl),
+                      MySizedBox.w12,
+                      ProductDetailsAndButtons(product: product!)
+                    ],
+                  ),
+                ),
+              ),
+              ProductFavButton(
+                product: product,
+                inFav: inFav,
+              ),
+            ],
+          )
+        : Container();
   }
 
   @override

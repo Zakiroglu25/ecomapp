@@ -24,104 +24,102 @@ class UserDataBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                width: 166,
-                child: Text(
-                  MyText.userInfo,
-                  style: AppTextStyles.sfPro600s16,
-                ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              width: 166,
+              child: Text(
+                MyText.userInfo,
+                style: AppTextStyles.sfPro600s16,
               ),
-              InkWrapper(
-                  onTap: () {
-                    Go.to(context, Pager.userEdit);
-                  },
-                  child: SvgPicture.asset(Assets.svgEditUser))
-            ],
-          ),
-          MySizedBox.h20,
-          Row(
-            children: [
-              Container(
-                width: 96.w,
-                height: 96.h,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: MyColors.grey288),
-                child: const Center(
-                  child: Icon(Icons.person),
-                ),
+            ),
+            InkWrapper(
+                onTap: () {
+                  Go.to(context, Pager.userEdit);
+                },
+                child: SvgPicture.asset(Assets.svgEditUser))
+          ],
+        ),
+        MySizedBox.h20,
+        Row(
+          children: [
+            Container(
+              width: 96.w,
+              height: 96.h,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: MyColors.grey288),
+              child: const Center(
+                child: Icon(Icons.person),
               ),
-              MySizedBox.w8,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  UserDataWidgetItem(
-                    title: MyText.name,
-                    content: _prefs.user.firstName,
-                  ),
-                  UserDataWidgetItem(
-                    title: MyText.firstName,
-                    content: _prefs.user.lastName,
-                  ),
-                ],
+            ),
+            MySizedBox.w8,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                UserDataWidgetItem(
+                  title: MyText.name,
+                  content: _prefs.user.firstName,
+                ),
+                UserDataWidgetItem(
+                  title: MyText.firstName,
+                  content: _prefs.user.lastName,
+                ),
+              ],
+            ),
+          ],
+        ),
+        MySizedBox.h20,
+        UserDataWidgetItem(
+          title: MyText.birth,
+          content: _prefs.user.birthDate,
+        ),
+        UserDataWidgetItem(
+          title: MyText.seriaNum,
+          content: _prefs.user.finCode,
+        ),
+        MySizedBox.h26,
+        Row(
+          children: List.generate(
+              180 ~/ 5,
+              (index) => Expanded(
+                    child: Container(
+                      color: index % 2 == 0
+                          ? Colors.transparent
+                          : MyColors.grey158,
+                      height: 1,
+                    ),
+                  )),
+        ),
+        MySizedBox.h16,
+        Text(
+          "Fin kod nömrəsi",
+          style: AppTextStyles.sfPro500s13.copyWith(color: MyColors.grey158),
+        ),
+        MySizedBox.h2,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            if (_prefs.user.finCode != null)
+              Text(
+                _prefs.user.finCode.toString(),
+                style: AppTextStyles.sfPro600s30,
               ),
-            ],
-          ),
-          MySizedBox.h20,
-          UserDataWidgetItem(
-            title: MyText.birth,
-            content: _prefs.user.birthDate,
-          ),
-          UserDataWidgetItem(
-            title: MyText.seriaNum,
-            content: _prefs.user.finCode,
-          ),
-          MySizedBox.h26,
-          Row(
-            children: List.generate(
-                180 ~/ 5,
-                (index) => Expanded(
-                      child: Container(
-                        color: index % 2 == 0
-                            ? Colors.transparent
-                            : MyColors.grey158,
-                        height: 1,
-                      ),
-                    )),
-          ),
-          MySizedBox.h16,
-          Text(
-            "Fin kod nömrəsi",
-            style: AppTextStyles.sfPro500s13.copyWith(color: MyColors.grey158),
-          ),
-          MySizedBox.h2,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              if (_prefs.user.finCode != null)
-                Text(
-                  _prefs.user.finCode.toString(),
-                  style: AppTextStyles.sfPro600s30,
-                ),
-              if (_prefs.user.finCode == null)
-                Text(
-                  "Fin kod yoxdur",
-                  style: AppTextStyles.sfPro600s24,
-                ),
-              Spacer(),
-              const Icon(Icons.copy)
-            ],
-          ),
-        ],
-      ),
+            if (_prefs.user.finCode == null)
+              Text(
+                "Fin kod yoxdur",
+                style: AppTextStyles.sfPro600s24,
+              ),
+            Spacer(),
+            const Icon(Icons.copy)
+          ],
+        ),
+      ],
     );
   }
 }

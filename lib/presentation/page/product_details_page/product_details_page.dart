@@ -54,11 +54,13 @@ class ProductDetailsDetails extends StatelessWidget {
             return ListView(
               children: [
                 ProductImgSlider(
-                  imgList: [
-                    'https://egehospital.az/wp-content/uploads/2022/08/psixiatrik-dermanlar-asililiq-yaradirmi-1200x675.jpeg',
-                    'https://egehospital.az/wp-content/uploads/2022/08/psixiatrik-dermanlar-asililiq-yaradirmi-1200x675.jpeg',
-                    'https://cdn.aqrobazar.com/14113/conversions/9262f2a385549a3e9a596a8dfb17f375-lg.jpg'
-                  ],
+                  imgList: product?.images ?? []
+                  // [
+                  //   'https://egehospital.az/wp-content/uploads/2022/08/psixiatrik-dermanlar-asililiq-yaradirmi-1200x675.jpeg',
+                  //   'https://egehospital.az/wp-content/uploads/2022/08/psixiatrik-dermanlar-asililiq-yaradirmi-1200x675.jpeg',
+                  //   'https://cdn.aqrobazar.com/14113/conversions/9262f2a385549a3e9a596a8dfb17f375-lg.jpg'
+                  // ]
+                  ,
                 ),
                 ListView(
                   shrinkWrap: true,
@@ -77,7 +79,7 @@ class ProductDetailsDetails extends StatelessWidget {
                     ),
                     MySizedBox.h16,
                     StoreDetails(
-                        imageUrl: product?.images.firstOrNull,
+                        imageUrl: product?.store?.image,
                         storeName: product?.store?.name),
                     MySizedBox.h6,
                     ProductDetailProperty(

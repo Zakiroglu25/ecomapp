@@ -28,7 +28,7 @@ class CupperTabWP extends StatelessWidget {
     this.onIndexCompletelyChanged,
     this.selectedLabelColor,
     this.selectedTabColor,
-    this.showAppbarLittleText = false,
+    this.showAppbarLittleText = true,
     this.withCupertinoAppbar = true,
     this.unSelectedLabelColor,
     this.headers,

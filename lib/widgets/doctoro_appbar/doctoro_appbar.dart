@@ -34,7 +34,6 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
 
   DoctorAppbar(
-
       {required this.title,
       required this.user,
       this.notification = true,
@@ -64,7 +63,7 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
         elevation: 0,
         titleSpacing: 0,
         title: Padding(
-          padding: Paddings.paddingT12,
+          padding: Paddings.zero,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

@@ -2,9 +2,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
+import '../constants/text.dart';
 import '../formatter/masked_text_controller_phone.dart';
+import '../screen/snack.dart';
 
 class StringOperations {
+  static copy(String? data, BuildContext context, {String? copyText}) {
+    Clipboard.setData(ClipboardData(text: data ?? "")).then((_) {
+      Snack.showOverlay(
+          context: context,
+          message: copyText ?? MyText.coppied,
+          showSuccessIcon: true,
+          positive: true);
+    });
+  }
   //youtube
   // static String idToIMG(String id) {
   //   String url = ApiKeys.youtubeIMG + ApiKeys.vi + id + ApiKeys.defaultJPG;

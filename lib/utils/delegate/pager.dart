@@ -208,7 +208,7 @@ class Pager {
           {Address? address, BuildContext? context, lat, long, title}) =>
       BlocProvider(
         create: (context) =>
-            AddAddressCubit()..setAddress(context: context, address: address),
+            AddAddressCubit()..setAddress(context: context, address: address,loading: false),
         child: AddAddressPage(addressModel: address),
       );
 

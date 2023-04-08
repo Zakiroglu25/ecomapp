@@ -1,8 +1,10 @@
 class ProductDetails {
   String? guid;
+  String? productOptionGuid;
   int? publicId;
   String? title;
   String? slug;
+  num? discountedPrice;
   bool? prescriptionRequired;
   bool? isInCart;
   String? manufacturedIn;
@@ -23,9 +25,11 @@ class ProductDetails {
 
   ProductDetails(
       {this.guid,
+      this.productOptionGuid,
       this.publicId,
       this.title,
       this.slug,
+      this.discountedPrice,
       this.prescriptionRequired = false,
       this.manufacturedIn,
       this.description,
@@ -45,9 +49,11 @@ class ProductDetails {
 
   ProductDetails.fromJson(Map<String, dynamic> json) {
     guid = json['guid'];
+    productOptionGuid = json['productOptionGuid'];
     publicId = json['publicId'];
     title = json['title'] ?? '';
     slug = json['slug'];
+    discountedPrice = json['discountedPrice'] ?? 0;
     prescriptionRequired = json['prescriptionRequired'] ?? false;
     manufacturedIn = json['manufacturedIn'] ?? '';
     description = json['description'] ?? '';
@@ -70,7 +76,7 @@ class ProductDetails {
         categories!.add(Categories.fromJson(v));
       });
     }
-    images = json['images'].cast<String>();
+    images = json['images'].cast<String>() ?? [];
     if (json['stockItems'] != null) {
       stockItems = <StockItems>[];
       json['stockItems'].forEach((v) {
@@ -82,9 +88,11 @@ class ProductDetails {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['guid'] = guid;
+    data['productOptionGuid'] = productOptionGuid;
     data['publicId'] = publicId;
     data['title'] = title;
     data['slug'] = slug;
+    data['discountedPrice'] = discountedPrice;
     data['isInCart'] = isInCart;
     data['prescriptionRequired'] = prescriptionRequired;
     data['manufacturedIn'] = manufacturedIn;
@@ -115,7 +123,7 @@ class ProductDetails {
 
   @override
   String toString() {
-    return 'ProductDetails{guid: $guid, store: $store, publicId: $publicId,price: $price, title: $title, slug: $slug, prescriptionRequired: $prescriptionRequired, isInCart: $isInCart, manufacturedIn: $manufacturedIn, description: $description, substances: $substances, excipients: $excipients, dosage: $dosage, packaging: $packaging, packagingAmount: $packagingAmount, pharmaceuticalForm: $pharmaceuticalForm, registrationDate: $registrationDate, manufacturer: $manufacturer, categories: $categories, images: $images, stockItems: $stockItems}';
+    return 'ProductDetails{guid: $guid,productOptionGuid: $productOptionGuid, store: $store, publicId: $publicId,price: $price, title: $title, slug: $slug, discountedPrice: $discountedPrice, prescriptionRequired: $prescriptionRequired, isInCart: $isInCart, manufacturedIn: $manufacturedIn, description: $description, substances: $substances, excipients: $excipients, dosage: $dosage, packaging: $packaging, packagingAmount: $packagingAmount, pharmaceuticalForm: $pharmaceuticalForm, registrationDate: $registrationDate, manufacturer: $manufacturer, categories: $categories, images: $images, stockItems: $stockItems}';
   }
 }
 
@@ -219,6 +227,7 @@ class Store {
   String? slug;
   String? website;
   bool? worksWithInsurance;
+  String? image;
   bool? isOpen;
   int? opensAtHour;
   int? closesAtHour;
@@ -232,6 +241,7 @@ class Store {
       this.website,
       this.worksWithInsurance,
       this.isOpen,
+      this.image,
       this.opensAtHour,
       this.closesAtHour,
       this.opensAtMinutes,
@@ -243,6 +253,7 @@ class Store {
     slug = json['slug'];
     website = json['website'];
     worksWithInsurance = json['worksWithInsurance'];
+    image = json['image'];
     isOpen = json['isOpen'];
     opensAtHour = json['opensAtHour'];
     closesAtHour = json['closesAtHour'];
@@ -257,6 +268,7 @@ class Store {
     data['slug'] = this.slug;
     data['website'] = this.website;
     data['worksWithInsurance'] = this.worksWithInsurance;
+    data['image'] = this.image;
     data['isOpen'] = this.isOpen;
     data['opensAtHour'] = this.opensAtHour;
     data['closesAtHour'] = this.closesAtHour;
@@ -267,6 +279,6 @@ class Store {
 
   @override
   String toString() {
-    return 'Store{guid: $guid, name: $name, slug: $slug, website: $website, worksWithInsurance: $worksWithInsurance, isOpen: $isOpen, opensAtHour: $opensAtHour, closesAtHour: $closesAtHour, opensAtMinutes: $opensAtMinutes, closesAtMinutes: $closesAtMinutes}';
+    return 'Store{guid: $guid, name: $name, slug: $slug, website: $website, worksWithInsurance: $worksWithInsurance, image: $image, isOpen: $isOpen, opensAtHour: $opensAtHour, closesAtHour: $closesAtHour, opensAtMinutes: $opensAtMinutes, closesAtMinutes: $closesAtMinutes}';
   }
 }
