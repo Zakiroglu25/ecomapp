@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../utils/constants/text.dart';
+import '../../../utils/delegate/app_operations.dart';
 import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/delegate/request_control.dart';
 import '../../../utils/screen/snack.dart';
@@ -44,14 +45,14 @@ class InsuranceCubit extends Cubit<InsuranceState> {
     try {
       final response = await InsuranceProvider.addInsurance(
           policyNumber: policy.text,
-          phoneNumber: phoneNum.text,
+          phoneNumber: AppOperations.formatNumberWith994(phoneNum.text),
           finCode: finCode.text);
       final errors = response.data;
       if (isSuccess(response.statusCode)) {
         emit(AddInsuranceSuccess());
         Snack.positive2(context, message: MyText.success);
       } else {
-        Snack.showOverlay(context: context, message: errors);
+        // Snack.showOverlay(context: context, message: errors);
         emit(InsuranceError(error: response.statusCode.toString()));
       }
     } catch (e, s) {
