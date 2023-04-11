@@ -107,8 +107,9 @@ class ApiKeys {
   static const getMessenger = "$protected/chat";
 
   //insurance
-  static const getInsurance = "$protected/insurance";
-  static const addInsuranceApi = "$protected/insurance/add";
+  static const insurance = "$protected/insurance";
+  static const addInsurance = "$insurance/add";
+  static const validateInsurance = "$insurance/validate-otp";
 
   //change password
   static const changePass = "$account/update-password";
@@ -204,7 +205,7 @@ class ApiKeys {
     return map;
   }
 
-  static addInsurance({
+  static addInsuranceBody({
     required String? phoneNumber,
     required String? policyNumber,
     required String? finCode,
@@ -214,6 +215,17 @@ class ApiKeys {
       "phoneNumber": phoneNumber,
       "finCode": finCode,
     };
+
+    map.removeWhere(
+        (key, value) => key == null || value == null || value == 'null');
+    return map;
+  }
+
+  static validateInsuranceBody({
+    required String? otp,
+    required String? policyNumber,
+  }) {
+    final map = {"policyNumber": policyNumber, "otp": otp};
 
     map.removeWhere(
         (key, value) => key == null || value == null || value == 'null');

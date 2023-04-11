@@ -52,6 +52,7 @@ import '../../presentation/page/change_number/change_number_page.dart';
 import '../../presentation/page/contact_page/contact_page.dart';
 import '../../presentation/page/delivery_and_payment_page/delivery_and_payment_page.dart';
 import '../../presentation/page/favorite_page/favorite_page.dart';
+import '../../presentation/page/insurance_otp_page/insurance_otp_page.dart';
 import '../../presentation/page/insurance_page/add_insurance_page.dart';
 import '../../presentation/page/messenger_page/messenger_page.dart';
 import '../../presentation/page/messenger_page/widget/chat_details.dart';
@@ -129,6 +130,13 @@ class Pager {
   static get addingInsurance => BlocProvider(
         create: (context) => InsuranceCubit(),
         child: AddAsanInsuranceInfo(),
+      );
+
+  static validateInsurance(BuildContext context) => BlocProvider.value(
+        value: BlocProvider.of<InsuranceCubit>(context)..clearOtp(),
+        child: InsuranceOTPPage(
+          showBackButton: true,
+        ),
       );
 
   static get mapPage => MultiBlocProvider(providers: [
