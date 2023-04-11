@@ -80,8 +80,6 @@ class AccountProvider {
     StatusDynamic<MyUser> statusDynamic = StatusDynamic<MyUser>();
     var api = ApiKeys.changePass;
     final data = ApiKeys.changePassword(oldPass: oldPass, newPass: newPass);
-    iiii(api);
-    iiii(data.toString());
     final response = await dioAuth.dio.put(api, data: data);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {

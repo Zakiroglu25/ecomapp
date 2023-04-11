@@ -39,7 +39,7 @@ class OtherPage extends StatelessWidget {
                   title: MyText.messenger,
                   desc: MyText.chat,
                   onTap: () {
-                    Go.to(context, MessengerPage());
+                    Go.to(context, Pager.messenger);
                   },
                 ),
                 ProductAndOtherWidget(

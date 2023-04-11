@@ -27,16 +27,6 @@ class ChatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // SchedulerBinding.instance.addPostFrameCallback((_) {
-    //   _sc.animateTo(
-    //     _sc.position.maxScrollExtent,
-    //     duration: const Duration(milliseconds: 10),
-    //     curve: Curves.easeOut,);
-    // });
-    // WidgetsBinding.instance.addPostFrameCallback(
-    //     (_) => {_sc.jumpTo(_sc.position.maxScrollExtent)});
-    // Timer(Duration(milliseconds: 500),
-    //     () => _sc.jumpTo(_sc.position.maxScrollExtent));
     // BlocProvider.of<ChatMessengerCubit>(context).loadMore(guid!);
     return Scaffold(
       appBar: DoctorAppbar(
@@ -51,9 +41,9 @@ class ChatPage extends StatelessWidget {
           builder: (context, state) {
             if (state is ChatMessengerSuccess) {
               var chatList = state.contactList;
-              if(chatList.data!.isEmpty){
-                return Text("salam");
-              }
+              // if (chatList.data!.isEmpty) {
+              //   return Text("salam");
+              // }
               return Stack(
                 children: [
                   SizedBox(
@@ -62,32 +52,27 @@ class ChatPage extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 80),
                       shrinkWrap: false,
                       controller: _sc,
-                      itemCount:  chatList.data!.length,
+                      itemCount: chatList.data!.length,
                       itemBuilder: (context, index) {
                         return Align(
-                                alignment: chatList.data![index].isByYou == true
-                                    ? Alignment.centerRight
-                                    : Alignment.centerLeft,
-                                child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.end,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.end,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      if (chatList.data![index].isByYou ==
-                                          false)
-                                        const DoctoroChatLogo(),
-                                      MySizedBox.w12,
-                                      ChatWordsWidget(
-                                          date: chatList.data![index]
-                                              .sentAt
-                                              .toString(),
-                                          message:
-                                              chatList.data![index].message!),
-                                      MySizedBox.w12,
-                                    ]),
-                              );
+                          alignment: chatList.data![index].isByYou == true
+                              ? Alignment.centerRight
+                              : Alignment.centerLeft,
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                if (chatList.data![index].isByYou == false)
+                                  const DoctoroChatLogo(),
+                                MySizedBox.w12,
+                                ChatWordsWidget(
+                                    date:
+                                        chatList.data![index].sentAt.toString(),
+                                    message: chatList.data![index].message!),
+                                MySizedBox.w12,
+                              ]),
+                        );
                       },
                     ),
                   ),
@@ -97,7 +82,7 @@ class ChatPage extends StatelessWidget {
             } else if (state is ChatMessengerInProgress) {
               return const AppLoading();
             }
-            return  AppLoading();
+            return AppLoading();
           },
         ),
       ),
