@@ -4,6 +4,7 @@ import 'package:uikit/presentation/page/cart_order_details_page/widgets/cart_cir
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/screen/snack.dart';
 import 'package:uikit/widgets/custom/column_with_space.dart';
 import 'package:uikit/widgets/custom/sliver_app_bar_delegate.dart';
@@ -15,6 +16,7 @@ import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/paddings.dart';
 import '../../../../utils/constants/text.dart';
 import '../../../../utils/screen/alert.dart';
+import '../../../../utils/screen/errorable_image.dart';
 
 class MapDetailsHeaders extends StatelessWidget {
   final MapMedicine maps;
@@ -25,8 +27,9 @@ class MapDetailsHeaders extends StatelessWidget {
   Widget build(BuildContext context) {
     var googleUrl = Uri.parse(
         'https://www.google.com/maps/search/?api=1&query=${maps.addressLat.toString()},${maps.addressLong.toString()}');
+
     return Container(
-        color: MyColors.green235,
+        color: MyColors.secondary,
         // height: 90,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -42,7 +45,13 @@ class MapDetailsHeaders extends StatelessWidget {
                 style: AppTextStyles.sfPro400s12,
               ),
               MySizedBox.h4,
-              Image.asset(Assets.demo2),
+              ErrorableImage(
+                backColor: MyColors.white,
+                imageUrl: maps.imageUrl,
+                w: 72,
+                h: 72,
+                r: 99,
+              ),
               MySizedBox.h16,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -68,7 +77,8 @@ class MapDetailsHeaders extends StatelessWidget {
                 height: 32.h,
                 width: 90.w,
                 decoration: BoxDecoration(
-                  color: maps.isOpen! ? MyColors.mainGreen85 : MyColors.mainRED,
+                  // color: maps.isOpen! ? MyColors.mainGreen85 : MyColors.mainRED,
+                  color: MyColors.brand,
                   borderRadius: BorderRadius.circular(24),
                 ),
                 child: Center(
@@ -78,7 +88,7 @@ class MapDetailsHeaders extends StatelessWidget {
                       AppTextStyles.sfPro400s16.copyWith(color: MyColors.white),
                 )),
               ),
-              MySizedBox.h8,
+              MySizedBox.h16,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

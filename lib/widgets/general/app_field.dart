@@ -204,7 +204,7 @@ class AppField extends StatelessWidget {
                         child: Text(
                           (infoMessage ?? ""),
                           style: AppTextStyles.sfPro400s14
-                              .copyWith(color: MyColors.error_red),
+                              .copyWith(color: MyColors.errorRED),
                         ),
                       )
                     : SizedBox.shrink()),

@@ -14,6 +14,7 @@ import 'package:uikit/widgets/custom/row_with_space.dart';
 import 'package:uikit/widgets/general/app_element_box.dart';
 import 'package:uikit/widgets/general/black_box.dart';
 
+import '../../../../../infrastructure/data/orders_provider.dart';
 import '../../../../../utils/delegate/navigate_utils.dart';
 import '../../../../../utils/delegate/pager.dart';
 import 'widgets/c_o_p_order_button.dart';
@@ -44,7 +45,9 @@ class CartOrderProduct extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SvgPicture.asset(DeliveryType.toIconPath(order.deliveryType)),
-                BlackBox(DeliveryType.toAzText(order.deliveryType))
+                BlackBox(waitingTabStatusList.contains(order.status)
+                    ? MyText.in_waiting
+                    : DeliveryType.toAzText(order.deliveryType))
                 // DotsButton(
                 //     controller: CustomPopupMenuController(),
                 //     menuBuilder: () {

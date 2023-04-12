@@ -25,7 +25,6 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   final CustomInfoWindowController _customInfoWindowController =
       CustomInfoWindowController();
-  GoogleMapController? mapController;
 
   Set<Marker> markers = Set();
   BitmapDescriptor? icon;
@@ -41,7 +40,7 @@ class _MapPageState extends State<MapPage> {
         const ImageConfiguration(
           devicePixelRatio: 3.3,
         ),
-        Assets.marker);
+        Assets.pngMarker);
     setState(() {
       if (icon == null) {
         BitmapDescriptor.defaultMarker;
@@ -53,6 +52,7 @@ class _MapPageState extends State<MapPage> {
 
   @override
   void dispose() {
+    //  mapController?.dispose();
     _customInfoWindowController.dispose();
     super.dispose();
   }

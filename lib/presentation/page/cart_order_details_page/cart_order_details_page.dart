@@ -20,6 +20,7 @@ class CartOrderDetailsPage extends StatelessWidget {
       backColor: CartOrderUtils.cartOrderStatus(status).color,
       showAppbarLittleText: true,
       user: false,
+      notification: false,
       title: "${MyText.package} $orderNumber",
       slivers: [DeliveryHeaders(status: status), DeliveryProducts()],
     );

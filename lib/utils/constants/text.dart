@@ -160,7 +160,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String recipe = "Resept";
   static const String uploadRecipe = "Resepti yüklə";
   static const String orders = "Sifarişlər";
-  static const String in_waiting = "Gözləmə";
+  static const String waiting = "Gözləmə";
+  static const String in_waiting = "Gözləmədə";
   static const String makeOrder = "Sifariş et";
   static const String pharmacy = "Aptek";
   static const String slideToConfirm = 'Təsdiq etmək üçün sürüşdürün';

@@ -15,7 +15,6 @@ import 'package:uikit/presentation/page/auth/forgot_password_page/forgot_pass_pa
 import 'package:uikit/presentation/page/auth/otp_page/otp_page.dart';
 import 'package:uikit/presentation/page/cart_order_details_page/cart_order_details_page.dart';
 import 'package:uikit/presentation/page/landing_page/landing_page.dart';
-import 'package:uikit/presentation/page/map_details_page/map_details_page.dart';
 import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart';
 import 'package:uikit/presentation/page/notification_page/notifications_page.dart';
 import 'package:uikit/presentation/page/webview_page/webview_page.dart';
@@ -58,6 +57,7 @@ import '../../presentation/page/messenger_page/messenger_page.dart';
 import '../../presentation/page/messenger_page/widget/chat_details.dart';
 import '../../presentation/page/other_page/other_page.dart';
 import '../../presentation/page/payment_method_page/payment_method_page.dart';
+import '../../presentation/page/pharmacy_page/pharmacy_page.dart';
 import '../../presentation/page/product_details_page/product_details_page.dart';
 import '../../presentation/page/products_page/products_page.dart';
 import '../../presentation/page/question_response_page/question_response_page.dart';
@@ -107,7 +107,7 @@ class Pager {
         BlocProvider(
             create: (context) =>
                 ProductOptionDetailsCubit()..fetchProductMapGuid(map.guid!)),
-      ], child: MapDetailsPage(maps: map));
+      ], child: PharmacyPage(maps: map));
 
   static get cart => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => CartCubit()..fetch()),
