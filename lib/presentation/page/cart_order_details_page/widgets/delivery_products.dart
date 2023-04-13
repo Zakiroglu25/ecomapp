@@ -24,11 +24,14 @@ class DeliveryProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverFillRemaining(
-      // shrinkWrap: false,
-      // physics: Physics.alwaysBounce,
+    return ClipRRect(
+      borderRadius: Radiuses.r36,
       child: Container(
         padding: Paddings.paddingH16,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: Radiuses.r36,
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -53,10 +56,10 @@ class DeliveryProducts extends StatelessWidget {
             )
           ],
         ),
-        decoration: const BoxDecoration(
-          borderRadius: Radiuses.rt24,
-          color: MyColors.white,
-        ),
+        // decoration: const BoxDecoration(
+        //   borderRadius: Radiuses.rt24,
+        //   color: MyColors.white,
+        // ),
       ),
     );
   }

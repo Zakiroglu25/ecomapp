@@ -34,13 +34,13 @@ class OTPView extends StatelessWidget {
             MySizedBox.zero,
             const Text(
               MyText.inputOtp,
-              style: AppTextStyles.sfPro500,
+              style: AppTextStyles.sfPro600,
             ),
             pinField,
             //   SendAgainRow(),
             const Text(
               MyText.otpInfo,
-              style: AppTextStyles.sfPro500,
+              style: AppTextStyles.sfPro600,
             ),
           ],
         ),

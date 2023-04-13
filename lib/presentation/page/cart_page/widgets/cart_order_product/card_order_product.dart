@@ -7,6 +7,7 @@ import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/delegate/cart_order_utils.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/enums/delivery_type.dart';
 import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/widgets/custom/column_with_space.dart';
@@ -27,6 +28,9 @@ class CartOrderProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final status = CartOrderUtils.cartOrderStatus(order.status!);
+    final isInWaiting = waitingTabStatusList.contains(order.status);
+    // bbbb("sttt l: $status");
+    //bbbb("sttt: k ${order.status}");
     return AppElementBox(
       onTap: () => Go.to(
           context,
@@ -44,8 +48,10 @@ class CartOrderProduct extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SvgPicture.asset(DeliveryType.toIconPath(order.deliveryType)),
-                BlackBox(waitingTabStatusList.contains(order.status)
+                SvgPicture.asset(isInWaiting
+                    ? DeliveryType.toIconPath(DeliveryType.COURIER.name)
+                    : DeliveryType.toIconPath(order.deliveryType)),
+                BlackBox(isInWaiting
                     ? MyText.in_waiting
                     : DeliveryType.toAzText(order.deliveryType))
                 // DotsButton(
@@ -97,7 +103,7 @@ class CartOrderProduct extends StatelessWidget {
                         Flexible(
                           child: Text(
                             status.text,
-                            style: AppTextStyles.sfPro500
+                            style: AppTextStyles.sfPro600
                                 .copyWith(color: status.color.toTextColor),
                             //  overflow: TextOverflow.ellipsis,
                           ),

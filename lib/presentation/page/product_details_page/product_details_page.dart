@@ -44,7 +44,6 @@ class ProductDetailsDetails extends StatelessWidget {
       appBar: DoctorAppbar(
         title: "",
         user: false,
-        contextA: context,
         notification: false,
       ),
       body: BlocBuilder<ProductOptionDetailsCubit, ProductOptionDetailsState>(

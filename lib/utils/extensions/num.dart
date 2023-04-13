@@ -42,7 +42,7 @@ extension NumExtension on num? {
           title.isNotNull
               ? Text(
                   '${title!}: ',
-                  style: AppTextStyles.sfPro500.copyWith(
+                  style: AppTextStyles.sfPro600.copyWith(
                       fontWeight: fontWeight,
                       fontSize: textSize,
                       color: mainColor),

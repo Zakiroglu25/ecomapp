@@ -20,8 +20,10 @@ import '../../../../utils/screen/errorable_image.dart';
 
 class MapDetailsHeaders extends StatelessWidget {
   final MapMedicine maps;
+  final double height;
 
-  MapDetailsHeaders({required this.maps, Key? key}) : super(key: key);
+  MapDetailsHeaders({required this.maps, Key? key, required this.height})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,16 +32,16 @@ class MapDetailsHeaders extends StatelessWidget {
 
     return Container(
         color: MyColors.secondary,
-        // height: 90,
+        height: height,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              MySizedBox.h30,
-              Text(
-                maps.name!,
-                style: AppTextStyles.sfPro600s16,
-              ),
+              // MySizedBox.h30,
+              // Text(
+              //   maps.name!,
+              //   style: AppTextStyles.sfPro600s16,
+              // ),
               Text(
                 maps.addressStreetName!,
                 style: AppTextStyles.sfPro400s12,
@@ -94,7 +96,7 @@ class MapDetailsHeaders extends StatelessWidget {
                 children: [
                   CartCircleButtonWithTitle(
                     svg: Assets.svgLoaction,
-                    title: "Unvan",
+                    title: "Ünvan",
                     onTap: () {
                       launch1(googleUrl);
                       print(maps.guid);

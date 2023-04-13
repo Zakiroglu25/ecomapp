@@ -45,14 +45,16 @@ class _LandingPageState extends State<LandingPage> {
           unselectedFontSize: 11,
           selectedFontSize: 11,
           selectedLabelStyle:
-              AppTextStyles.sfPro500.copyWith(color: MyColors.black),
+              AppTextStyles.sfPro600.copyWith(color: MyColors.black34),
+          unselectedLabelStyle:
+              AppTextStyles.sfPro500.copyWith(color: MyColors.grey158),
           type: BottomNavigationBarType.fixed,
           selectedItemColor: MyColors.black34,
           items: [
             buildBottomNavigationBarItem(
                 icon: Assets.svgLogo, label: MyText.product),
             buildBottomNavigationBarItem(
-                icon: Assets.svgFav, label: MyText.favorite),
+                icon: Assets.svgFav, label: MyText.favorites),
             buildBottomNavigationBarItem(
                 icon: Assets.svgAptek, label: MyText.pharmacies),
             buildBottomNavigationBarItem(
@@ -69,11 +71,15 @@ class _LandingPageState extends State<LandingPage> {
   BottomNavigationBarItem buildBottomNavigationBarItem(
       {required String icon, required String label}) {
     return BottomNavigationBarItem(
-        backgroundColor: Colors.white,
-        activeIcon: SvgPicture.asset(icon,
+      backgroundColor: Colors.white,
+      activeIcon: SizedBox(
+        height: 24,
+        child: SvgPicture.asset(icon,
             color: index == 2 ? MyColors.green85 : MyColors.brand),
-        icon: SvgPicture.asset(icon),
-        label: label);
+      ),
+      icon: SizedBox(height: 24, child: SvgPicture.asset(icon)),
+      label: label,
+    );
   }
 
   void onChangedTab(int selected) {

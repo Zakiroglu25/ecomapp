@@ -31,7 +31,7 @@ class RegisterPage extends StatelessWidget {
         elevation: 0,
         title: Text(
           MyText.register,
-          style: AppTextStyles.sfPro500
+          style: AppTextStyles.sfPro600
               .copyWith(color: MyColors.black, fontSize: 16.sp),
         ),
         centerTitle: true,

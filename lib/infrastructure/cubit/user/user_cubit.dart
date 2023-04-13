@@ -326,4 +326,9 @@ class UserCubit extends Cubit<UserState> {
       return false;
     }
   }
+
+  @override
+  emit(UserState state) {
+    if (!isClosed) return super.emit(state);
+  }
 }

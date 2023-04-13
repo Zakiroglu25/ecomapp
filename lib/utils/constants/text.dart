@@ -108,7 +108,7 @@ In addition to laying out rules for proper use of your app, you should also clea
 
   //bottomnavigation
   static const String product = "Məhsullar";
-  static const String favorite = "Seçilmişlər";
+  static const String favorites = "Seçilmişlər";
   static const String pharmacies = "Apteklər";
   static const String cart = "Səbət";
   static const String other = "Digər";

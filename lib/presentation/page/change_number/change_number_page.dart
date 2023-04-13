@@ -35,7 +35,6 @@ class ChangeNumberPage extends StatelessWidget {
           notification: false,
           filter: false,
           title: 'Nömrəni dəyiş',
-          contextA: null,
         ),
         body: BlocListener<UserCubit, UserState>(
           listener: (context, state) {

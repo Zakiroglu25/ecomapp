@@ -48,9 +48,11 @@ class Cupperfold extends StatelessWidget {
       floatingActionButton: floatingActionButton,
       backgroundColor: backColor,
       body: SafeArea(
+        bottom: false,
         child: CustomScrollView(
           clipBehavior: Clip.antiAlias,
           // A list of sliver widgets.
+
           physics: physics ?? Physics.alwaysClamp,
           slivers: <Widget>[
             if (showAppbarLittleText)

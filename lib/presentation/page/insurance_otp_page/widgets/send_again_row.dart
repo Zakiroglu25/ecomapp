@@ -16,7 +16,7 @@ class SendAgainRow extends StatelessWidget {
           onTap: () {},
           child: Text(
             "OTP yenidən göndər",
-            style: AppTextStyles.sfPro500.copyWith(color: Colors.red),
+            style: AppTextStyles.sfPro600.copyWith(color: Colors.red),
           ),
         ),
       ],

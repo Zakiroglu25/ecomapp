@@ -33,7 +33,6 @@ class ChatPage extends StatelessWidget {
         title: storeName,
         notification: false,
         user: false,
-        contextA: context,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

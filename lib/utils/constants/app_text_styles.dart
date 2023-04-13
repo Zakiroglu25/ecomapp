@@ -23,9 +23,15 @@ abstract class AppTextStyles {
 
   static const sfPro500 = TextStyle(
       fontFamily: 'ProximaNova-Regular',
+      fontWeight: FontWeight.w500,
+      fontStyle: FontStyle.normal,
+      letterSpacing: 0.3);
+  static const sfPro600 = TextStyle(
+      fontFamily: 'ProximaNova-Regular',
       fontWeight: FontWeight.w600,
       fontStyle: FontStyle.normal,
       letterSpacing: 0.3);
+
   static const sfPro500s13 = TextStyle(
       fontFamily: 'ProximaNova-Regular',
       fontWeight: FontWeight.w500,
@@ -52,11 +58,11 @@ abstract class AppTextStyles {
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.normal,
       letterSpacing: 0.3);
-  static const sfPro600 = TextStyle(
-      fontFamily: 'ProximaNova-SemiBold',
-      fontWeight: FontWeight.w600,
-      fontStyle: FontStyle.normal,
-      letterSpacing: 0.3);
+  // static const sfPro600 = TextStyle(
+  //     fontFamily: 'ProximaNova-SemiBold',
+  //     fontWeight: FontWeight.w600,
+  //     fontStyle: FontStyle.normal,
+  //     letterSpacing: 0.3);
   static const sfPro600s16 = TextStyle(
       fontFamily: 'ProximaNova-SemiBold',
       fontWeight: FontWeight.w600,

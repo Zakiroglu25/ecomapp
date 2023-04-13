@@ -9,8 +9,10 @@ import 'package:uikit/utils/delegate/navigate_utils.dart';
 import '../../../infrastructure/cubit/map/map_store_state.dart';
 import '../../../infrastructure/model/response/map_medicine.dart';
 import '../../../utils/constants/assets.dart';
+import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/index.dart';
 import '../../../widgets/custom/info_window.dart';
+import '../../../widgets/doctoro_appbar/doctoro_appbar.dart';
 import '../../../widgets/general/app_loading.dart';
 
 class MapPage extends StatefulWidget {
@@ -118,6 +120,12 @@ class _MapPageState extends State<MapPage> {
           });
 
           return Scaffold(
+            appBar: DoctorAppbar(
+              user: true,
+              notification: true,
+              title: MyText.pharmacies,
+              filter: false,
+            ),
             body: Stack(
               children: [
                 GoogleMap(

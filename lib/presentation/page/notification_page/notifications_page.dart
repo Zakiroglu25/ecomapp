@@ -25,7 +25,6 @@ class NotificationsPage extends StatelessWidget {
         filter: false,
         addressDropdown: false,
         user: false,
-        contextA: context,
       ),
       body: BlocBuilder<NotificationCubit, NotificationState>(
         builder: (context, state) {

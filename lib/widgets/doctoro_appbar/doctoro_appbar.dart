@@ -24,7 +24,6 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
   final bool? user;
   final bool? back;
   final Function? onBack;
-  final BuildContext? contextA;
 
   //final bool? actions;
   final Function? onTapActions;
@@ -44,7 +43,6 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
       this.back = true,
       this.onBack,
       this.onTapActions,
-      required this.contextA,
       this.centerTitle,
       this.filter = false});
 
