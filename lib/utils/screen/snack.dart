@@ -161,7 +161,7 @@ class Snack {
                   child: Material(
                     color: backColor,
                     borderRadius: borderRadius,
-                    elevation: 2,
+                    elevation: 0,
                     child: SnackBody(
                         message: message,
                         color: color,
