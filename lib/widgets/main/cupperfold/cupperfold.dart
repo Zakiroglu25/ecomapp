@@ -78,19 +78,21 @@ class Cupperfold extends StatelessWidget {
                 onBack: onBack,
               ),
             if (child != null)
-              SliverList(
-                // shrinkWrap: false,
-                // physics: Physics.alwaysBounce,
-                delegate: SliverChildListDelegate([child!]),
-              ),
-            // SliverToBoxAdapter(
+            // SliverList(
             //   // shrinkWrap: false,
             //   // physics: Physics.alwaysBounce,
-            //   child:child,
+            //   delegate: SliverChildListDelegate([child!]),
             // ),
-            if (slivers != null) ...slivers!
+            //   SliverFillRemaining(
+            //     hasScrollBody: true,
+            //     child: child,
+            //   )
+            SliverFillRemaining(
+                child:Center(child:child)
+            ),
+
           ],
-        ),
+        )
       ),
     );
   }

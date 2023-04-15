@@ -23,7 +23,7 @@ class PharmacyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<ProductOptionDetailsCubit>(context);
-    final double height = 300;
+    final double height = 330;
     return Cupperfold(
       user: false,
       notification: false,
@@ -36,7 +36,7 @@ class PharmacyPage extends StatelessWidget {
           children: [
             MapDetailsHeaders(
               maps: maps!,
-              height: height,
+              height: height
             ),
             // const SliverHandler(),
             DraggableScrollableSheet(

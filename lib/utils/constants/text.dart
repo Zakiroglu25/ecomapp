@@ -93,6 +93,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String reject = 'İmtina';
   static const String rejected = 'İmtina olunub';
   static const String error = "Əməliyyat zamanı xəta yarandı!";
+  static const String serverError = "Server xətası baş verdi!";
   static const String networkError = "İnternet bağlantısı zamanı xəta yarandı";
   static const String goOn = "Davam et";
   static const String unknownError = "Bilinməyən xəta yarandı!";
@@ -178,6 +179,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String total = "Toplam";
   static const String pay = "Ödə";
   static const String payTotal = "Toplam ödə";
+  static const String confirm = "Təsdiq et";
   static const String recipeInReview =
       "Resept aptek tərəfindən dəyərləndirilir";
   static const String recipePartialyAccepted = "Resept qismən qarşılanır";

@@ -48,9 +48,9 @@ class AddressPage extends StatelessWidget {
 
             return Padding(
               padding: Paddings.paddingH16,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
+              child: ListView(
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                // mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     MyText.addresses.toUpperCase(),

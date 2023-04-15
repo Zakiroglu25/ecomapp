@@ -56,13 +56,14 @@ class AccountProvider {
     return statusDynamic;
   }
 
-  static Future<StatusDynamic?> changePhone({
+  static Future<StatusDynamic?> changePhoneAndEmail({
     required String? phone,
     required String? password,
+    required String? email,
   }) async {
     StatusDynamic<MyUser> statusDynamic = StatusDynamic<MyUser>();
     var api = ApiKeys.changeNumber;
-    final data = ApiKeys.changePhoneBody(phone: phone, password: password);
+    final data = ApiKeys.changePhoneBody(phone: phone,email: email, password: password);
     final response = await dioAuth.dio.post(api, data: data);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {

@@ -2,18 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:uikit/infrastructure/cubit/insurance_cubit/insurance_cubit.dart';
 
 import '../../../../../infrastructure/cubit/otp/otp_cubit.dart';
 import '../../../../../utils/constants/colors.dart';
+import '../../../../infrastructure/cubit/insurance_otp_cubit/insurance_otp_cubit.dart';
 
 class OtpPinCodeField extends StatelessWidget {
   const OtpPinCodeField({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<OTPCubit>();
+    final cubit = context.read<InsuranceOtpCubit>();
     return PinCodeTextField(
-      length: 6,
+      length: 4,
       obscureText: false,
       keyboardType: TextInputType.phone,
       animationType: AnimationType.fade,
@@ -34,13 +36,13 @@ class OtpPinCodeField extends StatelessWidget {
         activeFillColor: MyColors.grey245,
         inactiveFillColor: MyColors.grey245,
       ),
-      animationDuration: Duration(milliseconds: 300),
+      animationDuration: const Duration(milliseconds: 300),
       //backgroundColor: Colors.blue.shade50,
       enableActiveFill: true,
       //errorAnimationController: errorController,
       focusNode: cubit.otpFocus,
       controller: cubit.otpController,
-      onCompleted: (v) => cubit.validateOtp(context),
+      onCompleted: (v) => cubit.validateInsurance(context),
       onChanged: (value) => cubit.updateOtp(value),
       beforeTextPaste: (text) {
         print("Allowing to paste $text");

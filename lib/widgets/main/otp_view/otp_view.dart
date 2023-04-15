@@ -44,7 +44,7 @@ class OTPView extends StatelessWidget {
             ),
           ],
         ),
-        pinField,
+        button,
       ],
     );
   }

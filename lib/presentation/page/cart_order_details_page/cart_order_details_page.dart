@@ -31,13 +31,12 @@ class CartOrderDetailsPage extends StatelessWidget {
             DraggableScrollableSheet(
               expand: true,
               snap: true,
-              initialChildSize: 1 - 280 / context.sH,
-              minChildSize: 0.5,
+              initialChildSize: 1 - 300 / context.sH,
+             minChildSize: 1 - 300 / context.sH,
               maxChildSize: 0.99,
               builder:
-                  (BuildContext context, ScrollController scrollController) {
-                return DeliveryProducts();
-              },
+                  (BuildContext context, ScrollController scrollController)
+              => DeliveryProducts(scrollController:scrollController),
             )
           ],
         ),

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/infrastructure/cubit/insurance_cubit/insurance_cubit.dart';
+import 'package:uikit/infrastructure/cubit/insurance_cubit/insurance_state.dart';
 import 'package:uikit/infrastructure/cubit/otp/index.dart';
 import 'package:uikit/presentation/page/auth/otp_page/widgets/otp_login_button.dart';
 import 'package:uikit/utils/screen/snack.dart';
 import 'package:uikit/widgets/custom/app_safe_area.dart';
-
-import '../../../../widgets/general/app_loading.dart';
 import '../../../../widgets/main/otp_view/otp_view.dart';
+import '../../../infrastructure/cubit/insurance_otp_cubit/insurance_otp_cubit.dart';
+import '../../../infrastructure/cubit/insurance_otp_cubit/insurance_otp_state.dart';
+import 'widgets/insurance_otp_button.dart';
 import 'widgets/otp_pin_code_field.dart';
 
 class InsuranceOTPPage extends StatelessWidget {
@@ -17,19 +20,20 @@ class InsuranceOTPPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppSafeArea(
       child: Scaffold(
-        body: BlocConsumer<OTPCubit, OtpState>(
+        body: BlocConsumer<InsuranceOtpCubit, InsuranceOtpState>(
           listener: (context, state) {
-            if (state is OtpError)
-              Snack.showOverlay(context: context, message: state.error);
+            if (state is InsuranceError) {
+              Snack.showOverlay(context: context, message: "");
+            }
           },
           builder: (context, state) {
-            if (state is OtpInProgress) {
-              return AppLoading();
-            }
+            // if (state is InsuranceLoading) {
+            //   return AppLoading();
+            // }
             return OTPView(
                 showBackButton: showBackButton,
-                button: OtpLoginButton(showLogOutButton: !showBackButton),
-                pinField: OtpPinCodeField());
+                button: InsuranceOtpButton(showLogOutButton: !showBackButton),
+                pinField: const OtpPinCodeField());
           },
         ),
       ),

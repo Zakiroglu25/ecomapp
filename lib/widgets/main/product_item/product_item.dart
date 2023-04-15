@@ -62,7 +62,7 @@ class _ProductItemState extends State<ProductItem>
                 onTap: () =>
                     Go.to(context, Pager.productDetails(guid: product!.guid!)),
                 child: Container(
-                  height: 115,
+                  height: 105,
                   padding: Paddings.paddingA12,
                   decoration: BoxDecoration(
                       borderRadius: Radiuses.r12, color: MyColors.grey245),

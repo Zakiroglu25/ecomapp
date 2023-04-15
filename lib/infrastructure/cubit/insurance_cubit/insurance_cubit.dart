@@ -17,10 +17,14 @@ import 'insurance_state.dart';
 import 'mixin.dart';
 
 class InsuranceCubit extends Cubit<InsuranceState> with InsuranceMixin {
-  InsuranceCubit() : super(InsuranceInitial());
-  final phoneNum = TextEditingController();
-  final policy = TextEditingController();
-  final finCode = TextEditingController();
+  InsuranceCubit() : super(InsuranceInitial()){
+ phoneNum = TextEditingController();
+ policy = TextEditingController();
+ finCodeController = TextEditingController();
+  }
+  late TextEditingController phoneNum = TextEditingController();
+  late TextEditingController policy = TextEditingController();
+  late TextEditingController finCodeController = TextEditingController();
 
   getInsurance({bool loading = true}) async {
     if (loading) {
@@ -35,8 +39,8 @@ class InsuranceCubit extends Cubit<InsuranceState> with InsuranceMixin {
       }
     } on SocketException catch (_) {
       emit(InsuranceError());
-    } catch (e) {
-      eeee("Product Option Error" + e.toString());
+    } catch (e,s) {
+      Recorder.recordCatchError(e, s);
       emit(InsuranceError());
     }
   }
@@ -47,15 +51,17 @@ class InsuranceCubit extends Cubit<InsuranceState> with InsuranceMixin {
       emit(InsuranceLoading());
     }
     try {
+      final number = AppOperations.formatNumberWith994(phoneNum.text);
       final response = await InsuranceProvider.addInsurance(
           policyNumber: policy.text,
-          phoneNumber: AppOperations.formatNumberWith994(phoneNum.text),
-          finCode: finCode.text);
+          phoneNumber: number,
+          finCode: finCodeController.text);
       final errors = response.data;
       if (response.statusCode.isSuccess) {
         // emit(AddInsuranceSuccess());
         // Snack.positive2(context, message: MyText.success);
-        Go.to(context, Pager.validateInsurance(context));
+        Go.to(context, Pager.validateInsurance(context, policyNumber: policy.text));
+        emit(InsuranceInitial());
       } else {
         // Snack.showOverlay(context: context, message: errors);
         emit(InsuranceError(error: response.statusCode.toString()));
@@ -66,21 +72,34 @@ class InsuranceCubit extends Cubit<InsuranceState> with InsuranceMixin {
     }
   }
 
-  void validateInsurance(
-      {bool loading = true, required BuildContext context}) async {
-    if (loading) {
-      emit(InsuranceLoading());
-    }
-    try {
-      final response = await InsuranceProvider.validateInsurance(
-          policyNumber: policy.text, otp: otp.valueOrNull);
-      if (response.statusCode.isSuccess) {
-        Go.to(context, Pager.addInsuranceInfo);
-      } else {
-        clearOtp();
-      }
-    } catch (e, s) {
-      Recorder.recordCatchError(e, s);
-    }
+  // void validateInsurance(BuildContext context, {bool loading = true}) async {
+  //   if (loading) {
+  //     emit(InsuranceLoading());
+  //   }
+  //   try {
+  //     final response = await InsuranceProvider.validateInsurance(
+  //         policyNumber: policy.text, otp: otp.valueOrNull);
+  //     if (response.statusCode.isSuccess) {
+  //       Go.pop(context);
+  //       Go.pop(context);
+  //       Go.pop(context);
+  //       Go.replace(context, Pager.addInsuranceInfo);
+  //     } else {
+  //       clearOtp();
+  //     }
+  //   } catch (e, s) {
+  //     clearOtp();
+  //     Recorder.recordCatchError(e, s);
+  //   }finally{
+  //     emit(InsuranceInitial());
+  //   }
+  // }
+  @override
+  Future<void> close() {
+    finCodeController.dispose();
+    policy.dispose();
+    phoneNum.dispose();
+    bbbb("closed -- ");
+    return super.close();
   }
 }

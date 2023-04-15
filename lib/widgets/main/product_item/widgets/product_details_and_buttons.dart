@@ -16,10 +16,8 @@ class ProductDetailsAndButtons extends StatelessWidget {
       child: Column(
         //  space: 8,`
         children: [
-          ProductTitleAndFavButton(
-            product: product,
-          ),
-          MySizedBox.h8,
+          ProductTitleAndFavButton(product: product),
+         // MySizedBox.h8,
           ProductPriceAndCartButton(product: product)
         ],
       ),

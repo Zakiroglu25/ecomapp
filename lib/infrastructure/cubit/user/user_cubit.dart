@@ -36,13 +36,13 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  void changePhone(BuildContext context, {bool? isLoading = true}) async {
+  void changePhoneAndEmail(BuildContext context, {bool? isLoading = true}) async {
     if (isLoading!) {
       emit(UserLoading());
     }
     try {
-      final response = await AccountProvider.changePhone(
-          phone: phone.valueOrNull, password: password.valueOrNull);
+      final response = await AccountProvider.changePhoneAndEmail(
+          phone: phone.valueOrNull, password: password.valueOrNull,email: uEmail.valueOrNull);
       final errors = response!.data;
       if (isSuccess(response.statusCode)) {
         emit(UserSuccess(response.data!));
@@ -51,8 +51,11 @@ class UserCubit extends Cubit<UserState> {
         Snack.showOverlay(context: context, message: errors);
         emit(UserFailed(response.statusCode.toString()));
       }
-    } catch (e) {
-      print(e);
+    } catch (e,s) {
+     Recorder.recordCatchError(e, s);
+    }
+    finally{
+     emit( UserInitial());
     }
   }
 

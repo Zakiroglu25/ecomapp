@@ -146,9 +146,10 @@ class ApiKeys {
   static changePhoneBody({
     required String? phone,
     required String? password,
+    required String? email,
   }) {
     //
-    final map = {"phone": phone, "password": password};
+    final map = {"phone": phone, "phone": email, "password": password};
 
     map.removeWhere(
         (key, value) => key == null || value == null || value == 'null');

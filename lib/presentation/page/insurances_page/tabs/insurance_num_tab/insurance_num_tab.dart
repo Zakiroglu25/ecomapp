@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/insurance_cubit/insurance_cubit.dart';
 import 'package:uikit/utils/extensions/index.dart';
@@ -42,7 +43,8 @@ class InsuranceNumTab extends StatelessWidget {
                 controller: addInsuranceCubit.policy,
                 title: MyText.insuranceNum,
                 maxLines: 1,
-                textInputType: TextInputType.emailAddress,
+                textInputType: TextInputType.phone,
+                formatters: [ FilteringTextInputFormatter.digitsOnly],
                 textCapitalization: TextCapitalization.none,
                 hint: MyText.enterInsuranceNum,
                 maxLenght: 16,
@@ -60,9 +62,9 @@ class InsuranceNumTab extends StatelessWidget {
               ),
               AppField(
                 controller: _prefs.user.finCode.isNull
-                    ? addInsuranceCubit.finCode
-                    : StringOperations.stringToController(
-                        _prefs.user.finCode),
+                    ? addInsuranceCubit.finCodeController
+                    : addInsuranceCubit.finCodeController
+                  ..text = _prefs.user.finCode!.toUpperCase(),
                 title: MyText.fin,
                 maxLines: 1,
                 hint: _prefs.user.finCode.isNull

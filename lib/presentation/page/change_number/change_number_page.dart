@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
 import 'package:uikit/infrastructure/cubit/user/user_cubit.dart';
+import 'package:uikit/presentation/page/user_edit_page/widget/fields/email_field.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/delegate/my_printer.dart';
@@ -27,6 +28,7 @@ class ChangeNumberPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit =context.read<UserCubit>();
     return BlocProvider(
       create: (context) => AddAddressCubit(),
       child: Scaffold(
@@ -61,13 +63,15 @@ class ChangeNumberPage extends StatelessWidget {
               PhoneFieldUser(
                   controller:
                       StringOperations.stringToController(_prefs.user.phone)),
+              EmailFieldUser(controller: StringOperations.stringToController(_prefs.user.email),),
               PasswordFieldUser(
                 controller: controller!,
               ),
               AppButton(
                 text: MyText.save,
+                loading: cubit.state is UserLoading,
                 onTap: () {
-                  context.read<UserCubit>().changePhone(context);
+                  context.read<UserCubit>().changePhoneAndEmail(context);
                 },
               )
             ],
