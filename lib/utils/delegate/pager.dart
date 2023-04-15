@@ -57,6 +57,7 @@ import '../../presentation/page/insurances_page/insurances_page.dart';
 import '../../presentation/page/messenger_page/messenger_page.dart';
 import '../../presentation/page/messenger_page/widget/chat_details.dart';
 import '../../presentation/page/other_page/other_page.dart';
+import '../../presentation/page/pasha_insurance_page/pasha_details_page.dart';
 import '../../presentation/page/payment_method_page/payment_method_page.dart';
 import '../../presentation/page/pharmacy_page/pharmacy_page.dart';
 import '../../presentation/page/product_details_page/product_details_page.dart';
@@ -127,6 +128,8 @@ class Pager {
       ], child: CartOrderDetailsPage(orderNumber: orderNumber, status: status));
 
   static get splash => const SplashPage();
+
+  static get pashaInsurance => const PashaInsurancePage();
 
   static get insurances => BlocProvider(
         create: (context) => InsuranceCubit(),

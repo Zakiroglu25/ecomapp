@@ -108,7 +108,7 @@ In addition to laying out rules for proper use of your app, you should also clea
       'E-poçt ünvanının sizə məxsus olduğunu təsdiqləyin. Əks halda qaynar xətt ilə əlaqə saxlaya bilərsiniz.';
 
   //bottomnavigation
-  static const String product = "Məhsullar";
+  static const String products = "Məhsullar";
   static const String favorites = "Seçilmişlər";
   static const String pharmacies = "Apteklər";
   static const String cart = "Səbət";
@@ -121,8 +121,10 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String carts = "Səbətim";
   static const String nameDoctoro = "Doctoro";
   static const String pashaTitleProduct = "Paşa Sığorta məhsulları burada!";
+  static const String searchMedicine = "Dərman axtar";
+  static const String letsSearchMedicine = "Dərman axtarmağa başla";
   static const String medicineSubtitle =
-      "Reseptli və reseptsiz satışda olan dərmanları buradan əldə edib qiymətlərini müqaisə edə bilərsiniz.";
+      "Reseptli və reseptsiz satışda olan dərmanları buradan əldə edə bilərsiniz.";
   static const String bad = "BAD";
   static const String badSub = "Bioaktiv qidalar üçün əlavələr.";
   static const String vitamin = "Vitaminlər";
@@ -215,8 +217,6 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String chooseDeliveryType = "Çatdırılma üsulunu seçin";
   static const String contactNumber = "Əlaqə nömrəsi";
   static const String note = "Qeyd";
-  static const String mediciniesDesc =
-      "Reseptli və reseptsiz satışda olan dərmanları buradan əldə edib qiymətlərini müqaisə edə bilərsiniz.";
   static const String nameOrProducedCountry = "Ad və ya istehsal olduğu ölkə";
 
   //pashadetails

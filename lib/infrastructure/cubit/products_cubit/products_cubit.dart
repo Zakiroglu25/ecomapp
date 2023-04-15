@@ -4,6 +4,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/infrastructure/cubit/products_cubit/index.dart';
 import 'package:uikit/utils/extensions/index.dart';
+import 'package:uikit/utils/extensions/string.dart';
 
 import '../../../utils/delegate/my_printer.dart';
 import '../../data/product_options_provider.dart';
@@ -28,6 +29,10 @@ class ProductsCubit extends Cubit<ProductsState> {
     }
 
     try {
+      if (medSearchController.text.isEmpty) {
+        emit(ProductsInitial());
+        return;
+      }
       final result = await ProductOptionsProvider.getProduct(page,
           title: medSearchController.text);
       if (result.statusCode.isSuccess) {

@@ -52,7 +52,7 @@ class _LandingPageState extends State<LandingPage> {
           selectedItemColor: MyColors.black34,
           items: [
             buildBottomNavigationBarItem(
-                icon: Assets.svgLogo, label: MyText.product),
+                icon: Assets.svgLogo, label: MyText.products),
             buildBottomNavigationBarItem(
                 icon: Assets.svgFav, label: MyText.favorites),
             buildBottomNavigationBarItem(

@@ -44,6 +44,7 @@ class MyColors {
   static const Color btnGreen = Color(0xFF55A158);
   static const Color gold = Color(0xFFFDF5E0);
   static const Color purple240 = Color.fromRGBO(240, 240, 248, 1);
+  static const Color purple235 = Color.fromRGBO(235, 236, 247, 1);
   static const Color orange225 = Color.fromRGBO(225, 142, 50, 0.1);
   static const Color blue157 = Color.fromRGBO(57, 149, 210, 0.15);
   static const Color blue55 = Color.fromRGBO(55, 115, 224, 1);
@@ -54,7 +55,7 @@ class MyColors {
   static const Color userGradient1 = Color.fromRGBO(255, 82, 128, 1);
   static const Color userGradient2 = Color.fromRGBO(255, 112, 97, 1);
   static const Color userPhoto = Color.fromRGBO(253, 82, 132, 1);
-  static const Color pashaBackground = Color.fromRGBO(64, 146, 196, 1);
+  static const Color blue64 = Color.fromRGBO(64, 146, 196, 1);
   static const Color white255 = Color.fromRGBO(255, 255, 255, 0.2);
   static const Color red249 = Color.fromRGBO(249, 228, 227, 1);
   static const Color purpleLight = Color(0xFFF0F0F8);

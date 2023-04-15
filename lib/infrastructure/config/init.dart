@@ -39,13 +39,7 @@ Future<void> init() async {
   //   dio.interceptors.add(LogInterceptorService());
   // }
 
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarBrightness:
-        Platform.isAndroid ? Brightness.light : Brightness.dark,
-    systemNavigationBarColor: MyColors.white,
-    statusBarIconBrightness: Brightness.light,
-    statusBarColor: MyColors.brand, // status bar color
-  ));
+  setAppStatusbarStyle();
 
   // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setPreferredOrientations(
@@ -89,6 +83,16 @@ Future<void> init() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 }
 
+void setAppStatusbarStyle() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarBrightness:
+        Platform.isAndroid ? Brightness.light : Brightness.dark,
+    systemNavigationBarColor: MyColors.white,
+    statusBarIconBrightness: Brightness.light,
+    statusBarColor: MyColors.brand, // status bar color
+  ));
+}
+
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
   // make sure you call `initializeApp` before using other Firebase services.
@@ -104,3 +108,5 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 //
 //   log("Handling a background message: ${message.messageId}");
 // }
+
+

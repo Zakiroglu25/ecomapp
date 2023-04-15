@@ -88,8 +88,8 @@ class Assets {
   static const String dHeart = "assets/png/dheart.png";
 
   //pashadetails
-  static const String pngPhone3x = "assets/png/phone.png";
-  static const String pngUser3x = "assets/png/user.png";
+  static const String pngPashaAppSS = "assets/png/pasha-app-ss.png";
+  static const String pngUser = "assets/png/user.png";
   static const String pngAt3x = "assets/png/at.png";
 
   ///contact
@@ -99,6 +99,7 @@ class Assets {
   static const String pngHotline = "assets/png/hotline.png";
   static const String pngHeart = "assets/png/heart.png";
   static const String pngMed = "assets/png/med.png";
+  static const String pngMedOpacity = "assets/png/med_opacity.png";
   //setting
   static const String svgCallDark = "assets/svg/calldark.svg";
 
