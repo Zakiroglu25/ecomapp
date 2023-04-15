@@ -10,6 +10,7 @@ import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/utils/extensions/string.dart';
+
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/screen/alert.dart';

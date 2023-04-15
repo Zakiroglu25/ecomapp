@@ -10,7 +10,6 @@ import 'package:uikit/utils/extensions/index.dart';
 import '../../../locator.dart';
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/app_operations.dart';
-import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/delegate/pager.dart';
 import '../../../utils/screen/snack.dart';

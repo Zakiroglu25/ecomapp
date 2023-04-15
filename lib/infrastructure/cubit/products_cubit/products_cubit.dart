@@ -4,7 +4,6 @@ import 'package:rxdart/rxdart.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
 import 'package:uikit/infrastructure/cubit/products_cubit/index.dart';
 import 'package:uikit/utils/extensions/index.dart';
-import 'package:uikit/utils/extensions/string.dart';
 
 import '../../../utils/delegate/my_printer.dart';
 import '../../data/product_options_provider.dart';

@@ -1,17 +1,11 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:focus_detector/focus_detector.dart';
 import 'package:uikit/infrastructure/cubit/chat_messages_cubit/chat_messenger_cubit.dart';
 import 'package:uikit/infrastructure/cubit/chat_messages_cubit/chat_messenger_state.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
-import 'package:uikit/widgets/general/empty_widget.dart';
 
 import '../../../../widgets/doctoro_appbar/doctoro_appbar.dart';
 import '../../../../widgets/general/app_loading.dart';
-import '../../../../widgets/general/pagenatible.dart';
 import 'chat_sent_field.dart';
 import 'chat_words_widget.dart';
 import 'doctoro_logo_little.dart';

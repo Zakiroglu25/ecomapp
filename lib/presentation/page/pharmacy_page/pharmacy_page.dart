@@ -4,7 +4,6 @@ import 'package:uikit/presentation/page/pharmacy_page/widget/sliver_loading.dart
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/extensions/context.dart';
-import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'package:uikit/widgets/general/app_loading.dart';
 
 import '../../../infrastructure/cubit/product_details_details/product_details_state.dart';

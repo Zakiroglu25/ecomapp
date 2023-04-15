@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:uikit/infrastructure/model/response/cart_items.dart';
-import 'package:uikit/utils/delegate/index.dart';
 
 import '../../../../../../widgets/custom/column_with_space.dart';
 import '../../../../../../widgets/general/manat_price.dart';

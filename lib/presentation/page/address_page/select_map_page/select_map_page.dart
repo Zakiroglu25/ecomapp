@@ -12,7 +12,6 @@ import 'package:uikit/utils/screen/snack.dart';
 import '../../../../infrastructure/model/response/address_model.dart';
 import '../../../../utils/delegate/navigate_utils.dart';
 import '../../../../widgets/custom/app_button.dart';
-import '../../add_address_page/add_address_page.dart';
 
 class SelectMapPage extends StatefulWidget {
   const SelectMapPage({Key? key, this.addressModel}) : super(key: key);

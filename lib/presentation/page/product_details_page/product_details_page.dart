@@ -5,8 +5,6 @@ import 'package:uikit/presentation/page/product_details_page/widget/product_deta
 import 'package:uikit/presentation/page/product_details_page/widget/store_details.dart';
 import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/utils/constants/text.dart';
-import 'package:uikit/utils/extensions/index.dart';
-import 'package:uikit/utils/screen/errorable_image.dart';
 import 'package:uikit/widgets/custom/product_image_slider.dart';
 import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
 import 'package:uikit/widgets/general/empty_widget.dart';
@@ -22,8 +20,6 @@ import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/paddings.dart';
 import '../../../utils/constants/sized_box.dart';
 import '../../../widgets/custom/app_button.dart';
-import '../../../widgets/custom/row_with_space.dart';
-import '../../../widgets/general/app_element_box.dart';
 import '../../../widgets/general/app_loading.dart';
 import 'widget/product_add_to_cart_button.dart';
 

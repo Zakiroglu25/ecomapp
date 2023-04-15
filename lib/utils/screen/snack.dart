@@ -3,14 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uikit/utils/constants/text.dart';
-import 'package:uikit/utils/delegate/index.dart';
 
-import '../../infrastructure/services/navigation_service.dart';
 import '../constants/border_radius.dart';
 import '../constants/colors.dart';
 import '../constants/durations.dart';
 import '../constants/paddings.dart';
-import '../formatter/overlay.dart';
 import 'widget_or_empty.dart';
 
 class Snack {

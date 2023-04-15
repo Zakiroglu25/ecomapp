@@ -10,7 +10,6 @@ import 'package:uikit/presentation/page/cart_order_details_page/widgets/delivery
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/delegate/cart_order_utils.dart';
 import 'package:uikit/widgets/custom/column_with_space.dart';
-import 'package:uikit/widgets/custom/sliver_app_bar_delegate.dart';
 import 'package:uikit/widgets/general/app_loading.dart';
 
 class DeliveryHeaders extends StatelessWidget {

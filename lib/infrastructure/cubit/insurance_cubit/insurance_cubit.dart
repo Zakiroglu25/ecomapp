@@ -10,7 +10,6 @@ import '../../../utils/delegate/app_operations.dart';
 import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/delegate/request_control.dart';
-import '../../../utils/screen/snack.dart';
 import '../../config/recorder.dart';
 import '../../data/insurance_provider.dart';
 import 'insurance_state.dart';

@@ -9,7 +9,6 @@ import 'package:uikit/utils/constants/text.dart';
 
 import '../../../../infrastructure/cubit/register/register_cubit.dart';
 import '../../../../utils/constants/paddings.dart';
-import '../../../../utils/screen/snack.dart';
 import 'widgets/checkbox_ads.dart';
 import 'widgets/email_field_register.dart';
 import 'widgets/name_field_register.dart';

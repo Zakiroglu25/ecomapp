@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nil/nil.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/widgets/general/manat_price.dart';
-import 'package:uikit/utils/screen/widget_or_empty.dart';
 
 extension NumExtension on num? {
   Widget toManat(

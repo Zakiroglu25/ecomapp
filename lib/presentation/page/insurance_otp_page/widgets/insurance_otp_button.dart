@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/authentication/authentication_cubit.dart';
-import 'package:uikit/infrastructure/cubit/insurance_cubit/insurance_cubit.dart';
-import 'package:uikit/infrastructure/cubit/otp/otp_cubit.dart';
 
 import '../../../../../utils/constants/sized_box.dart';
 import '../../../../../utils/constants/text.dart';

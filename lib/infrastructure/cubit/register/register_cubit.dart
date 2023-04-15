@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
-import 'package:uikit/utils/delegate/my_printer.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../locator.dart';

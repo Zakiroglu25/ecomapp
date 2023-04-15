@@ -3,12 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:focus_detector/focus_detector.dart';
 import 'package:uikit/presentation/page/messenger_page/widget/messenger_empty_widget.dart';
 import 'package:uikit/utils/constants/text.dart';
-import 'package:uikit/widgets/general/empty_widget.dart';
 
 import '../../../infrastructure/cubit/messenger_cubit/messenger_cubit.dart';
 import '../../../infrastructure/cubit/messenger_cubit/messenger_state.dart';
-import '../../../utils/constants/assets.dart';
-import '../../../utils/constants/colors.dart';
 import '../../../widgets/general/app_loading.dart';
 import '../../../widgets/main/cupperfold/cupperfold.dart';
 import 'widget/body_messenger.dart';

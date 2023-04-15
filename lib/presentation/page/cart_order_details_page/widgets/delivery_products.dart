@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/order_info/index.dart';
 import 'package:uikit/presentation/page/cart_order_details_page/widgets/delivery_product.dart';
-import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/paddings.dart';
-import 'package:uikit/utils/constants/physics.dart';
 import 'package:uikit/widgets/custom/listview_separated.dart';
-import 'package:uikit/widgets/main/doctoro_bottom_sheet/widget/handle_line.dart';
 
 import '../../../../utils/constants/border_radius.dart';
 import '../../../../widgets/general/app_loading.dart';

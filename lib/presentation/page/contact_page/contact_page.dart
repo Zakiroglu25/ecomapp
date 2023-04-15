@@ -8,7 +8,6 @@ import '../../../infrastructure/cubit/contact_cubit/contact_state.dart';
 import '../../../infrastructure/model/response/contact_model.dart';
 import '../../../widgets/custom/half_empty_widget.dart';
 import '../../../widgets/general/app_loading.dart';
-import '../../../widgets/general/empty_widget.dart';
 import '../../../widgets/main/cupperfold/cupperfold.dart';
 
 class ContactPage extends StatelessWidget {

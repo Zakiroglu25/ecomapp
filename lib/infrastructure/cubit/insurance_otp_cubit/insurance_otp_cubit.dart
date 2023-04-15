@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:uikit/utils/delegate/pager.dart';
 import 'package:uikit/utils/extensions/index.dart';
+
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../config/recorder.dart';
 import '../../data/insurance_provider.dart';

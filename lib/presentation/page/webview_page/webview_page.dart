@@ -19,7 +19,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
-import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
 
 import '../../../utils/delegate/index.dart';
 

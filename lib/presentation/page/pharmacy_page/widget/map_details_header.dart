@@ -4,10 +4,6 @@ import 'package:uikit/presentation/page/cart_order_details_page/widgets/cart_cir
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
-import 'package:uikit/utils/delegate/index.dart';
-import 'package:uikit/utils/screen/snack.dart';
-import 'package:uikit/widgets/custom/column_with_space.dart';
-import 'package:uikit/widgets/custom/sliver_app_bar_delegate.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../infrastructure/model/response/map_medicine.dart';

@@ -11,7 +11,6 @@ import '../../../../../utils/constants/paddings.dart';
 import '../../../../../utils/constants/sized_box.dart';
 import '../../../../../utils/constants/text.dart';
 import '../../../../../utils/delegate/navigate_utils.dart';
-import '../../../../../utils/delegate/string_operations.dart';
 import '../../../../../utils/formatter/phone_formatter.dart';
 import '../../../../../widgets/custom/app_button.dart';
 import '../../../../../widgets/general/app_field.dart';

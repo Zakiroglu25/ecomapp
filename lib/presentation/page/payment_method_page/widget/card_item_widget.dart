@@ -15,7 +15,6 @@ import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sized_box.dart';
 import '../../../../utils/constants/text.dart';
 import '../../../../widgets/custom/half_empty_widget.dart';
-import '../../../../widgets/general/empty_widget.dart';
 
 class CardItemWidget extends StatelessWidget {
   const CardItemWidget({
