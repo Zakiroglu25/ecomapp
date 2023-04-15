@@ -22,6 +22,7 @@ import 'package:uikit/test/test2.dart';
 import 'package:uikit/test/test_for_cubit.dart';
 
 import '../../app.dart';
+import '../../infrastructure/config/init.dart';
 import '../../infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
 import '../../infrastructure/cubit/authentication/authentication_cubit.dart';
 import '../../infrastructure/cubit/card_cubit/card_cubit.dart';
@@ -66,6 +67,7 @@ import '../../presentation/page/question_response_page/question_response_page.da
 import '../../presentation/page/settings_page/settings_page.dart';
 import '../../presentation/page/splash_page/splash_page.dart';
 import '../../presentation/page/user_edit_page/user_edit_page.dart';
+import '../constants/colors.dart';
 import '../enums/delivery_type.dart';
 
 class Pager {
@@ -97,11 +99,14 @@ class Pager {
         BlocProvider.value(value: BlocProvider.of<AddAddressCubit>(context)),
       ], child: const SelectMapPage());
 
-  static get products => MultiBlocProvider(providers: [
+  static get products {
+    //setStatusBarColor(MyColors.white);
+    return MultiBlocProvider(providers: [
         // BlocProvider(create: (context) => ProductOptionCubit()..fetchProduct()),
         BlocProvider(create: (context) => FavoriteCubit()),
         BlocProvider(create: (context) => CartCubit()),
       ], child: const ProductsPage());
+  }
 
   static pharmacy(MapMedicine map) => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => FavoriteCubit()),

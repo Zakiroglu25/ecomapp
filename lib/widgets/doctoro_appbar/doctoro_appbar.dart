@@ -60,31 +60,34 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
         foregroundColor: color,
         elevation: 0,
         titleSpacing: 0,
-        title: Padding(
-          padding: Paddings.zero,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              (user ?? true)
-                  ? UserButton()
-                  : WidgetOrEmpty(
-                      value: back,
-                      child: BackIOS(
-                        onBack: onBack,
+        title: Container(
+         // color: MyColors.blue0,
+          child: Padding(
+            padding: Paddings.zero,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                (user ?? true)
+                    ? UserButton()
+                    : WidgetOrEmpty(
+                        value: back,
+                        child: BackIOS(
+                          onBack: onBack,
+                        ),
                       ),
-                    ),
-              !addressDropdown
-                  ? Center(
-                      child: Text(
-                        title!,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppTextStyles.sfPro600
-                            .copyWith(fontSize: 16.sp, color: MyColors.black),
-                      ),
-                    )
-                  : const AppBarAddressWidget(),
-              rightButtonsRow(context),
-            ],
+                !addressDropdown
+                    ? Center(
+                        child: Text(
+                          title!,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppTextStyles.sfPro600
+                              .copyWith(fontSize: 16.sp, color: MyColors.black),
+                        ),
+                      )
+                    : const AppBarAddressWidget(),
+                rightButtonsRow(context),
+              ],
+            ),
           ),
         ),
       ),

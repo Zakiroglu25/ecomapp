@@ -29,9 +29,7 @@ class _PashaInsurancePageState extends State<PashaInsurancePage> {
     // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     //   statusBarColor: MyColors.blue64,
     // ));
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: MyColors.blue64
-    ));
+    setStatusBarColor(MyColors.blue64);
   }
 
   @override
