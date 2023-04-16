@@ -1,6 +1,7 @@
 // Dart imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
@@ -13,22 +14,27 @@ import '../../../utils/delegate/app_operations.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/delegate/pager.dart';
 import '../../../utils/delegate/user_operations.dart';
+import '../../../utils/enums/otp_request_kind.dart';
 import '../../../utils/screen/overlay_loader.dart';
 import '../../config/recorder.dart';
+import '../../data/account_provider.dart';
 import '../../services/hive_service.dart';
 import '../../services/navigation_service.dart';
 import 'otp_state.dart';
 // Project imports:
 
 class OTPCubit extends Cubit<OtpState> {
-  OTPCubit({this.requestNew = false}) : super(OtpInitial()) {
+  OTPCubit({this.requestNew = false, this.otpRequestKind, this.phone})
+      : super(OtpInitial()) {
     email = _prefs.email;
-    phone = _prefs.phoneNumber;
+    phone ??= _prefs.phoneNumber;
     if (requestNew)
       requestOtp();
     else
       emit(OtpRequested());
   }
+
+  final OtpRequestKind? otpRequestKind;
 
   HiveService get _prefs => locator<HiveService>();
   BuildContext outContext =
@@ -65,6 +71,10 @@ class OTPCubit extends Cubit<OtpState> {
     return super.close();
   }
 
+  // void setOtpRequest(OtpRequestKind otpRequestKind) {
+  //   this.otpRequestKind = otpRequestKind;
+  // }
+
   void requestOtp({bool? loading}) async {
     try {
       if (loading ?? true) {
@@ -78,7 +88,51 @@ class OTPCubit extends Cubit<OtpState> {
     }
   }
 
-  void validateOtp(BuildContext context, {bool? loading}) async {
+  void validateOtp(BuildContext context, {bool? loading}) {
+    switch (otpRequestKind) {
+      case OtpRequestKind.changeNumber:
+        _validateChangeNumberOtp(context, loading: loading);
+        break;
+      default:
+        _validateRegisterOtp(context, loading: loading);
+    }
+  }
+
+  void _validateChangeNumberOtp(BuildContext context, {bool? loading}) async {
+    Loader.show(context);
+    try {
+      if (loading ?? false) {
+        emit(OtpInProgress());
+      }
+      final formattedPhone = phone;
+      final result = await AccountProvider.validateOtpAndUpdatePhoneAndMail(
+          email: email, phone: formattedPhone, otp: otp.valueOrNull);
+      if (!result.isSuccess) {
+        updateOtp('');
+        //emit(OtpError());
+        return;
+      }
+
+      await UserOperations.configureUserDataWhenLogin(
+          accessToken: _prefs.accessToken!,
+          refreshToken: _prefs.refreshToken!,
+          email: email,
+          phone: formattedPhone);
+      Go.popTwice(context);
+      Go.replace(outContext, Pager.changeNumber);
+      emit(OtpSuccess(''));
+      //
+      //
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+      emit(OtpError(error: e.toString()));
+    } finally {
+      updateOtp('');
+      Loader.hide();
+    }
+  }
+
+  void _validateRegisterOtp(BuildContext context, {bool? loading}) async {
     Loader.show(context);
     try {
       if (loading ?? false) {

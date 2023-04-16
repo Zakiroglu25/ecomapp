@@ -69,6 +69,7 @@ import '../../presentation/page/splash_page/splash_page.dart';
 import '../../presentation/page/user_edit_page/user_edit_page.dart';
 import '../constants/colors.dart';
 import '../enums/delivery_type.dart';
+import '../enums/otp_request_kind.dart';
 
 class Pager {
   Pager._();
@@ -102,10 +103,10 @@ class Pager {
   static get products {
     //setStatusBarColor(MyColors.white);
     return MultiBlocProvider(providers: [
-        // BlocProvider(create: (context) => ProductOptionCubit()..fetchProduct()),
-        BlocProvider(create: (context) => FavoriteCubit()),
-        BlocProvider(create: (context) => CartCubit()),
-      ], child: const ProductsPage());
+      // BlocProvider(create: (context) => ProductOptionCubit()..fetchProduct()),
+      BlocProvider(create: (context) => FavoriteCubit()),
+      BlocProvider(create: (context) => CartCubit()),
+    ], child: const ProductsPage());
   }
 
   static pharmacy(MapMedicine map) => MultiBlocProvider(providers: [
@@ -141,11 +142,12 @@ class Pager {
         child: InsurancesPage(),
       );
 
-  static validateInsurance(BuildContext context,{required String policyNumber}) => BlocProvider(
-        create:(context) => InsuranceOtpCubit()..setPolicyNumber(policyNumber: policyNumber),
-        child: const InsuranceOTPPage(
-          showBackButton: true
-        ),
+  static validateInsurance(BuildContext context,
+          {required String policyNumber}) =>
+      BlocProvider(
+        create: (context) =>
+            InsuranceOtpCubit()..setPolicyNumber(policyNumber: policyNumber),
+        child: const InsuranceOTPPage(showBackButton: true),
       );
 
   static get mapPage => MultiBlocProvider(providers: [
@@ -160,12 +162,17 @@ class Pager {
       providers: [BlocProvider(create: (context) => UserCubit())],
       child: const UserEditPage());
 
-  static otp({
-    bool requestNew = false,
-    bool showBackButton = true,
-  }) =>
+  static otp(
+          {bool requestNew = false,
+          bool showBackButton = true,
+          String? phone,
+          OtpRequestKind? otpRequestKind}) =>
       MultiBlocProvider(providers: [
-        BlocProvider(create: (context) => OTPCubit(requestNew: requestNew))
+        BlocProvider(
+            create: (context) => OTPCubit(
+                requestNew: requestNew,
+                otpRequestKind: otpRequestKind,
+                phone: phone))
       ], child: OTPPage(showBackButton: showBackButton));
 
   static get forgotPassword => MultiBlocProvider(

@@ -293,6 +293,9 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String num = "Nömrə";
   static const String mail = "Email";
 
+  //change contact
+  static const String changeContacts = "Kontaktları dəyiş";
+
   //address
   static const String city = "Şəhər";
   static const String cityAdd = "Şəhər daxil edin";

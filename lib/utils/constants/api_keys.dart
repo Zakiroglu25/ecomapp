@@ -50,6 +50,8 @@ class ApiKeys {
   //user
   static const devices = "$customer/devices";
   static const changeNumber = "$account/request-update-phone-otp";
+  static const validateOtpAndUpdatePhone =
+      "$account/validate-otp-and-update-phone";
 
   //address
   static const getAddress = "$customer/address-book";
@@ -133,7 +135,7 @@ class ApiKeys {
   static otpBody({
     required String? phone,
     required String? otp,
-    required String? email,
+    String? email,
   }) {
     //
     final map = {"phone": phone, "otp": otp, "email": email};
@@ -149,7 +151,7 @@ class ApiKeys {
     required String? email,
   }) {
     //
-    final map = {"phone": phone, "phone": email, "password": password};
+    final map = {"phone": phone, "email": email, "password": password};
 
     map.removeWhere(
         (key, value) => key == null || value == null || value == 'null');

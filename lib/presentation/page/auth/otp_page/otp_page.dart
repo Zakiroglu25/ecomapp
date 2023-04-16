@@ -12,15 +12,13 @@ import 'widgets/otp_pin_code_field.dart';
 class OTPPage extends StatelessWidget {
   const OTPPage({Key? key, required this.showBackButton}) : super(key: key);
   final bool showBackButton;
+
   @override
   Widget build(BuildContext context) {
     return AppSafeArea(
       child: Scaffold(
         body: BlocConsumer<OTPCubit, OtpState>(
-          listener: (context, state) {
-            if (state is OtpError)
-              Snack.showOverlay(context: context, message: state.error);
-          },
+          listener: (context, state) {},
           builder: (context, state) {
             if (state is OtpInProgress) {
               return AppLoading();
