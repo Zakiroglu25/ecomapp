@@ -35,7 +35,7 @@ class TakeAwayPharmacyAndOrderDetails extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 PharmacySection(orderDetails: details),
-                BigSection(title: MyText.payment, size: 16.sp),
+                BigSection(title: MyText.payment, size: 16),
                 TakeAwayPaymentSection(details: details),
               ],
             );

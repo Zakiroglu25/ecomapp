@@ -34,33 +34,32 @@ class CardItemWidget extends StatelessWidget {
         text: MyText.emptyText,
         description: MyText.emptyWallet,
       ),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              MyText.cards,
-              style: AppTextStyles.sfPro400s14.copyWith(color: MyColors.grey158),
-            ),
-            MySizedBox.h4,
-            Container(
-                decoration: BoxDecoration(
-                  borderRadius: Radiuses.r12,
-                  color: MyColors.grey245,
-                ),
-                child: AppElementBox(
-                  padding: Paddings.paddingV16,
-                  child: ListViewSeparated(
-                      physics:Physics.never,
-                      padding: Paddings.zero,
-                      shrinkWrap: true,
-                      itemCount: 20,
-                      itemBuilder: (context, index) =>
-                          DeletableCardItem(card: cardList[0]),
-                      separator: Dividers.h16grey),
-                )),
-          ],
-        ),
+      child: ListView(
+        // crossAxisAlignment: CrossAxisAlignment.start,
+        // mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(
+            MyText.cards,
+            style: AppTextStyles.sfPro400s14.copyWith(color: MyColors.grey158),
+          ),
+          MySizedBox.h4,
+          Container(
+              decoration: BoxDecoration(
+                borderRadius: Radiuses.r12,
+                color: MyColors.grey245,
+              ),
+              child: AppElementBox(
+                padding: Paddings.paddingV16,
+                child: ListViewSeparated(
+                    physics:Physics.never,
+                    padding: Paddings.zero,
+                    shrinkWrap: true,
+                    itemCount: cardList.length,
+                    itemBuilder: (context, index) =>
+                        DeletableCardItem(card: cardList[index]),
+                    separator: Dividers.h16grey),
+              )),
+        ],
       ),
     );
   }

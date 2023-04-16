@@ -81,7 +81,7 @@ class DoctorAppbar extends StatelessWidget implements PreferredSizeWidget {
                           title!,
                           overflow: TextOverflow.ellipsis,
                           style: AppTextStyles.sfPro600
-                              .copyWith(fontSize: 16.sp, color: MyColors.black),
+                              .copyWith(fontSize: 16, color: MyColors.black),
                         ),
                       )
                     : const AppBarAddressWidget(),
