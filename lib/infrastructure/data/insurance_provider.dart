@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/constants/result_keys.dart';
@@ -11,7 +13,7 @@ class InsuranceProvider {
 
   static Future<StatusDynamic> getInsurance() async {
     StatusDynamic statusDynamic = StatusDynamic();
-    const api = ApiKeys.getInsurance;
+    const api = ApiKeys.insurance;
     final response = await dioAuth.dio.get(api);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
@@ -28,8 +30,8 @@ class InsuranceProvider {
       required String? phoneNumber,
       required String finCode}) async {
     StatusDynamic statusDynamic = StatusDynamic();
-    const api = ApiKeys.addInsuranceApi;
-    final body = ApiKeys.addInsurance(
+    const api = ApiKeys.addInsurance;
+    final body = ApiKeys.addInsuranceBody(
         policyNumber: policyNumber, phoneNumber: phoneNumber, finCode: finCode);
     final response = await dioAuth.dio.post(api, data: body);
     statusDynamic.statusCode = response.statusCode;
@@ -42,5 +44,20 @@ class InsuranceProvider {
       eeee("Get Insurance:  url: $api , response: ${response.data}");
     }
     return statusDynamic;
+  }
+
+  static Future<Response> validateInsurance(
+      {required String? otp, required String? policyNumber}) async {
+    const api = ApiKeys.validateInsurance;
+    final body =
+        ApiKeys.validateInsuranceBody(policyNumber: policyNumber, otp: otp);
+    final response = await dioAuth.dio.post(api, data: body);
+    if (response.statusCode == ResultKey.successCode) {
+      // InsuranceModel model = InsuranceModel.fromJson(response.data);
+      // statusDynamic.data = model;
+    } else {
+      eeee("Get Insurance:  url: $api , response: ${response.data}");
+    }
+    return response;
   }
 }

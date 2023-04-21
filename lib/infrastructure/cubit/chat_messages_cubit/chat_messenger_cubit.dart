@@ -29,7 +29,6 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
 
     try {
       final result = await MessengerProvider.getChatMessage(chatGuid);
-      iiii(result.data.toString());
       if (isSuccess(result.statusCode)) {
         final searchItems = result.data;
         // messages.addAll(searchItems!.data!);

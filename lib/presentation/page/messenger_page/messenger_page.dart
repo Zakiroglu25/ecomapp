@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:focus_detector/focus_detector.dart';
+import 'package:uikit/presentation/page/messenger_page/widget/messenger_empty_widget.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/widgets/general/empty_widget.dart';
 
@@ -16,25 +18,17 @@ class MessengerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Cupperfold(
-      user: false,
-      notification: false,
-      title: MyText.messenger,
-      child: BlocProvider(
-        create: (context) => MessengerCubit()..fetch(),
+    return FocusDetector(
+      onFocusGained: () => context.read<MessengerCubit>().fetch(),
+      child: Cupperfold(
+        user: false,
+        notification: false,
+        title: MyText.messenger,
         child: BlocBuilder<MessengerCubit, MessengerState>(
           builder: (context, state) {
             if (state is MessengerSuccess) {
               if (state.contactList.isEmpty) {
-                return SizedBox(
-                  height: MediaQuery.of(context).size.height / 1.5,
-                  child: EmptyWidget(
-                    imageUrl: Assets.pngChat,
-                    color: MyColors.blue157,
-                    text: MyText.emptyText,
-                    description: MyText.emptyMessenger,
-                  ),
-                );
+                return MessengerEmptyWidget();
               }
               return BodyMessenger(list: state.contactList);
             } else if (state is MessengerError) {
@@ -44,9 +38,7 @@ class MessengerPage extends StatelessWidget {
             } else if (state is MessengerInProgress) {
               return AppLoading();
             }
-            return EmptyWidget(
-              imageUrl: Assets.pngMessenger3x,
-            );
+            return MessengerEmptyWidget();
           },
         ),
       ),

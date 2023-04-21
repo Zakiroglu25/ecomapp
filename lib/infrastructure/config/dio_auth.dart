@@ -181,8 +181,8 @@ class CustomInterceptors extends Interceptor {
       default:
         final error = DetailedError.fromJson(response.data);
         Alert.show(NavigationService.instance.navigationKey!.currentContext!,
-            content: error.details ?? '',
-            title: MyText.error,
+            //content: error.details ?? '',
+            title: error.details ?? MyText.error,
             mainButtonColor: MyColors.brand);
         break;
     }
