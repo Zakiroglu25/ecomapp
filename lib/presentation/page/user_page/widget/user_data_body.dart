@@ -49,17 +49,6 @@ class UserDataBody extends StatelessWidget {
         MySizedBox.h20,
         Row(
           children: [
-            Container(
-              width: 96.w,
-              height: 96.h,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: MyColors.grey288),
-              child: const Center(
-                child: Icon(Icons.person),
-              ),
-            ),
-            MySizedBox.w8,
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

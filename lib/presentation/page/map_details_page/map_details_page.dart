@@ -49,27 +49,33 @@ class MapDetailsPage extends StatelessWidget {
                     ProductOptionDetailsState>(
                   builder: (context, state) {
                     if (state is ProductODetailsMapListSuccess) {
-                      return ListView.separated(
-                        shrinkWrap: true,
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        controller: scrollController,
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 16, horizontal: 16),
-                        itemCount: state is ProductODetailsMapListSuccess
-                            ? (state.productList?.length ?? 0) + 1
-                            : 0,
-                        separatorBuilder: (context, index) =>
-                            const SizedBox(height: 16),
-                        itemBuilder: (context, index) {
-                          if (index == state.productList?.length) {
-                            return FocusableAppLoading(onFocus: () {
-                              cubit.loadMore(maps!.guid!);
-                            });
-                          } else {
-                            final product = state.productList![index];
-                            return ProductItem(product: product, inFav: false);
-                          }
-                        },
+                      return StreamBuilder<bool>(
+                        stream: BlocProvider.of<ProductOptionDetailsCubit>(context).haveElseStream,
+                        builder: (context, snapshot) {
+                          return ListView.separated(
+                            shrinkWrap: true,
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            controller: scrollController,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 16, horizontal: 16),
+                            // itemCount: snapshot.data ?? false ? state.productList!.length+1 : state.productList!.length,
+                            itemCount: state is ProductODetailsMapListSuccess
+                                ? (state.productList?.length ?? 0) + (snapshot.data ?? false ? 1 : 0)
+                                : 0,
+                            separatorBuilder: (context, index) =>
+                                const SizedBox(height: 16),
+                            itemBuilder: (context, index) {
+                              if (index == state.productList?.length) {
+                                return FocusableAppLoading(onFocus: () {
+                                  cubit.loadMore(maps!.guid!);
+                                });
+                              } else {
+                                final product = state.productList![index];
+                                return ProductItem(product: product, inFav: false);
+                              }
+                            },
+                          );
+                        }
                       );
                     } else if (state is ProductODetailsInProgress) {
                       return AppLoading();

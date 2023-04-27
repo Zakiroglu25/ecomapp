@@ -32,7 +32,7 @@ class MapDetailsHeaders extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              MySizedBox.h30,
+              MySizedBox.h24,
               Text(
                 maps.name!,
                 style: AppTextStyles.sfPro600s16,
@@ -78,7 +78,7 @@ class MapDetailsHeaders extends StatelessWidget {
                       AppTextStyles.sfPro400s16.copyWith(color: MyColors.white),
                 )),
               ),
-              MySizedBox.h8,
+              MySizedBox.h4,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

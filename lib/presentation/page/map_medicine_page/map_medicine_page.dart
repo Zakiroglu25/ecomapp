@@ -39,9 +39,9 @@ class _MapPageState extends State<MapPage> {
   getIcons() async {
     var icon = await BitmapDescriptor.fromAssetImage(
         const ImageConfiguration(
-          devicePixelRatio: 3.3,
+          devicePixelRatio: 1,
         ),
-        Assets.marker);
+        Assets.newMarker);
     setState(() {
       if (icon == null) {
         BitmapDescriptor.defaultMarker;
