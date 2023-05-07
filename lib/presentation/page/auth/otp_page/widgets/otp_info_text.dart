@@ -10,7 +10,7 @@ class OtpInfoText extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Text(
       MyText.otpInfo,
-      style: AppTextStyles.sfPro500,
+      style: AppTextStyles.sfPro600,
     );
   }
 }

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:focus_detector/focus_detector.dart';
 import 'package:uikit/utils/delegate/index.dart';
 
 import '../../../../../utils/constants/text.dart';
 import '../../../../../widgets/general/app_field.dart';
 import '../../../../infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
-import '../../address_page/select_map_page/select_map_page.dart';
 
 class AddressField extends StatelessWidget {
   final TextEditingController? controller;

@@ -2,7 +2,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nil/nil.dart';
 import 'package:uikit/utils/constants/durations.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
@@ -12,7 +11,6 @@ import '../../utils/constants/colors.dart';
 import '../../utils/constants/sized_box.dart';
 import '../../utils/formatter/lower_case_formatter.dart';
 import '../../utils/formatter/upper_case_formatter.dart';
-import '../../utils/screen/widget_or_empty.dart';
 
 class AppField extends StatelessWidget {
   final TextEditingController? controller;
@@ -204,7 +202,7 @@ class AppField extends StatelessWidget {
                         child: Text(
                           (infoMessage ?? ""),
                           style: AppTextStyles.sfPro400s14
-                              .copyWith(color: MyColors.error_red),
+                              .copyWith(color: MyColors.errorRED),
                         ),
                       )
                     : SizedBox.shrink()),

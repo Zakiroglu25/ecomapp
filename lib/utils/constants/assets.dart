@@ -32,6 +32,7 @@ class Assets {
   static const String svgEdit = "assets/svg/edit.svg";
   static const String svgEditUser = "assets/svg/edit_user.svg";
   static const String svgDelete = "assets/svg/trash.svg";
+  static const String pngNewMarker = "assets/png/pinmark.png";
 
   ///fav
   static const String svgFilledHearth = "assets/svg/filled-heart.svg";
@@ -88,8 +89,8 @@ class Assets {
   static const String dHeart = "assets/png/dheart.png";
 
   //pashadetails
-  static const String pngPhone3x = "assets/png/phone.png";
-  static const String pngUser3x = "assets/png/user.png";
+  static const String pngPashaAppSS = "assets/png/pasha-app-ss.png";
+  static const String pngUser = "assets/png/user.png";
   static const String pngAt3x = "assets/png/at.png";
 
   ///contact
@@ -99,15 +100,16 @@ class Assets {
   static const String pngHotline = "assets/png/hotline.png";
   static const String pngHeart = "assets/png/heart.png";
   static const String pngMed = "assets/png/med.png";
+  static const String pngMedOpacity = "assets/png/med_opacity.png";
   //setting
   static const String svgCallDark = "assets/svg/calldark.svg";
 
-////////////////////////////////////////////////////////////////////////////////
   //png
   static const on_board_capsule = "assets/png/capsule_onboard.png";
   static const String courier_png = "assets/png/on_board_courier.png";
   static const String capsule_png = "assets/png/on_board_capsule.png";
   static const String keyChild = "assets/png/keychild.png";
+  static const String userProfile = "assets/png/userp.png";
 
   static const String medicine = "assets/png/medicine.png";
   static const String pngBad = "assets/png/bad.png";
@@ -117,6 +119,8 @@ class Assets {
   static const String demo2 = "assets/png/zeytun.png";
   static const String marker = "assets/png/marker.png";
   static const String newMarker = "assets/png/newmarker.png";
+  static const String pngMarker = "assets/png/marker.png";
+  static const String pngPharmacyIcon = "assets/png/pharmacy-icon.png";
   static const String notifyheart = "assets/png/notifyheart.png";
 
   static const String pngMasterCard = "assets/png/mastercard.png";

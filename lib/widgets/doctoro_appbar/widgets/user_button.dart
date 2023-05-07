@@ -20,12 +20,17 @@ class UserButton extends StatelessWidget {
       },
       child: Material(
         color: Colors.transparent,
-        child: SizedBox(
-          height: 45,
-          width: 45,
-          child: Padding(
-            padding: Paddings.paddingL16 + Paddings.paddingT2,
-            child: SvgPicture.asset(Assets.svgUser),
+        child: ClipRRect(
+          child: SizedBox(
+            height: 45,
+            width: 45,
+            child: Padding(
+              padding: Paddings.paddingL16 + Paddings.paddingT2,
+              child: CircleAvatar(
+                backgroundImage: AssetImage(Assets.userProfile),
+                radius: 22.5, // Yarıçapı, SizedBox boyutlarının yarısına ayarlayın
+              ),
+            ),
           ),
         ),
       ),

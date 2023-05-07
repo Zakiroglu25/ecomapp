@@ -48,9 +48,11 @@ class Cupperfold extends StatelessWidget {
       floatingActionButton: floatingActionButton,
       backgroundColor: backColor,
       body: SafeArea(
+        bottom: false,
         child: CustomScrollView(
           clipBehavior: Clip.antiAlias,
           // A list of sliver widgets.
+
           physics: physics ?? Physics.alwaysClamp,
           slivers: <Widget>[
             if (showAppbarLittleText)
@@ -76,19 +78,21 @@ class Cupperfold extends StatelessWidget {
                 onBack: onBack,
               ),
             if (child != null)
-              SliverList(
-                // shrinkWrap: false,
-                // physics: Physics.alwaysBounce,
-                delegate: SliverChildListDelegate([child!]),
-              ),
-            // SliverToBoxAdapter(
+            // SliverList(
             //   // shrinkWrap: false,
             //   // physics: Physics.alwaysBounce,
-            //   child:child,
+            //   delegate: SliverChildListDelegate([child!]),
             // ),
-            if (slivers != null) ...slivers!
+            //   SliverFillRemaining(
+            //     hasScrollBody: true,
+            //     child: child,
+            //   )
+            SliverFillRemaining(
+                child:Center(child:child)
+            ),
+
           ],
-        ),
+        )
       ),
     );
   }

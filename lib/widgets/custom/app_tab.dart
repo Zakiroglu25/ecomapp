@@ -31,49 +31,53 @@ class AppTab extends Tab {
     final selected =
         Provider.of<CupperProvider>(context, listen: true).selected.index ==
             index;
-    return SpacedRow(
-      space: count != null ? 10 : 0,
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        // Icon(iconData),
-        svg != null
-            ? AnimatedCrossFade(
-                duration: Durations.ms200,
-                firstChild: SvgPicture.asset(
-                  svg!,
-                  color: MyColors.brand,
+    return AnimatedSize(
+      duration: Durations.ms200,
+      child: SpacedRow(
+
+        space:  10 ,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Icon(iconData),
+          svg != null
+              ? AnimatedCrossFade(
+                  duration: Durations.ms300,
+                  firstChild: SvgPicture.asset(
+                    svg!,
+                    color: MyColors.brand,
+                  ),
+                  secondChild: SvgPicture.asset(
+                    svg!,
+                    color: MyColors.grey158,
+                  ),
+                  crossFadeState: selected
+                      ? CrossFadeState.showFirst
+                      : CrossFadeState.showSecond,
+                )
+              : Container(),
+          Text(text),
+          WidgetOrEmpty(
+            value: count != null,
+            child: AnimatedContainer(
+              duration: Durations.ms200,
+              height: 18,
+              width: 18,
+              padding: Paddings.paddingA2,
+              decoration: BoxDecoration(
+                  borderRadius: Radiuses.r99,
+                  color: selected ? MyColors.brand : MyColors.grey158),
+              child: FittedBox(
+                child: Text(
+                  "$count",
+                  style:
+                      AppTextStyles.sfPro400s12.copyWith(color: MyColors.white),
                 ),
-                secondChild: SvgPicture.asset(
-                  svg!,
-                  color: MyColors.grey158,
-                ),
-                crossFadeState: selected
-                    ? CrossFadeState.showFirst
-                    : CrossFadeState.showSecond,
-              )
-            : Container(),
-        Text(text),
-        WidgetOrEmpty(
-          value: count != null,
-          child: AnimatedContainer(
-            duration: Durations.ms200,
-            height: 18,
-            width: 18,
-            padding: Paddings.paddingA2,
-            decoration: BoxDecoration(
-                borderRadius: Radiuses.r99,
-                color: selected ? MyColors.brand : MyColors.grey158),
-            child: FittedBox(
-              child: Text(
-                "$count",
-                style:
-                    AppTextStyles.sfPro400s12.copyWith(color: MyColors.white),
               ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

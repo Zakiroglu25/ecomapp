@@ -7,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/colors.dart';
 import '../constants/durations.dart';
 import '../constants/paddings.dart';
-import '../constants/text.dart';
 import '../screen/widget_or_empty.dart';
 
 // Project imports:

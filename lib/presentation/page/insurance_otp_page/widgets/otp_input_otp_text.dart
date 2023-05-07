@@ -10,7 +10,7 @@ class OtpInputOtpText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       MyText.inputOtp,
-      style: AppTextStyles.sfPro500,
+      style: AppTextStyles.sfPro600,
     );
   }
 }

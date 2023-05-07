@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
 import 'package:uikit/infrastructure/cubit/user/user_cubit.dart';
+import 'package:uikit/presentation/page/user_edit_page/widget/fields/email_field.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/delegate/my_printer.dart';
@@ -16,6 +17,7 @@ import '../../../utils/delegate/string_operations.dart';
 import '../../../widgets/custom/app_button.dart';
 import '../../../widgets/doctoro_appbar/doctoro_appbar.dart';
 import '../settings_page/widget/edit_field_widget.dart';
+import 'widget/field/change_number_pass_field.dart';
 import 'widget/field/number_field.dart';
 import 'widget/field/password_field.dart';
 
@@ -27,6 +29,7 @@ class ChangeNumberPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<UserCubit>();
     return BlocProvider(
       create: (context) => AddAddressCubit(),
       child: Scaffold(
@@ -34,18 +37,10 @@ class ChangeNumberPage extends StatelessWidget {
           user: false,
           notification: false,
           filter: false,
-          title: 'Nömrəni dəyiş',
-          contextA: null,
+          title: MyText.changeContacts,
         ),
         body: BlocListener<UserCubit, UserState>(
-          listener: (context, state) {
-            if (state is UserSuccess) {
-              Go.to(context, Pager.otp());
-              wtf("Deyishiklik oldu");
-            } else if (state is UserFailed) {
-              wtf("Deyishiklik olmadi");
-            }
-          },
+          listener: (context, state) {},
           child: ListView(
             padding: Paddings.paddingH16,
             children: [
@@ -62,14 +57,18 @@ class ChangeNumberPage extends StatelessWidget {
               PhoneFieldUser(
                   controller:
                       StringOperations.stringToController(_prefs.user.phone)),
-              PasswordFieldUser(
+              EmailFieldUser(
+                controller:
+                    StringOperations.stringToController(_prefs.user.email),
+              ),
+              ChangeNumberPassField(
                 controller: controller!,
               ),
               AppButton(
                 text: MyText.save,
-                onTap: () {
-                  context.read<UserCubit>().changePhone(context);
-                },
+                loading: cubit.state is UserLoading,
+                onTap: () =>
+                    context.read<UserCubit>().changePhoneAndEmail(context),
               )
             ],
           ),

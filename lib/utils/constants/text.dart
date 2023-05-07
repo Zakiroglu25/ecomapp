@@ -93,6 +93,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String reject = 'İmtina';
   static const String rejected = 'İmtina olunub';
   static const String error = "Əməliyyat zamanı xəta yarandı!";
+  static const String serverError = "Server xətası baş verdi!";
   static const String networkError = "İnternet bağlantısı zamanı xəta yarandı";
   static const String goOn = "Davam et";
   static const String unknownError = "Bilinməyən xəta yarandı!";
@@ -107,8 +108,8 @@ In addition to laying out rules for proper use of your app, you should also clea
       'E-poçt ünvanının sizə məxsus olduğunu təsdiqləyin. Əks halda qaynar xətt ilə əlaqə saxlaya bilərsiniz.';
 
   //bottomnavigation
-  static const String product = "Məhsullar";
-  static const String favorite = "Seçilmişlər";
+  static const String products = "Məhsullar";
+  static const String favorites = "Seçilmişlər";
   static const String pharmacies = "Apteklər";
   static const String cart = "Səbət";
   static const String other = "Digər";
@@ -120,8 +121,10 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String carts = "Səbətim";
   static const String nameDoctoro = "Doctoro";
   static const String pashaTitleProduct = "Paşa Sığorta məhsulları burada!";
+  static const String searchMedicine = "Dərman axtar";
+  static const String letsSearchMedicine = "Dərman axtarmağa başla";
   static const String medicineSubtitle =
-      "Reseptli və reseptsiz satışda olan dərmanları buradan əldə edib qiymətlərini müqaisə edə bilərsiniz.";
+      "Reseptli və reseptsiz satışda olan dərmanları buradan əldə edə bilərsiniz.";
   static const String bad = "BAD";
   static const String badSub = "Bioaktiv qidalar üçün əlavələr.";
   static const String vitamin = "Vitaminlər";
@@ -155,12 +158,14 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String orderRegistered = "Sifariş üçün sorğu göndərlidi";
   static const String cartPrescriptionRemoved = "Resept silindi";
   static const String cartIsEmpty = "Səbətiniz boşdur";
+  static const String noInsurance = "Sığortanız yoxdur";
   static const String goToProductSectionToFindProducts =
-      "Axtardığınız məhsulu tapmaq üçün, zəhmət olmasa məhsullar bölməsinə keçin";
+      "Aptek məhsullarınızı, PAŞA Sığorta ilə almaq üçün, sığortanızı əlavə etmək üçün, aşağıdaki düyməyə klikləyin";
   static const String recipe = "Resept";
   static const String uploadRecipe = "Resepti yüklə";
   static const String orders = "Sifarişlər";
-  static const String in_waiting = "Gözləmə";
+  static const String waiting = "Gözləmə";
+  static const String in_waiting = "Gözləmədə";
   static const String makeOrder = "Sifariş et";
   static const String pharmacy = "Aptek";
   static const String slideToConfirm = 'Təsdiq etmək üçün sürüşdürün';
@@ -177,6 +182,7 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String total = "Toplam";
   static const String pay = "Ödə";
   static const String payTotal = "Toplam ödə";
+  static const String confirm = "Təsdiq et";
   static const String recipeInReview =
       "Resept aptek tərəfindən dəyərləndirilir";
   static const String recipePartialyAccepted = "Resept qismən qarşılanır";
@@ -212,8 +218,6 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String chooseDeliveryType = "Çatdırılma üsulunu seçin";
   static const String contactNumber = "Əlaqə nömrəsi";
   static const String note = "Qeyd";
-  static const String mediciniesDesc =
-      "Reseptli və reseptsiz satışda olan dərmanları buradan əldə edib qiymətlərini müqaisə edə bilərsiniz.";
   static const String nameOrProducedCountry = "Ad və ya istehsal olduğu ölkə";
 
   //pashadetails
@@ -289,6 +293,9 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String lastName = "Soyad";
   static const String num = "Nömrə";
   static const String mail = "Email";
+
+  //change contact
+  static const String changeContacts = "Kontaktları dəyiş";
 
   //address
   static const String city = "Şəhər";

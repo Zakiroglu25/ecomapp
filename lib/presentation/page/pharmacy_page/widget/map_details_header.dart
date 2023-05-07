@@ -4,9 +4,6 @@ import 'package:uikit/presentation/page/cart_order_details_page/widgets/cart_cir
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
-import 'package:uikit/utils/screen/snack.dart';
-import 'package:uikit/widgets/custom/column_with_space.dart';
-import 'package:uikit/widgets/custom/sliver_app_bar_delegate.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../infrastructure/model/response/map_medicine.dart';
@@ -15,34 +12,44 @@ import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/paddings.dart';
 import '../../../../utils/constants/text.dart';
 import '../../../../utils/screen/alert.dart';
+import '../../../../utils/screen/errorable_image.dart';
 
 class MapDetailsHeaders extends StatelessWidget {
   final MapMedicine maps;
+  final double height;
 
-  MapDetailsHeaders({required this.maps, Key? key}) : super(key: key);
+  MapDetailsHeaders({required this.maps, Key? key, required this.height})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var googleUrl = Uri.parse(
         'https://www.google.com/maps/search/?api=1&query=${maps.addressLat.toString()},${maps.addressLong.toString()}');
+
     return Container(
-        color: MyColors.green235,
-        // height: 90,
+        color: MyColors.secondary,
+        height: height,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              MySizedBox.h24,
-              Text(
-                maps.name!,
-                style: AppTextStyles.sfPro600s16,
-              ),
+              // MySizedBox.h30,
+              // Text(
+              //   maps.name!,
+              //   style: AppTextStyles.sfPro600s16,
+              // ),
               Text(
                 maps.addressStreetName!,
                 style: AppTextStyles.sfPro400s12,
               ),
               MySizedBox.h4,
-              Image.asset(Assets.demo2),
+              ErrorableImage(
+                backColor: MyColors.white,
+                imageUrl: maps.imageUrl,
+                w: 72,
+                h: 72,
+                r: 99,
+              ),
               MySizedBox.h16,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -68,23 +75,24 @@ class MapDetailsHeaders extends StatelessWidget {
                 height: 32.h,
                 width: 90.w,
                 decoration: BoxDecoration(
-                  color: maps.isOpen! ? MyColors.mainGreen85 : MyColors.mainRED,
+                  // color: maps.isOpen! ? MyColors.mainGreen85 : MyColors.mainRED,
+                  color: MyColors.brand,
                   borderRadius: BorderRadius.circular(24),
                 ),
                 child: Center(
                     child: Text(
-                  maps.isOpen! ? "Açıqdır" : "Bağlıdır",
-                  style:
+                      maps.isOpen! ? "Açıqdır" : "Bağlıdır",
+                      style:
                       AppTextStyles.sfPro400s16.copyWith(color: MyColors.white),
-                )),
+                    )),
               ),
-              MySizedBox.h4,
+              MySizedBox.h16,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CartCircleButtonWithTitle(
                     svg: Assets.svgLoaction,
-                    title: "Unvan",
+                    title: "Ünvan",
                     onTap: () {
                       launch1(googleUrl);
                       print(maps.guid);
@@ -106,9 +114,9 @@ class MapDetailsHeaders extends StatelessWidget {
     await canLaunchUrl(url)
         ? await launchUrl(url)
         : Alert.show(NavigationService.instance.navigationKey!.currentContext!,
-            //content: MyText.networkError,
-            title: MyText.error,
-            mainButtonColor: MyColors.brand);
+        //content: MyText.networkError,
+        title: MyText.error,
+        mainButtonColor: MyColors.brand);
     ;
   }
 
@@ -116,8 +124,8 @@ class MapDetailsHeaders extends StatelessWidget {
     await canLaunchUrl(url)
         ? await launchUrl(url)
         : Alert.show(NavigationService.instance.navigationKey!.currentContext!,
-            //content: MyText.networkError,
-            title: MyText.error,
-            mainButtonColor: MyColors.brand);
+        //content: MyText.networkError,
+        title: MyText.error,
+        mainButtonColor: MyColors.brand);
   }
 }

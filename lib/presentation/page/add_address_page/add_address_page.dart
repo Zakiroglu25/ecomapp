@@ -53,7 +53,7 @@ class AddAddressPage extends StatelessWidget {
         },
         child: ListView(
           padding: Paddings.paddingH16,
-          shrinkWrap: true,
+          shrinkWrap: false,
           children: [
             AddressField(
               controller:

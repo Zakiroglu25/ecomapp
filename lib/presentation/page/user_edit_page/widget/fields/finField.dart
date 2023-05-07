@@ -11,9 +11,9 @@ class FinFieldUser extends StatelessWidget {
   FinFieldUser({required this.controller}); //= new TextEditingController();
   @override
   Widget build(BuildContext context) {
-    if (controller.text != null || controller.text != '') {
-      BlocProvider.of<UserCubit>(context).updateFin(controller.text);
-    }
+    // if (controller.text != null || controller.text != '') {
+    //   BlocProvider.of<UserCubit>(context).updateFin(controller.text);
+    // }
     return StreamBuilder<String>(
       stream: BlocProvider.of<UserCubit>(context).finStream,
       builder: (context, snapshot) {

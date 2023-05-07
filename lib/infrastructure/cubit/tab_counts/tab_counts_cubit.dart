@@ -30,4 +30,9 @@ class TabCountsCubit extends Cubit<TabCountsState> {
   setCurrentTab(int index) async {
     currentTab = index;
   }
+
+  @override
+  emit(TabCountsState state) {
+    if (!isClosed) return super.emit(state);
+  }
 }

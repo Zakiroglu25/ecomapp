@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -8,6 +9,8 @@ import 'package:uikit/infrastructure/services/navigation_service.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/extensions/index.dart';
+import 'package:uikit/utils/extensions/string.dart';
+
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/screen/alert.dart';
@@ -194,10 +197,19 @@ class CustomInterceptors extends Interceptor {
     //     'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}');
     // Recorder.recordDioError(err);
     //return
+    if (err.response?.statusCode==500) {
+      final error = DetailedError.fromJson(err.response?.data);
+      Alert.show(NavigationService.instance.navigationKey!.currentContext!,
+          //content: error.details ?? '',
+          title: error.details.isNotNullOrEmpty?  error.details:MyText.serverError,
+          mainButtonColor: MyColors.brand);
+
+    }
     if (_isServerDown(err)) {
       Alert.show(NavigationService.instance.navigationKey!.currentContext!,
-          content: MyText.networkError,
-          title: MyText.error,
+          //content: MyText.networkError,
+          titleAlign: TextAlign.center,
+          title: MyText.networkError,
           mainButtonColor: MyColors.brand);
     }
     super.onError(err, handler);
