@@ -39,7 +39,7 @@ class AddInsurancePage extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 2,
                     child: ListOrEmpty(
-                      text: MyText.emptyText,
+                      text: MyText.noInsurance,
                       image: Assets.pngInsurance3x,
                       color: MyColors.purpleLight,
                       list: insuranceList.data,
@@ -51,7 +51,7 @@ class AddInsurancePage extends StatelessWidget {
                             return SlidableWidget(
                               title: insuranceList.data[index].provider!.title,
                               subTitle:
-                                  insuranceList.data[index].provider!.description,
+                              insuranceList.data[index].provider!.description,
                               insuranceIcon: Assets.pasha,
                               status: insuranceList.data[index].isValidated,
                               image: insuranceList.data[index].provider!.imageUrl,

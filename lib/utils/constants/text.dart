@@ -72,6 +72,8 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String otp = "OTP";
   static const String inputOtp = "Input your one-time password";
   static const String otpSent = "Telefon nömrənizə birdəfəlik şifrə göndərildi";
+  static const String sendAgain = 'Yenidən göndər';
+  static const String sendAgainOtp = 'Şifrəni yenidən göndər';
   static const String otpInfo =
       "A one-time password will be sent to your phone. It will be active within 5 minutes";
 
@@ -158,8 +160,9 @@ In addition to laying out rules for proper use of your app, you should also clea
   static const String orderRegistered = "Sifariş üçün sorğu göndərlidi";
   static const String cartPrescriptionRemoved = "Resept silindi";
   static const String cartIsEmpty = "Səbətiniz boşdur";
+  static const String noInsurance = "Sığortanız yoxdur";
   static const String goToProductSectionToFindProducts =
-      "Axtardığınız məhsulu tapmaq üçün, zəhmət olmasa məhsullar bölməsinə keçin";
+      "Aptek məhsullarınızı, PAŞA Sığorta ilə almaq üçün, sığortanızı əlavə etmək üçün, aşağıdaki düyməyə klikləyin";
   static const String recipe = "Resept";
   static const String uploadRecipe = "Resepti yüklə";
   static const String orders = "Sifarişlər";

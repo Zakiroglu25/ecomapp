@@ -50,13 +50,12 @@ class UserDataBody extends StatelessWidget {
         Row(
           children: [
             Container(
-              width: 96.w,
               height: 96.h,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  color: MyColors.grey288),
-              child: const Center(
-                child: Icon(Icons.person),
+                 ),
+              child:  Center(
+                child: Image.asset(Assets.userProfile,fit: BoxFit.contain,),
               ),
             ),
             MySizedBox.w8,

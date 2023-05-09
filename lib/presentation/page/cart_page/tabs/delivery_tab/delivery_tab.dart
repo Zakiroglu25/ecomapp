@@ -6,6 +6,7 @@ import 'package:uikit/infrastructure/cubit/tab_counts/index.dart';
 import 'package:uikit/widgets/general/app_loading.dart';
 import 'package:uikit/widgets/general/empty_widget.dart';
 
+import '../../../../../utils/constants/assets.dart';
 import '../waiting_tab/widgets/orders_stream_view.dart';
 
 class DeliveryTab extends StatelessWidget {
@@ -32,6 +33,8 @@ class DeliveryTab extends StatelessWidget {
             );
           } else if (state is DeliveryOrdersError) {
             return EmptyWidget(
+              imageUrl: Assets.pngEmptyCart,
+              text: "Bağlamanız yoxdur",
               onRefresh: () => onRefresh(context),
             );
           } else {

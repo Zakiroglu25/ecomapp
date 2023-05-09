@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:uikit/presentation/page/pharmacy_page/widget/sliver_loading.dart';
+import 'package:uikit/presentation/page/pharmacy_page/widget/silver_loading.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/extensions/context.dart';
@@ -34,8 +34,8 @@ class PharmacyPage extends StatelessWidget {
         child: Stack(
           children: [
             MapDetailsHeaders(
-              maps: maps!,
-              height: height
+                maps: maps!,
+                height: height
             ),
             // const SliverHandler(),
             DraggableScrollableSheet(
@@ -46,7 +46,7 @@ class PharmacyPage extends StatelessWidget {
               builder:
                   (BuildContext context, ScrollController scrollController) {
                 return ClipRRect(
-                  borderRadius: Radiuses.r36,
+                  borderRadius: Radiuses.r24,
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -61,22 +61,23 @@ class PharmacyPage extends StatelessWidget {
                             physics: const AlwaysScrollableScrollPhysics(),
                             controller: scrollController,
                             padding: const EdgeInsets.symmetric(
-                                    vertical: 16, horizontal: 16) +
+                                vertical: 16, horizontal: 16) +
                                 Paddings.paddingB20,
                             itemCount: state is ProductODetailsMapListSuccess
                                 ? (state.productList?.length ?? 0) + 1
                                 : 0,
                             separatorBuilder: (context, index) =>
-                                const SizedBox(height: 16),
+                            const SizedBox(height: 16),
                             itemBuilder: (context, index) {
-                              if (index == state.productList?.length) {
+                              if (index == state.productList?.length && cubit.page < cubit.totalPages) {
                                 return FocusableAppLoading(onFocus: () {
                                   cubit.loadMore(maps!.guid!);
                                 });
+                              } else if (index == state.productList?.length) {
+                                return const SizedBox.shrink(); // No more items to load
                               } else {
                                 final product = state.productList![index];
-                                return ProductItem(
-                                    product: product, inFav: false);
+                                return ProductItem(product: product, inFav: false);
                               }
                             },
                           );

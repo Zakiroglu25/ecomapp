@@ -6,6 +6,7 @@ import 'package:uikit/widgets/custom/column_with_space.dart';
 
 import '../../../../utils/constants/paddings.dart';
 import '../../../presentation/page/auth/forgot_password_page/widget/forgot_back_button.dart';
+import '../../../presentation/page/auth/otp_page/widgets/send_again_row.dart';
 
 class OTPView extends StatelessWidget {
   const OTPView(
@@ -38,7 +39,7 @@ class OTPView extends StatelessWidget {
               style: AppTextStyles.sfPro600,
             ),
             pinField,
-            //   SendAgainRow(),
+              // SendAgainRow(),
             const Text(
               MyText.otpInfo,
               style: AppTextStyles.sfPro600,

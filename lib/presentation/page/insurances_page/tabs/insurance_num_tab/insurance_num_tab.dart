@@ -76,7 +76,7 @@ class InsuranceNumTab extends StatelessWidget {
               ),
               AppButton(
                 loading:
-                    context.watch<InsuranceCubit>().state is InsuranceLoading,
+                context.watch<InsuranceCubit>().state is InsuranceLoading,
                 onTap: () {
                   context.read<InsuranceCubit>().addInsurance(context: context);
                 },

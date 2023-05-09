@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:uikit/presentation/page/auth/forgot_password_page/widget/send_again_row.dart';
 
 import '../../../../../utils/constants/sized_box.dart';
 import '../../../../../utils/constants/text.dart';
@@ -23,6 +24,7 @@ class EnterCodeBody extends StatelessWidget {
           ForgotSecondText(MyText.codeSent),
           MySizedBox.h16,
           CodeFieldForgot(),
+          SendAgainRow(),
         ],
       ),
     );

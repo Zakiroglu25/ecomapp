@@ -16,9 +16,9 @@ class BirthdayFieldUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (controller.text != null || controller.text != '') {
-      BlocProvider.of<UserCubit>(context).updateBirthDate(controller.text);
-    }
+    // if (controller.text != null || controller.text != '') {
+    //   BlocProvider.of<UserCubit>(context).updateBirthDate(controller.text);
+    // }
     return StreamBuilder<String>(
       stream: BlocProvider.of<UserCubit>(context).birthDateStream,
       builder: (context, snapshot) {

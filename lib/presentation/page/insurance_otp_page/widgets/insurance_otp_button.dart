@@ -29,10 +29,10 @@ class InsuranceOtpButton extends StatelessWidget {
           MySizedBox.h16,
           showLogOutButton
               ? AppButton(
-                  text: MyText.logout,
-                  onTap: () =>
-                      context.read<AuthenticationCubit>().logOut(context),
-                )
+            text: MyText.logout,
+            onTap: () =>
+                context.read<AuthenticationCubit>().logOut(context),
+          )
               : Container(),
         ],
       ),

@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/config/init.dart';
 import 'package:uikit/infrastructure/cubit/app_bloc_observer.dart';
+import 'package:uikit/locator.dart';
 
+import 'infrastructure/services/hive_service.dart';
 import 'mate_app.dart';
 
+  HiveService get _prefs => locator<HiveService>();
 class Adam {
   late final String name;
 
@@ -30,7 +33,6 @@ Future<dynamic> onBackgroundMessageHandler(Map<String, dynamic> message) async {
   }
 }
 void main() async {
-  
   Adam a1 = Adam();
   Adam a2 = Adam();
   Adam a3 = Adam();
@@ -54,6 +56,7 @@ void main() async {
   // client.post("path");
   print("object client3: ${client3.hashCode}");
   print("object client4: ${client4.hashCode}");
+
 
   await init();
   BlocOverrides.runZoned(

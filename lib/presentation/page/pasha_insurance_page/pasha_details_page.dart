@@ -6,6 +6,8 @@ import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/screen/ink_wrapper.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../infrastructure/config/init.dart';
 import 'widgets/pasha_app_download_widget.dart';
@@ -59,7 +61,11 @@ class _PashaInsurancePageState extends State<PashaInsurancePage> {
                   .copyWith(fontSize: 17, color: MyColors.white),
             ),
             MySizedBox.h30,
-            const PashaAppDownloadWidget(),
+            InkWrapper(
+                onTap: (){
+                  launch("https://play.google.com/store/apps/details?id=az.pasha_insurance.customerapp");
+                },
+                child: const PashaAppDownloadWidget()),
             MySizedBox.h10,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

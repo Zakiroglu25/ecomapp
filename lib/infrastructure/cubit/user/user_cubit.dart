@@ -216,7 +216,7 @@ class UserCubit extends Cubit<UserState> {
   updateBirthDate(String value) {
     if (value.isEmpty) {
       birthDate.value = '';
-      birthDate.sink.addError("Xana doldurulmalıdır");
+      // birthDate.sink.addError("Xana doldurulmalıdır");
     } else {
       birthDate.sink.add(value);
     }
@@ -234,7 +234,6 @@ class UserCubit extends Cubit<UserState> {
   updateFin(String value) {
     if (value.isEmpty) {
       fin.value = '';
-      fin.sink.addError("Xana doldurulmalıdır");
     } else {
       fin.sink.add(value);
     }
@@ -268,7 +267,7 @@ class UserCubit extends Cubit<UserState> {
   updateLastname(String value) {
     if (value.isEmpty) {
       lastname.value = '';
-      lastname.sink.addError("Xana doldurulmalıdır");
+      // lastname.sink.addError("Xana doldurulmalıdır");
     } else {
       lastname.sink.add(value);
     }
@@ -286,7 +285,6 @@ class UserCubit extends Cubit<UserState> {
   updateSeria(String value) {
     if (value.isEmpty) {
       seria.value = '';
-      seria.sink.addError("Xana doldurulmalıdır");
     } else {
       seria.sink.add(value);
     }
@@ -303,7 +301,7 @@ class UserCubit extends Cubit<UserState> {
   patronymicName(String value) {
     if (value.isEmpty) {
       patronymic.value = '';
-      patronymic.sink.addError("Xana doldurulmalıdır");
+      // patronymic.sink.addError("Xana doldurulmalıdır");
     } else {
       patronymic.sink.add(value);
     }

@@ -81,10 +81,10 @@ class MapDetailsHeaders extends StatelessWidget {
                 ),
                 child: Center(
                     child: Text(
-                  maps.isOpen! ? "Açıqdır" : "Bağlıdır",
-                  style:
+                      maps.isOpen! ? "Açıqdır" : "Bağlıdır",
+                      style:
                       AppTextStyles.sfPro400s16.copyWith(color: MyColors.white),
-                )),
+                    )),
               ),
               MySizedBox.h16,
               Row(
@@ -114,9 +114,9 @@ class MapDetailsHeaders extends StatelessWidget {
     await canLaunchUrl(url)
         ? await launchUrl(url)
         : Alert.show(NavigationService.instance.navigationKey!.currentContext!,
-            //content: MyText.networkError,
-            title: MyText.error,
-            mainButtonColor: MyColors.brand);
+        //content: MyText.networkError,
+        title: MyText.error,
+        mainButtonColor: MyColors.brand);
     ;
   }
 
@@ -124,8 +124,8 @@ class MapDetailsHeaders extends StatelessWidget {
     await canLaunchUrl(url)
         ? await launchUrl(url)
         : Alert.show(NavigationService.instance.navigationKey!.currentContext!,
-            //content: MyText.networkError,
-            title: MyText.error,
-            mainButtonColor: MyColors.brand);
+        //content: MyText.networkError,
+        title: MyText.error,
+        mainButtonColor: MyColors.brand);
   }
 }

@@ -5,6 +5,7 @@ import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/widgets/custom/column_with_space.dart';
 import 'package:uikit/widgets/general/app_element_box.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'pasha_insurance_desc_text.dart';
 import 'pasha_insurance_title_text.dart';
@@ -15,17 +16,22 @@ class PashaCabinetWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: AppElementBox(
-        padding: Paddings.paddingA20,
-        color: MyColors.white255,
-        child: SpacedColumn(
-          space: 4,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.asset(Assets.pngUser),
-            const PashaInsuranceTitleText(MyText.personalAccount),
-            const PashaInsuranceDescText(MyText.personalAccountDetails),
-          ],
+      child: InkWell(
+        onTap: (){
+          launch("https://cabinet.pasha-insurance.az/account");
+        },
+        child: AppElementBox(
+          padding: Paddings.paddingA20,
+          color: MyColors.white255,
+          child: SpacedColumn(
+            space: 4,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(Assets.pngUser),
+              const PashaInsuranceTitleText(MyText.personalAccount),
+              const PashaInsuranceDescText(MyText.personalAccountDetails),
+            ],
+          ),
         ),
       ),
     );

@@ -75,8 +75,8 @@ class ProductOptionDetailsCubit extends Cubit<ProductOptionDetailsState> {
       products.addAll(result.data!.products!);
       emit(ProductODetailsMapListSuccess(products));
       page++;
+      updateHaveElse();
     }
-    updateHaveElse();
   }
 
   final BehaviorSubject<bool> haveElse = BehaviorSubject<bool>.seeded(false);

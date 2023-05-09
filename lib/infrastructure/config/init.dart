@@ -89,7 +89,7 @@ void setAppStatusbarStyle() {
         Platform.isAndroid ? Brightness.light : Brightness.dark,
     systemNavigationBarColor: MyColors.white,
     statusBarIconBrightness: Brightness.light,
-    statusBarColor: MyColors.brand, // status bar color
+    statusBarColor: MyColors.transparent, // status bar color
   ));
 }
 

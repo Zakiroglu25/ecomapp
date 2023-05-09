@@ -48,8 +48,8 @@ class _PageViewExampleState extends State<PageViewExample> {
 
   get cards => [
         UserView(),
-        AddInsurance(),
         EditContact(),
+        AddInsurance(),
       ];
 
   @override
