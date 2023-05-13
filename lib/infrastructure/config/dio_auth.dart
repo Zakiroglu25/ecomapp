@@ -8,12 +8,14 @@ import 'package:uikit/infrastructure/data/auth_provider.dart';
 import 'package:uikit/infrastructure/services/navigation_service.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/utils/extensions/string.dart';
 
 import '../../locator.dart';
 import '../../utils/constants/api_keys.dart';
 import '../../utils/screen/alert.dart';
+import '../cubit/authentication/authentication_cubit.dart';
 import '../model/response/detailed_error.dart';
 import '../model/response/error_response.dart';
 import '../services/hive_service.dart';
@@ -28,7 +30,6 @@ class DioAuth {
 
   static Future<DioAuth> get instance async {
     _instance ??= DioAuth._internal();
-
     dioAuth = Dio(
       BaseOptions(
         baseUrl: ApiKeys.baseUrl,
@@ -36,13 +37,13 @@ class DioAuth {
         followRedirects: true,
         //headers: ApiKeys.header(token: _prefs.accessToken),
         validateStatus: (status) {
-          return status! < 500;
+          return status! < 400;
           //return true;
         },
       ),
     )
-      ..interceptors.add(CustomInterceptors())
-      ..interceptors.add(JwtInterceptor());
+      ..interceptors.add(JwtInterceptor())
+      ..interceptors.add(CustomInterceptors());
 
     return _instance!;
   }
@@ -71,56 +72,39 @@ class JwtInterceptor extends Interceptor {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) async {
     // TODO: implement onResponse
-
-    if (response.statusCode == null) return;
-    switch (response.statusCode) {
-      case 401:
-      case 403:
-        refreshToken(handler: handler, response: response)
-            .then((value) => _retry(response.requestOptions));
-        break;
-      default:
-        break;
-    }
     super.onResponse(response, handler);
   }
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) async {
     super.onError(err, handler);
-
-    switch (err.response?.statusCode) {
-      case 200:
-      case 201:
-        break;
-      case 500:
-        final error = ErrorResponse.fromJson(err.response?.data);
-        switch (error.status) {
-          case 10005:
-            // Go.to(
-            //     NavigationService.instance.navigationKey!.currentContext!,
-            //     Pager.otp(
-            //         phone: _prefs.phoneNumber,
-            //         email: _prefs.email,
-            //         requestNew: true));
-            // handler.next(err);
-            return;
-        }
-        break;
+    final response = err.response;
+    if (response == null) return;
+    switch (response.statusCode) {
+      case 401:
+      case 403:
+        await refreshToken(handler: handler, response: response)
+            .then((value) => _retry(response.requestOptions, handler));
+        // handler.next(err);
+        return;
       default:
         break;
     }
   }
 
   Future<void> refreshToken(
-      {required ResponseInterceptorHandler handler,
-      required Response? response}) async {
+      {required ErrorInterceptorHandler handler,
+      required Response response}) async {
     final res = await AuthProvider.refreshToken();
 
-    if (res.statusCode.isSuccess && response != null) {
+    if (res.statusCode.isSuccess) {
+      bbbb("res datat:  ${res.data}");
       final accessToken = res.data['accessToken'];
       await _prefs.persistAccessToken(accessToken: accessToken);
-      return handler.resolve(response);
+      //handler.resolve(response);
+    } else {
+      AuthenticationCubit()
+          .logOut(NavigationService.instance.navigationKey!.currentContext!);
     }
   }
 
@@ -133,16 +117,27 @@ class JwtInterceptor extends Interceptor {
   //   }
   // }
 
-  void _retry(RequestOptions requestOptions) async {
-    final options =
+  void _retry(
+      RequestOptions requestOptions, ErrorInterceptorHandler handler) async {
+    // final options =
+    //     Options(method: requestOptions.method, headers: requestOptions.headers);
+    //
+    // options.headers!['x-mask-jwt'] = _prefs.accessToken;
+    //
+    // await dioG.dio.request<dynamic>(requestOptions.path,
+    //     data: requestOptions.data,
+    //     queryParameters: requestOptions.queryParameters,
+    //     options: options);
+
+    // requestOptions.headers['x-mask-jwt'] = _prefs.accessToken;
+    final opts =
         Options(method: requestOptions.method, headers: requestOptions.headers);
-
-    options.headers!['x-mask-jwt'] = _prefs.accessToken;
-
-    await dioG.dio.request<dynamic>(requestOptions.path,
+    opts.headers!['x-mask-jwt'] = _prefs.accessToken;
+    final cloneReq = await DioAuth.dioAuth.request(requestOptions.path,
+        options: opts,
         data: requestOptions.data,
-        queryParameters: requestOptions.queryParameters,
-        options: options);
+        queryParameters: requestOptions.queryParameters);
+    return handler.resolve(cloneReq);
   }
 }
 
@@ -162,49 +157,55 @@ class CustomInterceptors extends Interceptor {
     debugPrint(
         'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}');
     //
-    if (!response.statusCode.isSuccess) {
-      // llll("user: ${_prefs.user}"+"\n request body: "+response.requestOptions.data.toString());
-      Recorder.recordResponseError(response);
-    }
+
     //  return
     super.onResponse(response, handler);
-    if (response.statusCode == null) return;
-    if (response.statusCode.isSuccess ||
-        response.statusCode == 403 ||
-        response.statusCode == 401 ||
-        response.statusCode! >= 500) return;
-    switch (response.statusCode) {
-      case 200:
-      case 201:
-        break;
-      case 413:
-        Alert.show(NavigationService.instance.navigationKey!.currentContext!,
-            title: MyText.unknownError, mainButtonColor: MyColors.brand);
-        break;
-      default:
-        final error = DetailedError.fromJson(response.data);
-        Alert.show(NavigationService.instance.navigationKey!.currentContext!,
-            //content: error.details ?? '',
-            title: error.details ?? MyText.error,
-            mainButtonColor: MyColors.brand);
-        break;
-    }
   }
 
   @override
   Future onError(DioError err, ErrorInterceptorHandler handler) async {
-    // eeee(
-    //     'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}');
+    eeee(
+        'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}');
     // Recorder.recordDioError(err);
     //return
-    if (err.response?.statusCode==500) {
-      final error = DetailedError.fromJson(err.response?.data);
-      Alert.show(NavigationService.instance.navigationKey!.currentContext!,
-          //content: error.details ?? '',
-          title: error.details.isNotNullOrEmpty?  error.details:MyText.serverError,
-          mainButtonColor: MyColors.brand);
-
+    //  bbbb("buuuuuuu");
+    final response = err.response;
+    if (response == null) return;
+    if (response.statusCode == 403 || response.statusCode == 401) return;
+    switch (response.statusCode) {
+      case 413:
+        Alert.show(NavigationService.instance.navigationKey!.currentContext!,
+            title: MyText.unknownError, mainButtonColor: MyColors.brand);
+        break;
+      case 500:
+        final error = ErrorResponse.fromJson(err.response?.data);
+        switch (error.status) {
+          case 10005:
+            // Go.to(
+            //     NavigationService.instance.navigationKey!.currentContext!,
+            //     Pager.otp(
+            //         phone: _prefs.phoneNumber,
+            //         email: _prefs.email,
+            //         requestNew: true));
+            // handler.next(err);
+            return;
+          default:
+            final error = DetailedError.fromJson(err.response?.data);
+            Alert.show(
+                NavigationService.instance.navigationKey!.currentContext!,
+                title: error.details.isNotNullOrEmpty
+                    ? error.details
+                    : MyText.serverError,
+                mainButtonColor: MyColors.brand);
+            break;
+        }
+        break;
+      default:
+        Alert.show(NavigationService.instance.navigationKey!.currentContext!,
+            title: MyText.unknownError, mainButtonColor: MyColors.brand);
+        break;
     }
+
     if (_isServerDown(err)) {
       Alert.show(NavigationService.instance.navigationKey!.currentContext!,
           //content: MyText.networkError,

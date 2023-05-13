@@ -34,6 +34,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
 
   // MyUser? userData = MyUser();
   FirebaseMessaging _fcm = FirebaseMessaging.instance;
+
   // final remoteConfig = FirebaseRemoteConfig.instance;
 
   bool? goOn; //go on prosesler bitdiyini bildirir ve davam etmeye icaze verir
@@ -54,17 +55,18 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       //  _prefs.persistIsLoggedIn(true);
       final bool isLoggedIn = _prefs.isLoggedIn;
       final String? accessToken = _prefs.accessToken;
-      final bool? isNumberValidated = await checkIsValidated();
-
-      //nomrenin tesdiq olunumagini yoxlayir
-      //olunmayibsa otp sehifesi acilir
-      if (isNumberValidated == false) {
-        emit(AuthenticationOtpRequest());
-        return;
-      }
 
       bbbb("accessToken: $accessToken");
       if (isLoggedIn && accessToken != null) {
+        final bool? isNumberValidated = await checkIsValidated();
+
+        //nomrenin tesdiq olunumagini yoxlayir
+        //olunmayibsa otp sehifesi acilir
+        if (isNumberValidated == false) {
+          emit(AuthenticationOtpRequest());
+          return;
+        }
+
         //userin girish edib etmemeyi yoxlanilir
         await Future.wait([
           //splah screen ucun min 2 san. gozledilir
@@ -106,7 +108,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   Future<bool?> checkIsValidated({bool? loading}) async {
     try {
       final result =
-          await AccountProvider.fetchUserInfo(token: _prefs.accessToken);
+      await AccountProvider.fetchUserInfo(token: _prefs.accessToken);
       if (result.statusCode.isSuccess) return true;
     } on DioError catch (err, s) {
       switch (err.response?.statusCode) {
@@ -155,8 +157,8 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         image: SizedBox(
             width: 120, height: 120, child: Image.asset(Assets.pngSetting)),
         cancelButton: true, onTap: () {
-      logOut(context, goWithPager: goWithPager);
-    }, title: MyText.are_u_sure_exit);
+          logOut(context, goWithPager: goWithPager);
+        }, title: MyText.are_u_sure_exit);
   }
 
   void showDeleteDialog(BuildContext context, {bool goWithPager = false}) {
@@ -164,8 +166,8 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         image: SizedBox(
             width: 120, height: 120, child: Image.asset(Assets.pngSetting)),
         cancelButton: true, onTap: () {
-      deleteAccount(context, goWithPager: goWithPager);
-    }, title: MyText.are_u_sure_delete_account);
+          deleteAccount(context, goWithPager: goWithPager);
+        }, title: MyText.are_u_sure_delete_account);
   }
 
   void logOut(BuildContext context, {bool goWithPager = false}) async {
