@@ -24,6 +24,9 @@ class InsuranceNumTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final addInsuranceCubit = context.watch<InsuranceCubit>();
+    if (_prefs.user.finCode != null) {
+      addInsuranceCubit.finCodeController.text = _prefs.user.finCode!.toUpperCase();
+    }
     return Padding(
       padding: Paddings.paddingH16,
       child: BlocProvider(
@@ -60,20 +63,16 @@ class InsuranceNumTab extends StatelessWidget {
                 textCapitalization: TextCapitalization.none,
               ),
               AppField(
-                controller: _prefs.user.finCode.isNull
-                    ? addInsuranceCubit.finCodeController
-                    : addInsuranceCubit.finCodeController
-                  ..text = _prefs.user.finCode!.toUpperCase(),
+                controller: addInsuranceCubit.finCodeController,
                 title: MyText.fin,
                 maxLines: 1,
-                hint: _prefs.user.finCode.isNull
-                    ? MyText.fin
-                    : _prefs.user.finCode,
+                hint: MyText.fin,
                 textInputType: TextInputType.text,
                 maxLenght: 7,
                 upperCase: true,
                 textCapitalization: TextCapitalization.none,
               ),
+
               AppButton(
                 loading:
                 context.watch<InsuranceCubit>().state is InsuranceLoading,
