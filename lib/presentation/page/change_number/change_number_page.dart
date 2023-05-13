@@ -7,6 +7,7 @@ import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/delegate/my_printer.dart';
 
+import '../../../infrastructure/cubit/forgot_pass/forgot_pass_cubit.dart';
 import '../../../infrastructure/services/hive_service.dart';
 import '../../../locator.dart';
 import '../../../utils/constants/assets.dart';
@@ -30,6 +31,8 @@ class ChangeNumberPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<UserCubit>();
+    final forgotCubit = context.watch<ForgotPassCubit>();
+
     return BlocProvider(
       create: (context) => AddAddressCubit(),
       child: Scaffold(
@@ -67,8 +70,10 @@ class ChangeNumberPage extends StatelessWidget {
               AppButton(
                 text: MyText.save,
                 loading: cubit.state is UserLoading,
-                onTap: () =>
-                    context.read<UserCubit>().changePhoneAndEmail(context),
+                onTap: (){
+                    context.read<UserCubit>().changePhoneAndEmail(context);
+                    forgotCubit.requestOTP(context);
+                }
               )
             ],
           ),

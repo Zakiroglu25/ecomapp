@@ -232,8 +232,15 @@ class Pager {
   static get settings => const SettingsPage();
 
   static get changeNumber =>
-      BlocProvider(
-        create: (context) => UserCubit(),
+      MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => UserCubit(),
+          ),
+          BlocProvider(
+            create: (context) => ForgotPassCubit(),
+          ),
+        ],
         child: ChangeNumberPage(),
       );
 

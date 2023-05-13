@@ -11,9 +11,9 @@ class SeriaFieldUser extends StatelessWidget {
   SeriaFieldUser({required this.controller}); //= new TextEditingController();
   @override
   Widget build(BuildContext context) {
-    // if (controller.text != null || controller.text != '') {
-    //   BlocProvider.of<UserCubit>(context).updateSeria(controller.text);
-    // }
+    if (controller.text != null || controller.text != '') {
+      BlocProvider.of<UserCubit>(context).updateSeria(controller.text);
+    }
     return StreamBuilder<String>(
       stream: BlocProvider.of<UserCubit>(context).seriaStream,
       builder: (context, snapshot) {
