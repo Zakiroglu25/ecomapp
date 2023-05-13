@@ -125,7 +125,7 @@ class UserCubit extends Cubit<UserState> {
   updateNewPassword(String value) {
     if (value.isEmpty) {
       newPassword.value = '';
-      newPassword.sink.addError("Xana doldurulmalıdır");
+      newPassword.sink.addError("");
     } else {
       newPassword.sink.add(value);
     }
@@ -143,7 +143,7 @@ class UserCubit extends Cubit<UserState> {
   updateOldPassword(String value) {
     if (value.isEmpty) {
       oldPassword.value = '';
-      oldPassword.sink.addError("Xana doldurulmalıdır");
+      oldPassword.sink.addError("");
     } else {
       oldPassword.sink.add(value);
     }
@@ -161,7 +161,7 @@ class UserCubit extends Cubit<UserState> {
   updatePassword(String value) {
     if (value.isEmpty) {
       password.value = '';
-      password.sink.addError("Xana doldurulmalıdır");
+      password.sink.addError("");
     } else {
       password.sink.add(value);
     }
@@ -179,7 +179,7 @@ class UserCubit extends Cubit<UserState> {
   updatePhone(String value) {
     if (value.isEmpty) {
       phone.value = '';
-      phone.sink.addError("Xana doldurulmalıdır");
+      phone.sink.addError("");
     } else {
       phone.sink.add(value);
     }
@@ -197,7 +197,7 @@ class UserCubit extends Cubit<UserState> {
   updateEmail(String value) {
     if (value.isEmpty) {
       uEmail.value = '';
-      uEmail.sink.addError(MyText.emailAddressIsNotCorrect);
+      uEmail.sink.addError("");
     } else {
       emailValid = Validator.mail(value);
       uEmail.sink.add(value);
@@ -216,7 +216,7 @@ class UserCubit extends Cubit<UserState> {
   updateBirthDate(String value) {
     if (value.isEmpty) {
       birthDate.value = '';
-      // birthDate.sink.addError("Xana doldurulmalıdır");
+      birthDate.sink.addError("");
     } else {
       birthDate.sink.add(value);
     }
@@ -250,7 +250,7 @@ class UserCubit extends Cubit<UserState> {
   updateName(String value) {
     if (value.isEmpty) {
       name.value = '';
-      name.sink.addError("Xana doldurulmalıdır");
+      name.sink.addError("");
     } else {
       name.sink.add(value);
     }
@@ -267,7 +267,7 @@ class UserCubit extends Cubit<UserState> {
   updateLastname(String value) {
     if (value.isEmpty) {
       lastname.value = '';
-      // lastname.sink.addError("Xana doldurulmalıdır");
+      lastname.sink.addError("");
     } else {
       lastname.sink.add(value);
     }
@@ -301,7 +301,7 @@ class UserCubit extends Cubit<UserState> {
   patronymicName(String value) {
     if (value.isEmpty) {
       patronymic.value = '';
-      // patronymic.sink.addError("Xana doldurulmalıdır");
+      patronymic.sink.addError("");
     } else {
       patronymic.sink.add(value);
     }

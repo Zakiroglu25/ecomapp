@@ -11,6 +11,10 @@ class TitleMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String lastMessage = list!.lastMessage!;
+    String truncatedMessage = lastMessage.length > 20
+        ? lastMessage.substring(0, 30) + '...'
+        : lastMessage;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -20,9 +24,11 @@ class TitleMessage extends StatelessWidget {
           style: AppTextStyles.sfPro600s16,
         ),
         MySizedBox.h4,
-        Text(
-          list!.lastMessage!,
-          style: AppTextStyles.sfPro400s14.copyWith(height: 1.5),
+        SizedBox(
+          child: Text(
+            truncatedMessage,
+            style: AppTextStyles.sfPro400s14.copyWith(height: 1.5),
+          ),
         ),
       ],
     );

@@ -35,7 +35,7 @@ class AddInsurancePage extends StatelessWidget {
               var insuranceList = state.InsuranceList;
               return Column(
                 children: [
-                  MySizedBox.h22,
+                  MySizedBox.h100,
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 2,
                     child: ListOrEmpty(
@@ -59,7 +59,7 @@ class AddInsurancePage extends StatelessWidget {
                           }),
                     ),
                   ),
-                  MySizedBox.h70,
+                  Spacer(),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: AppButton(

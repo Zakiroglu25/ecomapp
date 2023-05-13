@@ -11,9 +11,9 @@ class LastNameFieldUser extends StatelessWidget {
   LastNameFieldUser({this.controller}); //= new TextEditingController();
   @override
   Widget build(BuildContext context) {
-    // if (controller!.text != null || controller!.text != '') {
-    //   BlocProvider.of<UserCubit>(context).updateLastname(controller!.text);
-    // }
+    if (controller!.text != null || controller!.text != '') {
+      BlocProvider.of<UserCubit>(context).updateLastname(controller!.text);
+    }
     return StreamBuilder<String>(
         stream: BlocProvider.of<UserCubit>(context).lastnameStream,
         builder: (context, snapshot) {

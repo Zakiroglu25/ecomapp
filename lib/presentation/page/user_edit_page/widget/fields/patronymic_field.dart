@@ -12,9 +12,9 @@ class PatronymicFieldUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // if (controller.text != null || controller.text != '') {
-    //   BlocProvider.of<UserCubit>(context).patronymicName(controller.text);
-    // }
+    if (controller.text != null || controller.text != '') {
+      BlocProvider.of<UserCubit>(context).patronymicName(controller.text);
+    }
     return StreamBuilder<String>(
       stream: BlocProvider.of<UserCubit>(context).patronymicStream,
       builder: (context, snapshot) {

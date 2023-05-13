@@ -72,7 +72,7 @@ class InsuranceNumTab extends StatelessWidget {
                 upperCase: true,
                 textCapitalization: TextCapitalization.none,
               ),
-
+              Spacer(),
               AppButton(
                 loading:
                 context.watch<InsuranceCubit>().state is InsuranceLoading,
