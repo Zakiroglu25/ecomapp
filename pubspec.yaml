@@ -47,7 +47,7 @@ dependencies:
   expandable: ^5.0.1
   flutter_slidable: ^2.0.0
   dash_chat_2: ^0.0.15
-  keyboard_actions: ^4.1.0
+  keyboard_actions: ^4.2.0
 
   #map
   google_maps_flutter:
@@ -90,6 +90,11 @@ dependencies:
 #      url: https://github.com/sohrabonline/uikit/module/uikit.git
 #      ref: soh # branch name
 
+
+
+dependency_overrides:
+  awesome_notifications: ^0.7.4+1
+  flutter_keyboard_visibility: ^5.4.0
 
 
 

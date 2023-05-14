@@ -58,11 +58,6 @@ class InsuranceCubit extends Cubit<InsuranceState>
           policyNumber: policy.text,
           phoneNumber: number,
           finCode: finCodeController.text);
-
-      // final response = await InsuranceProvider.addInsurance(
-      //     policyNumber: '1804851', phoneNumber: "+994704051040 ", finCode: '5H0H3MU');
-
-
       final errors = response.data;
       if (response.statusCode.isSuccess) {
         // emit(AddInsuranceSuccess());
