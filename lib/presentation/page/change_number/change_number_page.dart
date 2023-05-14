@@ -31,7 +31,7 @@ class ChangeNumberPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<UserCubit>();
-    final forgotCubit = context.watch<ForgotPassCubit>();
+    // final forgotCubit = context.watch<ForgotPassCubit>();
 
     return BlocProvider(
       create: (context) => AddAddressCubit(),
@@ -68,13 +68,12 @@ class ChangeNumberPage extends StatelessWidget {
                 controller: controller!,
               ),
               AppButton(
-                text: MyText.save,
-                loading: cubit.state is UserLoading,
-                onTap: (){
+                  text: MyText.save,
+                  loading: cubit.state is UserLoading,
+                  onTap: () {
                     context.read<UserCubit>().changePhoneAndEmail(context);
-                    forgotCubit.requestOTP(context);
-                }
-              )
+                    //forgotCubit.requestOTP(context);
+                  })
             ],
           ),
         ),

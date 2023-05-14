@@ -55,6 +55,7 @@ class _PageViewExampleState extends State<PageViewExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: DoctorAppbar(
         title: 'Doctoro profili',
         user: false,

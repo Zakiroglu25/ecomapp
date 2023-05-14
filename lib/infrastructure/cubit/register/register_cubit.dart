@@ -20,6 +20,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());
 
   HiveService get _prefs => locator<HiveService>();
+
   void register(BuildContext context) {
     registerPersonal(context);
   }
@@ -30,7 +31,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       // final deviceCode = await _firebaseMessaging.getToken();
       final deviceCode = 'token';
       final formattedPhone =
-          AppOperations.formatNumberWith994(phone.valueOrNull!);
+      AppOperations.formatNumberWith994(phone.valueOrNull!);
       final response = await AuthProvider.registration(
         email: uEmail.valueOrNull,
         firstName: uName.valueOrNull,
@@ -49,7 +50,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         // );
         emit(RegisterSuccess(""));
         Snack.positive2(context, message: MyText.otpSent);
-        Go.to(context, Pager.otp());
+        Go.to(context, Pager.otp(context: context));
       } else {
         // String error = '';
         // response?.validation?.toJson().entries.map((e) {
@@ -106,7 +107,7 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   //registerActive
   final BehaviorSubject<bool> registerActive =
-      BehaviorSubject<bool>.seeded(false);
+  BehaviorSubject<bool>.seeded(false);
 
 //
   Stream<bool> get registerActiveeStream => registerActive.stream;
@@ -136,10 +137,11 @@ class RegisterCubit extends Cubit<RegisterState> {
     isUserInfoValid();
   }
 
-  bool get isEmailIncorrect => (!uEmail.hasValue ||
-      uEmail.value == null ||
-      uEmail.value.isEmpty ||
-      !emailValid);
+  bool get isEmailIncorrect =>
+      (!uEmail.hasValue ||
+          uEmail.value == null ||
+          uEmail.value.isEmpty ||
+          !emailValid);
 
   //phone
   final BehaviorSubject<String> phone = BehaviorSubject<String>();
@@ -174,9 +176,10 @@ class RegisterCubit extends Cubit<RegisterState> {
     isUserInfoValid();
   }
 
-  bool get isMainPassInCorrect => (!uPassMain.hasValue ||
-      uPassMain.value == null ||
-      uPassMain.value.isEmpty);
+  bool get isMainPassInCorrect =>
+      (!uPassMain.hasValue ||
+          uPassMain.value == null ||
+          uPassMain.value.isEmpty);
 
   //checkbox security
   final BehaviorSubject<bool> checkbox = BehaviorSubject<bool>.seeded(false);
@@ -209,9 +212,10 @@ class RegisterCubit extends Cubit<RegisterState> {
     isUserInfoValid();
   }
 
-  bool get isCheckBoxAdsIncorrect => (!checkboxAds.hasValue ||
-      checkboxAds.value == null ||
-      checkboxAds.value == false);
+  bool get isCheckBoxAdsIncorrect =>
+      (!checkboxAds.hasValue ||
+          checkboxAds.value == null ||
+          checkboxAds.value == false);
 
   //gender
 

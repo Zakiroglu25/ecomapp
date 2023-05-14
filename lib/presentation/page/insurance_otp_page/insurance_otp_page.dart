@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uikit/infrastructure/cubit/insurance_cubit/insurance_cubit.dart';
 import 'package:uikit/infrastructure/cubit/insurance_cubit/insurance_state.dart';
 import 'package:uikit/utils/screen/snack.dart';
 import 'package:uikit/widgets/custom/app_safe_area.dart';
@@ -14,8 +15,10 @@ class InsuranceOTPPage extends StatelessWidget {
   const InsuranceOTPPage({Key? key, required this.showBackButton})
       : super(key: key);
   final bool showBackButton;
+
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<InsuranceCubit>();
     return AppSafeArea(
       child: Scaffold(
         body: BlocConsumer<InsuranceOtpCubit, InsuranceOtpState>(
@@ -29,9 +32,12 @@ class InsuranceOTPPage extends StatelessWidget {
             //   return AppLoading();
             // }
             return OTPView(
-                showBackButton: showBackButton,
-                button: InsuranceOtpButton(showLogOutButton: !showBackButton),
-                pinField: const OtpPinCodeField());
+              showBackButton: showBackButton,
+              button: InsuranceOtpButton(showLogOutButton: !showBackButton),
+              pinField: const OtpPinCodeField(),
+              countdownTimeStream: cubit.countdownTimeStream,
+              onTapResend: () => cubit.addInsurance(context: context),
+            );
           },
         ),
       ),

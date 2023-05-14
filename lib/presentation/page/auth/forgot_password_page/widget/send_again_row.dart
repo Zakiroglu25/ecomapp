@@ -9,13 +9,17 @@ import '../../../../../utils/screen/widget_or_empty.dart';
 import '../../../../../widgets/custom/app_button.dart';
 
 class SendAgainRow extends StatelessWidget {
-  const SendAgainRow({Key? key}) : super(key: key);
+  const SendAgainRow(
+      {Key? key, required this.onTap, required this.countdownTimeStream})
+      : super(key: key);
+  final VoidCallback? onTap;
+  final Stream<int> countdownTimeStream;
 
   @override
   Widget build(BuildContext context) {
-    final forgotCubit = context.watch<ForgotPassCubit>();
+    //final forgotCubit = context.watch<ForgotPassCubit>();
     return StreamBuilder<int>(
-        stream: forgotCubit.countdownTimeStream,
+        stream: countdownTimeStream,
         builder: (context, snapshot) {
           return SizedBox(
             height: 30,
@@ -35,7 +39,8 @@ class SendAgainRow extends StatelessWidget {
                   child: SlideInRight(
                     duration: Durations.ms100,
                     child: AppButton(
-                      onTap: () => forgotCubit.requestOTP(context),
+                      onTap: onTap,
+                      //() => forgotCubit.requestOTP(context),
                       w: 150,
                       text: MyText.sendAgain,
                     ),

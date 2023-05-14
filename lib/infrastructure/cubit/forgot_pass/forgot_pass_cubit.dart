@@ -16,11 +16,11 @@ import '../../../utils/delegate/pager.dart';
 import '../../../utils/screen/snack.dart';
 import '../../../utils/validators/validator.dart';
 import '../../data/forgot_provider.dart';
+import '../../mixins/count_down_mixin.dart';
 import '../../services/hive_service.dart';
 import 'forgot_pass_state.dart';
-import 'mixin.dart';
 
-class ForgotPassCubit extends Cubit<ForgotPassState> with ForgotPassMixin {
+class ForgotPassCubit extends Cubit<ForgotPassState> with CountDownMixin {
   ForgotPassCubit() : super(ForgotPassEnterMail());
 
   HiveService get _prefs => locator<HiveService>();

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:uikit/infrastructure/mixins/count_down_mixin.dart';
 import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/enums/otp_request_kind.dart';
 import 'package:uikit/utils/extensions/index.dart';
@@ -18,7 +19,7 @@ import '../../services/hive_service.dart';
 
 part 'user_state.dart';
 
-class UserCubit extends Cubit<UserState> {
+class UserCubit extends Cubit<UserState> with CountDownMixin {
   UserCubit() : super(UserInitial());
 
   HiveService get _prefs => locator<HiveService>();
@@ -40,21 +41,24 @@ class UserCubit extends Cubit<UserState> {
   }
 
   void changePhoneAndEmail(BuildContext context,
-      {bool isLoading = true}) async {
+      {bool isLoading = true, bool isSendAgain = false}) async {
     if (isLoading) emit(UserLoading());
     try {
       final response = await AccountProvider.changePhoneAndEmail(
           phone: phone.valueOrNull,
           password: password.valueOrNull,
           email: uEmail.valueOrNull);
-      if (response.isSuccess) {
+      if (!response.isSuccess) {
+        // startCountdownTimer();
+        Snack.error(context: context);
+      }
+      if (!isSendAgain) {
         Go.to(
             context,
             Pager.otp(
                 otpRequestKind: OtpRequestKind.changeNumber,
-                phone: phone.valueOrNull));
-      } else {
-        Snack.error(context: context);
+                phone: phone.valueOrNull,
+                context: context));
       }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
@@ -332,5 +336,12 @@ class UserCubit extends Cubit<UserState> {
   @override
   emit(UserState state) {
     if (!isClosed) return super.emit(state);
+  }
+
+  @override
+  Future<void> close() {
+    // TODO: implement close
+    timer.cancel();
+    return super.close();
   }
 }

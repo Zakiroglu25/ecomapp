@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:rxdart/rxdart.dart';
-import '../../../utils/constants/text.dart';
+import '../../utils/constants/text.dart';
 
-mixin ForgotPassMixin {
+mixin CountDownMixin {
   static const initialTime = 59;
   late Timer timer;
 
@@ -21,16 +21,9 @@ mixin ForgotPassMixin {
     }
   }
 
-  increaseCountdownTime() {
-    countdownTime.sink.add(++countdownTime.value);
-  }
-
   decreaseCountdownTime() {
     countdownTime.sink.add(--countdownTime.value);
   }
-
-  bool get isSecondPassCorrect =>
-      (!countdownTime.hasValue || countdownTime.value == null);
 
   //timer
   void startCountdownTimer() {

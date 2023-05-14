@@ -15,18 +15,22 @@ class OTPPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<OTPCubit>();
     return AppSafeArea(
       child: Scaffold(
         body: BlocConsumer<OTPCubit, OtpState>(
           listener: (context, state) {},
           builder: (context, state) {
             if (state is OtpInProgress) {
-              return AppLoading();
+              return const AppLoading();
             }
             return OTPView(
-                showBackButton: showBackButton,
-                button: OtpLoginButton(showLogOutButton: !showBackButton),
-                pinField: OtpPinCodeField());
+              showBackButton: showBackButton,
+              button: OtpLoginButton(showLogOutButton: !showBackButton),
+              pinField: const OtpPinCodeField(),
+              countdownTimeStream: cubit.countdownTimeStream,
+              onTapResend: () => cubit.resendOtp(),
+            );
           },
         ),
       ),

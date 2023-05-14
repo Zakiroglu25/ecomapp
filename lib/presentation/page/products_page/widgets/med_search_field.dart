@@ -19,7 +19,8 @@ class MedSearchField extends StatelessWidget {
       child: AppField(
         focusNode: cubit.searchFocus,
         hint: MyText.nameOrProducedCountry,
-        suffixIcon: SvgPicture.asset(Assets.svgSearch),
+        suffixIcon: GestureDetector(onTap: () => cubit.fetchProduct(),
+            child: SvgPicture.asset(Assets.svgSearch)),
         textInputAction: TextInputAction.search,
         controller: cubit.medSearchController,
         onFieldSubmitted: (v) {

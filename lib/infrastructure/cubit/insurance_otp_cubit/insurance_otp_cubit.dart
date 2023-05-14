@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:uikit/infrastructure/mixins/count_down_mixin.dart';
 import 'package:uikit/utils/delegate/pager.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
@@ -9,15 +10,15 @@ import '../../data/insurance_provider.dart';
 import 'insurance_otp_state.dart';
 import 'mixin.dart';
 
-class InsuranceOtpCubit extends Cubit<InsuranceOtpState> with InsuranceMixin {
+class InsuranceOtpCubit extends Cubit<InsuranceOtpState>
+    with InsuranceMixin, CountDownMixin {
   InsuranceOtpCubit() : super(InsuranceOtpInitial());
 
-  String policy='';
+  String policy = '';
 
   void setPolicyNumber({required String policyNumber}) async {
-    policy=policyNumber;
+    policy = policyNumber;
   }
-
 
   void validateInsurance(BuildContext context, {bool loading = true}) async {
     if (loading) {
@@ -41,10 +42,11 @@ class InsuranceOtpCubit extends Cubit<InsuranceOtpState> with InsuranceMixin {
       // Go.pop(context);
       // Go.replace(context, Pager.addInsuranceInfo);
       Recorder.recordCatchError(e, s);
-    }finally{
+    } finally {
       emit(InsuranceOtpInitial());
     }
   }
+
   @override
   Future<void> close() {
     return super.close();

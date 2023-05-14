@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:uikit/infrastructure/cubit/user/user_cubit.dart';
 import 'package:uikit/infrastructure/data/auth_provider.dart';
+import 'package:uikit/infrastructure/mixins/count_down_mixin.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../locator.dart';
@@ -23,20 +26,27 @@ import '../../services/navigation_service.dart';
 import 'otp_state.dart';
 // Project imports:
 
-class OTPCubit extends Cubit<OtpState> {
-  OTPCubit({this.requestNew = false, this.otpRequestKind, this.phone})
+class OTPCubit extends Cubit<OtpState> with CountDownMixin {
+  OTPCubit(
+      {this.requestNew = false,
+      this.otpRequestKind,
+      this.phone,
+      required this.inheritedContext})
       : super(OtpInitial()) {
     email = _prefs.email;
     phone ??= _prefs.phoneNumber;
-    if (requestNew)
+    startCountdownTimer();
+    if (requestNew) {
       requestOtp();
-    else
+    } else {
       emit(OtpRequested());
+    }
   }
 
   final OtpRequestKind? otpRequestKind;
 
   HiveService get _prefs => locator<HiveService>();
+  BuildContext inheritedContext;
   BuildContext outContext =
       NavigationService.instance.navigationKey!.currentContext!;
 
@@ -68,6 +78,7 @@ class OTPCubit extends Cubit<OtpState> {
   @override
   Future<void> close() {
     otp.close();
+    timer.cancel();
     return super.close();
   }
 
@@ -81,10 +92,24 @@ class OTPCubit extends Cubit<OtpState> {
         emit(OtpInProgress());
       }
       final res = await AuthProvider.requestOtp(phone: phone, email: email);
-      if (res.statusCode.isSuccess) emit(OtpRequested());
+      if (res.statusCode.isSuccess) {
+        emit(OtpRequested());
+      }
     } catch (e, s) {
       Recorder.recordCatchError(e, s);
       emit(OtpError(error: e.toString()));
+    }
+  }
+
+  void resendOtp({bool? loading}) async {
+    startCountdownTimer();
+    if (requestNew) {
+      requestOtp();
+    } else {
+      //   startCountdownTimer();
+      BlocProvider.of<UserCubit>(inheritedContext)
+          .changePhoneAndEmail(inheritedContext, isSendAgain: true);
+      emit(OtpRequested());
     }
   }
 

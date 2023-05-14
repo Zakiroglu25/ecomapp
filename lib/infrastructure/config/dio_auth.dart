@@ -204,7 +204,8 @@ class CustomInterceptors extends Interceptor {
         final error = DetailedError.fromJson(response.data);
         Alert.show(NavigationService.instance.navigationKey!.currentContext!,
             //content: error.details ?? '',
-            title: error.details ?? MyText.error,
+            title:
+                error.details.isNotNullOrEmpty ? error.details : MyText.error,
             mainButtonColor: MyColors.brand);
         break;
     }
@@ -221,6 +222,6 @@ class CustomInterceptors extends Interceptor {
 
   bool _isServerDown(DioError error) {
     return (error.error is SocketException) ||
-        (error.type == DioErrorType.connectTimeout);
+        (error.type == DioErrorType.connectionTimeout);
   }
 }

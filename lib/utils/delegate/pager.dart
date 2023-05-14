@@ -75,39 +75,29 @@ import '../enums/otp_request_kind.dart';
 class Pager {
   Pager._();
 
-  static app({bool? showSplash}) =>
-      BlocProvider(
-          create: (context) =>
-          AuthenticationCubit()
-            ..startApp(context, showSplash: showSplash ?? true),
-          child: const App());
+  static app({bool? showSplash}) => BlocProvider(
+      create: (context) => AuthenticationCubit()
+        ..startApp(context, showSplash: showSplash ?? true),
+      child: const App());
 
-  static get landing =>
-      MultiBlocProvider(providers: [
+  static get landing => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => AddressCubit()),
-        BlocProvider(create: (context) =>
-        ProductsCubit()
-          ..fetchProduct()),
+        BlocProvider(create: (context) => ProductsCubit()..fetchProduct()),
         BlocProvider(
-            create: (context) =>
-            AddressCubit()
-              ..fetchMainAddress(true)),
+            create: (context) => AddressCubit()..fetchMainAddress(true)),
       ], child: const LandingPage());
 
-  static get register =>
-      MultiBlocProvider(providers: [
+  static get register => MultiBlocProvider(providers: [
         BlocProvider(
           create: (context) => RegisterCubit(),
         ),
       ], child: const RegisterPage());
 
-  static get login =>
-      MultiBlocProvider(providers: [
+  static get login => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => LoginCubit()),
       ], child: const LoginPage());
 
-  static selectMapPage(BuildContext context) =>
-      MultiBlocProvider(providers: [
+  static selectMapPage(BuildContext context) => MultiBlocProvider(providers: [
         BlocProvider.value(value: BlocProvider.of<AddAddressCubit>(context)),
       ], child: const SelectMapPage());
 
@@ -120,119 +110,97 @@ class Pager {
     ], child: const ProductsPage());
   }
 
-  static pharmacy(MapMedicine map) =>
-      MultiBlocProvider(providers: [
+  static pharmacy(MapMedicine map) => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => FavoriteCubit()),
         BlocProvider(create: (context) => CartCubit()),
         BlocProvider(
             create: (context) =>
-            ProductOptionDetailsCubit()
-              ..fetchProductMapGuid(map.guid!)),
+                ProductOptionDetailsCubit()..fetchProductMapGuid(map.guid!)),
       ], child: PharmacyPage(maps: map));
 
-  static get cart =>
-      MultiBlocProvider(providers: [
-        BlocProvider(create: (context) =>
-        CartCubit()
-          ..fetch()),
+  static get cart => MultiBlocProvider(providers: [
+        BlocProvider(create: (context) => CartCubit()..fetch()),
         BlocProvider(create: (context) => WaitingOrdersCubit()),
         BlocProvider(create: (context) => DeliveryOrdersCubit()),
-        BlocProvider(create: (context) =>
-        TabCountsCubit()
-          ..fetch()),
+        BlocProvider(create: (context) => TabCountsCubit()..fetch()),
       ], child: const CartPage());
 
-  static cartOrderDetails(String guid, {
+  static cartOrderDetails(
+    String guid, {
     required int orderNumber,
     required String status,
   }) =>
       MultiBlocProvider(providers: [
-        BlocProvider(create: (context) =>
-        OrderInfoCubit()
-          ..fetch(guid: guid)),
+        BlocProvider(create: (context) => OrderInfoCubit()..fetch(guid: guid)),
       ], child: CartOrderDetailsPage(orderNumber: orderNumber, status: status));
 
   static get splash => const SplashPage();
 
   static get pashaInsurance => const PashaInsurancePage();
 
-  static get insurances =>
-      BlocProvider(
+  static get insurances => BlocProvider(
         create: (context) => InsuranceCubit(),
         child: InsurancesPage(),
       );
 
   static validateInsurance(BuildContext context,
-      {required String policyNumber}) =>
+          {required String policyNumber}) =>
       BlocProvider(
         create: (context) =>
-        InsuranceOtpCubit()
-          ..setPolicyNumber(policyNumber: policyNumber),
+            InsuranceOtpCubit()..setPolicyNumber(policyNumber: policyNumber),
         child: const InsuranceOTPPage(showBackButton: true),
       );
 
-  static get mapPage =>
-      MultiBlocProvider(providers: [
-        BlocProvider.value(value: MapStoreCubit()
-          ..fetch()),
+  static get mapPage => MultiBlocProvider(providers: [
+        BlocProvider.value(value: MapStoreCubit()..fetch()),
       ], child: MapPage());
 
-  static get userEdit =>
-      MultiBlocProvider(
-          providers: [BlocProvider(create: (context) => UserCubit())],
-          child: const UserEditPage());
+  static get userEdit => MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => UserCubit())],
+      child: const UserEditPage());
 
-  static get editNum =>
-      MultiBlocProvider(
-          providers: [BlocProvider(create: (context) => UserCubit())],
-          child: const UserEditPage());
+  static get editNum => MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => UserCubit())],
+      child: const UserEditPage());
 
-  static otp({bool requestNew = false,
-    bool showBackButton = true,
-    String? phone,
-    OtpRequestKind? otpRequestKind}) =>
+  static otp(
+          {bool requestNew = false,
+          bool showBackButton = true,
+          required BuildContext context,
+          String? phone,
+          OtpRequestKind? otpRequestKind}) =>
       MultiBlocProvider(providers: [
+        BlocProvider.value(value: BlocProvider.of<UserCubit>(context)),
         BlocProvider(
-            create: (context) =>
-                OTPCubit(
-                    requestNew: requestNew,
-                    otpRequestKind: otpRequestKind,
-                    phone: phone))
+            create: (contextZ) => OTPCubit(
+                inheritedContext: context,
+                requestNew: requestNew,
+                otpRequestKind: otpRequestKind,
+                phone: phone))
       ], child: OTPPage(showBackButton: showBackButton));
 
-  static get forgotPassword =>
-      MultiBlocProvider(
-          providers: [BlocProvider(create: (context) => ForgotPassCubit())],
-          child: const ForgetPasswordPage());
+  static get forgotPassword => MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => ForgotPassCubit())],
+      child: const ForgetPasswordPage());
 
-  static get paymentMethodPage =>
-      BlocProvider(
-        create: (context) =>
-        CardCubit()
-          ..getCard(),
+  static get paymentMethodPage => BlocProvider(
+        create: (context) => CardCubit()..getCard(),
         child: const PaymentMethodPage(),
       );
 
-  static get notificationPage =>
-      BlocProvider(
-        create: (context) =>
-        NotificationCubit()
-          ..getNotification(),
+  static get notificationPage => BlocProvider(
+        create: (context) => NotificationCubit()..getNotification(),
         child: const NotificationsPage(),
       );
 
-  static get faqPage =>
-      BlocProvider(
-        create: (context) =>
-        FaqCubit()
-          ..getFaq(),
+  static get faqPage => BlocProvider(
+        create: (context) => FaqCubit()..getFaq(),
         child: AnswerQuestionPage(),
       );
 
   static get settings => const SettingsPage();
 
-  static get changeNumber =>
-      MultiBlocProvider(
+  static get changeNumber => MultiBlocProvider(
         providers: [
           BlocProvider(
             create: (context) => UserCubit(),
@@ -244,28 +212,26 @@ class Pager {
         child: ChangeNumberPage(),
       );
 
-  static get messenger =>
-      BlocProvider(
+  static get messenger => BlocProvider(
         create: (context) => MessengerCubit(),
         child: const MessengerPage(),
       );
 
-  static get testFor =>
-      BlocProvider(
+  static get testFor => BlocProvider(
         create: (context) => TestForCubit(),
         child: TestForPage(),
       );
 
-  static testFor2(BuildContext context, Cubit bloc) =>
-      BlocProvider.value(
+  static testFor2(BuildContext context, Cubit bloc) => BlocProvider.value(
         value: BlocProvider.of<TestForCubit>(context),
         child: TestFor2Page(bloc: bloc),
       );
 
-  static chat({String? storeGuid,
-    String? storeName,
-    String? guid,
-    String? orderGuid}) =>
+  static chat(
+          {String? storeGuid,
+          String? storeName,
+          String? guid,
+          String? orderGuid}) =>
       BlocProvider.value(
         value: ChatMessengerCubit()
           ..configMessenger(
@@ -274,45 +240,34 @@ class Pager {
       );
 
   static addAddress(
-      {Address? address, BuildContext? context, lat, long, title}) =>
+          {Address? address, BuildContext? context, lat, long, title}) =>
       BlocProvider(
-        create: (context) =>
-        AddAddressCubit()
+        create: (context) => AddAddressCubit()
           ..setAddress(context: context, address: address, loading: false),
         child: AddAddressPage(addressModel: address),
       );
 
   static get otherPage => const OtherPage();
 
-  static get addInsuranceInfo =>
-      BlocProvider(
-        create: (context) =>
-        InsuranceCubit()
-          ..getInsurance(),
+  static get addInsuranceInfo => BlocProvider(
+        create: (context) => InsuranceCubit()..getInsurance(),
         child: const AddInsurancePage(),
       );
 
-  static get contactPage =>
-      BlocProvider(
-        create: (context) =>
-        ContactCubit()
-          ..fetch(),
+  static get contactPage => BlocProvider(
+        create: (context) => ContactCubit()..fetch(),
         child: const ContactPage(),
       );
 
-  static get favoritePage =>
-      MultiBlocProvider(
+  static get favoritePage => MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) =>
-          FavoriteCubit()
-            ..fetchProduct()),
+          BlocProvider(create: (context) => FavoriteCubit()..fetchProduct()),
           BlocProvider(create: (context) => CartCubit()),
         ],
         child: FavoritePage(),
       );
 
-  static get user =>
-      MultiBlocProvider(
+  static get user => MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => UserCubit()),
         ],
@@ -323,54 +278,43 @@ class Pager {
       MultiBlocProvider(providers: [
         BlocProvider(
             create: (context) =>
-            ProductOptionDetailsCubit()
-              ..fetchProduct(guid)),
+                ProductOptionDetailsCubit()..fetchProduct(guid)),
         BlocProvider(create: (context) => CartCubit())
       ], child: ProductDetailsDetails());
 
-  static get addressPage =>
-      BlocProvider(
-        create: (context) =>
-        AddressCubit()
-          ..fetch(),
+  static get addressPage => BlocProvider(
+        create: (context) => AddressCubit()..fetch(),
         child: AddressPage(),
       );
 
-  static get orderConfirm =>
-      BlocProvider(
-        create: (context) =>
-        AddressCubit()
-          ..fetch(),
+  static get orderConfirm => BlocProvider(
+        create: (context) => AddressCubit()..fetch(),
         child: AddressPage(),
       );
 
   static deliveryAndPaymentPage(
-      {required String orderGuid, required String deliveryType}) =>
+          {required String orderGuid, required String deliveryType}) =>
       MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) =>
-          AddressCubit()
-            ..fetchMainAddress()),
+          BlocProvider(create: (context) => AddressCubit()..fetchMainAddress()),
           //BlocProvider(create: (context) => TabCountsCubit()),
           BlocProvider(
-              create: (context) =>
-              DeliveryAndPaymentCubit()
+              create: (context) => DeliveryAndPaymentCubit()
                 ..fetch(guid: orderGuid, deliveryType: deliveryType)),
           // BlocProvider(
           //   create: (context) => AddressCubit()..fetch(),
           // ),
-          BlocProvider(create: (context) =>
-          CardCubit()
-            ..getCard()),
+          BlocProvider(create: (context) => CardCubit()..getCard()),
         ],
         child: DeliveryAndPaymentPage(
             orderGuid: orderGuid, deliveryType: deliveryType),
       );
 
-  static webviewPage({required String url,
-    required BuildContext context,
-    void Function()? whenSuccess,
-    void Function()? whenUnSuccess}) =>
+  static webviewPage(
+          {required String url,
+          required BuildContext context,
+          void Function()? whenSuccess,
+          void Function()? whenUnSuccess}) =>
       WebviewPage(
         url: url,
         mainContext: context,
