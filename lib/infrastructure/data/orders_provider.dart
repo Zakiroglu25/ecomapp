@@ -14,6 +14,14 @@ import '../model/response/order_details.dart';
 import '../model/response/orders_data.dart';
 import '../model/response/status_dynamic.dart';
 
+final List<String> waitingTabStatusList = [
+  OrderStatus.PENDING_APPROVAL,
+  OrderStatus.PENDING_PAYMENT,
+  OrderStatus.PAYMENT_UNSUCCESSFUL,
+  OrderStatus.REJECTED,
+  OrderStatus.APPROVED
+];
+
 class OrdersProvider {
   static DioAuth get dioAuth => locator<DioAuth>();
 
@@ -35,13 +43,6 @@ class OrdersProvider {
   }
 
   static Future<CartOrdersData?> pendingOrders({int? page}) async {
-    final List<String> waitingTabStatusList = [
-      OrderStatus.PENDING_APPROVAL,
-      OrderStatus.PENDING_PAYMENT,
-      OrderStatus.PAYMENT_UNSUCCESSFUL,
-      OrderStatus.REJECTED,
-      OrderStatus.APPROVED
-    ];
     final api =
         ApiKeys.orders + '?status=${waitingTabStatusList.join(',')}&page=$page';
     final response = await dioAuth.dio.get(api);

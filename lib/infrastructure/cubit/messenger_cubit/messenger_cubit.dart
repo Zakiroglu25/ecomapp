@@ -8,7 +8,7 @@ import '../../data/messenger_provider.dart';
 import 'messenger_state.dart';
 
 class MessengerCubit extends Cubit<MessengerState> {
-  MessengerCubit() : super(MessengerInitial());
+  MessengerCubit() : super(MessengerInProgress());
 
   void fetch([bool loading = true]) async {
     if (loading) {

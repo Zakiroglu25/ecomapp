@@ -50,6 +50,8 @@ class ApiKeys {
   //user
   static const devices = "$customer/devices";
   static const changeNumber = "$account/request-update-phone-otp";
+  static const validateOtpAndUpdatePhone =
+      "$account/validate-otp-and-update-phone";
 
   //address
   static const getAddress = "$customer/address-book";
@@ -107,8 +109,9 @@ class ApiKeys {
   static const getMessenger = "$protected/chat";
 
   //insurance
-  static const getInsurance = "$protected/insurance";
-  static const addInsuranceApi = "$protected/insurance/add";
+  static const insurance = "$protected/insurance";
+  static const addInsurance = "$insurance/add";
+  static const validateInsurance = "$insurance/validate-otp";
 
   //change password
   static const changePass = "$account/update-password";
@@ -132,7 +135,7 @@ class ApiKeys {
   static otpBody({
     required String? phone,
     required String? otp,
-    required String? email,
+    String? email,
   }) {
     //
     final map = {"phone": phone, "otp": otp, "email": email};
@@ -145,9 +148,10 @@ class ApiKeys {
   static changePhoneBody({
     required String? phone,
     required String? password,
+    required String? email,
   }) {
     //
-    final map = {"phone": phone, "password": password};
+    final map = {"phone": phone, "email": email, "password": password};
 
     map.removeWhere(
         (key, value) => key == null || value == null || value == 'null');
@@ -204,7 +208,7 @@ class ApiKeys {
     return map;
   }
 
-  static addInsurance({
+  static addInsuranceBody({
     required String? phoneNumber,
     required String? policyNumber,
     required String? finCode,
@@ -214,6 +218,17 @@ class ApiKeys {
       "phoneNumber": phoneNumber,
       "finCode": finCode,
     };
+
+    map.removeWhere(
+        (key, value) => key == null || value == null || value == 'null');
+    return map;
+  }
+
+  static validateInsuranceBody({
+    required String? otp,
+    required String? policyNumber,
+  }) {
+    final map = {"policyNumber": policyNumber, "otp": otp};
 
     map.removeWhere(
         (key, value) => key == null || value == null || value == 'null');

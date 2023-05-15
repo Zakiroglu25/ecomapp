@@ -15,7 +15,7 @@ class AddInsurance extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-            margin: const EdgeInsets.only(right: 16),
+            margin: const EdgeInsets.only(left: 16),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12), color: MyColors.white),
             width: 311,

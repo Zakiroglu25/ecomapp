@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:uikit/infrastructure/model/response/order_details.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/extensions/num.dart';
-import 'package:uikit/utils/extensions/word.dart';
 
 import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/colors.dart';

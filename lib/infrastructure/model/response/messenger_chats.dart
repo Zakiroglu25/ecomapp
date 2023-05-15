@@ -1,17 +1,38 @@
-
 class ChatMessagesModel {
-  List<Data> list = [];
+  List<Data>? data;
+  int? page;
+  int? pageSize;
+  int? totalItems;
+  int? totalPages;
 
-  ChatMessagesModel(this.list);
+  ChatMessagesModel(
+      {this.data, this.page, this.pageSize, this.totalItems, this.totalPages});
 
-  ChatMessagesModel.fromJson(List json) {
-    for (int i = 0; i < json.length; i++) {
-      list.add(Data.fromJson(json[i]));
+  ChatMessagesModel.fromJson(Map<String, dynamic> json) {
+    if (json['data'] != null) {
+      data = <Data>[];
+      json['data'].forEach((v) {
+        data!.add(new Data.fromJson(v));
+      });
     }
+    page = json['page'];
+    pageSize = json['pageSize'];
+    totalItems = json['totalItems'];
+    totalPages = json['totalPages'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.data != null) {
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    }
+    data['page'] = this.page;
+    data['pageSize'] = this.pageSize;
+    data['totalItems'] = this.totalItems;
+    data['totalPages'] = this.totalPages;
+    return data;
   }
 }
-
-
 
 class Data {
   String? guid;

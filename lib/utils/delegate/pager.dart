@@ -15,7 +15,6 @@ import 'package:uikit/presentation/page/auth/forgot_password_page/forgot_pass_pa
 import 'package:uikit/presentation/page/auth/otp_page/otp_page.dart';
 import 'package:uikit/presentation/page/cart_order_details_page/cart_order_details_page.dart';
 import 'package:uikit/presentation/page/landing_page/landing_page.dart';
-import 'package:uikit/presentation/page/map_details_page/map_details_page.dart';
 import 'package:uikit/presentation/page/map_medicine_page/map_medicine_page.dart';
 import 'package:uikit/presentation/page/notification_page/notifications_page.dart';
 import 'package:uikit/presentation/page/webview_page/webview_page.dart';
@@ -23,6 +22,7 @@ import 'package:uikit/test/test2.dart';
 import 'package:uikit/test/test_for_cubit.dart';
 
 import '../../app.dart';
+import '../../infrastructure/config/init.dart';
 import '../../infrastructure/cubit/add_address/add_and_update_address_cubit.dart';
 import '../../infrastructure/cubit/authentication/authentication_cubit.dart';
 import '../../infrastructure/cubit/card_cubit/card_cubit.dart';
@@ -31,6 +31,7 @@ import '../../infrastructure/cubit/contact_cubit/contact_cubit.dart';
 import '../../infrastructure/cubit/delivery_and_payment/delivery_and_payment_cubit.dart';
 import '../../infrastructure/cubit/favorite_cubit/favorite_cubit.dart';
 import '../../infrastructure/cubit/insurance_cubit/insurance_cubit.dart';
+import '../../infrastructure/cubit/insurance_otp_cubit/insurance_otp_cubit.dart';
 import '../../infrastructure/cubit/login/login_cubit.dart';
 import '../../infrastructure/cubit/messenger_cubit/messenger_cubit.dart';
 import '../../infrastructure/cubit/notification_cubit/notification_cubit.dart';
@@ -42,7 +43,6 @@ import '../../infrastructure/cubit/user/user_cubit.dart';
 import '../../infrastructure/cubit/waiting_orders/waiting_orders_cubit.dart';
 import '../../infrastructure/model/response/address_model.dart';
 import '../../presentation/page/add_address_page/add_address_page.dart';
-import '../../presentation/page/add_asan_insurance_info/add_asan_insurance_info_page.dart';
 import '../../presentation/page/address_page/address_page.dart';
 import '../../presentation/page/address_page/select_map_page/select_map_page.dart';
 import '../../presentation/page/auth/login_page/login_page.dart';
@@ -52,18 +52,25 @@ import '../../presentation/page/change_number/change_number_page.dart';
 import '../../presentation/page/contact_page/contact_page.dart';
 import '../../presentation/page/delivery_and_payment_page/delivery_and_payment_page.dart';
 import '../../presentation/page/favorite_page/favorite_page.dart';
+import '../../presentation/page/insurance_otp_page/insurance_otp_page.dart';
 import '../../presentation/page/insurance_page/add_insurance_page.dart';
+import '../../presentation/page/insurances_page/insurances_page.dart';
 import '../../presentation/page/messenger_page/messenger_page.dart';
 import '../../presentation/page/messenger_page/widget/chat_details.dart';
 import '../../presentation/page/other_page/other_page.dart';
+import '../../presentation/page/pasha_insurance_page/pasha_details_page.dart';
 import '../../presentation/page/payment_method_page/payment_method_page.dart';
+import '../../presentation/page/pharmacy_page/pharmacy_page.dart';
 import '../../presentation/page/product_details_page/product_details_page.dart';
 import '../../presentation/page/products_page/products_page.dart';
 import '../../presentation/page/question_response_page/question_response_page.dart';
 import '../../presentation/page/settings_page/settings_page.dart';
 import '../../presentation/page/splash_page/splash_page.dart';
 import '../../presentation/page/user_edit_page/user_edit_page.dart';
+import '../../presentation/page/user_page/user_page.dart';
+import '../constants/colors.dart';
 import '../enums/delivery_type.dart';
+import '../enums/otp_request_kind.dart';
 
 class Pager {
   Pager._();
@@ -84,7 +91,7 @@ class Pager {
         BlocProvider(
           create: (context) => RegisterCubit(),
         ),
-      ], child: RegisterPage());
+      ], child: const RegisterPage());
 
   static get login => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => LoginCubit()),
@@ -94,11 +101,14 @@ class Pager {
         BlocProvider.value(value: BlocProvider.of<AddAddressCubit>(context)),
       ], child: const SelectMapPage());
 
-  static get products => MultiBlocProvider(providers: [
-        // BlocProvider(create: (context) => ProductOptionCubit()..fetchProduct()),
-        BlocProvider(create: (context) => FavoriteCubit()),
-        BlocProvider(create: (context) => CartCubit()),
-      ], child: const ProductsPage());
+  static get products {
+    //setStatusBarColor(MyColors.white);
+    return MultiBlocProvider(providers: [
+      // BlocProvider(create: (context) => ProductOptionCubit()..fetchProduct()),
+      BlocProvider(create: (context) => FavoriteCubit()),
+      BlocProvider(create: (context) => CartCubit()),
+    ], child: const ProductsPage());
+  }
 
   static pharmacy(MapMedicine map) => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => FavoriteCubit()),
@@ -106,14 +116,14 @@ class Pager {
         BlocProvider(
             create: (context) =>
                 ProductOptionDetailsCubit()..fetchProductMapGuid(map.guid!)),
-      ], child: MapDetailsPage(maps: map));
+      ], child: PharmacyPage(maps: map));
 
   static get cart => MultiBlocProvider(providers: [
         BlocProvider(create: (context) => CartCubit()..fetch()),
         BlocProvider(create: (context) => WaitingOrdersCubit()),
         BlocProvider(create: (context) => DeliveryOrdersCubit()),
         BlocProvider(create: (context) => TabCountsCubit()..fetch()),
-      ], child: CartPage());
+      ], child: const CartPage());
 
   static cartOrderDetails(
     String guid, {
@@ -124,11 +134,21 @@ class Pager {
         BlocProvider(create: (context) => OrderInfoCubit()..fetch(guid: guid)),
       ], child: CartOrderDetailsPage(orderNumber: orderNumber, status: status));
 
-  static get splash => SplashPage();
+  static get splash => const SplashPage();
 
-  static get addingInsurance => BlocProvider(
+  static get pashaInsurance => const PashaInsurancePage();
+
+  static get insurances => BlocProvider(
         create: (context) => InsuranceCubit(),
-        child: AddAsanInsuranceInfo(),
+        child: InsurancesPage(),
+      );
+
+  static validateInsurance(BuildContext context,
+          {required String policyNumber}) =>
+      BlocProvider(
+        create: (context) =>
+            InsuranceOtpCubit()..setPolicyNumber(policyNumber: policyNumber),
+        child: const InsuranceOTPPage(showBackButton: true),
       );
 
   static get mapPage => MultiBlocProvider(providers: [
@@ -143,12 +163,20 @@ class Pager {
       providers: [BlocProvider(create: (context) => UserCubit())],
       child: const UserEditPage());
 
-  static otp({
-    bool requestNew = false,
-    bool showBackButton = true,
-  }) =>
+  static otp(
+          {bool requestNew = false,
+          bool showBackButton = true,
+          required BuildContext context,
+          String? phone,
+          OtpRequestKind? otpRequestKind}) =>
       MultiBlocProvider(providers: [
-        BlocProvider(create: (context) => OTPCubit(requestNew: requestNew))
+        BlocProvider.value(value: BlocProvider.of<UserCubit>(context)),
+        BlocProvider(
+            create: (contextZ) => OTPCubit(
+                inheritedContext: context,
+                requestNew: requestNew,
+                otpRequestKind: otpRequestKind,
+                phone: phone))
       ], child: OTPPage(showBackButton: showBackButton));
 
   static get forgotPassword => MultiBlocProvider(
@@ -157,12 +185,12 @@ class Pager {
 
   static get paymentMethodPage => BlocProvider(
         create: (context) => CardCubit()..getCard(),
-        child: PaymentMethodPage(),
+        child: const PaymentMethodPage(),
       );
 
   static get notificationPage => BlocProvider(
         create: (context) => NotificationCubit()..getNotification(),
-        child: NotificationsPage(),
+        child: const NotificationsPage(),
       );
 
   static get faqPage => BlocProvider(
@@ -170,16 +198,23 @@ class Pager {
         child: AnswerQuestionPage(),
       );
 
-  static get settings => SettingsPage();
+  static get settings => const SettingsPage();
 
-  static get changeNumber => BlocProvider(
-        create: (context) => UserCubit(),
+  static get changeNumber => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => UserCubit(),
+          ),
+          BlocProvider(
+            create: (context) => ForgotPassCubit(),
+          ),
+        ],
         child: ChangeNumberPage(),
       );
 
   static get messenger => BlocProvider(
         create: (context) => MessengerCubit(),
-        child: MessengerPage(),
+        child: const MessengerPage(),
       );
 
   static get testFor => BlocProvider(
@@ -207,21 +242,21 @@ class Pager {
   static addAddress(
           {Address? address, BuildContext? context, lat, long, title}) =>
       BlocProvider(
-        create: (context) =>
-            AddAddressCubit()..setAddress(context: context, address: address),
+        create: (context) => AddAddressCubit()
+          ..setAddress(context: context, address: address, loading: false),
         child: AddAddressPage(addressModel: address),
       );
 
-  static get otherPage => OtherPage();
+  static get otherPage => const OtherPage();
 
   static get addInsuranceInfo => BlocProvider(
         create: (context) => InsuranceCubit()..getInsurance(),
-        child: AddInsurancePage(),
+        child: const AddInsurancePage(),
       );
 
   static get contactPage => BlocProvider(
         create: (context) => ContactCubit()..fetch(),
-        child: ContactPage(),
+        child: const ContactPage(),
       );
 
   static get favoritePage => MultiBlocProvider(
@@ -230,6 +265,13 @@ class Pager {
           BlocProvider(create: (context) => CartCubit()),
         ],
         child: FavoritePage(),
+      );
+
+  static get user => MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => UserCubit()),
+        ],
+        child: PageViewExample(),
       );
 
   static productDetails({required String guid}) =>

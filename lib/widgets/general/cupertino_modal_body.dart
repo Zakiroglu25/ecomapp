@@ -30,7 +30,6 @@ class CupertinoModalBody extends StatelessWidget {
               user: false,
               notification: false,
               title: "Çatdırılma ünvanlarım",
-              contextA: context,
             ),
             body: Builder(
               builder: (context) => CupertinoPageScaffold(

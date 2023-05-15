@@ -4,11 +4,8 @@ import 'package:uikit/utils/constants/paddings.dart';
 
 import '../../../../infrastructure/cubit/card_cubit/card_cubit.dart';
 import '../../../../infrastructure/cubit/card_cubit/card_state.dart';
-import '../../../../utils/constants/sized_box.dart';
 import '../../../../utils/constants/text.dart';
-import '../../../../widgets/custom/half_empty_widget.dart';
 import '../../../../widgets/general/app_loading.dart';
-import '../../../../widgets/general/empty_widget.dart';
 import 'card_item_widget.dart';
 import 'payment_type_empty_widget.dart';
 

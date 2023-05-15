@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:uikit/utils/constants/boxx.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 
 import '../../../../utils/constants/app_text_styles.dart';

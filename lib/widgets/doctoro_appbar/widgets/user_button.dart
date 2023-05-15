@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:uikit/utils/constants/paddings.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/screen/ink_wrapper.dart';
 
 import '../../../presentation/page/user_page/user_page.dart';
@@ -14,18 +15,25 @@ class UserButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWrapper(
       onTap: () {
-        Go.to(context, PageViewExample());
+        Go.to(context, Pager.user);
         // globalPageController.animateTo(0,
         //     duration: Durations.ms300, curve: Curves.linear);
       },
       child: Material(
         color: Colors.transparent,
-        child: SizedBox(
-          height: 45,
-          width: 45,
-          child: Padding(
-            padding: Paddings.paddingL16 + Paddings.paddingT2,
-            child: SvgPicture.asset(Assets.svgUser),
+        child: ClipRRect(
+          child: SizedBox(
+            height: 45,
+            width: 45,
+            child: Padding(
+              padding: Paddings.paddingL16 + Paddings.paddingT2,
+              child: const CircleAvatar(
+                backgroundImage: AssetImage(Assets.userProfile),
+
+                radius:
+                22.5, // Yarıçapı, SizedBox boyutlarının yarısına ayarlayın
+              ),
+            ),
           ),
         ),
       ),

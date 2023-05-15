@@ -1,6 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:uikit/infrastructure/mixins/count_down_mixin.dart';
+import 'package:uikit/utils/delegate/index.dart';
+import 'package:uikit/utils/enums/otp_request_kind.dart';
+import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../locator.dart';
 import '../../../utils/constants/text.dart';
@@ -15,7 +19,7 @@ import '../../services/hive_service.dart';
 
 part 'user_state.dart';
 
-class UserCubit extends Cubit<UserState> {
+class UserCubit extends Cubit<UserState> with CountDownMixin {
   UserCubit() : super(UserInitial());
 
   HiveService get _prefs => locator<HiveService>();
@@ -36,31 +40,35 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  void changePhone(BuildContext context, {bool? isLoading = true}) async {
-    if (isLoading!) {
-      emit(UserLoading());
-    }
+  void changePhoneAndEmail(BuildContext context,
+      {bool isLoading = true, bool isSendAgain = false}) async {
+    if (isLoading) emit(UserLoading());
     try {
-      final response = await AccountProvider.changePhone(
-          phone: phone.valueOrNull, password: password.valueOrNull);
-      final errors = response!.data;
-      if (isSuccess(response.statusCode)) {
-        emit(UserSuccess(response.data!));
-        Snack.positive2(context, message: MyText.success);
-      } else {
-        Snack.showOverlay(context: context, message: errors);
-        emit(UserFailed(response.statusCode.toString()));
+      final response = await AccountProvider.changePhoneAndEmail(
+          phone: phone.valueOrNull,
+          password: password.valueOrNull,
+          email: uEmail.valueOrNull);
+      if (!response.isSuccess) {
+        // startCountdownTimer();
+        Snack.error(context: context);
       }
-    } catch (e) {
-      print(e);
+      if (!isSendAgain) {
+        Go.to(
+            context,
+            Pager.otp(
+                otpRequestKind: OtpRequestKind.changeNumber,
+                phone: phone.valueOrNull,
+                context: context));
+      }
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
+    } finally {
+      emit(UserInitial());
     }
   }
 
   void update(BuildContext context, {bool? isLoading = true}) async {
-    if (isLoading!) {
-      emit(UserLoading());
-    }
-
+    if (isLoading!) emit(UserLoading());
     try {
       final response = await AccountProvider.updateUserInfo(
         phone: _prefs.user.phone,
@@ -121,7 +129,7 @@ class UserCubit extends Cubit<UserState> {
   updateNewPassword(String value) {
     if (value.isEmpty) {
       newPassword.value = '';
-      newPassword.sink.addError("Xana doldurulmalıdır");
+      newPassword.sink.addError("");
     } else {
       newPassword.sink.add(value);
     }
@@ -139,7 +147,7 @@ class UserCubit extends Cubit<UserState> {
   updateOldPassword(String value) {
     if (value.isEmpty) {
       oldPassword.value = '';
-      oldPassword.sink.addError("Xana doldurulmalıdır");
+      oldPassword.sink.addError("");
     } else {
       oldPassword.sink.add(value);
     }
@@ -157,7 +165,7 @@ class UserCubit extends Cubit<UserState> {
   updatePassword(String value) {
     if (value.isEmpty) {
       password.value = '';
-      password.sink.addError("Xana doldurulmalıdır");
+      password.sink.addError("");
     } else {
       password.sink.add(value);
     }
@@ -175,7 +183,7 @@ class UserCubit extends Cubit<UserState> {
   updatePhone(String value) {
     if (value.isEmpty) {
       phone.value = '';
-      phone.sink.addError("Xana doldurulmalıdır");
+      phone.sink.addError("");
     } else {
       phone.sink.add(value);
     }
@@ -193,7 +201,7 @@ class UserCubit extends Cubit<UserState> {
   updateEmail(String value) {
     if (value.isEmpty) {
       uEmail.value = '';
-      uEmail.sink.addError(MyText.emailAddressIsNotCorrect);
+      uEmail.sink.addError("");
     } else {
       emailValid = Validator.mail(value);
       uEmail.sink.add(value);
@@ -212,7 +220,7 @@ class UserCubit extends Cubit<UserState> {
   updateBirthDate(String value) {
     if (value.isEmpty) {
       birthDate.value = '';
-      birthDate.sink.addError("Xana doldurulmalıdır");
+      birthDate.sink.addError("");
     } else {
       birthDate.sink.add(value);
     }
@@ -230,7 +238,6 @@ class UserCubit extends Cubit<UserState> {
   updateFin(String value) {
     if (value.isEmpty) {
       fin.value = '';
-      fin.sink.addError("Xana doldurulmalıdır");
     } else {
       fin.sink.add(value);
     }
@@ -247,7 +254,7 @@ class UserCubit extends Cubit<UserState> {
   updateName(String value) {
     if (value.isEmpty) {
       name.value = '';
-      name.sink.addError("Xana doldurulmalıdır");
+      name.sink.addError("");
     } else {
       name.sink.add(value);
     }
@@ -264,7 +271,7 @@ class UserCubit extends Cubit<UserState> {
   updateLastname(String value) {
     if (value.isEmpty) {
       lastname.value = '';
-      lastname.sink.addError("Xana doldurulmalıdır");
+      lastname.sink.addError("");
     } else {
       lastname.sink.add(value);
     }
@@ -282,7 +289,6 @@ class UserCubit extends Cubit<UserState> {
   updateSeria(String value) {
     if (value.isEmpty) {
       seria.value = '';
-      seria.sink.addError("Xana doldurulmalıdır");
     } else {
       seria.sink.add(value);
     }
@@ -299,7 +305,7 @@ class UserCubit extends Cubit<UserState> {
   patronymicName(String value) {
     if (value.isEmpty) {
       patronymic.value = '';
-      patronymic.sink.addError("Xana doldurulmalıdır");
+      patronymic.sink.addError("");
     } else {
       patronymic.sink.add(value);
     }
@@ -325,5 +331,17 @@ class UserCubit extends Cubit<UserState> {
     } else {
       return false;
     }
+  }
+
+  @override
+  emit(UserState state) {
+    if (!isClosed) return super.emit(state);
+  }
+
+  @override
+  Future<void> close() {
+    // TODO: implement close
+    timer.cancel();
+    return super.close();
   }
 }

@@ -6,7 +6,6 @@ import 'package:uikit/infrastructure/model/response/card_model.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/extensions/index.dart';
-import 'package:uikit/utils/screen/widget_or_empty.dart';
 import 'package:uikit/widgets/general/app_element_box.dart';
 import 'package:uikit/widgets/general/app_loading.dart';
 

@@ -19,7 +19,6 @@ class ProductsPage extends StatelessWidget {
           resizeToAvoidBottomInset: false,
           appBar: DoctorAppbar(
             addressDropdown: true,
-            contextA: context,
             title: '',
             user: true,
             notification: true,

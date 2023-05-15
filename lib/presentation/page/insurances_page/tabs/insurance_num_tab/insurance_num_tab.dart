@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/cubit/insurance_cubit/insurance_cubit.dart';
 import 'package:uikit/utils/extensions/index.dart';
@@ -10,7 +11,6 @@ import '../../../../../utils/constants/paddings.dart';
 import '../../../../../utils/constants/sized_box.dart';
 import '../../../../../utils/constants/text.dart';
 import '../../../../../utils/delegate/navigate_utils.dart';
-import '../../../../../utils/delegate/string_operations.dart';
 import '../../../../../utils/formatter/phone_formatter.dart';
 import '../../../../../widgets/custom/app_button.dart';
 import '../../../../../widgets/general/app_field.dart';
@@ -24,6 +24,9 @@ class InsuranceNumTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final addInsuranceCubit = context.watch<InsuranceCubit>();
+    if (_prefs.user.finCode != null) {
+      addInsuranceCubit.finCodeController.text = _prefs.user.finCode!.toUpperCase();
+    }
     return Padding(
       padding: Paddings.paddingH16,
       child: BlocProvider(
@@ -42,7 +45,8 @@ class InsuranceNumTab extends StatelessWidget {
                 controller: addInsuranceCubit.policy,
                 title: MyText.insuranceNum,
                 maxLines: 1,
-                textInputType: TextInputType.emailAddress,
+                textInputType: TextInputType.phone,
+                formatters: [ FilteringTextInputFormatter.digitsOnly],
                 textCapitalization: TextCapitalization.none,
                 hint: MyText.enterInsuranceNum,
                 maxLenght: 16,
@@ -59,23 +63,19 @@ class InsuranceNumTab extends StatelessWidget {
                 textCapitalization: TextCapitalization.none,
               ),
               AppField(
-                controller: _prefs.user.finCode.isNull
-                    ? addInsuranceCubit.finCode
-                    : StringOperations.stringToController(
-                        _prefs.user.finCode),
+                controller: addInsuranceCubit.finCodeController,
                 title: MyText.fin,
                 maxLines: 1,
-                hint: _prefs.user.finCode.isNull
-                    ? MyText.fin
-                    : _prefs.user.finCode,
+                hint: MyText.fin,
                 textInputType: TextInputType.text,
                 maxLenght: 7,
                 upperCase: true,
                 textCapitalization: TextCapitalization.none,
               ),
+              Spacer(),
               AppButton(
                 loading:
-                    context.watch<InsuranceCubit>().state is InsuranceLoading,
+                context.watch<InsuranceCubit>().state is InsuranceLoading,
                 onTap: () {
                   context.read<InsuranceCubit>().addInsurance(context: context);
                 },

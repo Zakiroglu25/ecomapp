@@ -41,7 +41,7 @@ class ManatPrice extends StatelessWidget {
           Text(
             price?.toStringAsFixed(2) ?? "0",
             overflow: TextOverflow.ellipsis,
-            style: AppTextStyles.sfPro500.copyWith(
+            style: AppTextStyles.sfPro600.copyWith(
               fontSize: textSize ?? 16,
               // fontFamily: 'sf',
               color: mainColor ?? MyColors.black,

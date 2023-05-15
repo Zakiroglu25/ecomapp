@@ -29,13 +29,12 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
 
     try {
       final result = await MessengerProvider.getChatMessage(chatGuid);
-      iiii(result.data.toString());
       if (isSuccess(result.statusCode)) {
         final searchItems = result.data;
         // messages.addAll(searchItems!.data!);
         // totalPages = searchItems.totalPages!;
         updateHaveElse();
-        emit(ChatMessengerSuccess(result.data!.list));
+        emit(ChatMessengerSuccess(result.data!));
       } else {
         emit(ChatMessengerError());
       }
@@ -112,17 +111,17 @@ class ChatMessengerCubit extends Cubit<ChatMessengerState> {
     page = 1;
   }
 
-  void loadMore() async {
-    eeee("current page:  $page");
-    if (page >= totalPages) return;
-    final result = await MessengerProvider.getChatMessage(chatGuid);
-    if (result.statusCode.isSuccess) {
-      messages.addAll(result.data!.list);
-      emit(ChatMessengerSuccess(messages));
-      page++;
-    }
-    updateHaveElse();
-  }
+  // void loadMore() async {
+  //   eeee("current page:  $page");
+  //   if (page >= totalPages) return;
+  //   final result = await MessengerProvider.getChatMessage(chatGuid);
+  //   if (result.statusCode.isSuccess) {
+  //     messages.addAll(result.data);
+  //     emit(ChatMessengerSuccess(messages));
+  //     page++;
+  //   }
+  //   updateHaveElse();
+  // }
 
 //have else products checker
   final BehaviorSubject<bool> haveElse = BehaviorSubject<bool>.seeded(false);

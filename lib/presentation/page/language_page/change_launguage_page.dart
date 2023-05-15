@@ -16,7 +16,6 @@ class LanguagePage extends StatelessWidget {
       appBar: DoctorAppbar(
         user: false,
         title: 'Dil seçimi',
-        contextA: context,
         notification: false,
         filter: false,
       ),

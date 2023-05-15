@@ -5,27 +5,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:uikit/infrastructure/services/navigation_service.dart';
+import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../locator.dart';
 import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/app_operations.dart';
-import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/delegate/pager.dart';
 import '../../../utils/screen/snack.dart';
 import '../../../utils/validators/validator.dart';
 import '../../data/forgot_provider.dart';
+import '../../mixins/count_down_mixin.dart';
 import '../../services/hive_service.dart';
 import 'forgot_pass_state.dart';
 
-class ForgotPassCubit extends Cubit<ForgotPassState> {
+class ForgotPassCubit extends Cubit<ForgotPassState> with CountDownMixin {
   ForgotPassCubit() : super(ForgotPassEnterMail());
 
   HiveService get _prefs => locator<HiveService>();
   String buttonText = MyText.send;
   String tempToken = '';
-  final context = NavigationService.instance.navigationKey?.currentContext;
+  final context = NavigationService.instance.navigationKey!.currentContext!;
 
   void changeState(
       {bool loading = true,
@@ -49,16 +50,22 @@ class ForgotPassCubit extends Cubit<ForgotPassState> {
     final result = await ForgotProvider.requestOTP(
         phone: AppOperations.formatNumberWith994(phone.valueOrNull!));
     if (result!.statusCode.isSuccess) {
+      startCountdownTimer();
       return true;
     } else {
       emit(ForgotPassError());
       if (result.data.toString().contains('message')) {
         Snack.showOverlay(context: context, message: result.data['message']);
       }
-
       return false;
     }
   }
+
+  //
+  // Future<void> requestOTPAgain({bool loading = true}) async {
+  //   restartCountdown();
+  //   requestOTP(context);
+  // }
 
   Future<bool> validateOTP(BuildContext context, {bool loading = true}) async {
     if (loading) {
@@ -229,6 +236,7 @@ class ForgotPassCubit extends Cubit<ForgotPassState> {
     otpCode.close();
     uPassSecond.close();
     uPassMain.close();
+    timer.cancel();
     return super.close();
   }
 

@@ -19,7 +19,6 @@ class ChangePassword extends StatelessWidget {
     return Scaffold(
       appBar: DoctorAppbar(
         title: "Şifrəni dəyiş",
-        contextA: context,
         user: false,
         notification: false,
       ),

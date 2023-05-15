@@ -1,21 +1,51 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/services.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/assets.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
+import 'package:uikit/utils/screen/ink_wrapper.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class PashaInsurancePage extends StatelessWidget {
+import '../../../infrastructure/config/init.dart';
+import 'widgets/pasha_app_download_widget.dart';
+import 'widgets/pasha_cabinet_widget.dart';
+import 'widgets/pasha_web_widget.dart';
+
+class PashaInsurancePage extends StatefulWidget {
   const PashaInsurancePage({Key? key}) : super(key: key);
 
   @override
+  State<PashaInsurancePage> createState() => _PashaInsurancePageState();
+}
+
+class _PashaInsurancePageState extends State<PashaInsurancePage> {
+  @override
+  void initState() {
+    super.initState();
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
+    //   SystemUiOverlay.top
+    // ]);
+    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    //   statusBarColor: MyColors.blue64,
+    // ));
+    setStatusBarColor(MyColors.blue64);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    setAppStatusbarStyle();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);  // to re-show bars
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.pashaBackground,
+      backgroundColor: MyColors.blue64,
       appBar: AppBar(
-        backgroundColor: MyColors.pashaBackground,
+        backgroundColor: MyColors.blue64,
         elevation: 0,
       ),
       body: Padding(
@@ -31,124 +61,18 @@ class PashaInsurancePage extends StatelessWidget {
                   .copyWith(fontSize: 17, color: MyColors.white),
             ),
             MySizedBox.h30,
-            Container(
-              height: 167,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: MyColors.white255),
-              child: Padding(
-                padding: Paddings.paddingH20,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 60,
-                            height: 60,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: MyColors.white),
-                            child: SizedBox(
-                                width: 12,
-                                height: 12,
-                                child: Image.asset(Assets.pasha)),
-                          ),
-                          MySizedBox.h4,
-                          Text(
-                            MyText.downApp,
-                            style: AppTextStyles.sfPro600.copyWith(
-                                fontSize: 16.sp, color: MyColors.white),
-                          ),
-                          MySizedBox.h4,
-                          SizedBox(
-                            width: 170.w,
-                            child: Text(
-                              MyText.downAppDetails,
-                              style: AppTextStyles.sfPro400s14.copyWith(
-                                  fontSize: 13.sp, color: MyColors.white),
-                              textAlign: TextAlign.start,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Image.asset(Assets.pngPhone3x)
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            InkWrapper(
+                onTap: (){
+                  launch("https://play.google.com/store/apps/details?id=az.pasha_insurance.customerapp");
+                },
+                child: const PashaAppDownloadWidget()),
             MySizedBox.h10,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  height: 167,
-                  width: 167.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: MyColors.white255),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image.asset(Assets.pngUser3x),
-                        MySizedBox.h4,
-                        Text(
-                          MyText.personalAccount,
-                          style: AppTextStyles.sfPro600
-                              .copyWith(fontSize: 16.sp, color: MyColors.white),
-                        ),
-                        MySizedBox.h4,
-                        SizedBox(
-                          width: 170,
-                          child: Text(
-                            MyText.personalAccountDetails,
-                            style: AppTextStyles.sfPro400s14.copyWith(
-                                fontSize: 13.sp, color: MyColors.white),
-                            textAlign: TextAlign.start,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 167,
-                  width: 167.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: MyColors.white255),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image.asset(Assets.pngAt3x),
-                        MySizedBox.h4,
-                        Text(
-                          MyText.webSite,
-                          style: AppTextStyles.sfPro600
-                              .copyWith(fontSize: 16.sp, color: MyColors.white),
-                        ),
-                        MySizedBox.h4,
-                        SizedBox(
-                          width: 170.w,
-                          child: Text(
-                            MyText.webSiteinfo,
-                            style: AppTextStyles.sfPro400s14.copyWith(
-                                fontSize: 13.sp, color: MyColors.white),
-                            textAlign: TextAlign.start,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+              children: const [
+                PashaCabinetWidget(),
+                MySizedBox.w10,
+                PashaWebWidget(),
               ],
             )
           ],

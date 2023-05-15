@@ -18,7 +18,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:uikit/utils/constants/text.dart';
-import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
+import 'package:uikit/widgets/doctoro_appbar/doctoro_appbar.dart';
 
 import '../../../utils/delegate/index.dart';
 
@@ -133,12 +133,13 @@ class _WebviewPageState extends State<WebviewPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Cupperfold(
-      title: MyText.payment,
-      notification: false,
-      showAppbarLittleText: true,
-      user: false,
-      child: WillPopScope(
+    return Scaffold(
+      appBar: DoctorAppbar(title: MyText.payment, user: false,notification: false,),
+      // title: MyText.payment,
+      // notification: false,
+      // showAppbarLittleText: true,
+      // user: false,
+      body: WillPopScope(
         onWillPop: () => _exitApp(context),
         child: Container(
           height: MediaQuery.of(context).size.height,
@@ -147,8 +148,8 @@ class _WebviewPageState extends State<WebviewPage> {
             key: webViewKey,
             // contextMenu: contextMenu,
 
-            initialUrlRequest: URLRequest(url: Uri.parse(widget.url)),
-            // initialFile: "assets/index.html",
+              initialUrlRequest: URLRequest(url: Uri.parse('https://stackoverflow.com/questions/65887263/flutter-center-widget-in-customscrollview'))
+            ,// initialFile: "assets/index.html",
             initialUserScripts: UnmodifiableListView<UserScript>([]),
             initialOptions: options,
             pullToRefreshController: pullToRefreshController,

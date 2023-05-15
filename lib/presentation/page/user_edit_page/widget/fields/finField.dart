@@ -11,15 +11,16 @@ class FinFieldUser extends StatelessWidget {
   FinFieldUser({required this.controller}); //= new TextEditingController();
   @override
   Widget build(BuildContext context) {
-    if (controller.text != null || controller.text != '') {
-      BlocProvider.of<UserCubit>(context).updateFin(controller.text);
-    }
+    // if (controller.text != null || controller.text != '') {
+    //   BlocProvider.of<UserCubit>(context).updateFin(controller.text);
+    // }
     return StreamBuilder<String>(
       stream: BlocProvider.of<UserCubit>(context).finStream,
       builder: (context, snapshot) {
         return AppField(
           title: MyText.fin,
           maxLines: 1,
+          maxLenght: 7,
           hint: MyText.fin,
           suffixIcon: Tooltip(message: 'burda fin kod olacay'),
           textInputType: TextInputType.name,

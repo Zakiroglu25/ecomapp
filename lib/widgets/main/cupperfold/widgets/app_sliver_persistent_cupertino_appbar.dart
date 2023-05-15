@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/screen/widget_or_empty.dart';
 
+import '../../../../utils/constants/app_text_styles.dart';
 import '../../../../utils/constants/paddings.dart';
 import '../../../custom/row_with_space.dart';
 import '../../../custom/sliver_app_bar_delegate.dart';
@@ -46,7 +47,7 @@ class AppSliverPersistentCupertinoAppbar extends StatelessWidget {
               border:
                   const Border(bottom: BorderSide(color: Colors.transparent)),
               leading: SpacedRow(
-                padding: Paddings.paddingT4,
+                padding: Paddings.paddingT5,
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -66,9 +67,10 @@ class AppSliverPersistentCupertinoAppbar extends StatelessWidget {
               // This title is visible in both collapsed and expanded states.
               // When the "middle" parameter is omitted, the widget provided
               // in the "largeTitle" parameter is used instead in the collapsed state.
-              middle: Text(title ?? ''),
+              middle: Text(title ?? '',style: AppTextStyles.sfPro600
+                  .copyWith(fontSize: 16, color: MyColors.black),),
               trailing: SpacedRow(
-                padding: Paddings.paddingT4,
+               // padding: Paddings.paddingT2,
                 mainAxisAlignment: MainAxisAlignment.end,
                 mainAxisSize: MainAxisSize.min,
                 children: [

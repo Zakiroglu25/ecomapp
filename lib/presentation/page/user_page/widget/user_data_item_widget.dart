@@ -5,7 +5,7 @@ import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sized_box.dart';
 
 class UserDataWidgetItem extends StatelessWidget {
-  UserDataWidgetItem({
+  const UserDataWidgetItem({
     Key? key,
     this.title,
     this.content,
@@ -31,8 +31,8 @@ class UserDataWidgetItem extends StatelessWidget {
             style: AppTextStyles.sfPro600s16,
           ),
         if (content == null)
-          Text(
-            "Qeyd Olunmuyub",
+          const Text(
+            "Qeyd Olunmayıb",
             style: AppTextStyles.sfPro600s16,
           ),
       ],

@@ -22,7 +22,7 @@ class OtpLoginButton extends StatelessWidget {
         children: [
           AppButton(
             isButtonActive: !context.watch<OTPCubit>().isOtpIncorrect,
-            text: MyText.login,
+            text: MyText.confirm,
             onTap: () => context.read<OTPCubit>().validateOtp(context),
           ),
           MySizedBox.h16,

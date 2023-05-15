@@ -9,7 +9,6 @@ import 'package:uikit/utils/constants/border_radius.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/widgets/custom/listview_separated.dart';
 import 'package:uikit/widgets/general/app_loading.dart';
-import 'package:uikit/widgets/general/empty_widget.dart';
 import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
 
 import '../../../infrastructure/services/hive_service.dart';
@@ -48,9 +47,9 @@ class AddressPage extends StatelessWidget {
 
             return Padding(
               padding: Paddings.paddingH16,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
+              child: ListView(
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                // mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     MyText.addresses.toUpperCase(),

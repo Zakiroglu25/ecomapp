@@ -18,46 +18,40 @@ class BodyMessenger extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: list.length,
-      itemBuilder: (context, index) {
-        return InkWell(
-            onTap: () {
-              Go.to(
-                  context,
-                  Pager.chat(
-                      guid: list[index].guid,
-                      storeName: list[index].storeName!));
-            },
-            child: Slidable(
-              key: UniqueKey(),
-              endActionPane: ActionPane(
-                extentRatio: 0.20,
-                motion: const ScrollMotion(),
-                children: [
-                  DeleteItem(),
-                ],
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  children: [
-                    ImageMessage(),
-                    MySizedBox.w12,
-                    TitleMessage(list[index])
-                  ],
-                ),
-              ),
-            ));
-      },
-      separatorBuilder: (BuildContext context, int index) {
-        return const Padding(
-          padding: EdgeInsets.only(left: 16.0, right: 16),
-          child: Divider(),
-        );
-      },
+    return Column(
+      children: [
+        ListView.separated(
+          shrinkWrap: true,
+          physics: const ScrollPhysics(),
+          itemCount: list.length,
+          itemBuilder: (context, index) {
+            return InkWell(
+                onTap: () {
+                  Go.to(
+                      context,
+                      Pager.chat(
+                          guid: list[index].guid,
+                          storeName: list[index].storeName!));
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    children: [
+                      ImageMessage(),
+                      MySizedBox.w12,
+                      TitleMessage(list[index])
+                    ],
+                  ),
+                ));
+          },
+          separatorBuilder: (BuildContext context, int index) {
+            return const Padding(
+              padding: EdgeInsets.only(left: 16.0, right: 16),
+              child: Divider(),
+            );
+          },
+        ),
+      ],
     );
   }
 }

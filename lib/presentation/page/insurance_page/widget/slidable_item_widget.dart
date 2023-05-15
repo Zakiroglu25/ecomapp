@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../utils/constants/app_text_styles.dart';
+import '../../../../utils/constants/assets.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/paddings.dart';
 import '../../../../utils/constants/sized_box.dart';
@@ -27,9 +29,12 @@ class SlidableWidget extends StatelessWidget {
           color: MyColors.grey245,
         ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.network(image!),
+            if(image != null)
+            Image.network(image == null ? Assets.red_logo : image!)
+            else
+            SvgPicture.asset(Assets.red_logo),
             MySizedBox.w16,
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

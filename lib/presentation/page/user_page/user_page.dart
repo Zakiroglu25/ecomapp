@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
+import 'package:uikit/utils/delegate/index.dart';
 
 import '../../../infrastructure/services/hive_service.dart';
 import '../../../locator.dart';
@@ -43,48 +46,53 @@ class _PageViewExampleState extends State<PageViewExample> {
     });
   }
 
-  final cards = [
-    UserView(),
-    AddInsurance(),
-    EditContact(),
-  ];
+  get cards => [
+        UserView(),
+        EditContact(),
+        AddInsurance(),
+      ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: DoctorAppbar(
         title: 'Doctoro profili',
         user: false,
-        contextA: context,
         notification: false,
         color: MyColors.red250,
       ),
       backgroundColor: MyColors.red250,
-      body: Column(
-        children: [
-          Expanded(
-            child: PageView.builder(
-                controller: _pageViewController,
-                itemCount: cards.length,
-                onPageChanged: (index) {
-                  setState(() {
-                    _currentIndex = index;
-                  });
-                },
-                itemBuilder: (context, index) {
-                  final images = cards[index];
-                  return images;
-                }),
-          ),
-          Column(
+      body: ValueListenableBuilder(
+        builder: (context, Box box, _) {
+          return Column(
             children: [
-              Indicator(curr: currentPageValue.round()),
-              MySizedBox.h32,
-              UserLogOutButton(),
-              MySizedBox.h32,
+              Expanded(
+                child: PageView.builder(
+                    controller: _pageViewController,
+                    itemCount: cards.length,
+                    onPageChanged: (index) {
+                      setState(() {
+                        _currentIndex = index;
+                      });
+                    },
+                    itemBuilder: (context, index) {
+                      final images = cards[index];
+                      return images;
+                    }),
+              ),
+              Column(
+                children: [
+                  Indicator(curr: currentPageValue.round()),
+                  MySizedBox.h32,
+                  UserLogOutButton(),
+                  MySizedBox.h32,
+                ],
+              )
             ],
-          )
-        ],
+          );
+        },
+        valueListenable: Hive.box('main').listenable(),
       ),
     );
   }

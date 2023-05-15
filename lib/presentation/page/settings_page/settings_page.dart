@@ -18,7 +18,6 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Cupperfold(
-      onBack: () => Go.pop(context),
       notification: false,
       user: false,
       title: MyText.settings,
@@ -26,6 +25,8 @@ class SettingsPage extends StatelessWidget {
         padding: Paddings.paddingH16 + Paddings.paddingV16,
         child: SpacedColumn(
           space: 16,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // EditFieldWidget(
             //   onTap: () {
