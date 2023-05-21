@@ -97,8 +97,7 @@ class JwtInterceptor extends Interceptor {
       required Response response}) async {
     final res = await AuthProvider.refreshToken();
 
-    if (res.statusCode.isSuccess) {
-      bbbb("res datat:  ${res.data}");
+    if (res.statusCode.isSuccess && res.data['accessToken'] != null) {
       final accessToken = res.data['accessToken'];
       await _prefs.persistAccessToken(accessToken: accessToken);
       //handler.resolve(response);

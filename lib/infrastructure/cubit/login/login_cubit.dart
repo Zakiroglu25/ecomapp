@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
@@ -55,10 +56,11 @@ class LoginCubit extends Cubit<LoginState> {
   bool get isPassIncorrect =>
       (!uPass.hasValue || uPass.value == null || uPass.value.isEmpty);
 
-  bool get isEmailIncorrect => (!username.hasValue ||
-      username.value == null ||
-      username.value.isEmpty ||
-      !emailValid);
+  bool get isEmailIncorrect =>
+      (!username.hasValue ||
+          username.value == null ||
+          username.value.isEmpty ||
+          !emailValid);
 
   @override
   Future<void> close() {

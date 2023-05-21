@@ -7,6 +7,7 @@ import 'package:uikit/utils/extensions/index.dart';
 
 import '../../../utils/delegate/my_printer.dart';
 import '../../../utils/enums/transaction_type.dart';
+import '../../data/auth_provider.dart';
 import '../../data/favorites_provider.dart';
 import '../../model/response/search_items.dart';
 import 'favorite_state.dart';
@@ -42,8 +43,8 @@ class FavoriteCubit extends Cubit<FavoriteState> {
       }
     } on SocketException catch (_) {
       emit(FavoriteError());
-    } catch (e) {
-      eeee("Fvorite Error" + e.toString());
+    } catch (e, s) {
+      Recorder.recordCatchError(e, s);
       emit(FavoriteError());
     }
   }
