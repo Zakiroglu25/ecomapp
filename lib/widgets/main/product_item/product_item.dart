@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/delegate/index.dart';
-import 'package:uikit/utils/screen/ink_wrapper.dart';
 import 'package:uikit/widgets/main/product_item/widgets/product_fav_button.dart';
 import 'package:uikit/widgets/main/product_item/widgets/product_image.dart';
 
@@ -62,7 +60,7 @@ class _ProductItemState extends State<ProductItem>
                 onTap: () =>
                     Go.to(context, Pager.productDetails(guid: product!.guid!)),
                 child: Container(
-                  height: 115,
+                  height: 105,
                   padding: Paddings.paddingA12,
                   decoration: BoxDecoration(
                       borderRadius: Radiuses.r12, color: MyColors.grey245),

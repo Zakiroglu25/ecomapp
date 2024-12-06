@@ -7,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/colors.dart';
 import '../constants/durations.dart';
 import '../constants/paddings.dart';
-import '../constants/text.dart';
 import '../screen/widget_or_empty.dart';
 
 // Project imports:
@@ -277,7 +276,7 @@ class Snack2 {
                 child: Material(
                   color: backColor,
                   borderRadius: borderRadius,
-                  elevation: 2,
+                  elevation: 0,
                   child: Center(
                     child: Container(
                       decoration: BoxDecoration(

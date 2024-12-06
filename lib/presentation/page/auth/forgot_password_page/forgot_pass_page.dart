@@ -1,26 +1,26 @@
+import 'dart:async';
+
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/presentation/page/auth/forgot_password_page/widget/enter_code_body.dart';
 import 'package:uikit/presentation/page/auth/forgot_password_page/widget/enter_mail_body.dart';
 import 'package:uikit/presentation/page/auth/forgot_password_page/widget/enter_pssword_body.dart';
-import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/durations.dart';
 import 'package:uikit/utils/constants/text.dart';
 import 'package:uikit/utils/delegate/index.dart';
-import 'package:uikit/utils/delegate/pager.dart';
 import 'package:uikit/utils/extensions/index.dart';
+import 'package:uikit/widgets/custom/app_button.dart';
+import 'package:uikit/widgets/custom/app_safe_area.dart';
 import 'package:uikit/widgets/general/app_loading.dart';
 
-import 'package:uikit/widgets/custom/app_safe_area.dart';
 import '../../../../infrastructure/cubit/forgot_pass/forgot_pass_cubit.dart';
 import '../../../../infrastructure/cubit/forgot_pass/forgot_pass_state.dart';
-import '../../../../utils/constants/boxx.dart';
+import '../../../../infrastructure/cubit/otp/otp_cubit.dart';
 import '../../../../utils/constants/paddings.dart';
 import '../../../../utils/constants/sized_box.dart';
-import '../../../../utils/delegate/navigate_utils.dart';
-import '../../../../utils/screen/keyboard_visibility.dart';
 import '../../../../utils/screen/snack.dart';
-import '../../../../widgets/custom/custom_animated_cross.dart';
+import '../../../../utils/screen/widget_or_empty.dart';
 import 'widget/forgot_back_button.dart';
 import 'widget/forgot_main_button.dart';
 import 'widget/key_widget.dart';
@@ -104,6 +104,7 @@ class ForgetPasswordPage extends StatelessWidget {
                   ),
                 ),
               ),
+
               //  Boxx(),
               const ForgotMainButton(),
               const ForgotBackButton(),

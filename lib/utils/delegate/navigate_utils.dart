@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 class Go {
   Go._();
+
   // static pushPage(BuildContext context, Widget page) async {
   //   Navigator.push(
   //       context,
@@ -20,7 +21,12 @@ class Go {
         context, MaterialPageRoute(builder: (context) => page));
   }
 
-  static  pop(BuildContext context) async {
+  static pop(BuildContext context) async {
+    Navigator.pop(context);
+  }
+
+  static popTwice(BuildContext context) async {
+    Navigator.pop(context);
     Navigator.pop(context);
   }
 

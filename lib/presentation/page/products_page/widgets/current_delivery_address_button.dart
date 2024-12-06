@@ -8,8 +8,6 @@ import 'package:uikit/presentation/page/products_page/widgets/items/current_deli
 import 'package:uikit/utils/constants/text.dart';
 
 import '../../../../infrastructure/cubit/address/address_cubit.dart';
-import '../../../../widgets/custom/app_linear_loading.dart';
-import '../../../../widgets/general/app_loading.dart';
 
 class CurrentDeliveryAddressButton extends StatelessWidget {
   const CurrentDeliveryAddressButton({Key? key, required this.onChange})

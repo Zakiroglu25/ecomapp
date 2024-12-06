@@ -7,7 +7,7 @@ class SpacedColumn extends StatelessWidget {
     Key? key,
     required this.children,
     this.space = 0,
-    this.mainAxisSize = MainAxisSize.min,
+    this.mainAxisSize = MainAxisSize.max,
     this.padding = Paddings.zero,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,

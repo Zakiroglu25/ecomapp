@@ -18,7 +18,6 @@ class MessengerProvider {
     const api = ApiKeys.getMessenger;
     final response = await dioAuth.dio.get(api);
     statusDynamic.statusCode = response.statusCode;
-    wtf(response.toString());
     if (response.statusCode == ResultKey.successCode) {
       final comeJson = response.data;
 
@@ -31,12 +30,10 @@ class MessengerProvider {
     return statusDynamic;
   }
 
-  static Future<StatusDynamic<ChatMessagesModel>> getChatMessage(
-      String? guid) async {
+  static Future<StatusDynamic> getChatMessage(String? guid) async {
     StatusDynamic<ChatMessagesModel> statusDynamic = StatusDynamic();
     final api = ApiKeys.getMessenger + "/$guid";
-    final response =
-        await dioAuth.dio.get(api);
+    final response = await dioAuth.dio.get(api);
     statusDynamic.statusCode = response.statusCode;
     if (response.statusCode == ResultKey.successCode) {
       ChatMessagesModel model = ChatMessagesModel.fromJson(response.data);

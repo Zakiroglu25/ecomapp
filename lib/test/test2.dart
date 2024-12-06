@@ -6,7 +6,6 @@ import 'package:uikit/utils/delegate/index.dart';
 import 'package:uikit/utils/delegate/my_printer.dart';
 
 import '../utils/constants/boxx.dart';
-import '../utils/screen/ink_wrapper.dart';
 import '../widgets/general/app_loading.dart';
 
 final bloc2 = TestForCubit();

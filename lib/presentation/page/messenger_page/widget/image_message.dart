@@ -14,7 +14,7 @@ class ImageMessage extends StatelessWidget {
       width: 64,
       height: 64,
       child: Center(
-        child: Image.asset(Assets.marker),
+        child: Image.asset(Assets.pngPharmacyIcon),
       ),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100), color: MyColors.green235),

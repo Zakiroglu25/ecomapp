@@ -28,6 +28,10 @@ class ProductsCubit extends Cubit<ProductsState> {
     }
 
     try {
+      if (medSearchController.text.isEmpty) {
+        emit(ProductsInitial());
+        return;
+      }
       final result = await ProductOptionsProvider.getProduct(page,
           title: medSearchController.text);
       if (result.statusCode.isSuccess) {

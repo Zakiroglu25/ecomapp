@@ -32,7 +32,7 @@ class AsanFinanceTab extends StatelessWidget {
                 child: Checkbox(
 
                     side: MaterialStateBorderSide.resolveWith(
-                      (states) => BorderSide(width: 1, color: MyColors.grey188),
+                          (states) => BorderSide(width: 1, color: MyColors.grey188),
                     ),
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(5.0))),

@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:uikit/infrastructure/config/recorder.dart';
-import 'package:uikit/utils/delegate/index.dart';
 
 import '../constants/text.dart';
 import '../screen/alert.dart';

@@ -106,7 +106,7 @@ class AppButton extends StatelessWidget {
                             fit: fitText,
                             child: Text(
                               text ?? "",
-                              style: AppTextStyles.sfPro500.copyWith(
+                              style: AppTextStyles.sfPro600.copyWith(
                                   color: active
                                       ? (textColor ?? Colors.white)
                                       : (passiveButtonColor ??

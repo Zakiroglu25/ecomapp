@@ -37,7 +37,8 @@ class App extends StatelessWidget {
         return Pager.login;
       }
       if (state is AuthenticationOtpRequest) {
-        return Pager.otp(requestNew: true, showBackButton: false);
+        return Pager.otp(
+            requestNew: true, showBackButton: false, context: context);
       } else if (state is AuthenticationAuthenticated) {
         return Pager.landing;
       } else {

@@ -14,29 +14,31 @@ class MapMedicine {
   String? addressStreetName;
   String? addressStreetNumber;
   String? addressCity;
+  String? imageUrl;
   String? addressCountry;
   double? addressLat;
   double? addressLong;
 
   MapMedicine(
       {this.guid,
-        this.name,
-        this.slug,
-        this.website,
-        this.worksWithInsurance,
-        this.isOpen,
-        this.opensAtHour,
-        this.closesAtHour,
-        this.opensAtMinutes,
-        this.closesAtMinutes,
-        this.addressGuid,
-        this.addressStreetName,
-        this.addressStreetNumber,
-        this.addressCity,
-        this.addressCountry,
-        this.addressLat,
-        this.phone,
-        this.addressLong});
+      this.name,
+      this.slug,
+      this.website,
+      this.worksWithInsurance,
+      this.isOpen,
+      this.imageUrl,
+      this.opensAtHour,
+      this.closesAtHour,
+      this.opensAtMinutes,
+      this.closesAtMinutes,
+      this.addressGuid,
+      this.addressStreetName,
+      this.addressStreetNumber,
+      this.addressCity,
+      this.addressCountry,
+      this.addressLat,
+      this.phone,
+      this.addressLong});
 
   MapMedicine.fromJson(Map<String, dynamic> json) {
     guid = json['guid'];
@@ -44,6 +46,7 @@ class MapMedicine {
     slug = json['slug'];
     website = json['website'];
     worksWithInsurance = json['worksWithInsurance'];
+    imageUrl = json['imageUrl'];
     isOpen = json['isOpen'];
     phone = json['phone'];
     opensAtHour = json['opensAtHour'];
@@ -68,6 +71,7 @@ class MapMedicine {
     data['phone'] = this.phone;
     data['worksWithInsurance'] = this.worksWithInsurance;
     data['isOpen'] = this.isOpen;
+    data['imageUrl'] = this.imageUrl;
     data['opensAtHour'] = this.opensAtHour;
     data['closesAtHour'] = this.closesAtHour;
     data['opensAtMinutes'] = this.opensAtMinutes;
@@ -80,5 +84,10 @@ class MapMedicine {
     data['addressLat'] = this.addressLat;
     data['addressLong'] = this.addressLong;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'MapMedicine{guid: $guid, name: $name,  imageUrl: $imageUrl, slug: $slug, website: $website, worksWithInsurance: $worksWithInsurance, isOpen: $isOpen, opensAtHour: $opensAtHour, closesAtHour: $closesAtHour, opensAtMinutes: $opensAtMinutes, phone: $phone, closesAtMinutes: $closesAtMinutes, addressGuid: $addressGuid, addressStreetName: $addressStreetName, addressStreetNumber: $addressStreetNumber, addressCity: $addressCity, addressCountry: $addressCountry, addressLat: $addressLat, addressLong: $addressLong}';
   }
 }

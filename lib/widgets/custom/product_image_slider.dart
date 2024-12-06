@@ -1,8 +1,6 @@
 // Flutter imports:
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/delegate/my_printer.dart';
 import 'package:uikit/utils/screen/errorable_image.dart';

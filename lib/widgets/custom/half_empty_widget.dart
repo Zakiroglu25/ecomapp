@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:uikit/utils/constants/colors.dart';
 
 import '../general/empty_widget.dart';
 

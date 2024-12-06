@@ -13,7 +13,6 @@ import '../../../utils/constants/text.dart';
 import '../../../utils/delegate/navigate_utils.dart';
 import '../../../utils/delegate/pager.dart';
 import '../../../utils/delegate/user_operations.dart';
-import '../../../utils/formatter/snack.dart';
 import '../../../utils/screen/snack.dart';
 import '../../../utils/validators/validator.dart';
 import '../../config/recorder.dart';

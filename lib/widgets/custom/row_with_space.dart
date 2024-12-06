@@ -35,7 +35,7 @@ class SpacedRow extends StatelessWidget {
         children: children
             .map<Widget>((e) => Padding(
                   padding: EdgeInsets.only(
-                    right: !leftSpace ? (space ?? 0) : 0,
+                    right: children.last==e?0: leftSpaceHandler(),
                     left: leftSpace ? (space ?? 0) : 0,
                   ),
                   child: e,
@@ -50,4 +50,6 @@ class SpacedRow extends StatelessWidget {
       ),
     );
   }
+
+  double leftSpaceHandler() => !leftSpace ? (space ?? 0) : 0;
 }

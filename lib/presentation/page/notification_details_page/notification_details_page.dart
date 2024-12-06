@@ -16,13 +16,11 @@ class NotificationDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DoctorAppbar(
-        title: "",
-        notification: false,
-        filter: false,
-        addressDropdown: false,
-        user: false,
-        contextA: context,
-      ),
+          title: "",
+          notification: false,
+          filter: false,
+          addressDropdown: false,
+          user: false),
       body: ListView(
         padding: Paddings.paddingA16,
         children: [

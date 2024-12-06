@@ -1,8 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
-import '../../utils/constants/assets.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/paddings.dart';
 import '../../utils/screen/widget_or_empty.dart';

@@ -3,14 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:focus_detector/focus_detector.dart';
 import 'package:uikit/infrastructure/cubit/delivery_orders/index.dart';
 import 'package:uikit/infrastructure/cubit/tab_counts/index.dart';
-import 'package:uikit/presentation/page/cart_page/widgets/cart_order_product/card_order_product.dart';
-import 'package:uikit/utils/constants/paddings.dart';
-import 'package:uikit/utils/constants/physics.dart';
-import 'package:uikit/widgets/custom/focusable_app_loading.dart';
-import 'package:uikit/widgets/custom/listview_separated.dart';
 import 'package:uikit/widgets/general/app_loading.dart';
 import 'package:uikit/widgets/general/empty_widget.dart';
 
+import '../../../../../utils/constants/assets.dart';
 import '../waiting_tab/widgets/orders_stream_view.dart';
 
 class DeliveryTab extends StatelessWidget {
@@ -37,6 +33,8 @@ class DeliveryTab extends StatelessWidget {
             );
           } else if (state is DeliveryOrdersError) {
             return EmptyWidget(
+              imageUrl: Assets.pngEmptyCart,
+              text: "Bağlamanız yoxdur",
               onRefresh: () => onRefresh(context),
             );
           } else {

@@ -15,7 +15,6 @@ import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sized_box.dart';
 import '../../../../utils/constants/text.dart';
 import '../../../../widgets/custom/half_empty_widget.dart';
-import '../../../../widgets/general/empty_widget.dart';
 
 class CardItemWidget extends StatelessWidget {
   const CardItemWidget({
@@ -35,8 +34,9 @@ class CardItemWidget extends StatelessWidget {
         text: MyText.emptyText,
         description: MyText.emptyWallet,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
+        // crossAxisAlignment: CrossAxisAlignment.start,
+        // mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(
             MyText.cards,
@@ -51,7 +51,7 @@ class CardItemWidget extends StatelessWidget {
               child: AppElementBox(
                 padding: Paddings.paddingV16,
                 child: ListViewSeparated(
-                    physics: Physics.never,
+                    physics:Physics.never,
                     padding: Paddings.zero,
                     shrinkWrap: true,
                     itemCount: cardList.length,

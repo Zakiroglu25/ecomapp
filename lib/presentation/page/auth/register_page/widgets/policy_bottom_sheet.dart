@@ -4,16 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uikit/infrastructure/cubit/register/register_cubit.dart';
 import 'package:uikit/utils/constants/physics.dart';
-import 'package:uikit/utils/delegate/navigate_utils.dart';
 
 import '../../../../../utils/constants/app_text_styles.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/paddings.dart';
 import '../../../../../utils/constants/sized_box.dart';
 import '../../../../../utils/constants/text.dart';
-import '../../../../../utils/screen/ink_wrapper.dart';
 import '../../../../../utils/screen/sheet.dart';
-import '../../../../../widgets/custom/app_button.dart';
 
 class PolicyChechkBoxText extends StatelessWidget {
   const PolicyChechkBoxText({

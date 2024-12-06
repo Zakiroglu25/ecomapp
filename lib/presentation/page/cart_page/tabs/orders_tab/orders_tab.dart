@@ -40,7 +40,7 @@ class OrdersTab extends StatelessWidget {
             list: items,
             onRefresh: () {
               final dynamic navigationBar = bottomNavKey.currentWidget;
-              navigationBar.onTap(0);
+              navigationBar.onTapResend(0);
               context.read<ProductsCubit>().searchFocus.requestFocus();
             },
             image: Assets.pngEmptyCart,

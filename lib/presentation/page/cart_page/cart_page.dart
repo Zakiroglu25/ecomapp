@@ -61,7 +61,7 @@ class CartPage extends StatelessWidget {
               index: 0,
             ),
             AppTab(
-              text: MyText.in_waiting,
+              text: MyText.waiting,
               svg: Assets.svgClock,
               count: inProcessing,
               index: 1,

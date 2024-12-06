@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../infrastructure/cubit/forgot_pass/forgot_pass_cubit.dart';
 import '../../../../../infrastructure/cubit/forgot_pass/forgot_pass_state.dart';
-import '../../../../../utils/constants/paddings.dart';
 import '../../../../../widgets/custom/app_button.dart';
 
 class ForgotMainButton extends StatelessWidget {

@@ -5,10 +5,8 @@ import 'package:uikit/infrastructure/cubit/cart/cart_cubit.dart';
 import 'package:uikit/infrastructure/model/response/search_items.dart';
 import 'package:uikit/utils/constants/app_text_styles.dart';
 import 'package:uikit/utils/constants/colors.dart';
-import 'package:uikit/utils/constants/paddings.dart';
 import 'package:uikit/utils/constants/sized_box.dart';
 import 'package:uikit/utils/constants/text.dart';
-import 'package:uikit/utils/delegate/index.dart';
 
 import '../../../../utils/constants/assets.dart';
 import '../../../custom/app_button.dart';

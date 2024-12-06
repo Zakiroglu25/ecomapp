@@ -24,7 +24,6 @@ class UserEditPage extends StatelessWidget {
       appBar: DoctorAppbar(
         title: 'Edit',
         user: false,
-        contextA: context,
         notification: false,
       ),
       body: ListView(

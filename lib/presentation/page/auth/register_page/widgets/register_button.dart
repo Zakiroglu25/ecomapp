@@ -23,7 +23,7 @@ class RegisterButton extends StatelessWidget {
             onTap: () => context.read<RegisterCubit>().register(context),
             child: Text(
               MyText.goOn,
-              style: AppTextStyles.sfPro500
+              style: AppTextStyles.sfPro600
                   .copyWith(color: MyColors.white, fontSize: 15.sp),
             ),
             color: MyColors.btnGreen,

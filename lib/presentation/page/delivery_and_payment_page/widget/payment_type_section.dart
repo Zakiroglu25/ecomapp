@@ -11,7 +11,6 @@ import 'package:uikit/widgets/custom/column_with_space.dart';
 import 'package:uikit/widgets/general/app_element_box.dart';
 
 import '../../../../utils/enums/payment_type.dart';
-import 'cash_payment_box.dart';
 import 'online_payment_box.dart';
 import 'selectable_payment.dart';
 

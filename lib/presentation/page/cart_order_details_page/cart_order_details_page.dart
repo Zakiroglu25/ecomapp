@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uikit/presentation/page/cart_order_details_page/widgets/delivery_products.dart';
 import 'package:uikit/utils/delegate/cart_order_utils.dart';
+import 'package:uikit/utils/extensions/index.dart';
 import 'package:uikit/widgets/main/cupperfold/cupperfold.dart';
 
 import '../../../utils/constants/text.dart';
@@ -15,13 +16,31 @@ class CartOrderDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Cupperfold(
-      // floatingActionButton: DeliveryPayTotalButton(),
+      // //floatingActionButton: DeliveryPayTotalButton(),
       barColor: CartOrderUtils.cartOrderStatus(status).color,
       backColor: CartOrderUtils.cartOrderStatus(status).color,
       showAppbarLittleText: true,
       user: false,
+      notification: false,
       title: "${MyText.package} $orderNumber",
-      slivers: [DeliveryHeaders(status: status), DeliveryProducts()],
+      child: SizedBox(
+        height: context.sH,
+        child: Stack(
+          children: [
+            DeliveryHeaders(status: status),
+            DraggableScrollableSheet(
+              expand: true,
+              snap: true,
+              initialChildSize: 1 - 300 / context.sH,
+             minChildSize: 1 - 300 / context.sH,
+              maxChildSize: 0.99,
+              builder:
+                  (BuildContext context, ScrollController scrollController)
+              => DeliveryProducts(scrollController:scrollController),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

@@ -11,10 +11,10 @@ import '../model/response/status_dynamic.dart';
 class ForgotProvider {
   static DioAuth get dioAuth => locator<DioAuth>();
 
-  static Future<StatusDynamic?> requestOTP({
-    //  //https://doctoro-dev.ml/public/auth/request-otp/+994505505342
-    required String? phone,
-  }) async {
+  static Future<StatusDynamic?> requestOTP(
+      {
+      //  //https://doctoro-dev.ml/public/auth/request-otp/+994505505342
+      required String? phone}) async {
     StatusDynamic statusDynamic = StatusDynamic();
     var api = ApiKeys.requestOtp + '/$phone';
 

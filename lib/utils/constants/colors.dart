@@ -6,7 +6,7 @@ class MyColors {
   //main colors
   //static const Color brand = Color.fromRGBO(255, 0, 55, 1);
   static const Color brand = Color.fromRGBO(234, 76, 104, 1);
-  static const Color secondary = Color.fromRGBO(241, 82, 116, 0.1);
+  static const Color secondary = Color.fromRGBO(254, 238, 241, 1);
 
   ///onboardlittletext
   static const Color black = Color.fromRGBO(0, 0, 0, 1);
@@ -14,7 +14,6 @@ class MyColors {
   static const Color mainRED = Color.fromRGBO(255, 0, 55, 1);
   static const Color darkRED = Color.fromRGBO(211, 41, 45, 1);
   static const Color grey165 = Color.fromRGBO(168, 172, 185, 1);
-  static const Color error_red = Color.fromRGBO(241, 82, 116, 1);
   static const Color orange241 = Color.fromRGBO(241, 110, 82, 1);
   static const Color grey130 = Color.fromRGBO(130, 139, 163, 1);
   static const Color grey188 = Color.fromRGBO(188, 192, 208, 1);
@@ -45,6 +44,7 @@ class MyColors {
   static const Color btnGreen = Color(0xFF55A158);
   static const Color gold = Color(0xFFFDF5E0);
   static const Color purple240 = Color.fromRGBO(240, 240, 248, 1);
+  static const Color purple235 = Color.fromRGBO(235, 236, 247, 1);
   static const Color orange225 = Color.fromRGBO(225, 142, 50, 0.1);
   static const Color blue157 = Color.fromRGBO(57, 149, 210, 0.15);
   static const Color blue55 = Color.fromRGBO(55, 115, 224, 1);
@@ -55,7 +55,7 @@ class MyColors {
   static const Color userGradient1 = Color.fromRGBO(255, 82, 128, 1);
   static const Color userGradient2 = Color.fromRGBO(255, 112, 97, 1);
   static const Color userPhoto = Color.fromRGBO(253, 82, 132, 1);
-  static const Color pashaBackground = Color.fromRGBO(64, 146, 196, 1);
+  static const Color blue64 = Color.fromRGBO(64, 146, 196, 1);
   static const Color white255 = Color.fromRGBO(255, 255, 255, 0.2);
   static const Color red249 = Color.fromRGBO(249, 228, 227, 1);
   static const Color purpleLight = Color(0xFFF0F0F8);

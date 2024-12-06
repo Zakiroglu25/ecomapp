@@ -21,11 +21,11 @@ class CustomSlideToConfirmButton extends StatelessWidget {
           children: [
             Text(
               text,
-              style: AppTextStyles.sfPro500.copyWith(color: MyColors.white),
+              style: AppTextStyles.sfPro600.copyWith(color: MyColors.white),
             ),
             Text(
               MyText.slideToConfirm,
-              style: AppTextStyles.sfPro500
+              style: AppTextStyles.sfPro600
                   .copyWith(fontSize: 11, color: MyColors.white),
             ),
           ],

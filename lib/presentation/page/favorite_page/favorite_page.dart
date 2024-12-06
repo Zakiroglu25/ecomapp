@@ -26,8 +26,7 @@ class _FavoritePageState extends State<FavoritePage> {
       appBar: DoctorAppbar(
         user: true,
         notification: true,
-        contextA: context,
-        title: MyText.favorite,
+        title: MyText.favorites,
         filter: false,
       ),
       body: BlocBuilder<FavoriteCubit, FavoriteState>(

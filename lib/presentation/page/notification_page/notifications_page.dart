@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uikit/infrastructure/model/response/notification_model.dart';
 import 'package:uikit/utils/constants/assets.dart';
-import 'package:uikit/utils/constants/colors.dart';
 import 'package:uikit/widgets/general/list_or_empty.dart';
 
 import '../../../infrastructure/cubit/notification_cubit/notification_cubit.dart';
@@ -25,7 +24,6 @@ class NotificationsPage extends StatelessWidget {
         filter: false,
         addressDropdown: false,
         user: false,
-        contextA: context,
       ),
       body: BlocBuilder<NotificationCubit, NotificationState>(
         builder: (context, state) {

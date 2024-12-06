@@ -6,7 +6,6 @@ import 'package:uikit/presentation/page/products_page/widgets/items/saved_delive
 import '../../../../infrastructure/cubit/address/address_cubit.dart';
 import '../../../../infrastructure/cubit/address/address_state.dart';
 import '../../../../utils/constants/physics.dart';
-import '../../../../widgets/general/app_loading.dart';
 import '../../../../widgets/general/empty_widget.dart';
 
 class SavedAddressList extends StatelessWidget {

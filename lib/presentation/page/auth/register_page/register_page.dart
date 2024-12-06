@@ -9,7 +9,6 @@ import 'package:uikit/utils/constants/text.dart';
 
 import '../../../../infrastructure/cubit/register/register_cubit.dart';
 import '../../../../utils/constants/paddings.dart';
-import '../../../../utils/screen/snack.dart';
 import 'widgets/checkbox_ads.dart';
 import 'widgets/email_field_register.dart';
 import 'widgets/name_field_register.dart';
@@ -31,7 +30,7 @@ class RegisterPage extends StatelessWidget {
         elevation: 0,
         title: Text(
           MyText.register,
-          style: AppTextStyles.sfPro500
+          style: AppTextStyles.sfPro600
               .copyWith(color: MyColors.black, fontSize: 16.sp),
         ),
         centerTitle: true,

@@ -14,7 +14,6 @@ class NotificationProvider {
     // List<NotificationModel> notifications =[];
     const api = ApiKeys.notification;
     final response = await dioAuth.dio.get(api);
-    wtf(response.toString());
     try {
       statusDynamic.statusCode = response.statusCode;
       if (response.statusCode == ResultKey.successCode) {
